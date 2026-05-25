@@ -1,0 +1,8 @@
+package: FixSbe
+id: 1
+description: Missing required 'version' slot
+types:
+  - "shared_types_v1"
+message:
+  - name: NewOrderSingle
+    id: 99

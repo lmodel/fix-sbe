@@ -1,0 +1,7 @@
+name: FlagSet
+encoding_type: uint8Type
+choice:
+  - name: HasOptions
+    value: "0"
+  - name: HasExtras
+    value: "1"

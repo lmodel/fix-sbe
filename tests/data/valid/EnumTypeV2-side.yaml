@@ -1,0 +1,8 @@
+name: SideEnum
+encoding_type: charType
+description: Side of an order (V2)
+valid_value:
+  - name: Buy
+    value: "1"
+  - name: Sell
+    value: "2"

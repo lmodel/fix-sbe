@@ -1,0 +1,5 @@
+name: uint32Type
+primitive_type: uint32
+min_value: "0"
+max_value: "4294967294"
+null_value: "4294967295"

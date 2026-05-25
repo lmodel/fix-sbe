@@ -1,0 +1,7 @@
+name: decimal
+description: A decimal composite type (V2)
+type:
+  - name: mantissa
+    primitive_type: int64
+  - name: exponent
+    primitive_type: int8

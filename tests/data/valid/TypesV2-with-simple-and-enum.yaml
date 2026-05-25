@@ -1,0 +1,13 @@
+description: Primary types module
+package: FixSbe
+type:
+  - name: uint32Type
+    primitive_type: uint32
+  - name: charType
+    primitive_type: char
+enum:
+  - name: SideEnum
+    encoding_type: charType
+    valid_value:
+      - name: Buy
+        value: "1"

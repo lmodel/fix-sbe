@@ -1,0 +1,9 @@
+package: FixSbe
+id: 2
+version: 0
+byte_order: middleEndian
+types:
+  - "primary"
+message:
+  - name: NewOrderSingle
+    id: 99

@@ -1,0 +1,14 @@
+package: FixSbe
+id: 1
+version: 0
+description: A minimal SBE 2.0 schema
+types:
+  - description: Primary types
+    type:
+      - name: charType
+        primitive_type: char
+messages:
+  - description: Primary messages
+    message:
+      - name: NewOrderSingle
+        id: 99

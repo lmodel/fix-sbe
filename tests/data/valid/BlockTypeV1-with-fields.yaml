@@ -1,0 +1,11 @@
+name: ExecutionReport
+id: 98
+block_length: 64
+description: Execution report message body
+field:
+  - name: orderID
+    id: 37
+    type: idString
+  - name: side
+    id: 54
+    type: SideEnum

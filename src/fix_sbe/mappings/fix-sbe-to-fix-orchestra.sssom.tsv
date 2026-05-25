@@ -1,0 +1,37 @@
+#curie_map:
+#  fix_orchestra: https://w3id.org/lmodel/fix-orchestra/
+#  fix_sbe: https://w3id.org/lmodel/fix-simple-binary-encoding/
+#mapping_set_id: https://w3id.org/lmodel/fix-simple-binary-encoding/mappings/fix-sbe-to-fix-orchestra.sssom.tsv
+#mapping_set_description: Manually curated subject-side mappings from FIX Simple Binary Encoding (SBE) LinkML entities to FIX Orchestra LinkML entities. Each SBE class / enum is mapped to its closest Orchestra metamodel counterpart using SKOS mapping predicates. Per-version (V1, V2) and cross-version (unsuffixed common) SBE entities are mapped independently when they exist on both sides. Generated as part of the fix-simple-binary-encoding LinkML project; mappings cover only entities with a defensible semantic correspondence and intentionally omit SBE encoding-only entities (byte order, alignment / offset attribute groups, qualified-name pattern types, etc.) for which no Orchestra counterpart exists.
+#mapping_set_version: 0.1.0
+#license: https://creativecommons.org/licenses/by/4.0/
+#mapping_date: 2026-05-25
+subject_id	subject_label	predicate_id	object_id	object_label	mapping_justification	confidence	comment
+fix_sbe:BlockTypeV1	BlockType (SBE v1.0)	skos:closeMatch	fix_orchestra:ComponentType	ComponentType	semapv:ManualMappingCuration	0.85	SBE BlockType groups a fixed-layout set of named fields; Orchestra ComponentType groups field / group references in a reusable block. Structural intent matches at the encoding-time vs design-time boundary.
+fix_sbe:BlockTypeV2	BlockType (SBE v2.0)	skos:closeMatch	fix_orchestra:ComponentType	ComponentType	semapv:ManualMappingCuration	0.85	Same as the v1.0 mapping; v2.0 BlockType additionally exposes offset / primitive-type mixin attributes but the core concept is unchanged.
+fix_sbe:Choice	Choice	skos:closeMatch	fix_orchestra:CodeType	CodeType	semapv:ManualMappingCuration	0.9	A single named choice within an SBE SetType (bitset). Corresponds to a single CodeType within an Orchestra CodeSetType.
+fix_sbe:CompositeDataTypeV1	CompositeDataType (SBE v1.0)	skos:closeMatch	fix_orchestra:Datatype	Datatype	semapv:ManualMappingCuration	0.8	Composite encoding (a sequence of member encodings) maps to a structured Orchestra Datatype with mapped sub-datatypes.
+fix_sbe:CompositeDataTypeV2	CompositeDataType (SBE v2.0)	skos:closeMatch	fix_orchestra:Datatype	Datatype	semapv:ManualMappingCuration	0.8	Same as v1.0; v2.0 differs by holding MemberDataType / RefType children rather than inline simpleType / enumType definitions.
+fix_sbe:EncodedDataTypeV1	EncodedDataType (SBE v1.0)	skos:closeMatch	fix_orchestra:Datatype	Datatype	semapv:ManualMappingCuration	0.85	v1.0 EncodedDataType (single-encoding datatype declaration) is the SBE counterpart of an Orchestra Datatype definition.
+fix_sbe:EnumTypeV1	EnumType (SBE v1.0)	skos:closeMatch	fix_orchestra:CodeSetType	CodeSetType	semapv:ManualMappingCuration	0.9	Enumerated set of permissible (valid) values; equivalent to an Orchestra CodeSetType.
+fix_sbe:EnumTypeV2	EnumType (SBE v2.0)	skos:closeMatch	fix_orchestra:CodeSetType	CodeSetType	semapv:ManualMappingCuration	0.9	Same as v1.0.
+fix_sbe:FieldTypeV1	FieldType (SBE v1.0)	skos:exactMatch	fix_orchestra:FieldType	FieldType	semapv:ManualMappingCuration	0.95	Both define a FIX field with id, name, type, and semantic attributes. Same shared name and near-identical conceptual model.
+fix_sbe:FieldTypeV2	FieldType (SBE v2.0)	skos:exactMatch	fix_orchestra:FieldType	FieldType	semapv:ManualMappingCuration	0.95	Same as v1.0; v2.0 keeps the same shape with minor attribute-group changes.
+fix_sbe:GroupTypeV1	GroupType (SBE v1.0)	skos:closeMatch	fix_orchestra:ComponentType	ComponentType	semapv:ManualMappingCuration	0.75	SBE GroupType is a repeating block of fields. Orchestra models repeating groups as Components carrying group semantics (no top-level GroupType class).
+fix_sbe:GroupTypeV2	GroupType (SBE v2.0)	skos:closeMatch	fix_orchestra:ComponentType	ComponentType	semapv:ManualMappingCuration	0.75	Same as v1.0.
+fix_sbe:MemberDataTypeV2	MemberDataType (SBE v2.0)	skos:narrowMatch	fix_orchestra:Datatype	Datatype	semapv:ManualMappingCuration	0.7	v2.0 MemberDataType is a sub-element of a CompositeDataType; semantically narrower than a top-level Orchestra Datatype definition.
+fix_sbe:MessageSchemaV1	MessageSchema (SBE v1.0)	skos:closeMatch	fix_orchestra:Repository	Repository	semapv:ManualMappingCuration	0.7	Both are top-level container roots, but an Orchestra Repository carries substantially more (workflow, scenarios, sessions, actors) than an SBE MessageSchema.
+fix_sbe:MessageSchemaV2	MessageSchema (SBE v2.0)	skos:closeMatch	fix_orchestra:Repository	Repository	semapv:ManualMappingCuration	0.7	Same as v1.0.
+fix_sbe:MessageV1	Message (SBE v1.0)	skos:exactMatch	fix_orchestra:MessageType	MessageType	semapv:ManualMappingCuration	0.9	Both define a FIX message at the metamodel level (name, id, msgType, member fields).
+fix_sbe:MessagesV2	Messages (SBE v2.0)	skos:exactMatch	fix_orchestra:Messages	Messages	semapv:ManualMappingCuration	0.95	Container element holding message definitions; equivalent on both sides.
+fix_sbe:Presence	Presence	skos:exactMatch	fix_orchestra:Presence	Presence	semapv:ManualMappingCuration	0.95	Same enumeration concept (required / optional / constant / etc.). Permissible-value sets overlap heavily across SBE and Orchestra.
+fix_sbe:PrimitiveTypeV1	PrimitiveType (SBE v1.0)	skos:broadMatch	fix_orchestra:Datatype	Datatype	semapv:ManualMappingCuration	0.6	SBE PrimitiveType enumerates encoding-level primitives (uint8, int16, double, ...). Broader than Orchestra Datatype which is itself defined in terms of mapped primitives.
+fix_sbe:PrimitiveTypeV2	PrimitiveType (SBE v2.0)	skos:broadMatch	fix_orchestra:Datatype	Datatype	semapv:ManualMappingCuration	0.6	Same as v1.0.
+fix_sbe:RefTypeV1	RefType (SBE v1.0)	skos:closeMatch	fix_orchestra:FieldRefType	FieldRefType	semapv:ManualMappingCuration	0.85	Reference-by-name to a previously-defined type / field, matching Orchestra FieldRefType reference semantics.
+fix_sbe:RefTypeV2	RefType (SBE v2.0)	skos:closeMatch	fix_orchestra:FieldRefType	FieldRefType	semapv:ManualMappingCuration	0.85	Same as v1.0.
+fix_sbe:SetTypeV1	SetType (SBE v1.0)	skos:closeMatch	fix_orchestra:CodeSetType	CodeSetType	semapv:ManualMappingCuration	0.8	SBE SetType is a bitset of named choices; closest Orchestra analog is a multi-value CodeSetType.
+fix_sbe:SetTypeV2	SetType (SBE v2.0)	skos:closeMatch	fix_orchestra:CodeSetType	CodeSetType	semapv:ManualMappingCuration	0.8	Same as v1.0.
+fix_sbe:SimpleDataTypeV2	SimpleDataType (SBE v2.0)	skos:closeMatch	fix_orchestra:Datatype	Datatype	semapv:ManualMappingCuration	0.85	v2.0 single-encoding datatype declaration; SBE successor to v1.0 EncodedDataType.
+fix_sbe:TypesV2	Types (SBE v2.0)	skos:exactMatch	fix_orchestra:Datatypes	Datatypes	semapv:ManualMappingCuration	0.95	Container element holding datatype definitions; equivalent on both sides.
+fix_sbe:ValidValue	ValidValue	skos:closeMatch	fix_orchestra:CodeType	CodeType	semapv:ManualMappingCuration	0.9	A single permissible value within an SBE EnumType; equivalent to an Orchestra CodeType within a CodeSetType.
+fix_sbe:VersionAttributes	VersionAttributes	skos:closeMatch	fix_orchestra:EntityAttribGrp	EntityAttribGrp	semapv:ManualMappingCuration	0.85	Added / updated / deprecated version-tracking attribute group; Orchestra exposes equivalent metadata through EntityAttribGrp.

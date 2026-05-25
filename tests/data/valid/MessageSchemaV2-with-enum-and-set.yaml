@@ -1,0 +1,37 @@
+package: FixSbe
+id: 2
+version: 3
+semantic_version: FIX.5.0SP2
+description: SBE 2.0 schema with enums and explicit byte order
+byte_order: bigEndian
+header_type: messageHeader
+types:
+  - description: Primary types module
+    type:
+      - name: charType
+        primitive_type: char
+      - name: uint8Type
+        primitive_type: uint8
+    enum:
+      - name: SideEnum
+        encoding_type: charType
+        valid_value:
+          - name: Buy
+            value: "1"
+    set:
+      - name: FlagSet
+        encoding_type: uint8Type
+        choice:
+          - name: HasOptions
+            value: "0"
+messages:
+  - description: Primary messages module
+    message:
+      - name: ExecutionReport
+        id: 98
+        block_length: 64
+        field:
+          - name: orderID
+            id: 37
+            type: idString
+            presence: required

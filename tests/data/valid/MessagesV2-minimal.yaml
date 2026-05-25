@@ -1,0 +1,7 @@
+description: Primary messages module
+package: FixSbe
+message:
+  - name: NewOrderSingle
+    id: 99
+  - name: ExecutionReport
+    id: 98

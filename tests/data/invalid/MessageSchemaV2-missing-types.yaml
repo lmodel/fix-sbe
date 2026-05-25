@@ -1,0 +1,8 @@
+package: FixSbe
+id: 1
+version: 0
+description: Missing required 'types' slot
+messages:
+  - message:
+      - name: NewOrderSingle
+        id: 99

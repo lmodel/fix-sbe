@@ -1,0 +1,5 @@
+name: orderID
+id: 37
+type: idString
+presence: required
+semantic_type: String
