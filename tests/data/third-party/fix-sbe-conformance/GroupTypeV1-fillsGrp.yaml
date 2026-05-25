@@ -1,0 +1,13 @@
+name: FillsGrp
+id: 2112
+block_length: 12
+dimension_type: groupSizeEncoding
+field:
+  - name: FillPx
+    id: 1364
+    type: decimalEncoding
+    semantic_type: Price
+  - name: FillQty
+    id: 1365
+    type: qtyEncoding
+    semantic_type: Qty

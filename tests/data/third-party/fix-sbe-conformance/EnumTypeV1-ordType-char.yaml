@@ -1,0 +1,11 @@
+name: ordTypeEnum
+encoding_type: charEnumEncoding
+valid_value:
+  - name: Market
+    value: "1"
+  - name: Limit
+    value: "2"
+  - name: Stop
+    value: "3"
+  - name: StopLimit
+    value: "4"

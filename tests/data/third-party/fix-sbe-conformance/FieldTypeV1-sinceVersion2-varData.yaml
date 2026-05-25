@@ -1,0 +1,7 @@
+# Variable-length data field added in schema version 2 (sinceVersion="2")
+# Tests sinceVersion on a var-data field
+name: ComplianceText
+id: 2404
+type: DATA
+semantic_type: data
+since_version: 2

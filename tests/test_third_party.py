@@ -6,18 +6,13 @@ release of the SBE technical standard (v1.0 RC3, RC4, STANDARD; v2.0 RC1, RC2,
 RC3) and include the XInclude fragments shipped with the v2 releases
 (``types-include.xml``, ``messages-include.xml``).
 
-The corpus exercises two gates:
+Each XML is converted via ``scripts/fix_xml_to_linkml.py`` and validated by
+``linkml-validate`` against the SBE LinkML umbrella schema. The number of
+errors must be ``<= max_errors`` for the file. ``max_errors > 0`` flags a
+*known* upstream data quirk; investigate before incrementing the budget.
 
-1. **XML well-formedness** - every ``.xml`` parses without error.
-2. **LinkML-schema validation** - each XML is converted via
-   ``scripts/fix_xml_to_linkml.py`` and validated by ``linkml-validate`` against
-   the SBE LinkML umbrella schema. The number of errors must be
-   ``<= max_errors`` for the file. ``max_errors > 0`` flags a *known* upstream
-   data quirk; investigate before incrementing the budget.
-
-The LinkML-level gate is automatically skipped until the SBE XML->LinkML
-converter (``scripts/fix_xml_to_linkml.py``) lands; the well-formedness gate
-runs unconditionally so the upstream fixtures remain parseable.
+Upstream artefacts are assumed well-formed; this module does not re-check XML
+parseability.
 """
 from __future__ import annotations
 
@@ -35,9 +30,9 @@ PROJECT = Path(__file__).parent.parent
 SCHEMA = (
     PROJECT
     / "src"
-    / "fix_simple_binary_encoding"
+    / "fix_sbe"
     / "schema"
-    / "fix_simple_binary_encoding.yaml"
+    / "fix_sbe.yaml"
 )
 CONV = PROJECT / "scripts" / "fix_xml_to_linkml.py"
 
@@ -89,7 +84,20 @@ CASES = [
 
 
 def _have(cmd: str) -> bool:
-    return shutil.which(cmd) is not None
+    if shutil.which(cmd) is not None:
+        return True
+    # Fall back to the venv co-located with the active interpreter so the
+    # test works under `uv run pytest` / `pytest` from an unactivated venv.
+    return (Path(sys.executable).parent / cmd).is_file()
+
+
+def _resolve(cmd: str) -> str:
+    """Return absolute path to ``cmd`` if found on PATH or in the active venv."""
+    found = shutil.which(cmd)
+    if found:
+        return found
+    candidate = Path(sys.executable).parent / cmd
+    return str(candidate) if candidate.is_file() else cmd
 
 
 def _params():
@@ -102,23 +110,6 @@ def _params():
         out.append(pytest.param(relpath, target, max_err, note,
                                 id=relpath, marks=marks))
     return out
-
-
-# ---------------------------------------------------------------------------
-# Well-formedness gate
-# ---------------------------------------------------------------------------
-
-@pytest.mark.parametrize("relpath,target,max_errors,note", _params())
-def test_third_party_xml_wellformed(relpath, target, max_errors, note, capsys):
-    """The XML must parse without error."""
-    src = _CORPUS / relpath
-    if not src.is_file():
-        pytest.skip(f"missing upstream file {src}")
-    tree = ET.parse(str(src))
-    counts = _count_xml_records(tree.getroot())
-    with capsys.disabled():
-        print(f"\n  [wellformed] {relpath}: "
-              f"parsed OK -- {_fmt_counts(counts, verb='counted')}")
 
 
 # ---------------------------------------------------------------------------
@@ -151,7 +142,7 @@ def test_third_party_xml_validates_against_linkml(
     assert yaml_out.exists()
 
     val = subprocess.run(
-        ["linkml-validate", "-s", str(SCHEMA),
+        [_resolve("linkml-validate"), "-s", str(SCHEMA),
          "--target-class", target, str(yaml_out)],
         capture_output=True, text=True, check=False,
     )
@@ -177,42 +168,6 @@ def test_third_party_xml_validates_against_linkml(
 # ---------------------------------------------------------------------------
 # Record-count helpers (used to surface processing volume per file)
 # ---------------------------------------------------------------------------
-
-# XML local tag names whose direct children are counted as "records" in a
-# FIX SBE messageSchema document. Ordered roughly by domain weight.
-_XML_CONTAINERS = [
-    "types",      # <type>, <composite>, <enum>, <set>, <ref>
-    "composite",  # nested member encodings
-    "enum",       # <validValue>
-    "set",        # <choice>
-    "messages",   # <message> (v2 only; v1 nests <sbe:message> directly under root)
-    "message",    # <field>, <group>
-    "group",      # <field>, nested <group>
-]
-
-
-def _count_xml_records(root: ET.Element) -> dict[str, int]:
-    """Count children of each well-known SBE container element.
-
-    v1.0 messageSchema lists ``<sbe:message>`` elements directly under the
-    schema root (no ``<messages>`` wrapper), so they are tallied separately.
-    """
-    def local(tag: str) -> str:
-        return tag.split("}", 1)[1] if "}" in tag else tag
-
-    out: dict[str, int] = {}
-    for elt in root.iter():
-        lname = local(elt.tag)
-        if lname in _XML_CONTAINERS:
-            n = sum(1 for c in elt if local(c.tag) != "description")
-            out[lname] = out.get(lname, 0) + n
-
-    if local(root.tag) == "messageSchema":
-        n_msg_direct = sum(1 for c in root if local(c.tag) == "message")
-        if n_msg_direct:
-            out["message"] = out.get("message", 0) + n_msg_direct
-    return out
-
 
 # YAML slot names whose multivalued contents we count after conversion. Mirrors
 # the SBE LinkML overlays (V1 / V2 + common). Exact slot names will firm up
@@ -263,3 +218,113 @@ def _fmt_counts(counts: dict[str, int], verb: str = "counted") -> str:
     parts = [f"{k}={v}" for k, v in sorted(counts.items(),
                                             key=lambda kv: -kv[1])]
     return f"{_green(f'{verb} {total} records')} ({', '.join(parts)})"
+
+
+# ---------------------------------------------------------------------------
+# FIX SBE Conformance Test Suite (fix-sbe-conformance)
+# ---------------------------------------------------------------------------
+
+_CONFORMANCE_CORPUS = (
+    PROJECT / "tests" / "data" / "third-party" / "fix-sbe-conformance" / "xml"
+)
+
+# Conformance schemas exercise progressive schema versioning:
+#   schema1.xml = v0 (baseline)
+#   schema2.xml = v1 (adds SecurityID + MinQty with sinceVersion="1")
+#   schema3.xml = v2 (adds variable-length data with sinceVersion="2")
+CONFORMANCE_SCHEMAS = [
+    ("schema1.xml", "MessageSchemaV1", 0,
+     "Conformance suite schema v0 (baseline, 3 messages, enums, composites)."),
+    ("schema2.xml", "MessageSchemaV1", 0,
+     "Conformance suite schema v1 (extends v0 with sinceVersion=1 fields)."),
+    ("schema3.xml", "MessageSchemaV1", 0,
+     "Conformance suite schema v2 (extends v1 with var-length data, sinceVersion=2)."),
+]
+
+
+def _conformance_params():
+    out = []
+    for relpath, target, max_err, note in CONFORMANCE_SCHEMAS:
+        path = _CONFORMANCE_CORPUS / relpath
+        out.append(pytest.param(relpath, target, max_err, note, id=f"conformance/{relpath}"))
+    return out
+
+
+@pytest.mark.parametrize("relpath,target,max_errors,note", _conformance_params())
+def test_conformance_schema_version_progression(relpath, target, max_errors, note):
+    """Verify sinceVersion attributes match the schema version progression."""
+    src = _CONFORMANCE_CORPUS / relpath
+    if not src.is_file():
+        pytest.skip(f"missing conformance file {src}")
+    tree = ET.parse(str(src))
+    root = tree.getroot()
+
+    # Extract schema version
+    schema_version = int(root.get("version", "0"))
+
+    # Collect all sinceVersion values in the document
+    since_versions: list[int] = []
+    for elt in root.iter():
+        sv = elt.get("sinceVersion")
+        if sv is not None:
+            since_versions.append(int(sv))
+
+    # Every sinceVersion must be <= schema version (can't reference a future version)
+    for sv in since_versions:
+        assert sv <= schema_version, (
+            f"{relpath}: sinceVersion={sv} exceeds schema version={schema_version}"
+        )
+
+    # In schema v0, no sinceVersion attributes should be present
+    if schema_version == 0:
+        assert len(since_versions) == 0, (
+            f"{relpath}: schema v0 should have no sinceVersion attributes, "
+            f"found {len(since_versions)}"
+        )
+
+
+@pytest.mark.skipif(not _have("linkml-validate"),
+                    reason="linkml-validate not on PATH (run `uv sync`).")
+@pytest.mark.skipif(not CONV.exists(),
+                    reason="scripts/fix_xml_to_linkml.py not yet implemented.")
+@pytest.mark.parametrize("relpath,target,max_errors,note", _conformance_params())
+def test_conformance_xml_validates_against_linkml(
+        tmp_path, relpath, target, max_errors, note, capsys,
+        fix_record_tally):
+    """Convert conformance XML to YAML and validate against LinkML schema."""
+    src = _CONFORMANCE_CORPUS / relpath
+    if not src.is_file():
+        pytest.skip(f"missing conformance file {src}")
+    yaml_out = tmp_path / (Path(relpath).stem + ".yaml")
+
+    conv = subprocess.run(
+        [sys.executable, str(CONV), "--schema", str(SCHEMA),
+         "--target-class", target, "--in", str(src), "--out", str(yaml_out)],
+        capture_output=True, text=True, check=False,
+    )
+    assert conv.returncode == 0, (
+        f"converter failed for {relpath}:\nstdout={conv.stdout}\n"
+        f"stderr={conv.stderr}")
+    assert yaml_out.exists()
+
+    val = subprocess.run(
+        [_resolve("linkml-validate"), "-s", str(SCHEMA),
+         "--target-class", target, str(yaml_out)],
+        capture_output=True, text=True, check=False,
+    )
+    error_lines = [ln for ln in val.stdout.splitlines()
+                   if ln.startswith("[ERROR]")]
+    actual = len(error_lines)
+
+    yaml_obj = yaml.safe_load(yaml_out.read_text())
+    counts = _count_yaml_records(yaml_obj)
+    fix_record_tally["total"] += sum(counts.values())
+    with capsys.disabled():
+        print(f"\n  [conformance/validate] {relpath} ({target}): "
+              f"{_fmt_counts(counts, verb='validated')}; "
+              f"{actual}/{max_errors} errors")
+
+    assert actual <= max_errors, (
+        f"{relpath}: {actual} validation errors, expected <= "
+        f"{max_errors}. Note: {note}\n"
+        f"First 5 errors:\n  " + "\n  ".join(error_lines[:5]))

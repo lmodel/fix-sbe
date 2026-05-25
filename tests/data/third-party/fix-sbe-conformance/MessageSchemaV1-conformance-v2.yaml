@@ -1,0 +1,46 @@
+# Conformance schema v2 (extended) - adds variable-length data with sinceVersion=2
+# Based on fix-sbe-conformance schema3.xml
+# Tests schema extension mechanism: var-length data fields added at end of messages
+package: Conformance
+id: 1
+version: 2
+byte_order: littleEndian
+description: SBE v1.0 message schema for conformance test suite 1
+types:
+  - "conformance_types_v2"
+message:
+  - name: BusinessMessageReject
+    id: 97
+    block_length: 9
+  - name: ExecutionReport
+    id: 98
+    block_length: 50
+    field:
+      - name: OrderID
+        id: 37
+        type: idString
+      - name: SecurityID
+        id: 48
+        type: idString
+        since_version: 1
+    data:
+      - name: RejectText
+        id: 1328
+        type: DATA
+        since_version: 2
+  - name: NewOrderSingle
+    id: 99
+    block_length: 58
+    field:
+      - name: ClOrdId
+        id: 11
+        type: idString
+      - name: MinQty
+        id: 110
+        type: qtyEncoding
+        since_version: 1
+    data:
+      - name: ComplianceText
+        id: 2404
+        type: DATA
+        since_version: 2

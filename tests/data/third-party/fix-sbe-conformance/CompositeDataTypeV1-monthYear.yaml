@@ -1,0 +1,11 @@
+name: MONTH_YEAR
+semantic_type: MonthYear
+type:
+  - name: year
+    primitive_type: uint16
+  - name: month
+    primitive_type: uint8
+  - name: day
+    primitive_type: uint8
+  - name: week
+    primitive_type: uint8

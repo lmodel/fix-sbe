@@ -1,0 +1,7 @@
+# Field added in schema version 1 (sinceVersion="1")
+# Exercises VersionAttributes mixin on FieldTypeV1
+name: SecurityID
+id: 48
+type: idString
+semantic_type: String
+since_version: 1

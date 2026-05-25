@@ -1,0 +1,37 @@
+# Conformance schema v1 (extended) - adds SecurityID and MinQty with sinceVersion=1
+# Based on fix-sbe-conformance schema2.xml
+# Tests schema extension mechanism: version bumped, block_lengths grown,
+# new fields carry sinceVersion=1
+package: Conformance
+id: 1
+version: 1
+byte_order: littleEndian
+description: SBE v1.0 message schema for conformance test suite 1
+types:
+  - "conformance_types_v1"
+message:
+  - name: BusinessMessageReject
+    id: 97
+    block_length: 9
+  - name: ExecutionReport
+    id: 98
+    block_length: 50
+    field:
+      - name: OrderID
+        id: 37
+        type: idString
+      - name: SecurityID
+        id: 48
+        type: idString
+        since_version: 1
+  - name: NewOrderSingle
+    id: 99
+    block_length: 58
+    field:
+      - name: ClOrdId
+        id: 11
+        type: idString
+      - name: MinQty
+        id: 110
+        type: qtyEncoding
+        since_version: 1

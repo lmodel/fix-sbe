@@ -1,0 +1,6 @@
+# Variable-length data field added in schema version 2 (sinceVersion="2")
+name: RejectText
+id: 1328
+type: DATA
+semantic_type: data
+since_version: 2
