@@ -35,9 +35,9 @@ PROJECT = Path(__file__).parent.parent
 SCHEMA = (
     PROJECT
     / "src"
-    / "fix_simple_binary_encoding"
+    / "fix_sbe"
     / "schema"
-    / "fix_simple_binary_encoding.yaml"
+    / "fix_sbe.yaml"
 )
 CONV = PROJECT / "scripts" / "fix_xml_to_linkml.py"
 
