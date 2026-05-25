@@ -1,0 +1,324 @@
+ syntax="proto3";
+ package
+// metamodel_version: 1.11.0
+// Base type of message and repeating group entry
+message BlockTypeV1
+ {
+ repeated  fieldTypeV1 field = 0
+ repeated  groupTypeV1 group = 0
+ repeated  fieldTypeV1 data = 0
+  symbolicName name = 0
+  integer id = 0
+  integer blockLength = 0
+  string semanticType = 0
+  string description = 0
+  integer sinceVersion = 0
+  integer deprecated = 0
+ }
+// Base type of message and repeating group entry
+message BlockTypeV2
+ {
+ repeated  fieldTypeV2 field = 0
+ repeated  groupTypeV2 group = 0
+ repeated  fieldTypeV2 data = 0
+  symbolicName name = 0
+  integer id = 0
+  integer blockLength = 0
+  integer alignment = 0
+  string semanticType = 0
+  string description = 0
+  integer sinceVersion = 0
+  integer deprecated = 0
+ }
+// A choice within a multi value set. Value is the position within a bitset (zero-based index).
+message Choice
+ {
+  symbolicName name = 0
+  string description = 0
+  string value = 0
+  integer sinceVersion = 0
+  integer deprecated = 0
+ }
+// A wire encoding composed of multiple parts
+message CompositeDataTypeV1
+ {
+ repeated  encodedDataTypeV1 type = 0
+ repeated  enumTypeV1 enum = 0
+ repeated  setTypeV1 set = 0
+ repeated  compositeDataTypeV1 composite = 0
+ repeated  refTypeV1 ref = 0
+  symbolicName name = 0
+  string value = 0
+  integer offset = 0
+  string semanticType = 0
+  string description = 0
+  integer sinceVersion = 0
+  integer deprecated = 0
+ }
+// A wire encoding composed of multiple parts
+message CompositeDataTypeV2
+ {
+ repeated  memberDataTypeV2 type = 0
+ repeated  enumTypeV2 enum = 0
+ repeated  setTypeV2 set = 0
+ repeated  compositeDataTypeV2 composite = 0
+ repeated  refTypeV2 ref = 0
+  symbolicName name = 0
+  string description = 0
+  string value = 0
+  integer offset = 0
+  integer alignment = 0
+  integer sinceVersion = 0
+  integer deprecated = 0
+ }
+// Simple wire encoding consisting of a primitive type or array of primitives
+message EncodedDataTypeV1
+ {
+  symbolicName name = 0
+  string nullValue = 0
+  string minValue = 0
+  string maxValue = 0
+  integer length = 0
+  primitiveTypeV1 primitiveType = 0
+  string characterEncoding = 0
+  string value = 0
+  integer offset = 0
+  presence presence = 0
+  qualifiedName valueRef = 0
+  string semanticType = 0
+  string description = 0
+  integer sinceVersion = 0
+  integer deprecated = 0
+ }
+// An enumeration of valid values
+message EnumTypeV1
+ {
+ repeated  validValue validValue = 0
+  symbolicName name = 0
+  symbolicName encodingType = 0
+  string value = 0
+  integer offset = 0
+  string semanticType = 0
+  string description = 0
+  integer sinceVersion = 0
+  integer deprecated = 0
+ }
+// An enumeration of valid values
+message EnumTypeV2
+ {
+ repeated  validValue validValue = 0
+  symbolicName name = 0
+  symbolicName encodingType = 0
+  string description = 0
+  string value = 0
+  integer offset = 0
+  integer alignment = 0
+  integer sinceVersion = 0
+  integer deprecated = 0
+ }
+// A field of a message of a specified dataType
+message FieldTypeV1
+ {
+  symbolicName name = 0
+  integer id = 0
+  symbolicName type = 0
+  string epoch = 0
+  string timeUnit = 0
+  integer offset = 0
+  presence presence = 0
+  qualifiedName valueRef = 0
+  string semanticType = 0
+  string description = 0
+  integer sinceVersion = 0
+  integer deprecated = 0
+ }
+// A field of a message of a specified dataType
+message FieldTypeV2
+ {
+  symbolicName name = 0
+  integer id = 0
+  symbolicName type = 0
+  string value = 0
+  integer offset = 0
+  integer alignment = 0
+  presence presence = 0
+  string nullValue = 0
+  string minValue = 0
+  string maxValue = 0
+  qualifiedName valueRef = 0
+  string semanticType = 0
+  string description = 0
+  integer sinceVersion = 0
+  integer deprecated = 0
+ }
+// A repeating group contains an array of entries
+message GroupTypeV1
+ {
+ repeated  fieldTypeV1 field = 0
+ repeated  groupTypeV1 group = 0
+ repeated  fieldTypeV1 data = 0
+  symbolicName name = 0
+  integer id = 0
+  integer blockLength = 0
+  string semanticType = 0
+  string description = 0
+  integer sinceVersion = 0
+  integer deprecated = 0
+  symbolicName dimensionType = 0
+ }
+// A repeating group contains an array of entries
+message GroupTypeV2
+ {
+ repeated  fieldTypeV2 field = 0
+ repeated  groupTypeV2 group = 0
+ repeated  fieldTypeV2 data = 0
+  symbolicName name = 0
+  integer id = 0
+  integer blockLength = 0
+  integer alignment = 0
+  string semanticType = 0
+  string description = 0
+  integer sinceVersion = 0
+  integer deprecated = 0
+  symbolicName dimensionType = 0
+ }
+// A simple type used as a member of a composite type
+message MemberDataTypeV2
+ {
+  symbolicName name = 0
+  string description = 0
+  string value = 0
+  primitiveTypeV2 primitiveType = 0
+  integer length = 0
+  string characterEncoding = 0
+  integer offset = 0
+  integer alignment = 0
+  presence presence = 0
+  string nullValue = 0
+  string minValue = 0
+  string maxValue = 0
+  qualifiedName valueRef = 0
+ }
+// Root of XML document, holds all message templates and their elements
+message MessageSchemaV1
+ {
+ repeated  string types = 0
+ repeated  messageV1 message = 0
+  string package = 0
+  integer id = 0
+  integer version = 0
+  string semanticVersion = 0
+  string description = 0
+  byteOrder byteOrder = 0
+  symbolicName headerType = 0
+ }
+// Root of XML document, holds all message templates and their elements
+message MessageSchemaV2
+ {
+ repeated  typesV2 types = 0
+ repeated  messagesV2 messages = 0
+  string package = 0
+  integer id = 0
+  integer version = 0
+  string semanticVersion = 0
+  string description = 0
+  byteOrder byteOrder = 0
+  symbolicName headerType = 0
+ }
+message MessagesV2
+ {
+ repeated  blockTypeV2 message = 0
+  string description = 0
+  string package = 0
+ }
+// A message type, also known as a message template
+message MessageV1
+ {
+ repeated  fieldTypeV1 field = 0
+ repeated  groupTypeV1 group = 0
+ repeated  fieldTypeV1 data = 0
+  symbolicName name = 0
+  integer id = 0
+  integer blockLength = 0
+  string semanticType = 0
+  string description = 0
+  integer sinceVersion = 0
+  integer deprecated = 0
+ }
+// A reference to any existing encoding type (simple type, enum or set) to reuse as a member of a composite type
+message RefTypeV1
+ {
+  symbolicName name = 0
+  symbolicName type = 0
+  string value = 0
+  integer offset = 0
+  integer sinceVersion = 0
+  integer deprecated = 0
+ }
+// A reference to any existing encoding type (simple type, enum or set) to reuse as a member of a composite type
+message RefTypeV2
+ {
+  symbolicName name = 0
+  symbolicName type = 0
+  string description = 0
+  string value = 0
+  integer offset = 0
+  integer alignment = 0
+ }
+// A multi value choice (encoded as a bitset)
+message SetTypeV1
+ {
+ repeated  choice choice = 0
+  symbolicName name = 0
+  symbolicName encodingType = 0
+  string value = 0
+  integer offset = 0
+  string semanticType = 0
+  string description = 0
+  integer sinceVersion = 0
+  integer deprecated = 0
+ }
+// A multi value choice (encoded as a bitset)
+message SetTypeV2
+ {
+ repeated  choice choice = 0
+  symbolicName name = 0
+  symbolicName encodingType = 0
+  string description = 0
+  string value = 0
+  integer offset = 0
+  integer alignment = 0
+  integer sinceVersion = 0
+  integer deprecated = 0
+ }
+// Simple wire encoding consisting of a primitive type or array of primitives
+message SimpleDataTypeV2
+ {
+  symbolicName name = 0
+  string description = 0
+  string value = 0
+  primitiveTypeV2 primitiveType = 0
+  integer length = 0
+  string characterEncoding = 0
+  integer sinceVersion = 0
+  integer deprecated = 0
+ }
+// More than one set of types may be provided. Names must be unique across all encoding types. Encoding types may appear in any order.
+message TypesV2
+ {
+ repeated  simpleDataTypeV2 type = 0
+ repeated  compositeDataTypeV2 composite = 0
+ repeated  enumTypeV2 enum = 0
+ repeated  setTypeV2 set = 0
+  string description = 0
+  string package = 0
+ }
+// Valid value as a string
+message ValidValue
+ {
+  symbolicName name = 0
+  string description = 0
+  string value = 0
+  integer sinceVersion = 0
+  integer deprecated = 0
+ }

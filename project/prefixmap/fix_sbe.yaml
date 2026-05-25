@@ -1,0 +1,13 @@
+{
+   "dct": "http://purl.org/dc/terms/",
+   "fix_orchestra": "https://w3id.org/lmodel/fix-orchestra/",
+   "fix_sbe": "https://w3id.org/lmodel/fix-sbe/",
+   "linkml": "https://w3id.org/linkml/",
+   "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+   "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+   "sbe_v1": "http://fixprotocol.io/2016/sbe/",
+   "sbe_v2": "http://fixprotocol.io/2017/sbe/",
+   "schema": "http://schema.org/",
+   "skos": "http://www.w3.org/2004/02/skos/core#",
+   "xsd": "http://www.w3.org/2001/XMLSchema#"
+}

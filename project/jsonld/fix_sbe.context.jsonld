@@ -1,0 +1,273 @@
+{
+   "@context": {
+      "xsd": "http://www.w3.org/2001/XMLSchema#",
+      "dct": "http://purl.org/dc/terms/",
+      "fix_orchestra": "https://w3id.org/lmodel/fix-orchestra/",
+      "fix_sbe": "https://w3id.org/lmodel/fix-sbe/",
+      "linkml": "https://w3id.org/linkml/",
+      "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+      "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+      "sbe_v1": "http://fixprotocol.io/2016/sbe/",
+      "sbe_v2": "http://fixprotocol.io/2017/sbe/",
+      "schema": "http://schema.org/",
+      "skos": "http://www.w3.org/2004/02/skos/core#",
+      "@vocab": "https://w3id.org/lmodel/fix-sbe/",
+      "offset": {
+         "@type": "xsd:integer",
+         "@id": "offset"
+      },
+      "alignment": {
+         "@type": "xsd:integer",
+         "@id": "alignment"
+      },
+      "block_length": {
+         "@type": "xsd:integer",
+         "@id": "block_length"
+      },
+      "data": {
+         "@type": "@id",
+         "@id": "data"
+      },
+      "field": {
+         "@type": "@id",
+         "@id": "field"
+      },
+      "group": {
+         "@type": "@id",
+         "@id": "group"
+      },
+      "id": {
+         "@type": "xsd:integer",
+         "@id": "id"
+      },
+      "name": {
+         "@type": "fix_sbe:SymbolicName",
+         "@id": "name"
+      },
+      "description": {
+         "@id": "description"
+      },
+      "value": {
+         "@id": "value"
+      },
+      "composite": {
+         "@type": "@id",
+         "@id": "composite"
+      },
+      "enum": {
+         "@type": "@id",
+         "@id": "enum"
+      },
+      "ref": {
+         "@type": "@id",
+         "@id": "ref"
+      },
+      "set": {
+         "@type": "@id",
+         "@id": "set"
+      },
+      "type": {
+         "@type": "@id",
+         "@id": "type"
+      },
+      "character_encoding": {
+         "@id": "character_encoding"
+      },
+      "length": {
+         "@type": "xsd:integer",
+         "@id": "length"
+      },
+      "max_value": {
+         "@id": "max_value"
+      },
+      "min_value": {
+         "@id": "min_value"
+      },
+      "null_value": {
+         "@id": "null_value"
+      },
+      "primitive_type": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "primitive_type"
+      },
+      "encoding_type": {
+         "@type": "fix_sbe:SymbolicName",
+         "@id": "encoding_type"
+      },
+      "valid_value": {
+         "@type": "@id",
+         "@id": "valid_value"
+      },
+      "epoch": {
+         "@id": "epoch"
+      },
+      "time_unit": {
+         "@id": "time_unit"
+      },
+      "dimension_type": {
+         "@type": "fix_sbe:SymbolicName",
+         "@id": "dimension_type"
+      },
+      "byte_order": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "byte_order"
+      },
+      "header_type": {
+         "@type": "fix_sbe:SymbolicName",
+         "@id": "header_type"
+      },
+      "message": {
+         "@type": "@id",
+         "@id": "message"
+      },
+      "package": {
+         "@id": "package"
+      },
+      "semantic_version": {
+         "@id": "semantic_version"
+      },
+      "types": {
+         "@type": "@id",
+         "@id": "types"
+      },
+      "version": {
+         "@type": "xsd:integer",
+         "@id": "version"
+      },
+      "messages": {
+         "@type": "@id",
+         "@id": "messages"
+      },
+      "presence": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "presence"
+      },
+      "value_ref": {
+         "@type": "fix_sbe:QualifiedName",
+         "@id": "value_ref"
+      },
+      "semantic_type": {
+         "@id": "semantic_type"
+      },
+      "choice": {
+         "@type": "@id",
+         "@id": "choice"
+      },
+      "deprecated": {
+         "@type": "xsd:integer",
+         "@id": "deprecated"
+      },
+      "since_version": {
+         "@type": "xsd:integer",
+         "@id": "since_version"
+      },
+      "AlignmentAttributesV1": {
+         "@id": "AlignmentAttributesV1"
+      },
+      "AlignmentAttributesV2": {
+         "@id": "AlignmentAttributesV2"
+      },
+      "BlockTypeV1": {
+         "@id": "BlockTypeV1"
+      },
+      "BlockTypeV2": {
+         "@id": "BlockTypeV2"
+      },
+      "Choice": {
+         "@id": "Choice"
+      },
+      "CompositeDataTypeV1": {
+         "@id": "CompositeDataTypeV1"
+      },
+      "CompositeDataTypeV2": {
+         "@id": "CompositeDataTypeV2"
+      },
+      "EncodedDataTypeV1": {
+         "@id": "EncodedDataTypeV1"
+      },
+      "EnumTypeV1": {
+         "@id": "EnumTypeV1"
+      },
+      "EnumTypeV2": {
+         "@id": "EnumTypeV2"
+      },
+      "FieldTypeV1": {
+         "@id": "FieldTypeV1"
+      },
+      "FieldTypeV2": {
+         "@id": "FieldTypeV2"
+      },
+      "GroupTypeV1": {
+         "@id": "GroupTypeV1"
+      },
+      "GroupTypeV2": {
+         "@id": "GroupTypeV2"
+      },
+      "MemberDataTypeV2": {
+         "@id": "MemberDataTypeV2"
+      },
+      "MessageSchemaV1": {
+         "@id": "MessageSchemaV1"
+      },
+      "MessageSchemaV2": {
+         "@id": "MessageSchemaV2"
+      },
+      "MessagesV2": {
+         "@id": "MessagesV2"
+      },
+      "MessageV1": {
+         "@id": "MessageV1"
+      },
+      "OffsetAttributesV2": {
+         "@id": "OffsetAttributesV2"
+      },
+      "PresenceAttributesV1": {
+         "@id": "PresenceAttributesV1"
+      },
+      "PresenceAttributesV2": {
+         "@id": "PresenceAttributesV2"
+      },
+      "PrimitiveTypeAttributesV2": {
+         "@id": "PrimitiveTypeAttributesV2"
+      },
+      "RefTypeV1": {
+         "@id": "RefTypeV1"
+      },
+      "RefTypeV2": {
+         "@id": "RefTypeV2"
+      },
+      "SemanticAttributes": {
+         "@id": "SemanticAttributes"
+      },
+      "SetTypeV1": {
+         "@id": "SetTypeV1"
+      },
+      "SetTypeV2": {
+         "@id": "SetTypeV2"
+      },
+      "SimpleDataTypeV2": {
+         "@id": "SimpleDataTypeV2"
+      },
+      "TypesV2": {
+         "@id": "TypesV2"
+      },
+      "ValidValue": {
+         "@id": "ValidValue"
+      },
+      "VersionAttributes": {
+         "@id": "VersionAttributes"
+      }
+   }
+}

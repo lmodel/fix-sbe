@@ -4291,7 +4291,7 @@ classes:
     class_uri: fix_sbe:TypesV2
 metamodel_version: 1.11.0
 source_file: fix_sbe.yaml
-source_file_date: '2026-05-25T13:44:45'
+source_file_date: '2026-05-25T13:59:52'
 source_file_size: 1968
-generation_date: '2026-05-25T13:45:41'
+generation_date: '2026-05-25T14:00:03'
 

@@ -4,6 +4,8 @@
 
 FIX Binary Message Encoding - LinkML Schema
 
+See [Design Documentation](docs/about.md)
+
 ## Documentation Website
 
 [https://lmodel.github.io/fix-sbe](https://lmodel.github.io/fix-sbe)
