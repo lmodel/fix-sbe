@@ -3,7 +3,7 @@
 # Common overlay: entities structurally identical in v1 and v2.
 # DO NOT EDIT BY HAND - re-run the script to regenerate.
 
-id: https://w3id.org/lmodel/fix-simple-binary-encoding/common
+id: https://w3id.org/lmodel/fix-sbe/common
 name: fix_sbe_common
 title: FIX Simple Binary Encoding — Common (cross-version)
 description: Common LinkML overlay for FIX Simple Binary Encoding. Holds entities (classes, enums, types) whose structure is identical across the SBE v1.0 Standard and v2.0 RC3 XSDs and have therefore been promoted to a shared, unsuffixed name. Imported by the per-version overlays ``fix_sbe_v1_0`` and ``fix_sbe_v2_0`` and by the umbrella ``fix_sbe`` schema.
@@ -25,7 +25,7 @@ annotations:
   xsd_target_namespace_sbe_v2: http://fixprotocol.io/2017/sbe
 
 prefixes:
-  fix_sbe: https://w3id.org/lmodel/fix-simple-binary-encoding/
+  fix_sbe: https://w3id.org/lmodel/fix-sbe/
   linkml: https://w3id.org/linkml/
   rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
   rdfs: http://www.w3.org/2000/01/rdf-schema#

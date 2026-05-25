@@ -3,7 +3,7 @@
 # Umbrella schema importing common + per-version SBE overlays.
 # DO NOT EDIT BY HAND - re-run the script to regenerate.
 
-id: https://w3id.org/lmodel/fix-simple-binary-encoding
+id: https://w3id.org/lmodel/fix-sbe
 name: fix_sbe
 title: FIX Simple Binary Encoding
 description: 'Umbrella LinkML schema for the FIX Simple Binary Encoding (SBE) standard. Imports three overlays: ``fix_sbe_common`` (entities structurally identical across SBE versions, kept unsuffixed) plus two per-version overlays ``fix_sbe_v1_0`` and ``fix_sbe_v2_0`` (remaining version-specific entities, PascalCase names suffixed with ``V1`` or ``V2`` to disambiguate). Per-version validation can be performed by targeting an overlay file directly.'
@@ -25,7 +25,7 @@ annotations:
   xsd_target_namespace_sbe_v2: http://fixprotocol.io/2017/sbe
 
 prefixes:
-  fix_sbe: https://w3id.org/lmodel/fix-simple-binary-encoding/
+  fix_sbe: https://w3id.org/lmodel/fix-sbe/
   linkml: https://w3id.org/linkml/
   rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
   rdfs: http://www.w3.org/2000/01/rdf-schema#

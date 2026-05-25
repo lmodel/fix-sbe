@@ -3,7 +3,7 @@
 # Source: upstream-releases/fix-simple-binary-encoding/v2-0-RC3/resources/xsd/sbe-2.0rc3.xsd
 # DO NOT EDIT BY HAND - re-run the script to regenerate.
 
-id: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+id: https://w3id.org/lmodel/fix-sbe/v2_0
 name: fix_sbe_v2_0
 title: FIX Simple Binary Encoding v2.0 RC3
 description: LinkML schema generated from the FIX Simple Binary Encoding 2.0-RC3 XSD (sbe-2.0rc3.xsd). PascalCase class / enum / type names that are unique to this version carry the ``V2`` suffix; structurally-shared entities are imported unsuffixed from ``fix_sbe_common``.
@@ -26,7 +26,7 @@ annotations:
   xsd_target_namespace_sbe: http://fixprotocol.io/2017/sbe
 
 prefixes:
-  fix_sbe: https://w3id.org/lmodel/fix-simple-binary-encoding/
+  fix_sbe: https://w3id.org/lmodel/fix-sbe/
   linkml: https://w3id.org/linkml/
   rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
   rdfs: http://www.w3.org/2000/01/rdf-schema#

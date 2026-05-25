@@ -23,7 +23,7 @@ see_also:
 - https://www.fixtrading.org/standards/sbe/
 - https://github.com/FIXTradingCommunity/fix-simple-binary-encoding
 - https://lmodel.github.io/fix-simple-binary-encoding
-id: https://w3id.org/lmodel/fix-simple-binary-encoding
+id: https://w3id.org/lmodel/fix-sbe
 imports:
 - linkml:types
 - fix_sbe_common
@@ -33,7 +33,7 @@ license: Apache-2.0
 prefixes:
   fix_sbe:
     prefix_prefix: fix_sbe
-    prefix_reference: https://w3id.org/lmodel/fix-simple-binary-encoding/
+    prefix_reference: https://w3id.org/lmodel/fix-sbe/
   linkml:
     prefix_prefix: linkml
     prefix_reference: https://w3id.org/linkml/
@@ -66,24 +66,24 @@ default_range: string
 subsets:
   sbe_common:
     name: sbe_common
-    definition_uri: https://w3id.org/lmodel/fix-simple-binary-encoding/SbeCommon
+    definition_uri: https://w3id.org/lmodel/fix-sbe/SbeCommon
     description: Entities common to SBE v1.0 Standard and v2.0 RC3 (structurally identical
       across both XSDs). Names are unsuffixed.
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/common
+    from_schema: https://w3id.org/lmodel/fix-sbe/common
   sbe_v1_0:
     name: sbe_v1_0
-    definition_uri: https://w3id.org/lmodel/fix-simple-binary-encoding/SbeV10
+    definition_uri: https://w3id.org/lmodel/fix-sbe/SbeV10
     description: Entities sourced from SBE v1.0 Standard (sbe.xsd, target namespace
       http://fixprotocol.io/2016/sbe). All PascalCase names in this overlay carry
       a ``V1`` suffix.
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
   sbe_v2_0:
     name: sbe_v2_0
-    definition_uri: https://w3id.org/lmodel/fix-simple-binary-encoding/SbeV20
+    definition_uri: https://w3id.org/lmodel/fix-sbe/SbeV20
     description: Entities sourced from SBE v2.0 RC3 (sbe-2.0rc3.xsd, target namespace
       http://fixprotocol.io/2017/sbe). All PascalCase names in this overlay carry
       a ``V2`` suffix.
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
 types:
   string:
     name: string
@@ -355,7 +355,7 @@ types:
     repr: str
   SymbolicName:
     name: SymbolicName
-    definition_uri: https://w3id.org/lmodel/fix-simple-binary-encoding/SymbolicName
+    definition_uri: https://w3id.org/lmodel/fix-sbe/SymbolicName
     annotations:
       xsd_min_length:
         tag: xsd_min_length
@@ -365,7 +365,7 @@ types:
         value: 64
     in_subset:
     - sbe_common
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/common
+    from_schema: https://w3id.org/lmodel/fix-sbe/common
     aliases:
     - symbolicName_t
     exact_mappings:
@@ -377,10 +377,10 @@ types:
     pattern: ([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*
   QualifiedName:
     name: QualifiedName
-    definition_uri: https://w3id.org/lmodel/fix-simple-binary-encoding/QualifiedName
+    definition_uri: https://w3id.org/lmodel/fix-sbe/QualifiedName
     in_subset:
     - sbe_common
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/common
+    from_schema: https://w3id.org/lmodel/fix-sbe/common
     aliases:
     - qualifiedName_t
     exact_mappings:
@@ -393,11 +393,11 @@ types:
 enums:
   Presence:
     name: Presence
-    definition_uri: https://w3id.org/lmodel/fix-simple-binary-encoding/Presence
+    definition_uri: https://w3id.org/lmodel/fix-sbe/Presence
     description: Inline enumeration lifted from XSD attribute ``presence`` on ``presenceAttributes``.
     in_subset:
     - sbe_common
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/common
+    from_schema: https://w3id.org/lmodel/fix-sbe/common
     exact_mappings:
     - fix_orchestra:Presence
     enum_uri: fix_sbe:Presence
@@ -413,11 +413,11 @@ enums:
         description: Value does not vary so it need not be serialized on the wire
   ByteOrder:
     name: ByteOrder
-    definition_uri: https://w3id.org/lmodel/fix-simple-binary-encoding/ByteOrder
+    definition_uri: https://w3id.org/lmodel/fix-sbe/ByteOrder
     description: Inline enumeration lifted from XSD attribute ``byteOrder`` on ``messageSchema``.
     in_subset:
     - sbe_common
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/common
+    from_schema: https://w3id.org/lmodel/fix-sbe/common
     enum_uri: fix_sbe:ByteOrder
     permissible_values:
       bigEndian:
@@ -426,12 +426,12 @@ enums:
         text: littleEndian
   PrimitiveTypeV1:
     name: PrimitiveTypeV1
-    definition_uri: https://w3id.org/lmodel/fix-simple-binary-encoding/PrimitiveTypeV1
+    definition_uri: https://w3id.org/lmodel/fix-sbe/PrimitiveTypeV1
     description: Inline enumeration lifted from XSD attribute ``primitiveType`` on
       ``encodedDataType``.
     in_subset:
     - sbe_v1_0
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     broad_mappings:
     - fix_orchestra:Datatype
     enum_uri: fix_sbe:PrimitiveTypeV1
@@ -460,12 +460,12 @@ enums:
         text: double
   PrimitiveTypeV2:
     name: PrimitiveTypeV2
-    definition_uri: https://w3id.org/lmodel/fix-simple-binary-encoding/PrimitiveTypeV2
+    definition_uri: https://w3id.org/lmodel/fix-sbe/PrimitiveTypeV2
     description: Inline enumeration lifted from XSD attribute ``primitiveType`` on
       ``primitiveTypeAttributes``.
     in_subset:
     - sbe_v2_0
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     broad_mappings:
     - fix_orchestra:Datatype
     enum_uri: fix_sbe:PrimitiveTypeV2
@@ -496,7 +496,7 @@ enums:
 slots:
   semanticAttributes__semantic_type:
     name: semanticAttributes__semantic_type
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/common
+    from_schema: https://w3id.org/lmodel/fix-sbe/common
     aliases:
     - semanticType
     mappings:
@@ -511,7 +511,7 @@ slots:
     range: string
   semanticAttributes__description:
     name: semanticAttributes__description
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/common
+    from_schema: https://w3id.org/lmodel/fix-sbe/common
     mappings:
     - fix_sbe:description
     exact_mappings:
@@ -525,7 +525,7 @@ slots:
   versionAttributes__since_version:
     name: versionAttributes__since_version
     description: The schema version in which an element was added
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/common
+    from_schema: https://w3id.org/lmodel/fix-sbe/common
     aliases:
     - sinceVersion
     mappings:
@@ -544,7 +544,7 @@ slots:
     description: The version of the schema in which an element was deprecated. It
       is retained for back compatibility but should no longer be used by updated applications.
       It may be removed in a later version.
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/common
+    from_schema: https://w3id.org/lmodel/fix-sbe/common
     mappings:
     - fix_sbe:deprecated
     exact_mappings:
@@ -557,7 +557,7 @@ slots:
     range: integer
   validValue__name:
     name: validValue__name
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/common
+    from_schema: https://w3id.org/lmodel/fix-sbe/common
     mappings:
     - fix_sbe:name
     exact_mappings:
@@ -571,7 +571,7 @@ slots:
     required: true
   validValue__description:
     name: validValue__description
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/common
+    from_schema: https://w3id.org/lmodel/fix-sbe/common
     mappings:
     - fix_sbe:description
     exact_mappings:
@@ -586,7 +586,7 @@ slots:
     name: validValue__value
     description: Text content of the element. For SBE this carries the constant or
       default value (e.g. ``<type presence='constant'>-3</type>``).
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/common
+    from_schema: https://w3id.org/lmodel/fix-sbe/common
     slot_uri: fix_sbe:value
     alias: value
     owner: ValidValue
@@ -595,7 +595,7 @@ slots:
     range: string
   choice__name:
     name: choice__name
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/common
+    from_schema: https://w3id.org/lmodel/fix-sbe/common
     mappings:
     - fix_sbe:name
     exact_mappings:
@@ -609,7 +609,7 @@ slots:
     required: true
   choice__description:
     name: choice__description
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/common
+    from_schema: https://w3id.org/lmodel/fix-sbe/common
     mappings:
     - fix_sbe:description
     exact_mappings:
@@ -624,7 +624,7 @@ slots:
     name: choice__value
     description: Text content of the element. For SBE this carries the constant or
       default value (e.g. ``<type presence='constant'>-3</type>``).
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/common
+    from_schema: https://w3id.org/lmodel/fix-sbe/common
     slot_uri: fix_sbe:value
     alias: value
     owner: Choice
@@ -634,7 +634,7 @@ slots:
   alignmentAttributesV1__offset:
     name: alignmentAttributesV1__offset
     description: Offset from start of a composite type or block as a zero-based index.
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     mappings:
     - fix_sbe:offset
     exact_mappings:
@@ -647,7 +647,7 @@ slots:
     range: integer
   presenceAttributesV1__presence:
     name: presenceAttributesV1__presence
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     mappings:
     - fix_sbe:presence
     exact_mappings:
@@ -662,7 +662,7 @@ slots:
   presenceAttributesV1__value_ref:
     name: presenceAttributesV1__value_ref
     description: A constant value as valid value of an enum in the form enum-name.valid-value-name
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     aliases:
     - valueRef
     mappings:
@@ -678,7 +678,7 @@ slots:
   blockTypeV1__field:
     name: blockTypeV1__field
     description: Fixed-length fields
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     mappings:
     - fix_sbe:field
     exact_mappings:
@@ -694,7 +694,7 @@ slots:
     inlined_as_list: true
   blockTypeV1__group:
     name: blockTypeV1__group
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     mappings:
     - fix_sbe:group
     exact_mappings:
@@ -711,7 +711,7 @@ slots:
   blockTypeV1__data:
     name: blockTypeV1__data
     description: Variable-length fields
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     mappings:
     - fix_sbe:data
     exact_mappings:
@@ -727,7 +727,7 @@ slots:
     inlined_as_list: true
   blockTypeV1__name:
     name: blockTypeV1__name
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     mappings:
     - fix_sbe:name
     exact_mappings:
@@ -742,7 +742,7 @@ slots:
   blockTypeV1__id:
     name: blockTypeV1__id
     description: Unique ID of a message template
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     mappings:
     - fix_sbe:id
     exact_mappings:
@@ -758,7 +758,7 @@ slots:
     name: blockTypeV1__block_length
     description: Space reserved for root level of message, not include groups or variable-length
       data elements.
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     aliases:
     - blockLength
     mappings:
@@ -773,7 +773,7 @@ slots:
     range: integer
   groupTypeV1__dimension_type:
     name: groupTypeV1__dimension_type
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     aliases:
     - dimensionType
     mappings:
@@ -789,7 +789,7 @@ slots:
     range: SymbolicName
   encodedDataTypeV1__name:
     name: encodedDataTypeV1__name
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     mappings:
     - fix_sbe:name
     exact_mappings:
@@ -805,7 +805,7 @@ slots:
     name: encodedDataTypeV1__null_value
     description: Override of default null indicator for the data type in SBE specification,
       as a string.
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     aliases:
     - nullValue
     mappings:
@@ -820,7 +820,7 @@ slots:
     range: string
   encodedDataTypeV1__min_value:
     name: encodedDataTypeV1__min_value
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     aliases:
     - minValue
     mappings:
@@ -835,7 +835,7 @@ slots:
     range: string
   encodedDataTypeV1__max_value:
     name: encodedDataTypeV1__max_value
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     aliases:
     - maxValue
     mappings:
@@ -850,7 +850,7 @@ slots:
     range: string
   encodedDataTypeV1__length:
     name: encodedDataTypeV1__length
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     mappings:
     - fix_sbe:length
     exact_mappings:
@@ -864,7 +864,7 @@ slots:
     range: integer
   encodedDataTypeV1__primitive_type:
     name: encodedDataTypeV1__primitive_type
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     aliases:
     - primitiveType
     mappings:
@@ -880,7 +880,7 @@ slots:
     required: true
   encodedDataTypeV1__character_encoding:
     name: encodedDataTypeV1__character_encoding
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     aliases:
     - characterEncoding
     mappings:
@@ -897,7 +897,7 @@ slots:
     name: encodedDataTypeV1__value
     description: Text content of the element. For SBE this carries the constant or
       default value (e.g. ``<type presence='constant'>-3</type>``).
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     slot_uri: fix_sbe:value
     alias: value
     owner: EncodedDataTypeV1
@@ -906,7 +906,7 @@ slots:
     range: string
   compositeDataTypeV1__type:
     name: compositeDataTypeV1__type
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     mappings:
     - fix_sbe:type
     exact_mappings:
@@ -922,7 +922,7 @@ slots:
     inlined_as_list: true
   compositeDataTypeV1__enum:
     name: compositeDataTypeV1__enum
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     mappings:
     - fix_sbe:enum
     exact_mappings:
@@ -938,7 +938,7 @@ slots:
     inlined_as_list: true
   compositeDataTypeV1__set:
     name: compositeDataTypeV1__set
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     mappings:
     - fix_sbe:set
     exact_mappings:
@@ -954,7 +954,7 @@ slots:
     inlined_as_list: true
   compositeDataTypeV1__composite:
     name: compositeDataTypeV1__composite
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     mappings:
     - fix_sbe:composite
     exact_mappings:
@@ -970,7 +970,7 @@ slots:
     inlined_as_list: true
   compositeDataTypeV1__ref:
     name: compositeDataTypeV1__ref
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     mappings:
     - fix_sbe:ref
     exact_mappings:
@@ -986,7 +986,7 @@ slots:
     inlined_as_list: true
   compositeDataTypeV1__name:
     name: compositeDataTypeV1__name
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     mappings:
     - fix_sbe:name
     exact_mappings:
@@ -1002,7 +1002,7 @@ slots:
     name: compositeDataTypeV1__value
     description: Text content of the element. For SBE this carries the constant or
       default value (e.g. ``<type presence='constant'>-3</type>``).
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     slot_uri: fix_sbe:value
     alias: value
     owner: CompositeDataTypeV1
@@ -1011,7 +1011,7 @@ slots:
     range: string
   enumTypeV1__valid_value:
     name: enumTypeV1__valid_value
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     aliases:
     - validValue
     mappings:
@@ -1030,7 +1030,7 @@ slots:
     inlined_as_list: true
   enumTypeV1__name:
     name: enumTypeV1__name
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     mappings:
     - fix_sbe:name
     exact_mappings:
@@ -1044,7 +1044,7 @@ slots:
     required: true
   enumTypeV1__encoding_type:
     name: enumTypeV1__encoding_type
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     aliases:
     - encodingType
     mappings:
@@ -1062,7 +1062,7 @@ slots:
     name: enumTypeV1__value
     description: Text content of the element. For SBE this carries the constant or
       default value (e.g. ``<type presence='constant'>-3</type>``).
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     slot_uri: fix_sbe:value
     alias: value
     owner: EnumTypeV1
@@ -1071,7 +1071,7 @@ slots:
     range: string
   refTypeV1__name:
     name: refTypeV1__name
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     mappings:
     - fix_sbe:name
     exact_mappings:
@@ -1085,7 +1085,7 @@ slots:
     required: true
   refTypeV1__type:
     name: refTypeV1__type
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     mappings:
     - fix_sbe:type
     exact_mappings:
@@ -1101,7 +1101,7 @@ slots:
     name: refTypeV1__value
     description: Text content of the element. For SBE this carries the constant or
       default value (e.g. ``<type presence='constant'>-3</type>``).
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     slot_uri: fix_sbe:value
     alias: value
     owner: RefTypeV1
@@ -1110,7 +1110,7 @@ slots:
     range: string
   setTypeV1__choice:
     name: setTypeV1__choice
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     mappings:
     - fix_sbe:choice
     exact_mappings:
@@ -1127,7 +1127,7 @@ slots:
     inlined_as_list: true
   setTypeV1__name:
     name: setTypeV1__name
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     mappings:
     - fix_sbe:name
     exact_mappings:
@@ -1141,7 +1141,7 @@ slots:
     required: true
   setTypeV1__encoding_type:
     name: setTypeV1__encoding_type
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     aliases:
     - encodingType
     mappings:
@@ -1159,7 +1159,7 @@ slots:
     name: setTypeV1__value
     description: Text content of the element. For SBE this carries the constant or
       default value (e.g. ``<type presence='constant'>-3</type>``).
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     slot_uri: fix_sbe:value
     alias: value
     owner: SetTypeV1
@@ -1168,7 +1168,7 @@ slots:
     range: string
   fieldTypeV1__name:
     name: fieldTypeV1__name
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     mappings:
     - fix_sbe:name
     exact_mappings:
@@ -1182,7 +1182,7 @@ slots:
     required: true
   fieldTypeV1__id:
     name: fieldTypeV1__id
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     mappings:
     - fix_sbe:id
     exact_mappings:
@@ -1197,7 +1197,7 @@ slots:
   fieldTypeV1__type:
     name: fieldTypeV1__type
     description: Must match the name of an encoding contained by 'types' element
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     mappings:
     - fix_sbe:type
     exact_mappings:
@@ -1211,7 +1211,7 @@ slots:
     required: true
   fieldTypeV1__epoch:
     name: fieldTypeV1__epoch
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     mappings:
     - fix_sbe:epoch
     exact_mappings:
@@ -1226,7 +1226,7 @@ slots:
   fieldTypeV1__time_unit:
     name: fieldTypeV1__time_unit
     description: Deprecated - only for back compatibility with RC2
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     aliases:
     - timeUnit
     mappings:
@@ -1244,7 +1244,7 @@ slots:
     name: messageSchemaV1__types
     description: More than one set of types may be provided. Names must be unique
       across all encoding types. Encoding types may appear in any order.
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     mappings:
     - fix_sbe:types
     exact_mappings:
@@ -1259,7 +1259,7 @@ slots:
     multivalued: true
   messageSchemaV1__message:
     name: messageSchemaV1__message
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     mappings:
     - fix_sbe:message
     exact_mappings:
@@ -1276,7 +1276,7 @@ slots:
     inlined_as_list: true
   messageSchemaV1__package:
     name: messageSchemaV1__package
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     mappings:
     - fix_sbe:package
     exact_mappings:
@@ -1290,7 +1290,7 @@ slots:
   messageSchemaV1__id:
     name: messageSchemaV1__id
     description: Unique ID of a message schema
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     mappings:
     - fix_sbe:id
     exact_mappings:
@@ -1304,7 +1304,7 @@ slots:
   messageSchemaV1__version:
     name: messageSchemaV1__version
     description: The version of a message schema. Initial version is 0.
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     mappings:
     - fix_sbe:version
     exact_mappings:
@@ -1319,7 +1319,7 @@ slots:
   messageSchemaV1__semantic_version:
     name: messageSchemaV1__semantic_version
     description: Application layer specification version, such as FIX version 'FIX.5.0SP2'
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     aliases:
     - semanticVersion
     mappings:
@@ -1334,7 +1334,7 @@ slots:
     range: string
   messageSchemaV1__description:
     name: messageSchemaV1__description
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     mappings:
     - fix_sbe:description
     exact_mappings:
@@ -1347,7 +1347,7 @@ slots:
     range: string
   messageSchemaV1__byte_order:
     name: messageSchemaV1__byte_order
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     aliases:
     - byteOrder
     mappings:
@@ -1366,7 +1366,7 @@ slots:
     description: Name of the encoding type of the message header, which is the same
       for all messages in a schema. The name has a default, but an encoding of that
       name must be present under a 'types' element.
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     aliases:
     - headerType
     mappings:
@@ -1384,7 +1384,7 @@ slots:
     name: alignmentAttributesV2__alignment
     description: Byte alignment of the start of a block (message root or repeating
       group instance).
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     mappings:
     - fix_sbe:alignment
     exact_mappings:
@@ -1398,7 +1398,7 @@ slots:
   offsetAttributesV2__offset:
     name: offsetAttributesV2__offset
     description: Offset from start of a composite type or block as a zero-based index.
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     mappings:
     - fix_sbe:offset
     exact_mappings:
@@ -1413,7 +1413,7 @@ slots:
     name: offsetAttributesV2__alignment
     description: Byte alignment of the start of a block (message root or repeating
       group instance).
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     mappings:
     - fix_sbe:alignment
     exact_mappings:
@@ -1426,7 +1426,7 @@ slots:
     range: integer
   presenceAttributesV2__presence:
     name: presenceAttributesV2__presence
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     mappings:
     - fix_sbe:presence
     exact_mappings:
@@ -1442,7 +1442,7 @@ slots:
     name: presenceAttributesV2__null_value
     description: Override of default null indicator for the data type in SBE specification,
       as a string.
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     aliases:
     - nullValue
     mappings:
@@ -1458,7 +1458,7 @@ slots:
   presenceAttributesV2__min_value:
     name: presenceAttributesV2__min_value
     description: Lower bound of a range
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     aliases:
     - minValue
     mappings:
@@ -1474,7 +1474,7 @@ slots:
   presenceAttributesV2__max_value:
     name: presenceAttributesV2__max_value
     description: Upper bound of a range
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     aliases:
     - maxValue
     mappings:
@@ -1491,7 +1491,7 @@ slots:
     name: presenceAttributesV2__value_ref
     description: A constant value as valid value of an enum in the form enum-name.valid-value-name.
       Only valid if presence='constant'.
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     aliases:
     - valueRef
     mappings:
@@ -1506,7 +1506,7 @@ slots:
     range: QualifiedName
   primitiveTypeAttributesV2__primitive_type:
     name: primitiveTypeAttributesV2__primitive_type
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     aliases:
     - primitiveType
     mappings:
@@ -1522,7 +1522,7 @@ slots:
     required: true
   primitiveTypeAttributesV2__length:
     name: primitiveTypeAttributesV2__length
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     mappings:
     - fix_sbe:length
     exact_mappings:
@@ -1537,7 +1537,7 @@ slots:
   primitiveTypeAttributesV2__character_encoding:
     name: primitiveTypeAttributesV2__character_encoding
     description: Character set or Unicode encoding scheme
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     aliases:
     - characterEncoding
     mappings:
@@ -1553,7 +1553,7 @@ slots:
   blockTypeV2__field:
     name: blockTypeV2__field
     description: Fixed-length fields
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     mappings:
     - fix_sbe:field
     exact_mappings:
@@ -1569,7 +1569,7 @@ slots:
     inlined_as_list: true
   blockTypeV2__group:
     name: blockTypeV2__group
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     mappings:
     - fix_sbe:group
     exact_mappings:
@@ -1586,7 +1586,7 @@ slots:
   blockTypeV2__data:
     name: blockTypeV2__data
     description: Variable-length fields
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     mappings:
     - fix_sbe:data
     exact_mappings:
@@ -1602,7 +1602,7 @@ slots:
     inlined_as_list: true
   blockTypeV2__name:
     name: blockTypeV2__name
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     mappings:
     - fix_sbe:name
     exact_mappings:
@@ -1617,7 +1617,7 @@ slots:
   blockTypeV2__id:
     name: blockTypeV2__id
     description: Unique ID of a message template
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     mappings:
     - fix_sbe:id
     exact_mappings:
@@ -1633,7 +1633,7 @@ slots:
     name: blockTypeV2__block_length
     description: Space reserved for root level of message or repeating group, not
       including nested groups or variable-length data elements.
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     aliases:
     - blockLength
     mappings:
@@ -1648,7 +1648,7 @@ slots:
     range: integer
   groupTypeV2__dimension_type:
     name: groupTypeV2__dimension_type
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     aliases:
     - dimensionType
     mappings:
@@ -1664,7 +1664,7 @@ slots:
     range: SymbolicName
   simpleDataTypeV2__name:
     name: simpleDataTypeV2__name
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     mappings:
     - fix_sbe:name
     exact_mappings:
@@ -1678,7 +1678,7 @@ slots:
     required: true
   simpleDataTypeV2__description:
     name: simpleDataTypeV2__description
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     mappings:
     - fix_sbe:description
     exact_mappings:
@@ -1693,7 +1693,7 @@ slots:
     name: simpleDataTypeV2__value
     description: Text content of the element. For SBE this carries the constant or
       default value (e.g. ``<type presence='constant'>-3</type>``).
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     slot_uri: fix_sbe:value
     alias: value
     owner: SimpleDataTypeV2
@@ -1702,7 +1702,7 @@ slots:
     range: string
   memberDataTypeV2__name:
     name: memberDataTypeV2__name
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     mappings:
     - fix_sbe:name
     exact_mappings:
@@ -1716,7 +1716,7 @@ slots:
     required: true
   memberDataTypeV2__description:
     name: memberDataTypeV2__description
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     mappings:
     - fix_sbe:description
     exact_mappings:
@@ -1731,7 +1731,7 @@ slots:
     name: memberDataTypeV2__value
     description: Text content of the element. For SBE this carries the constant or
       default value (e.g. ``<type presence='constant'>-3</type>``).
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     slot_uri: fix_sbe:value
     alias: value
     owner: MemberDataTypeV2
@@ -1740,7 +1740,7 @@ slots:
     range: string
   compositeDataTypeV2__type:
     name: compositeDataTypeV2__type
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     mappings:
     - fix_sbe:type
     exact_mappings:
@@ -1756,7 +1756,7 @@ slots:
     inlined_as_list: true
   compositeDataTypeV2__enum:
     name: compositeDataTypeV2__enum
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     mappings:
     - fix_sbe:enum
     exact_mappings:
@@ -1772,7 +1772,7 @@ slots:
     inlined_as_list: true
   compositeDataTypeV2__set:
     name: compositeDataTypeV2__set
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     mappings:
     - fix_sbe:set
     exact_mappings:
@@ -1788,7 +1788,7 @@ slots:
     inlined_as_list: true
   compositeDataTypeV2__composite:
     name: compositeDataTypeV2__composite
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     mappings:
     - fix_sbe:composite
     exact_mappings:
@@ -1804,7 +1804,7 @@ slots:
     inlined_as_list: true
   compositeDataTypeV2__ref:
     name: compositeDataTypeV2__ref
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     mappings:
     - fix_sbe:ref
     exact_mappings:
@@ -1820,7 +1820,7 @@ slots:
     inlined_as_list: true
   compositeDataTypeV2__name:
     name: compositeDataTypeV2__name
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     mappings:
     - fix_sbe:name
     exact_mappings:
@@ -1834,7 +1834,7 @@ slots:
     required: true
   compositeDataTypeV2__description:
     name: compositeDataTypeV2__description
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     mappings:
     - fix_sbe:description
     exact_mappings:
@@ -1849,7 +1849,7 @@ slots:
     name: compositeDataTypeV2__value
     description: Text content of the element. For SBE this carries the constant or
       default value (e.g. ``<type presence='constant'>-3</type>``).
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     slot_uri: fix_sbe:value
     alias: value
     owner: CompositeDataTypeV2
@@ -1858,7 +1858,7 @@ slots:
     range: string
   enumTypeV2__valid_value:
     name: enumTypeV2__valid_value
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     aliases:
     - validValue
     mappings:
@@ -1877,7 +1877,7 @@ slots:
     inlined_as_list: true
   enumTypeV2__name:
     name: enumTypeV2__name
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     mappings:
     - fix_sbe:name
     exact_mappings:
@@ -1891,7 +1891,7 @@ slots:
     required: true
   enumTypeV2__encoding_type:
     name: enumTypeV2__encoding_type
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     aliases:
     - encodingType
     mappings:
@@ -1907,7 +1907,7 @@ slots:
     required: true
   enumTypeV2__description:
     name: enumTypeV2__description
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     mappings:
     - fix_sbe:description
     exact_mappings:
@@ -1922,7 +1922,7 @@ slots:
     name: enumTypeV2__value
     description: Text content of the element. For SBE this carries the constant or
       default value (e.g. ``<type presence='constant'>-3</type>``).
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     slot_uri: fix_sbe:value
     alias: value
     owner: EnumTypeV2
@@ -1931,7 +1931,7 @@ slots:
     range: string
   refTypeV2__name:
     name: refTypeV2__name
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     mappings:
     - fix_sbe:name
     exact_mappings:
@@ -1945,7 +1945,7 @@ slots:
     required: true
   refTypeV2__type:
     name: refTypeV2__type
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     mappings:
     - fix_sbe:type
     exact_mappings:
@@ -1960,7 +1960,7 @@ slots:
   refTypeV2__description:
     name: refTypeV2__description
     description: How the referenced type is used
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     mappings:
     - fix_sbe:description
     exact_mappings:
@@ -1975,7 +1975,7 @@ slots:
     name: refTypeV2__value
     description: Text content of the element. For SBE this carries the constant or
       default value (e.g. ``<type presence='constant'>-3</type>``).
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     slot_uri: fix_sbe:value
     alias: value
     owner: RefTypeV2
@@ -1984,7 +1984,7 @@ slots:
     range: string
   setTypeV2__choice:
     name: setTypeV2__choice
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     mappings:
     - fix_sbe:choice
     exact_mappings:
@@ -2001,7 +2001,7 @@ slots:
     inlined_as_list: true
   setTypeV2__name:
     name: setTypeV2__name
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     mappings:
     - fix_sbe:name
     exact_mappings:
@@ -2015,7 +2015,7 @@ slots:
     required: true
   setTypeV2__encoding_type:
     name: setTypeV2__encoding_type
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     aliases:
     - encodingType
     mappings:
@@ -2031,7 +2031,7 @@ slots:
     required: true
   setTypeV2__description:
     name: setTypeV2__description
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     mappings:
     - fix_sbe:description
     exact_mappings:
@@ -2046,7 +2046,7 @@ slots:
     name: setTypeV2__value
     description: Text content of the element. For SBE this carries the constant or
       default value (e.g. ``<type presence='constant'>-3</type>``).
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     slot_uri: fix_sbe:value
     alias: value
     owner: SetTypeV2
@@ -2055,7 +2055,7 @@ slots:
     range: string
   fieldTypeV2__name:
     name: fieldTypeV2__name
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     mappings:
     - fix_sbe:name
     exact_mappings:
@@ -2069,7 +2069,7 @@ slots:
     required: true
   fieldTypeV2__id:
     name: fieldTypeV2__id
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     mappings:
     - fix_sbe:id
     exact_mappings:
@@ -2084,7 +2084,7 @@ slots:
   fieldTypeV2__type:
     name: fieldTypeV2__type
     description: Must match the name of an encoding contained by 'types' element
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     mappings:
     - fix_sbe:type
     exact_mappings:
@@ -2100,7 +2100,7 @@ slots:
     name: fieldTypeV2__value
     description: Text content of the element. For SBE this carries the constant or
       default value (e.g. ``<type presence='constant'>-3</type>``).
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     slot_uri: fix_sbe:value
     alias: value
     owner: FieldTypeV2
@@ -2109,7 +2109,7 @@ slots:
     range: string
   messageSchemaV2__types:
     name: messageSchemaV2__types
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     mappings:
     - fix_sbe:types
     exact_mappings:
@@ -2126,7 +2126,7 @@ slots:
     inlined_as_list: true
   messageSchemaV2__messages:
     name: messageSchemaV2__messages
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     mappings:
     - fix_sbe:messages
     exact_mappings:
@@ -2143,7 +2143,7 @@ slots:
     inlined_as_list: true
   messageSchemaV2__package:
     name: messageSchemaV2__package
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     mappings:
     - fix_sbe:package
     exact_mappings:
@@ -2157,7 +2157,7 @@ slots:
   messageSchemaV2__id:
     name: messageSchemaV2__id
     description: Unique ID of a message schema
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     mappings:
     - fix_sbe:id
     exact_mappings:
@@ -2171,7 +2171,7 @@ slots:
   messageSchemaV2__version:
     name: messageSchemaV2__version
     description: The version of a message schema. Initial version is 0.
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     mappings:
     - fix_sbe:version
     exact_mappings:
@@ -2186,7 +2186,7 @@ slots:
   messageSchemaV2__semantic_version:
     name: messageSchemaV2__semantic_version
     description: Application layer specification version, such as FIX version 'FIX.5.0SP2'
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     aliases:
     - semanticVersion
     mappings:
@@ -2201,7 +2201,7 @@ slots:
     range: string
   messageSchemaV2__description:
     name: messageSchemaV2__description
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     mappings:
     - fix_sbe:description
     exact_mappings:
@@ -2214,7 +2214,7 @@ slots:
     range: string
   messageSchemaV2__byte_order:
     name: messageSchemaV2__byte_order
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     aliases:
     - byteOrder
     mappings:
@@ -2233,7 +2233,7 @@ slots:
     description: Name of the encoding type of the message header, which is the same
       for all messages in a schema. The name has a default, but an encoding of that
       name must be present under a 'types' element.
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     aliases:
     - headerType
     mappings:
@@ -2250,7 +2250,7 @@ slots:
   messagesV2__message:
     name: messagesV2__message
     description: A message type, also known as a message template
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     mappings:
     - fix_sbe:message
     exact_mappings:
@@ -2267,7 +2267,7 @@ slots:
     inlined_as_list: true
   messagesV2__description:
     name: messagesV2__description
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     mappings:
     - fix_sbe:description
     exact_mappings:
@@ -2281,7 +2281,7 @@ slots:
   messagesV2__package:
     name: messagesV2__package
     description: Overrides the messageSchema package
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     mappings:
     - fix_sbe:package
     exact_mappings:
@@ -2294,7 +2294,7 @@ slots:
     range: string
   typesV2__type:
     name: typesV2__type
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     mappings:
     - fix_sbe:type
     exact_mappings:
@@ -2310,7 +2310,7 @@ slots:
     inlined_as_list: true
   typesV2__composite:
     name: typesV2__composite
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     mappings:
     - fix_sbe:composite
     exact_mappings:
@@ -2326,7 +2326,7 @@ slots:
     inlined_as_list: true
   typesV2__enum:
     name: typesV2__enum
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     mappings:
     - fix_sbe:enum
     exact_mappings:
@@ -2342,7 +2342,7 @@ slots:
     inlined_as_list: true
   typesV2__set:
     name: typesV2__set
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     mappings:
     - fix_sbe:set
     exact_mappings:
@@ -2358,7 +2358,7 @@ slots:
     inlined_as_list: true
   typesV2__description:
     name: typesV2__description
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     mappings:
     - fix_sbe:description
     exact_mappings:
@@ -2372,7 +2372,7 @@ slots:
   typesV2__package:
     name: typesV2__package
     description: Overrides the messageSchema package
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     mappings:
     - fix_sbe:package
     exact_mappings:
@@ -2386,12 +2386,12 @@ slots:
 classes:
   SemanticAttributes:
     name: SemanticAttributes
-    definition_uri: https://w3id.org/lmodel/fix-simple-binary-encoding/SemanticAttributes
+    definition_uri: https://w3id.org/lmodel/fix-sbe/SemanticAttributes
     description: Application layer class. Maps a field to a FIX data type or a template
       to a FIX message.
     in_subset:
     - sbe_common
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/common
+    from_schema: https://w3id.org/lmodel/fix-sbe/common
     aliases:
     - semanticAttributes
     mappings:
@@ -2421,11 +2421,11 @@ classes:
     class_uri: fix_sbe:SemanticAttributes
   VersionAttributes:
     name: VersionAttributes
-    definition_uri: https://w3id.org/lmodel/fix-simple-binary-encoding/VersionAttributes
+    definition_uri: https://w3id.org/lmodel/fix-sbe/VersionAttributes
     description: Schema versioning supports message extension
     in_subset:
     - sbe_common
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/common
+    from_schema: https://w3id.org/lmodel/fix-sbe/common
     aliases:
     - versionAttributes
     mappings:
@@ -2462,7 +2462,7 @@ classes:
     class_uri: fix_sbe:VersionAttributes
   ValidValue:
     name: ValidValue
-    definition_uri: https://w3id.org/lmodel/fix-simple-binary-encoding/ValidValue
+    definition_uri: https://w3id.org/lmodel/fix-sbe/ValidValue
     annotations:
       xsd_simple_extension:
         tag: xsd_simple_extension
@@ -2470,7 +2470,7 @@ classes:
     description: Valid value as a string
     in_subset:
     - sbe_common
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/common
+    from_schema: https://w3id.org/lmodel/fix-sbe/common
     aliases:
     - validValue
     mappings:
@@ -2510,7 +2510,7 @@ classes:
     class_uri: fix_sbe:ValidValue
   Choice:
     name: Choice
-    definition_uri: https://w3id.org/lmodel/fix-simple-binary-encoding/Choice
+    definition_uri: https://w3id.org/lmodel/fix-sbe/Choice
     annotations:
       xsd_simple_extension:
         tag: xsd_simple_extension
@@ -2519,7 +2519,7 @@ classes:
       bitset (zero-based index).
     in_subset:
     - sbe_common
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/common
+    from_schema: https://w3id.org/lmodel/fix-sbe/common
     aliases:
     - choice
     mappings:
@@ -2559,10 +2559,10 @@ classes:
     class_uri: fix_sbe:Choice
   AlignmentAttributesV1:
     name: AlignmentAttributesV1
-    definition_uri: https://w3id.org/lmodel/fix-simple-binary-encoding/AlignmentAttributesV1
+    definition_uri: https://w3id.org/lmodel/fix-sbe/AlignmentAttributesV1
     in_subset:
     - sbe_v1_0
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     aliases:
     - alignmentAttributes
     mappings:
@@ -2584,10 +2584,10 @@ classes:
     class_uri: fix_sbe:AlignmentAttributesV1
   PresenceAttributesV1:
     name: PresenceAttributesV1
-    definition_uri: https://w3id.org/lmodel/fix-simple-binary-encoding/PresenceAttributesV1
+    definition_uri: https://w3id.org/lmodel/fix-sbe/PresenceAttributesV1
     in_subset:
     - sbe_v1_0
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     aliases:
     - presenceAttributes
     mappings:
@@ -2618,11 +2618,11 @@ classes:
     class_uri: fix_sbe:PresenceAttributesV1
   BlockTypeV1:
     name: BlockTypeV1
-    definition_uri: https://w3id.org/lmodel/fix-simple-binary-encoding/BlockTypeV1
+    definition_uri: https://w3id.org/lmodel/fix-sbe/BlockTypeV1
     description: Base type of message and repeating group entry
     in_subset:
     - sbe_v1_0
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     aliases:
     - blockType
     mappings:
@@ -2703,11 +2703,11 @@ classes:
     class_uri: fix_sbe:BlockTypeV1
   GroupTypeV1:
     name: GroupTypeV1
-    definition_uri: https://w3id.org/lmodel/fix-simple-binary-encoding/GroupTypeV1
+    definition_uri: https://w3id.org/lmodel/fix-sbe/GroupTypeV1
     description: A repeating group contains an array of entries
     in_subset:
     - sbe_v1_0
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     aliases:
     - groupType
     mappings:
@@ -2742,7 +2742,7 @@ classes:
     class_uri: fix_sbe:GroupTypeV1
   EncodedDataTypeV1:
     name: EncodedDataTypeV1
-    definition_uri: https://w3id.org/lmodel/fix-simple-binary-encoding/EncodedDataTypeV1
+    definition_uri: https://w3id.org/lmodel/fix-sbe/EncodedDataTypeV1
     annotations:
       xsd_simple_extension:
         tag: xsd_simple_extension
@@ -2750,7 +2750,7 @@ classes:
     description: Simple wire encoding consisting of a primitive type or array of primitives
     in_subset:
     - sbe_v1_0
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     aliases:
     - encodedDataType
     mappings:
@@ -2846,11 +2846,11 @@ classes:
     class_uri: fix_sbe:EncodedDataTypeV1
   CompositeDataTypeV1:
     name: CompositeDataTypeV1
-    definition_uri: https://w3id.org/lmodel/fix-simple-binary-encoding/CompositeDataTypeV1
+    definition_uri: https://w3id.org/lmodel/fix-sbe/CompositeDataTypeV1
     description: A wire encoding composed of multiple parts
     in_subset:
     - sbe_v1_0
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     aliases:
     - compositeDataType
     mappings:
@@ -2937,11 +2937,11 @@ classes:
     class_uri: fix_sbe:CompositeDataTypeV1
   EnumTypeV1:
     name: EnumTypeV1
-    definition_uri: https://w3id.org/lmodel/fix-simple-binary-encoding/EnumTypeV1
+    definition_uri: https://w3id.org/lmodel/fix-sbe/EnumTypeV1
     description: An enumeration of valid values
     in_subset:
     - sbe_v1_0
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     aliases:
     - enumType
     mappings:
@@ -3001,12 +3001,12 @@ classes:
     class_uri: fix_sbe:EnumTypeV1
   RefTypeV1:
     name: RefTypeV1
-    definition_uri: https://w3id.org/lmodel/fix-simple-binary-encoding/RefTypeV1
+    definition_uri: https://w3id.org/lmodel/fix-sbe/RefTypeV1
     description: A reference to any existing encoding type (simple type, enum or set)
       to reuse as a member of a composite type
     in_subset:
     - sbe_v1_0
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     aliases:
     - refType
     mappings:
@@ -3048,11 +3048,11 @@ classes:
     class_uri: fix_sbe:RefTypeV1
   SetTypeV1:
     name: SetTypeV1
-    definition_uri: https://w3id.org/lmodel/fix-simple-binary-encoding/SetTypeV1
+    definition_uri: https://w3id.org/lmodel/fix-sbe/SetTypeV1
     description: A multi value choice (encoded as a bitset)
     in_subset:
     - sbe_v1_0
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     aliases:
     - setType
     mappings:
@@ -3110,11 +3110,11 @@ classes:
     class_uri: fix_sbe:SetTypeV1
   FieldTypeV1:
     name: FieldTypeV1
-    definition_uri: https://w3id.org/lmodel/fix-simple-binary-encoding/FieldTypeV1
+    definition_uri: https://w3id.org/lmodel/fix-sbe/FieldTypeV1
     description: A field of a message of a specified dataType
     in_subset:
     - sbe_v1_0
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     aliases:
     - fieldType
     mappings:
@@ -3183,11 +3183,11 @@ classes:
     class_uri: fix_sbe:FieldTypeV1
   MessageSchemaV1:
     name: MessageSchemaV1
-    definition_uri: https://w3id.org/lmodel/fix-simple-binary-encoding/MessageSchemaV1
+    definition_uri: https://w3id.org/lmodel/fix-sbe/MessageSchemaV1
     description: Root of XML document, holds all message templates and their elements
     in_subset:
     - sbe_v1_0
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     aliases:
     - messageSchema
     mappings:
@@ -3289,11 +3289,11 @@ classes:
     tree_root: true
   MessageV1:
     name: MessageV1
-    definition_uri: https://w3id.org/lmodel/fix-simple-binary-encoding/MessageV1
+    definition_uri: https://w3id.org/lmodel/fix-sbe/MessageV1
     description: A message type, also known as a message template
     in_subset:
     - sbe_v1_0
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v1_0
     aliases:
     - message
     mappings:
@@ -3316,10 +3316,10 @@ classes:
     class_uri: fix_sbe:MessageV1
   AlignmentAttributesV2:
     name: AlignmentAttributesV2
-    definition_uri: https://w3id.org/lmodel/fix-simple-binary-encoding/AlignmentAttributesV2
+    definition_uri: https://w3id.org/lmodel/fix-sbe/AlignmentAttributesV2
     in_subset:
     - sbe_v2_0
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     aliases:
     - alignmentAttributes
     mappings:
@@ -3341,10 +3341,10 @@ classes:
     class_uri: fix_sbe:AlignmentAttributesV2
   OffsetAttributesV2:
     name: OffsetAttributesV2
-    definition_uri: https://w3id.org/lmodel/fix-simple-binary-encoding/OffsetAttributesV2
+    definition_uri: https://w3id.org/lmodel/fix-sbe/OffsetAttributesV2
     in_subset:
     - sbe_v2_0
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     aliases:
     - offsetAttributes
     mappings:
@@ -3375,10 +3375,10 @@ classes:
     class_uri: fix_sbe:OffsetAttributesV2
   PresenceAttributesV2:
     name: PresenceAttributesV2
-    definition_uri: https://w3id.org/lmodel/fix-simple-binary-encoding/PresenceAttributesV2
+    definition_uri: https://w3id.org/lmodel/fix-sbe/PresenceAttributesV2
     in_subset:
     - sbe_v2_0
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     aliases:
     - presenceAttributes
     mappings:
@@ -3441,10 +3441,10 @@ classes:
     class_uri: fix_sbe:PresenceAttributesV2
   PrimitiveTypeAttributesV2:
     name: PrimitiveTypeAttributesV2
-    definition_uri: https://w3id.org/lmodel/fix-simple-binary-encoding/PrimitiveTypeAttributesV2
+    definition_uri: https://w3id.org/lmodel/fix-sbe/PrimitiveTypeAttributesV2
     in_subset:
     - sbe_v2_0
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     aliases:
     - primitiveTypeAttributes
     mappings:
@@ -3485,11 +3485,11 @@ classes:
     class_uri: fix_sbe:PrimitiveTypeAttributesV2
   BlockTypeV2:
     name: BlockTypeV2
-    definition_uri: https://w3id.org/lmodel/fix-simple-binary-encoding/BlockTypeV2
+    definition_uri: https://w3id.org/lmodel/fix-sbe/BlockTypeV2
     description: Base type of message and repeating group entry
     in_subset:
     - sbe_v2_0
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     aliases:
     - blockType
     mappings:
@@ -3572,11 +3572,11 @@ classes:
     class_uri: fix_sbe:BlockTypeV2
   GroupTypeV2:
     name: GroupTypeV2
-    definition_uri: https://w3id.org/lmodel/fix-simple-binary-encoding/GroupTypeV2
+    definition_uri: https://w3id.org/lmodel/fix-sbe/GroupTypeV2
     description: A repeating group contains an array of entries
     in_subset:
     - sbe_v2_0
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     aliases:
     - groupType
     mappings:
@@ -3612,7 +3612,7 @@ classes:
     class_uri: fix_sbe:GroupTypeV2
   SimpleDataTypeV2:
     name: SimpleDataTypeV2
-    definition_uri: https://w3id.org/lmodel/fix-simple-binary-encoding/SimpleDataTypeV2
+    definition_uri: https://w3id.org/lmodel/fix-sbe/SimpleDataTypeV2
     annotations:
       xsd_simple_extension:
         tag: xsd_simple_extension
@@ -3620,7 +3620,7 @@ classes:
     description: Simple wire encoding consisting of a primitive type or array of primitives
     in_subset:
     - sbe_v2_0
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     aliases:
     - simpleDataType
     mappings:
@@ -3663,7 +3663,7 @@ classes:
     class_uri: fix_sbe:SimpleDataTypeV2
   MemberDataTypeV2:
     name: MemberDataTypeV2
-    definition_uri: https://w3id.org/lmodel/fix-simple-binary-encoding/MemberDataTypeV2
+    definition_uri: https://w3id.org/lmodel/fix-sbe/MemberDataTypeV2
     annotations:
       xsd_simple_extension:
         tag: xsd_simple_extension
@@ -3671,7 +3671,7 @@ classes:
     description: A simple type used as a member of a composite type
     in_subset:
     - sbe_v2_0
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     aliases:
     - memberDataType
     mappings:
@@ -3720,11 +3720,11 @@ classes:
     class_uri: fix_sbe:MemberDataTypeV2
   CompositeDataTypeV2:
     name: CompositeDataTypeV2
-    definition_uri: https://w3id.org/lmodel/fix-simple-binary-encoding/CompositeDataTypeV2
+    definition_uri: https://w3id.org/lmodel/fix-sbe/CompositeDataTypeV2
     description: A wire encoding composed of multiple parts
     in_subset:
     - sbe_v2_0
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     aliases:
     - compositeDataType
     mappings:
@@ -3816,11 +3816,11 @@ classes:
     class_uri: fix_sbe:CompositeDataTypeV2
   EnumTypeV2:
     name: EnumTypeV2
-    definition_uri: https://w3id.org/lmodel/fix-simple-binary-encoding/EnumTypeV2
+    definition_uri: https://w3id.org/lmodel/fix-sbe/EnumTypeV2
     description: An enumeration of valid values
     in_subset:
     - sbe_v2_0
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     aliases:
     - enumType
     mappings:
@@ -3885,12 +3885,12 @@ classes:
     class_uri: fix_sbe:EnumTypeV2
   RefTypeV2:
     name: RefTypeV2
-    definition_uri: https://w3id.org/lmodel/fix-simple-binary-encoding/RefTypeV2
+    definition_uri: https://w3id.org/lmodel/fix-sbe/RefTypeV2
     description: A reference to any existing encoding type (simple type, enum or set)
       to reuse as a member of a composite type
     in_subset:
     - sbe_v2_0
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     aliases:
     - refType
     mappings:
@@ -3938,11 +3938,11 @@ classes:
     class_uri: fix_sbe:RefTypeV2
   SetTypeV2:
     name: SetTypeV2
-    definition_uri: https://w3id.org/lmodel/fix-simple-binary-encoding/SetTypeV2
+    definition_uri: https://w3id.org/lmodel/fix-sbe/SetTypeV2
     description: A multi value choice (encoded as a bitset)
     in_subset:
     - sbe_v2_0
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     aliases:
     - setType
     mappings:
@@ -4005,11 +4005,11 @@ classes:
     class_uri: fix_sbe:SetTypeV2
   FieldTypeV2:
     name: FieldTypeV2
-    definition_uri: https://w3id.org/lmodel/fix-simple-binary-encoding/FieldTypeV2
+    definition_uri: https://w3id.org/lmodel/fix-sbe/FieldTypeV2
     description: A field of a message of a specified dataType
     in_subset:
     - sbe_v2_0
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     aliases:
     - fieldType
     mappings:
@@ -4069,11 +4069,11 @@ classes:
     class_uri: fix_sbe:FieldTypeV2
   MessageSchemaV2:
     name: MessageSchemaV2
-    definition_uri: https://w3id.org/lmodel/fix-simple-binary-encoding/MessageSchemaV2
+    definition_uri: https://w3id.org/lmodel/fix-sbe/MessageSchemaV2
     description: Root of XML document, holds all message templates and their elements
     in_subset:
     - sbe_v2_0
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     aliases:
     - messageSchema
     mappings:
@@ -4175,10 +4175,10 @@ classes:
     tree_root: true
   MessagesV2:
     name: MessagesV2
-    definition_uri: https://w3id.org/lmodel/fix-simple-binary-encoding/MessagesV2
+    definition_uri: https://w3id.org/lmodel/fix-sbe/MessagesV2
     in_subset:
     - sbe_v2_0
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     aliases:
     - messages
     mappings:
@@ -4218,12 +4218,12 @@ classes:
     class_uri: fix_sbe:MessagesV2
   TypesV2:
     name: TypesV2
-    definition_uri: https://w3id.org/lmodel/fix-simple-binary-encoding/TypesV2
+    definition_uri: https://w3id.org/lmodel/fix-sbe/TypesV2
     description: More than one set of types may be provided. Names must be unique
       across all encoding types. Encoding types may appear in any order.
     in_subset:
     - sbe_v2_0
-    from_schema: https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0
+    from_schema: https://w3id.org/lmodel/fix-sbe/v2_0
     aliases:
     - types
     mappings:
@@ -4291,7 +4291,7 @@ classes:
     class_uri: fix_sbe:TypesV2
 metamodel_version: 1.11.0
 source_file: fix_sbe.yaml
-source_file_date: '2026-05-25T13:29:31'
+source_file_date: '2026-05-25T13:40:26'
 source_file_size: 2006
-generation_date: '2026-05-25T13:29:42'
+generation_date: '2026-05-25T13:42:30'
 
