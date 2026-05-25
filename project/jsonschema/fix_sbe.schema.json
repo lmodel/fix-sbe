@@ -1,0 +1,2055 @@
+{
+    "$defs": {
+        "AlignmentAttributesV1": {
+            "additionalProperties": false,
+            "description": "",
+            "properties": {
+                "offset": {
+                    "description": "Offset from start of a composite type or block as a zero-based index.",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                }
+            },
+            "title": "AlignmentAttributesV1",
+            "type": "object"
+        },
+        "AlignmentAttributesV2": {
+            "additionalProperties": false,
+            "description": "",
+            "properties": {
+                "alignment": {
+                    "description": "Byte alignment of the start of a block (message root or repeating group instance).",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                }
+            },
+            "title": "AlignmentAttributesV2",
+            "type": "object"
+        },
+        "BlockTypeV1": {
+            "additionalProperties": false,
+            "description": "Base type of message and repeating group entry",
+            "properties": {
+                "block_length": {
+                    "description": "Space reserved for root level of message, not include groups or variable-length data elements.",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "data": {
+                    "description": "Variable-length fields",
+                    "items": {
+                        "$ref": "#/$defs/FieldTypeV1"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "deprecated": {
+                    "description": "The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version.",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "field": {
+                    "description": "Fixed-length fields",
+                    "items": {
+                        "$ref": "#/$defs/FieldTypeV1"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "group": {
+                    "items": {
+                        "$ref": "#/$defs/GroupTypeV1"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique ID of a message template",
+                    "type": "integer"
+                },
+                "name": {
+                    "pattern": "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*",
+                    "type": "string"
+                },
+                "semantic_type": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "since_version": {
+                    "description": "The schema version in which an element was added",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "name",
+                "id"
+            ],
+            "title": "BlockTypeV1",
+            "type": "object"
+        },
+        "BlockTypeV2": {
+            "additionalProperties": false,
+            "description": "Base type of message and repeating group entry",
+            "properties": {
+                "alignment": {
+                    "description": "Byte alignment of the start of a block (message root or repeating group instance).",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "block_length": {
+                    "description": "Space reserved for root level of message or repeating group, not including nested groups or variable-length data elements.",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "data": {
+                    "description": "Variable-length fields",
+                    "items": {
+                        "$ref": "#/$defs/FieldTypeV2"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "deprecated": {
+                    "description": "The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version.",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "field": {
+                    "description": "Fixed-length fields",
+                    "items": {
+                        "$ref": "#/$defs/FieldTypeV2"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "group": {
+                    "items": {
+                        "$ref": "#/$defs/GroupTypeV2"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique ID of a message template",
+                    "type": "integer"
+                },
+                "name": {
+                    "pattern": "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*",
+                    "type": "string"
+                },
+                "semantic_type": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "since_version": {
+                    "description": "The schema version in which an element was added",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "name",
+                "id"
+            ],
+            "title": "BlockTypeV2",
+            "type": "object"
+        },
+        "ByteOrder": {
+            "description": "Inline enumeration lifted from XSD attribute ``byteOrder`` on ``messageSchema``.",
+            "enum": [
+                "bigEndian",
+                "littleEndian"
+            ],
+            "title": "ByteOrder",
+            "type": "string"
+        },
+        "Choice": {
+            "additionalProperties": false,
+            "description": "A choice within a multi value set. Value is the position within a bitset (zero-based index).",
+            "properties": {
+                "deprecated": {
+                    "description": "The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version.",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "pattern": "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*",
+                    "type": "string"
+                },
+                "since_version": {
+                    "description": "The schema version in which an element was added",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "value": {
+                    "description": "Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "title": "Choice",
+            "type": "object"
+        },
+        "CompositeDataTypeV1": {
+            "additionalProperties": false,
+            "description": "A wire encoding composed of multiple parts",
+            "properties": {
+                "composite": {
+                    "items": {
+                        "$ref": "#/$defs/CompositeDataTypeV1"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "deprecated": {
+                    "description": "The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version.",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "enum": {
+                    "items": {
+                        "$ref": "#/$defs/EnumTypeV1"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "pattern": "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*",
+                    "type": "string"
+                },
+                "offset": {
+                    "description": "Offset from start of a composite type or block as a zero-based index.",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "ref": {
+                    "items": {
+                        "$ref": "#/$defs/RefTypeV1"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "semantic_type": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "set": {
+                    "items": {
+                        "$ref": "#/$defs/SetTypeV1"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "since_version": {
+                    "description": "The schema version in which an element was added",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "type": {
+                    "items": {
+                        "$ref": "#/$defs/EncodedDataTypeV1"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "value": {
+                    "description": "Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "title": "CompositeDataTypeV1",
+            "type": "object"
+        },
+        "CompositeDataTypeV2": {
+            "additionalProperties": false,
+            "description": "A wire encoding composed of multiple parts",
+            "properties": {
+                "alignment": {
+                    "description": "Byte alignment of the start of a block (message root or repeating group instance).",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "composite": {
+                    "items": {
+                        "$ref": "#/$defs/CompositeDataTypeV2"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "deprecated": {
+                    "description": "The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version.",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "enum": {
+                    "items": {
+                        "$ref": "#/$defs/EnumTypeV2"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "pattern": "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*",
+                    "type": "string"
+                },
+                "offset": {
+                    "description": "Offset from start of a composite type or block as a zero-based index.",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "ref": {
+                    "items": {
+                        "$ref": "#/$defs/RefTypeV2"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "set": {
+                    "items": {
+                        "$ref": "#/$defs/SetTypeV2"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "since_version": {
+                    "description": "The schema version in which an element was added",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "type": {
+                    "items": {
+                        "$ref": "#/$defs/MemberDataTypeV2"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "value": {
+                    "description": "Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "title": "CompositeDataTypeV2",
+            "type": "object"
+        },
+        "EncodedDataTypeV1": {
+            "additionalProperties": false,
+            "description": "Simple wire encoding consisting of a primitive type or array of primitives",
+            "properties": {
+                "character_encoding": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "deprecated": {
+                    "description": "The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version.",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "length": {
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "max_value": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "min_value": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "pattern": "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*",
+                    "type": "string"
+                },
+                "null_value": {
+                    "description": "Override of default null indicator for the data type in SBE specification, as a string.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "offset": {
+                    "description": "Offset from start of a composite type or block as a zero-based index.",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "presence": {
+                    "$ref": "#/$defs/Presence"
+                },
+                "primitive_type": {
+                    "$ref": "#/$defs/PrimitiveTypeV1"
+                },
+                "semantic_type": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "since_version": {
+                    "description": "The schema version in which an element was added",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "value": {
+                    "description": "Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "value_ref": {
+                    "description": "A constant value as valid value of an enum in the form enum-name.valid-value-name",
+                    "pattern": "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*\\.([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "name",
+                "primitive_type"
+            ],
+            "title": "EncodedDataTypeV1",
+            "type": "object"
+        },
+        "EnumTypeV1": {
+            "additionalProperties": false,
+            "description": "An enumeration of valid values",
+            "properties": {
+                "deprecated": {
+                    "description": "The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version.",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "encoding_type": {
+                    "pattern": "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*",
+                    "type": "string"
+                },
+                "name": {
+                    "pattern": "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*",
+                    "type": "string"
+                },
+                "offset": {
+                    "description": "Offset from start of a composite type or block as a zero-based index.",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "semantic_type": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "since_version": {
+                    "description": "The schema version in which an element was added",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "valid_value": {
+                    "items": {
+                        "$ref": "#/$defs/ValidValue"
+                    },
+                    "type": "array"
+                },
+                "value": {
+                    "description": "Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "valid_value",
+                "name",
+                "encoding_type"
+            ],
+            "title": "EnumTypeV1",
+            "type": "object"
+        },
+        "EnumTypeV2": {
+            "additionalProperties": false,
+            "description": "An enumeration of valid values",
+            "properties": {
+                "alignment": {
+                    "description": "Byte alignment of the start of a block (message root or repeating group instance).",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "deprecated": {
+                    "description": "The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version.",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "encoding_type": {
+                    "pattern": "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*",
+                    "type": "string"
+                },
+                "name": {
+                    "pattern": "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*",
+                    "type": "string"
+                },
+                "offset": {
+                    "description": "Offset from start of a composite type or block as a zero-based index.",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "since_version": {
+                    "description": "The schema version in which an element was added",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "valid_value": {
+                    "items": {
+                        "$ref": "#/$defs/ValidValue"
+                    },
+                    "type": "array"
+                },
+                "value": {
+                    "description": "Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "valid_value",
+                "name",
+                "encoding_type"
+            ],
+            "title": "EnumTypeV2",
+            "type": "object"
+        },
+        "FieldTypeV1": {
+            "additionalProperties": false,
+            "description": "A field of a message of a specified dataType",
+            "properties": {
+                "deprecated": {
+                    "description": "The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version.",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "epoch": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "pattern": "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*",
+                    "type": "string"
+                },
+                "offset": {
+                    "description": "Offset from start of a composite type or block as a zero-based index.",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "presence": {
+                    "$ref": "#/$defs/Presence"
+                },
+                "semantic_type": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "since_version": {
+                    "description": "The schema version in which an element was added",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "time_unit": {
+                    "description": "Deprecated - only for back compatibility with RC2",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "type": {
+                    "description": "Must match the name of an encoding contained by 'types' element",
+                    "pattern": "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*",
+                    "type": "string"
+                },
+                "value_ref": {
+                    "description": "A constant value as valid value of an enum in the form enum-name.valid-value-name",
+                    "pattern": "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*\\.([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "name",
+                "id",
+                "type"
+            ],
+            "title": "FieldTypeV1",
+            "type": "object"
+        },
+        "FieldTypeV2": {
+            "additionalProperties": false,
+            "description": "A field of a message of a specified dataType",
+            "properties": {
+                "alignment": {
+                    "description": "Byte alignment of the start of a block (message root or repeating group instance).",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "deprecated": {
+                    "description": "The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version.",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "max_value": {
+                    "description": "Upper bound of a range",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "min_value": {
+                    "description": "Lower bound of a range",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "pattern": "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*",
+                    "type": "string"
+                },
+                "null_value": {
+                    "description": "Override of default null indicator for the data type in SBE specification, as a string.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "offset": {
+                    "description": "Offset from start of a composite type or block as a zero-based index.",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "presence": {
+                    "$ref": "#/$defs/Presence"
+                },
+                "semantic_type": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "since_version": {
+                    "description": "The schema version in which an element was added",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "type": {
+                    "description": "Must match the name of an encoding contained by 'types' element",
+                    "pattern": "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*",
+                    "type": "string"
+                },
+                "value": {
+                    "description": "Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "value_ref": {
+                    "description": "A constant value as valid value of an enum in the form enum-name.valid-value-name. Only valid if presence='constant'.",
+                    "pattern": "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*\\.([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "name",
+                "id",
+                "type"
+            ],
+            "title": "FieldTypeV2",
+            "type": "object"
+        },
+        "GroupTypeV1": {
+            "additionalProperties": false,
+            "description": "A repeating group contains an array of entries",
+            "properties": {
+                "block_length": {
+                    "description": "Space reserved for root level of message, not include groups or variable-length data elements.",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "data": {
+                    "description": "Variable-length fields",
+                    "items": {
+                        "$ref": "#/$defs/FieldTypeV1"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "deprecated": {
+                    "description": "The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version.",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "dimension_type": {
+                    "pattern": "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "field": {
+                    "description": "Fixed-length fields",
+                    "items": {
+                        "$ref": "#/$defs/FieldTypeV1"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "group": {
+                    "items": {
+                        "$ref": "#/$defs/GroupTypeV1"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique ID of a message template",
+                    "type": "integer"
+                },
+                "name": {
+                    "pattern": "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*",
+                    "type": "string"
+                },
+                "semantic_type": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "since_version": {
+                    "description": "The schema version in which an element was added",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "name",
+                "id"
+            ],
+            "title": "GroupTypeV1",
+            "type": "object"
+        },
+        "GroupTypeV2": {
+            "additionalProperties": false,
+            "description": "A repeating group contains an array of entries",
+            "properties": {
+                "alignment": {
+                    "description": "Byte alignment of the start of a block (message root or repeating group instance).",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "block_length": {
+                    "description": "Space reserved for root level of message or repeating group, not including nested groups or variable-length data elements.",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "data": {
+                    "description": "Variable-length fields",
+                    "items": {
+                        "$ref": "#/$defs/FieldTypeV2"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "deprecated": {
+                    "description": "The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version.",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "dimension_type": {
+                    "pattern": "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "field": {
+                    "description": "Fixed-length fields",
+                    "items": {
+                        "$ref": "#/$defs/FieldTypeV2"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "group": {
+                    "items": {
+                        "$ref": "#/$defs/GroupTypeV2"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique ID of a message template",
+                    "type": "integer"
+                },
+                "name": {
+                    "pattern": "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*",
+                    "type": "string"
+                },
+                "semantic_type": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "since_version": {
+                    "description": "The schema version in which an element was added",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "name",
+                "id"
+            ],
+            "title": "GroupTypeV2",
+            "type": "object"
+        },
+        "MemberDataTypeV2": {
+            "additionalProperties": false,
+            "description": "A simple type used as a member of a composite type",
+            "properties": {
+                "alignment": {
+                    "description": "Byte alignment of the start of a block (message root or repeating group instance).",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "character_encoding": {
+                    "description": "Character set or Unicode encoding scheme",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "length": {
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "max_value": {
+                    "description": "Upper bound of a range",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "min_value": {
+                    "description": "Lower bound of a range",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "pattern": "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*",
+                    "type": "string"
+                },
+                "null_value": {
+                    "description": "Override of default null indicator for the data type in SBE specification, as a string.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "offset": {
+                    "description": "Offset from start of a composite type or block as a zero-based index.",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "presence": {
+                    "$ref": "#/$defs/Presence"
+                },
+                "primitive_type": {
+                    "$ref": "#/$defs/PrimitiveTypeV2"
+                },
+                "value": {
+                    "description": "Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "value_ref": {
+                    "description": "A constant value as valid value of an enum in the form enum-name.valid-value-name. Only valid if presence='constant'.",
+                    "pattern": "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*\\.([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "name",
+                "primitive_type"
+            ],
+            "title": "MemberDataTypeV2",
+            "type": "object"
+        },
+        "MessageSchemaV1": {
+            "additionalProperties": false,
+            "description": "Root of XML document, holds all message templates and their elements",
+            "properties": {
+                "byte_order": {
+                    "$ref": "#/$defs/ByteOrder"
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "header_type": {
+                    "description": "Name of the encoding type of the message header, which is the same for all messages in a schema. The name has a default, but an encoding of that name must be present under a 'types' element.",
+                    "pattern": "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique ID of a message schema",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "message": {
+                    "items": {
+                        "$ref": "#/$defs/MessageV1"
+                    },
+                    "type": "array"
+                },
+                "package": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "semantic_version": {
+                    "description": "Application layer specification version, such as FIX version 'FIX.5.0SP2'",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "types": {
+                    "description": "More than one set of types may be provided. Names must be unique across all encoding types. Encoding types may appear in any order.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "version": {
+                    "description": "The version of a message schema. Initial version is 0.",
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "types",
+                "message",
+                "version"
+            ],
+            "title": "MessageSchemaV1",
+            "type": "object"
+        },
+        "MessageSchemaV2": {
+            "additionalProperties": false,
+            "description": "Root of XML document, holds all message templates and their elements",
+            "properties": {
+                "byte_order": {
+                    "$ref": "#/$defs/ByteOrder"
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "header_type": {
+                    "description": "Name of the encoding type of the message header, which is the same for all messages in a schema. The name has a default, but an encoding of that name must be present under a 'types' element.",
+                    "pattern": "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique ID of a message schema",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "messages": {
+                    "items": {
+                        "$ref": "#/$defs/MessagesV2"
+                    },
+                    "type": "array"
+                },
+                "package": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "semantic_version": {
+                    "description": "Application layer specification version, such as FIX version 'FIX.5.0SP2'",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "types": {
+                    "items": {
+                        "$ref": "#/$defs/TypesV2"
+                    },
+                    "type": "array"
+                },
+                "version": {
+                    "description": "The version of a message schema. Initial version is 0.",
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "types",
+                "messages",
+                "version"
+            ],
+            "title": "MessageSchemaV2",
+            "type": "object"
+        },
+        "MessageV1": {
+            "additionalProperties": false,
+            "description": "A message type, also known as a message template",
+            "properties": {
+                "block_length": {
+                    "description": "Space reserved for root level of message, not include groups or variable-length data elements.",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "data": {
+                    "description": "Variable-length fields",
+                    "items": {
+                        "$ref": "#/$defs/FieldTypeV1"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "deprecated": {
+                    "description": "The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version.",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "field": {
+                    "description": "Fixed-length fields",
+                    "items": {
+                        "$ref": "#/$defs/FieldTypeV1"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "group": {
+                    "items": {
+                        "$ref": "#/$defs/GroupTypeV1"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique ID of a message template",
+                    "type": "integer"
+                },
+                "name": {
+                    "pattern": "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*",
+                    "type": "string"
+                },
+                "semantic_type": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "since_version": {
+                    "description": "The schema version in which an element was added",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "name",
+                "id"
+            ],
+            "title": "MessageV1",
+            "type": "object"
+        },
+        "MessagesV2": {
+            "additionalProperties": false,
+            "description": "",
+            "properties": {
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "message": {
+                    "description": "A message type, also known as a message template",
+                    "items": {
+                        "$ref": "#/$defs/BlockTypeV2"
+                    },
+                    "type": "array"
+                },
+                "package": {
+                    "description": "Overrides the messageSchema package",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "message"
+            ],
+            "title": "MessagesV2",
+            "type": "object"
+        },
+        "OffsetAttributesV2": {
+            "additionalProperties": false,
+            "description": "",
+            "properties": {
+                "alignment": {
+                    "description": "Byte alignment of the start of a block (message root or repeating group instance).",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "offset": {
+                    "description": "Offset from start of a composite type or block as a zero-based index.",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                }
+            },
+            "title": "OffsetAttributesV2",
+            "type": "object"
+        },
+        "Presence": {
+            "description": "Inline enumeration lifted from XSD attribute ``presence`` on ``presenceAttributes``.",
+            "enum": [
+                "required",
+                "optional",
+                "constant"
+            ],
+            "title": "Presence",
+            "type": "string"
+        },
+        "PresenceAttributesV1": {
+            "additionalProperties": false,
+            "description": "",
+            "properties": {
+                "presence": {
+                    "$ref": "#/$defs/Presence"
+                },
+                "value_ref": {
+                    "description": "A constant value as valid value of an enum in the form enum-name.valid-value-name",
+                    "pattern": "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*\\.([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "title": "PresenceAttributesV1",
+            "type": "object"
+        },
+        "PresenceAttributesV2": {
+            "additionalProperties": false,
+            "description": "",
+            "properties": {
+                "max_value": {
+                    "description": "Upper bound of a range",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "min_value": {
+                    "description": "Lower bound of a range",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "null_value": {
+                    "description": "Override of default null indicator for the data type in SBE specification, as a string.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "presence": {
+                    "$ref": "#/$defs/Presence"
+                },
+                "value_ref": {
+                    "description": "A constant value as valid value of an enum in the form enum-name.valid-value-name. Only valid if presence='constant'.",
+                    "pattern": "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*\\.([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "title": "PresenceAttributesV2",
+            "type": "object"
+        },
+        "PrimitiveTypeAttributesV2": {
+            "additionalProperties": false,
+            "description": "",
+            "properties": {
+                "character_encoding": {
+                    "description": "Character set or Unicode encoding scheme",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "length": {
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "primitive_type": {
+                    "$ref": "#/$defs/PrimitiveTypeV2"
+                }
+            },
+            "required": [
+                "primitive_type"
+            ],
+            "title": "PrimitiveTypeAttributesV2",
+            "type": "object"
+        },
+        "PrimitiveTypeV1": {
+            "description": "Inline enumeration lifted from XSD attribute ``primitiveType`` on ``encodedDataType``.",
+            "enum": [
+                "char",
+                "int8",
+                "int16",
+                "int32",
+                "int64",
+                "uint8",
+                "uint16",
+                "uint32",
+                "uint64",
+                "float",
+                "double"
+            ],
+            "title": "PrimitiveTypeV1",
+            "type": "string"
+        },
+        "PrimitiveTypeV2": {
+            "description": "Inline enumeration lifted from XSD attribute ``primitiveType`` on ``primitiveTypeAttributes``.",
+            "enum": [
+                "char",
+                "int8",
+                "int16",
+                "int32",
+                "int64",
+                "uint8",
+                "uint16",
+                "uint32",
+                "uint64",
+                "float",
+                "double"
+            ],
+            "title": "PrimitiveTypeV2",
+            "type": "string"
+        },
+        "RefTypeV1": {
+            "additionalProperties": false,
+            "description": "A reference to any existing encoding type (simple type, enum or set) to reuse as a member of a composite type",
+            "properties": {
+                "deprecated": {
+                    "description": "The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version.",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "pattern": "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*",
+                    "type": "string"
+                },
+                "offset": {
+                    "description": "Offset from start of a composite type or block as a zero-based index.",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "since_version": {
+                    "description": "The schema version in which an element was added",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "type": {
+                    "pattern": "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*",
+                    "type": "string"
+                },
+                "value": {
+                    "description": "Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "name",
+                "type"
+            ],
+            "title": "RefTypeV1",
+            "type": "object"
+        },
+        "RefTypeV2": {
+            "additionalProperties": false,
+            "description": "A reference to any existing encoding type (simple type, enum or set) to reuse as a member of a composite type",
+            "properties": {
+                "alignment": {
+                    "description": "Byte alignment of the start of a block (message root or repeating group instance).",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "How the referenced type is used",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "pattern": "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*",
+                    "type": "string"
+                },
+                "offset": {
+                    "description": "Offset from start of a composite type or block as a zero-based index.",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "type": {
+                    "pattern": "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*",
+                    "type": "string"
+                },
+                "value": {
+                    "description": "Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "name",
+                "type"
+            ],
+            "title": "RefTypeV2",
+            "type": "object"
+        },
+        "SemanticAttributes": {
+            "additionalProperties": false,
+            "description": "Application layer class. Maps a field to a FIX data type or a template to a FIX message.",
+            "properties": {
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "semantic_type": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "title": "SemanticAttributes",
+            "type": "object"
+        },
+        "SetTypeV1": {
+            "additionalProperties": false,
+            "description": "A multi value choice (encoded as a bitset)",
+            "properties": {
+                "choice": {
+                    "items": {
+                        "$ref": "#/$defs/Choice"
+                    },
+                    "type": "array"
+                },
+                "deprecated": {
+                    "description": "The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version.",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "encoding_type": {
+                    "pattern": "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*",
+                    "type": "string"
+                },
+                "name": {
+                    "pattern": "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*",
+                    "type": "string"
+                },
+                "offset": {
+                    "description": "Offset from start of a composite type or block as a zero-based index.",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "semantic_type": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "since_version": {
+                    "description": "The schema version in which an element was added",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "value": {
+                    "description": "Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "choice",
+                "name",
+                "encoding_type"
+            ],
+            "title": "SetTypeV1",
+            "type": "object"
+        },
+        "SetTypeV2": {
+            "additionalProperties": false,
+            "description": "A multi value choice (encoded as a bitset)",
+            "properties": {
+                "alignment": {
+                    "description": "Byte alignment of the start of a block (message root or repeating group instance).",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "choice": {
+                    "items": {
+                        "$ref": "#/$defs/Choice"
+                    },
+                    "type": "array"
+                },
+                "deprecated": {
+                    "description": "The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version.",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "encoding_type": {
+                    "pattern": "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*",
+                    "type": "string"
+                },
+                "name": {
+                    "pattern": "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*",
+                    "type": "string"
+                },
+                "offset": {
+                    "description": "Offset from start of a composite type or block as a zero-based index.",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "since_version": {
+                    "description": "The schema version in which an element was added",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "value": {
+                    "description": "Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "choice",
+                "name",
+                "encoding_type"
+            ],
+            "title": "SetTypeV2",
+            "type": "object"
+        },
+        "SimpleDataTypeV2": {
+            "additionalProperties": false,
+            "description": "Simple wire encoding consisting of a primitive type or array of primitives",
+            "properties": {
+                "character_encoding": {
+                    "description": "Character set or Unicode encoding scheme",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "deprecated": {
+                    "description": "The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version.",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "length": {
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "pattern": "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*",
+                    "type": "string"
+                },
+                "primitive_type": {
+                    "$ref": "#/$defs/PrimitiveTypeV2"
+                },
+                "since_version": {
+                    "description": "The schema version in which an element was added",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "value": {
+                    "description": "Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "name",
+                "primitive_type"
+            ],
+            "title": "SimpleDataTypeV2",
+            "type": "object"
+        },
+        "TypesV2": {
+            "additionalProperties": false,
+            "description": "More than one set of types may be provided. Names must be unique across all encoding types. Encoding types may appear in any order.",
+            "properties": {
+                "composite": {
+                    "items": {
+                        "$ref": "#/$defs/CompositeDataTypeV2"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "enum": {
+                    "items": {
+                        "$ref": "#/$defs/EnumTypeV2"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "package": {
+                    "description": "Overrides the messageSchema package",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "set": {
+                    "items": {
+                        "$ref": "#/$defs/SetTypeV2"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "type": {
+                    "items": {
+                        "$ref": "#/$defs/SimpleDataTypeV2"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                }
+            },
+            "title": "TypesV2",
+            "type": "object"
+        },
+        "ValidValue": {
+            "additionalProperties": false,
+            "description": "Valid value as a string",
+            "properties": {
+                "deprecated": {
+                    "description": "The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version.",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "pattern": "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*",
+                    "type": "string"
+                },
+                "since_version": {
+                    "description": "The schema version in which an element was added",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "value": {
+                    "description": "Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "title": "ValidValue",
+            "type": "object"
+        },
+        "VersionAttributes": {
+            "additionalProperties": false,
+            "description": "Schema versioning supports message extension",
+            "properties": {
+                "deprecated": {
+                    "description": "The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version.",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "since_version": {
+                    "description": "The schema version in which an element was added",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                }
+            },
+            "title": "VersionAttributes",
+            "type": "object"
+        }
+    },
+    "$id": "https://w3id.org/lmodel/fix-sbe",
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": true,
+    "description": "Root of XML document, holds all message templates and their elements",
+    "metamodel_version": "1.11.0",
+    "properties": {
+        "byte_order": {
+            "$ref": "#/$defs/ByteOrder"
+        },
+        "description": {
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "header_type": {
+            "description": "Name of the encoding type of the message header, which is the same for all messages in a schema. The name has a default, but an encoding of that name must be present under a 'types' element.",
+            "pattern": "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*",
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "id": {
+            "description": "Unique ID of a message schema",
+            "type": [
+                "integer",
+                "null"
+            ]
+        },
+        "message": {
+            "items": {
+                "$ref": "#/$defs/MessageV1"
+            },
+            "type": "array"
+        },
+        "package": {
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "semantic_version": {
+            "description": "Application layer specification version, such as FIX version 'FIX.5.0SP2'",
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "types": {
+            "description": "More than one set of types may be provided. Names must be unique across all encoding types. Encoding types may appear in any order.",
+            "items": {
+                "type": "string"
+            },
+            "type": "array"
+        },
+        "version": {
+            "description": "The version of a message schema. Initial version is 0.",
+            "type": "integer"
+        }
+    },
+    "required": [
+        "types",
+        "message",
+        "version"
+    ],
+    "title": "fix_sbe",
+    "type": "object",
+    "version": null
+}

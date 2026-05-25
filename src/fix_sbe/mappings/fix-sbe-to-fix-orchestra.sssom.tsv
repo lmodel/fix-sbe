@@ -1,7 +1,7 @@
 #curie_map:
 #  fix_orchestra: https://w3id.org/lmodel/fix-orchestra/
-#  fix_sbe: https://w3id.org/lmodel/fix-simple-binary-encoding/
-#mapping_set_id: https://w3id.org/lmodel/fix-simple-binary-encoding/mappings/fix-sbe-to-fix-orchestra.sssom.tsv
+#  fix_sbe: https://w3id.org/lmodel/fix-sbe/
+#mapping_set_id: https://w3id.org/lmodel/fix-sbe/mappings/fix-sbe-to-fix-orchestra.sssom.tsv
 #mapping_set_description: Manually curated subject-side mappings from FIX Simple Binary Encoding (SBE) LinkML entities to FIX Orchestra LinkML entities. Each SBE class / enum is mapped to its closest Orchestra metamodel counterpart using SKOS mapping predicates. Per-version (V1, V2) and cross-version (unsuffixed common) SBE entities are mapped independently when they exist on both sides. Generated as part of the fix-simple-binary-encoding LinkML project; mappings cover only entities with a defensible semantic correspondence and intentionally omit SBE encoding-only entities (byte order, alignment / offset attribute groups, qualified-name pattern types, etc.) for which no Orchestra counterpart exists.
 #mapping_set_version: 0.1.0
 #license: https://creativecommons.org/licenses/by/4.0/

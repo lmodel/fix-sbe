@@ -1,0 +1,10 @@
+name: messageHeader
+type:
+  - name: blockLength
+    primitive_type: uint16
+  - name: templateId
+    primitive_type: uint16
+  - name: schemaId
+    primitive_type: uint16
+  - name: version
+    primitive_type: uint16

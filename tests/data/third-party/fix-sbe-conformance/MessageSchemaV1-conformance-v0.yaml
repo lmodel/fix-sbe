@@ -1,0 +1,19 @@
+# Conformance schema v0 (initial) - no sinceVersion fields present
+# Based on fix-sbe-conformance schema1.xml
+package: Conformance
+id: 1
+version: 0
+byte_order: littleEndian
+description: SBE v1.0 message schema for conformance test suite 1
+types:
+  - "conformance_types_v0"
+message:
+  - name: BusinessMessageReject
+    id: 97
+    block_length: 9
+  - name: ExecutionReport
+    id: 98
+    block_length: 42
+  - name: NewOrderSingle
+    id: 99
+    block_length: 54

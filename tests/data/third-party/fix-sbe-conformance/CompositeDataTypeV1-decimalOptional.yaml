@@ -1,0 +1,9 @@
+name: decimalEncoding
+type:
+  - name: mantissa
+    primitive_type: int64
+    presence: optional
+  - name: exponent
+    primitive_type: int8
+    presence: constant
+    value: "-3"

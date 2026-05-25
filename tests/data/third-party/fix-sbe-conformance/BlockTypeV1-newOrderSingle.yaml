@@ -1,0 +1,41 @@
+name: NewOrderSingle
+id: 99
+block_length: 54
+semantic_type: D
+field:
+  - name: ClOrdId
+    id: 11
+    type: idString
+    semantic_type: String
+  - name: Account
+    id: 1
+    type: idString
+    semantic_type: String
+  - name: Symbol
+    id: 55
+    type: idString
+    semantic_type: String
+  - name: Side
+    id: 54
+    type: sideEnum
+    semantic_type: char
+  - name: TransactTime
+    id: 60
+    type: timestampEncoding
+    semantic_type: UTCTimestamp
+  - name: OrderQty
+    id: 38
+    type: qtyEncoding
+    semantic_type: Qty
+  - name: OrdType
+    id: 40
+    type: ordTypeEnum
+    semantic_type: char
+  - name: Price
+    id: 44
+    type: decimalEncoding
+    semantic_type: Price
+  - name: StopPx
+    id: 99
+    type: decimalEncoding
+    semantic_type: Price

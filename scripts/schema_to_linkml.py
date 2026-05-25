@@ -997,7 +997,7 @@ def overlay_document(
     ])
     header["prefixes"] = OrderedDict([
         ("fix_sbe",
-         "https://w3id.org/lmodel/fix-simple-binary-encoding/"),
+         "https://w3id.org/lmodel/fix-sbe/"),
         ("linkml", "https://w3id.org/linkml/"),
         ("rdf", "http://www.w3.org/1999/02/22-rdf-syntax-ns#"),
         ("rdfs", "http://www.w3.org/2000/01/rdf-schema#"),
@@ -1034,7 +1034,7 @@ def common_document(
     """Build the ``fix_sbe_common`` overlay schema holding entities promoted
     from both v1 and v2 because their structures match exactly."""
     header: OrderedDict = OrderedDict()
-    header["id"] = "https://w3id.org/lmodel/fix-simple-binary-encoding/common"
+    header["id"] = "https://w3id.org/lmodel/fix-sbe/common"
     header["name"] = "fix_sbe_common"
     header["title"] = "FIX Simple Binary Encoding — Common (cross-version)"
     header["description"] = (
@@ -1068,7 +1068,7 @@ def common_document(
     ])
     header["prefixes"] = OrderedDict([
         ("fix_sbe",
-         "https://w3id.org/lmodel/fix-simple-binary-encoding/"),
+         "https://w3id.org/lmodel/fix-sbe/"),
         ("linkml", "https://w3id.org/linkml/"),
         ("rdf", "http://www.w3.org/1999/02/22-rdf-syntax-ns#"),
         ("rdfs", "http://www.w3.org/2000/01/rdf-schema#"),
@@ -1106,7 +1106,7 @@ def umbrella_document(
     sbe_v2_ns: str,
 ) -> OrderedDict:
     header: OrderedDict = OrderedDict()
-    header["id"] = "https://w3id.org/lmodel/fix-simple-binary-encoding"
+    header["id"] = "https://w3id.org/lmodel/fix-sbe"
     header["name"] = "fix_sbe"
     header["title"] = "FIX Simple Binary Encoding"
     header["description"] = (
@@ -1140,7 +1140,7 @@ def umbrella_document(
     ])
     header["prefixes"] = OrderedDict([
         ("fix_sbe",
-         "https://w3id.org/lmodel/fix-simple-binary-encoding/"),
+         "https://w3id.org/lmodel/fix-sbe/"),
         ("linkml", "https://w3id.org/linkml/"),
         ("rdf", "http://www.w3.org/1999/02/22-rdf-syntax-ns#"),
         ("rdfs", "http://www.w3.org/2000/01/rdf-schema#"),
@@ -1303,7 +1303,7 @@ VERSIONS = [
         ),
         "tree_root_element": "messageSchema",
         "out_basename": "fix_sbe_v1_0.yaml",
-        "schema_id": "https://w3id.org/lmodel/fix-simple-binary-encoding/v1_0",
+        "schema_id": "https://w3id.org/lmodel/fix-sbe/v1_0",
         "schema_name": "fix_sbe_v1_0",
         "subset_description": (
             "Entities sourced from SBE v1.0 Standard (sbe.xsd, target "
@@ -1329,7 +1329,7 @@ VERSIONS = [
         ),
         "tree_root_element": "messageSchema",
         "out_basename": "fix_sbe_v2_0.yaml",
-        "schema_id": "https://w3id.org/lmodel/fix-simple-binary-encoding/v2_0",
+        "schema_id": "https://w3id.org/lmodel/fix-sbe/v2_0",
         "schema_name": "fix_sbe_v2_0",
         "subset_description": (
             "Entities sourced from SBE v2.0 RC3 (sbe-2.0rc3.xsd, target "

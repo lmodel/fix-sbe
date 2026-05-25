@@ -1,0 +1,13 @@
+name: businessRejectReasonEnum
+encoding_type: intEnumEncoding
+valid_value:
+  - name: Other
+    value: "0"
+  - name: UnknownID
+    value: "1"
+  - name: UnknownSecurity
+    value: "2"
+  - name: ApplicationNotAvailable
+    value: "4"
+  - name: NotAuthorized
+    value: "6"

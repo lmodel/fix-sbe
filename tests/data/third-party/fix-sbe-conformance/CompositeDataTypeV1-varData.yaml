@@ -1,0 +1,9 @@
+name: DATA
+type:
+  - name: length
+    primitive_type: uint16
+    semantic_type: Length
+  - name: varData
+    primitive_type: uint8
+    length: 0
+    semantic_type: data

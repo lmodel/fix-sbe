@@ -1,0 +1,415 @@
+# metamodel_version: 1.11.0
+enum ByteOrder
+  {
+    bigEndian
+    littleEndian
+  }
+
+enum Presence
+  {
+    required
+    optional
+    constant
+  }
+
+enum PrimitiveTypeV1
+  {
+    char
+    int8
+    int16
+    int32
+    int64
+    uint8
+    uint16
+    uint32
+    uint64
+    float
+    double
+  }
+
+enum PrimitiveTypeV2
+  {
+    char
+    int8
+    int16
+    int32
+    int64
+    uint8
+    uint16
+    uint32
+    uint64
+    float
+    double
+  }
+
+interface AlignmentAttributesV1
+  {
+    offset: Int
+  }
+
+interface AlignmentAttributesV2
+  {
+    alignment: Int
+  }
+
+type BlockTypeV1 implements SemanticAttributes, VersionAttributes
+  {
+    field: [FieldTypeV1]
+    group: [GroupTypeV1]
+    data: [FieldTypeV1]
+    name: SymbolicName!
+    id: Int!
+    blockLength: Int
+    semanticType: String
+    description: String
+    sinceVersion: Int
+    deprecated: Int
+  }
+
+type BlockTypeV2 implements AlignmentAttributesV2, SemanticAttributes, VersionAttributes
+  {
+    field: [FieldTypeV2]
+    group: [GroupTypeV2]
+    data: [FieldTypeV2]
+    name: SymbolicName!
+    id: Int!
+    blockLength: Int
+    alignment: Int
+    semanticType: String
+    description: String
+    sinceVersion: Int
+    deprecated: Int
+  }
+
+type Choice implements VersionAttributes
+  {
+    name: SymbolicName!
+    description: String
+    value: String
+    sinceVersion: Int
+    deprecated: Int
+  }
+
+type CompositeDataTypeV1 implements AlignmentAttributesV1, SemanticAttributes, VersionAttributes
+  {
+    type: [EncodedDataTypeV1]
+    enum: [EnumTypeV1]
+    set: [SetTypeV1]
+    composite: [CompositeDataTypeV1]
+    ref: [RefTypeV1]
+    name: SymbolicName!
+    value: String
+    offset: Int
+    semanticType: String
+    description: String
+    sinceVersion: Int
+    deprecated: Int
+  }
+
+type CompositeDataTypeV2 implements OffsetAttributesV2, VersionAttributes
+  {
+    type: [MemberDataTypeV2]
+    enum: [EnumTypeV2]
+    set: [SetTypeV2]
+    composite: [CompositeDataTypeV2]
+    ref: [RefTypeV2]
+    name: SymbolicName!
+    description: String
+    value: String
+    offset: Int
+    alignment: Int
+    sinceVersion: Int
+    deprecated: Int
+  }
+
+type EncodedDataTypeV1 implements AlignmentAttributesV1, PresenceAttributesV1, SemanticAttributes, VersionAttributes
+  {
+    name: SymbolicName!
+    nullValue: String
+    minValue: String
+    maxValue: String
+    length: Int
+    primitiveType: PrimitiveTypeV1!
+    characterEncoding: String
+    value: String
+    offset: Int
+    presence: Presence
+    valueRef: QualifiedName
+    semanticType: String
+    description: String
+    sinceVersion: Int
+    deprecated: Int
+  }
+
+type EnumTypeV1 implements AlignmentAttributesV1, SemanticAttributes, VersionAttributes
+  {
+    validValue: [ValidValue]!
+    name: SymbolicName!
+    encodingType: SymbolicName!
+    value: String
+    offset: Int
+    semanticType: String
+    description: String
+    sinceVersion: Int
+    deprecated: Int
+  }
+
+type EnumTypeV2 implements OffsetAttributesV2, VersionAttributes
+  {
+    validValue: [ValidValue]!
+    name: SymbolicName!
+    encodingType: SymbolicName!
+    description: String
+    value: String
+    offset: Int
+    alignment: Int
+    sinceVersion: Int
+    deprecated: Int
+  }
+
+type FieldTypeV1 implements AlignmentAttributesV1, PresenceAttributesV1, SemanticAttributes, VersionAttributes
+  {
+    name: SymbolicName!
+    id: Int!
+    type: SymbolicName!
+    epoch: String
+    timeUnit: String
+    offset: Int
+    presence: Presence
+    valueRef: QualifiedName
+    semanticType: String
+    description: String
+    sinceVersion: Int
+    deprecated: Int
+  }
+
+type FieldTypeV2 implements OffsetAttributesV2, PresenceAttributesV2, SemanticAttributes, VersionAttributes
+  {
+    name: SymbolicName!
+    id: Int!
+    type: SymbolicName!
+    value: String
+    offset: Int
+    alignment: Int
+    presence: Presence
+    nullValue: String
+    minValue: String
+    maxValue: String
+    valueRef: QualifiedName
+    semanticType: String
+    description: String
+    sinceVersion: Int
+    deprecated: Int
+  }
+
+type GroupTypeV1
+  {
+    field: [FieldTypeV1]
+    group: [GroupTypeV1]
+    data: [FieldTypeV1]
+    name: SymbolicName!
+    id: Int!
+    blockLength: Int
+    semanticType: String
+    description: String
+    sinceVersion: Int
+    deprecated: Int
+    dimensionType: SymbolicName
+  }
+
+type GroupTypeV2
+  {
+    field: [FieldTypeV2]
+    group: [GroupTypeV2]
+    data: [FieldTypeV2]
+    name: SymbolicName!
+    id: Int!
+    blockLength: Int
+    alignment: Int
+    semanticType: String
+    description: String
+    sinceVersion: Int
+    deprecated: Int
+    dimensionType: SymbolicName
+  }
+
+type MemberDataTypeV2 implements PrimitiveTypeAttributesV2, OffsetAttributesV2, PresenceAttributesV2
+  {
+    name: SymbolicName!
+    description: String
+    value: String
+    primitiveType: PrimitiveTypeV2!
+    length: Int
+    characterEncoding: String
+    offset: Int
+    alignment: Int
+    presence: Presence
+    nullValue: String
+    minValue: String
+    maxValue: String
+    valueRef: QualifiedName
+  }
+
+type MessageSchemaV1
+  {
+    types: [String]!
+    message: [MessageV1]!
+    package: String
+    id: Int
+    version: Int!
+    semanticVersion: String
+    description: String
+    byteOrder: ByteOrder
+    headerType: SymbolicName
+  }
+
+type MessageSchemaV2
+  {
+    types: [TypesV2]!
+    messages: [MessagesV2]!
+    package: String
+    id: Int
+    version: Int!
+    semanticVersion: String
+    description: String
+    byteOrder: ByteOrder
+    headerType: SymbolicName
+  }
+
+type MessagesV2
+  {
+    message: [BlockTypeV2]!
+    description: String
+    package: String
+  }
+
+type MessageV1
+  {
+    field: [FieldTypeV1]
+    group: [GroupTypeV1]
+    data: [FieldTypeV1]
+    name: SymbolicName!
+    id: Int!
+    blockLength: Int
+    semanticType: String
+    description: String
+    sinceVersion: Int
+    deprecated: Int
+  }
+
+interface OffsetAttributesV2
+  {
+    offset: Int
+    alignment: Int
+  }
+
+interface PresenceAttributesV1
+  {
+    presence: Presence
+    valueRef: QualifiedName
+  }
+
+interface PresenceAttributesV2
+  {
+    presence: Presence
+    nullValue: String
+    minValue: String
+    maxValue: String
+    valueRef: QualifiedName
+  }
+
+interface PrimitiveTypeAttributesV2
+  {
+    primitiveType: PrimitiveTypeV2!
+    length: Int
+    characterEncoding: String
+  }
+
+type RefTypeV1 implements AlignmentAttributesV1, VersionAttributes
+  {
+    name: SymbolicName!
+    type: SymbolicName!
+    value: String
+    offset: Int
+    sinceVersion: Int
+    deprecated: Int
+  }
+
+type RefTypeV2 implements OffsetAttributesV2
+  {
+    name: SymbolicName!
+    type: SymbolicName!
+    description: String
+    value: String
+    offset: Int
+    alignment: Int
+  }
+
+interface SemanticAttributes
+  {
+    semanticType: String
+    description: String
+  }
+
+type SetTypeV1 implements AlignmentAttributesV1, SemanticAttributes, VersionAttributes
+  {
+    choice: [Choice]!
+    name: SymbolicName!
+    encodingType: SymbolicName!
+    value: String
+    offset: Int
+    semanticType: String
+    description: String
+    sinceVersion: Int
+    deprecated: Int
+  }
+
+type SetTypeV2 implements OffsetAttributesV2, VersionAttributes
+  {
+    choice: [Choice]!
+    name: SymbolicName!
+    encodingType: SymbolicName!
+    description: String
+    value: String
+    offset: Int
+    alignment: Int
+    sinceVersion: Int
+    deprecated: Int
+  }
+
+type SimpleDataTypeV2 implements PrimitiveTypeAttributesV2, VersionAttributes
+  {
+    name: SymbolicName!
+    description: String
+    value: String
+    primitiveType: PrimitiveTypeV2!
+    length: Int
+    characterEncoding: String
+    sinceVersion: Int
+    deprecated: Int
+  }
+
+type TypesV2
+  {
+    type: [SimpleDataTypeV2]
+    composite: [CompositeDataTypeV2]
+    enum: [EnumTypeV2]
+    set: [SetTypeV2]
+    description: String
+    package: String
+  }
+
+type ValidValue implements VersionAttributes
+  {
+    name: SymbolicName!
+    description: String
+    value: String
+    sinceVersion: Int
+    deprecated: Int
+  }
+
+interface VersionAttributes
+  {
+    sinceVersion: Int
+    deprecated: Int
+  }

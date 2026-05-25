@@ -1,0 +1,58 @@
+name: ExecutionReport
+id: 98
+block_length: 42
+semantic_type: "8"
+field:
+  - name: OrderID
+    id: 37
+    type: idString
+    semantic_type: String
+  - name: ExecID
+    id: 17
+    type: idString
+    semantic_type: String
+  - name: ExecType
+    id: 150
+    type: execTypeEnum
+    semantic_type: char
+  - name: OrdStatus
+    id: 39
+    type: ordStatusEnum
+    semantic_type: char
+  - name: Symbol
+    id: 55
+    type: idString
+    semantic_type: String
+  - name: MaturityMonthYear
+    id: 200
+    type: MONTH_YEAR
+    semantic_type: MonthYear
+  - name: Side
+    id: 54
+    type: sideEnum
+    semantic_type: char
+  - name: LeavesQty
+    id: 151
+    type: qtyEncoding
+    semantic_type: Qty
+  - name: CumQty
+    id: 14
+    type: qtyEncoding
+    semantic_type: Qty
+  - name: TradeDate
+    id: 75
+    type: date
+    semantic_type: LocalMktDate
+group:
+  - name: FillsGrp
+    id: 2112
+    block_length: 12
+    field:
+      - name: FillPx
+        id: 1364
+        type: decimalEncoding
+        semantic_type: Price
+      - name: FillQty
+        id: 1365
+        type: qtyEncoding
+        semantic_type: Qty
