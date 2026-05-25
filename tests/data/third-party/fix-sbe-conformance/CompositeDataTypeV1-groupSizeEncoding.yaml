@@ -1,0 +1,8 @@
+name: groupSizeEncoding
+type:
+  - name: blockLength
+    primitive_type: uint16
+    semantic_type: Length
+  - name: numInGroup
+    primitive_type: uint16
+    semantic_type: NumInGroup

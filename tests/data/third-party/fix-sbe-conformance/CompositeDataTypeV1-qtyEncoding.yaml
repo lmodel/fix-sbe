@@ -1,0 +1,8 @@
+name: qtyEncoding
+type:
+  - name: mantissa
+    primitive_type: int32
+  - name: exponent
+    primitive_type: int8
+    presence: constant
+    value: "0"

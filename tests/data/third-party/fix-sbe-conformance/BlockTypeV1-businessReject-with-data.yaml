@@ -1,0 +1,18 @@
+name: BusinessMessageReject
+id: 97
+block_length: 9
+semantic_type: j
+field:
+  - name: BusinesRejectRefId
+    id: 379
+    type: idString
+    semantic_type: String
+  - name: BusinessRejectReason
+    id: 380
+    type: businessRejectReasonEnum
+    semantic_type: int
+data:
+  - name: Text
+    id: 58
+    type: DATA
+    semantic_type: data

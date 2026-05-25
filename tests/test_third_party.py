@@ -35,9 +35,9 @@ PROJECT = Path(__file__).parent.parent
 SCHEMA = (
     PROJECT
     / "src"
-    / "fix_sbe/"
+    / "fix_simple_binary_encoding"
     / "schema"
-    / "fix_sbe/.yaml"
+    / "fix_simple_binary_encoding.yaml"
 )
 CONV = PROJECT / "scripts" / "fix_xml_to_linkml.py"
 
@@ -263,3 +263,126 @@ def _fmt_counts(counts: dict[str, int], verb: str = "counted") -> str:
     parts = [f"{k}={v}" for k, v in sorted(counts.items(),
                                             key=lambda kv: -kv[1])]
     return f"{_green(f'{verb} {total} records')} ({', '.join(parts)})"
+
+
+# ---------------------------------------------------------------------------
+# FIX SBE Conformance Test Suite (fix-sbe-conformance)
+# ---------------------------------------------------------------------------
+
+_CONFORMANCE_CORPUS = (
+    PROJECT / "tests" / "data" / "third-party" / "fix-sbe-conformance"
+)
+
+# Conformance schemas exercise progressive schema versioning:
+#   schema1.xml = v0 (baseline)
+#   schema2.xml = v1 (adds SecurityID + MinQty with sinceVersion="1")
+#   schema3.xml = v2 (adds variable-length data with sinceVersion="2")
+CONFORMANCE_SCHEMAS = [
+    ("schema1.xml", "MessageSchemaV1", 0,
+     "Conformance suite schema v0 (baseline, 3 messages, enums, composites)."),
+    ("schema2.xml", "MessageSchemaV1", 0,
+     "Conformance suite schema v1 (extends v0 with sinceVersion=1 fields)."),
+    ("schema3.xml", "MessageSchemaV1", 0,
+     "Conformance suite schema v2 (extends v1 with var-length data, sinceVersion=2)."),
+]
+
+
+def _conformance_params():
+    out = []
+    for relpath, target, max_err, note in CONFORMANCE_SCHEMAS:
+        path = _CONFORMANCE_CORPUS / relpath
+        out.append(pytest.param(relpath, target, max_err, note, id=f"conformance/{relpath}"))
+    return out
+
+
+@pytest.mark.parametrize("relpath,target,max_errors,note", _conformance_params())
+def test_conformance_xml_wellformed(relpath, target, max_errors, note, capsys):
+    """Conformance schema XMLs must parse without error."""
+    src = _CONFORMANCE_CORPUS / relpath
+    if not src.is_file():
+        pytest.skip(f"missing conformance file {src}")
+    tree = ET.parse(str(src))
+    counts = _count_xml_records(tree.getroot())
+    with capsys.disabled():
+        print(f"\n  [conformance/wellformed] {relpath}: "
+              f"parsed OK -- {_fmt_counts(counts, verb='counted')}")
+
+
+@pytest.mark.parametrize("relpath,target,max_errors,note", _conformance_params())
+def test_conformance_schema_version_progression(relpath, target, max_errors, note):
+    """Verify sinceVersion attributes match the schema version progression."""
+    src = _CONFORMANCE_CORPUS / relpath
+    if not src.is_file():
+        pytest.skip(f"missing conformance file {src}")
+    tree = ET.parse(str(src))
+    root = tree.getroot()
+
+    # Extract schema version
+    schema_version = int(root.get("version", "0"))
+
+    # Collect all sinceVersion values in the document
+    since_versions: list[int] = []
+    for elt in root.iter():
+        sv = elt.get("sinceVersion")
+        if sv is not None:
+            since_versions.append(int(sv))
+
+    # Every sinceVersion must be <= schema version (can't reference a future version)
+    for sv in since_versions:
+        assert sv <= schema_version, (
+            f"{relpath}: sinceVersion={sv} exceeds schema version={schema_version}"
+        )
+
+    # In schema v0, no sinceVersion attributes should be present
+    if schema_version == 0:
+        assert len(since_versions) == 0, (
+            f"{relpath}: schema v0 should have no sinceVersion attributes, "
+            f"found {len(since_versions)}"
+        )
+
+
+@pytest.mark.skipif(not _have("linkml-validate"),
+                    reason="linkml-validate not on PATH (run `uv sync`).")
+@pytest.mark.skipif(not CONV.exists(),
+                    reason="scripts/fix_xml_to_linkml.py not yet implemented.")
+@pytest.mark.parametrize("relpath,target,max_errors,note", _conformance_params())
+def test_conformance_xml_validates_against_linkml(
+        tmp_path, relpath, target, max_errors, note, capsys,
+        fix_record_tally):
+    """Convert conformance XML to YAML and validate against LinkML schema."""
+    src = _CONFORMANCE_CORPUS / relpath
+    if not src.is_file():
+        pytest.skip(f"missing conformance file {src}")
+    yaml_out = tmp_path / (Path(relpath).stem + ".yaml")
+
+    conv = subprocess.run(
+        [sys.executable, str(CONV), "--schema", str(SCHEMA),
+         "--target-class", target, "--in", str(src), "--out", str(yaml_out)],
+        capture_output=True, text=True, check=False,
+    )
+    assert conv.returncode == 0, (
+        f"converter failed for {relpath}:\nstdout={conv.stdout}\n"
+        f"stderr={conv.stderr}")
+    assert yaml_out.exists()
+
+    val = subprocess.run(
+        ["linkml-validate", "-s", str(SCHEMA),
+         "--target-class", target, str(yaml_out)],
+        capture_output=True, text=True, check=False,
+    )
+    error_lines = [ln for ln in val.stdout.splitlines()
+                   if ln.startswith("[ERROR]")]
+    actual = len(error_lines)
+
+    yaml_obj = yaml.safe_load(yaml_out.read_text())
+    counts = _count_yaml_records(yaml_obj)
+    fix_record_tally["total"] += sum(counts.values())
+    with capsys.disabled():
+        print(f"\n  [conformance/validate] {relpath} ({target}): "
+              f"{_fmt_counts(counts, verb='validated')}; "
+              f"{actual}/{max_errors} errors")
+
+    assert actual <= max_errors, (
+        f"{relpath}: {actual} validation errors, expected <= "
+        f"{max_errors}. Note: {note}\n"
+        f"First 5 errors:\n  " + "\n  ".join(error_lines[:5]))

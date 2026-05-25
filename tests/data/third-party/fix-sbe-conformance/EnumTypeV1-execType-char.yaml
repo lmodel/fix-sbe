@@ -1,0 +1,19 @@
+name: execTypeEnum
+encoding_type: charEnumEncoding
+valid_value:
+  - name: New
+    value: "0"
+  - name: DoneForDay
+    value: "3"
+  - name: Canceled
+    value: "4"
+  - name: Replaced
+    value: "5"
+  - name: PendingCancel
+    value: "6"
+  - name: Rejected
+    value: "8"
+  - name: PendingNew
+    value: A
+  - name: Trade
+    value: F
