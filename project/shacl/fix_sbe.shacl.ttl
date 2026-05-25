@@ -30,7 +30,12 @@ fix_sbe:BlockTypeV1 a sh:NodeShape ;
     rdfs:comment "Base type of message and repeating group entry" ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type fix_sbe:dimension_type ) ;
-    sh:property [ sh:class fix_sbe:FieldTypeV1 ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path fix_sbe:semantic_type ],
+        [ sh:class fix_sbe:FieldTypeV1 ;
             sh:description "Variable-length fields" ;
             sh:nodeKind sh:BlankNodeOrIRI ;
             sh:order 2 ;
@@ -39,29 +44,6 @@ fix_sbe:BlockTypeV1 a sh:NodeShape ;
             sh:nodeKind sh:BlankNodeOrIRI ;
             sh:order 1 ;
             sh:path fix_sbe:group ],
-        [ sh:class fix_sbe:FieldTypeV1 ;
-            sh:description "Fixed-length fields" ;
-            sh:nodeKind sh:BlankNodeOrIRI ;
-            sh:order 0 ;
-            sh:path fix_sbe:field ],
-        [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 6 ;
-            sh:path fix_sbe:semantic_type ],
-        [ sh:datatype fix_sbe:SymbolicName ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 3 ;
-            sh:path fix_sbe:name ;
-            sh:pattern "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*" ],
-        [ sh:datatype xsd:integer ;
-            sh:description "The schema version in which an element was added" ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 8 ;
-            sh:path fix_sbe:since_version ],
         [ sh:datatype xsd:integer ;
             sh:description "Space reserved for root level of message, not include groups or variable-length data elements." ;
             sh:maxCount 1 ;
@@ -73,19 +55,37 @@ fix_sbe:BlockTypeV1 a sh:NodeShape ;
             sh:nodeKind sh:Literal ;
             sh:order 7 ;
             sh:path fix_sbe:description ],
+        [ sh:datatype fix_sbe:SymbolicName ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path fix_sbe:name ;
+            sh:pattern "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*" ],
+        [ sh:datatype xsd:integer ;
+            sh:description "The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 9 ;
+            sh:path fix_sbe:deprecated ],
+        [ sh:class fix_sbe:FieldTypeV1 ;
+            sh:description "Fixed-length fields" ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 0 ;
+            sh:path fix_sbe:field ],
+        [ sh:datatype xsd:integer ;
+            sh:description "The schema version in which an element was added" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 8 ;
+            sh:path fix_sbe:since_version ],
         [ sh:datatype xsd:integer ;
             sh:description "Unique ID of a message template" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 4 ;
-            sh:path fix_sbe:id ],
-        [ sh:datatype xsd:integer ;
-            sh:description "The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 9 ;
-            sh:path fix_sbe:deprecated ] ;
+            sh:path fix_sbe:id ] ;
     sh:targetClass fix_sbe:BlockTypeV1 .
 
 fix_sbe:MessageSchemaV1 a sh:NodeShape ;
@@ -95,44 +95,14 @@ fix_sbe:MessageSchemaV1 a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 2 ;
-            sh:path fix_sbe:package ],
+            sh:order 6 ;
+            sh:path fix_sbe:description ],
         [ sh:datatype xsd:integer ;
             sh:description "Unique ID of a message schema" ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 3 ;
             sh:path fix_sbe:id ],
-        [ sh:datatype xsd:integer ;
-            sh:description "The version of a message schema. Initial version is 0." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 4 ;
-            sh:path fix_sbe:version ],
-        [ sh:class fix_sbe:MessageV1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:BlankNodeOrIRI ;
-            sh:order 1 ;
-            sh:path fix_sbe:message ],
-        [ sh:defaultValue "littleEndian" ;
-            sh:in ( "bigEndian" "littleEndian" ) ;
-            sh:maxCount 1 ;
-            sh:order 7 ;
-            sh:path fix_sbe:byte_order ],
-        [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 6 ;
-            sh:path fix_sbe:description ],
-        [ sh:datatype fix_sbe:SymbolicName ;
-            sh:defaultValue "messageHeader"^^xsd:string ;
-            sh:description "Name of the encoding type of the message header, which is the same for all messages in a schema. The name has a default, but an encoding of that name must be present under a 'types' element." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 8 ;
-            sh:path fix_sbe:header_type ;
-            sh:pattern "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*" ],
         [ sh:datatype xsd:string ;
             sh:description "More than one set of types may be provided. Names must be unique across all encoding types. Encoding types may appear in any order." ;
             sh:minCount 1 ;
@@ -144,18 +114,24 @@ fix_sbe:MessageSchemaV1 a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 5 ;
-            sh:path fix_sbe:semantic_version ] ;
-    sh:targetClass fix_sbe:MessageSchemaV1 .
-
-fix_sbe:MessageSchemaV2 a sh:NodeShape ;
-    rdfs:comment "Root of XML document, holds all message templates and their elements" ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:class fix_sbe:MessagesV2 ;
+            sh:path fix_sbe:semantic_version ],
+        [ sh:class fix_sbe:MessageV1 ;
             sh:minCount 1 ;
             sh:nodeKind sh:BlankNodeOrIRI ;
             sh:order 1 ;
-            sh:path fix_sbe:messages ],
+            sh:path fix_sbe:message ],
+        [ sh:datatype xsd:integer ;
+            sh:description "The version of a message schema. Initial version is 0." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path fix_sbe:version ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path fix_sbe:package ],
         [ sh:datatype fix_sbe:SymbolicName ;
             sh:defaultValue "messageHeader"^^xsd:string ;
             sh:description "Name of the encoding type of the message header, which is the same for all messages in a schema. The name has a default, but an encoding of that name must be present under a 'types' element." ;
@@ -164,23 +140,37 @@ fix_sbe:MessageSchemaV2 a sh:NodeShape ;
             sh:order 8 ;
             sh:path fix_sbe:header_type ;
             sh:pattern "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*" ],
-        [ sh:datatype xsd:string ;
+        [ sh:defaultValue "littleEndian" ;
+            sh:in ( "bigEndian" "littleEndian" ) ;
             sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 6 ;
-            sh:path fix_sbe:description ],
-        [ sh:datatype xsd:integer ;
+            sh:order 7 ;
+            sh:path fix_sbe:byte_order ] ;
+    sh:targetClass fix_sbe:MessageSchemaV1 .
+
+fix_sbe:MessageSchemaV2 a sh:NodeShape ;
+    rdfs:comment "Root of XML document, holds all message templates and their elements" ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:integer ;
             sh:description "The version of a message schema. Initial version is 0." ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 4 ;
             sh:path fix_sbe:version ],
-        [ sh:defaultValue "littleEndian" ;
-            sh:in ( "bigEndian" "littleEndian" ) ;
+        [ sh:class fix_sbe:TypesV2 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 0 ;
+            sh:path fix_sbe:types ],
+        [ sh:datatype fix_sbe:SymbolicName ;
+            sh:defaultValue "messageHeader"^^xsd:string ;
+            sh:description "Name of the encoding type of the message header, which is the same for all messages in a schema. The name has a default, but an encoding of that name must be present under a 'types' element." ;
             sh:maxCount 1 ;
-            sh:order 7 ;
-            sh:path fix_sbe:byte_order ],
+            sh:nodeKind sh:Literal ;
+            sh:order 8 ;
+            sh:path fix_sbe:header_type ;
+            sh:pattern "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*" ],
         [ sh:datatype xsd:integer ;
             sh:description "Unique ID of a message schema" ;
             sh:maxCount 1 ;
@@ -190,13 +180,23 @@ fix_sbe:MessageSchemaV2 a sh:NodeShape ;
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path fix_sbe:description ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
             sh:order 2 ;
             sh:path fix_sbe:package ],
-        [ sh:class fix_sbe:TypesV2 ;
+        [ sh:class fix_sbe:MessagesV2 ;
             sh:minCount 1 ;
             sh:nodeKind sh:BlankNodeOrIRI ;
-            sh:order 0 ;
-            sh:path fix_sbe:types ],
+            sh:order 1 ;
+            sh:path fix_sbe:messages ],
+        [ sh:defaultValue "littleEndian" ;
+            sh:in ( "bigEndian" "littleEndian" ) ;
+            sh:maxCount 1 ;
+            sh:order 7 ;
+            sh:path fix_sbe:byte_order ],
         [ sh:datatype xsd:string ;
             sh:description "Application layer specification version, such as FIX version 'FIX.5.0SP2'" ;
             sh:maxCount 1 ;
@@ -225,30 +225,24 @@ fix_sbe:OffsetAttributesV2 a sh:NodeShape ;
 fix_sbe:PresenceAttributesV1 a sh:NodeShape ;
     sh:closed false ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:defaultValue "required" ;
-            sh:in ( "required" "optional" "constant" ) ;
-            sh:maxCount 1 ;
-            sh:order 0 ;
-            sh:path fix_sbe:presence ],
-        [ sh:datatype fix_sbe:QualifiedName ;
+    sh:property [ sh:datatype fix_sbe:QualifiedName ;
             sh:description "A constant value as valid value of an enum in the form enum-name.valid-value-name" ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 1 ;
             sh:path fix_sbe:value_ref ;
-            sh:pattern "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*\\.([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*" ] ;
+            sh:pattern "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*\\.([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*" ],
+        [ sh:defaultValue "required" ;
+            sh:in ( "required" "optional" "constant" ) ;
+            sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path fix_sbe:presence ] ;
     sh:targetClass fix_sbe:PresenceAttributesV1 .
 
 fix_sbe:PresenceAttributesV2 a sh:NodeShape ;
     sh:closed false ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:string ;
-            sh:description "Override of default null indicator for the data type in SBE specification, as a string." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 1 ;
-            sh:path fix_sbe:null_value ],
-        [ sh:datatype xsd:string ;
             sh:description "Lower bound of a range" ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
@@ -259,19 +253,25 @@ fix_sbe:PresenceAttributesV2 a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:order 0 ;
             sh:path fix_sbe:presence ],
+        [ sh:datatype xsd:string ;
+            sh:description "Upper bound of a range" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path fix_sbe:max_value ],
+        [ sh:datatype xsd:string ;
+            sh:description "Override of default null indicator for the data type in SBE specification, as a string." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path fix_sbe:null_value ],
         [ sh:datatype fix_sbe:QualifiedName ;
             sh:description "A constant value as valid value of an enum in the form enum-name.valid-value-name. Only valid if presence='constant'." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 4 ;
             sh:path fix_sbe:value_ref ;
-            sh:pattern "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*\\.([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*" ],
-        [ sh:datatype xsd:string ;
-            sh:description "Upper bound of a range" ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 3 ;
-            sh:path fix_sbe:max_value ] ;
+            sh:pattern "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*\\.([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*" ] ;
     sh:targetClass fix_sbe:PresenceAttributesV2 .
 
 fix_sbe:PrimitiveTypeAttributesV2 a sh:NodeShape ;
@@ -282,18 +282,18 @@ fix_sbe:PrimitiveTypeAttributesV2 a sh:NodeShape ;
             sh:minCount 1 ;
             sh:order 0 ;
             sh:path fix_sbe:primitive_type ],
-        [ sh:datatype xsd:string ;
-            sh:description "Character set or Unicode encoding scheme" ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 2 ;
-            sh:path fix_sbe:character_encoding ],
         [ sh:datatype xsd:integer ;
             sh:defaultValue 1 ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 1 ;
-            sh:path fix_sbe:length ] ;
+            sh:path fix_sbe:length ],
+        [ sh:datatype xsd:string ;
+            sh:description "Character set or Unicode encoding scheme" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path fix_sbe:character_encoding ] ;
     sh:targetClass fix_sbe:PrimitiveTypeAttributesV2 .
 
 fix_sbe:SemanticAttributes a sh:NodeShape ;
@@ -317,17 +317,17 @@ fix_sbe:VersionAttributes a sh:NodeShape ;
     sh:closed false ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:integer ;
-            sh:description "The schema version in which an element was added" ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 0 ;
-            sh:path fix_sbe:since_version ],
-        [ sh:datatype xsd:integer ;
             sh:description "The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 1 ;
-            sh:path fix_sbe:deprecated ] ;
+            sh:path fix_sbe:deprecated ],
+        [ sh:datatype xsd:integer ;
+            sh:description "The schema version in which an element was added" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path fix_sbe:since_version ] ;
     sh:targetClass fix_sbe:VersionAttributes .
 
 fix_sbe:BlockTypeV2 a sh:NodeShape ;
@@ -335,17 +335,21 @@ fix_sbe:BlockTypeV2 a sh:NodeShape ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type fix_sbe:dimension_type ) ;
     sh:property [ sh:datatype xsd:integer ;
-            sh:description "Space reserved for root level of message or repeating group, not including nested groups or variable-length data elements." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 5 ;
-            sh:path fix_sbe:block_length ],
-        [ sh:datatype xsd:integer ;
             sh:description "The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 10 ;
             sh:path fix_sbe:deprecated ],
+        [ sh:datatype xsd:integer ;
+            sh:description "Space reserved for root level of message or repeating group, not including nested groups or variable-length data elements." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path fix_sbe:block_length ],
+        [ sh:class fix_sbe:GroupTypeV2 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 1 ;
+            sh:path fix_sbe:group ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
@@ -358,73 +362,47 @@ fix_sbe:BlockTypeV2 a sh:NodeShape ;
             sh:nodeKind sh:Literal ;
             sh:order 4 ;
             sh:path fix_sbe:id ],
+        [ sh:datatype xsd:integer ;
+            sh:description "Byte alignment of the start of a block (message root or repeating group instance)." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path fix_sbe:alignment ],
         [ sh:class fix_sbe:FieldTypeV2 ;
             sh:description "Variable-length fields" ;
             sh:nodeKind sh:BlankNodeOrIRI ;
             sh:order 2 ;
             sh:path fix_sbe:data ],
-        [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 8 ;
-            sh:path fix_sbe:description ],
-        [ sh:datatype fix_sbe:SymbolicName ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 3 ;
-            sh:path fix_sbe:name ;
-            sh:pattern "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*" ],
         [ sh:datatype xsd:integer ;
             sh:description "The schema version in which an element was added" ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 9 ;
             sh:path fix_sbe:since_version ],
-        [ sh:class fix_sbe:GroupTypeV2 ;
-            sh:nodeKind sh:BlankNodeOrIRI ;
-            sh:order 1 ;
-            sh:path fix_sbe:group ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 8 ;
+            sh:path fix_sbe:description ],
         [ sh:class fix_sbe:FieldTypeV2 ;
             sh:description "Fixed-length fields" ;
             sh:nodeKind sh:BlankNodeOrIRI ;
             sh:order 0 ;
             sh:path fix_sbe:field ],
-        [ sh:datatype xsd:integer ;
-            sh:description "Byte alignment of the start of a block (message root or repeating group instance)." ;
+        [ sh:datatype fix_sbe:SymbolicName ;
             sh:maxCount 1 ;
+            sh:minCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 6 ;
-            sh:path fix_sbe:alignment ] ;
+            sh:order 3 ;
+            sh:path fix_sbe:name ;
+            sh:pattern "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*" ] ;
     sh:targetClass fix_sbe:BlockTypeV2 .
 
 fix_sbe:CompositeDataTypeV1 a sh:NodeShape ;
     rdfs:comment "A wire encoding composed of multiple parts" ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:class fix_sbe:EncodedDataTypeV1 ;
-            sh:nodeKind sh:BlankNodeOrIRI ;
-            sh:order 0 ;
-            sh:path fix_sbe:type ],
-        [ sh:datatype xsd:string ;
-            sh:description "Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``)." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 6 ;
-            sh:path fix_sbe:value ],
-        [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 8 ;
-            sh:path fix_sbe:semantic_type ],
-        [ sh:datatype fix_sbe:SymbolicName ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 5 ;
-            sh:path fix_sbe:name ;
-            sh:pattern "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*" ],
-        [ sh:datatype xsd:integer ;
+    sh:property [ sh:datatype xsd:integer ;
             sh:description "The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
@@ -433,28 +411,29 @@ fix_sbe:CompositeDataTypeV1 a sh:NodeShape ;
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 9 ;
-            sh:path fix_sbe:description ],
-        [ sh:datatype xsd:integer ;
-            sh:description "Offset from start of a composite type or block as a zero-based index." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 7 ;
-            sh:path fix_sbe:offset ],
-        [ sh:class fix_sbe:RefTypeV1 ;
+            sh:order 8 ;
+            sh:path fix_sbe:semantic_type ],
+        [ sh:class fix_sbe:EncodedDataTypeV1 ;
             sh:nodeKind sh:BlankNodeOrIRI ;
-            sh:order 4 ;
-            sh:path fix_sbe:ref ],
-        [ sh:class fix_sbe:EnumTypeV1 ;
-            sh:nodeKind sh:BlankNodeOrIRI ;
-            sh:order 1 ;
-            sh:path fix_sbe:enum ],
+            sh:order 0 ;
+            sh:path fix_sbe:type ],
         [ sh:datatype xsd:integer ;
             sh:description "The schema version in which an element was added" ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 10 ;
             sh:path fix_sbe:since_version ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 9 ;
+            sh:path fix_sbe:description ],
+        [ sh:datatype xsd:string ;
+            sh:description "Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``)." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path fix_sbe:value ],
         [ sh:class fix_sbe:SetTypeV1 ;
             sh:nodeKind sh:BlankNodeOrIRI ;
             sh:order 2 ;
@@ -462,35 +441,83 @@ fix_sbe:CompositeDataTypeV1 a sh:NodeShape ;
         [ sh:class fix_sbe:CompositeDataTypeV1 ;
             sh:nodeKind sh:BlankNodeOrIRI ;
             sh:order 3 ;
-            sh:path fix_sbe:composite ] ;
+            sh:path fix_sbe:composite ],
+        [ sh:class fix_sbe:EnumTypeV1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 1 ;
+            sh:path fix_sbe:enum ],
+        [ sh:class fix_sbe:RefTypeV1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 4 ;
+            sh:path fix_sbe:ref ],
+        [ sh:datatype xsd:integer ;
+            sh:description "Offset from start of a composite type or block as a zero-based index." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 7 ;
+            sh:path fix_sbe:offset ],
+        [ sh:datatype fix_sbe:SymbolicName ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path fix_sbe:name ;
+            sh:pattern "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*" ] ;
     sh:targetClass fix_sbe:CompositeDataTypeV1 .
 
 fix_sbe:EncodedDataTypeV1 a sh:NodeShape ;
     rdfs:comment "Simple wire encoding consisting of a primitive type or array of primitives" ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:datatype xsd:integer ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path fix_sbe:min_value ],
+        [ sh:datatype fix_sbe:QualifiedName ;
+            sh:description "A constant value as valid value of an enum in the form enum-name.valid-value-name" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 10 ;
+            sh:path fix_sbe:value_ref ;
+            sh:pattern "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*\\.([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*" ],
+        [ sh:datatype xsd:integer ;
+            sh:defaultValue 1 ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path fix_sbe:length ],
+        [ sh:datatype xsd:integer ;
             sh:description "The schema version in which an element was added" ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 13 ;
             sh:path fix_sbe:since_version ],
         [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 12 ;
-            sh:path fix_sbe:description ],
-        [ sh:defaultValue "required" ;
-            sh:in ( "required" "optional" "constant" ) ;
-            sh:maxCount 1 ;
-            sh:order 9 ;
-            sh:path fix_sbe:presence ],
-        [ sh:datatype xsd:string ;
             sh:description "Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``)." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 7 ;
             sh:path fix_sbe:value ],
+        [ sh:datatype xsd:integer ;
+            sh:description "Offset from start of a composite type or block as a zero-based index." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 8 ;
+            sh:path fix_sbe:offset ],
+        [ sh:datatype xsd:integer ;
+            sh:description "The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 14 ;
+            sh:path fix_sbe:deprecated ],
+        [ sh:datatype fix_sbe:SymbolicName ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path fix_sbe:name ;
+            sh:pattern "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*" ],
         [ sh:datatype xsd:string ;
             sh:description "Override of default null indicator for the data type in SBE specification, as a string." ;
             sh:maxCount 1 ;
@@ -500,60 +527,33 @@ fix_sbe:EncodedDataTypeV1 a sh:NodeShape ;
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 2 ;
-            sh:path fix_sbe:min_value ],
-        [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 11 ;
-            sh:path fix_sbe:semantic_type ],
-        [ sh:datatype fix_sbe:QualifiedName ;
-            sh:description "A constant value as valid value of an enum in the form enum-name.valid-value-name" ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 10 ;
-            sh:path fix_sbe:value_ref ;
-            sh:pattern "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*\\.([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*" ],
-        [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
             sh:order 3 ;
             sh:path fix_sbe:max_value ],
-        [ sh:datatype fix_sbe:SymbolicName ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 0 ;
-            sh:path fix_sbe:name ;
-            sh:pattern "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*" ],
-        [ sh:in ( "char" "int8" "int16" "int32" "int64" "uint8" "uint16" "uint32" "uint64" "float" "double" ) ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:order 5 ;
-            sh:path fix_sbe:primitive_type ],
-        [ sh:datatype xsd:integer ;
-            sh:description "The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 14 ;
-            sh:path fix_sbe:deprecated ],
-        [ sh:datatype xsd:integer ;
-            sh:description "Offset from start of a composite type or block as a zero-based index." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 8 ;
-            sh:path fix_sbe:offset ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 6 ;
             sh:path fix_sbe:character_encoding ],
-        [ sh:datatype xsd:integer ;
-            sh:defaultValue 1 ;
+        [ sh:in ( "char" "int8" "int16" "int32" "int64" "uint8" "uint16" "uint32" "uint64" "float" "double" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 5 ;
+            sh:path fix_sbe:primitive_type ],
+        [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 4 ;
-            sh:path fix_sbe:length ] ;
+            sh:order 12 ;
+            sh:path fix_sbe:description ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 11 ;
+            sh:path fix_sbe:semantic_type ],
+        [ sh:defaultValue "required" ;
+            sh:in ( "required" "optional" "constant" ) ;
+            sh:maxCount 1 ;
+            sh:order 9 ;
+            sh:path fix_sbe:presence ] ;
     sh:targetClass fix_sbe:EncodedDataTypeV1 .
 
 fix_sbe:EnumTypeV1 a sh:NodeShape ;
@@ -561,23 +561,10 @@ fix_sbe:EnumTypeV1 a sh:NodeShape ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:string ;
-            sh:description "Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``)." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 3 ;
-            sh:path fix_sbe:value ],
-        [ sh:datatype fix_sbe:SymbolicName ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 1 ;
-            sh:path fix_sbe:name ;
-            sh:pattern "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*" ],
-        [ sh:class fix_sbe:ValidValue ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:BlankNodeOrIRI ;
-            sh:order 0 ;
-            sh:path fix_sbe:valid_value ],
+            sh:order 6 ;
+            sh:path fix_sbe:description ],
         [ sh:datatype xsd:integer ;
             sh:description "The schema version in which an element was added" ;
             sh:maxCount 1 ;
@@ -585,10 +572,16 @@ fix_sbe:EnumTypeV1 a sh:NodeShape ;
             sh:order 7 ;
             sh:path fix_sbe:since_version ],
         [ sh:datatype xsd:string ;
+            sh:description "Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``)." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 5 ;
-            sh:path fix_sbe:semantic_type ],
+            sh:order 3 ;
+            sh:path fix_sbe:value ],
+        [ sh:class fix_sbe:ValidValue ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 0 ;
+            sh:path fix_sbe:valid_value ],
         [ sh:datatype fix_sbe:SymbolicName ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
@@ -597,34 +590,58 @@ fix_sbe:EnumTypeV1 a sh:NodeShape ;
             sh:path fix_sbe:encoding_type ;
             sh:pattern "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*" ],
         [ sh:datatype xsd:integer ;
-            sh:description "The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 8 ;
-            sh:path fix_sbe:deprecated ],
-        [ sh:datatype xsd:integer ;
             sh:description "Offset from start of a composite type or block as a zero-based index." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 4 ;
             sh:path fix_sbe:offset ],
+        [ sh:datatype xsd:integer ;
+            sh:description "The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 8 ;
+            sh:path fix_sbe:deprecated ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 6 ;
-            sh:path fix_sbe:description ] ;
+            sh:order 5 ;
+            sh:path fix_sbe:semantic_type ],
+        [ sh:datatype fix_sbe:SymbolicName ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path fix_sbe:name ;
+            sh:pattern "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*" ] ;
     sh:targetClass fix_sbe:EnumTypeV1 .
 
 fix_sbe:MemberDataTypeV2 a sh:NodeShape ;
     rdfs:comment "A simple type used as a member of a composite type" ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:datatype xsd:string ;
+    sh:property [ sh:datatype xsd:integer ;
+            sh:description "Byte alignment of the start of a block (message root or repeating group instance)." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 7 ;
+            sh:path fix_sbe:alignment ],
+        [ sh:datatype xsd:string ;
             sh:description "Upper bound of a range" ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 11 ;
             sh:path fix_sbe:max_value ],
+        [ sh:datatype xsd:integer ;
+            sh:defaultValue 1 ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path fix_sbe:length ],
+        [ sh:defaultValue "required" ;
+            sh:in ( "required" "optional" "constant" ) ;
+            sh:maxCount 1 ;
+            sh:order 8 ;
+            sh:path fix_sbe:presence ],
         [ sh:datatype fix_sbe:QualifiedName ;
             sh:description "A constant value as valid value of an enum in the form enum-name.valid-value-name. Only valid if presence='constant'." ;
             sh:maxCount 1 ;
@@ -632,18 +649,25 @@ fix_sbe:MemberDataTypeV2 a sh:NodeShape ;
             sh:order 12 ;
             sh:path fix_sbe:value_ref ;
             sh:pattern "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*\\.([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*" ],
-        [ sh:datatype xsd:integer ;
-            sh:description "Offset from start of a composite type or block as a zero-based index." ;
+        [ sh:datatype xsd:string ;
+            sh:description "Override of default null indicator for the data type in SBE specification, as a string." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 6 ;
-            sh:path fix_sbe:offset ],
-        [ sh:datatype xsd:integer ;
-            sh:description "Byte alignment of the start of a block (message root or repeating group instance)." ;
+            sh:order 9 ;
+            sh:path fix_sbe:null_value ],
+        [ sh:datatype xsd:string ;
+            sh:description "Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``)." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 7 ;
-            sh:path fix_sbe:alignment ],
+            sh:order 2 ;
+            sh:path fix_sbe:value ],
+        [ sh:datatype fix_sbe:SymbolicName ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path fix_sbe:name ;
+            sh:pattern "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*" ],
         [ sh:datatype xsd:string ;
             sh:description "Character set or Unicode encoding scheme" ;
             sh:maxCount 1 ;
@@ -656,79 +680,62 @@ fix_sbe:MemberDataTypeV2 a sh:NodeShape ;
             sh:order 3 ;
             sh:path fix_sbe:primitive_type ],
         [ sh:datatype xsd:string ;
-            sh:description "Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``)." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 2 ;
-            sh:path fix_sbe:value ],
-        [ sh:datatype xsd:string ;
-            sh:description "Override of default null indicator for the data type in SBE specification, as a string." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 9 ;
-            sh:path fix_sbe:null_value ],
-        [ sh:datatype fix_sbe:SymbolicName ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 0 ;
-            sh:path fix_sbe:name ;
-            sh:pattern "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*" ],
-        [ sh:defaultValue "required" ;
-            sh:in ( "required" "optional" "constant" ) ;
-            sh:maxCount 1 ;
-            sh:order 8 ;
-            sh:path fix_sbe:presence ],
+            sh:order 1 ;
+            sh:path fix_sbe:description ],
         [ sh:datatype xsd:string ;
             sh:description "Lower bound of a range" ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 10 ;
             sh:path fix_sbe:min_value ],
-        [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 1 ;
-            sh:path fix_sbe:description ],
         [ sh:datatype xsd:integer ;
-            sh:defaultValue 1 ;
+            sh:description "Offset from start of a composite type or block as a zero-based index." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 4 ;
-            sh:path fix_sbe:length ] ;
+            sh:order 6 ;
+            sh:path fix_sbe:offset ] ;
     sh:targetClass fix_sbe:MemberDataTypeV2 .
 
 fix_sbe:MessageV1 a sh:NodeShape ;
     rdfs:comment "A message type, also known as a message template" ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:datatype fix_sbe:SymbolicName ;
+    sh:property [ sh:class fix_sbe:FieldTypeV1 ;
+            sh:description "Variable-length fields" ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 2 ;
+            sh:path fix_sbe:data ],
+        [ sh:class fix_sbe:GroupTypeV1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 1 ;
+            sh:path fix_sbe:group ],
+        [ sh:datatype fix_sbe:SymbolicName ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 3 ;
             sh:path fix_sbe:name ;
             sh:pattern "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*" ],
-        [ sh:class fix_sbe:FieldTypeV1 ;
-            sh:description "Fixed-length fields" ;
-            sh:nodeKind sh:BlankNodeOrIRI ;
-            sh:order 0 ;
-            sh:path fix_sbe:field ],
-        [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 6 ;
-            sh:path fix_sbe:semantic_type ],
-        [ sh:class fix_sbe:FieldTypeV1 ;
-            sh:description "Variable-length fields" ;
-            sh:nodeKind sh:BlankNodeOrIRI ;
-            sh:order 2 ;
-            sh:path fix_sbe:data ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 7 ;
             sh:path fix_sbe:description ],
+        [ sh:datatype xsd:integer ;
+            sh:description "Unique ID of a message template" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path fix_sbe:id ],
+        [ sh:datatype xsd:integer ;
+            sh:description "Space reserved for root level of message, not include groups or variable-length data elements." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path fix_sbe:block_length ],
         [ sh:datatype xsd:integer ;
             sh:description "The schema version in which an element was added" ;
             sh:maxCount 1 ;
@@ -741,34 +748,22 @@ fix_sbe:MessageV1 a sh:NodeShape ;
             sh:nodeKind sh:Literal ;
             sh:order 9 ;
             sh:path fix_sbe:deprecated ],
-        [ sh:datatype xsd:integer ;
-            sh:description "Space reserved for root level of message, not include groups or variable-length data elements." ;
+        [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 5 ;
-            sh:path fix_sbe:block_length ],
-        [ sh:class fix_sbe:GroupTypeV1 ;
+            sh:order 6 ;
+            sh:path fix_sbe:semantic_type ],
+        [ sh:class fix_sbe:FieldTypeV1 ;
+            sh:description "Fixed-length fields" ;
             sh:nodeKind sh:BlankNodeOrIRI ;
-            sh:order 1 ;
-            sh:path fix_sbe:group ],
-        [ sh:datatype xsd:integer ;
-            sh:description "Unique ID of a message template" ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 4 ;
-            sh:path fix_sbe:id ] ;
+            sh:order 0 ;
+            sh:path fix_sbe:field ] ;
     sh:targetClass fix_sbe:MessageV1 .
 
 fix_sbe:MessagesV2 a sh:NodeShape ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 1 ;
-            sh:path fix_sbe:description ],
-        [ sh:class fix_sbe:BlockTypeV2 ;
+    sh:property [ sh:class fix_sbe:BlockTypeV2 ;
             sh:description "A message type, also known as a message template" ;
             sh:minCount 1 ;
             sh:nodeKind sh:BlankNodeOrIRI ;
@@ -779,7 +774,12 @@ fix_sbe:MessagesV2 a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 2 ;
-            sh:path fix_sbe:package ] ;
+            sh:path fix_sbe:package ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path fix_sbe:description ] ;
     sh:targetClass fix_sbe:MessagesV2 .
 
 fix_sbe:RefTypeV1 a sh:NodeShape ;
@@ -787,11 +787,17 @@ fix_sbe:RefTypeV1 a sh:NodeShape ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:integer ;
-            sh:description "The schema version in which an element was added" ;
+            sh:description "Offset from start of a composite type or block as a zero-based index." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 4 ;
-            sh:path fix_sbe:since_version ],
+            sh:order 3 ;
+            sh:path fix_sbe:offset ],
+        [ sh:datatype xsd:string ;
+            sh:description "Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``)." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path fix_sbe:value ],
         [ sh:datatype fix_sbe:SymbolicName ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
@@ -799,31 +805,25 @@ fix_sbe:RefTypeV1 a sh:NodeShape ;
             sh:order 1 ;
             sh:path fix_sbe:type ;
             sh:pattern "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*" ],
-        [ sh:datatype xsd:string ;
-            sh:description "Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``)." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 2 ;
-            sh:path fix_sbe:value ],
-        [ sh:datatype xsd:integer ;
-            sh:description "The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 5 ;
-            sh:path fix_sbe:deprecated ],
-        [ sh:datatype xsd:integer ;
-            sh:description "Offset from start of a composite type or block as a zero-based index." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 3 ;
-            sh:path fix_sbe:offset ],
         [ sh:datatype fix_sbe:SymbolicName ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 0 ;
             sh:path fix_sbe:name ;
-            sh:pattern "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*" ] ;
+            sh:pattern "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*" ],
+        [ sh:datatype xsd:integer ;
+            sh:description "The schema version in which an element was added" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path fix_sbe:since_version ],
+        [ sh:datatype xsd:integer ;
+            sh:description "The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path fix_sbe:deprecated ] ;
     sh:targetClass fix_sbe:RefTypeV1 .
 
 fix_sbe:RefTypeV2 a sh:NodeShape ;
@@ -837,12 +837,25 @@ fix_sbe:RefTypeV2 a sh:NodeShape ;
             sh:order 1 ;
             sh:path fix_sbe:type ;
             sh:pattern "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*" ],
+        [ sh:datatype xsd:string ;
+            sh:description "How the referenced type is used" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path fix_sbe:description ],
         [ sh:datatype xsd:integer ;
             sh:description "Offset from start of a composite type or block as a zero-based index." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 4 ;
             sh:path fix_sbe:offset ],
+        [ sh:datatype fix_sbe:SymbolicName ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path fix_sbe:name ;
+            sh:pattern "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*" ],
         [ sh:datatype xsd:string ;
             sh:description "Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``)." ;
             sh:maxCount 1 ;
@@ -854,60 +867,54 @@ fix_sbe:RefTypeV2 a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 5 ;
-            sh:path fix_sbe:alignment ],
-        [ sh:datatype fix_sbe:SymbolicName ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 0 ;
-            sh:path fix_sbe:name ;
-            sh:pattern "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*" ],
-        [ sh:datatype xsd:string ;
-            sh:description "How the referenced type is used" ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 2 ;
-            sh:path fix_sbe:description ] ;
+            sh:path fix_sbe:alignment ] ;
     sh:targetClass fix_sbe:RefTypeV2 .
 
 fix_sbe:SetTypeV1 a sh:NodeShape ;
     rdfs:comment "A multi value choice (encoded as a bitset)" ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:datatype xsd:integer ;
-            sh:description "The schema version in which an element was added" ;
+    sh:property [ sh:datatype fix_sbe:SymbolicName ;
             sh:maxCount 1 ;
+            sh:minCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 7 ;
-            sh:path fix_sbe:since_version ],
+            sh:order 2 ;
+            sh:path fix_sbe:encoding_type ;
+            sh:pattern "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*" ],
         [ sh:datatype xsd:string ;
             sh:description "Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``)." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 3 ;
             sh:path fix_sbe:value ],
-        [ sh:class fix_sbe:Choice ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:BlankNodeOrIRI ;
-            sh:order 0 ;
-            sh:path fix_sbe:choice ],
-        [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 6 ;
-            sh:path fix_sbe:description ],
-        [ sh:datatype xsd:integer ;
-            sh:description "The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 8 ;
-            sh:path fix_sbe:deprecated ],
         [ sh:datatype xsd:integer ;
             sh:description "Offset from start of a composite type or block as a zero-based index." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 4 ;
             sh:path fix_sbe:offset ],
+        [ sh:datatype xsd:integer ;
+            sh:description "The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 8 ;
+            sh:path fix_sbe:deprecated ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path fix_sbe:semantic_type ],
+        [ sh:datatype xsd:integer ;
+            sh:description "The schema version in which an element was added" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 7 ;
+            sh:path fix_sbe:since_version ],
+        [ sh:class fix_sbe:Choice ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 0 ;
+            sh:path fix_sbe:choice ],
         [ sh:datatype fix_sbe:SymbolicName ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
@@ -918,33 +925,24 @@ fix_sbe:SetTypeV1 a sh:NodeShape ;
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 5 ;
-            sh:path fix_sbe:semantic_type ],
-        [ sh:datatype fix_sbe:SymbolicName ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 2 ;
-            sh:path fix_sbe:encoding_type ;
-            sh:pattern "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*" ] ;
+            sh:order 6 ;
+            sh:path fix_sbe:description ] ;
     sh:targetClass fix_sbe:SetTypeV1 .
 
 fix_sbe:SimpleDataTypeV2 a sh:NodeShape ;
     rdfs:comment "Simple wire encoding consisting of a primitive type or array of primitives" ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:datatype xsd:integer ;
-            sh:description "The schema version in which an element was added" ;
+    sh:property [ sh:in ( "char" "int8" "int16" "int32" "int64" "uint8" "uint16" "uint32" "uint64" "float" "double" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 3 ;
+            sh:path fix_sbe:primitive_type ],
+        [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 6 ;
-            sh:path fix_sbe:since_version ],
-        [ sh:datatype xsd:integer ;
-            sh:defaultValue 1 ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 4 ;
-            sh:path fix_sbe:length ],
+            sh:order 1 ;
+            sh:path fix_sbe:description ],
         [ sh:datatype fix_sbe:SymbolicName ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
@@ -952,22 +950,18 @@ fix_sbe:SimpleDataTypeV2 a sh:NodeShape ;
             sh:order 0 ;
             sh:path fix_sbe:name ;
             sh:pattern "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*" ],
-        [ sh:datatype xsd:string ;
+        [ sh:datatype xsd:integer ;
+            sh:description "The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 1 ;
-            sh:path fix_sbe:description ],
-        [ sh:in ( "char" "int8" "int16" "int32" "int64" "uint8" "uint16" "uint32" "uint64" "float" "double" ) ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:order 3 ;
-            sh:path fix_sbe:primitive_type ],
-        [ sh:datatype xsd:string ;
-            sh:description "Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``)." ;
+            sh:order 7 ;
+            sh:path fix_sbe:deprecated ],
+        [ sh:datatype xsd:integer ;
+            sh:defaultValue 1 ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 2 ;
-            sh:path fix_sbe:value ],
+            sh:order 4 ;
+            sh:path fix_sbe:length ],
         [ sh:datatype xsd:string ;
             sh:description "Character set or Unicode encoding scheme" ;
             sh:maxCount 1 ;
@@ -975,18 +969,41 @@ fix_sbe:SimpleDataTypeV2 a sh:NodeShape ;
             sh:order 5 ;
             sh:path fix_sbe:character_encoding ],
         [ sh:datatype xsd:integer ;
-            sh:description "The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version." ;
+            sh:description "The schema version in which an element was added" ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 7 ;
-            sh:path fix_sbe:deprecated ] ;
+            sh:order 6 ;
+            sh:path fix_sbe:since_version ],
+        [ sh:datatype xsd:string ;
+            sh:description "Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``)." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path fix_sbe:value ] ;
     sh:targetClass fix_sbe:SimpleDataTypeV2 .
 
 fix_sbe:TypesV2 a sh:NodeShape ;
     rdfs:comment "More than one set of types may be provided. Names must be unique across all encoding types. Encoding types may appear in any order." ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:class fix_sbe:EnumTypeV2 ;
+    sh:property [ sh:class fix_sbe:CompositeDataTypeV2 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 1 ;
+            sh:path fix_sbe:composite ],
+        [ sh:class fix_sbe:SimpleDataTypeV2 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 0 ;
+            sh:path fix_sbe:type ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path fix_sbe:description ],
+        [ sh:class fix_sbe:SetTypeV2 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 3 ;
+            sh:path fix_sbe:set ],
+        [ sh:class fix_sbe:EnumTypeV2 ;
             sh:nodeKind sh:BlankNodeOrIRI ;
             sh:order 2 ;
             sh:path fix_sbe:enum ],
@@ -995,24 +1012,7 @@ fix_sbe:TypesV2 a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 5 ;
-            sh:path fix_sbe:package ],
-        [ sh:class fix_sbe:SetTypeV2 ;
-            sh:nodeKind sh:BlankNodeOrIRI ;
-            sh:order 3 ;
-            sh:path fix_sbe:set ],
-        [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 4 ;
-            sh:path fix_sbe:description ],
-        [ sh:class fix_sbe:SimpleDataTypeV2 ;
-            sh:nodeKind sh:BlankNodeOrIRI ;
-            sh:order 0 ;
-            sh:path fix_sbe:type ],
-        [ sh:class fix_sbe:CompositeDataTypeV2 ;
-            sh:nodeKind sh:BlankNodeOrIRI ;
-            sh:order 1 ;
-            sh:path fix_sbe:composite ] ;
+            sh:path fix_sbe:package ] ;
     sh:targetClass fix_sbe:TypesV2 .
 
 fix_sbe:Choice a sh:NodeShape ;
@@ -1020,25 +1020,6 @@ fix_sbe:Choice a sh:NodeShape ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:integer ;
-            sh:description "The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 4 ;
-            sh:path fix_sbe:deprecated ],
-        [ sh:datatype fix_sbe:SymbolicName ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 0 ;
-            sh:path fix_sbe:name ;
-            sh:pattern "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*" ],
-        [ sh:datatype xsd:string ;
-            sh:description "Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``)." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 2 ;
-            sh:path fix_sbe:value ],
-        [ sh:datatype xsd:integer ;
             sh:description "The schema version in which an element was added" ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
@@ -1048,35 +1029,77 @@ fix_sbe:Choice a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 1 ;
-            sh:path fix_sbe:description ] ;
+            sh:path fix_sbe:description ],
+        [ sh:datatype xsd:string ;
+            sh:description "Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``)." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path fix_sbe:value ],
+        [ sh:datatype fix_sbe:SymbolicName ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path fix_sbe:name ;
+            sh:pattern "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*" ],
+        [ sh:datatype xsd:integer ;
+            sh:description "The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path fix_sbe:deprecated ] ;
     sh:targetClass fix_sbe:Choice .
 
 fix_sbe:CompositeDataTypeV2 a sh:NodeShape ;
     rdfs:comment "A wire encoding composed of multiple parts" ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:class fix_sbe:RefTypeV2 ;
-            sh:nodeKind sh:BlankNodeOrIRI ;
-            sh:order 4 ;
-            sh:path fix_sbe:ref ],
-        [ sh:class fix_sbe:MemberDataTypeV2 ;
-            sh:nodeKind sh:BlankNodeOrIRI ;
-            sh:order 0 ;
-            sh:path fix_sbe:type ],
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path fix_sbe:description ],
         [ sh:datatype xsd:integer ;
             sh:description "Byte alignment of the start of a block (message root or repeating group instance)." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 9 ;
             sh:path fix_sbe:alignment ],
+        [ sh:class fix_sbe:CompositeDataTypeV2 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 3 ;
+            sh:path fix_sbe:composite ],
         [ sh:class fix_sbe:SetTypeV2 ;
             sh:nodeKind sh:BlankNodeOrIRI ;
             sh:order 2 ;
             sh:path fix_sbe:set ],
-        [ sh:class fix_sbe:EnumTypeV2 ;
+        [ sh:class fix_sbe:MemberDataTypeV2 ;
             sh:nodeKind sh:BlankNodeOrIRI ;
-            sh:order 1 ;
-            sh:path fix_sbe:enum ],
+            sh:order 0 ;
+            sh:path fix_sbe:type ],
+        [ sh:datatype xsd:integer ;
+            sh:description "The schema version in which an element was added" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 10 ;
+            sh:path fix_sbe:since_version ],
+        [ sh:datatype xsd:integer ;
+            sh:description "The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 11 ;
+            sh:path fix_sbe:deprecated ],
+        [ sh:class fix_sbe:RefTypeV2 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 4 ;
+            sh:path fix_sbe:ref ],
+        [ sh:datatype xsd:string ;
+            sh:description "Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``)." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 7 ;
+            sh:path fix_sbe:value ],
         [ sh:datatype fix_sbe:SymbolicName ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
@@ -1084,83 +1107,34 @@ fix_sbe:CompositeDataTypeV2 a sh:NodeShape ;
             sh:order 5 ;
             sh:path fix_sbe:name ;
             sh:pattern "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*" ],
-        [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 6 ;
-            sh:path fix_sbe:description ],
-        [ sh:datatype xsd:string ;
-            sh:description "Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``)." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 7 ;
-            sh:path fix_sbe:value ],
-        [ sh:datatype xsd:integer ;
-            sh:description "The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 11 ;
-            sh:path fix_sbe:deprecated ],
         [ sh:datatype xsd:integer ;
             sh:description "Offset from start of a composite type or block as a zero-based index." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 8 ;
             sh:path fix_sbe:offset ],
-        [ sh:datatype xsd:integer ;
-            sh:description "The schema version in which an element was added" ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 10 ;
-            sh:path fix_sbe:since_version ],
-        [ sh:class fix_sbe:CompositeDataTypeV2 ;
+        [ sh:class fix_sbe:EnumTypeV2 ;
             sh:nodeKind sh:BlankNodeOrIRI ;
-            sh:order 3 ;
-            sh:path fix_sbe:composite ] ;
+            sh:order 1 ;
+            sh:path fix_sbe:enum ] ;
     sh:targetClass fix_sbe:CompositeDataTypeV2 .
 
 fix_sbe:EnumTypeV2 a sh:NodeShape ;
     rdfs:comment "An enumeration of valid values" ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:datatype fix_sbe:SymbolicName ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 1 ;
-            sh:path fix_sbe:name ;
-            sh:pattern "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*" ],
-        [ sh:datatype xsd:integer ;
-            sh:description "The schema version in which an element was added" ;
+    sh:property [ sh:datatype xsd:integer ;
+            sh:description "Offset from start of a composite type or block as a zero-based index." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 7 ;
-            sh:path fix_sbe:since_version ],
-        [ sh:datatype fix_sbe:SymbolicName ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 2 ;
-            sh:path fix_sbe:encoding_type ;
-            sh:pattern "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*" ],
+            sh:order 5 ;
+            sh:path fix_sbe:offset ],
         [ sh:datatype xsd:integer ;
             sh:description "Byte alignment of the start of a block (message root or repeating group instance)." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 6 ;
             sh:path fix_sbe:alignment ],
-        [ sh:datatype xsd:integer ;
-            sh:description "The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 8 ;
-            sh:path fix_sbe:deprecated ],
-        [ sh:datatype xsd:string ;
-            sh:description "Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``)." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 4 ;
-            sh:path fix_sbe:value ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
@@ -1172,11 +1146,37 @@ fix_sbe:EnumTypeV2 a sh:NodeShape ;
             sh:order 0 ;
             sh:path fix_sbe:valid_value ],
         [ sh:datatype xsd:integer ;
-            sh:description "Offset from start of a composite type or block as a zero-based index." ;
+            sh:description "The schema version in which an element was added" ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 5 ;
-            sh:path fix_sbe:offset ] ;
+            sh:order 7 ;
+            sh:path fix_sbe:since_version ],
+        [ sh:datatype xsd:string ;
+            sh:description "Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``)." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path fix_sbe:value ],
+        [ sh:datatype xsd:integer ;
+            sh:description "The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 8 ;
+            sh:path fix_sbe:deprecated ],
+        [ sh:datatype fix_sbe:SymbolicName ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path fix_sbe:encoding_type ;
+            sh:pattern "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*" ],
+        [ sh:datatype fix_sbe:SymbolicName ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path fix_sbe:name ;
+            sh:pattern "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*" ] ;
     sh:targetClass fix_sbe:EnumTypeV2 .
 
 fix_sbe:GroupTypeV2 a sh:NodeShape ;
@@ -1190,43 +1190,6 @@ fix_sbe:GroupTypeV2 a sh:NodeShape ;
             sh:order 4 ;
             sh:path fix_sbe:name ;
             sh:pattern "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*" ],
-        [ sh:class fix_sbe:GroupTypeV2 ;
-            sh:nodeKind sh:BlankNodeOrIRI ;
-            sh:order 2 ;
-            sh:path fix_sbe:group ],
-        [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 8 ;
-            sh:path fix_sbe:semantic_type ],
-        [ sh:datatype xsd:integer ;
-            sh:description "The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 11 ;
-            sh:path fix_sbe:deprecated ],
-        [ sh:class fix_sbe:FieldTypeV2 ;
-            sh:description "Variable-length fields" ;
-            sh:nodeKind sh:BlankNodeOrIRI ;
-            sh:order 3 ;
-            sh:path fix_sbe:data ],
-        [ sh:class fix_sbe:FieldTypeV2 ;
-            sh:description "Fixed-length fields" ;
-            sh:nodeKind sh:BlankNodeOrIRI ;
-            sh:order 1 ;
-            sh:path fix_sbe:field ],
-        [ sh:datatype xsd:integer ;
-            sh:description "Space reserved for root level of message or repeating group, not including nested groups or variable-length data elements." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 6 ;
-            sh:path fix_sbe:block_length ],
-        [ sh:datatype xsd:integer ;
-            sh:description "Byte alignment of the start of a block (message root or repeating group instance)." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 7 ;
-            sh:path fix_sbe:alignment ],
         [ sh:datatype fix_sbe:SymbolicName ;
             sh:defaultValue "groupSizeEncoding"^^xsd:string ;
             sh:maxCount 1 ;
@@ -1234,6 +1197,45 @@ fix_sbe:GroupTypeV2 a sh:NodeShape ;
             sh:order 0 ;
             sh:path fix_sbe:dimension_type ;
             sh:pattern "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*" ],
+        [ sh:datatype xsd:integer ;
+            sh:description "Space reserved for root level of message or repeating group, not including nested groups or variable-length data elements." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path fix_sbe:block_length ],
+        [ sh:datatype xsd:integer ;
+            sh:description "The schema version in which an element was added" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 10 ;
+            sh:path fix_sbe:since_version ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 8 ;
+            sh:path fix_sbe:semantic_type ],
+        [ sh:datatype xsd:integer ;
+            sh:description "Byte alignment of the start of a block (message root or repeating group instance)." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 7 ;
+            sh:path fix_sbe:alignment ],
+        [ sh:datatype xsd:integer ;
+            sh:description "The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 11 ;
+            sh:path fix_sbe:deprecated ],
+        [ sh:class fix_sbe:FieldTypeV2 ;
+            sh:description "Fixed-length fields" ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 1 ;
+            sh:path fix_sbe:field ],
+        [ sh:class fix_sbe:FieldTypeV2 ;
+            sh:description "Variable-length fields" ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 3 ;
+            sh:path fix_sbe:data ],
         [ sh:datatype xsd:integer ;
             sh:description "Unique ID of a message template" ;
             sh:maxCount 1 ;
@@ -1246,25 +1248,22 @@ fix_sbe:GroupTypeV2 a sh:NodeShape ;
             sh:nodeKind sh:Literal ;
             sh:order 9 ;
             sh:path fix_sbe:description ],
-        [ sh:datatype xsd:integer ;
-            sh:description "The schema version in which an element was added" ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 10 ;
-            sh:path fix_sbe:since_version ] ;
+        [ sh:class fix_sbe:GroupTypeV2 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 2 ;
+            sh:path fix_sbe:group ] ;
     sh:targetClass fix_sbe:GroupTypeV2 .
 
 fix_sbe:SetTypeV2 a sh:NodeShape ;
     rdfs:comment "A multi value choice (encoded as a bitset)" ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:datatype fix_sbe:SymbolicName ;
+    sh:property [ sh:datatype xsd:integer ;
+            sh:description "Offset from start of a composite type or block as a zero-based index." ;
             sh:maxCount 1 ;
-            sh:minCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 2 ;
-            sh:path fix_sbe:encoding_type ;
-            sh:pattern "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*" ],
+            sh:order 5 ;
+            sh:path fix_sbe:offset ],
         [ sh:class fix_sbe:Choice ;
             sh:minCount 1 ;
             sh:nodeKind sh:BlankNodeOrIRI ;
@@ -1274,9 +1273,28 @@ fix_sbe:SetTypeV2 a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path fix_sbe:encoding_type ;
+            sh:pattern "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*" ],
+        [ sh:datatype fix_sbe:SymbolicName ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
             sh:order 1 ;
             sh:path fix_sbe:name ;
             sh:pattern "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*" ],
+        [ sh:datatype xsd:integer ;
+            sh:description "Byte alignment of the start of a block (message root or repeating group instance)." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path fix_sbe:alignment ],
+        [ sh:datatype xsd:integer ;
+            sh:description "The schema version in which an element was added" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 7 ;
+            sh:path fix_sbe:since_version ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
@@ -1293,25 +1311,7 @@ fix_sbe:SetTypeV2 a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 8 ;
-            sh:path fix_sbe:deprecated ],
-        [ sh:datatype xsd:integer ;
-            sh:description "Byte alignment of the start of a block (message root or repeating group instance)." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 6 ;
-            sh:path fix_sbe:alignment ],
-        [ sh:datatype xsd:integer ;
-            sh:description "The schema version in which an element was added" ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 7 ;
-            sh:path fix_sbe:since_version ],
-        [ sh:datatype xsd:integer ;
-            sh:description "Offset from start of a composite type or block as a zero-based index." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 5 ;
-            sh:path fix_sbe:offset ] ;
+            sh:path fix_sbe:deprecated ] ;
     sh:targetClass fix_sbe:SetTypeV2 .
 
 fix_sbe:ValidValue a sh:NodeShape ;
@@ -1324,12 +1324,6 @@ fix_sbe:ValidValue a sh:NodeShape ;
             sh:nodeKind sh:Literal ;
             sh:order 4 ;
             sh:path fix_sbe:deprecated ],
-        [ sh:datatype xsd:integer ;
-            sh:description "The schema version in which an element was added" ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 3 ;
-            sh:path fix_sbe:since_version ],
         [ sh:datatype fix_sbe:SymbolicName ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
@@ -1347,18 +1341,38 @@ fix_sbe:ValidValue a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 2 ;
-            sh:path fix_sbe:value ] ;
+            sh:path fix_sbe:value ],
+        [ sh:datatype xsd:integer ;
+            sh:description "The schema version in which an element was added" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path fix_sbe:since_version ] ;
     sh:targetClass fix_sbe:ValidValue .
 
 fix_sbe:GroupTypeV1 a sh:NodeShape ;
     rdfs:comment "A repeating group contains an array of entries" ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:class fix_sbe:FieldTypeV1 ;
-            sh:description "Variable-length fields" ;
-            sh:nodeKind sh:BlankNodeOrIRI ;
-            sh:order 3 ;
-            sh:path fix_sbe:data ],
+    sh:property [ sh:datatype xsd:integer ;
+            sh:description "Unique ID of a message template" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path fix_sbe:id ],
+        [ sh:datatype xsd:integer ;
+            sh:description "Space reserved for root level of message, not include groups or variable-length data elements." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path fix_sbe:block_length ],
+        [ sh:datatype xsd:integer ;
+            sh:description "The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 10 ;
+            sh:path fix_sbe:deprecated ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
@@ -1371,39 +1385,27 @@ fix_sbe:GroupTypeV1 a sh:NodeShape ;
             sh:order 4 ;
             sh:path fix_sbe:name ;
             sh:pattern "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*" ],
-        [ sh:class fix_sbe:GroupTypeV1 ;
-            sh:nodeKind sh:BlankNodeOrIRI ;
-            sh:order 2 ;
-            sh:path fix_sbe:group ],
-        [ sh:datatype xsd:integer ;
-            sh:description "Space reserved for root level of message, not include groups or variable-length data elements." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 6 ;
-            sh:path fix_sbe:block_length ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 7 ;
             sh:path fix_sbe:semantic_type ],
-        [ sh:datatype xsd:integer ;
-            sh:description "Unique ID of a message template" ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 5 ;
-            sh:path fix_sbe:id ],
+        [ sh:class fix_sbe:FieldTypeV1 ;
+            sh:description "Variable-length fields" ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 3 ;
+            sh:path fix_sbe:data ],
         [ sh:class fix_sbe:FieldTypeV1 ;
             sh:description "Fixed-length fields" ;
             sh:nodeKind sh:BlankNodeOrIRI ;
             sh:order 1 ;
             sh:path fix_sbe:field ],
         [ sh:datatype xsd:integer ;
-            sh:description "The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version." ;
+            sh:description "The schema version in which an element was added" ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 10 ;
-            sh:path fix_sbe:deprecated ],
+            sh:order 9 ;
+            sh:path fix_sbe:since_version ],
         [ sh:datatype fix_sbe:SymbolicName ;
             sh:defaultValue "groupSizeEncoding"^^xsd:string ;
             sh:maxCount 1 ;
@@ -1411,31 +1413,22 @@ fix_sbe:GroupTypeV1 a sh:NodeShape ;
             sh:order 0 ;
             sh:path fix_sbe:dimension_type ;
             sh:pattern "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*" ],
-        [ sh:datatype xsd:integer ;
-            sh:description "The schema version in which an element was added" ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 9 ;
-            sh:path fix_sbe:since_version ] ;
+        [ sh:class fix_sbe:GroupTypeV1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 2 ;
+            sh:path fix_sbe:group ] ;
     sh:targetClass fix_sbe:GroupTypeV1 .
 
 fix_sbe:FieldTypeV2 a sh:NodeShape ;
     rdfs:comment "A field of a message of a specified dataType" ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:datatype fix_sbe:SymbolicName ;
-            sh:description "Must match the name of an encoding contained by 'types' element" ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 2 ;
-            sh:path fix_sbe:type ;
-            sh:pattern "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*" ],
-        [ sh:datatype xsd:string ;
+    sh:property [ sh:datatype xsd:integer ;
+            sh:description "The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 12 ;
-            sh:path fix_sbe:description ],
+            sh:order 14 ;
+            sh:path fix_sbe:deprecated ],
         [ sh:datatype fix_sbe:QualifiedName ;
             sh:description "A constant value as valid value of an enum in the form enum-name.valid-value-name. Only valid if presence='constant'." ;
             sh:maxCount 1 ;
@@ -1456,6 +1449,23 @@ fix_sbe:FieldTypeV2 a sh:NodeShape ;
             sh:order 0 ;
             sh:path fix_sbe:name ;
             sh:pattern "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*" ],
+        [ sh:datatype xsd:integer ;
+            sh:description "Byte alignment of the start of a block (message root or repeating group instance)." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path fix_sbe:alignment ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 12 ;
+            sh:path fix_sbe:description ],
+        [ sh:datatype xsd:string ;
+            sh:description "Upper bound of a range" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 9 ;
+            sh:path fix_sbe:max_value ],
         [ sh:datatype xsd:string ;
             sh:description "Override of default null indicator for the data type in SBE specification, as a string." ;
             sh:maxCount 1 ;
@@ -1463,116 +1473,27 @@ fix_sbe:FieldTypeV2 a sh:NodeShape ;
             sh:order 7 ;
             sh:path fix_sbe:null_value ],
         [ sh:datatype xsd:integer ;
-            sh:description "Offset from start of a composite type or block as a zero-based index." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 4 ;
-            sh:path fix_sbe:offset ],
-        [ sh:datatype xsd:integer ;
-            sh:description "The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 14 ;
-            sh:path fix_sbe:deprecated ],
-        [ sh:datatype xsd:integer ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 1 ;
-            sh:path fix_sbe:id ],
-        [ sh:datatype xsd:integer ;
             sh:description "The schema version in which an element was added" ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 13 ;
             sh:path fix_sbe:since_version ],
         [ sh:datatype xsd:integer ;
-            sh:description "Byte alignment of the start of a block (message root or repeating group instance)." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 5 ;
-            sh:path fix_sbe:alignment ],
-        [ sh:defaultValue "required" ;
-            sh:in ( "required" "optional" "constant" ) ;
-            sh:maxCount 1 ;
-            sh:order 6 ;
-            sh:path fix_sbe:presence ],
-        [ sh:datatype xsd:string ;
-            sh:description "Lower bound of a range" ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 8 ;
-            sh:path fix_sbe:min_value ],
-        [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 11 ;
-            sh:path fix_sbe:semantic_type ],
-        [ sh:datatype xsd:string ;
-            sh:description "Upper bound of a range" ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 9 ;
-            sh:path fix_sbe:max_value ] ;
-    sh:targetClass fix_sbe:FieldTypeV2 .
-
-fix_sbe:FieldTypeV1 a sh:NodeShape ;
-    rdfs:comment "A field of a message of a specified dataType" ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 8 ;
-            sh:path fix_sbe:semantic_type ],
-        [ sh:datatype fix_sbe:SymbolicName ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 0 ;
-            sh:path fix_sbe:name ;
-            sh:pattern "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*" ],
-        [ sh:datatype xsd:integer ;
-            sh:description "Offset from start of a composite type or block as a zero-based index." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 5 ;
-            sh:path fix_sbe:offset ],
+            sh:order 1 ;
+            sh:path fix_sbe:id ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 9 ;
-            sh:path fix_sbe:description ],
-        [ sh:datatype xsd:integer ;
-            sh:description "The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
             sh:order 11 ;
-            sh:path fix_sbe:deprecated ],
+            sh:path fix_sbe:semantic_type ],
         [ sh:defaultValue "required" ;
             sh:in ( "required" "optional" "constant" ) ;
             sh:maxCount 1 ;
             sh:order 6 ;
             sh:path fix_sbe:presence ],
-        [ sh:datatype fix_sbe:QualifiedName ;
-            sh:description "A constant value as valid value of an enum in the form enum-name.valid-value-name" ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 7 ;
-            sh:path fix_sbe:value_ref ;
-            sh:pattern "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*\\.([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*" ],
-        [ sh:datatype xsd:string ;
-            sh:defaultValue "unix"^^xsd:string ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 3 ;
-            sh:path fix_sbe:epoch ],
-        [ sh:datatype xsd:integer ;
-            sh:description "The schema version in which an element was added" ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 10 ;
-            sh:path fix_sbe:since_version ],
         [ sh:datatype fix_sbe:SymbolicName ;
             sh:description "Must match the name of an encoding contained by 'types' element" ;
             sh:maxCount 1 ;
@@ -1581,6 +1502,40 @@ fix_sbe:FieldTypeV1 a sh:NodeShape ;
             sh:order 2 ;
             sh:path fix_sbe:type ;
             sh:pattern "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*" ],
+        [ sh:datatype xsd:integer ;
+            sh:description "Offset from start of a composite type or block as a zero-based index." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path fix_sbe:offset ],
+        [ sh:datatype xsd:string ;
+            sh:description "Lower bound of a range" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 8 ;
+            sh:path fix_sbe:min_value ] ;
+    sh:targetClass fix_sbe:FieldTypeV2 .
+
+fix_sbe:FieldTypeV1 a sh:NodeShape ;
+    rdfs:comment "A field of a message of a specified dataType" ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:defaultValue "unix"^^xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path fix_sbe:epoch ],
+        [ sh:defaultValue "required" ;
+            sh:in ( "required" "optional" "constant" ) ;
+            sh:maxCount 1 ;
+            sh:order 6 ;
+            sh:path fix_sbe:presence ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 9 ;
+            sh:path fix_sbe:description ],
         [ sh:datatype xsd:string ;
             sh:defaultValue "nanosecond"^^xsd:string ;
             sh:description "Deprecated - only for back compatibility with RC2" ;
@@ -1589,10 +1544,55 @@ fix_sbe:FieldTypeV1 a sh:NodeShape ;
             sh:order 4 ;
             sh:path fix_sbe:time_unit ],
         [ sh:datatype xsd:integer ;
+            sh:description "Offset from start of a composite type or block as a zero-based index." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path fix_sbe:offset ],
+        [ sh:datatype xsd:integer ;
+            sh:description "The schema version in which an element was added" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 10 ;
+            sh:path fix_sbe:since_version ],
+        [ sh:datatype xsd:integer ;
+            sh:description "The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 11 ;
+            sh:path fix_sbe:deprecated ],
+        [ sh:datatype fix_sbe:SymbolicName ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path fix_sbe:name ;
+            sh:pattern "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*" ],
+        [ sh:datatype fix_sbe:QualifiedName ;
+            sh:description "A constant value as valid value of an enum in the form enum-name.valid-value-name" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 7 ;
+            sh:path fix_sbe:value_ref ;
+            sh:pattern "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*\\.([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*" ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 8 ;
+            sh:path fix_sbe:semantic_type ],
+        [ sh:datatype xsd:integer ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 1 ;
-            sh:path fix_sbe:id ] ;
+            sh:path fix_sbe:id ],
+        [ sh:datatype fix_sbe:SymbolicName ;
+            sh:description "Must match the name of an encoding contained by 'types' element" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path fix_sbe:type ;
+            sh:pattern "([A-Z]|[a-z]|_)([0-9]|[A-Z]|[a-z]|_)*" ] ;
     sh:targetClass fix_sbe:FieldTypeV1 .
 

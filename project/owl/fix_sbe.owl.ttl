@@ -26,80 +26,80 @@
 fix_sbe:MessageSchemaV1 a owl:Class ;
     rdfs:label "MessageSchemaV1" ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty fix_sbe:types ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom fix_sbe:MessageV1 ;
+            owl:onProperty fix_sbe:message ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty fix_sbe:types ],
+        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:byte_order ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty fix_sbe:byte_order ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty fix_sbe:description ],
+            owl:onProperty fix_sbe:header_type ],
         [ a owl:Restriction ;
             owl:allValuesFrom fix_sbe:ByteOrder ;
             owl:onProperty fix_sbe:byte_order ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty fix_sbe:header_type ],
+            owl:onProperty fix_sbe:id ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty fix_sbe:version ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:integer ;
+            owl:onProperty fix_sbe:version ],
         [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
-            owl:onProperty fix_sbe:types ],
+            owl:onProperty fix_sbe:semantic_version ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
             owl:onProperty fix_sbe:message ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty fix_sbe:package ],
+            owl:onProperty fix_sbe:header_type ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty fix_sbe:semantic_version ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty fix_sbe:description ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
-            owl:onProperty fix_sbe:types ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:integer ;
-            owl:onProperty fix_sbe:id ],
+            owl:onProperty fix_sbe:version ],
         [ a owl:Restriction ;
             owl:allValuesFrom fix_sbe:SymbolicName ;
             owl:onProperty fix_sbe:header_type ],
         [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
-            owl:onProperty fix_sbe:semantic_version ],
+            owl:onProperty fix_sbe:description ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
+            owl:allValuesFrom xsd:integer ;
             owl:onProperty fix_sbe:id ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty fix_sbe:package ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty fix_sbe:description ],
         [ a owl:Restriction ;
-            owl:allValuesFrom xsd:integer ;
-            owl:onProperty fix_sbe:version ],
+            owl:maxCardinality 1 ;
+            owl:onProperty fix_sbe:semantic_version ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty fix_sbe:byte_order ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty fix_sbe:package ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty fix_sbe:byte_order ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty fix_sbe:package ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:header_type ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty fix_sbe:version ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty fix_sbe:description ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty fix_sbe:semantic_version ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom fix_sbe:MessageV1 ;
-            owl:onProperty fix_sbe:message ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:semantic_version ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty fix_sbe:id ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:version ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty fix_sbe:package ] ;
+            owl:onProperty fix_sbe:id ] ;
     skos:altLabel "messageSchema" ;
     skos:closeMatch <https://w3id.org/lmodel/fix-orchestra/Repository> ;
     skos:definition "Root of XML document, holds all message templates and their elements" ;
@@ -110,50 +110,32 @@ fix_sbe:MessageSchemaV1 a owl:Class ;
 fix_sbe:MessageSchemaV2 a owl:Class ;
     rdfs:label "MessageSchemaV2" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty fix_sbe:byte_order ],
+            owl:maxCardinality 1 ;
+            owl:onProperty fix_sbe:header_type ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
             owl:onProperty fix_sbe:messages ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:description ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:package ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:integer ;
-            owl:onProperty fix_sbe:version ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty fix_sbe:semantic_version ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom fix_sbe:ByteOrder ;
-            owl:onProperty fix_sbe:byte_order ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty fix_sbe:id ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:version ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:header_type ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:byte_order ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty fix_sbe:version ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty fix_sbe:package ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
             owl:onProperty fix_sbe:semantic_version ],
         [ a owl:Restriction ;
             owl:allValuesFrom fix_sbe:MessagesV2 ;
             owl:onProperty fix_sbe:messages ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty fix_sbe:package ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty fix_sbe:semantic_version ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty fix_sbe:version ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty fix_sbe:byte_order ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty fix_sbe:description ],
         [ a owl:Restriction ;
             owl:allValuesFrom fix_sbe:TypesV2 ;
             owl:onProperty fix_sbe:types ],
@@ -161,29 +143,47 @@ fix_sbe:MessageSchemaV2 a owl:Class ;
             owl:minCardinality 1 ;
             owl:onProperty fix_sbe:types ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty fix_sbe:description ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty fix_sbe:header_type ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty fix_sbe:package ],
-        [ a owl:Restriction ;
             owl:allValuesFrom fix_sbe:SymbolicName ;
             owl:onProperty fix_sbe:header_type ],
         [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty fix_sbe:id ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty fix_sbe:description ],
+        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
+            owl:onProperty fix_sbe:version ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
             owl:onProperty fix_sbe:semantic_version ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:id ],
+            owl:onProperty fix_sbe:byte_order ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty fix_sbe:description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom fix_sbe:ByteOrder ;
+            owl:onProperty fix_sbe:byte_order ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty fix_sbe:header_type ],
         [ a owl:Restriction ;
             owl:allValuesFrom xsd:integer ;
             owl:onProperty fix_sbe:id ],
         [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty fix_sbe:id ],
+        [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
-            owl:onProperty fix_sbe:description ] ;
+            owl:onProperty fix_sbe:package ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:integer ;
+            owl:onProperty fix_sbe:version ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty fix_sbe:package ] ;
     skos:altLabel "messageSchema" ;
     skos:closeMatch <https://w3id.org/lmodel/fix-orchestra/Repository> ;
     skos:definition "Root of XML document, holds all message templates and their elements" ;
@@ -197,10 +197,10 @@ fix_sbe:AlignmentAttributesV2 a owl:Class ;
             owl:allValuesFrom xsd:integer ;
             owl:onProperty fix_sbe:alignment ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
+            owl:maxCardinality 1 ;
             owl:onProperty fix_sbe:alignment ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
+            owl:minCardinality 0 ;
             owl:onProperty fix_sbe:alignment ] ;
     skos:altLabel "alignmentAttributes" ;
     skos:exactMatch sbe_v2:alignmentAttributes,
@@ -218,53 +218,53 @@ fix_sbe:AlignmentAttributesV2 a owl:Class ;
 fix_sbe:CompositeDataTypeV1 a owl:Class ;
     rdfs:label "CompositeDataTypeV1" ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty fix_sbe:value ],
+        [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty fix_sbe:set ],
+            owl:onProperty fix_sbe:value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty fix_sbe:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom fix_sbe:EncodedDataTypeV1 ;
+            owl:onProperty fix_sbe:type ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty fix_sbe:type ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty fix_sbe:composite ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty fix_sbe:ref ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom fix_sbe:EnumTypeV1 ;
+            owl:onProperty fix_sbe:enum ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom fix_sbe:CompositeDataTypeV1 ;
+            owl:onProperty fix_sbe:composite ],
         [ a owl:Restriction ;
             owl:allValuesFrom fix_sbe:SymbolicName ;
             owl:onProperty fix_sbe:name ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty fix_sbe:composite ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom fix_sbe:CompositeDataTypeV1 ;
-            owl:onProperty fix_sbe:composite ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty fix_sbe:value ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty fix_sbe:name ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:value ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom fix_sbe:EncodedDataTypeV1 ;
-            owl:onProperty fix_sbe:type ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom fix_sbe:EnumTypeV1 ;
             owl:onProperty fix_sbe:enum ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty fix_sbe:ref ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty fix_sbe:enum ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom fix_sbe:RefTypeV1 ;
-            owl:onProperty fix_sbe:ref ],
         [ a owl:Restriction ;
             owl:allValuesFrom fix_sbe:SetTypeV1 ;
             owl:onProperty fix_sbe:set ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty fix_sbe:type ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty fix_sbe:value ],
+            owl:onProperty fix_sbe:set ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
+            owl:onProperty fix_sbe:value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
             owl:onProperty fix_sbe:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom fix_sbe:RefTypeV1 ;
+            owl:onProperty fix_sbe:ref ],
         fix_sbe:AlignmentAttributesV1,
         fix_sbe:SemanticAttributes,
         fix_sbe:VersionAttributes ;
@@ -278,77 +278,77 @@ fix_sbe:CompositeDataTypeV1 a owl:Class ;
 fix_sbe:EncodedDataTypeV1 a owl:Class ;
     rdfs:label "EncodedDataTypeV1" ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty fix_sbe:value ],
+        [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty fix_sbe:value ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:value ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:integer ;
-            owl:onProperty fix_sbe:length ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:max_value ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty fix_sbe:primitive_type ],
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty fix_sbe:null_value ],
         [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
-            owl:onProperty fix_sbe:max_value ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
             owl:onProperty fix_sbe:character_encoding ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:min_value ],
+            owl:onProperty fix_sbe:value ],
         [ a owl:Restriction ;
-            owl:allValuesFrom fix_sbe:SymbolicName ;
+            owl:maxCardinality 1 ;
             owl:onProperty fix_sbe:name ],
         [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty fix_sbe:value ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:primitive_type ],
-        [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty fix_sbe:character_encoding ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty fix_sbe:null_value ],
+            owl:onProperty fix_sbe:min_value ],
         [ a owl:Restriction ;
             owl:allValuesFrom fix_sbe:PrimitiveTypeV1 ;
             owl:onProperty fix_sbe:primitive_type ],
         [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty fix_sbe:null_value ],
+        [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty fix_sbe:min_value ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty fix_sbe:name ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty fix_sbe:min_value ],
+            owl:onProperty fix_sbe:null_value ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
+            owl:onProperty fix_sbe:max_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty fix_sbe:character_encoding ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom fix_sbe:SymbolicName ;
             owl:onProperty fix_sbe:name ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty fix_sbe:length ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty fix_sbe:null_value ],
+            owl:minCardinality 1 ;
+            owl:onProperty fix_sbe:primitive_type ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty fix_sbe:max_value ],
         [ a owl:Restriction ;
+            owl:allValuesFrom xsd:integer ;
+            owl:onProperty fix_sbe:length ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty fix_sbe:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty fix_sbe:character_encoding ],
+        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:null_value ],
+            owl:onProperty fix_sbe:primitive_type ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty fix_sbe:min_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty fix_sbe:max_value ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty fix_sbe:length ],
         [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty fix_sbe:character_encoding ],
+            owl:minCardinality 0 ;
+            owl:onProperty fix_sbe:length ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty fix_sbe:min_value ],
         fix_sbe:AlignmentAttributesV1,
         fix_sbe:PresenceAttributesV1,
         fix_sbe:SemanticAttributes,
@@ -364,38 +364,38 @@ fix_sbe:EncodedDataTypeV1 a owl:Class ;
 fix_sbe:EnumTypeV1 a owl:Class ;
     rdfs:label "EnumTypeV1" ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty fix_sbe:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom fix_sbe:ValidValue ;
+            owl:onProperty fix_sbe:valid_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty fix_sbe:value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom fix_sbe:SymbolicName ;
+            owl:onProperty fix_sbe:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty fix_sbe:valid_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom fix_sbe:SymbolicName ;
+            owl:onProperty fix_sbe:encoding_type ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty fix_sbe:encoding_type ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty fix_sbe:name ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty fix_sbe:encoding_type ],
+        [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
             owl:onProperty fix_sbe:value ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty fix_sbe:value ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom fix_sbe:ValidValue ;
-            owl:onProperty fix_sbe:valid_value ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty fix_sbe:valid_value ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty fix_sbe:name ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:name ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom fix_sbe:SymbolicName ;
-            owl:onProperty fix_sbe:name ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty fix_sbe:encoding_type ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:value ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom fix_sbe:SymbolicName ;
-            owl:onProperty fix_sbe:encoding_type ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:encoding_type ],
         fix_sbe:AlignmentAttributesV1,
         fix_sbe:SemanticAttributes,
         fix_sbe:VersionAttributes ;
@@ -409,10 +409,10 @@ fix_sbe:EnumTypeV1 a owl:Class ;
 fix_sbe:GroupTypeV1 a owl:Class ;
     rdfs:label "GroupTypeV1" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom fix_sbe:SymbolicName ;
+            owl:maxCardinality 1 ;
             owl:onProperty fix_sbe:dimension_type ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
+            owl:allValuesFrom fix_sbe:SymbolicName ;
             owl:onProperty fix_sbe:dimension_type ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
@@ -428,13 +428,13 @@ fix_sbe:GroupTypeV1 a owl:Class ;
 fix_sbe:GroupTypeV2 a owl:Class ;
     rdfs:label "GroupTypeV2" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom fix_sbe:SymbolicName ;
-            owl:onProperty fix_sbe:dimension_type ],
-        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty fix_sbe:dimension_type ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
+            owl:onProperty fix_sbe:dimension_type ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom fix_sbe:SymbolicName ;
             owl:onProperty fix_sbe:dimension_type ],
         fix_sbe:BlockTypeV2 ;
     skos:altLabel "groupType" ;
@@ -450,29 +450,29 @@ fix_sbe:MemberDataTypeV2 a owl:Class ;
             owl:allValuesFrom xsd:string ;
             owl:onProperty fix_sbe:value ],
         [ a owl:Restriction ;
-            owl:minCardinality 1 ;
+            owl:maxCardinality 1 ;
             owl:onProperty fix_sbe:name ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:description ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty fix_sbe:description ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:value ],
         [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
             owl:onProperty fix_sbe:description ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
+            owl:onProperty fix_sbe:description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty fix_sbe:description ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty fix_sbe:value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty fix_sbe:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom fix_sbe:SymbolicName ;
             owl:onProperty fix_sbe:name ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty fix_sbe:value ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom fix_sbe:SymbolicName ;
-            owl:onProperty fix_sbe:name ],
         fix_sbe:OffsetAttributesV2,
         fix_sbe:PresenceAttributesV2,
         fix_sbe:PrimitiveTypeAttributesV2 ;
@@ -498,15 +498,9 @@ fix_sbe:MessagesV2 a owl:Class ;
     rdfs:label "MessagesV2" ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
-            owl:onProperty fix_sbe:description ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
             owl:onProperty fix_sbe:package ],
         [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty fix_sbe:message ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
+            owl:minCardinality 0 ;
             owl:onProperty fix_sbe:package ],
         [ a owl:Restriction ;
             owl:allValuesFrom fix_sbe:BlockTypeV2 ;
@@ -515,7 +509,13 @@ fix_sbe:MessagesV2 a owl:Class ;
             owl:minCardinality 0 ;
             owl:onProperty fix_sbe:description ],
         [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty fix_sbe:message ],
+        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
+            owl:onProperty fix_sbe:description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
             owl:onProperty fix_sbe:description ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
@@ -640,28 +640,28 @@ fix_sbe:RefTypeV1 a owl:Class ;
     rdfs:label "RefTypeV1" ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:minCardinality 1 ;
-            owl:onProperty fix_sbe:type ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom fix_sbe:SymbolicName ;
-            owl:onProperty fix_sbe:type ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:type ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom fix_sbe:SymbolicName ;
             owl:onProperty fix_sbe:name ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
-            owl:onProperty fix_sbe:name ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:name ],
+            owl:onProperty fix_sbe:type ],
         [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
             owl:onProperty fix_sbe:value ],
         [ a owl:Restriction ;
+            owl:allValuesFrom fix_sbe:SymbolicName ;
+            owl:onProperty fix_sbe:type ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty fix_sbe:type ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom fix_sbe:SymbolicName ;
+            owl:onProperty fix_sbe:name ],
+        [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty fix_sbe:value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty fix_sbe:name ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty fix_sbe:value ],
@@ -677,40 +677,40 @@ fix_sbe:RefTypeV1 a owl:Class ;
 fix_sbe:RefTypeV2 a owl:Class ;
     rdfs:label "RefTypeV2" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty fix_sbe:name ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty fix_sbe:description ],
-        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty fix_sbe:description ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty fix_sbe:description ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty fix_sbe:value ],
+            owl:minCardinality 1 ;
+            owl:onProperty fix_sbe:type ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty fix_sbe:description ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty fix_sbe:value ],
         [ a owl:Restriction ;
-            owl:allValuesFrom fix_sbe:SymbolicName ;
+            owl:maxCardinality 1 ;
             owl:onProperty fix_sbe:name ],
         [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
             owl:onProperty fix_sbe:value ],
         [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty fix_sbe:value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom fix_sbe:SymbolicName ;
+            owl:onProperty fix_sbe:name ],
+        [ a owl:Restriction ;
             owl:allValuesFrom fix_sbe:SymbolicName ;
             owl:onProperty fix_sbe:type ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
+            owl:minCardinality 1 ;
             owl:onProperty fix_sbe:name ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:type ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
             owl:onProperty fix_sbe:type ],
         fix_sbe:OffsetAttributesV2 ;
     skos:altLabel "refType" ;
@@ -723,38 +723,38 @@ fix_sbe:RefTypeV2 a owl:Class ;
 fix_sbe:SetTypeV1 a owl:Class ;
     rdfs:label "SetTypeV1" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:minCardinality 1 ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty fix_sbe:value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom fix_sbe:SymbolicName ;
+            owl:onProperty fix_sbe:name ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty fix_sbe:value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom fix_sbe:Choice ;
+            owl:onProperty fix_sbe:choice ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty fix_sbe:name ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
             owl:onProperty fix_sbe:encoding_type ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty fix_sbe:value ],
         [ a owl:Restriction ;
-            owl:allValuesFrom fix_sbe:SymbolicName ;
-            owl:onProperty fix_sbe:name ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:name ],
-        [ a owl:Restriction ;
             owl:minCardinality 1 ;
-            owl:onProperty fix_sbe:name ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom fix_sbe:Choice ;
             owl:onProperty fix_sbe:choice ],
         [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty fix_sbe:value ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:value ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
+            owl:minCardinality 1 ;
             owl:onProperty fix_sbe:encoding_type ],
         [ a owl:Restriction ;
             owl:allValuesFrom fix_sbe:SymbolicName ;
             owl:onProperty fix_sbe:encoding_type ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
-            owl:onProperty fix_sbe:choice ],
+            owl:onProperty fix_sbe:name ],
         fix_sbe:AlignmentAttributesV1,
         fix_sbe:SemanticAttributes,
         fix_sbe:VersionAttributes ;
@@ -768,32 +768,32 @@ fix_sbe:SetTypeV1 a owl:Class ;
 fix_sbe:SimpleDataTypeV2 a owl:Class ;
     rdfs:label "SimpleDataTypeV2" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:value ],
-        [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty fix_sbe:value ],
+            owl:onProperty fix_sbe:description ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
+            owl:onProperty fix_sbe:value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
             owl:onProperty fix_sbe:description ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty fix_sbe:name ],
         [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty fix_sbe:description ],
+        [ a owl:Restriction ;
             owl:allValuesFrom fix_sbe:SymbolicName ;
             owl:onProperty fix_sbe:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty fix_sbe:value ],
         [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
             owl:onProperty fix_sbe:value ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
             owl:onProperty fix_sbe:name ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty fix_sbe:description ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty fix_sbe:description ],
         fix_sbe:PrimitiveTypeAttributesV2,
         fix_sbe:VersionAttributes ;
     skos:altLabel "simpleDataType" ;
@@ -807,47 +807,47 @@ fix_sbe:SimpleDataTypeV2 a owl:Class ;
 fix_sbe:TypesV2 a owl:Class ;
     rdfs:label "TypesV2" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty fix_sbe:set ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:description ],
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty fix_sbe:package ],
         [ a owl:Restriction ;
             owl:allValuesFrom fix_sbe:CompositeDataTypeV2 ;
             owl:onProperty fix_sbe:composite ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
+            owl:minCardinality 0 ;
             owl:onProperty fix_sbe:package ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty fix_sbe:composite ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty fix_sbe:package ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom fix_sbe:SetTypeV2 ;
             owl:onProperty fix_sbe:set ],
         [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty fix_sbe:description ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom fix_sbe:SimpleDataTypeV2 ;
-            owl:onProperty fix_sbe:type ],
-        [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty fix_sbe:package ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom fix_sbe:EnumTypeV2 ;
             owl:onProperty fix_sbe:enum ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty fix_sbe:description ],
         [ a owl:Restriction ;
+            owl:allValuesFrom fix_sbe:EnumTypeV2 ;
+            owl:onProperty fix_sbe:enum ],
+        [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty fix_sbe:type ],
         [ a owl:Restriction ;
+            owl:allValuesFrom fix_sbe:SetTypeV2 ;
+            owl:onProperty fix_sbe:set ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty fix_sbe:package ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom fix_sbe:SimpleDataTypeV2 ;
+            owl:onProperty fix_sbe:type ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty fix_sbe:description ],
+        [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty fix_sbe:enum ] ;
+            owl:onProperty fix_sbe:composite ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty fix_sbe:description ] ;
     skos:altLabel "types" ;
     skos:definition "More than one set of types may be provided. Names must be unique across all encoding types. Encoding types may appear in any order." ;
     skos:exactMatch sbe_v2:types,
@@ -863,32 +863,35 @@ fix_sbe:messages a owl:ObjectProperty ;
 fix_sbe:BlockTypeV1 a owl:Class ;
     rdfs:label "BlockTypeV1" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:name ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty fix_sbe:field ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty fix_sbe:group ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom fix_sbe:FieldTypeV1 ;
-            owl:onProperty fix_sbe:field ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:block_length ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:integer ;
-            owl:onProperty fix_sbe:block_length ],
-        [ a owl:Restriction ;
             owl:allValuesFrom fix_sbe:SymbolicName ;
             owl:onProperty fix_sbe:name ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:id ],
+            owl:onProperty fix_sbe:block_length ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom fix_sbe:FieldTypeV1 ;
+            owl:onProperty fix_sbe:field ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty fix_sbe:name ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty fix_sbe:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty fix_sbe:group ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
             owl:onProperty fix_sbe:id ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty fix_sbe:block_length ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:integer ;
+            owl:onProperty fix_sbe:block_length ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom fix_sbe:GroupTypeV1 ;
+            owl:onProperty fix_sbe:group ],
         [ a owl:Restriction ;
             owl:allValuesFrom xsd:integer ;
             owl:onProperty fix_sbe:id ],
@@ -896,17 +899,14 @@ fix_sbe:BlockTypeV1 a owl:Class ;
             owl:minCardinality 0 ;
             owl:onProperty fix_sbe:data ],
         [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty fix_sbe:field ],
+        [ a owl:Restriction ;
             owl:allValuesFrom fix_sbe:FieldTypeV1 ;
             owl:onProperty fix_sbe:data ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty fix_sbe:block_length ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty fix_sbe:name ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom fix_sbe:GroupTypeV1 ;
-            owl:onProperty fix_sbe:group ],
+            owl:maxCardinality 1 ;
+            owl:onProperty fix_sbe:id ],
         fix_sbe:SemanticAttributes,
         fix_sbe:VersionAttributes ;
     skos:altLabel "blockType" ;
@@ -919,50 +919,50 @@ fix_sbe:BlockTypeV1 a owl:Class ;
 fix_sbe:BlockTypeV2 a owl:Class ;
     rdfs:label "BlockTypeV2" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom xsd:integer ;
-            owl:onProperty fix_sbe:block_length ],
+            owl:maxCardinality 1 ;
+            owl:onProperty fix_sbe:id ],
         [ a owl:Restriction ;
             owl:allValuesFrom fix_sbe:GroupTypeV2 ;
             owl:onProperty fix_sbe:group ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty fix_sbe:field ],
-        [ a owl:Restriction ;
             owl:allValuesFrom fix_sbe:FieldTypeV2 ;
             owl:onProperty fix_sbe:data ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom fix_sbe:FieldTypeV2 ;
+            owl:onProperty fix_sbe:field ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty fix_sbe:block_length ],
         [ a owl:Restriction ;
             owl:allValuesFrom fix_sbe:SymbolicName ;
             owl:onProperty fix_sbe:name ],
         [ a owl:Restriction ;
-            owl:allValuesFrom fix_sbe:FieldTypeV2 ;
-            owl:onProperty fix_sbe:field ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty fix_sbe:id ],
+            owl:minCardinality 0 ;
+            owl:onProperty fix_sbe:data ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty fix_sbe:group ],
         [ a owl:Restriction ;
             owl:allValuesFrom xsd:integer ;
-            owl:onProperty fix_sbe:id ],
+            owl:onProperty fix_sbe:block_length ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
             owl:onProperty fix_sbe:name ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty fix_sbe:data ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty fix_sbe:block_length ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:block_length ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
+            owl:minCardinality 1 ;
             owl:onProperty fix_sbe:id ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty fix_sbe:field ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty fix_sbe:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty fix_sbe:block_length ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:integer ;
+            owl:onProperty fix_sbe:id ],
         fix_sbe:AlignmentAttributesV2,
         fix_sbe:SemanticAttributes,
         fix_sbe:VersionAttributes ;
@@ -976,31 +976,31 @@ fix_sbe:BlockTypeV2 a owl:Class ;
 fix_sbe:Choice a owl:Class ;
     rdfs:label "Choice" ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty fix_sbe:description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty fix_sbe:description ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty fix_sbe:value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty fix_sbe:value ],
+        [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty fix_sbe:value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty fix_sbe:description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom fix_sbe:SymbolicName ;
+            owl:onProperty fix_sbe:name ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
             owl:onProperty fix_sbe:name ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:description ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty fix_sbe:value ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:value ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty fix_sbe:description ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty fix_sbe:description ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:name ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom fix_sbe:SymbolicName ;
             owl:onProperty fix_sbe:name ],
         fix_sbe:VersionAttributes ;
     skos:altLabel "choice" ;
@@ -1015,38 +1015,23 @@ fix_sbe:Choice a owl:Class ;
 fix_sbe:CompositeDataTypeV2 a owl:Class ;
     rdfs:label "CompositeDataTypeV2" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom fix_sbe:SymbolicName ;
-            owl:onProperty fix_sbe:name ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty fix_sbe:value ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:value ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom fix_sbe:MemberDataTypeV2 ;
-            owl:onProperty fix_sbe:type ],
+            owl:allValuesFrom fix_sbe:CompositeDataTypeV2 ;
+            owl:onProperty fix_sbe:composite ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty fix_sbe:composite ],
+            owl:onProperty fix_sbe:enum ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty fix_sbe:name ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty fix_sbe:ref ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty fix_sbe:description ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:description ],
+            owl:onProperty fix_sbe:composite ],
         [ a owl:Restriction ;
             owl:allValuesFrom fix_sbe:SetTypeV2 ;
             owl:onProperty fix_sbe:set ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty fix_sbe:set ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom fix_sbe:CompositeDataTypeV2 ;
-            owl:onProperty fix_sbe:composite ],
         [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
             owl:onProperty fix_sbe:description ],
@@ -1054,23 +1039,38 @@ fix_sbe:CompositeDataTypeV2 a owl:Class ;
             owl:minCardinality 0 ;
             owl:onProperty fix_sbe:value ],
         [ a owl:Restriction ;
-            owl:allValuesFrom fix_sbe:EnumTypeV2 ;
-            owl:onProperty fix_sbe:enum ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
+            owl:allValuesFrom fix_sbe:SymbolicName ;
             owl:onProperty fix_sbe:name ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
             owl:onProperty fix_sbe:name ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty fix_sbe:enum ],
+            owl:maxCardinality 1 ;
+            owl:onProperty fix_sbe:description ],
         [ a owl:Restriction ;
             owl:allValuesFrom fix_sbe:RefTypeV2 ;
             owl:onProperty fix_sbe:ref ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
+            owl:onProperty fix_sbe:description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom fix_sbe:MemberDataTypeV2 ;
             owl:onProperty fix_sbe:type ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty fix_sbe:value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty fix_sbe:type ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom fix_sbe:EnumTypeV2 ;
+            owl:onProperty fix_sbe:enum ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty fix_sbe:set ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty fix_sbe:value ],
         fix_sbe:OffsetAttributesV2,
         fix_sbe:VersionAttributes ;
     skos:altLabel "compositeDataType" ;
@@ -1083,23 +1083,20 @@ fix_sbe:CompositeDataTypeV2 a owl:Class ;
 fix_sbe:EnumTypeV2 a owl:Class ;
     rdfs:label "EnumTypeV2" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty fix_sbe:description ],
-        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:value ],
+            owl:onProperty fix_sbe:encoding_type ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty fix_sbe:name ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:encoding_type ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty fix_sbe:encoding_type ],
-        [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty fix_sbe:value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty fix_sbe:value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty fix_sbe:description ],
         [ a owl:Restriction ;
             owl:allValuesFrom fix_sbe:SymbolicName ;
             owl:onProperty fix_sbe:encoding_type ],
@@ -1107,17 +1104,20 @@ fix_sbe:EnumTypeV2 a owl:Class ;
             owl:minCardinality 1 ;
             owl:onProperty fix_sbe:name ],
         [ a owl:Restriction ;
-            owl:allValuesFrom fix_sbe:ValidValue ;
-            owl:onProperty fix_sbe:valid_value ],
+            owl:minCardinality 1 ;
+            owl:onProperty fix_sbe:encoding_type ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:description ],
+            owl:onProperty fix_sbe:value ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
             owl:onProperty fix_sbe:valid_value ],
         [ a owl:Restriction ;
+            owl:allValuesFrom fix_sbe:ValidValue ;
+            owl:onProperty fix_sbe:valid_value ],
+        [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
-            owl:onProperty fix_sbe:value ],
+            owl:onProperty fix_sbe:description ],
         [ a owl:Restriction ;
             owl:allValuesFrom fix_sbe:SymbolicName ;
             owl:onProperty fix_sbe:name ],
@@ -1136,20 +1136,8 @@ fix_sbe:EnumTypeV2 a owl:Class ;
 fix_sbe:FieldTypeV1 a owl:Class ;
     rdfs:label "FieldTypeV1" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty fix_sbe:type ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty fix_sbe:id ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:epoch ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom fix_sbe:SymbolicName ;
-            owl:onProperty fix_sbe:type ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:id ],
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty fix_sbe:time_unit ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty fix_sbe:type ],
@@ -1157,29 +1145,41 @@ fix_sbe:FieldTypeV1 a owl:Class ;
             owl:minCardinality 1 ;
             owl:onProperty fix_sbe:name ],
         [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty fix_sbe:time_unit ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:name ],
-        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty fix_sbe:time_unit ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty fix_sbe:epoch ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty fix_sbe:time_unit ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom fix_sbe:SymbolicName ;
-            owl:onProperty fix_sbe:name ],
         [ a owl:Restriction ;
             owl:allValuesFrom xsd:integer ;
             owl:onProperty fix_sbe:id ],
         [ a owl:Restriction ;
+            owl:allValuesFrom fix_sbe:SymbolicName ;
+            owl:onProperty fix_sbe:name ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty fix_sbe:epoch ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty fix_sbe:id ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty fix_sbe:id ],
+        [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty fix_sbe:epoch ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty fix_sbe:type ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty fix_sbe:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty fix_sbe:epoch ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom fix_sbe:SymbolicName ;
+            owl:onProperty fix_sbe:type ],
         fix_sbe:AlignmentAttributesV1,
         fix_sbe:PresenceAttributesV1,
         fix_sbe:SemanticAttributes,
@@ -1194,29 +1194,20 @@ fix_sbe:FieldTypeV1 a owl:Class ;
 fix_sbe:FieldTypeV2 a owl:Class ;
     rdfs:label "FieldTypeV2" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom fix_sbe:SymbolicName ;
-            owl:onProperty fix_sbe:type ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty fix_sbe:type ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:type ],
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty fix_sbe:value ],
         [ a owl:Restriction ;
             owl:allValuesFrom xsd:integer ;
             owl:onProperty fix_sbe:id ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
-            owl:onProperty fix_sbe:name ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty fix_sbe:value ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:value ],
+            owl:onProperty fix_sbe:type ],
         [ a owl:Restriction ;
             owl:allValuesFrom fix_sbe:SymbolicName ;
-            owl:onProperty fix_sbe:name ],
+            owl:onProperty fix_sbe:type ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty fix_sbe:id ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty fix_sbe:value ],
@@ -1224,11 +1215,20 @@ fix_sbe:FieldTypeV2 a owl:Class ;
             owl:maxCardinality 1 ;
             owl:onProperty fix_sbe:name ],
         [ a owl:Restriction ;
+            owl:allValuesFrom fix_sbe:SymbolicName ;
+            owl:onProperty fix_sbe:name ],
+        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:id ],
+            owl:onProperty fix_sbe:value ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
             owl:onProperty fix_sbe:id ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty fix_sbe:type ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty fix_sbe:name ],
         fix_sbe:OffsetAttributesV2,
         fix_sbe:PresenceAttributesV2,
         fix_sbe:SemanticAttributes,
@@ -1243,19 +1243,19 @@ fix_sbe:FieldTypeV2 a owl:Class ;
 fix_sbe:PresenceAttributesV1 a owl:Class ;
     rdfs:label "PresenceAttributesV1" ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty fix_sbe:presence ],
+        [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty fix_sbe:presence ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty fix_sbe:value_ref ],
         [ a owl:Restriction ;
             owl:allValuesFrom fix_sbe:Presence ;
             owl:onProperty fix_sbe:presence ],
         [ a owl:Restriction ;
             owl:allValuesFrom fix_sbe:QualifiedName ;
-            owl:onProperty fix_sbe:value_ref ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:presence ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
             owl:onProperty fix_sbe:value_ref ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
@@ -1268,23 +1268,20 @@ fix_sbe:PresenceAttributesV1 a owl:Class ;
 fix_sbe:PresenceAttributesV2 a owl:Class ;
     rdfs:label "PresenceAttributesV2" ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty fix_sbe:null_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty fix_sbe:value_ref ],
+        [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
-            owl:onProperty fix_sbe:min_value ],
+            owl:onProperty fix_sbe:max_value ],
         [ a owl:Restriction ;
             owl:allValuesFrom fix_sbe:Presence ;
             owl:onProperty fix_sbe:presence ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty fix_sbe:null_value ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
             owl:onProperty fix_sbe:max_value ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:null_value ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:min_value ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty fix_sbe:presence ],
@@ -1295,20 +1292,23 @@ fix_sbe:PresenceAttributesV2 a owl:Class ;
             owl:minCardinality 0 ;
             owl:onProperty fix_sbe:min_value ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
+            owl:maxCardinality 1 ;
             owl:onProperty fix_sbe:max_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty fix_sbe:min_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty fix_sbe:min_value ],
         [ a owl:Restriction ;
             owl:allValuesFrom fix_sbe:QualifiedName ;
             owl:onProperty fix_sbe:value_ref ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:value_ref ],
+            owl:onProperty fix_sbe:null_value ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
+            owl:maxCardinality 1 ;
             owl:onProperty fix_sbe:value_ref ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty fix_sbe:max_value ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty fix_sbe:presence ] ;
@@ -1320,31 +1320,31 @@ fix_sbe:PresenceAttributesV2 a owl:Class ;
 fix_sbe:PrimitiveTypeAttributesV2 a owl:Class ;
     rdfs:label "PrimitiveTypeAttributesV2" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty fix_sbe:character_encoding ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:length ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:primitive_type ],
-        [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
             owl:onProperty fix_sbe:character_encoding ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:character_encoding ],
+            owl:onProperty fix_sbe:length ],
         [ a owl:Restriction ;
             owl:allValuesFrom xsd:integer ;
             owl:onProperty fix_sbe:length ],
         [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty fix_sbe:primitive_type ],
+        [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty fix_sbe:length ],
         [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty fix_sbe:primitive_type ],
+            owl:maxCardinality 1 ;
+            owl:onProperty fix_sbe:character_encoding ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty fix_sbe:character_encoding ],
         [ a owl:Restriction ;
             owl:allValuesFrom fix_sbe:PrimitiveTypeV2 ;
+            owl:onProperty fix_sbe:primitive_type ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
             owl:onProperty fix_sbe:primitive_type ] ;
     skos:altLabel "primitiveTypeAttributes" ;
     skos:exactMatch sbe_v2:primitiveTypeAttributes,
@@ -1354,38 +1354,8 @@ fix_sbe:PrimitiveTypeAttributesV2 a owl:Class ;
 fix_sbe:SetTypeV2 a owl:Class ;
     rdfs:label "SetTypeV2" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:value ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty fix_sbe:encoding_type ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:name ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty fix_sbe:description ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom fix_sbe:SymbolicName ;
-            owl:onProperty fix_sbe:name ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty fix_sbe:description ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty fix_sbe:value ],
-        [ a owl:Restriction ;
             owl:allValuesFrom fix_sbe:SymbolicName ;
             owl:onProperty fix_sbe:encoding_type ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty fix_sbe:choice ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty fix_sbe:name ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty fix_sbe:value ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty fix_sbe:description ],
@@ -1394,7 +1364,37 @@ fix_sbe:SetTypeV2 a owl:Class ;
             owl:onProperty fix_sbe:choice ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
+            owl:onProperty fix_sbe:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom fix_sbe:SymbolicName ;
+            owl:onProperty fix_sbe:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty fix_sbe:choice ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
             owl:onProperty fix_sbe:encoding_type ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty fix_sbe:value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty fix_sbe:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty fix_sbe:encoding_type ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty fix_sbe:description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty fix_sbe:value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty fix_sbe:description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty fix_sbe:value ],
         fix_sbe:OffsetAttributesV2,
         fix_sbe:VersionAttributes ;
     skos:altLabel "setType" ;
@@ -1407,7 +1407,7 @@ fix_sbe:SetTypeV2 a owl:Class ;
 fix_sbe:ValidValue a owl:Class ;
     rdfs:label "ValidValue" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
+            owl:minCardinality 0 ;
             owl:onProperty fix_sbe:value ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
@@ -1416,23 +1416,23 @@ fix_sbe:ValidValue a owl:Class ;
             owl:allValuesFrom fix_sbe:SymbolicName ;
             owl:onProperty fix_sbe:name ],
         [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty fix_sbe:name ],
-        [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
             owl:onProperty fix_sbe:description ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:name ],
+            owl:onProperty fix_sbe:value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty fix_sbe:value ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty fix_sbe:description ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:value ],
+            owl:onProperty fix_sbe:name ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty fix_sbe:value ],
+            owl:minCardinality 1 ;
+            owl:onProperty fix_sbe:name ],
         fix_sbe:VersionAttributes ;
     skos:altLabel "validValue" ;
     skos:closeMatch <https://w3id.org/lmodel/fix-orchestra/CodeType> ;
@@ -1566,8 +1566,11 @@ fix_sbe:AlignmentAttributesV1 a owl:Class ;
 fix_sbe:OffsetAttributesV2 a owl:Class ;
     rdfs:label "OffsetAttributesV2" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:minCardinality 0 ;
+            owl:allValuesFrom xsd:integer ;
             owl:onProperty fix_sbe:alignment ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty fix_sbe:offset ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty fix_sbe:alignment ],
@@ -1575,11 +1578,8 @@ fix_sbe:OffsetAttributesV2 a owl:Class ;
             owl:allValuesFrom xsd:integer ;
             owl:onProperty fix_sbe:offset ],
         [ a owl:Restriction ;
-            owl:allValuesFrom xsd:integer ;
-            owl:onProperty fix_sbe:alignment ],
-        [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty fix_sbe:offset ],
+            owl:onProperty fix_sbe:alignment ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty fix_sbe:offset ] ;
@@ -1592,21 +1592,21 @@ fix_sbe:SemanticAttributes a owl:Class ;
     rdfs:label "SemanticAttributes" ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
+            owl:onProperty fix_sbe:description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
             owl:onProperty fix_sbe:semantic_type ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty fix_sbe:description ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty fix_sbe:semantic_type ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty fix_sbe:description ],
         [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
-            owl:onProperty fix_sbe:description ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty fix_sbe:semantic_type ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty fix_sbe:description ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:description ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
             owl:onProperty fix_sbe:semantic_type ] ;
     skos:altLabel "semanticAttributes" ;
     skos:definition "Application layer class. Maps a field to a FIX data type or a template to a FIX message." ;
@@ -1658,14 +1658,14 @@ fix_sbe:package a owl:DatatypeProperty .
 fix_sbe:VersionAttributes a owl:Class ;
     rdfs:label "VersionAttributes" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty fix_sbe:deprecated ],
+            owl:maxCardinality 1 ;
+            owl:onProperty fix_sbe:since_version ],
         [ a owl:Restriction ;
             owl:allValuesFrom xsd:integer ;
             owl:onProperty fix_sbe:deprecated ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty fix_sbe:since_version ],
+            owl:minCardinality 0 ;
+            owl:onProperty fix_sbe:deprecated ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty fix_sbe:deprecated ],

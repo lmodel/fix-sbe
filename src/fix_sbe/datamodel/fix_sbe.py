@@ -1,5 +1,5 @@
 # Auto generated from fix_sbe.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-05-25T14:00:11
+# Generation date: 2026-05-25T19:08:30
 # Schema: fix_sbe
 #
 # id: https://w3id.org/lmodel/fix-sbe
