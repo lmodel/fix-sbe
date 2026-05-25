@@ -35,6 +35,7 @@ prefixes:
   schema: http://schema.org/
   dct: http://purl.org/dc/terms/
   sbe_v2: http://fixprotocol.io/2017/sbe/
+  fix_orchestra: https://w3id.org/lmodel/fix-orchestra/
 
 default_prefix: fix_sbe
 default_range: string
@@ -51,6 +52,8 @@ enums:
   PrimitiveTypeV2:
     description: Inline enumeration lifted from XSD attribute ``primitiveType`` on ``primitiveTypeAttributes``.
     enum_uri: fix_sbe:PrimitiveTypeV2
+    broad_mappings:
+    - fix_orchestra:Datatype
     in_subset:
     - sbe_v2_0
     permissible_values:
@@ -207,6 +210,8 @@ classes:
     class_uri: fix_sbe:BlockTypeV2
     exact_mappings:
     - sbe_v2:blockType
+    close_mappings:
+    - fix_orchestra:ComponentType
     aliases:
     - blockType
     in_subset:
@@ -271,6 +276,8 @@ classes:
     class_uri: fix_sbe:GroupTypeV2
     exact_mappings:
     - sbe_v2:groupType
+    close_mappings:
+    - fix_orchestra:ComponentType
     aliases:
     - groupType
     in_subset:
@@ -293,6 +300,8 @@ classes:
     class_uri: fix_sbe:SimpleDataTypeV2
     exact_mappings:
     - sbe_v2:simpleDataType
+    close_mappings:
+    - fix_orchestra:Datatype
     aliases:
     - simpleDataType
     in_subset:
@@ -326,6 +335,8 @@ classes:
     class_uri: fix_sbe:MemberDataTypeV2
     exact_mappings:
     - sbe_v2:memberDataType
+    narrow_mappings:
+    - fix_orchestra:Datatype
     aliases:
     - memberDataType
     in_subset:
@@ -358,6 +369,8 @@ classes:
     class_uri: fix_sbe:CompositeDataTypeV2
     exact_mappings:
     - sbe_v2:compositeDataType
+    close_mappings:
+    - fix_orchestra:Datatype
     aliases:
     - compositeDataType
     in_subset:
@@ -433,6 +446,8 @@ classes:
     class_uri: fix_sbe:EnumTypeV2
     exact_mappings:
     - sbe_v2:enumType
+    close_mappings:
+    - fix_orchestra:CodeSetType
     aliases:
     - enumType
     in_subset:
@@ -483,6 +498,8 @@ classes:
     class_uri: fix_sbe:RefTypeV2
     exact_mappings:
     - sbe_v2:refType
+    close_mappings:
+    - fix_orchestra:FieldRefType
     aliases:
     - refType
     in_subset:
@@ -521,6 +538,8 @@ classes:
     class_uri: fix_sbe:SetTypeV2
     exact_mappings:
     - sbe_v2:setType
+    close_mappings:
+    - fix_orchestra:CodeSetType
     aliases:
     - setType
     in_subset:
@@ -572,6 +591,7 @@ classes:
     class_uri: fix_sbe:FieldTypeV2
     exact_mappings:
     - sbe_v2:fieldType
+    - fix_orchestra:FieldType
     aliases:
     - fieldType
     in_subset:
@@ -608,6 +628,8 @@ classes:
     class_uri: fix_sbe:MessageSchemaV2
     exact_mappings:
     - sbe_v2:messageSchema
+    close_mappings:
+    - fix_orchestra:Repository
     aliases:
     - messageSchema
     in_subset:
@@ -694,6 +716,7 @@ classes:
     class_uri: fix_sbe:MessagesV2
     exact_mappings:
     - sbe_v2:messages
+    - fix_orchestra:Messages
     aliases:
     - messages
     in_subset:
@@ -727,6 +750,7 @@ classes:
     class_uri: fix_sbe:TypesV2
     exact_mappings:
     - sbe_v2:types
+    - fix_orchestra:Datatypes
     aliases:
     - types
     in_subset:

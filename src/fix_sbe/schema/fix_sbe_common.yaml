@@ -35,6 +35,7 @@ prefixes:
   dct: http://purl.org/dc/terms/
   sbe_v1: http://fixprotocol.io/2016/sbe/
   sbe_v2: http://fixprotocol.io/2017/sbe/
+  fix_orchestra: https://w3id.org/lmodel/fix-orchestra/
 
 default_prefix: fix_sbe
 default_range: string
@@ -87,6 +88,8 @@ enums:
       constant:
         description: Value does not vary so it need not be serialized on the wire
     enum_uri: fix_sbe:Presence
+    exact_mappings:
+    - fix_orchestra:Presence
     in_subset:
     - sbe_common
 
@@ -150,6 +153,8 @@ classes:
     exact_mappings:
     - sbe_v1:versionAttributes
     - sbe_v2:versionAttributes
+    close_mappings:
+    - fix_orchestra:EntityAttribGrp
     aliases:
     - versionAttributes
     in_subset:
@@ -182,6 +187,8 @@ classes:
     exact_mappings:
     - sbe_v1:validValue
     - sbe_v2:validValue
+    close_mappings:
+    - fix_orchestra:CodeType
     aliases:
     - validValue
     in_subset:
@@ -214,6 +221,8 @@ classes:
     exact_mappings:
     - sbe_v1:choice
     - sbe_v2:choice
+    close_mappings:
+    - fix_orchestra:CodeType
     aliases:
     - choice
     in_subset:

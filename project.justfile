@@ -27,7 +27,7 @@ apply-sssom-overlay:
 #   src/fix_sbe//schema/fix_sbe_common.yaml
 #   src/fix_sbe//schema/fix_sbe_v1_0.yaml
 #   src/fix_sbe//schema/fix_sbe_v2_0.yaml
-#   src/fix_sbe//schema/fix_simple_binary_encoding.yaml
+#   src/fix_sbe//schema/fix_sbe/.yaml
 [group('model development')]
 gen-linkml: && apply-sssom-overlay
   uv run python scripts/schema_to_linkml.py
