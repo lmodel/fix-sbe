@@ -51,7 +51,7 @@ _default: _status
 setup: _check-config _git-init install _git-add && _setup_part2
   git commit -m "Initialise git with minimal project" -a || true
 
-_setup_part2: gen-project gen-doc
+_setup_part2: gen-linkml gen-project gen-doc
   @echo
   @echo '=== Setup completed! ==='
   @echo 'Various model representations have been created under directory "project". By default'
@@ -85,7 +85,7 @@ deploy: site
 
 # Run all tests
 [group('model development')]
-test: _test-schema _test-python _test-examples
+test: _test-schema _test-python _test-examples _test-third-party
 
 # Run linting
 [group('model development')]
@@ -187,9 +187,9 @@ _update-linkml:
 _test-schema:
   uv run gen-project {{config_yaml}} -d tmp {{source_schema_path}}
 
-# Run Python unit tests with pytest
+# Run Python unit tests with pytest (test-third-party is handled separately for verbosity)
 _test-python: gen-python
-  uv run python -m pytest
+  uv run python -m pytest --ignore=tests/test_third_party.py
 
 # Run example tests
 _test-examples: _ensure_examples_output
