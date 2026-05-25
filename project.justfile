@@ -18,16 +18,16 @@ _test-third-party:
 [group('model development')]
 apply-sssom-overlay:
   uv run python scripts/apply_sssom_overlay.py \
-    --schema-dir src/fix_simple_binary_encoding/schema \
-    --mappings-dir src/fix_simple_binary_encoding/mappings
+    --schema-dir src/fix_sbe//schema \
+    --mappings-dir src/fix_sbe//mappings
 
 # Regenerate the LinkML schemas from the upstream SBE XSDs, then overlay the
 # curated SSSOM mappings. This is the canonical "rebuild the model" recipe;
 # run it whenever the XSDs or the SSSOM TSVs change. Outputs:
-#   src/fix_simple_binary_encoding/schema/fix_sbe_common.yaml
-#   src/fix_simple_binary_encoding/schema/fix_sbe_v1_0.yaml
-#   src/fix_simple_binary_encoding/schema/fix_sbe_v2_0.yaml
-#   src/fix_simple_binary_encoding/schema/fix_simple_binary_encoding.yaml
+#   src/fix_sbe//schema/fix_sbe_common.yaml
+#   src/fix_sbe//schema/fix_sbe_v1_0.yaml
+#   src/fix_sbe//schema/fix_sbe_v2_0.yaml
+#   src/fix_sbe//schema/fix_simple_binary_encoding.yaml
 [group('model development')]
 gen-linkml: && apply-sssom-overlay
   uv run python scripts/schema_to_linkml.py
