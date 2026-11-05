@@ -176,6 +176,21 @@ def _not_a_number(record):
     _member(_encoding(record, "price4"), "mantissa")["null_value"] = "none"
 
 
+def _null_not_a_float(record):
+    _member(_encoding(record, "price4"), "mantissa").update(
+        primitive_type="float", null_value="none"
+    )
+
+
+def _enum_on_a_composite(record):
+    _encoding(record, "sideEnum")["encoding_type"] = "price4"
+
+
+def _unknown_semantic_on_encoding(record):
+    _encoding(record, "idString")["semantic_type"] = "NoSuchDatatype"
+    _field(record, "ClientOrderId").pop("semantic_type", None)
+
+
 def _constant_outside_type(record):
     _member(_encoding(record, "price4"), "exponent")["element_value"] = "200"
 
@@ -475,6 +490,16 @@ COMMON = [
         [("ENC_price4/composite_members/0", "value-out-of-range")],
     ),
     (
+        "a null value is no floating-point number",
+        _null_not_a_float,
+        [("ENC_price4/composite_members/0", "value-out-of-range")],
+    ),
+    (
+        "an enum sits on a composite",
+        _enum_on_a_composite,
+        [("ENC_sideEnum", "unknown-encoding")],
+    ),
+    (
         "a constant does not fit",
         _constant_outside_type,
         [("ENC_price4/composite_members/1", "value-out-of-range")],
@@ -662,6 +687,11 @@ ONLY_V1 = [
         "a MonthYear encoding has no month",
         _own_month_without_month,
         [("ENC_expiry", "reserved-members")],
+    ),
+    (
+        "an encoding's semantic type is no FIX datatype",
+        _unknown_semantic_on_encoding,
+        [("ENC_idString", "unknown-semantic-type")],
     ),
     (
         "a field's semantic type differs from its encoding's",
