@@ -133,7 +133,8 @@ class _Schema:
 def _scalar_error(text: str, primitive: str) -> str | None:
     """Why a written value cannot be one value of a primitive type, if it cannot."""
     if primitive == "char":
-        return None if len(text) == 1 or text.isdigit() else "is not one character"
+        # FIX's documents write a char value as the character itself, never as its number.
+        return None if len(text) == 1 else "is not one character"
     if primitive in FLOATING:
         try:
             value = float(text)

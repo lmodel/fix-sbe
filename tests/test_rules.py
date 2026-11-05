@@ -144,6 +144,10 @@ def _value_outside_encoding(record):
     ] = "256"
 
 
+def _two_characters(record):
+    _encoding(record, "sideEnum")["valid_values"][0]["valid_value"] = "12"
+
+
 def _null_outside_type(record):
     _member(_encoding(record, "price4"), "mantissa")["null_value"] = "4294967296"
 
@@ -423,6 +427,11 @@ COMMON = [
         "a valid value does not fit",
         _value_outside_encoding,
         [("ENC_quotedPrice/composite_members/1/valid_values/0", "value-out-of-range")],
+    ),
+    (
+        "a char value has two characters",
+        _two_characters,
+        [("ENC_sideEnum/valid_values/0", "value-out-of-range")],
     ),
     (
         "a null value does not fit",
