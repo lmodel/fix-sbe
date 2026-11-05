@@ -85,7 +85,7 @@ def test_the_xsds_state_the_editions_they_hold():
 
 
 def test_the_notice_carries_what_the_licences_ask():
-    """CC BY-AND asks for attribution and a link to the licence, and Apache-2.0 for its notice,
+    """CC BY-ND asks for attribution and a link to the licence, and Apache-2.0 for its notice,
     and FIX's marks stay FIX's."""
     notice = (ROOT / "NOTICE").read_text(encoding="utf-8")
     for needed in (
