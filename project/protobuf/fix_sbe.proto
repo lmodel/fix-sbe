@@ -3,7 +3,7 @@ package fix_sbe;
 // metamodel_version: 1.12.0
 // version: 1.0 and 2.0-rc3
 // The body shared by a message and a group entry, which holds its fixed-length fields first, then groups, then variable-length data.
-message SbeBlockV1 {
+message SbeBlockV1Mixin {
   // What the schema calls this element.
   string symbolic_name = 1;
   // The number that identifies this element.
@@ -20,13 +20,9 @@ message SbeBlockV1 {
   repeated SbeGroupV1 repeating_groups = 7;
   // Variable-length fields, listed in wire order.
   repeated SbeFieldV1 var_data_fields = 8;
-  // The schema version that added this element.
-  int32 since_version = 9;
-  // The schema version that retired this element, which stays only for older applications.
-  int32 deprecated_since = 10;
 }
 // The body shared by a message and a group entry, which holds its fixed-length fields first, then groups, then variable-length data.
-message SbeBlockV2 {
+message SbeBlockV2Mixin {
   // What the schema calls this element.
   string symbolic_name = 1;
   // The number that identifies this element.
@@ -45,10 +41,6 @@ message SbeBlockV2 {
   repeated SbeGroupV2 repeating_groups = 8;
   // Variable-length fields, listed in wire order.
   repeated SbeFieldV2 var_data_fields = 9;
-  // The schema version that added this element.
-  int32 since_version = 10;
-  // The schema version that retired this element, which stays only for older applications.
-  int32 deprecated_since = 11;
 }
 // One of the alternatives of a set, which is one bit of its encoding.
 message SbeChoice {
@@ -247,55 +239,55 @@ message SbeFieldV2 {
 }
 // A repeating group, whose entries each hold the same fields, and which cannot be without a field.
 message SbeGroupV1 {
-  // What the schema calls this element.
-  string symbolic_name = 1;
-  // The number that identifies this element.
-  int32 sbe_id = 2;
-  // The octets set aside for a message's fixed-length fields, or for those of each group entry.
-  int32 block_length = 3;
-  // What this element means at the FIX application layer.
-  string semantic_type = 4;
-  // Free text about this element, for the people who read the schema.
-  string description = 5;
-  // Repeating groups, listed in wire order.
-  repeated SbeGroupV1 repeating_groups = 6;
-  // Variable-length fields, listed in wire order.
-  repeated SbeFieldV1 var_data_fields = 7;
-  // The schema version that added this element.
-  int32 since_version = 8;
-  // The schema version that retired this element, which stays only for older applications.
-  int32 deprecated_since = 9;
   // The composite, by name, that sends a repeating group's entry count and entry size.
-  string dimension_type = 10;
+  string dimension_type = 1;
   // Fixed-length fields, listed in wire order.
-  repeated SbeFieldV1 block_fields = 11;
+  repeated SbeFieldV1 block_fields = 2;
+  // The schema version that added this element.
+  int32 since_version = 3;
+  // The schema version that retired this element, which stays only for older applications.
+  int32 deprecated_since = 4;
+  // What the schema calls this element.
+  string symbolic_name = 5;
+  // The number that identifies this element.
+  int32 sbe_id = 6;
+  // The octets set aside for a message's fixed-length fields, or for those of each group entry.
+  int32 block_length = 7;
+  // What this element means at the FIX application layer.
+  string semantic_type = 8;
+  // Free text about this element, for the people who read the schema.
+  string description = 9;
+  // Repeating groups, listed in wire order.
+  repeated SbeGroupV1 repeating_groups = 10;
+  // Variable-length fields, listed in wire order.
+  repeated SbeFieldV1 var_data_fields = 11;
 }
 // A repeating group, whose entries each hold the same fields, and which cannot be without a field.
 message SbeGroupV2 {
-  // What the schema calls this element.
-  string symbolic_name = 1;
-  // The number that identifies this element.
-  int32 sbe_id = 2;
-  // The octets set aside for a message's fixed-length fields, or for those of each group entry.
-  int32 block_length = 3;
-  // The multiple of octets where a message or each group entry begins.
-  int32 alignment = 4;
-  // What this element means at the FIX application layer.
-  string semantic_type = 5;
-  // Free text about this element, for the people who read the schema.
-  string description = 6;
-  // Repeating groups, listed in wire order.
-  repeated SbeGroupV2 repeating_groups = 7;
-  // Variable-length fields, listed in wire order.
-  repeated SbeFieldV2 var_data_fields = 8;
-  // The schema version that added this element.
-  int32 since_version = 9;
-  // The schema version that retired this element, which stays only for older applications.
-  int32 deprecated_since = 10;
   // The composite, by name, that sends a repeating group's entry count and entry size.
-  string dimension_type = 11;
+  string dimension_type = 1;
   // Fixed-length fields, listed in wire order.
-  repeated SbeFieldV2 block_fields = 12;
+  repeated SbeFieldV2 block_fields = 2;
+  // The schema version that added this element.
+  int32 since_version = 3;
+  // The schema version that retired this element, which stays only for older applications.
+  int32 deprecated_since = 4;
+  // What the schema calls this element.
+  string symbolic_name = 5;
+  // The number that identifies this element.
+  int32 sbe_id = 6;
+  // The octets set aside for a message's fixed-length fields, or for those of each group entry.
+  int32 block_length = 7;
+  // The multiple of octets where a message or each group entry begins.
+  int32 alignment = 8;
+  // What this element means at the FIX application layer.
+  string semantic_type = 9;
+  // Free text about this element, for the people who read the schema.
+  string description = 10;
+  // Repeating groups, listed in wire order.
+  repeated SbeGroupV2 repeating_groups = 11;
+  // Variable-length fields, listed in wire order.
+  repeated SbeFieldV2 var_data_fields = 12;
 }
 // A simple encoding inside a composite, which may say it is optional or constant.
 message SbeMemberTypeV2 {
@@ -409,51 +401,51 @@ message SbeMessageSetV2 {
 }
 // A message template, whose number and block length are sent in each message's header.
 message SbeMessageV1 {
-  // What the schema calls this element.
-  string symbolic_name = 1;
-  // The octets set aside for a message's fixed-length fields, or for those of each group entry.
-  int32 block_length = 2;
-  // Free text about this element, for the people who read the schema.
-  string description = 3;
-  // Fixed-length fields, listed in wire order.
-  repeated SbeFieldV1 block_fields = 4;
-  // Repeating groups, listed in wire order.
-  repeated SbeGroupV1 repeating_groups = 5;
-  // Variable-length fields, listed in wire order.
-  repeated SbeFieldV1 var_data_fields = 6;
-  // The schema version that added this element.
-  int32 since_version = 7;
-  // The schema version that retired this element, which stays only for older applications.
-  int32 deprecated_since = 8;
   // The template's number, which no other template in the schema shares.
-  int32 sbe_id = 9;
+  int32 sbe_id = 1;
   // The FIX MsgType(35) this template stands for, where several templates may share one.
-  string semantic_type = 10;
+  string semantic_type = 2;
+  // The schema version that added this element.
+  int32 since_version = 3;
+  // The schema version that retired this element, which stays only for older applications.
+  int32 deprecated_since = 4;
+  // What the schema calls this element.
+  string symbolic_name = 5;
+  // The octets set aside for a message's fixed-length fields, or for those of each group entry.
+  int32 block_length = 6;
+  // Free text about this element, for the people who read the schema.
+  string description = 7;
+  // Fixed-length fields, listed in wire order.
+  repeated SbeFieldV1 block_fields = 8;
+  // Repeating groups, listed in wire order.
+  repeated SbeGroupV1 repeating_groups = 9;
+  // Variable-length fields, listed in wire order.
+  repeated SbeFieldV1 var_data_fields = 10;
 }
 // A message template, whose number and block length are sent in each message's header.
 message SbeMessageV2 {
-  // What the schema calls this element.
-  string symbolic_name = 1;
-  // The octets set aside for a message's fixed-length fields, or for those of each group entry.
-  int32 block_length = 2;
-  // The multiple of octets where a message or each group entry begins.
-  int32 alignment = 3;
-  // Free text about this element, for the people who read the schema.
-  string description = 4;
-  // Fixed-length fields, listed in wire order.
-  repeated SbeFieldV2 block_fields = 5;
-  // Repeating groups, listed in wire order.
-  repeated SbeGroupV2 repeating_groups = 6;
-  // Variable-length fields, listed in wire order.
-  repeated SbeFieldV2 var_data_fields = 7;
-  // The schema version that added this element.
-  int32 since_version = 8;
-  // The schema version that retired this element, which stays only for older applications.
-  int32 deprecated_since = 9;
   // The template's number, which no other template in the schema shares.
-  int32 sbe_id = 10;
+  int32 sbe_id = 1;
   // The FIX MsgType(35) this template stands for, where several templates may share one.
-  string semantic_type = 11;
+  string semantic_type = 2;
+  // The schema version that added this element.
+  int32 since_version = 3;
+  // The schema version that retired this element, which stays only for older applications.
+  int32 deprecated_since = 4;
+  // What the schema calls this element.
+  string symbolic_name = 5;
+  // The octets set aside for a message's fixed-length fields, or for those of each group entry.
+  int32 block_length = 6;
+  // The multiple of octets where a message or each group entry begins.
+  int32 alignment = 7;
+  // Free text about this element, for the people who read the schema.
+  string description = 8;
+  // Fixed-length fields, listed in wire order.
+  repeated SbeFieldV2 block_fields = 9;
+  // Repeating groups, listed in wire order.
+  repeated SbeGroupV2 repeating_groups = 10;
+  // Variable-length fields, listed in wire order.
+  repeated SbeFieldV2 var_data_fields = 11;
 }
 // A composite's member that reuses an encoding defined elsewhere in the schema.
 message SbeRefV1 {

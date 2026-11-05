@@ -51,36 +51,22 @@ linkml:Sparqlpath xsd:string
 
 <SbeToken> xsd:token
 
-<SbeBlockV1>  (
-    @<SbeGroupV1> OR @<SbeMessageV1>
-)
-
-<SbeBlockV1_struct> {
-    (  $<SbeBlockV1_tes> (  &<SbeVersionedMixin_tes> ;
-          rdf:type [ <SbeVersionedMixin> ] ? ;
-          <symbolic_name> @<SbeSymbolicName> ;
+<SbeBlockV1Mixin> {
+    (  $<SbeBlockV1Mixin_tes> (  <symbolic_name> @<SbeSymbolicName> ;
           <sbe_id> @linkml:Integer ;
           <block_length> @linkml:Integer ? ;
           <semantic_type> @<SbeToken> ? ;
           schema1:description @linkml:String ? ;
           <block_fields> @<SbeFieldV1> * ;
           <repeating_groups> @<SbeGroupV1> * ;
-          <var_data_fields> @<SbeFieldV1> * ;
-          <since_version> @linkml:Integer ? ;
-          <deprecated_since> @linkml:Integer ?
+          <var_data_fields> @<SbeFieldV1> *
        ) ;
-       rdf:type [ <SbeBlockV1> ] ?
+       rdf:type [ <SbeBlockV1Mixin> ] ?
     )
 }
 
-<SbeBlockV2>  (
-    @<SbeGroupV2> OR @<SbeMessageV2>
-)
-
-<SbeBlockV2_struct> {
-    (  $<SbeBlockV2_tes> (  &<SbeVersionedMixin_tes> ;
-          rdf:type [ <SbeVersionedMixin> ] ? ;
-          <symbolic_name> @<SbeSymbolicName> ;
+<SbeBlockV2Mixin> {
+    (  $<SbeBlockV2Mixin_tes> (  <symbolic_name> @<SbeSymbolicName> ;
           <sbe_id> @linkml:Integer ;
           <block_length> @linkml:Integer ? ;
           <alignment> @linkml:Integer ? ;
@@ -88,11 +74,9 @@ linkml:Sparqlpath xsd:string
           schema1:description @linkml:String ? ;
           <block_fields> @<SbeFieldV2> * ;
           <repeating_groups> @<SbeGroupV2> * ;
-          <var_data_fields> @<SbeFieldV2> * ;
-          <since_version> @linkml:Integer ? ;
-          <deprecated_since> @linkml:Integer ?
+          <var_data_fields> @<SbeFieldV2> *
        ) ;
-       rdf:type [ <SbeBlockV2> ] ?
+       rdf:type [ <SbeBlockV2Mixin> ] ?
     )
 }
 
@@ -244,20 +228,43 @@ linkml:Sparqlpath xsd:string
 }
 
 <SbeGroupV1> CLOSED {
-    (  $<SbeGroupV1_tes> (  &<SbeBlockV1_tes> ;
-          rdf:type [ <SbeBlockV1> ] ? ;
+    (  $<SbeGroupV1_tes> (  &<SbeVersionedMixin_tes> ;
+          rdf:type [ <SbeVersionedMixin> ] ? ;
+          &<SbeBlockV1Mixin_tes> ;
+          rdf:type [ <SbeBlockV1Mixin> ] ? ;
           <dimension_type> @<SbeSymbolicName> ? ;
-          <block_fields> @<SbeFieldV1> +
+          <block_fields> @<SbeFieldV1> + ;
+          <since_version> @linkml:Integer ? ;
+          <deprecated_since> @linkml:Integer ? ;
+          <symbolic_name> @<SbeSymbolicName> ;
+          <sbe_id> @linkml:Integer ;
+          <block_length> @linkml:Integer ? ;
+          <semantic_type> @<SbeToken> ? ;
+          schema1:description @linkml:String ? ;
+          <repeating_groups> @<SbeGroupV1> * ;
+          <var_data_fields> @<SbeFieldV1> *
        ) ;
        rdf:type [ <SbeGroupV1> ] ?
     )
 }
 
 <SbeGroupV2> CLOSED {
-    (  $<SbeGroupV2_tes> (  &<SbeBlockV2_tes> ;
-          rdf:type [ <SbeBlockV2> ] ? ;
+    (  $<SbeGroupV2_tes> (  &<SbeVersionedMixin_tes> ;
+          rdf:type [ <SbeVersionedMixin> ] ? ;
+          &<SbeBlockV2Mixin_tes> ;
+          rdf:type [ <SbeBlockV2Mixin> ] ? ;
           <dimension_type> @<SbeSymbolicName> ? ;
-          <block_fields> @<SbeFieldV2> +
+          <block_fields> @<SbeFieldV2> + ;
+          <since_version> @linkml:Integer ? ;
+          <deprecated_since> @linkml:Integer ? ;
+          <symbolic_name> @<SbeSymbolicName> ;
+          <sbe_id> @linkml:Integer ;
+          <block_length> @linkml:Integer ? ;
+          <alignment> @linkml:Integer ? ;
+          <semantic_type> @<SbeToken> ? ;
+          schema1:description @linkml:String ? ;
+          <repeating_groups> @<SbeGroupV2> * ;
+          <var_data_fields> @<SbeFieldV2> *
        ) ;
        rdf:type [ <SbeGroupV2> ] ?
     )
@@ -360,20 +367,41 @@ linkml:Sparqlpath xsd:string
 }
 
 <SbeMessageV1> CLOSED {
-    (  $<SbeMessageV1_tes> (  &<SbeBlockV1_tes> ;
-          rdf:type [ <SbeBlockV1> ] ? ;
+    (  $<SbeMessageV1_tes> (  &<SbeVersionedMixin_tes> ;
+          rdf:type [ <SbeVersionedMixin> ] ? ;
+          &<SbeBlockV1Mixin_tes> ;
+          rdf:type [ <SbeBlockV1Mixin> ] ? ;
           <sbe_id> @linkml:Integer ;
-          <semantic_type> @<SbeToken> ?
+          <semantic_type> @<SbeToken> ? ;
+          <since_version> @linkml:Integer ? ;
+          <deprecated_since> @linkml:Integer ? ;
+          <symbolic_name> @<SbeSymbolicName> ;
+          <block_length> @linkml:Integer ? ;
+          schema1:description @linkml:String ? ;
+          <block_fields> @<SbeFieldV1> * ;
+          <repeating_groups> @<SbeGroupV1> * ;
+          <var_data_fields> @<SbeFieldV1> *
        ) ;
        rdf:type [ <SbeMessageV1> ] ?
     )
 }
 
 <SbeMessageV2> CLOSED {
-    (  $<SbeMessageV2_tes> (  &<SbeBlockV2_tes> ;
-          rdf:type [ <SbeBlockV2> ] ? ;
+    (  $<SbeMessageV2_tes> (  &<SbeVersionedMixin_tes> ;
+          rdf:type [ <SbeVersionedMixin> ] ? ;
+          &<SbeBlockV2Mixin_tes> ;
+          rdf:type [ <SbeBlockV2Mixin> ] ? ;
           <sbe_id> @linkml:Integer ;
-          <semantic_type> @<SbeToken> ?
+          <semantic_type> @<SbeToken> ? ;
+          <since_version> @linkml:Integer ? ;
+          <deprecated_since> @linkml:Integer ? ;
+          <symbolic_name> @<SbeSymbolicName> ;
+          <block_length> @linkml:Integer ? ;
+          <alignment> @linkml:Integer ? ;
+          schema1:description @linkml:String ? ;
+          <block_fields> @<SbeFieldV2> * ;
+          <repeating_groups> @<SbeGroupV2> * ;
+          <var_data_fields> @<SbeFieldV2> *
        ) ;
        rdf:type [ <SbeMessageV2> ] ?
     )

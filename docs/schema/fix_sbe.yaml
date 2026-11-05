@@ -534,10 +534,10 @@ slots:
     - SbeValidValue
     - SbeChoice
     - SbeMemberV1
-    - SbeBlockV1
+    - SbeBlockV1Mixin
     - SbeFieldV1
     - SbeElementV2
-    - SbeBlockV2
+    - SbeBlockV2Mixin
     - SbeFieldV2
     range: SbeSymbolicName
     required: true
@@ -557,10 +557,10 @@ slots:
     owner: SbeFieldV2
     domain_of:
     - SbeMessageSchemaV1
-    - SbeBlockV1
+    - SbeBlockV1Mixin
     - SbeFieldV1
     - SbeMessageSchemaV2
-    - SbeBlockV2
+    - SbeBlockV2Mixin
     - SbeFieldV2
     range: integer
     minimum_value: 0
@@ -581,13 +581,13 @@ slots:
     - SbeChoice
     - SbeMessageSchemaV1
     - SbeEncodingV1
-    - SbeBlockV1
+    - SbeBlockV1Mixin
     - SbeFieldV1
     - SbeMessageSchemaV2
     - SbeEncodingSetV2
     - SbeMessageSetV2
     - SbeElementV2
-    - SbeBlockV2
+    - SbeBlockV2Mixin
     - SbeFieldV2
     range: string
   semantic_type:
@@ -605,9 +605,9 @@ slots:
     owner: SbeFieldV2
     domain_of:
     - SbeEncodingV1
-    - SbeBlockV1
+    - SbeBlockV1Mixin
     - SbeFieldV1
-    - SbeBlockV2
+    - SbeBlockV2Mixin
     - SbeFieldV2
     range: SbeToken
     pattern: ^\S+( \S+)*$
@@ -880,10 +880,10 @@ slots:
     aliases:
     - blockLength
     slot_uri: fix_sbe:block_length
-    owner: SbeBlockV2
+    owner: SbeBlockV2Mixin
     domain_of:
-    - SbeBlockV1
-    - SbeBlockV2
+    - SbeBlockV1Mixin
+    - SbeBlockV2Mixin
     range: integer
     minimum_value: 0
   dimension_type:
@@ -1141,10 +1141,10 @@ slots:
     aliases:
     - field
     slot_uri: fix_sbe:block_fields
-    owner: SbeBlockV2
+    owner: SbeBlockV2Mixin
     domain_of:
-    - SbeBlockV1
-    - SbeBlockV2
+    - SbeBlockV1Mixin
+    - SbeBlockV2Mixin
     range: string
     multivalued: true
     inlined_as_list: true
@@ -1156,10 +1156,10 @@ slots:
     aliases:
     - group
     slot_uri: fix_sbe:repeating_groups
-    owner: SbeBlockV2
+    owner: SbeBlockV2Mixin
     domain_of:
-    - SbeBlockV1
-    - SbeBlockV2
+    - SbeBlockV1Mixin
+    - SbeBlockV2Mixin
     range: string
     multivalued: true
     inlined_as_list: true
@@ -1171,10 +1171,10 @@ slots:
     aliases:
     - data
     slot_uri: fix_sbe:var_data_fields
-    owner: SbeBlockV2
+    owner: SbeBlockV2Mixin
     domain_of:
-    - SbeBlockV1
-    - SbeBlockV2
+    - SbeBlockV1Mixin
+    - SbeBlockV2Mixin
     range: string
     multivalued: true
     inlined_as_list: true
@@ -1196,7 +1196,7 @@ slots:
     owner: SbeFieldV2
     domain_of:
     - SbeMemberV2
-    - SbeBlockV2
+    - SbeBlockV2Mixin
     - SbeFieldV2
     range: integer
     minimum_value: 1
@@ -1430,8 +1430,8 @@ slots:
     inlined: true
     inlined_as_list: true
     minimum_cardinality: 1
-  SbeBlockV1_sbe_id:
-    name: SbeBlockV1_sbe_id
+  SbeBlockV1Mixin_sbe_id:
+    name: SbeBlockV1Mixin_sbe_id
     definition_uri: https://w3id.org/lmodel/fix-sbe/sbe_id
     annotations:
       xsd_type:
@@ -1442,72 +1442,72 @@ slots:
     aliases:
     - id
     is_a: sbe_id
-    domain: SbeBlockV1
+    domain: SbeBlockV1Mixin
     slot_uri: fix_sbe:sbe_id
     alias: sbe_id
-    owner: SbeBlockV1
+    owner: SbeBlockV1Mixin
     domain_of:
-    - SbeBlockV1
+    - SbeBlockV1Mixin
     is_usage_slot: true
     usage_slot_name: sbe_id
     range: integer
     required: true
     minimum_value: 0
     maximum_value: 65535
-  SbeBlockV1_block_fields:
-    name: SbeBlockV1_block_fields
+  SbeBlockV1Mixin_block_fields:
+    name: SbeBlockV1Mixin_block_fields
     definition_uri: https://w3id.org/lmodel/fix-sbe/block_fields
     description: Fixed-length fields, listed in wire order.
     from_schema: https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common
     aliases:
     - field
     is_a: block_fields
-    domain: SbeBlockV1
+    domain: SbeBlockV1Mixin
     slot_uri: fix_sbe:block_fields
     alias: block_fields
-    owner: SbeBlockV1
+    owner: SbeBlockV1Mixin
     domain_of:
-    - SbeBlockV1
+    - SbeBlockV1Mixin
     is_usage_slot: true
     usage_slot_name: block_fields
     range: SbeFieldV1
     multivalued: true
     inlined: true
     inlined_as_list: true
-  SbeBlockV1_repeating_groups:
-    name: SbeBlockV1_repeating_groups
+  SbeBlockV1Mixin_repeating_groups:
+    name: SbeBlockV1Mixin_repeating_groups
     definition_uri: https://w3id.org/lmodel/fix-sbe/repeating_groups
     description: Repeating groups, listed in wire order.
     from_schema: https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common
     aliases:
     - group
     is_a: repeating_groups
-    domain: SbeBlockV1
+    domain: SbeBlockV1Mixin
     slot_uri: fix_sbe:repeating_groups
     alias: repeating_groups
-    owner: SbeBlockV1
+    owner: SbeBlockV1Mixin
     domain_of:
-    - SbeBlockV1
+    - SbeBlockV1Mixin
     is_usage_slot: true
     usage_slot_name: repeating_groups
     range: SbeGroupV1
     multivalued: true
     inlined: true
     inlined_as_list: true
-  SbeBlockV1_var_data_fields:
-    name: SbeBlockV1_var_data_fields
+  SbeBlockV1Mixin_var_data_fields:
+    name: SbeBlockV1Mixin_var_data_fields
     definition_uri: https://w3id.org/lmodel/fix-sbe/var_data_fields
     description: Variable-length fields, listed in wire order.
     from_schema: https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common
     aliases:
     - data
     is_a: var_data_fields
-    domain: SbeBlockV1
+    domain: SbeBlockV1Mixin
     slot_uri: fix_sbe:var_data_fields
     alias: var_data_fields
-    owner: SbeBlockV1
+    owner: SbeBlockV1Mixin
     domain_of:
-    - SbeBlockV1
+    - SbeBlockV1Mixin
     is_usage_slot: true
     usage_slot_name: var_data_fields
     range: SbeFieldV1
@@ -1525,7 +1525,7 @@ slots:
     from_schema: https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common
     aliases:
     - id
-    is_a: SbeBlockV1_sbe_id
+    is_a: SbeBlockV1Mixin_sbe_id
     domain: SbeMessageV1
     slot_uri: fix_sbe:sbe_id
     alias: sbe_id
@@ -1568,7 +1568,7 @@ slots:
     from_schema: https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common
     aliases:
     - field
-    is_a: SbeBlockV1_block_fields
+    is_a: SbeBlockV1Mixin_block_fields
     domain: SbeGroupV1
     slot_uri: fix_sbe:block_fields
     alias: block_fields
@@ -1812,8 +1812,8 @@ slots:
     inlined: true
     inlined_as_list: true
     minimum_cardinality: 1
-  SbeBlockV2_sbe_id:
-    name: SbeBlockV2_sbe_id
+  SbeBlockV2Mixin_sbe_id:
+    name: SbeBlockV2Mixin_sbe_id
     definition_uri: https://w3id.org/lmodel/fix-sbe/sbe_id
     annotations:
       xsd_type:
@@ -1824,20 +1824,20 @@ slots:
     aliases:
     - id
     is_a: sbe_id
-    domain: SbeBlockV2
+    domain: SbeBlockV2Mixin
     slot_uri: fix_sbe:sbe_id
     alias: sbe_id
-    owner: SbeBlockV2
+    owner: SbeBlockV2Mixin
     domain_of:
-    - SbeBlockV2
+    - SbeBlockV2Mixin
     is_usage_slot: true
     usage_slot_name: sbe_id
     range: integer
     required: true
     minimum_value: 0
     maximum_value: 65535
-  SbeBlockV2_alignment:
-    name: SbeBlockV2_alignment
+  SbeBlockV2Mixin_alignment:
+    name: SbeBlockV2Mixin_alignment
     definition_uri: https://w3id.org/lmodel/fix-sbe/alignment
     annotations:
       xsd_type:
@@ -1851,70 +1851,70 @@ slots:
     aliases:
     - alignment
     is_a: alignment
-    domain: SbeBlockV2
+    domain: SbeBlockV2Mixin
     slot_uri: fix_sbe:alignment
     alias: alignment
-    owner: SbeBlockV2
+    owner: SbeBlockV2Mixin
     domain_of:
-    - SbeBlockV2
+    - SbeBlockV2Mixin
     is_usage_slot: true
     usage_slot_name: alignment
     range: integer
     minimum_value: 1
-  SbeBlockV2_block_fields:
-    name: SbeBlockV2_block_fields
+  SbeBlockV2Mixin_block_fields:
+    name: SbeBlockV2Mixin_block_fields
     definition_uri: https://w3id.org/lmodel/fix-sbe/block_fields
     description: Fixed-length fields, listed in wire order.
     from_schema: https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common
     aliases:
     - field
     is_a: block_fields
-    domain: SbeBlockV2
+    domain: SbeBlockV2Mixin
     slot_uri: fix_sbe:block_fields
     alias: block_fields
-    owner: SbeBlockV2
+    owner: SbeBlockV2Mixin
     domain_of:
-    - SbeBlockV2
+    - SbeBlockV2Mixin
     is_usage_slot: true
     usage_slot_name: block_fields
     range: SbeFieldV2
     multivalued: true
     inlined: true
     inlined_as_list: true
-  SbeBlockV2_repeating_groups:
-    name: SbeBlockV2_repeating_groups
+  SbeBlockV2Mixin_repeating_groups:
+    name: SbeBlockV2Mixin_repeating_groups
     definition_uri: https://w3id.org/lmodel/fix-sbe/repeating_groups
     description: Repeating groups, listed in wire order.
     from_schema: https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common
     aliases:
     - group
     is_a: repeating_groups
-    domain: SbeBlockV2
+    domain: SbeBlockV2Mixin
     slot_uri: fix_sbe:repeating_groups
     alias: repeating_groups
-    owner: SbeBlockV2
+    owner: SbeBlockV2Mixin
     domain_of:
-    - SbeBlockV2
+    - SbeBlockV2Mixin
     is_usage_slot: true
     usage_slot_name: repeating_groups
     range: SbeGroupV2
     multivalued: true
     inlined: true
     inlined_as_list: true
-  SbeBlockV2_var_data_fields:
-    name: SbeBlockV2_var_data_fields
+  SbeBlockV2Mixin_var_data_fields:
+    name: SbeBlockV2Mixin_var_data_fields
     definition_uri: https://w3id.org/lmodel/fix-sbe/var_data_fields
     description: Variable-length fields, listed in wire order.
     from_schema: https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common
     aliases:
     - data
     is_a: var_data_fields
-    domain: SbeBlockV2
+    domain: SbeBlockV2Mixin
     slot_uri: fix_sbe:var_data_fields
     alias: var_data_fields
-    owner: SbeBlockV2
+    owner: SbeBlockV2Mixin
     domain_of:
-    - SbeBlockV2
+    - SbeBlockV2Mixin
     is_usage_slot: true
     usage_slot_name: var_data_fields
     range: SbeFieldV2
@@ -1932,7 +1932,7 @@ slots:
     from_schema: https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common
     aliases:
     - id
-    is_a: SbeBlockV2_sbe_id
+    is_a: SbeBlockV2Mixin_sbe_id
     domain: SbeMessageV2
     slot_uri: fix_sbe:sbe_id
     alias: sbe_id
@@ -1975,7 +1975,7 @@ slots:
     from_schema: https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common
     aliases:
     - field
-    is_a: SbeBlockV2_block_fields
+    is_a: SbeBlockV2Mixin_block_fields
     domain: SbeGroupV2
     slot_uri: fix_sbe:block_fields
     alias: block_fields
@@ -2464,26 +2464,22 @@ classes:
     - encoding_type
     - choices
     class_uri: fix_sbe:SbeSetV1
-  SbeBlockV1:
-    name: SbeBlockV1
-    definition_uri: https://w3id.org/lmodel/fix-sbe/SbeBlockV1
+  SbeBlockV1Mixin:
+    name: SbeBlockV1Mixin
+    definition_uri: https://w3id.org/lmodel/fix-sbe/SbeBlockV1Mixin
     description: The body shared by a message and a group entry, which holds its fixed-length
       fields first, then groups, then variable-length data.
     from_schema: https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v1_0
-    abstract: true
-    mixins:
-    - SbeVersionedMixin
+    mixin: true
     slots:
     - symbolic_name
-    - SbeBlockV1_sbe_id
+    - SbeBlockV1Mixin_sbe_id
     - block_length
     - semantic_type
     - description
-    - SbeBlockV1_block_fields
-    - SbeBlockV1_repeating_groups
-    - SbeBlockV1_var_data_fields
-    - since_version
-    - deprecated_since
+    - SbeBlockV1Mixin_block_fields
+    - SbeBlockV1Mixin_repeating_groups
+    - SbeBlockV1Mixin_var_data_fields
     slot_usage:
       sbe_id:
         name: sbe_id
@@ -2497,7 +2493,7 @@ classes:
       var_data_fields:
         name: var_data_fields
         range: SbeFieldV1
-    class_uri: fix_sbe:SbeBlockV1
+    class_uri: fix_sbe:SbeBlockV1Mixin
   SbeMessageV1:
     name: SbeMessageV1
     definition_uri: https://w3id.org/lmodel/fix-sbe/SbeMessageV1
@@ -2513,18 +2509,20 @@ classes:
     from_schema: https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v1_0
     close_mappings:
     - fix_orchestra:OrchestraMessageV10
-    is_a: SbeBlockV1
+    mixins:
+    - SbeVersionedMixin
+    - SbeBlockV1Mixin
     slots:
+    - SbeMessageV1_sbe_id
+    - SbeMessageV1_semantic_type
+    - since_version
+    - deprecated_since
     - symbolic_name
     - block_length
     - description
-    - SbeBlockV1_block_fields
-    - SbeBlockV1_repeating_groups
-    - SbeBlockV1_var_data_fields
-    - since_version
-    - deprecated_since
-    - SbeMessageV1_sbe_id
-    - SbeMessageV1_semantic_type
+    - SbeBlockV1Mixin_block_fields
+    - SbeBlockV1Mixin_repeating_groups
+    - SbeBlockV1Mixin_var_data_fields
     slot_usage:
       sbe_id:
         name: sbe_id
@@ -2550,19 +2548,21 @@ classes:
     from_schema: https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v1_0
     close_mappings:
     - fix_orchestra:OrchestraGroupV10
-    is_a: SbeBlockV1
+    mixins:
+    - SbeVersionedMixin
+    - SbeBlockV1Mixin
     slots:
+    - dimension_type
+    - SbeGroupV1_block_fields
+    - since_version
+    - deprecated_since
     - symbolic_name
-    - SbeBlockV1_sbe_id
+    - SbeBlockV1Mixin_sbe_id
     - block_length
     - semantic_type
     - description
-    - SbeBlockV1_repeating_groups
-    - SbeBlockV1_var_data_fields
-    - since_version
-    - deprecated_since
-    - dimension_type
-    - SbeGroupV1_block_fields
+    - SbeBlockV1Mixin_repeating_groups
+    - SbeBlockV1Mixin_var_data_fields
     slot_usage:
       block_fields:
         name: block_fields
@@ -3025,27 +3025,23 @@ classes:
     - since_version
     - deprecated_since
     class_uri: fix_sbe:SbeSetV2
-  SbeBlockV2:
-    name: SbeBlockV2
-    definition_uri: https://w3id.org/lmodel/fix-sbe/SbeBlockV2
+  SbeBlockV2Mixin:
+    name: SbeBlockV2Mixin
+    definition_uri: https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin
     description: The body shared by a message and a group entry, which holds its fixed-length
       fields first, then groups, then variable-length data.
     from_schema: https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v2_0
-    abstract: true
-    mixins:
-    - SbeVersionedMixin
+    mixin: true
     slots:
     - symbolic_name
-    - SbeBlockV2_sbe_id
+    - SbeBlockV2Mixin_sbe_id
     - block_length
-    - SbeBlockV2_alignment
+    - SbeBlockV2Mixin_alignment
     - semantic_type
     - description
-    - SbeBlockV2_block_fields
-    - SbeBlockV2_repeating_groups
-    - SbeBlockV2_var_data_fields
-    - since_version
-    - deprecated_since
+    - SbeBlockV2Mixin_block_fields
+    - SbeBlockV2Mixin_repeating_groups
+    - SbeBlockV2Mixin_var_data_fields
     slot_usage:
       sbe_id:
         name: sbe_id
@@ -3062,7 +3058,7 @@ classes:
       var_data_fields:
         name: var_data_fields
         range: SbeFieldV2
-    class_uri: fix_sbe:SbeBlockV2
+    class_uri: fix_sbe:SbeBlockV2Mixin
   SbeMessageV2:
     name: SbeMessageV2
     definition_uri: https://w3id.org/lmodel/fix-sbe/SbeMessageV2
@@ -3078,19 +3074,21 @@ classes:
     from_schema: https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v2_0
     close_mappings:
     - fix_orchestra:OrchestraMessageV10
-    is_a: SbeBlockV2
+    mixins:
+    - SbeVersionedMixin
+    - SbeBlockV2Mixin
     slots:
-    - symbolic_name
-    - block_length
-    - SbeBlockV2_alignment
-    - description
-    - SbeBlockV2_block_fields
-    - SbeBlockV2_repeating_groups
-    - SbeBlockV2_var_data_fields
-    - since_version
-    - deprecated_since
     - SbeMessageV2_sbe_id
     - SbeMessageV2_semantic_type
+    - since_version
+    - deprecated_since
+    - symbolic_name
+    - block_length
+    - SbeBlockV2Mixin_alignment
+    - description
+    - SbeBlockV2Mixin_block_fields
+    - SbeBlockV2Mixin_repeating_groups
+    - SbeBlockV2Mixin_var_data_fields
     slot_usage:
       sbe_id:
         name: sbe_id
@@ -3116,20 +3114,22 @@ classes:
     from_schema: https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v2_0
     close_mappings:
     - fix_orchestra:OrchestraGroupV10
-    is_a: SbeBlockV2
+    mixins:
+    - SbeVersionedMixin
+    - SbeBlockV2Mixin
     slots:
-    - symbolic_name
-    - SbeBlockV2_sbe_id
-    - block_length
-    - SbeBlockV2_alignment
-    - semantic_type
-    - description
-    - SbeBlockV2_repeating_groups
-    - SbeBlockV2_var_data_fields
-    - since_version
-    - deprecated_since
     - dimension_type
     - SbeGroupV2_block_fields
+    - since_version
+    - deprecated_since
+    - symbolic_name
+    - SbeBlockV2Mixin_sbe_id
+    - block_length
+    - SbeBlockV2Mixin_alignment
+    - semantic_type
+    - description
+    - SbeBlockV2Mixin_repeating_groups
+    - SbeBlockV2Mixin_var_data_fields
     slot_usage:
       block_fields:
         name: block_fields

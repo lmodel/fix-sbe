@@ -250,7 +250,7 @@ export interface SbeSetV1 extends SbeEncodingV1 {
 /**
  * The body shared by a message and a group entry, which holds its fixed-length fields first, then groups, then variable-length data.
  */
-export interface SbeBlockV1 extends SbeVersionedMixin {
+export interface SbeBlockV1Mixin {
     /** What the schema calls this element. */
     symbolic_name: string,
     /** The number that identifies this element. */
@@ -273,14 +273,14 @@ export interface SbeBlockV1 extends SbeVersionedMixin {
 /**
  * A message template, whose number and block length are sent in each message's header.
  */
-export interface SbeMessageV1 extends SbeBlockV1 {
+export interface SbeMessageV1 extends SbeVersionedMixin, SbeBlockV1Mixin {
 }
 
 
 /**
  * A repeating group, whose entries each hold the same fields, and which cannot be without a field.
  */
-export interface SbeGroupV1 extends SbeBlockV1 {
+export interface SbeGroupV1 extends SbeVersionedMixin, SbeBlockV1Mixin {
     /** The composite, by name, that sends a repeating group's entry count and entry size. */
     dimension_type?: string,
 }
@@ -475,7 +475,7 @@ export interface SbeSetV2 extends SbeMemberV2, SbeVersionedMixin {
 /**
  * The body shared by a message and a group entry, which holds its fixed-length fields first, then groups, then variable-length data.
  */
-export interface SbeBlockV2 extends SbeVersionedMixin {
+export interface SbeBlockV2Mixin {
     /** What the schema calls this element. */
     symbolic_name: string,
     /** The number that identifies this element. */
@@ -500,14 +500,14 @@ export interface SbeBlockV2 extends SbeVersionedMixin {
 /**
  * A message template, whose number and block length are sent in each message's header.
  */
-export interface SbeMessageV2 extends SbeBlockV2 {
+export interface SbeMessageV2 extends SbeVersionedMixin, SbeBlockV2Mixin {
 }
 
 
 /**
  * A repeating group, whose entries each hold the same fields, and which cannot be without a field.
  */
-export interface SbeGroupV2 extends SbeBlockV2 {
+export interface SbeGroupV2 extends SbeVersionedMixin, SbeBlockV2Mixin {
     /** The composite, by name, that sends a repeating group's entry count and entry size. */
     dimension_type?: string,
 }

@@ -221,10 +221,8 @@ classes:
       xsd_type: setType
       xml_element: set
 
-  SbeBlockV1:
-    abstract: true
-    mixins:
-      - SbeVersionedMixin
+  SbeBlockV1Mixin:
+    mixin: true
     description: The body shared by a message and a group entry, which holds its fixed-length fields first, then groups, then variable-length data.
     slots:
       - symbolic_name
@@ -246,7 +244,9 @@ classes:
         range: SbeFieldV1
 
   SbeMessageV1:
-    is_a: SbeBlockV1
+    mixins:
+      - SbeVersionedMixin
+      - SbeBlockV1Mixin
     description: A message template, whose number and block length are sent in each message's header.
     close_mappings:
       - fix_orchestra:OrchestraMessageV10
@@ -260,7 +260,9 @@ classes:
       xml_element: message
 
   SbeGroupV1:
-    is_a: SbeBlockV1
+    mixins:
+      - SbeVersionedMixin
+      - SbeBlockV1Mixin
     description: A repeating group, whose entries each hold the same fields, and which cannot be without a field.
     close_mappings:
       - fix_orchestra:OrchestraGroupV10

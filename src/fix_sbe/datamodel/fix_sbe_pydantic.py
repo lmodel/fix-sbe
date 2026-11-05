@@ -265,23 +265,23 @@ class SbeValidValue(SbeVersionedMixin):
          'domain_of': ['SbeValidValue',
                        'SbeChoice',
                        'SbeMemberV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
                        'SbeElementV2',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2']} })
     description: Optional[str] = Field(default=None, description="""Free text about this element, for the people who read the schema.""", json_schema_extra = { "linkml_meta": {'aliases': ['description'],
          'domain_of': ['SbeValidValue',
                        'SbeChoice',
                        'SbeMessageSchemaV1',
                        'SbeEncodingV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
                        'SbeMessageSchemaV2',
                        'SbeEncodingSetV2',
                        'SbeMessageSetV2',
                        'SbeElementV2',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2'],
          'slot_uri': 'schema:description'} })
     valid_value: str = Field(default=..., description="""The value as it is written in the schema, which must convert to the enumeration's encoding.""", json_schema_extra = { "linkml_meta": {'annotations': {'sbe_section': {'tag': 'sbe_section',
@@ -345,23 +345,23 @@ class SbeChoice(SbeVersionedMixin):
          'domain_of': ['SbeValidValue',
                        'SbeChoice',
                        'SbeMemberV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
                        'SbeElementV2',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2']} })
     description: Optional[str] = Field(default=None, description="""Free text about this element, for the people who read the schema.""", json_schema_extra = { "linkml_meta": {'aliases': ['description'],
          'domain_of': ['SbeValidValue',
                        'SbeChoice',
                        'SbeMessageSchemaV1',
                        'SbeEncodingV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
                        'SbeMessageSchemaV2',
                        'SbeEncodingSetV2',
                        'SbeMessageSetV2',
                        'SbeElementV2',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2'],
          'slot_uri': 'schema:description'} })
     bit_position: int = Field(default=..., description="""Which bit stands for this choice, counted from zero at the least significant.""", ge=0, json_schema_extra = { "linkml_meta": {'annotations': {'sbe_section': {'tag': 'sbe_section',
@@ -421,10 +421,10 @@ class SbeMessageSchemaV1(ConfiguredBaseModel):
     sbe_id: Optional[int] = Field(default=None, description="""The number that identifies this schema between counterparties.""", ge=0, le=65535, json_schema_extra = { "linkml_meta": {'aliases': ['id'],
          'annotations': {'xsd_type': {'tag': 'xsd_type', 'value': 'xs:unsignedShort'}},
          'domain_of': ['SbeMessageSchemaV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
                        'SbeMessageSchemaV2',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2']} })
     schema_version: int = Field(default=..., description="""The version of this message schema, starting at zero.""", ge=0, json_schema_extra = { "linkml_meta": {'aliases': ['version'],
          'annotations': {'sbe_section': {'tag': 'sbe_section',
@@ -439,13 +439,13 @@ class SbeMessageSchemaV1(ConfiguredBaseModel):
                        'SbeChoice',
                        'SbeMessageSchemaV1',
                        'SbeEncodingV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
                        'SbeMessageSchemaV2',
                        'SbeEncodingSetV2',
                        'SbeMessageSetV2',
                        'SbeElementV2',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2'],
          'slot_uri': 'schema:description'} })
     byte_order: Optional[SbeByteOrder] = Field(default=SbeByteOrder("littleEndian"), description="""How the octets of every number in this schema's messages are ordered.""", json_schema_extra = { "linkml_meta": {'aliases': ['byteOrder'],
@@ -499,10 +499,10 @@ class SbeMemberV1(SbeVersionedMixin):
          'domain_of': ['SbeValidValue',
                        'SbeChoice',
                        'SbeMemberV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
                        'SbeElementV2',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2']} })
     offset: Optional[int] = Field(default=None, description="""The octet this element starts at, counted from zero at the start of its block or composite.""", ge=0, le=4294967295, json_schema_extra = { "linkml_meta": {'aliases': ['offset'],
          'annotations': {'sbe_section': {'tag': 'sbe_section',
@@ -557,10 +557,10 @@ class SbeRefV1(SbeMemberV1):
          'domain_of': ['SbeValidValue',
                        'SbeChoice',
                        'SbeMemberV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
                        'SbeElementV2',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2']} })
     offset: Optional[int] = Field(default=None, description="""The octet this element starts at, counted from zero at the start of its block or composite.""", ge=0, le=4294967295, json_schema_extra = { "linkml_meta": {'aliases': ['offset'],
          'annotations': {'sbe_section': {'tag': 'sbe_section',
@@ -622,22 +622,22 @@ class SbeEncodingV1(SbeMemberV1):
     semantic_type: Optional[str] = Field(default=None, description="""The FIX datatype this encoding carries.""", json_schema_extra = { "linkml_meta": {'aliases': ['semanticType'],
          'annotations': {'xsd_type': {'tag': 'xsd_type', 'value': 'xs:token'}},
          'domain_of': ['SbeEncodingV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2']} })
     description: Optional[str] = Field(default=None, description="""Free text about this element, for the people who read the schema.""", json_schema_extra = { "linkml_meta": {'aliases': ['description'],
          'domain_of': ['SbeValidValue',
                        'SbeChoice',
                        'SbeMessageSchemaV1',
                        'SbeEncodingV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
                        'SbeMessageSchemaV2',
                        'SbeEncodingSetV2',
                        'SbeMessageSetV2',
                        'SbeElementV2',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2'],
          'slot_uri': 'schema:description'} })
     encoding_kind: Literal["SbeEncodingV1"] = Field(default="SbeEncodingV1", description="""The class of this encoding or composite member, which stands for its XML element.""", json_schema_extra = { "linkml_meta": {'designates_type': True, 'domain_of': ['SbeMemberV1', 'SbeElementV2']} })
@@ -645,10 +645,10 @@ class SbeEncodingV1(SbeMemberV1):
          'domain_of': ['SbeValidValue',
                        'SbeChoice',
                        'SbeMemberV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
                        'SbeElementV2',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2']} })
     offset: Optional[int] = Field(default=None, description="""The octet this element starts at, counted from zero at the start of its block or composite.""", ge=0, le=4294967295, json_schema_extra = { "linkml_meta": {'aliases': ['offset'],
          'annotations': {'sbe_section': {'tag': 'sbe_section',
@@ -790,22 +790,22 @@ class SbeSimpleTypeV1(SbeEncodingV1):
     semantic_type: Optional[str] = Field(default=None, description="""The FIX datatype this encoding carries.""", json_schema_extra = { "linkml_meta": {'aliases': ['semanticType'],
          'annotations': {'xsd_type': {'tag': 'xsd_type', 'value': 'xs:token'}},
          'domain_of': ['SbeEncodingV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2']} })
     description: Optional[str] = Field(default=None, description="""Free text about this element, for the people who read the schema.""", json_schema_extra = { "linkml_meta": {'aliases': ['description'],
          'domain_of': ['SbeValidValue',
                        'SbeChoice',
                        'SbeMessageSchemaV1',
                        'SbeEncodingV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
                        'SbeMessageSchemaV2',
                        'SbeEncodingSetV2',
                        'SbeMessageSetV2',
                        'SbeElementV2',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2'],
          'slot_uri': 'schema:description'} })
     encoding_kind: Literal["SbeSimpleTypeV1"] = Field(default="SbeSimpleTypeV1", description="""The class of this encoding or composite member, which stands for its XML element.""", json_schema_extra = { "linkml_meta": {'designates_type': True, 'domain_of': ['SbeMemberV1', 'SbeElementV2']} })
@@ -813,10 +813,10 @@ class SbeSimpleTypeV1(SbeEncodingV1):
          'domain_of': ['SbeValidValue',
                        'SbeChoice',
                        'SbeMemberV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
                        'SbeElementV2',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2']} })
     offset: Optional[int] = Field(default=None, description="""The octet this element starts at, counted from zero at the start of its block or composite.""", ge=0, le=4294967295, json_schema_extra = { "linkml_meta": {'aliases': ['offset'],
          'annotations': {'sbe_section': {'tag': 'sbe_section',
@@ -910,22 +910,22 @@ class SbeCompositeV1(SbeEncodingV1):
     semantic_type: Optional[str] = Field(default=None, description="""The FIX datatype this encoding carries.""", json_schema_extra = { "linkml_meta": {'aliases': ['semanticType'],
          'annotations': {'xsd_type': {'tag': 'xsd_type', 'value': 'xs:token'}},
          'domain_of': ['SbeEncodingV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2']} })
     description: Optional[str] = Field(default=None, description="""Free text about this element, for the people who read the schema.""", json_schema_extra = { "linkml_meta": {'aliases': ['description'],
          'domain_of': ['SbeValidValue',
                        'SbeChoice',
                        'SbeMessageSchemaV1',
                        'SbeEncodingV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
                        'SbeMessageSchemaV2',
                        'SbeEncodingSetV2',
                        'SbeMessageSetV2',
                        'SbeElementV2',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2'],
          'slot_uri': 'schema:description'} })
     encoding_kind: Literal["SbeCompositeV1"] = Field(default="SbeCompositeV1", description="""The class of this encoding or composite member, which stands for its XML element.""", json_schema_extra = { "linkml_meta": {'designates_type': True, 'domain_of': ['SbeMemberV1', 'SbeElementV2']} })
@@ -933,10 +933,10 @@ class SbeCompositeV1(SbeEncodingV1):
          'domain_of': ['SbeValidValue',
                        'SbeChoice',
                        'SbeMemberV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
                        'SbeElementV2',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2']} })
     offset: Optional[int] = Field(default=None, description="""The octet this element starts at, counted from zero at the start of its block or composite.""", ge=0, le=4294967295, json_schema_extra = { "linkml_meta": {'aliases': ['offset'],
          'annotations': {'sbe_section': {'tag': 'sbe_section',
@@ -1000,22 +1000,22 @@ class SbeEnumV1(SbeEncodingV1):
     semantic_type: Optional[str] = Field(default=None, description="""The FIX datatype this encoding carries.""", json_schema_extra = { "linkml_meta": {'aliases': ['semanticType'],
          'annotations': {'xsd_type': {'tag': 'xsd_type', 'value': 'xs:token'}},
          'domain_of': ['SbeEncodingV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2']} })
     description: Optional[str] = Field(default=None, description="""Free text about this element, for the people who read the schema.""", json_schema_extra = { "linkml_meta": {'aliases': ['description'],
          'domain_of': ['SbeValidValue',
                        'SbeChoice',
                        'SbeMessageSchemaV1',
                        'SbeEncodingV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
                        'SbeMessageSchemaV2',
                        'SbeEncodingSetV2',
                        'SbeMessageSetV2',
                        'SbeElementV2',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2'],
          'slot_uri': 'schema:description'} })
     encoding_kind: Literal["SbeEnumV1"] = Field(default="SbeEnumV1", description="""The class of this encoding or composite member, which stands for its XML element.""", json_schema_extra = { "linkml_meta": {'designates_type': True, 'domain_of': ['SbeMemberV1', 'SbeElementV2']} })
@@ -1023,10 +1023,10 @@ class SbeEnumV1(SbeEncodingV1):
          'domain_of': ['SbeValidValue',
                        'SbeChoice',
                        'SbeMemberV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
                        'SbeElementV2',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2']} })
     offset: Optional[int] = Field(default=None, description="""The octet this element starts at, counted from zero at the start of its block or composite.""", ge=0, le=4294967295, json_schema_extra = { "linkml_meta": {'aliases': ['offset'],
          'annotations': {'sbe_section': {'tag': 'sbe_section',
@@ -1106,22 +1106,22 @@ class SbeSetV1(SbeEncodingV1):
     semantic_type: Optional[str] = Field(default=None, description="""The FIX datatype this encoding carries.""", json_schema_extra = { "linkml_meta": {'aliases': ['semanticType'],
          'annotations': {'xsd_type': {'tag': 'xsd_type', 'value': 'xs:token'}},
          'domain_of': ['SbeEncodingV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2']} })
     description: Optional[str] = Field(default=None, description="""Free text about this element, for the people who read the schema.""", json_schema_extra = { "linkml_meta": {'aliases': ['description'],
          'domain_of': ['SbeValidValue',
                        'SbeChoice',
                        'SbeMessageSchemaV1',
                        'SbeEncodingV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
                        'SbeMessageSchemaV2',
                        'SbeEncodingSetV2',
                        'SbeMessageSetV2',
                        'SbeElementV2',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2'],
          'slot_uri': 'schema:description'} })
     encoding_kind: Literal["SbeSetV1"] = Field(default="SbeSetV1", description="""The class of this encoding or composite member, which stands for its XML element.""", json_schema_extra = { "linkml_meta": {'designates_type': True, 'domain_of': ['SbeMemberV1', 'SbeElementV2']} })
@@ -1129,10 +1129,10 @@ class SbeSetV1(SbeEncodingV1):
          'domain_of': ['SbeValidValue',
                        'SbeChoice',
                        'SbeMemberV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
                        'SbeElementV2',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2']} })
     offset: Optional[int] = Field(default=None, description="""The octet this element starts at, counted from zero at the start of its block or composite.""", ge=0, le=4294967295, json_schema_extra = { "linkml_meta": {'aliases': ['offset'],
          'annotations': {'sbe_section': {'tag': 'sbe_section',
@@ -1194,13 +1194,12 @@ class SbeSetV1(SbeEncodingV1):
         return v
 
 
-class SbeBlockV1(SbeVersionedMixin):
+class SbeBlockV1Mixin(ConfiguredBaseModel):
     """
     The body shared by a message and a group entry, which holds its fixed-length fields first, then groups, then variable-length data.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'abstract': True,
-         'from_schema': 'https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v1_0',
-         'mixins': ['SbeVersionedMixin'],
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v1_0',
+         'mixin': True,
          'slot_usage': {'block_fields': {'name': 'block_fields', 'range': 'SbeFieldV1'},
                         'repeating_groups': {'name': 'repeating_groups',
                                              'range': 'SbeGroupV1'},
@@ -1212,62 +1211,49 @@ class SbeBlockV1(SbeVersionedMixin):
          'domain_of': ['SbeValidValue',
                        'SbeChoice',
                        'SbeMemberV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
                        'SbeElementV2',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2']} })
     sbe_id: int = Field(default=..., description="""The number that identifies this element.""", ge=0, le=65535, json_schema_extra = { "linkml_meta": {'aliases': ['id'],
          'annotations': {'xsd_type': {'tag': 'xsd_type', 'value': 'xs:unsignedShort'}},
          'domain_of': ['SbeMessageSchemaV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
                        'SbeMessageSchemaV2',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2']} })
     block_length: Optional[int] = Field(default=None, description="""The octets set aside for a message's fixed-length fields, or for those of each group entry.""", ge=0, json_schema_extra = { "linkml_meta": {'aliases': ['blockLength'],
          'annotations': {'sbe_section': {'tag': 'sbe_section',
                                          'value': '3: Root block length'},
                          'xsd_type': {'tag': 'xsd_type',
                                       'value': 'xs:nonNegativeInteger'}},
-         'domain_of': ['SbeBlockV1', 'SbeBlockV2']} })
+         'domain_of': ['SbeBlockV1Mixin', 'SbeBlockV2Mixin']} })
     semantic_type: Optional[str] = Field(default=None, description="""What this element means at the FIX application layer.""", json_schema_extra = { "linkml_meta": {'aliases': ['semanticType'],
          'annotations': {'xsd_type': {'tag': 'xsd_type', 'value': 'xs:token'}},
          'domain_of': ['SbeEncodingV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2']} })
     description: Optional[str] = Field(default=None, description="""Free text about this element, for the people who read the schema.""", json_schema_extra = { "linkml_meta": {'aliases': ['description'],
          'domain_of': ['SbeValidValue',
                        'SbeChoice',
                        'SbeMessageSchemaV1',
                        'SbeEncodingV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
                        'SbeMessageSchemaV2',
                        'SbeEncodingSetV2',
                        'SbeMessageSetV2',
                        'SbeElementV2',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2'],
          'slot_uri': 'schema:description'} })
-    block_fields: Optional[list[SbeFieldV1]] = Field(default=None, description="""Fixed-length fields, listed in wire order.""", json_schema_extra = { "linkml_meta": {'aliases': ['field'], 'domain_of': ['SbeBlockV1', 'SbeBlockV2']} })
-    repeating_groups: Optional[list[SbeGroupV1]] = Field(default=None, description="""Repeating groups, listed in wire order.""", json_schema_extra = { "linkml_meta": {'aliases': ['group'], 'domain_of': ['SbeBlockV1', 'SbeBlockV2']} })
-    var_data_fields: Optional[list[SbeFieldV1]] = Field(default=None, description="""Variable-length fields, listed in wire order.""", json_schema_extra = { "linkml_meta": {'aliases': ['data'], 'domain_of': ['SbeBlockV1', 'SbeBlockV2']} })
-    since_version: Optional[int] = Field(default=0, description="""The schema version that added this element.""", ge=0, json_schema_extra = { "linkml_meta": {'aliases': ['sinceVersion'],
-         'annotations': {'sbe_section': {'tag': 'sbe_section',
-                                         'value': '5: Since version'},
-                         'xsd_type': {'tag': 'xsd_type',
-                                      'value': 'xs:nonNegativeInteger'}},
-         'domain_of': ['SbeVersionedMixin'],
-         'ifabsent': 'int(0)'} })
-    deprecated_since: Optional[int] = Field(default=None, description="""The schema version that retired this element, which stays only for older applications.""", ge=0, json_schema_extra = { "linkml_meta": {'aliases': ['deprecated'],
-         'annotations': {'sbe_section': {'tag': 'sbe_section',
-                                         'value': '5: Deprecated elements'},
-                         'xsd_type': {'tag': 'xsd_type',
-                                      'value': 'xs:nonNegativeInteger'}},
-         'domain_of': ['SbeVersionedMixin']} })
+    block_fields: Optional[list[SbeFieldV1]] = Field(default=None, description="""Fixed-length fields, listed in wire order.""", json_schema_extra = { "linkml_meta": {'aliases': ['field'], 'domain_of': ['SbeBlockV1Mixin', 'SbeBlockV2Mixin']} })
+    repeating_groups: Optional[list[SbeGroupV1]] = Field(default=None, description="""Repeating groups, listed in wire order.""", json_schema_extra = { "linkml_meta": {'aliases': ['group'], 'domain_of': ['SbeBlockV1Mixin', 'SbeBlockV2Mixin']} })
+    var_data_fields: Optional[list[SbeFieldV1]] = Field(default=None, description="""Variable-length fields, listed in wire order.""", json_schema_extra = { "linkml_meta": {'aliases': ['data'], 'domain_of': ['SbeBlockV1Mixin', 'SbeBlockV2Mixin']} })
 
     @field_validator('symbolic_name')
     def pattern_symbolic_name(cls, v):
@@ -1296,7 +1282,7 @@ class SbeBlockV1(SbeVersionedMixin):
         return v
 
 
-class SbeMessageV1(SbeBlockV1):
+class SbeMessageV1(SbeBlockV1Mixin, SbeVersionedMixin):
     """
     A message template, whose number and block length are sent in each message's header.
     """
@@ -1304,6 +1290,7 @@ class SbeMessageV1(SbeBlockV1):
                          'xsd_type': {'tag': 'xsd_type', 'value': 'blockType'}},
          'close_mappings': ['fix_orchestra:OrchestraMessageV10'],
          'from_schema': 'https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v1_0',
+         'mixins': ['SbeVersionedMixin', 'SbeBlockV1Mixin'],
          'slot_usage': {'sbe_id': {'description': "The template's number, which no "
                                                   'other template in the schema '
                                                   'shares.',
@@ -1314,53 +1301,6 @@ class SbeMessageV1(SbeBlockV1):
                                                          'one.',
                                           'name': 'semantic_type'}}})
 
-    symbolic_name: str = Field(default=..., description="""What the schema calls this element.""", json_schema_extra = { "linkml_meta": {'aliases': ['name'],
-         'domain_of': ['SbeValidValue',
-                       'SbeChoice',
-                       'SbeMemberV1',
-                       'SbeBlockV1',
-                       'SbeFieldV1',
-                       'SbeElementV2',
-                       'SbeBlockV2',
-                       'SbeFieldV2']} })
-    sbe_id: int = Field(default=..., description="""The template's number, which no other template in the schema shares.""", ge=0, le=65535, json_schema_extra = { "linkml_meta": {'aliases': ['id'],
-         'annotations': {'xsd_type': {'tag': 'xsd_type', 'value': 'xs:unsignedShort'}},
-         'domain_of': ['SbeMessageSchemaV1',
-                       'SbeBlockV1',
-                       'SbeFieldV1',
-                       'SbeMessageSchemaV2',
-                       'SbeBlockV2',
-                       'SbeFieldV2']} })
-    block_length: Optional[int] = Field(default=None, description="""The octets set aside for a message's fixed-length fields, or for those of each group entry.""", ge=0, json_schema_extra = { "linkml_meta": {'aliases': ['blockLength'],
-         'annotations': {'sbe_section': {'tag': 'sbe_section',
-                                         'value': '3: Root block length'},
-                         'xsd_type': {'tag': 'xsd_type',
-                                      'value': 'xs:nonNegativeInteger'}},
-         'domain_of': ['SbeBlockV1', 'SbeBlockV2']} })
-    semantic_type: Optional[str] = Field(default=None, description="""The FIX MsgType(35) this template stands for, where several templates may share one.""", json_schema_extra = { "linkml_meta": {'aliases': ['semanticType'],
-         'annotations': {'xsd_type': {'tag': 'xsd_type', 'value': 'xs:token'}},
-         'domain_of': ['SbeEncodingV1',
-                       'SbeBlockV1',
-                       'SbeFieldV1',
-                       'SbeBlockV2',
-                       'SbeFieldV2']} })
-    description: Optional[str] = Field(default=None, description="""Free text about this element, for the people who read the schema.""", json_schema_extra = { "linkml_meta": {'aliases': ['description'],
-         'domain_of': ['SbeValidValue',
-                       'SbeChoice',
-                       'SbeMessageSchemaV1',
-                       'SbeEncodingV1',
-                       'SbeBlockV1',
-                       'SbeFieldV1',
-                       'SbeMessageSchemaV2',
-                       'SbeEncodingSetV2',
-                       'SbeMessageSetV2',
-                       'SbeElementV2',
-                       'SbeBlockV2',
-                       'SbeFieldV2'],
-         'slot_uri': 'schema:description'} })
-    block_fields: Optional[list[SbeFieldV1]] = Field(default=None, description="""Fixed-length fields, listed in wire order.""", json_schema_extra = { "linkml_meta": {'aliases': ['field'], 'domain_of': ['SbeBlockV1', 'SbeBlockV2']} })
-    repeating_groups: Optional[list[SbeGroupV1]] = Field(default=None, description="""Repeating groups, listed in wire order.""", json_schema_extra = { "linkml_meta": {'aliases': ['group'], 'domain_of': ['SbeBlockV1', 'SbeBlockV2']} })
-    var_data_fields: Optional[list[SbeFieldV1]] = Field(default=None, description="""Variable-length fields, listed in wire order.""", json_schema_extra = { "linkml_meta": {'aliases': ['data'], 'domain_of': ['SbeBlockV1', 'SbeBlockV2']} })
     since_version: Optional[int] = Field(default=0, description="""The schema version that added this element.""", ge=0, json_schema_extra = { "linkml_meta": {'aliases': ['sinceVersion'],
          'annotations': {'sbe_section': {'tag': 'sbe_section',
                                          'value': '5: Since version'},
@@ -1374,6 +1314,53 @@ class SbeMessageV1(SbeBlockV1):
                          'xsd_type': {'tag': 'xsd_type',
                                       'value': 'xs:nonNegativeInteger'}},
          'domain_of': ['SbeVersionedMixin']} })
+    symbolic_name: str = Field(default=..., description="""What the schema calls this element.""", json_schema_extra = { "linkml_meta": {'aliases': ['name'],
+         'domain_of': ['SbeValidValue',
+                       'SbeChoice',
+                       'SbeMemberV1',
+                       'SbeBlockV1Mixin',
+                       'SbeFieldV1',
+                       'SbeElementV2',
+                       'SbeBlockV2Mixin',
+                       'SbeFieldV2']} })
+    sbe_id: int = Field(default=..., description="""The template's number, which no other template in the schema shares.""", ge=0, le=65535, json_schema_extra = { "linkml_meta": {'aliases': ['id'],
+         'annotations': {'xsd_type': {'tag': 'xsd_type', 'value': 'xs:unsignedShort'}},
+         'domain_of': ['SbeMessageSchemaV1',
+                       'SbeBlockV1Mixin',
+                       'SbeFieldV1',
+                       'SbeMessageSchemaV2',
+                       'SbeBlockV2Mixin',
+                       'SbeFieldV2']} })
+    block_length: Optional[int] = Field(default=None, description="""The octets set aside for a message's fixed-length fields, or for those of each group entry.""", ge=0, json_schema_extra = { "linkml_meta": {'aliases': ['blockLength'],
+         'annotations': {'sbe_section': {'tag': 'sbe_section',
+                                         'value': '3: Root block length'},
+                         'xsd_type': {'tag': 'xsd_type',
+                                      'value': 'xs:nonNegativeInteger'}},
+         'domain_of': ['SbeBlockV1Mixin', 'SbeBlockV2Mixin']} })
+    semantic_type: Optional[str] = Field(default=None, description="""The FIX MsgType(35) this template stands for, where several templates may share one.""", json_schema_extra = { "linkml_meta": {'aliases': ['semanticType'],
+         'annotations': {'xsd_type': {'tag': 'xsd_type', 'value': 'xs:token'}},
+         'domain_of': ['SbeEncodingV1',
+                       'SbeBlockV1Mixin',
+                       'SbeFieldV1',
+                       'SbeBlockV2Mixin',
+                       'SbeFieldV2']} })
+    description: Optional[str] = Field(default=None, description="""Free text about this element, for the people who read the schema.""", json_schema_extra = { "linkml_meta": {'aliases': ['description'],
+         'domain_of': ['SbeValidValue',
+                       'SbeChoice',
+                       'SbeMessageSchemaV1',
+                       'SbeEncodingV1',
+                       'SbeBlockV1Mixin',
+                       'SbeFieldV1',
+                       'SbeMessageSchemaV2',
+                       'SbeEncodingSetV2',
+                       'SbeMessageSetV2',
+                       'SbeElementV2',
+                       'SbeBlockV2Mixin',
+                       'SbeFieldV2'],
+         'slot_uri': 'schema:description'} })
+    block_fields: Optional[list[SbeFieldV1]] = Field(default=None, description="""Fixed-length fields, listed in wire order.""", json_schema_extra = { "linkml_meta": {'aliases': ['field'], 'domain_of': ['SbeBlockV1Mixin', 'SbeBlockV2Mixin']} })
+    repeating_groups: Optional[list[SbeGroupV1]] = Field(default=None, description="""Repeating groups, listed in wire order.""", json_schema_extra = { "linkml_meta": {'aliases': ['group'], 'domain_of': ['SbeBlockV1Mixin', 'SbeBlockV2Mixin']} })
+    var_data_fields: Optional[list[SbeFieldV1]] = Field(default=None, description="""Variable-length fields, listed in wire order.""", json_schema_extra = { "linkml_meta": {'aliases': ['data'], 'domain_of': ['SbeBlockV1Mixin', 'SbeBlockV2Mixin']} })
 
     @field_validator('symbolic_name')
     def pattern_symbolic_name(cls, v):
@@ -1402,7 +1389,7 @@ class SbeMessageV1(SbeBlockV1):
         return v
 
 
-class SbeGroupV1(SbeBlockV1):
+class SbeGroupV1(SbeBlockV1Mixin, SbeVersionedMixin):
     """
     A repeating group, whose entries each hold the same fields, and which cannot be without a field.
     """
@@ -1410,6 +1397,7 @@ class SbeGroupV1(SbeBlockV1):
                          'xsd_type': {'tag': 'xsd_type', 'value': 'groupType'}},
          'close_mappings': ['fix_orchestra:OrchestraGroupV10'],
          'from_schema': 'https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v1_0',
+         'mixins': ['SbeVersionedMixin', 'SbeBlockV1Mixin'],
          'slot_usage': {'block_fields': {'minimum_cardinality': 1,
                                          'name': 'block_fields',
                                          'required': True}}})
@@ -1420,53 +1408,6 @@ class SbeGroupV1(SbeBlockV1):
                                                   'dimensions'}},
          'domain_of': ['SbeGroupV1', 'SbeGroupV2'],
          'ifabsent': 'string(groupSizeEncoding)'} })
-    symbolic_name: str = Field(default=..., description="""What the schema calls this element.""", json_schema_extra = { "linkml_meta": {'aliases': ['name'],
-         'domain_of': ['SbeValidValue',
-                       'SbeChoice',
-                       'SbeMemberV1',
-                       'SbeBlockV1',
-                       'SbeFieldV1',
-                       'SbeElementV2',
-                       'SbeBlockV2',
-                       'SbeFieldV2']} })
-    sbe_id: int = Field(default=..., description="""The number that identifies this element.""", ge=0, le=65535, json_schema_extra = { "linkml_meta": {'aliases': ['id'],
-         'annotations': {'xsd_type': {'tag': 'xsd_type', 'value': 'xs:unsignedShort'}},
-         'domain_of': ['SbeMessageSchemaV1',
-                       'SbeBlockV1',
-                       'SbeFieldV1',
-                       'SbeMessageSchemaV2',
-                       'SbeBlockV2',
-                       'SbeFieldV2']} })
-    block_length: Optional[int] = Field(default=None, description="""The octets set aside for a message's fixed-length fields, or for those of each group entry.""", ge=0, json_schema_extra = { "linkml_meta": {'aliases': ['blockLength'],
-         'annotations': {'sbe_section': {'tag': 'sbe_section',
-                                         'value': '3: Root block length'},
-                         'xsd_type': {'tag': 'xsd_type',
-                                      'value': 'xs:nonNegativeInteger'}},
-         'domain_of': ['SbeBlockV1', 'SbeBlockV2']} })
-    semantic_type: Optional[str] = Field(default=None, description="""What this element means at the FIX application layer.""", json_schema_extra = { "linkml_meta": {'aliases': ['semanticType'],
-         'annotations': {'xsd_type': {'tag': 'xsd_type', 'value': 'xs:token'}},
-         'domain_of': ['SbeEncodingV1',
-                       'SbeBlockV1',
-                       'SbeFieldV1',
-                       'SbeBlockV2',
-                       'SbeFieldV2']} })
-    description: Optional[str] = Field(default=None, description="""Free text about this element, for the people who read the schema.""", json_schema_extra = { "linkml_meta": {'aliases': ['description'],
-         'domain_of': ['SbeValidValue',
-                       'SbeChoice',
-                       'SbeMessageSchemaV1',
-                       'SbeEncodingV1',
-                       'SbeBlockV1',
-                       'SbeFieldV1',
-                       'SbeMessageSchemaV2',
-                       'SbeEncodingSetV2',
-                       'SbeMessageSetV2',
-                       'SbeElementV2',
-                       'SbeBlockV2',
-                       'SbeFieldV2'],
-         'slot_uri': 'schema:description'} })
-    block_fields: list[SbeFieldV1] = Field(default=..., description="""Fixed-length fields, listed in wire order.""", min_length=1, json_schema_extra = { "linkml_meta": {'aliases': ['field'], 'domain_of': ['SbeBlockV1', 'SbeBlockV2']} })
-    repeating_groups: Optional[list[SbeGroupV1]] = Field(default=None, description="""Repeating groups, listed in wire order.""", json_schema_extra = { "linkml_meta": {'aliases': ['group'], 'domain_of': ['SbeBlockV1', 'SbeBlockV2']} })
-    var_data_fields: Optional[list[SbeFieldV1]] = Field(default=None, description="""Variable-length fields, listed in wire order.""", json_schema_extra = { "linkml_meta": {'aliases': ['data'], 'domain_of': ['SbeBlockV1', 'SbeBlockV2']} })
     since_version: Optional[int] = Field(default=0, description="""The schema version that added this element.""", ge=0, json_schema_extra = { "linkml_meta": {'aliases': ['sinceVersion'],
          'annotations': {'sbe_section': {'tag': 'sbe_section',
                                          'value': '5: Since version'},
@@ -1480,6 +1421,53 @@ class SbeGroupV1(SbeBlockV1):
                          'xsd_type': {'tag': 'xsd_type',
                                       'value': 'xs:nonNegativeInteger'}},
          'domain_of': ['SbeVersionedMixin']} })
+    symbolic_name: str = Field(default=..., description="""What the schema calls this element.""", json_schema_extra = { "linkml_meta": {'aliases': ['name'],
+         'domain_of': ['SbeValidValue',
+                       'SbeChoice',
+                       'SbeMemberV1',
+                       'SbeBlockV1Mixin',
+                       'SbeFieldV1',
+                       'SbeElementV2',
+                       'SbeBlockV2Mixin',
+                       'SbeFieldV2']} })
+    sbe_id: int = Field(default=..., description="""The number that identifies this element.""", ge=0, le=65535, json_schema_extra = { "linkml_meta": {'aliases': ['id'],
+         'annotations': {'xsd_type': {'tag': 'xsd_type', 'value': 'xs:unsignedShort'}},
+         'domain_of': ['SbeMessageSchemaV1',
+                       'SbeBlockV1Mixin',
+                       'SbeFieldV1',
+                       'SbeMessageSchemaV2',
+                       'SbeBlockV2Mixin',
+                       'SbeFieldV2']} })
+    block_length: Optional[int] = Field(default=None, description="""The octets set aside for a message's fixed-length fields, or for those of each group entry.""", ge=0, json_schema_extra = { "linkml_meta": {'aliases': ['blockLength'],
+         'annotations': {'sbe_section': {'tag': 'sbe_section',
+                                         'value': '3: Root block length'},
+                         'xsd_type': {'tag': 'xsd_type',
+                                      'value': 'xs:nonNegativeInteger'}},
+         'domain_of': ['SbeBlockV1Mixin', 'SbeBlockV2Mixin']} })
+    semantic_type: Optional[str] = Field(default=None, description="""What this element means at the FIX application layer.""", json_schema_extra = { "linkml_meta": {'aliases': ['semanticType'],
+         'annotations': {'xsd_type': {'tag': 'xsd_type', 'value': 'xs:token'}},
+         'domain_of': ['SbeEncodingV1',
+                       'SbeBlockV1Mixin',
+                       'SbeFieldV1',
+                       'SbeBlockV2Mixin',
+                       'SbeFieldV2']} })
+    description: Optional[str] = Field(default=None, description="""Free text about this element, for the people who read the schema.""", json_schema_extra = { "linkml_meta": {'aliases': ['description'],
+         'domain_of': ['SbeValidValue',
+                       'SbeChoice',
+                       'SbeMessageSchemaV1',
+                       'SbeEncodingV1',
+                       'SbeBlockV1Mixin',
+                       'SbeFieldV1',
+                       'SbeMessageSchemaV2',
+                       'SbeEncodingSetV2',
+                       'SbeMessageSetV2',
+                       'SbeElementV2',
+                       'SbeBlockV2Mixin',
+                       'SbeFieldV2'],
+         'slot_uri': 'schema:description'} })
+    block_fields: list[SbeFieldV1] = Field(default=..., description="""Fixed-length fields, listed in wire order.""", min_length=1, json_schema_extra = { "linkml_meta": {'aliases': ['field'], 'domain_of': ['SbeBlockV1Mixin', 'SbeBlockV2Mixin']} })
+    repeating_groups: Optional[list[SbeGroupV1]] = Field(default=None, description="""Repeating groups, listed in wire order.""", json_schema_extra = { "linkml_meta": {'aliases': ['group'], 'domain_of': ['SbeBlockV1Mixin', 'SbeBlockV2Mixin']} })
+    var_data_fields: Optional[list[SbeFieldV1]] = Field(default=None, description="""Variable-length fields, listed in wire order.""", json_schema_extra = { "linkml_meta": {'aliases': ['data'], 'domain_of': ['SbeBlockV1Mixin', 'SbeBlockV2Mixin']} })
 
     @field_validator('dimension_type')
     def pattern_dimension_type(cls, v):
@@ -1554,18 +1542,18 @@ class SbeFieldV1(SbeVersionedMixin):
          'domain_of': ['SbeValidValue',
                        'SbeChoice',
                        'SbeMemberV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
                        'SbeElementV2',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2']} })
     sbe_id: int = Field(default=..., description="""The field's FIX tag number.""", ge=0, le=65535, json_schema_extra = { "linkml_meta": {'aliases': ['id'],
          'annotations': {'xsd_type': {'tag': 'xsd_type', 'value': 'xs:unsignedShort'}},
          'domain_of': ['SbeMessageSchemaV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
                        'SbeMessageSchemaV2',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2']} })
     encoding_name: str = Field(default=..., description="""Which encoding this element uses, by name.""", json_schema_extra = { "linkml_meta": {'aliases': ['type'],
          'comments': ['It holds a name and not a class reference, because a name is '
@@ -1593,22 +1581,22 @@ class SbeFieldV1(SbeVersionedMixin):
     semantic_type: Optional[str] = Field(default=None, description="""The FIX datatype this field carries.""", json_schema_extra = { "linkml_meta": {'aliases': ['semanticType'],
          'annotations': {'xsd_type': {'tag': 'xsd_type', 'value': 'xs:token'}},
          'domain_of': ['SbeEncodingV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2']} })
     description: Optional[str] = Field(default=None, description="""Free text about this element, for the people who read the schema.""", json_schema_extra = { "linkml_meta": {'aliases': ['description'],
          'domain_of': ['SbeValidValue',
                        'SbeChoice',
                        'SbeMessageSchemaV1',
                        'SbeEncodingV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
                        'SbeMessageSchemaV2',
                        'SbeEncodingSetV2',
                        'SbeMessageSetV2',
                        'SbeElementV2',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2'],
          'slot_uri': 'schema:description'} })
     time_epoch: Optional[str] = Field(default="unix", description="""Where the period a time value counts from begins.""", json_schema_extra = { "linkml_meta": {'aliases': ['epoch'],
@@ -1715,10 +1703,10 @@ class SbeMessageSchemaV2(ConfiguredBaseModel):
     sbe_id: Optional[int] = Field(default=None, description="""The number that identifies this schema between counterparties.""", ge=0, le=65535, json_schema_extra = { "linkml_meta": {'aliases': ['id'],
          'annotations': {'xsd_type': {'tag': 'xsd_type', 'value': 'xs:unsignedShort'}},
          'domain_of': ['SbeMessageSchemaV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
                        'SbeMessageSchemaV2',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2']} })
     schema_version: int = Field(default=..., description="""The version of this message schema, starting at zero.""", ge=0, json_schema_extra = { "linkml_meta": {'aliases': ['version'],
          'annotations': {'sbe_section': {'tag': 'sbe_section',
@@ -1733,13 +1721,13 @@ class SbeMessageSchemaV2(ConfiguredBaseModel):
                        'SbeChoice',
                        'SbeMessageSchemaV1',
                        'SbeEncodingV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
                        'SbeMessageSchemaV2',
                        'SbeEncodingSetV2',
                        'SbeMessageSetV2',
                        'SbeElementV2',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2'],
          'slot_uri': 'schema:description'} })
     byte_order: Optional[SbeByteOrder] = Field(default=SbeByteOrder("littleEndian"), description="""How the octets of every number in this schema's messages are ordered.""", json_schema_extra = { "linkml_meta": {'aliases': ['byteOrder'],
@@ -1794,13 +1782,13 @@ class SbeEncodingSetV2(ConfiguredBaseModel):
                        'SbeChoice',
                        'SbeMessageSchemaV1',
                        'SbeEncodingV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
                        'SbeMessageSchemaV2',
                        'SbeEncodingSetV2',
                        'SbeMessageSetV2',
                        'SbeElementV2',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2'],
          'slot_uri': 'schema:description'} })
     schema_package: Optional[str] = Field(default=None, description="""A package for this set in place of the schema's.""", json_schema_extra = { "linkml_meta": {'aliases': ['package'],
@@ -1839,13 +1827,13 @@ class SbeMessageSetV2(ConfiguredBaseModel):
                        'SbeChoice',
                        'SbeMessageSchemaV1',
                        'SbeEncodingV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
                        'SbeMessageSchemaV2',
                        'SbeEncodingSetV2',
                        'SbeMessageSetV2',
                        'SbeElementV2',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2'],
          'slot_uri': 'schema:description'} })
     schema_package: Optional[str] = Field(default=None, description="""A package for this set in place of the schema's.""", json_schema_extra = { "linkml_meta": {'aliases': ['package'],
@@ -1872,23 +1860,23 @@ class SbeElementV2(ConfiguredBaseModel):
          'domain_of': ['SbeValidValue',
                        'SbeChoice',
                        'SbeMemberV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
                        'SbeElementV2',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2']} })
     description: Optional[str] = Field(default=None, description="""Free text about this element, for the people who read the schema.""", json_schema_extra = { "linkml_meta": {'aliases': ['description'],
          'domain_of': ['SbeValidValue',
                        'SbeChoice',
                        'SbeMessageSchemaV1',
                        'SbeEncodingV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
                        'SbeMessageSchemaV2',
                        'SbeEncodingSetV2',
                        'SbeMessageSetV2',
                        'SbeElementV2',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2'],
          'slot_uri': 'schema:description'} })
 
@@ -1924,29 +1912,29 @@ class SbeMemberV2(SbeElementV2):
                                          'value': '3: Field byte alignment'},
                          'xsd_type': {'tag': 'xsd_type',
                                       'value': 'xs:positiveInteger'}},
-         'domain_of': ['SbeMemberV2', 'SbeBlockV2', 'SbeFieldV2']} })
+         'domain_of': ['SbeMemberV2', 'SbeBlockV2Mixin', 'SbeFieldV2']} })
     encoding_kind: Literal["SbeMemberV2"] = Field(default="SbeMemberV2", description="""The class of this encoding or composite member, which stands for its XML element.""", json_schema_extra = { "linkml_meta": {'designates_type': True, 'domain_of': ['SbeMemberV1', 'SbeElementV2']} })
     symbolic_name: str = Field(default=..., description="""What the schema calls this element.""", json_schema_extra = { "linkml_meta": {'aliases': ['name'],
          'domain_of': ['SbeValidValue',
                        'SbeChoice',
                        'SbeMemberV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
                        'SbeElementV2',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2']} })
     description: Optional[str] = Field(default=None, description="""Free text about this element, for the people who read the schema.""", json_schema_extra = { "linkml_meta": {'aliases': ['description'],
          'domain_of': ['SbeValidValue',
                        'SbeChoice',
                        'SbeMessageSchemaV1',
                        'SbeEncodingV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
                        'SbeMessageSchemaV2',
                        'SbeEncodingSetV2',
                        'SbeMessageSetV2',
                        'SbeElementV2',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2'],
          'slot_uri': 'schema:description'} })
 
@@ -2008,23 +1996,23 @@ class SbeSimpleTypeV2(SbeElementV2, SbeVersionedMixin):
          'domain_of': ['SbeValidValue',
                        'SbeChoice',
                        'SbeMemberV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
                        'SbeElementV2',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2']} })
     description: Optional[str] = Field(default=None, description="""Free text about this element, for the people who read the schema.""", json_schema_extra = { "linkml_meta": {'aliases': ['description'],
          'domain_of': ['SbeValidValue',
                        'SbeChoice',
                        'SbeMessageSchemaV1',
                        'SbeEncodingV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
                        'SbeMessageSchemaV2',
                        'SbeEncodingSetV2',
                        'SbeMessageSetV2',
                        'SbeElementV2',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2'],
          'slot_uri': 'schema:description'} })
 
@@ -2156,29 +2144,29 @@ class SbeMemberTypeV2(SbeMemberV2):
                                          'value': '3: Field byte alignment'},
                          'xsd_type': {'tag': 'xsd_type',
                                       'value': 'xs:positiveInteger'}},
-         'domain_of': ['SbeMemberV2', 'SbeBlockV2', 'SbeFieldV2']} })
+         'domain_of': ['SbeMemberV2', 'SbeBlockV2Mixin', 'SbeFieldV2']} })
     encoding_kind: Literal["SbeMemberTypeV2"] = Field(default="SbeMemberTypeV2", description="""The class of this encoding or composite member, which stands for its XML element.""", json_schema_extra = { "linkml_meta": {'designates_type': True, 'domain_of': ['SbeMemberV1', 'SbeElementV2']} })
     symbolic_name: str = Field(default=..., description="""What the schema calls this element.""", json_schema_extra = { "linkml_meta": {'aliases': ['name'],
          'domain_of': ['SbeValidValue',
                        'SbeChoice',
                        'SbeMemberV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
                        'SbeElementV2',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2']} })
     description: Optional[str] = Field(default=None, description="""Free text about this element, for the people who read the schema.""", json_schema_extra = { "linkml_meta": {'aliases': ['description'],
          'domain_of': ['SbeValidValue',
                        'SbeChoice',
                        'SbeMessageSchemaV1',
                        'SbeEncodingV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
                        'SbeMessageSchemaV2',
                        'SbeEncodingSetV2',
                        'SbeMessageSetV2',
                        'SbeElementV2',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2'],
          'slot_uri': 'schema:description'} })
 
@@ -2247,29 +2235,29 @@ class SbeRefV2(SbeMemberV2):
                                          'value': '3: Field byte alignment'},
                          'xsd_type': {'tag': 'xsd_type',
                                       'value': 'xs:positiveInteger'}},
-         'domain_of': ['SbeMemberV2', 'SbeBlockV2', 'SbeFieldV2']} })
+         'domain_of': ['SbeMemberV2', 'SbeBlockV2Mixin', 'SbeFieldV2']} })
     encoding_kind: Literal["SbeRefV2"] = Field(default="SbeRefV2", description="""The class of this encoding or composite member, which stands for its XML element.""", json_schema_extra = { "linkml_meta": {'designates_type': True, 'domain_of': ['SbeMemberV1', 'SbeElementV2']} })
     symbolic_name: str = Field(default=..., description="""What the schema calls this element.""", json_schema_extra = { "linkml_meta": {'aliases': ['name'],
          'domain_of': ['SbeValidValue',
                        'SbeChoice',
                        'SbeMemberV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
                        'SbeElementV2',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2']} })
     description: Optional[str] = Field(default=None, description="""Free text about this element, for the people who read the schema.""", json_schema_extra = { "linkml_meta": {'aliases': ['description'],
          'domain_of': ['SbeValidValue',
                        'SbeChoice',
                        'SbeMessageSchemaV1',
                        'SbeEncodingV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
                        'SbeMessageSchemaV2',
                        'SbeEncodingSetV2',
                        'SbeMessageSetV2',
                        'SbeElementV2',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2'],
          'slot_uri': 'schema:description'} })
 
@@ -2341,29 +2329,29 @@ class SbeCompositeV2(SbeMemberV2, SbeVersionedMixin):
                                          'value': '3: Field byte alignment'},
                          'xsd_type': {'tag': 'xsd_type',
                                       'value': 'xs:positiveInteger'}},
-         'domain_of': ['SbeMemberV2', 'SbeBlockV2', 'SbeFieldV2']} })
+         'domain_of': ['SbeMemberV2', 'SbeBlockV2Mixin', 'SbeFieldV2']} })
     encoding_kind: Literal["SbeCompositeV2"] = Field(default="SbeCompositeV2", description="""The class of this encoding or composite member, which stands for its XML element.""", json_schema_extra = { "linkml_meta": {'designates_type': True, 'domain_of': ['SbeMemberV1', 'SbeElementV2']} })
     symbolic_name: str = Field(default=..., description="""What the schema calls this element.""", json_schema_extra = { "linkml_meta": {'aliases': ['name'],
          'domain_of': ['SbeValidValue',
                        'SbeChoice',
                        'SbeMemberV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
                        'SbeElementV2',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2']} })
     description: Optional[str] = Field(default=None, description="""Free text about this element, for the people who read the schema.""", json_schema_extra = { "linkml_meta": {'aliases': ['description'],
          'domain_of': ['SbeValidValue',
                        'SbeChoice',
                        'SbeMessageSchemaV1',
                        'SbeEncodingV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
                        'SbeMessageSchemaV2',
                        'SbeEncodingSetV2',
                        'SbeMessageSetV2',
                        'SbeElementV2',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2'],
          'slot_uri': 'schema:description'} })
 
@@ -2418,29 +2406,29 @@ class SbeEnumV2(SbeMemberV2, SbeVersionedMixin):
                                          'value': '3: Field byte alignment'},
                          'xsd_type': {'tag': 'xsd_type',
                                       'value': 'xs:positiveInteger'}},
-         'domain_of': ['SbeMemberV2', 'SbeBlockV2', 'SbeFieldV2']} })
+         'domain_of': ['SbeMemberV2', 'SbeBlockV2Mixin', 'SbeFieldV2']} })
     encoding_kind: Literal["SbeEnumV2"] = Field(default="SbeEnumV2", description="""The class of this encoding or composite member, which stands for its XML element.""", json_schema_extra = { "linkml_meta": {'designates_type': True, 'domain_of': ['SbeMemberV1', 'SbeElementV2']} })
     symbolic_name: str = Field(default=..., description="""What the schema calls this element.""", json_schema_extra = { "linkml_meta": {'aliases': ['name'],
          'domain_of': ['SbeValidValue',
                        'SbeChoice',
                        'SbeMemberV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
                        'SbeElementV2',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2']} })
     description: Optional[str] = Field(default=None, description="""Free text about this element, for the people who read the schema.""", json_schema_extra = { "linkml_meta": {'aliases': ['description'],
          'domain_of': ['SbeValidValue',
                        'SbeChoice',
                        'SbeMessageSchemaV1',
                        'SbeEncodingV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
                        'SbeMessageSchemaV2',
                        'SbeEncodingSetV2',
                        'SbeMessageSetV2',
                        'SbeElementV2',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2'],
          'slot_uri': 'schema:description'} })
 
@@ -2511,29 +2499,29 @@ class SbeSetV2(SbeMemberV2, SbeVersionedMixin):
                                          'value': '3: Field byte alignment'},
                          'xsd_type': {'tag': 'xsd_type',
                                       'value': 'xs:positiveInteger'}},
-         'domain_of': ['SbeMemberV2', 'SbeBlockV2', 'SbeFieldV2']} })
+         'domain_of': ['SbeMemberV2', 'SbeBlockV2Mixin', 'SbeFieldV2']} })
     encoding_kind: Literal["SbeSetV2"] = Field(default="SbeSetV2", description="""The class of this encoding or composite member, which stands for its XML element.""", json_schema_extra = { "linkml_meta": {'designates_type': True, 'domain_of': ['SbeMemberV1', 'SbeElementV2']} })
     symbolic_name: str = Field(default=..., description="""What the schema calls this element.""", json_schema_extra = { "linkml_meta": {'aliases': ['name'],
          'domain_of': ['SbeValidValue',
                        'SbeChoice',
                        'SbeMemberV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
                        'SbeElementV2',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2']} })
     description: Optional[str] = Field(default=None, description="""Free text about this element, for the people who read the schema.""", json_schema_extra = { "linkml_meta": {'aliases': ['description'],
          'domain_of': ['SbeValidValue',
                        'SbeChoice',
                        'SbeMessageSchemaV1',
                        'SbeEncodingV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
                        'SbeMessageSchemaV2',
                        'SbeEncodingSetV2',
                        'SbeMessageSetV2',
                        'SbeElementV2',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2'],
          'slot_uri': 'schema:description'} })
 
@@ -2564,13 +2552,12 @@ class SbeSetV2(SbeMemberV2, SbeVersionedMixin):
         return v
 
 
-class SbeBlockV2(SbeVersionedMixin):
+class SbeBlockV2Mixin(ConfiguredBaseModel):
     """
     The body shared by a message and a group entry, which holds its fixed-length fields first, then groups, then variable-length data.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'abstract': True,
-         'from_schema': 'https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v2_0',
-         'mixins': ['SbeVersionedMixin'],
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v2_0',
+         'mixin': True,
          'slot_usage': {'alignment': {'description': 'The multiple of octets where a '
                                                      'message or each group entry '
                                                      'begins.',
@@ -2586,68 +2573,55 @@ class SbeBlockV2(SbeVersionedMixin):
          'domain_of': ['SbeValidValue',
                        'SbeChoice',
                        'SbeMemberV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
                        'SbeElementV2',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2']} })
     sbe_id: int = Field(default=..., description="""The number that identifies this element.""", ge=0, le=65535, json_schema_extra = { "linkml_meta": {'aliases': ['id'],
          'annotations': {'xsd_type': {'tag': 'xsd_type', 'value': 'xs:unsignedShort'}},
          'domain_of': ['SbeMessageSchemaV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
                        'SbeMessageSchemaV2',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2']} })
     block_length: Optional[int] = Field(default=None, description="""The octets set aside for a message's fixed-length fields, or for those of each group entry.""", ge=0, json_schema_extra = { "linkml_meta": {'aliases': ['blockLength'],
          'annotations': {'sbe_section': {'tag': 'sbe_section',
                                          'value': '3: Root block length'},
                          'xsd_type': {'tag': 'xsd_type',
                                       'value': 'xs:nonNegativeInteger'}},
-         'domain_of': ['SbeBlockV1', 'SbeBlockV2']} })
+         'domain_of': ['SbeBlockV1Mixin', 'SbeBlockV2Mixin']} })
     alignment: Optional[int] = Field(default=None, description="""The multiple of octets where a message or each group entry begins.""", ge=1, json_schema_extra = { "linkml_meta": {'aliases': ['alignment'],
          'annotations': {'sbe_section': {'tag': 'sbe_section',
                                          'value': '3: Field byte alignment'},
                          'xsd_type': {'tag': 'xsd_type',
                                       'value': 'xs:positiveInteger'}},
-         'domain_of': ['SbeMemberV2', 'SbeBlockV2', 'SbeFieldV2']} })
+         'domain_of': ['SbeMemberV2', 'SbeBlockV2Mixin', 'SbeFieldV2']} })
     semantic_type: Optional[str] = Field(default=None, description="""What this element means at the FIX application layer.""", json_schema_extra = { "linkml_meta": {'aliases': ['semanticType'],
          'annotations': {'xsd_type': {'tag': 'xsd_type', 'value': 'xs:token'}},
          'domain_of': ['SbeEncodingV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2']} })
     description: Optional[str] = Field(default=None, description="""Free text about this element, for the people who read the schema.""", json_schema_extra = { "linkml_meta": {'aliases': ['description'],
          'domain_of': ['SbeValidValue',
                        'SbeChoice',
                        'SbeMessageSchemaV1',
                        'SbeEncodingV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
                        'SbeMessageSchemaV2',
                        'SbeEncodingSetV2',
                        'SbeMessageSetV2',
                        'SbeElementV2',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2'],
          'slot_uri': 'schema:description'} })
-    block_fields: Optional[list[SbeFieldV2]] = Field(default=None, description="""Fixed-length fields, listed in wire order.""", json_schema_extra = { "linkml_meta": {'aliases': ['field'], 'domain_of': ['SbeBlockV1', 'SbeBlockV2']} })
-    repeating_groups: Optional[list[SbeGroupV2]] = Field(default=None, description="""Repeating groups, listed in wire order.""", json_schema_extra = { "linkml_meta": {'aliases': ['group'], 'domain_of': ['SbeBlockV1', 'SbeBlockV2']} })
-    var_data_fields: Optional[list[SbeFieldV2]] = Field(default=None, description="""Variable-length fields, listed in wire order.""", json_schema_extra = { "linkml_meta": {'aliases': ['data'], 'domain_of': ['SbeBlockV1', 'SbeBlockV2']} })
-    since_version: Optional[int] = Field(default=0, description="""The schema version that added this element.""", ge=0, json_schema_extra = { "linkml_meta": {'aliases': ['sinceVersion'],
-         'annotations': {'sbe_section': {'tag': 'sbe_section',
-                                         'value': '5: Since version'},
-                         'xsd_type': {'tag': 'xsd_type',
-                                      'value': 'xs:nonNegativeInteger'}},
-         'domain_of': ['SbeVersionedMixin'],
-         'ifabsent': 'int(0)'} })
-    deprecated_since: Optional[int] = Field(default=None, description="""The schema version that retired this element, which stays only for older applications.""", ge=0, json_schema_extra = { "linkml_meta": {'aliases': ['deprecated'],
-         'annotations': {'sbe_section': {'tag': 'sbe_section',
-                                         'value': '5: Deprecated elements'},
-                         'xsd_type': {'tag': 'xsd_type',
-                                      'value': 'xs:nonNegativeInteger'}},
-         'domain_of': ['SbeVersionedMixin']} })
+    block_fields: Optional[list[SbeFieldV2]] = Field(default=None, description="""Fixed-length fields, listed in wire order.""", json_schema_extra = { "linkml_meta": {'aliases': ['field'], 'domain_of': ['SbeBlockV1Mixin', 'SbeBlockV2Mixin']} })
+    repeating_groups: Optional[list[SbeGroupV2]] = Field(default=None, description="""Repeating groups, listed in wire order.""", json_schema_extra = { "linkml_meta": {'aliases': ['group'], 'domain_of': ['SbeBlockV1Mixin', 'SbeBlockV2Mixin']} })
+    var_data_fields: Optional[list[SbeFieldV2]] = Field(default=None, description="""Variable-length fields, listed in wire order.""", json_schema_extra = { "linkml_meta": {'aliases': ['data'], 'domain_of': ['SbeBlockV1Mixin', 'SbeBlockV2Mixin']} })
 
     @field_validator('symbolic_name')
     def pattern_symbolic_name(cls, v):
@@ -2676,7 +2650,7 @@ class SbeBlockV2(SbeVersionedMixin):
         return v
 
 
-class SbeMessageV2(SbeBlockV2):
+class SbeMessageV2(SbeBlockV2Mixin, SbeVersionedMixin):
     """
     A message template, whose number and block length are sent in each message's header.
     """
@@ -2684,6 +2658,7 @@ class SbeMessageV2(SbeBlockV2):
                          'xsd_type': {'tag': 'xsd_type', 'value': 'blockType'}},
          'close_mappings': ['fix_orchestra:OrchestraMessageV10'],
          'from_schema': 'https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v2_0',
+         'mixins': ['SbeVersionedMixin', 'SbeBlockV2Mixin'],
          'slot_usage': {'sbe_id': {'description': "The template's number, which no "
                                                   'other template in the schema '
                                                   'shares.',
@@ -2694,59 +2669,6 @@ class SbeMessageV2(SbeBlockV2):
                                                          'one.',
                                           'name': 'semantic_type'}}})
 
-    symbolic_name: str = Field(default=..., description="""What the schema calls this element.""", json_schema_extra = { "linkml_meta": {'aliases': ['name'],
-         'domain_of': ['SbeValidValue',
-                       'SbeChoice',
-                       'SbeMemberV1',
-                       'SbeBlockV1',
-                       'SbeFieldV1',
-                       'SbeElementV2',
-                       'SbeBlockV2',
-                       'SbeFieldV2']} })
-    sbe_id: int = Field(default=..., description="""The template's number, which no other template in the schema shares.""", ge=0, le=65535, json_schema_extra = { "linkml_meta": {'aliases': ['id'],
-         'annotations': {'xsd_type': {'tag': 'xsd_type', 'value': 'xs:unsignedShort'}},
-         'domain_of': ['SbeMessageSchemaV1',
-                       'SbeBlockV1',
-                       'SbeFieldV1',
-                       'SbeMessageSchemaV2',
-                       'SbeBlockV2',
-                       'SbeFieldV2']} })
-    block_length: Optional[int] = Field(default=None, description="""The octets set aside for a message's fixed-length fields, or for those of each group entry.""", ge=0, json_schema_extra = { "linkml_meta": {'aliases': ['blockLength'],
-         'annotations': {'sbe_section': {'tag': 'sbe_section',
-                                         'value': '3: Root block length'},
-                         'xsd_type': {'tag': 'xsd_type',
-                                      'value': 'xs:nonNegativeInteger'}},
-         'domain_of': ['SbeBlockV1', 'SbeBlockV2']} })
-    alignment: Optional[int] = Field(default=None, description="""The multiple of octets where a message or each group entry begins.""", ge=1, json_schema_extra = { "linkml_meta": {'aliases': ['alignment'],
-         'annotations': {'sbe_section': {'tag': 'sbe_section',
-                                         'value': '3: Field byte alignment'},
-                         'xsd_type': {'tag': 'xsd_type',
-                                      'value': 'xs:positiveInteger'}},
-         'domain_of': ['SbeMemberV2', 'SbeBlockV2', 'SbeFieldV2']} })
-    semantic_type: Optional[str] = Field(default=None, description="""The FIX MsgType(35) this template stands for, where several templates may share one.""", json_schema_extra = { "linkml_meta": {'aliases': ['semanticType'],
-         'annotations': {'xsd_type': {'tag': 'xsd_type', 'value': 'xs:token'}},
-         'domain_of': ['SbeEncodingV1',
-                       'SbeBlockV1',
-                       'SbeFieldV1',
-                       'SbeBlockV2',
-                       'SbeFieldV2']} })
-    description: Optional[str] = Field(default=None, description="""Free text about this element, for the people who read the schema.""", json_schema_extra = { "linkml_meta": {'aliases': ['description'],
-         'domain_of': ['SbeValidValue',
-                       'SbeChoice',
-                       'SbeMessageSchemaV1',
-                       'SbeEncodingV1',
-                       'SbeBlockV1',
-                       'SbeFieldV1',
-                       'SbeMessageSchemaV2',
-                       'SbeEncodingSetV2',
-                       'SbeMessageSetV2',
-                       'SbeElementV2',
-                       'SbeBlockV2',
-                       'SbeFieldV2'],
-         'slot_uri': 'schema:description'} })
-    block_fields: Optional[list[SbeFieldV2]] = Field(default=None, description="""Fixed-length fields, listed in wire order.""", json_schema_extra = { "linkml_meta": {'aliases': ['field'], 'domain_of': ['SbeBlockV1', 'SbeBlockV2']} })
-    repeating_groups: Optional[list[SbeGroupV2]] = Field(default=None, description="""Repeating groups, listed in wire order.""", json_schema_extra = { "linkml_meta": {'aliases': ['group'], 'domain_of': ['SbeBlockV1', 'SbeBlockV2']} })
-    var_data_fields: Optional[list[SbeFieldV2]] = Field(default=None, description="""Variable-length fields, listed in wire order.""", json_schema_extra = { "linkml_meta": {'aliases': ['data'], 'domain_of': ['SbeBlockV1', 'SbeBlockV2']} })
     since_version: Optional[int] = Field(default=0, description="""The schema version that added this element.""", ge=0, json_schema_extra = { "linkml_meta": {'aliases': ['sinceVersion'],
          'annotations': {'sbe_section': {'tag': 'sbe_section',
                                          'value': '5: Since version'},
@@ -2760,6 +2682,59 @@ class SbeMessageV2(SbeBlockV2):
                          'xsd_type': {'tag': 'xsd_type',
                                       'value': 'xs:nonNegativeInteger'}},
          'domain_of': ['SbeVersionedMixin']} })
+    symbolic_name: str = Field(default=..., description="""What the schema calls this element.""", json_schema_extra = { "linkml_meta": {'aliases': ['name'],
+         'domain_of': ['SbeValidValue',
+                       'SbeChoice',
+                       'SbeMemberV1',
+                       'SbeBlockV1Mixin',
+                       'SbeFieldV1',
+                       'SbeElementV2',
+                       'SbeBlockV2Mixin',
+                       'SbeFieldV2']} })
+    sbe_id: int = Field(default=..., description="""The template's number, which no other template in the schema shares.""", ge=0, le=65535, json_schema_extra = { "linkml_meta": {'aliases': ['id'],
+         'annotations': {'xsd_type': {'tag': 'xsd_type', 'value': 'xs:unsignedShort'}},
+         'domain_of': ['SbeMessageSchemaV1',
+                       'SbeBlockV1Mixin',
+                       'SbeFieldV1',
+                       'SbeMessageSchemaV2',
+                       'SbeBlockV2Mixin',
+                       'SbeFieldV2']} })
+    block_length: Optional[int] = Field(default=None, description="""The octets set aside for a message's fixed-length fields, or for those of each group entry.""", ge=0, json_schema_extra = { "linkml_meta": {'aliases': ['blockLength'],
+         'annotations': {'sbe_section': {'tag': 'sbe_section',
+                                         'value': '3: Root block length'},
+                         'xsd_type': {'tag': 'xsd_type',
+                                      'value': 'xs:nonNegativeInteger'}},
+         'domain_of': ['SbeBlockV1Mixin', 'SbeBlockV2Mixin']} })
+    alignment: Optional[int] = Field(default=None, description="""The multiple of octets where a message or each group entry begins.""", ge=1, json_schema_extra = { "linkml_meta": {'aliases': ['alignment'],
+         'annotations': {'sbe_section': {'tag': 'sbe_section',
+                                         'value': '3: Field byte alignment'},
+                         'xsd_type': {'tag': 'xsd_type',
+                                      'value': 'xs:positiveInteger'}},
+         'domain_of': ['SbeMemberV2', 'SbeBlockV2Mixin', 'SbeFieldV2']} })
+    semantic_type: Optional[str] = Field(default=None, description="""The FIX MsgType(35) this template stands for, where several templates may share one.""", json_schema_extra = { "linkml_meta": {'aliases': ['semanticType'],
+         'annotations': {'xsd_type': {'tag': 'xsd_type', 'value': 'xs:token'}},
+         'domain_of': ['SbeEncodingV1',
+                       'SbeBlockV1Mixin',
+                       'SbeFieldV1',
+                       'SbeBlockV2Mixin',
+                       'SbeFieldV2']} })
+    description: Optional[str] = Field(default=None, description="""Free text about this element, for the people who read the schema.""", json_schema_extra = { "linkml_meta": {'aliases': ['description'],
+         'domain_of': ['SbeValidValue',
+                       'SbeChoice',
+                       'SbeMessageSchemaV1',
+                       'SbeEncodingV1',
+                       'SbeBlockV1Mixin',
+                       'SbeFieldV1',
+                       'SbeMessageSchemaV2',
+                       'SbeEncodingSetV2',
+                       'SbeMessageSetV2',
+                       'SbeElementV2',
+                       'SbeBlockV2Mixin',
+                       'SbeFieldV2'],
+         'slot_uri': 'schema:description'} })
+    block_fields: Optional[list[SbeFieldV2]] = Field(default=None, description="""Fixed-length fields, listed in wire order.""", json_schema_extra = { "linkml_meta": {'aliases': ['field'], 'domain_of': ['SbeBlockV1Mixin', 'SbeBlockV2Mixin']} })
+    repeating_groups: Optional[list[SbeGroupV2]] = Field(default=None, description="""Repeating groups, listed in wire order.""", json_schema_extra = { "linkml_meta": {'aliases': ['group'], 'domain_of': ['SbeBlockV1Mixin', 'SbeBlockV2Mixin']} })
+    var_data_fields: Optional[list[SbeFieldV2]] = Field(default=None, description="""Variable-length fields, listed in wire order.""", json_schema_extra = { "linkml_meta": {'aliases': ['data'], 'domain_of': ['SbeBlockV1Mixin', 'SbeBlockV2Mixin']} })
 
     @field_validator('symbolic_name')
     def pattern_symbolic_name(cls, v):
@@ -2788,7 +2763,7 @@ class SbeMessageV2(SbeBlockV2):
         return v
 
 
-class SbeGroupV2(SbeBlockV2):
+class SbeGroupV2(SbeBlockV2Mixin, SbeVersionedMixin):
     """
     A repeating group, whose entries each hold the same fields, and which cannot be without a field.
     """
@@ -2796,6 +2771,7 @@ class SbeGroupV2(SbeBlockV2):
                          'xsd_type': {'tag': 'xsd_type', 'value': 'groupType'}},
          'close_mappings': ['fix_orchestra:OrchestraGroupV10'],
          'from_schema': 'https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v2_0',
+         'mixins': ['SbeVersionedMixin', 'SbeBlockV2Mixin'],
          'slot_usage': {'block_fields': {'minimum_cardinality': 1,
                                          'name': 'block_fields',
                                          'required': True}}})
@@ -2806,59 +2782,6 @@ class SbeGroupV2(SbeBlockV2):
                                                   'dimensions'}},
          'domain_of': ['SbeGroupV1', 'SbeGroupV2'],
          'ifabsent': 'string(groupSizeEncoding)'} })
-    symbolic_name: str = Field(default=..., description="""What the schema calls this element.""", json_schema_extra = { "linkml_meta": {'aliases': ['name'],
-         'domain_of': ['SbeValidValue',
-                       'SbeChoice',
-                       'SbeMemberV1',
-                       'SbeBlockV1',
-                       'SbeFieldV1',
-                       'SbeElementV2',
-                       'SbeBlockV2',
-                       'SbeFieldV2']} })
-    sbe_id: int = Field(default=..., description="""The number that identifies this element.""", ge=0, le=65535, json_schema_extra = { "linkml_meta": {'aliases': ['id'],
-         'annotations': {'xsd_type': {'tag': 'xsd_type', 'value': 'xs:unsignedShort'}},
-         'domain_of': ['SbeMessageSchemaV1',
-                       'SbeBlockV1',
-                       'SbeFieldV1',
-                       'SbeMessageSchemaV2',
-                       'SbeBlockV2',
-                       'SbeFieldV2']} })
-    block_length: Optional[int] = Field(default=None, description="""The octets set aside for a message's fixed-length fields, or for those of each group entry.""", ge=0, json_schema_extra = { "linkml_meta": {'aliases': ['blockLength'],
-         'annotations': {'sbe_section': {'tag': 'sbe_section',
-                                         'value': '3: Root block length'},
-                         'xsd_type': {'tag': 'xsd_type',
-                                      'value': 'xs:nonNegativeInteger'}},
-         'domain_of': ['SbeBlockV1', 'SbeBlockV2']} })
-    alignment: Optional[int] = Field(default=None, description="""The multiple of octets where a message or each group entry begins.""", ge=1, json_schema_extra = { "linkml_meta": {'aliases': ['alignment'],
-         'annotations': {'sbe_section': {'tag': 'sbe_section',
-                                         'value': '3: Field byte alignment'},
-                         'xsd_type': {'tag': 'xsd_type',
-                                      'value': 'xs:positiveInteger'}},
-         'domain_of': ['SbeMemberV2', 'SbeBlockV2', 'SbeFieldV2']} })
-    semantic_type: Optional[str] = Field(default=None, description="""What this element means at the FIX application layer.""", json_schema_extra = { "linkml_meta": {'aliases': ['semanticType'],
-         'annotations': {'xsd_type': {'tag': 'xsd_type', 'value': 'xs:token'}},
-         'domain_of': ['SbeEncodingV1',
-                       'SbeBlockV1',
-                       'SbeFieldV1',
-                       'SbeBlockV2',
-                       'SbeFieldV2']} })
-    description: Optional[str] = Field(default=None, description="""Free text about this element, for the people who read the schema.""", json_schema_extra = { "linkml_meta": {'aliases': ['description'],
-         'domain_of': ['SbeValidValue',
-                       'SbeChoice',
-                       'SbeMessageSchemaV1',
-                       'SbeEncodingV1',
-                       'SbeBlockV1',
-                       'SbeFieldV1',
-                       'SbeMessageSchemaV2',
-                       'SbeEncodingSetV2',
-                       'SbeMessageSetV2',
-                       'SbeElementV2',
-                       'SbeBlockV2',
-                       'SbeFieldV2'],
-         'slot_uri': 'schema:description'} })
-    block_fields: list[SbeFieldV2] = Field(default=..., description="""Fixed-length fields, listed in wire order.""", min_length=1, json_schema_extra = { "linkml_meta": {'aliases': ['field'], 'domain_of': ['SbeBlockV1', 'SbeBlockV2']} })
-    repeating_groups: Optional[list[SbeGroupV2]] = Field(default=None, description="""Repeating groups, listed in wire order.""", json_schema_extra = { "linkml_meta": {'aliases': ['group'], 'domain_of': ['SbeBlockV1', 'SbeBlockV2']} })
-    var_data_fields: Optional[list[SbeFieldV2]] = Field(default=None, description="""Variable-length fields, listed in wire order.""", json_schema_extra = { "linkml_meta": {'aliases': ['data'], 'domain_of': ['SbeBlockV1', 'SbeBlockV2']} })
     since_version: Optional[int] = Field(default=0, description="""The schema version that added this element.""", ge=0, json_schema_extra = { "linkml_meta": {'aliases': ['sinceVersion'],
          'annotations': {'sbe_section': {'tag': 'sbe_section',
                                          'value': '5: Since version'},
@@ -2872,6 +2795,59 @@ class SbeGroupV2(SbeBlockV2):
                          'xsd_type': {'tag': 'xsd_type',
                                       'value': 'xs:nonNegativeInteger'}},
          'domain_of': ['SbeVersionedMixin']} })
+    symbolic_name: str = Field(default=..., description="""What the schema calls this element.""", json_schema_extra = { "linkml_meta": {'aliases': ['name'],
+         'domain_of': ['SbeValidValue',
+                       'SbeChoice',
+                       'SbeMemberV1',
+                       'SbeBlockV1Mixin',
+                       'SbeFieldV1',
+                       'SbeElementV2',
+                       'SbeBlockV2Mixin',
+                       'SbeFieldV2']} })
+    sbe_id: int = Field(default=..., description="""The number that identifies this element.""", ge=0, le=65535, json_schema_extra = { "linkml_meta": {'aliases': ['id'],
+         'annotations': {'xsd_type': {'tag': 'xsd_type', 'value': 'xs:unsignedShort'}},
+         'domain_of': ['SbeMessageSchemaV1',
+                       'SbeBlockV1Mixin',
+                       'SbeFieldV1',
+                       'SbeMessageSchemaV2',
+                       'SbeBlockV2Mixin',
+                       'SbeFieldV2']} })
+    block_length: Optional[int] = Field(default=None, description="""The octets set aside for a message's fixed-length fields, or for those of each group entry.""", ge=0, json_schema_extra = { "linkml_meta": {'aliases': ['blockLength'],
+         'annotations': {'sbe_section': {'tag': 'sbe_section',
+                                         'value': '3: Root block length'},
+                         'xsd_type': {'tag': 'xsd_type',
+                                      'value': 'xs:nonNegativeInteger'}},
+         'domain_of': ['SbeBlockV1Mixin', 'SbeBlockV2Mixin']} })
+    alignment: Optional[int] = Field(default=None, description="""The multiple of octets where a message or each group entry begins.""", ge=1, json_schema_extra = { "linkml_meta": {'aliases': ['alignment'],
+         'annotations': {'sbe_section': {'tag': 'sbe_section',
+                                         'value': '3: Field byte alignment'},
+                         'xsd_type': {'tag': 'xsd_type',
+                                      'value': 'xs:positiveInteger'}},
+         'domain_of': ['SbeMemberV2', 'SbeBlockV2Mixin', 'SbeFieldV2']} })
+    semantic_type: Optional[str] = Field(default=None, description="""What this element means at the FIX application layer.""", json_schema_extra = { "linkml_meta": {'aliases': ['semanticType'],
+         'annotations': {'xsd_type': {'tag': 'xsd_type', 'value': 'xs:token'}},
+         'domain_of': ['SbeEncodingV1',
+                       'SbeBlockV1Mixin',
+                       'SbeFieldV1',
+                       'SbeBlockV2Mixin',
+                       'SbeFieldV2']} })
+    description: Optional[str] = Field(default=None, description="""Free text about this element, for the people who read the schema.""", json_schema_extra = { "linkml_meta": {'aliases': ['description'],
+         'domain_of': ['SbeValidValue',
+                       'SbeChoice',
+                       'SbeMessageSchemaV1',
+                       'SbeEncodingV1',
+                       'SbeBlockV1Mixin',
+                       'SbeFieldV1',
+                       'SbeMessageSchemaV2',
+                       'SbeEncodingSetV2',
+                       'SbeMessageSetV2',
+                       'SbeElementV2',
+                       'SbeBlockV2Mixin',
+                       'SbeFieldV2'],
+         'slot_uri': 'schema:description'} })
+    block_fields: list[SbeFieldV2] = Field(default=..., description="""Fixed-length fields, listed in wire order.""", min_length=1, json_schema_extra = { "linkml_meta": {'aliases': ['field'], 'domain_of': ['SbeBlockV1Mixin', 'SbeBlockV2Mixin']} })
+    repeating_groups: Optional[list[SbeGroupV2]] = Field(default=None, description="""Repeating groups, listed in wire order.""", json_schema_extra = { "linkml_meta": {'aliases': ['group'], 'domain_of': ['SbeBlockV1Mixin', 'SbeBlockV2Mixin']} })
+    var_data_fields: Optional[list[SbeFieldV2]] = Field(default=None, description="""Variable-length fields, listed in wire order.""", json_schema_extra = { "linkml_meta": {'aliases': ['data'], 'domain_of': ['SbeBlockV1Mixin', 'SbeBlockV2Mixin']} })
 
     @field_validator('dimension_type')
     def pattern_dimension_type(cls, v):
@@ -2999,18 +2975,18 @@ class SbeFieldV2(SbeVersionedMixin):
          'domain_of': ['SbeValidValue',
                        'SbeChoice',
                        'SbeMemberV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
                        'SbeElementV2',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2']} })
     sbe_id: int = Field(default=..., description="""The field's FIX tag number.""", ge=0, le=65535, json_schema_extra = { "linkml_meta": {'aliases': ['id'],
          'annotations': {'xsd_type': {'tag': 'xsd_type', 'value': 'xs:unsignedShort'}},
          'domain_of': ['SbeMessageSchemaV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
                        'SbeMessageSchemaV2',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2']} })
     encoding_name: str = Field(default=..., description="""Which encoding this element uses, by name.""", json_schema_extra = { "linkml_meta": {'aliases': ['type'],
          'comments': ['It holds a name and not a class reference, because a name is '
@@ -3036,7 +3012,7 @@ class SbeFieldV2(SbeVersionedMixin):
                                          'value': '3: Field byte alignment'},
                          'xsd_type': {'tag': 'xsd_type',
                                       'value': 'xs:positiveInteger'}},
-         'domain_of': ['SbeMemberV2', 'SbeBlockV2', 'SbeFieldV2']} })
+         'domain_of': ['SbeMemberV2', 'SbeBlockV2Mixin', 'SbeFieldV2']} })
     presence: Optional[SbePresence] = Field(default=SbePresence("required"), description="""Whether this element's value is required, optional or constant.""", json_schema_extra = { "linkml_meta": {'aliases': ['presence'],
          'domain_of': ['SbeSimpleTypeV1',
                        'SbeFieldV1',
@@ -3057,22 +3033,22 @@ class SbeFieldV2(SbeVersionedMixin):
     semantic_type: Optional[str] = Field(default=None, description="""The FIX datatype this field carries.""", json_schema_extra = { "linkml_meta": {'aliases': ['semanticType'],
          'annotations': {'xsd_type': {'tag': 'xsd_type', 'value': 'xs:token'}},
          'domain_of': ['SbeEncodingV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2']} })
     description: Optional[str] = Field(default=None, description="""Free text about this element, for the people who read the schema.""", json_schema_extra = { "linkml_meta": {'aliases': ['description'],
          'domain_of': ['SbeValidValue',
                        'SbeChoice',
                        'SbeMessageSchemaV1',
                        'SbeEncodingV1',
-                       'SbeBlockV1',
+                       'SbeBlockV1Mixin',
                        'SbeFieldV1',
                        'SbeMessageSchemaV2',
                        'SbeEncodingSetV2',
                        'SbeMessageSetV2',
                        'SbeElementV2',
-                       'SbeBlockV2',
+                       'SbeBlockV2Mixin',
                        'SbeFieldV2'],
          'slot_uri': 'schema:description'} })
     since_version: Optional[int] = Field(default=0, description="""The schema version that added this element.""", ge=0, json_schema_extra = { "linkml_meta": {'aliases': ['sinceVersion'],
@@ -3169,7 +3145,7 @@ SbeSimpleTypeV1.model_rebuild()
 SbeCompositeV1.model_rebuild()
 SbeEnumV1.model_rebuild()
 SbeSetV1.model_rebuild()
-SbeBlockV1.model_rebuild()
+SbeBlockV1Mixin.model_rebuild()
 SbeMessageV1.model_rebuild()
 SbeGroupV1.model_rebuild()
 SbeFieldV1.model_rebuild()
@@ -3184,7 +3160,7 @@ SbeRefV2.model_rebuild()
 SbeCompositeV2.model_rebuild()
 SbeEnumV2.model_rebuild()
 SbeSetV2.model_rebuild()
-SbeBlockV2.model_rebuild()
+SbeBlockV2Mixin.model_rebuild()
 SbeMessageV2.model_rebuild()
 SbeGroupV2.model_rebuild()
 SbeFieldV2.model_rebuild()

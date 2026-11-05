@@ -658,10 +658,10 @@
         "SbeValidValue",
         "SbeChoice",
         "SbeMemberV1",
-        "SbeBlockV1",
+        "SbeBlockV1Mixin",
         "SbeFieldV1",
         "SbeElementV2",
-        "SbeBlockV2",
+        "SbeBlockV2Mixin",
         "SbeFieldV2"
       ],
       "range": "SbeSymbolicName",
@@ -688,10 +688,10 @@
       "owner": "SbeFieldV2",
       "domain_of": [
         "SbeMessageSchemaV1",
-        "SbeBlockV1",
+        "SbeBlockV1Mixin",
         "SbeFieldV1",
         "SbeMessageSchemaV2",
-        "SbeBlockV2",
+        "SbeBlockV2Mixin",
         "SbeFieldV2"
       ],
       "range": "integer",
@@ -717,13 +717,13 @@
         "SbeChoice",
         "SbeMessageSchemaV1",
         "SbeEncodingV1",
-        "SbeBlockV1",
+        "SbeBlockV1Mixin",
         "SbeFieldV1",
         "SbeMessageSchemaV2",
         "SbeEncodingSetV2",
         "SbeMessageSetV2",
         "SbeElementV2",
-        "SbeBlockV2",
+        "SbeBlockV2Mixin",
         "SbeFieldV2"
       ],
       "range": "string",
@@ -748,9 +748,9 @@
       "owner": "SbeFieldV2",
       "domain_of": [
         "SbeEncodingV1",
-        "SbeBlockV1",
+        "SbeBlockV1Mixin",
         "SbeFieldV1",
-        "SbeBlockV2",
+        "SbeBlockV2Mixin",
         "SbeFieldV2"
       ],
       "range": "SbeToken",
@@ -1102,10 +1102,10 @@
         "blockLength"
       ],
       "slot_uri": "https://w3id.org/lmodel/fix-sbe/block_length",
-      "owner": "SbeBlockV2",
+      "owner": "SbeBlockV2Mixin",
       "domain_of": [
-        "SbeBlockV1",
-        "SbeBlockV2"
+        "SbeBlockV1Mixin",
+        "SbeBlockV2Mixin"
       ],
       "range": "integer",
       "minimum_value": 0,
@@ -1429,10 +1429,10 @@
         "field"
       ],
       "slot_uri": "https://w3id.org/lmodel/fix-sbe/block_fields",
-      "owner": "SbeBlockV2",
+      "owner": "SbeBlockV2Mixin",
       "domain_of": [
-        "SbeBlockV1",
-        "SbeBlockV2"
+        "SbeBlockV1Mixin",
+        "SbeBlockV2Mixin"
       ],
       "range": "string",
       "multivalued": true,
@@ -1448,10 +1448,10 @@
         "group"
       ],
       "slot_uri": "https://w3id.org/lmodel/fix-sbe/repeating_groups",
-      "owner": "SbeBlockV2",
+      "owner": "SbeBlockV2Mixin",
       "domain_of": [
-        "SbeBlockV1",
-        "SbeBlockV2"
+        "SbeBlockV1Mixin",
+        "SbeBlockV2Mixin"
       ],
       "range": "string",
       "multivalued": true,
@@ -1467,10 +1467,10 @@
         "data"
       ],
       "slot_uri": "https://w3id.org/lmodel/fix-sbe/var_data_fields",
-      "owner": "SbeBlockV2",
+      "owner": "SbeBlockV2Mixin",
       "domain_of": [
-        "SbeBlockV1",
-        "SbeBlockV2"
+        "SbeBlockV1Mixin",
+        "SbeBlockV2Mixin"
       ],
       "range": "string",
       "multivalued": true,
@@ -1501,7 +1501,7 @@
       "owner": "SbeFieldV2",
       "domain_of": [
         "SbeMemberV2",
-        "SbeBlockV2",
+        "SbeBlockV2Mixin",
         "SbeFieldV2"
       ],
       "range": "integer",
@@ -1801,7 +1801,7 @@
       "@type": "SlotDefinition"
     },
     {
-      "name": "SbeBlockV1_sbe_id",
+      "name": "SbeBlockV1Mixin_sbe_id",
       "definition_uri": "https://w3id.org/lmodel/fix-sbe/sbe_id",
       "annotations": {
         "xsd_type": {
@@ -1817,12 +1817,12 @@
         "id"
       ],
       "is_a": "sbe_id",
-      "domain": "SbeBlockV1",
+      "domain": "SbeBlockV1Mixin",
       "slot_uri": "https://w3id.org/lmodel/fix-sbe/sbe_id",
       "alias": "sbe_id",
-      "owner": "SbeBlockV1",
+      "owner": "SbeBlockV1Mixin",
       "domain_of": [
-        "SbeBlockV1"
+        "SbeBlockV1Mixin"
       ],
       "is_usage_slot": true,
       "usage_slot_name": "sbe_id",
@@ -1833,7 +1833,7 @@
       "@type": "SlotDefinition"
     },
     {
-      "name": "SbeBlockV1_block_fields",
+      "name": "SbeBlockV1Mixin_block_fields",
       "definition_uri": "https://w3id.org/lmodel/fix-sbe/block_fields",
       "description": "Fixed-length fields, listed in wire order.",
       "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
@@ -1841,12 +1841,12 @@
         "field"
       ],
       "is_a": "block_fields",
-      "domain": "SbeBlockV1",
+      "domain": "SbeBlockV1Mixin",
       "slot_uri": "https://w3id.org/lmodel/fix-sbe/block_fields",
       "alias": "block_fields",
-      "owner": "SbeBlockV1",
+      "owner": "SbeBlockV1Mixin",
       "domain_of": [
-        "SbeBlockV1"
+        "SbeBlockV1Mixin"
       ],
       "is_usage_slot": true,
       "usage_slot_name": "block_fields",
@@ -1857,7 +1857,7 @@
       "@type": "SlotDefinition"
     },
     {
-      "name": "SbeBlockV1_repeating_groups",
+      "name": "SbeBlockV1Mixin_repeating_groups",
       "definition_uri": "https://w3id.org/lmodel/fix-sbe/repeating_groups",
       "description": "Repeating groups, listed in wire order.",
       "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
@@ -1865,12 +1865,12 @@
         "group"
       ],
       "is_a": "repeating_groups",
-      "domain": "SbeBlockV1",
+      "domain": "SbeBlockV1Mixin",
       "slot_uri": "https://w3id.org/lmodel/fix-sbe/repeating_groups",
       "alias": "repeating_groups",
-      "owner": "SbeBlockV1",
+      "owner": "SbeBlockV1Mixin",
       "domain_of": [
-        "SbeBlockV1"
+        "SbeBlockV1Mixin"
       ],
       "is_usage_slot": true,
       "usage_slot_name": "repeating_groups",
@@ -1881,7 +1881,7 @@
       "@type": "SlotDefinition"
     },
     {
-      "name": "SbeBlockV1_var_data_fields",
+      "name": "SbeBlockV1Mixin_var_data_fields",
       "definition_uri": "https://w3id.org/lmodel/fix-sbe/var_data_fields",
       "description": "Variable-length fields, listed in wire order.",
       "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
@@ -1889,12 +1889,12 @@
         "data"
       ],
       "is_a": "var_data_fields",
-      "domain": "SbeBlockV1",
+      "domain": "SbeBlockV1Mixin",
       "slot_uri": "https://w3id.org/lmodel/fix-sbe/var_data_fields",
       "alias": "var_data_fields",
-      "owner": "SbeBlockV1",
+      "owner": "SbeBlockV1Mixin",
       "domain_of": [
-        "SbeBlockV1"
+        "SbeBlockV1Mixin"
       ],
       "is_usage_slot": true,
       "usage_slot_name": "var_data_fields",
@@ -1920,7 +1920,7 @@
       "aliases": [
         "id"
       ],
-      "is_a": "SbeBlockV1_sbe_id",
+      "is_a": "SbeBlockV1Mixin_sbe_id",
       "domain": "SbeMessageV1",
       "slot_uri": "https://w3id.org/lmodel/fix-sbe/sbe_id",
       "alias": "sbe_id",
@@ -1974,7 +1974,7 @@
       "aliases": [
         "field"
       ],
-      "is_a": "SbeBlockV1_block_fields",
+      "is_a": "SbeBlockV1Mixin_block_fields",
       "domain": "SbeGroupV1",
       "slot_uri": "https://w3id.org/lmodel/fix-sbe/block_fields",
       "alias": "block_fields",
@@ -2286,7 +2286,7 @@
       "@type": "SlotDefinition"
     },
     {
-      "name": "SbeBlockV2_sbe_id",
+      "name": "SbeBlockV2Mixin_sbe_id",
       "definition_uri": "https://w3id.org/lmodel/fix-sbe/sbe_id",
       "annotations": {
         "xsd_type": {
@@ -2302,12 +2302,12 @@
         "id"
       ],
       "is_a": "sbe_id",
-      "domain": "SbeBlockV2",
+      "domain": "SbeBlockV2Mixin",
       "slot_uri": "https://w3id.org/lmodel/fix-sbe/sbe_id",
       "alias": "sbe_id",
-      "owner": "SbeBlockV2",
+      "owner": "SbeBlockV2Mixin",
       "domain_of": [
-        "SbeBlockV2"
+        "SbeBlockV2Mixin"
       ],
       "is_usage_slot": true,
       "usage_slot_name": "sbe_id",
@@ -2318,7 +2318,7 @@
       "@type": "SlotDefinition"
     },
     {
-      "name": "SbeBlockV2_alignment",
+      "name": "SbeBlockV2Mixin_alignment",
       "definition_uri": "https://w3id.org/lmodel/fix-sbe/alignment",
       "annotations": {
         "xsd_type": {
@@ -2340,12 +2340,12 @@
         "alignment"
       ],
       "is_a": "alignment",
-      "domain": "SbeBlockV2",
+      "domain": "SbeBlockV2Mixin",
       "slot_uri": "https://w3id.org/lmodel/fix-sbe/alignment",
       "alias": "alignment",
-      "owner": "SbeBlockV2",
+      "owner": "SbeBlockV2Mixin",
       "domain_of": [
-        "SbeBlockV2"
+        "SbeBlockV2Mixin"
       ],
       "is_usage_slot": true,
       "usage_slot_name": "alignment",
@@ -2354,7 +2354,7 @@
       "@type": "SlotDefinition"
     },
     {
-      "name": "SbeBlockV2_block_fields",
+      "name": "SbeBlockV2Mixin_block_fields",
       "definition_uri": "https://w3id.org/lmodel/fix-sbe/block_fields",
       "description": "Fixed-length fields, listed in wire order.",
       "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
@@ -2362,12 +2362,12 @@
         "field"
       ],
       "is_a": "block_fields",
-      "domain": "SbeBlockV2",
+      "domain": "SbeBlockV2Mixin",
       "slot_uri": "https://w3id.org/lmodel/fix-sbe/block_fields",
       "alias": "block_fields",
-      "owner": "SbeBlockV2",
+      "owner": "SbeBlockV2Mixin",
       "domain_of": [
-        "SbeBlockV2"
+        "SbeBlockV2Mixin"
       ],
       "is_usage_slot": true,
       "usage_slot_name": "block_fields",
@@ -2378,7 +2378,7 @@
       "@type": "SlotDefinition"
     },
     {
-      "name": "SbeBlockV2_repeating_groups",
+      "name": "SbeBlockV2Mixin_repeating_groups",
       "definition_uri": "https://w3id.org/lmodel/fix-sbe/repeating_groups",
       "description": "Repeating groups, listed in wire order.",
       "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
@@ -2386,12 +2386,12 @@
         "group"
       ],
       "is_a": "repeating_groups",
-      "domain": "SbeBlockV2",
+      "domain": "SbeBlockV2Mixin",
       "slot_uri": "https://w3id.org/lmodel/fix-sbe/repeating_groups",
       "alias": "repeating_groups",
-      "owner": "SbeBlockV2",
+      "owner": "SbeBlockV2Mixin",
       "domain_of": [
-        "SbeBlockV2"
+        "SbeBlockV2Mixin"
       ],
       "is_usage_slot": true,
       "usage_slot_name": "repeating_groups",
@@ -2402,7 +2402,7 @@
       "@type": "SlotDefinition"
     },
     {
-      "name": "SbeBlockV2_var_data_fields",
+      "name": "SbeBlockV2Mixin_var_data_fields",
       "definition_uri": "https://w3id.org/lmodel/fix-sbe/var_data_fields",
       "description": "Variable-length fields, listed in wire order.",
       "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
@@ -2410,12 +2410,12 @@
         "data"
       ],
       "is_a": "var_data_fields",
-      "domain": "SbeBlockV2",
+      "domain": "SbeBlockV2Mixin",
       "slot_uri": "https://w3id.org/lmodel/fix-sbe/var_data_fields",
       "alias": "var_data_fields",
-      "owner": "SbeBlockV2",
+      "owner": "SbeBlockV2Mixin",
       "domain_of": [
-        "SbeBlockV2"
+        "SbeBlockV2Mixin"
       ],
       "is_usage_slot": true,
       "usage_slot_name": "var_data_fields",
@@ -2441,7 +2441,7 @@
       "aliases": [
         "id"
       ],
-      "is_a": "SbeBlockV2_sbe_id",
+      "is_a": "SbeBlockV2Mixin_sbe_id",
       "domain": "SbeMessageV2",
       "slot_uri": "https://w3id.org/lmodel/fix-sbe/sbe_id",
       "alias": "sbe_id",
@@ -2495,7 +2495,7 @@
       "aliases": [
         "field"
       ],
-      "is_a": "SbeBlockV2_block_fields",
+      "is_a": "SbeBlockV2Mixin_block_fields",
       "domain": "SbeGroupV2",
       "slot_uri": "https://w3id.org/lmodel/fix-sbe/block_fields",
       "alias": "block_fields",
@@ -3178,28 +3178,23 @@
       "@type": "ClassDefinition"
     },
     {
-      "name": "SbeBlockV1",
-      "definition_uri": "https://w3id.org/lmodel/fix-sbe/SbeBlockV1",
+      "name": "SbeBlockV1Mixin",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/SbeBlockV1Mixin",
       "description": "The body shared by a message and a group entry, which holds its fixed-length fields first, then groups, then variable-length data.",
       "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v1_0",
-      "abstract": true,
-      "mixins": [
-        "SbeVersionedMixin"
-      ],
+      "mixin": true,
       "slots": [
         "symbolic_name",
-        "SbeBlockV1_sbe_id",
+        "SbeBlockV1Mixin_sbe_id",
         "block_length",
         "semantic_type",
         "description",
-        "SbeBlockV1_block_fields",
-        "SbeBlockV1_repeating_groups",
-        "SbeBlockV1_var_data_fields",
-        "since_version",
-        "deprecated_since"
+        "SbeBlockV1Mixin_block_fields",
+        "SbeBlockV1Mixin_repeating_groups",
+        "SbeBlockV1Mixin_var_data_fields"
       ],
       "slot_usage": {},
-      "class_uri": "https://w3id.org/lmodel/fix-sbe/SbeBlockV1",
+      "class_uri": "https://w3id.org/lmodel/fix-sbe/SbeBlockV1Mixin",
       "@type": "ClassDefinition"
     },
     {
@@ -3222,18 +3217,21 @@
       "close_mappings": [
         "fix_orchestra:OrchestraMessageV10"
       ],
-      "is_a": "SbeBlockV1",
+      "mixins": [
+        "SbeVersionedMixin",
+        "SbeBlockV1Mixin"
+      ],
       "slots": [
+        "SbeMessageV1_sbe_id",
+        "SbeMessageV1_semantic_type",
+        "since_version",
+        "deprecated_since",
         "symbolic_name",
         "block_length",
         "description",
-        "SbeBlockV1_block_fields",
-        "SbeBlockV1_repeating_groups",
-        "SbeBlockV1_var_data_fields",
-        "since_version",
-        "deprecated_since",
-        "SbeMessageV1_sbe_id",
-        "SbeMessageV1_semantic_type"
+        "SbeBlockV1Mixin_block_fields",
+        "SbeBlockV1Mixin_repeating_groups",
+        "SbeBlockV1Mixin_var_data_fields"
       ],
       "slot_usage": {},
       "class_uri": "https://w3id.org/lmodel/fix-sbe/SbeMessageV1",
@@ -3259,19 +3257,22 @@
       "close_mappings": [
         "fix_orchestra:OrchestraGroupV10"
       ],
-      "is_a": "SbeBlockV1",
+      "mixins": [
+        "SbeVersionedMixin",
+        "SbeBlockV1Mixin"
+      ],
       "slots": [
+        "dimension_type",
+        "SbeGroupV1_block_fields",
+        "since_version",
+        "deprecated_since",
         "symbolic_name",
-        "SbeBlockV1_sbe_id",
+        "SbeBlockV1Mixin_sbe_id",
         "block_length",
         "semantic_type",
         "description",
-        "SbeBlockV1_repeating_groups",
-        "SbeBlockV1_var_data_fields",
-        "since_version",
-        "deprecated_since",
-        "dimension_type",
-        "SbeGroupV1_block_fields"
+        "SbeBlockV1Mixin_repeating_groups",
+        "SbeBlockV1Mixin_var_data_fields"
       ],
       "slot_usage": {},
       "class_uri": "https://w3id.org/lmodel/fix-sbe/SbeGroupV1",
@@ -3888,29 +3889,24 @@
       "@type": "ClassDefinition"
     },
     {
-      "name": "SbeBlockV2",
-      "definition_uri": "https://w3id.org/lmodel/fix-sbe/SbeBlockV2",
+      "name": "SbeBlockV2Mixin",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin",
       "description": "The body shared by a message and a group entry, which holds its fixed-length fields first, then groups, then variable-length data.",
       "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v2_0",
-      "abstract": true,
-      "mixins": [
-        "SbeVersionedMixin"
-      ],
+      "mixin": true,
       "slots": [
         "symbolic_name",
-        "SbeBlockV2_sbe_id",
+        "SbeBlockV2Mixin_sbe_id",
         "block_length",
-        "SbeBlockV2_alignment",
+        "SbeBlockV2Mixin_alignment",
         "semantic_type",
         "description",
-        "SbeBlockV2_block_fields",
-        "SbeBlockV2_repeating_groups",
-        "SbeBlockV2_var_data_fields",
-        "since_version",
-        "deprecated_since"
+        "SbeBlockV2Mixin_block_fields",
+        "SbeBlockV2Mixin_repeating_groups",
+        "SbeBlockV2Mixin_var_data_fields"
       ],
       "slot_usage": {},
-      "class_uri": "https://w3id.org/lmodel/fix-sbe/SbeBlockV2",
+      "class_uri": "https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin",
       "@type": "ClassDefinition"
     },
     {
@@ -3933,19 +3929,22 @@
       "close_mappings": [
         "fix_orchestra:OrchestraMessageV10"
       ],
-      "is_a": "SbeBlockV2",
+      "mixins": [
+        "SbeVersionedMixin",
+        "SbeBlockV2Mixin"
+      ],
       "slots": [
-        "symbolic_name",
-        "block_length",
-        "SbeBlockV2_alignment",
-        "description",
-        "SbeBlockV2_block_fields",
-        "SbeBlockV2_repeating_groups",
-        "SbeBlockV2_var_data_fields",
+        "SbeMessageV2_sbe_id",
+        "SbeMessageV2_semantic_type",
         "since_version",
         "deprecated_since",
-        "SbeMessageV2_sbe_id",
-        "SbeMessageV2_semantic_type"
+        "symbolic_name",
+        "block_length",
+        "SbeBlockV2Mixin_alignment",
+        "description",
+        "SbeBlockV2Mixin_block_fields",
+        "SbeBlockV2Mixin_repeating_groups",
+        "SbeBlockV2Mixin_var_data_fields"
       ],
       "slot_usage": {},
       "class_uri": "https://w3id.org/lmodel/fix-sbe/SbeMessageV2",
@@ -3971,20 +3970,23 @@
       "close_mappings": [
         "fix_orchestra:OrchestraGroupV10"
       ],
-      "is_a": "SbeBlockV2",
+      "mixins": [
+        "SbeVersionedMixin",
+        "SbeBlockV2Mixin"
+      ],
       "slots": [
-        "symbolic_name",
-        "SbeBlockV2_sbe_id",
-        "block_length",
-        "SbeBlockV2_alignment",
-        "semantic_type",
-        "description",
-        "SbeBlockV2_repeating_groups",
-        "SbeBlockV2_var_data_fields",
+        "dimension_type",
+        "SbeGroupV2_block_fields",
         "since_version",
         "deprecated_since",
-        "dimension_type",
-        "SbeGroupV2_block_fields"
+        "symbolic_name",
+        "SbeBlockV2Mixin_sbe_id",
+        "block_length",
+        "SbeBlockV2Mixin_alignment",
+        "semantic_type",
+        "description",
+        "SbeBlockV2Mixin_repeating_groups",
+        "SbeBlockV2Mixin_var_data_fields"
       ],
       "slot_usage": {},
       "class_uri": "https://w3id.org/lmodel/fix-sbe/SbeGroupV2",

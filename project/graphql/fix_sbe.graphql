@@ -63,7 +63,7 @@ enum SbePrimitiveType
     double
   }
 
-type SbeBlockV1 implements SbeVersionedMixin
+interface SbeBlockV1Mixin
   {
     symbolicName: SbeSymbolicName!
     sbeId: Int!
@@ -73,11 +73,9 @@ type SbeBlockV1 implements SbeVersionedMixin
     blockFields: [SbeFieldV1]
     repeatingGroups: [SbeGroupV1]
     varDataFields: [SbeFieldV1]
-    sinceVersion: Int
-    deprecatedSince: Int
   }
 
-type SbeBlockV2 implements SbeVersionedMixin
+interface SbeBlockV2Mixin
   {
     symbolicName: SbeSymbolicName!
     sbeId: Int!
@@ -88,8 +86,6 @@ type SbeBlockV2 implements SbeVersionedMixin
     blockFields: [SbeFieldV2]
     repeatingGroups: [SbeGroupV2]
     varDataFields: [SbeFieldV2]
-    sinceVersion: Int
-    deprecatedSince: Int
   }
 
 type SbeChoice implements SbeVersionedMixin
@@ -217,8 +213,12 @@ type SbeFieldV2 implements SbeVersionedMixin
     deprecatedSince: Int
   }
 
-type SbeGroupV1
+type SbeGroupV1 implements SbeVersionedMixin, SbeBlockV1Mixin
   {
+    dimensionType: SbeSymbolicName
+    blockFields: [SbeFieldV1]!
+    sinceVersion: Int
+    deprecatedSince: Int
     symbolicName: SbeSymbolicName!
     sbeId: Int!
     blockLength: Int
@@ -226,14 +226,14 @@ type SbeGroupV1
     description: String
     repeatingGroups: [SbeGroupV1]
     varDataFields: [SbeFieldV1]
-    sinceVersion: Int
-    deprecatedSince: Int
-    dimensionType: SbeSymbolicName
-    blockFields: [SbeFieldV1]!
   }
 
-type SbeGroupV2
+type SbeGroupV2 implements SbeVersionedMixin, SbeBlockV2Mixin
   {
+    dimensionType: SbeSymbolicName
+    blockFields: [SbeFieldV2]!
+    sinceVersion: Int
+    deprecatedSince: Int
     symbolicName: SbeSymbolicName!
     sbeId: Int!
     blockLength: Int
@@ -242,10 +242,6 @@ type SbeGroupV2
     description: String
     repeatingGroups: [SbeGroupV2]
     varDataFields: [SbeFieldV2]
-    sinceVersion: Int
-    deprecatedSince: Int
-    dimensionType: SbeSymbolicName
-    blockFields: [SbeFieldV2]!
   }
 
 type SbeMemberTypeV2
@@ -318,22 +314,26 @@ type SbeMessageSetV2
     messages: [SbeMessageV2]!
   }
 
-type SbeMessageV1
+type SbeMessageV1 implements SbeVersionedMixin, SbeBlockV1Mixin
   {
+    sbeId: Int!
+    semanticType: SbeToken
+    sinceVersion: Int
+    deprecatedSince: Int
     symbolicName: SbeSymbolicName!
     blockLength: Int
     description: String
     blockFields: [SbeFieldV1]
     repeatingGroups: [SbeGroupV1]
     varDataFields: [SbeFieldV1]
-    sinceVersion: Int
-    deprecatedSince: Int
-    sbeId: Int!
-    semanticType: SbeToken
   }
 
-type SbeMessageV2
+type SbeMessageV2 implements SbeVersionedMixin, SbeBlockV2Mixin
   {
+    sbeId: Int!
+    semanticType: SbeToken
+    sinceVersion: Int
+    deprecatedSince: Int
     symbolicName: SbeSymbolicName!
     blockLength: Int
     alignment: Int
@@ -341,10 +341,6 @@ type SbeMessageV2
     blockFields: [SbeFieldV2]
     repeatingGroups: [SbeGroupV2]
     varDataFields: [SbeFieldV2]
-    sinceVersion: Int
-    deprecatedSince: Int
-    sbeId: Int!
-    semanticType: SbeToken
   }
 
 type SbeRefV1

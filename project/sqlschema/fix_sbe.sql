@@ -105,36 +105,34 @@
 --     * Slot: offset Description: The octet this element starts at, counted from zero at the start of its block or composite.
 --     * Slot: since_version Description: The schema version that added this element.
 --     * Slot: deprecated_since Description: The schema version that retired this element, which stays only for older applications.
--- # Abstract Class: SbeBlockV1 Description: The body shared by a message and a group entry, which holds its fixed-length fields first, then groups, then variable-length data.
+-- # Class: SbeBlockV1Mixin Description: The body shared by a message and a group entry, which holds its fixed-length fields first, then groups, then variable-length data.
 --     * Slot: id
 --     * Slot: symbolic_name Description: What the schema calls this element.
 --     * Slot: sbe_id Description: The number that identifies this element.
 --     * Slot: block_length Description: The octets set aside for a message's fixed-length fields, or for those of each group entry.
 --     * Slot: semantic_type Description: What this element means at the FIX application layer.
 --     * Slot: description Description: Free text about this element, for the people who read the schema.
---     * Slot: since_version Description: The schema version that added this element.
---     * Slot: deprecated_since Description: The schema version that retired this element, which stays only for older applications.
 -- # Class: SbeMessageV1 Description: A message template, whose number and block length are sent in each message's header.
 --     * Slot: id
+--     * Slot: since_version Description: The schema version that added this element.
+--     * Slot: deprecated_since Description: The schema version that retired this element, which stays only for older applications.
 --     * Slot: symbolic_name Description: What the schema calls this element.
 --     * Slot: sbe_id Description: The template's number, which no other template in the schema shares.
 --     * Slot: block_length Description: The octets set aside for a message's fixed-length fields, or for those of each group entry.
 --     * Slot: semantic_type Description: The FIX MsgType(35) this template stands for, where several templates may share one.
 --     * Slot: description Description: Free text about this element, for the people who read the schema.
---     * Slot: since_version Description: The schema version that added this element.
---     * Slot: deprecated_since Description: The schema version that retired this element, which stays only for older applications.
 --     * Slot: SbeMessageSchemaV1_id Description: Autocreated FK slot
 -- # Class: SbeGroupV1 Description: A repeating group, whose entries each hold the same fields, and which cannot be without a field.
 --     * Slot: id
 --     * Slot: dimension_type Description: The composite, by name, that sends a repeating group's entry count and entry size.
+--     * Slot: since_version Description: The schema version that added this element.
+--     * Slot: deprecated_since Description: The schema version that retired this element, which stays only for older applications.
 --     * Slot: symbolic_name Description: What the schema calls this element.
 --     * Slot: sbe_id Description: The number that identifies this element.
 --     * Slot: block_length Description: The octets set aside for a message's fixed-length fields, or for those of each group entry.
 --     * Slot: semantic_type Description: What this element means at the FIX application layer.
 --     * Slot: description Description: Free text about this element, for the people who read the schema.
---     * Slot: since_version Description: The schema version that added this element.
---     * Slot: deprecated_since Description: The schema version that retired this element, which stays only for older applications.
---     * Slot: SbeBlockV1_id Description: Autocreated FK slot
+--     * Slot: SbeBlockV1Mixin_id Description: Autocreated FK slot
 --     * Slot: SbeMessageV1_id Description: Autocreated FK slot
 --     * Slot: SbeGroupV1_id Description: Autocreated FK slot
 -- # Class: SbeFieldV1 Description: A message's or group entry's field, which uses an encoding at a place in its block.
@@ -151,7 +149,7 @@
 --     * Slot: time_unit Description: The unit of a time value.
 --     * Slot: since_version Description: The schema version that added this element.
 --     * Slot: deprecated_since Description: The schema version that retired this element, which stays only for older applications.
---     * Slot: SbeBlockV1_id Description: Autocreated FK slot
+--     * Slot: SbeBlockV1Mixin_id Description: Autocreated FK slot
 --     * Slot: SbeMessageV1_id Description: Autocreated FK slot
 --     * Slot: SbeGroupV1_id Description: Autocreated FK slot
 -- # Class: SbeMessageSchemaV2 Description: One SBE 2.0 message schema, with its encodings and message templates.
@@ -253,7 +251,7 @@
 --     * Slot: encoding_kind Description: The class of this encoding or composite member, which stands for its XML element.
 --     * Slot: symbolic_name Description: What the schema calls this element.
 --     * Slot: description Description: Free text about this element, for the people who read the schema.
--- # Abstract Class: SbeBlockV2 Description: The body shared by a message and a group entry, which holds its fixed-length fields first, then groups, then variable-length data.
+-- # Class: SbeBlockV2Mixin Description: The body shared by a message and a group entry, which holds its fixed-length fields first, then groups, then variable-length data.
 --     * Slot: id
 --     * Slot: symbolic_name Description: What the schema calls this element.
 --     * Slot: sbe_id Description: The number that identifies this element.
@@ -261,31 +259,29 @@
 --     * Slot: alignment Description: The multiple of octets where a message or each group entry begins.
 --     * Slot: semantic_type Description: What this element means at the FIX application layer.
 --     * Slot: description Description: Free text about this element, for the people who read the schema.
---     * Slot: since_version Description: The schema version that added this element.
---     * Slot: deprecated_since Description: The schema version that retired this element, which stays only for older applications.
 -- # Class: SbeMessageV2 Description: A message template, whose number and block length are sent in each message's header.
 --     * Slot: id
+--     * Slot: since_version Description: The schema version that added this element.
+--     * Slot: deprecated_since Description: The schema version that retired this element, which stays only for older applications.
 --     * Slot: symbolic_name Description: What the schema calls this element.
 --     * Slot: sbe_id Description: The template's number, which no other template in the schema shares.
 --     * Slot: block_length Description: The octets set aside for a message's fixed-length fields, or for those of each group entry.
 --     * Slot: alignment Description: The multiple of octets where a message or each group entry begins.
 --     * Slot: semantic_type Description: The FIX MsgType(35) this template stands for, where several templates may share one.
 --     * Slot: description Description: Free text about this element, for the people who read the schema.
---     * Slot: since_version Description: The schema version that added this element.
---     * Slot: deprecated_since Description: The schema version that retired this element, which stays only for older applications.
 --     * Slot: SbeMessageSetV2_id Description: Autocreated FK slot
 -- # Class: SbeGroupV2 Description: A repeating group, whose entries each hold the same fields, and which cannot be without a field.
 --     * Slot: id
 --     * Slot: dimension_type Description: The composite, by name, that sends a repeating group's entry count and entry size.
+--     * Slot: since_version Description: The schema version that added this element.
+--     * Slot: deprecated_since Description: The schema version that retired this element, which stays only for older applications.
 --     * Slot: symbolic_name Description: What the schema calls this element.
 --     * Slot: sbe_id Description: The number that identifies this element.
 --     * Slot: block_length Description: The octets set aside for a message's fixed-length fields, or for those of each group entry.
 --     * Slot: alignment Description: The multiple of octets where a message or each group entry begins.
 --     * Slot: semantic_type Description: What this element means at the FIX application layer.
 --     * Slot: description Description: Free text about this element, for the people who read the schema.
---     * Slot: since_version Description: The schema version that added this element.
---     * Slot: deprecated_since Description: The schema version that retired this element, which stays only for older applications.
---     * Slot: SbeBlockV2_id Description: Autocreated FK slot
+--     * Slot: SbeBlockV2Mixin_id Description: Autocreated FK slot
 --     * Slot: SbeMessageV2_id Description: Autocreated FK slot
 --     * Slot: SbeGroupV2_id Description: Autocreated FK slot
 -- # Class: SbeFieldV2 Description: A message's or group entry's field, which uses an encoding at a place in its block and may state a constant.
@@ -305,7 +301,7 @@
 --     * Slot: description Description: Free text about this element, for the people who read the schema.
 --     * Slot: since_version Description: The schema version that added this element.
 --     * Slot: deprecated_since Description: The schema version that retired this element, which stays only for older applications.
---     * Slot: SbeBlockV2_id Description: Autocreated FK slot
+--     * Slot: SbeBlockV2Mixin_id Description: Autocreated FK slot
 --     * Slot: SbeMessageV2_id Description: Autocreated FK slot
 --     * Slot: SbeGroupV2_id Description: Autocreated FK slot
 
@@ -405,18 +401,16 @@ CREATE TABLE "SbeSetV1" (
 );
 CREATE INDEX "ix_SbeSetV1_id" ON "SbeSetV1" (id);
 
-CREATE TABLE "SbeBlockV1" (
+CREATE TABLE "SbeBlockV1Mixin" (
 	id INTEGER NOT NULL,
 	symbolic_name TEXT NOT NULL,
 	sbe_id INTEGER NOT NULL,
 	block_length INTEGER,
 	semantic_type TEXT,
 	description TEXT,
-	since_version INTEGER,
-	deprecated_since INTEGER,
 	PRIMARY KEY (id)
 );
-CREATE INDEX "ix_SbeBlockV1_id" ON "SbeBlockV1" (id);
+CREATE INDEX "ix_SbeBlockV1Mixin_id" ON "SbeBlockV1Mixin" (id);
 
 CREATE TABLE "SbeMessageSchemaV2" (
 	id INTEGER NOT NULL,
@@ -519,7 +513,7 @@ CREATE TABLE "SbeSetV2" (
 );
 CREATE INDEX "ix_SbeSetV2_id" ON "SbeSetV2" (id);
 
-CREATE TABLE "SbeBlockV2" (
+CREATE TABLE "SbeBlockV2Mixin" (
 	id INTEGER NOT NULL,
 	symbolic_name TEXT NOT NULL,
 	sbe_id INTEGER NOT NULL,
@@ -527,11 +521,9 @@ CREATE TABLE "SbeBlockV2" (
 	alignment INTEGER,
 	semantic_type TEXT,
 	description TEXT,
-	since_version INTEGER,
-	deprecated_since INTEGER,
 	PRIMARY KEY (id)
 );
-CREATE INDEX "ix_SbeBlockV2_id" ON "SbeBlockV2" (id);
+CREATE INDEX "ix_SbeBlockV2Mixin_id" ON "SbeBlockV2Mixin" (id);
 
 CREATE TABLE "SbeValidValue" (
 	id INTEGER NOT NULL,
@@ -586,13 +578,13 @@ CREATE INDEX "ix_SbeMemberV1_id" ON "SbeMemberV1" (id);
 
 CREATE TABLE "SbeMessageV1" (
 	id INTEGER NOT NULL,
+	since_version INTEGER,
+	deprecated_since INTEGER,
 	symbolic_name TEXT NOT NULL,
 	sbe_id INTEGER NOT NULL,
 	block_length INTEGER,
 	semantic_type TEXT,
 	description TEXT,
-	since_version INTEGER,
-	deprecated_since INTEGER,
 	"SbeMessageSchemaV1_id" INTEGER,
 	PRIMARY KEY (id),
 	FOREIGN KEY("SbeMessageSchemaV1_id") REFERENCES "SbeMessageSchemaV1" (id)
@@ -652,18 +644,18 @@ CREATE INDEX "ix_SbeEncodingV1_id" ON "SbeEncodingV1" (id);
 CREATE TABLE "SbeGroupV1" (
 	id INTEGER NOT NULL,
 	dimension_type TEXT,
+	since_version INTEGER,
+	deprecated_since INTEGER,
 	symbolic_name TEXT NOT NULL,
 	sbe_id INTEGER NOT NULL,
 	block_length INTEGER,
 	semantic_type TEXT,
 	description TEXT,
-	since_version INTEGER,
-	deprecated_since INTEGER,
-	"SbeBlockV1_id" INTEGER,
+	"SbeBlockV1Mixin_id" INTEGER,
 	"SbeMessageV1_id" INTEGER,
 	"SbeGroupV1_id" INTEGER,
 	PRIMARY KEY (id),
-	FOREIGN KEY("SbeBlockV1_id") REFERENCES "SbeBlockV1" (id),
+	FOREIGN KEY("SbeBlockV1Mixin_id") REFERENCES "SbeBlockV1Mixin" (id),
 	FOREIGN KEY("SbeMessageV1_id") REFERENCES "SbeMessageV1" (id),
 	FOREIGN KEY("SbeGroupV1_id") REFERENCES "SbeGroupV1" (id)
 );
@@ -682,14 +674,14 @@ CREATE INDEX "ix_SbeElementV2_id" ON "SbeElementV2" (id);
 
 CREATE TABLE "SbeMessageV2" (
 	id INTEGER NOT NULL,
+	since_version INTEGER,
+	deprecated_since INTEGER,
 	symbolic_name TEXT NOT NULL,
 	sbe_id INTEGER NOT NULL,
 	block_length INTEGER,
 	alignment INTEGER,
 	semantic_type TEXT,
 	description TEXT,
-	since_version INTEGER,
-	deprecated_since INTEGER,
 	"SbeMessageSetV2_id" INTEGER,
 	PRIMARY KEY (id),
 	FOREIGN KEY("SbeMessageSetV2_id") REFERENCES "SbeMessageSetV2" (id)
@@ -710,11 +702,11 @@ CREATE TABLE "SbeFieldV1" (
 	time_unit TEXT,
 	since_version INTEGER,
 	deprecated_since INTEGER,
-	"SbeBlockV1_id" INTEGER,
+	"SbeBlockV1Mixin_id" INTEGER,
 	"SbeMessageV1_id" INTEGER,
 	"SbeGroupV1_id" INTEGER,
 	PRIMARY KEY (id),
-	FOREIGN KEY("SbeBlockV1_id") REFERENCES "SbeBlockV1" (id),
+	FOREIGN KEY("SbeBlockV1Mixin_id") REFERENCES "SbeBlockV1Mixin" (id),
 	FOREIGN KEY("SbeMessageV1_id") REFERENCES "SbeMessageV1" (id),
 	FOREIGN KEY("SbeGroupV1_id") REFERENCES "SbeGroupV1" (id)
 );
@@ -723,19 +715,19 @@ CREATE INDEX "ix_SbeFieldV1_id" ON "SbeFieldV1" (id);
 CREATE TABLE "SbeGroupV2" (
 	id INTEGER NOT NULL,
 	dimension_type TEXT,
+	since_version INTEGER,
+	deprecated_since INTEGER,
 	symbolic_name TEXT NOT NULL,
 	sbe_id INTEGER NOT NULL,
 	block_length INTEGER,
 	alignment INTEGER,
 	semantic_type TEXT,
 	description TEXT,
-	since_version INTEGER,
-	deprecated_since INTEGER,
-	"SbeBlockV2_id" INTEGER,
+	"SbeBlockV2Mixin_id" INTEGER,
 	"SbeMessageV2_id" INTEGER,
 	"SbeGroupV2_id" INTEGER,
 	PRIMARY KEY (id),
-	FOREIGN KEY("SbeBlockV2_id") REFERENCES "SbeBlockV2" (id),
+	FOREIGN KEY("SbeBlockV2Mixin_id") REFERENCES "SbeBlockV2Mixin" (id),
 	FOREIGN KEY("SbeMessageV2_id") REFERENCES "SbeMessageV2" (id),
 	FOREIGN KEY("SbeGroupV2_id") REFERENCES "SbeGroupV2" (id)
 );
@@ -758,11 +750,11 @@ CREATE TABLE "SbeFieldV2" (
 	description TEXT,
 	since_version INTEGER,
 	deprecated_since INTEGER,
-	"SbeBlockV2_id" INTEGER,
+	"SbeBlockV2Mixin_id" INTEGER,
 	"SbeMessageV2_id" INTEGER,
 	"SbeGroupV2_id" INTEGER,
 	PRIMARY KEY (id),
-	FOREIGN KEY("SbeBlockV2_id") REFERENCES "SbeBlockV2" (id),
+	FOREIGN KEY("SbeBlockV2Mixin_id") REFERENCES "SbeBlockV2Mixin" (id),
 	FOREIGN KEY("SbeMessageV2_id") REFERENCES "SbeMessageV2" (id),
 	FOREIGN KEY("SbeGroupV2_id") REFERENCES "SbeGroupV2" (id)
 );

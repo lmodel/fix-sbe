@@ -163,8 +163,8 @@
          "@type": "xsd:anyURI",
          "@id": "xml_base"
       },
-      "SbeBlockV1": {
-         "@id": "SbeBlockV1",
+      "SbeBlockV1Mixin": {
+         "@id": "SbeBlockV1Mixin",
          "@context": {
             "block_fields": {
                "@id": "block_fields",
@@ -180,8 +180,8 @@
             }
          }
       },
-      "SbeBlockV2": {
-         "@id": "SbeBlockV2",
+      "SbeBlockV2Mixin": {
+         "@id": "SbeBlockV2Mixin",
          "@context": {
             "block_fields": {
                "@id": "block_fields",

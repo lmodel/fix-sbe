@@ -82,13 +82,17 @@ def _class_slots(name):
 
 
 def _range_of(owner, slot):
-    """A list's range on a class, from the first slot_usage up its chain of parents."""
+    """A list's range on a class, from the first slot_usage on it, its mixins or its parents."""
     classes = modules()["classes"]
-    while owner:
-        usage = (classes[owner].get("slot_usage") or {}).get(slot) or {}
+    pending = [owner]
+    while pending:
+        name = pending.pop(0)
+        usage = (classes[name].get("slot_usage") or {}).get(slot) or {}
         if usage.get("range"):
             return usage["range"]
-        owner = classes[owner].get("is_a")
+        pending += classes[name].get("mixins") or []
+        if classes[name].get("is_a"):
+            pending.append(classes[name]["is_a"])
     return modules()["slots"][slot].get("range")
 
 

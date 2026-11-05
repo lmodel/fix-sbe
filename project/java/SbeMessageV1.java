@@ -14,8 +14,18 @@ import lombok.*;
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class SbeMessageV1 extends SbeBlockV1 {
+public class SbeMessageV1  {
 
+  private Integer sinceVersion;
+  private Integer deprecatedSince;
+  private String symbolicName;
+  private int sbeId;
+  private Integer blockLength;
+  private String semanticType;
+  private String description;
+  private List<SbeFieldV1> blockFields;
+  private List<SbeGroupV1> repeatingGroups;
+  private List<SbeFieldV1> varDataFields;
 
 
 }

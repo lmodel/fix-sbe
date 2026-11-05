@@ -242,7 +242,7 @@ class SbeMessageSchemaV1(YAMLRoot):
 
         if self._is_empty(self.messages):
             self.MissingRequiredField("messages")
-        self._normalize_inlined_as_list(slot_name="messages", slot_type=SbeMessageV1, key_name="symbolic_name", keyed=False)
+        self._normalize_inlined_as_list(slot_name="messages", slot_type=SbeMessageV1, key_name="sbe_id", keyed=False)
 
         if self.schema_package is not None and not isinstance(self.schema_package, str):
             self.schema_package = str(self.schema_package)
@@ -556,17 +556,17 @@ class SbeSetV1(SbeEncodingV1):
 
 
 @dataclass(repr=False)
-class SbeBlockV1(YAMLRoot):
+class SbeBlockV1Mixin(YAMLRoot):
     """
     The body shared by a message and a group entry, which holds its fixed-length fields first, then groups, then
     variable-length data.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = FIX_SBE["SbeBlockV1"]
-    class_class_curie: ClassVar[str] = "fix_sbe:SbeBlockV1"
-    class_name: ClassVar[str] = "SbeBlockV1"
-    class_model_uri: ClassVar[URIRef] = FIX_SBE.SbeBlockV1
+    class_class_uri: ClassVar[URIRef] = FIX_SBE["SbeBlockV1Mixin"]
+    class_class_curie: ClassVar[str] = "fix_sbe:SbeBlockV1Mixin"
+    class_name: ClassVar[str] = "SbeBlockV1Mixin"
+    class_model_uri: ClassVar[URIRef] = FIX_SBE.SbeBlockV1Mixin
 
     symbolic_name: Union[str, SbeSymbolicName] = None
     sbe_id: int = None
@@ -576,8 +576,6 @@ class SbeBlockV1(YAMLRoot):
     block_fields: Optional[Union[Union[dict, "SbeFieldV1"], list[Union[dict, "SbeFieldV1"]]]] = empty_list()
     repeating_groups: Optional[Union[Union[dict, "SbeGroupV1"], list[Union[dict, "SbeGroupV1"]]]] = empty_list()
     var_data_fields: Optional[Union[Union[dict, "SbeFieldV1"], list[Union[dict, "SbeFieldV1"]]]] = empty_list()
-    since_version: Optional[int] = 0
-    deprecated_since: Optional[int] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.symbolic_name):
@@ -605,17 +603,11 @@ class SbeBlockV1(YAMLRoot):
 
         self._normalize_inlined_as_list(slot_name="var_data_fields", slot_type=SbeFieldV1, key_name="symbolic_name", keyed=False)
 
-        if self.since_version is not None and not isinstance(self.since_version, int):
-            self.since_version = int(self.since_version)
-
-        if self.deprecated_since is not None and not isinstance(self.deprecated_since, int):
-            self.deprecated_since = int(self.deprecated_since)
-
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class SbeMessageV1(SbeBlockV1):
+class SbeMessageV1(YAMLRoot):
     """
     A message template, whose number and block length are sent in each message's header.
     """
@@ -626,9 +618,16 @@ class SbeMessageV1(SbeBlockV1):
     class_name: ClassVar[str] = "SbeMessageV1"
     class_model_uri: ClassVar[URIRef] = FIX_SBE.SbeMessageV1
 
-    symbolic_name: Union[str, SbeSymbolicName] = None
     sbe_id: int = None
+    symbolic_name: Union[str, SbeSymbolicName] = None
     semantic_type: Optional[Union[str, SbeToken]] = None
+    since_version: Optional[int] = 0
+    deprecated_since: Optional[int] = None
+    block_length: Optional[int] = None
+    description: Optional[str] = None
+    block_fields: Optional[Union[Union[dict, "SbeFieldV1"], list[Union[dict, "SbeFieldV1"]]]] = empty_list()
+    repeating_groups: Optional[Union[Union[dict, "SbeGroupV1"], list[Union[dict, "SbeGroupV1"]]]] = empty_list()
+    var_data_fields: Optional[Union[Union[dict, "SbeFieldV1"], list[Union[dict, "SbeFieldV1"]]]] = empty_list()
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.sbe_id):
@@ -636,14 +635,37 @@ class SbeMessageV1(SbeBlockV1):
         if not isinstance(self.sbe_id, int):
             self.sbe_id = int(self.sbe_id)
 
+        if self._is_empty(self.symbolic_name):
+            self.MissingRequiredField("symbolic_name")
+        if not isinstance(self.symbolic_name, SbeSymbolicName):
+            self.symbolic_name = SbeSymbolicName(self.symbolic_name)
+
         if self.semantic_type is not None and not isinstance(self.semantic_type, SbeToken):
             self.semantic_type = SbeToken(self.semantic_type)
+
+        if self.since_version is not None and not isinstance(self.since_version, int):
+            self.since_version = int(self.since_version)
+
+        if self.deprecated_since is not None and not isinstance(self.deprecated_since, int):
+            self.deprecated_since = int(self.deprecated_since)
+
+        if self.block_length is not None and not isinstance(self.block_length, int):
+            self.block_length = int(self.block_length)
+
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
+
+        self._normalize_inlined_as_list(slot_name="block_fields", slot_type=SbeFieldV1, key_name="symbolic_name", keyed=False)
+
+        self._normalize_inlined_as_list(slot_name="repeating_groups", slot_type=SbeGroupV1, key_name="symbolic_name", keyed=False)
+
+        self._normalize_inlined_as_list(slot_name="var_data_fields", slot_type=SbeFieldV1, key_name="symbolic_name", keyed=False)
 
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class SbeGroupV1(SbeBlockV1):
+class SbeGroupV1(YAMLRoot):
     """
     A repeating group, whose entries each hold the same fields, and which cannot be without a field.
     """
@@ -654,18 +676,54 @@ class SbeGroupV1(SbeBlockV1):
     class_name: ClassVar[str] = "SbeGroupV1"
     class_model_uri: ClassVar[URIRef] = FIX_SBE.SbeGroupV1
 
+    block_fields: Union[Union[dict, "SbeFieldV1"], list[Union[dict, "SbeFieldV1"]]] = None
     symbolic_name: Union[str, SbeSymbolicName] = None
     sbe_id: int = None
-    block_fields: Union[Union[dict, "SbeFieldV1"], list[Union[dict, "SbeFieldV1"]]] = None
     dimension_type: Optional[Union[str, SbeSymbolicName]] = "groupSizeEncoding"
+    since_version: Optional[int] = 0
+    deprecated_since: Optional[int] = None
+    block_length: Optional[int] = None
+    semantic_type: Optional[Union[str, SbeToken]] = None
+    description: Optional[str] = None
+    repeating_groups: Optional[Union[Union[dict, "SbeGroupV1"], list[Union[dict, "SbeGroupV1"]]]] = empty_list()
+    var_data_fields: Optional[Union[Union[dict, "SbeFieldV1"], list[Union[dict, "SbeFieldV1"]]]] = empty_list()
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.block_fields):
             self.MissingRequiredField("block_fields")
         self._normalize_inlined_as_list(slot_name="block_fields", slot_type=SbeFieldV1, key_name="symbolic_name", keyed=False)
 
+        if self._is_empty(self.symbolic_name):
+            self.MissingRequiredField("symbolic_name")
+        if not isinstance(self.symbolic_name, SbeSymbolicName):
+            self.symbolic_name = SbeSymbolicName(self.symbolic_name)
+
+        if self._is_empty(self.sbe_id):
+            self.MissingRequiredField("sbe_id")
+        if not isinstance(self.sbe_id, int):
+            self.sbe_id = int(self.sbe_id)
+
         if self.dimension_type is not None and not isinstance(self.dimension_type, SbeSymbolicName):
             self.dimension_type = SbeSymbolicName(self.dimension_type)
+
+        if self.since_version is not None and not isinstance(self.since_version, int):
+            self.since_version = int(self.since_version)
+
+        if self.deprecated_since is not None and not isinstance(self.deprecated_since, int):
+            self.deprecated_since = int(self.deprecated_since)
+
+        if self.block_length is not None and not isinstance(self.block_length, int):
+            self.block_length = int(self.block_length)
+
+        if self.semantic_type is not None and not isinstance(self.semantic_type, SbeToken):
+            self.semantic_type = SbeToken(self.semantic_type)
+
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
+
+        self._normalize_inlined_as_list(slot_name="repeating_groups", slot_type=SbeGroupV1, key_name="symbolic_name", keyed=False)
+
+        self._normalize_inlined_as_list(slot_name="var_data_fields", slot_type=SbeFieldV1, key_name="symbolic_name", keyed=False)
 
         super().__post_init__(**kwargs)
 
@@ -856,7 +914,7 @@ class SbeMessageSetV2(YAMLRoot):
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.messages):
             self.MissingRequiredField("messages")
-        self._normalize_inlined_as_list(slot_name="messages", slot_type=SbeMessageV2, key_name="symbolic_name", keyed=False)
+        self._normalize_inlined_as_list(slot_name="messages", slot_type=SbeMessageV2, key_name="sbe_id", keyed=False)
 
         if self.description is not None and not isinstance(self.description, str):
             self.description = str(self.description)
@@ -1203,17 +1261,17 @@ class SbeSetV2(SbeMemberV2):
 
 
 @dataclass(repr=False)
-class SbeBlockV2(YAMLRoot):
+class SbeBlockV2Mixin(YAMLRoot):
     """
     The body shared by a message and a group entry, which holds its fixed-length fields first, then groups, then
     variable-length data.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = FIX_SBE["SbeBlockV2"]
-    class_class_curie: ClassVar[str] = "fix_sbe:SbeBlockV2"
-    class_name: ClassVar[str] = "SbeBlockV2"
-    class_model_uri: ClassVar[URIRef] = FIX_SBE.SbeBlockV2
+    class_class_uri: ClassVar[URIRef] = FIX_SBE["SbeBlockV2Mixin"]
+    class_class_curie: ClassVar[str] = "fix_sbe:SbeBlockV2Mixin"
+    class_name: ClassVar[str] = "SbeBlockV2Mixin"
+    class_model_uri: ClassVar[URIRef] = FIX_SBE.SbeBlockV2Mixin
 
     symbolic_name: Union[str, SbeSymbolicName] = None
     sbe_id: int = None
@@ -1224,8 +1282,6 @@ class SbeBlockV2(YAMLRoot):
     block_fields: Optional[Union[Union[dict, "SbeFieldV2"], list[Union[dict, "SbeFieldV2"]]]] = empty_list()
     repeating_groups: Optional[Union[Union[dict, "SbeGroupV2"], list[Union[dict, "SbeGroupV2"]]]] = empty_list()
     var_data_fields: Optional[Union[Union[dict, "SbeFieldV2"], list[Union[dict, "SbeFieldV2"]]]] = empty_list()
-    since_version: Optional[int] = 0
-    deprecated_since: Optional[int] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.symbolic_name):
@@ -1256,17 +1312,11 @@ class SbeBlockV2(YAMLRoot):
 
         self._normalize_inlined_as_list(slot_name="var_data_fields", slot_type=SbeFieldV2, key_name="symbolic_name", keyed=False)
 
-        if self.since_version is not None and not isinstance(self.since_version, int):
-            self.since_version = int(self.since_version)
-
-        if self.deprecated_since is not None and not isinstance(self.deprecated_since, int):
-            self.deprecated_since = int(self.deprecated_since)
-
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class SbeMessageV2(SbeBlockV2):
+class SbeMessageV2(YAMLRoot):
     """
     A message template, whose number and block length are sent in each message's header.
     """
@@ -1277,9 +1327,17 @@ class SbeMessageV2(SbeBlockV2):
     class_name: ClassVar[str] = "SbeMessageV2"
     class_model_uri: ClassVar[URIRef] = FIX_SBE.SbeMessageV2
 
-    symbolic_name: Union[str, SbeSymbolicName] = None
     sbe_id: int = None
+    symbolic_name: Union[str, SbeSymbolicName] = None
     semantic_type: Optional[Union[str, SbeToken]] = None
+    since_version: Optional[int] = 0
+    deprecated_since: Optional[int] = None
+    block_length: Optional[int] = None
+    alignment: Optional[int] = None
+    description: Optional[str] = None
+    block_fields: Optional[Union[Union[dict, "SbeFieldV2"], list[Union[dict, "SbeFieldV2"]]]] = empty_list()
+    repeating_groups: Optional[Union[Union[dict, "SbeGroupV2"], list[Union[dict, "SbeGroupV2"]]]] = empty_list()
+    var_data_fields: Optional[Union[Union[dict, "SbeFieldV2"], list[Union[dict, "SbeFieldV2"]]]] = empty_list()
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.sbe_id):
@@ -1287,14 +1345,40 @@ class SbeMessageV2(SbeBlockV2):
         if not isinstance(self.sbe_id, int):
             self.sbe_id = int(self.sbe_id)
 
+        if self._is_empty(self.symbolic_name):
+            self.MissingRequiredField("symbolic_name")
+        if not isinstance(self.symbolic_name, SbeSymbolicName):
+            self.symbolic_name = SbeSymbolicName(self.symbolic_name)
+
         if self.semantic_type is not None and not isinstance(self.semantic_type, SbeToken):
             self.semantic_type = SbeToken(self.semantic_type)
+
+        if self.since_version is not None and not isinstance(self.since_version, int):
+            self.since_version = int(self.since_version)
+
+        if self.deprecated_since is not None and not isinstance(self.deprecated_since, int):
+            self.deprecated_since = int(self.deprecated_since)
+
+        if self.block_length is not None and not isinstance(self.block_length, int):
+            self.block_length = int(self.block_length)
+
+        if self.alignment is not None and not isinstance(self.alignment, int):
+            self.alignment = int(self.alignment)
+
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
+
+        self._normalize_inlined_as_list(slot_name="block_fields", slot_type=SbeFieldV2, key_name="symbolic_name", keyed=False)
+
+        self._normalize_inlined_as_list(slot_name="repeating_groups", slot_type=SbeGroupV2, key_name="symbolic_name", keyed=False)
+
+        self._normalize_inlined_as_list(slot_name="var_data_fields", slot_type=SbeFieldV2, key_name="symbolic_name", keyed=False)
 
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class SbeGroupV2(SbeBlockV2):
+class SbeGroupV2(YAMLRoot):
     """
     A repeating group, whose entries each hold the same fields, and which cannot be without a field.
     """
@@ -1305,18 +1389,58 @@ class SbeGroupV2(SbeBlockV2):
     class_name: ClassVar[str] = "SbeGroupV2"
     class_model_uri: ClassVar[URIRef] = FIX_SBE.SbeGroupV2
 
+    block_fields: Union[Union[dict, "SbeFieldV2"], list[Union[dict, "SbeFieldV2"]]] = None
     symbolic_name: Union[str, SbeSymbolicName] = None
     sbe_id: int = None
-    block_fields: Union[Union[dict, "SbeFieldV2"], list[Union[dict, "SbeFieldV2"]]] = None
     dimension_type: Optional[Union[str, SbeSymbolicName]] = "groupSizeEncoding"
+    since_version: Optional[int] = 0
+    deprecated_since: Optional[int] = None
+    block_length: Optional[int] = None
+    alignment: Optional[int] = None
+    semantic_type: Optional[Union[str, SbeToken]] = None
+    description: Optional[str] = None
+    repeating_groups: Optional[Union[Union[dict, "SbeGroupV2"], list[Union[dict, "SbeGroupV2"]]]] = empty_list()
+    var_data_fields: Optional[Union[Union[dict, "SbeFieldV2"], list[Union[dict, "SbeFieldV2"]]]] = empty_list()
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.block_fields):
             self.MissingRequiredField("block_fields")
         self._normalize_inlined_as_list(slot_name="block_fields", slot_type=SbeFieldV2, key_name="symbolic_name", keyed=False)
 
+        if self._is_empty(self.symbolic_name):
+            self.MissingRequiredField("symbolic_name")
+        if not isinstance(self.symbolic_name, SbeSymbolicName):
+            self.symbolic_name = SbeSymbolicName(self.symbolic_name)
+
+        if self._is_empty(self.sbe_id):
+            self.MissingRequiredField("sbe_id")
+        if not isinstance(self.sbe_id, int):
+            self.sbe_id = int(self.sbe_id)
+
         if self.dimension_type is not None and not isinstance(self.dimension_type, SbeSymbolicName):
             self.dimension_type = SbeSymbolicName(self.dimension_type)
+
+        if self.since_version is not None and not isinstance(self.since_version, int):
+            self.since_version = int(self.since_version)
+
+        if self.deprecated_since is not None and not isinstance(self.deprecated_since, int):
+            self.deprecated_since = int(self.deprecated_since)
+
+        if self.block_length is not None and not isinstance(self.block_length, int):
+            self.block_length = int(self.block_length)
+
+        if self.alignment is not None and not isinstance(self.alignment, int):
+            self.alignment = int(self.alignment)
+
+        if self.semantic_type is not None and not isinstance(self.semantic_type, SbeToken):
+            self.semantic_type = SbeToken(self.semantic_type)
+
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
+
+        self._normalize_inlined_as_list(slot_name="repeating_groups", slot_type=SbeGroupV2, key_name="symbolic_name", keyed=False)
+
+        self._normalize_inlined_as_list(slot_name="var_data_fields", slot_type=SbeFieldV2, key_name="symbolic_name", keyed=False)
 
         super().__post_init__(**kwargs)
 
@@ -1682,17 +1806,17 @@ slots.SbeEncodingV1_semantic_type = Slot(uri=FIX_SBE.semantic_type, name="SbeEnc
 slots.SbeCompositeV1_composite_members = Slot(uri=FIX_SBE.composite_members, name="SbeCompositeV1_composite_members", curie=FIX_SBE.curie('composite_members'),
                    model_uri=FIX_SBE.SbeCompositeV1_composite_members, domain=SbeCompositeV1, range=Union[Union[dict, SbeMemberV1], list[Union[dict, SbeMemberV1]]])
 
-slots.SbeBlockV1_sbe_id = Slot(uri=FIX_SBE.sbe_id, name="SbeBlockV1_sbe_id", curie=FIX_SBE.curie('sbe_id'),
-                   model_uri=FIX_SBE.SbeBlockV1_sbe_id, domain=SbeBlockV1, range=int)
+slots.SbeBlockV1Mixin_sbe_id = Slot(uri=FIX_SBE.sbe_id, name="SbeBlockV1Mixin_sbe_id", curie=FIX_SBE.curie('sbe_id'),
+                   model_uri=FIX_SBE.SbeBlockV1Mixin_sbe_id, domain=None, range=int)
 
-slots.SbeBlockV1_block_fields = Slot(uri=FIX_SBE.block_fields, name="SbeBlockV1_block_fields", curie=FIX_SBE.curie('block_fields'),
-                   model_uri=FIX_SBE.SbeBlockV1_block_fields, domain=SbeBlockV1, range=Optional[Union[Union[dict, "SbeFieldV1"], list[Union[dict, "SbeFieldV1"]]]])
+slots.SbeBlockV1Mixin_block_fields = Slot(uri=FIX_SBE.block_fields, name="SbeBlockV1Mixin_block_fields", curie=FIX_SBE.curie('block_fields'),
+                   model_uri=FIX_SBE.SbeBlockV1Mixin_block_fields, domain=None, range=Optional[Union[Union[dict, "SbeFieldV1"], list[Union[dict, "SbeFieldV1"]]]])
 
-slots.SbeBlockV1_repeating_groups = Slot(uri=FIX_SBE.repeating_groups, name="SbeBlockV1_repeating_groups", curie=FIX_SBE.curie('repeating_groups'),
-                   model_uri=FIX_SBE.SbeBlockV1_repeating_groups, domain=SbeBlockV1, range=Optional[Union[Union[dict, "SbeGroupV1"], list[Union[dict, "SbeGroupV1"]]]])
+slots.SbeBlockV1Mixin_repeating_groups = Slot(uri=FIX_SBE.repeating_groups, name="SbeBlockV1Mixin_repeating_groups", curie=FIX_SBE.curie('repeating_groups'),
+                   model_uri=FIX_SBE.SbeBlockV1Mixin_repeating_groups, domain=None, range=Optional[Union[Union[dict, "SbeGroupV1"], list[Union[dict, "SbeGroupV1"]]]])
 
-slots.SbeBlockV1_var_data_fields = Slot(uri=FIX_SBE.var_data_fields, name="SbeBlockV1_var_data_fields", curie=FIX_SBE.curie('var_data_fields'),
-                   model_uri=FIX_SBE.SbeBlockV1_var_data_fields, domain=SbeBlockV1, range=Optional[Union[Union[dict, "SbeFieldV1"], list[Union[dict, "SbeFieldV1"]]]])
+slots.SbeBlockV1Mixin_var_data_fields = Slot(uri=FIX_SBE.var_data_fields, name="SbeBlockV1Mixin_var_data_fields", curie=FIX_SBE.curie('var_data_fields'),
+                   model_uri=FIX_SBE.SbeBlockV1Mixin_var_data_fields, domain=None, range=Optional[Union[Union[dict, "SbeFieldV1"], list[Union[dict, "SbeFieldV1"]]]])
 
 slots.SbeMessageV1_sbe_id = Slot(uri=FIX_SBE.sbe_id, name="SbeMessageV1_sbe_id", curie=FIX_SBE.curie('sbe_id'),
                    model_uri=FIX_SBE.SbeMessageV1_sbe_id, domain=SbeMessageV1, range=int)
@@ -1735,20 +1859,20 @@ slots.SbeMessageSetV2_messages = Slot(uri=FIX_SBE.messages, name="SbeMessageSetV
 slots.SbeCompositeV2_composite_members = Slot(uri=FIX_SBE.composite_members, name="SbeCompositeV2_composite_members", curie=FIX_SBE.curie('composite_members'),
                    model_uri=FIX_SBE.SbeCompositeV2_composite_members, domain=SbeCompositeV2, range=Union[Union[dict, SbeMemberV2], list[Union[dict, SbeMemberV2]]])
 
-slots.SbeBlockV2_sbe_id = Slot(uri=FIX_SBE.sbe_id, name="SbeBlockV2_sbe_id", curie=FIX_SBE.curie('sbe_id'),
-                   model_uri=FIX_SBE.SbeBlockV2_sbe_id, domain=SbeBlockV2, range=int)
+slots.SbeBlockV2Mixin_sbe_id = Slot(uri=FIX_SBE.sbe_id, name="SbeBlockV2Mixin_sbe_id", curie=FIX_SBE.curie('sbe_id'),
+                   model_uri=FIX_SBE.SbeBlockV2Mixin_sbe_id, domain=None, range=int)
 
-slots.SbeBlockV2_alignment = Slot(uri=FIX_SBE.alignment, name="SbeBlockV2_alignment", curie=FIX_SBE.curie('alignment'),
-                   model_uri=FIX_SBE.SbeBlockV2_alignment, domain=SbeBlockV2, range=Optional[int])
+slots.SbeBlockV2Mixin_alignment = Slot(uri=FIX_SBE.alignment, name="SbeBlockV2Mixin_alignment", curie=FIX_SBE.curie('alignment'),
+                   model_uri=FIX_SBE.SbeBlockV2Mixin_alignment, domain=None, range=Optional[int])
 
-slots.SbeBlockV2_block_fields = Slot(uri=FIX_SBE.block_fields, name="SbeBlockV2_block_fields", curie=FIX_SBE.curie('block_fields'),
-                   model_uri=FIX_SBE.SbeBlockV2_block_fields, domain=SbeBlockV2, range=Optional[Union[Union[dict, "SbeFieldV2"], list[Union[dict, "SbeFieldV2"]]]])
+slots.SbeBlockV2Mixin_block_fields = Slot(uri=FIX_SBE.block_fields, name="SbeBlockV2Mixin_block_fields", curie=FIX_SBE.curie('block_fields'),
+                   model_uri=FIX_SBE.SbeBlockV2Mixin_block_fields, domain=None, range=Optional[Union[Union[dict, "SbeFieldV2"], list[Union[dict, "SbeFieldV2"]]]])
 
-slots.SbeBlockV2_repeating_groups = Slot(uri=FIX_SBE.repeating_groups, name="SbeBlockV2_repeating_groups", curie=FIX_SBE.curie('repeating_groups'),
-                   model_uri=FIX_SBE.SbeBlockV2_repeating_groups, domain=SbeBlockV2, range=Optional[Union[Union[dict, "SbeGroupV2"], list[Union[dict, "SbeGroupV2"]]]])
+slots.SbeBlockV2Mixin_repeating_groups = Slot(uri=FIX_SBE.repeating_groups, name="SbeBlockV2Mixin_repeating_groups", curie=FIX_SBE.curie('repeating_groups'),
+                   model_uri=FIX_SBE.SbeBlockV2Mixin_repeating_groups, domain=None, range=Optional[Union[Union[dict, "SbeGroupV2"], list[Union[dict, "SbeGroupV2"]]]])
 
-slots.SbeBlockV2_var_data_fields = Slot(uri=FIX_SBE.var_data_fields, name="SbeBlockV2_var_data_fields", curie=FIX_SBE.curie('var_data_fields'),
-                   model_uri=FIX_SBE.SbeBlockV2_var_data_fields, domain=SbeBlockV2, range=Optional[Union[Union[dict, "SbeFieldV2"], list[Union[dict, "SbeFieldV2"]]]])
+slots.SbeBlockV2Mixin_var_data_fields = Slot(uri=FIX_SBE.var_data_fields, name="SbeBlockV2Mixin_var_data_fields", curie=FIX_SBE.curie('var_data_fields'),
+                   model_uri=FIX_SBE.SbeBlockV2Mixin_var_data_fields, domain=None, range=Optional[Union[Union[dict, "SbeFieldV2"], list[Union[dict, "SbeFieldV2"]]]])
 
 slots.SbeMessageV2_sbe_id = Slot(uri=FIX_SBE.sbe_id, name="SbeMessageV2_sbe_id", curie=FIX_SBE.curie('sbe_id'),
                    model_uri=FIX_SBE.SbeMessageV2_sbe_id, domain=SbeMessageV2, range=int)

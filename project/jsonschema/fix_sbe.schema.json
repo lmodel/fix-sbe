@@ -1,6 +1,6 @@
 {
     "$defs": {
-        "SbeBlockV1": {
+        "SbeBlockV1Mixin": {
             "additionalProperties": false,
             "description": "The body shared by a message and a group entry, which holds its fixed-length fields first, then groups, then variable-length data.",
             "properties": {
@@ -16,14 +16,6 @@
                 },
                 "block_length": {
                     "description": "The octets set aside for a message's fixed-length fields, or for those of each group entry.",
-                    "minimum": 0,
-                    "type": [
-                        "integer",
-                        "null"
-                    ]
-                },
-                "deprecated_since": {
-                    "description": "The schema version that retired this element, which stays only for older applications.",
                     "minimum": 0,
                     "type": [
                         "integer",
@@ -61,14 +53,6 @@
                         "null"
                     ]
                 },
-                "since_version": {
-                    "description": "The schema version that added this element.",
-                    "minimum": 0,
-                    "type": [
-                        "integer",
-                        "null"
-                    ]
-                },
                 "symbolic_name": {
                     "description": "What the schema calls this element.",
                     "pattern": "^[A-Za-z_][0-9A-Za-z_]{0,63}$",
@@ -89,10 +73,10 @@
                 "symbolic_name",
                 "sbe_id"
             ],
-            "title": "SbeBlockV1",
+            "title": "SbeBlockV1Mixin",
             "type": "object"
         },
-        "SbeBlockV2": {
+        "SbeBlockV2Mixin": {
             "additionalProperties": false,
             "description": "The body shared by a message and a group entry, which holds its fixed-length fields first, then groups, then variable-length data.",
             "properties": {
@@ -116,14 +100,6 @@
                 },
                 "block_length": {
                     "description": "The octets set aside for a message's fixed-length fields, or for those of each group entry.",
-                    "minimum": 0,
-                    "type": [
-                        "integer",
-                        "null"
-                    ]
-                },
-                "deprecated_since": {
-                    "description": "The schema version that retired this element, which stays only for older applications.",
                     "minimum": 0,
                     "type": [
                         "integer",
@@ -161,14 +137,6 @@
                         "null"
                     ]
                 },
-                "since_version": {
-                    "description": "The schema version that added this element.",
-                    "minimum": 0,
-                    "type": [
-                        "integer",
-                        "null"
-                    ]
-                },
                 "symbolic_name": {
                     "description": "What the schema calls this element.",
                     "pattern": "^[A-Za-z_][0-9A-Za-z_]{0,63}$",
@@ -189,7 +157,7 @@
                 "symbolic_name",
                 "sbe_id"
             ],
-            "title": "SbeBlockV2",
+            "title": "SbeBlockV2Mixin",
             "type": "object"
         },
         "SbeByteOrder": {
