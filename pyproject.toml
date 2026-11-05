@@ -80,6 +80,8 @@ quiet-level = 3
 # Ref.: https://github.com/crate-ci/typos (spell checker)
 [tool.typos.default.extend-words]
 linke = "linke"
+# ND is the NoDerivatives of CC BY-ND, the licence of FIX's specification.
+nd = "nd"
 
 [tool.typos.files]
 extend-exclude = [
