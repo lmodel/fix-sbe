@@ -4,30 +4,28 @@
 # name in this file is not possible until a known issue in just is fixed,
 # https://github.com/casey/just/issues/2540
 
-# Validate upstream third-party FIX SBE fixtures (XML well-formedness + optional
-# XSD validation when lxml is available). Wired into the main `test` recipe.
+# Turn an SBE message schema in XML into the record the model describes, on standard output.
 [group('model development')]
-_test-third-party:
-  uv run python -m pytest tests/test_third_party.py -v
+sbe-to-yaml FILE:
+  uv run --quiet scripts/sbe_xml_to_yaml.py {{FILE}}
 
-# Apply curated SSSOM mapping TSVs to the generated LinkML schema YAMLs.
-# Merges SKOS exact/close/broad/narrow/related matches into the matching
-# class / enum / type bodies and declares any referenced object-side prefixes.
-# Idempotent: re-running on a clean tree produces no further changes. Run
-# after `schema_to_linkml.py` regenerates the YAMLs and before `gen-project`.
-[group('model development')]
-apply-sssom-overlay:
-  uv run python scripts/apply_sssom_overlay.py \
-    --schema-dir src/fix_sbe/schema \
-    --mappings-dir src/fix_sbe/mappings
+# ============ Knowledge bundle: the adapted domain schema ============
 
-# Regenerate the LinkML schemas from the upstream SBE XSDs, then overlay the
-# curated SSSOM mappings. This is the canonical "rebuild the model" recipe;
-# run it whenever the XSDs or the SSSOM TSVs change. Outputs:
-#   src/fix_sbe/schema/fix_sbe_common.yaml
-#   src/fix_sbe/schema/fix_sbe_v1_0.yaml
-#   src/fix_sbe/schema/fix_sbe_v2_0.yaml
-#   src/fix_sbe/schema/fix_sbe/.yaml
-[group('model development')]
-gen-linkml: && apply-sssom-overlay
-  uv run python scripts/schema_to_linkml.py
+# `.lokf/fix_sbe.yaml` is the copy `lokf adapt` writes from the schema so that it can sit
+# beside `.lokf/lokf.yaml` (`lokf adapt --help` lists the moves). The roots are the two kinds
+# of element a person documents: a whole message schema and a message template, in each
+# edition. A concept names one of them as its `type`. Everything else stays a value inside
+# them. The recipes run the `lokf` the sidecar's floor pins (0.9.0 or later); LOKF_CMD runs
+# another, such as a checkout: LOKF_CMD="uv run --project ../lokf lokf" just lokf-adapt
+lokf_cmd := env_var_or_default("LOKF_CMD", "uv run --project .lokf lokf")
+lokf_adapt_roots := "--root SbeMessageSchemaV1 --root SbeMessageSchemaV2 --root SbeMessageV1 --root SbeMessageV2"
+
+# Rewrite .lokf/fix_sbe.yaml from the schema (run after every schema change)
+[group('knowledge bundle')]
+lokf-adapt:
+  {{lokf_cmd}} adapt {{source_schema_path}} {{lokf_adapt_roots}} --lokf .lokf/lokf.yaml -o .lokf/fix_sbe.yaml
+
+# Fail when .lokf/fix_sbe.yaml is stale against the schema or .lokf/lokf.yaml
+[group('knowledge bundle')]
+lokf-adapt-check:
+  {{lokf_cmd}} adapt {{source_schema_path}} {{lokf_adapt_roots}} --lokf .lokf/lokf.yaml -o .lokf/fix_sbe.yaml --check
