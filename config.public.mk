@@ -8,7 +8,7 @@
 # - just works fine with quoted variables of dot-env files like this one
 LINKML_SCHEMA_NAME="fix_sbe"
 LINKML_SCHEMA_AUTHOR="Noel McLoughlin <noel.mcloughlin@gmail.com>"
-LINKML_SCHEMA_DESCRIPTION="FIX Binary Message Encoding - LinkML Schema"
+LINKML_SCHEMA_DESCRIPTION="FIX Simple Binary Encoding (SBE) 1.0 and 2.0 RC3 (LinkML)"
 LINKML_SCHEMA_SOURCE_DIR="src/fix_sbe/schema"
 
 ###### linkml generator variables, used by justfile
@@ -27,5 +27,3 @@ LINKML_GENERATORS_OWL_ARGS=
 ## pass args to pydantic generator which isn't supported by gen-project
 ## https://github.com/linkml/linkml/issues/2537
 LINKML_GENERATORS_PYDANTIC_ARGS=
-
-LINKML_GENERATORS_JAVA_ARGS=--mergeimports
