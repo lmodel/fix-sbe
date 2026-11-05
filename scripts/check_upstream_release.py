@@ -165,9 +165,20 @@ def _compare(found: dict[str, str], expected: dict[str, str], place: str) -> lis
     return lines
 
 
+def _tags(repository: str) -> set[str]:
+    """Every tag of a repository, page by page, so none past the first hundred is missed."""
+    tags: set[str] = set()
+    for page in range(1, 11):
+        found = _get(f"/{repository}/tags?per_page=100&page={page}")
+        tags |= {entry["name"] for entry in found}
+        if len(found) < 100:
+            return tags
+    raise ValueError(f"{repository} has over 1000 tags, more than the watch reads")
+
+
 def check_editions() -> tuple[list[str], bool]:
     """Report any tag or edition folder the pins did not know."""
-    tags = {entry["name"] for entry in _get(f"/{SPEC}/tags?per_page=100")}
+    tags = _tags(SPEC)
     root = _get(f"/{SPEC}/git/trees/{BRANCH}")["tree"]
     folders = {
         entry["path"]

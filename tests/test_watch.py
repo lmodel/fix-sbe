@@ -50,7 +50,9 @@ def _answers(watch):
     spec, suite = watch.SPEC, watch.SUITE
     annotated = "1" * 40
     return {
-        f"/{spec}/tags?per_page=100": [{"name": tag} for tag in watch.KNOWN_TAGS],
+        f"/{spec}/tags?per_page=100&page=1": [
+            {"name": tag} for tag in watch.KNOWN_TAGS
+        ],
         f"/{spec}/git/trees/{watch.BRANCH}": _root(watch, spec, watch.KNOWN_FOLDERS),
         f"/{spec}/git/ref/tags/{watch.V1_TAG}": {
             "object": {"type": "tag", "sha": annotated}
@@ -90,7 +92,7 @@ def test_an_unchanged_upstream_reports_nothing(watch, capsys):
 
 def test_a_new_tag_is_reported_and_quoted(watch, capsys):
     answers = _answers(watch)
-    answers[f"/{watch.SPEC}/tags?per_page=100"].append({"name": "v2.0-rc3"})
+    answers[f"/{watch.SPEC}/tags?per_page=100&page=1"].append({"name": "v2.0-rc3"})
     code, report = _run(watch, answers, capsys)
     assert code == 1
     assert "`v2.0-rc3`" in report
@@ -203,7 +205,7 @@ def test_a_truncated_listing_cannot_finish(watch, capsys):
 )
 def test_a_failed_request_cannot_finish_and_is_quoted(watch, capsys, failure):
     answers = _answers(watch)
-    answers[f"/{watch.SPEC}/tags?per_page=100"] = failure
+    answers[f"/{watch.SPEC}/tags?per_page=100&page=1"] = failure
     code, report = _run(watch, answers, capsys)
     assert code == 1
     assert "The new editions check could not finish" in report
@@ -212,10 +214,24 @@ def test_a_failed_request_cannot_finish_and_is_quoted(watch, capsys, failure):
 def test_server_text_cannot_mention_or_link(watch, capsys):
     """A tag's name reaches an issue only as code on one line."""
     answers = _answers(watch)
-    answers[f"/{watch.SPEC}/tags?per_page=100"].append({"name": "@someone\n\n`x`"})
+    answers[f"/{watch.SPEC}/tags?per_page=100&page=1"].append(
+        {"name": "@someone\n\n`x`"}
+    )
     code, report = _run(watch, answers, capsys)
     assert code == 1
     assert "`@someone 'x'`" in report
+
+
+def test_a_second_page_of_tags_is_read(watch, capsys):
+    answers = _answers(watch)
+    first = [{"name": f"v0.0.{n}"} for n in range(100)]
+    answers[f"/{watch.SPEC}/tags?per_page=100&page=1"] = first
+    answers[f"/{watch.SPEC}/tags?per_page=100&page=2"] = [
+        {"name": tag} for tag in watch.KNOWN_TAGS
+    ] + [{"name": "v2.0-rc3"}]
+    code, report = _run(watch, answers, capsys)
+    assert code == 1
+    assert "`v2.0-rc3`" in report
 
 
 def test_a_redirect_off_the_api_is_refused(watch):
