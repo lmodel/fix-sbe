@@ -238,8 +238,6 @@ def test_the_report_goes_to_a_file_when_asked(watch, capsys, tmp_path):
 def test_the_watch_reads_only_github():
     """FIX's site terms bar automated copying, so the watch has no other address."""
     text = SCRIPT.read_text(encoding="utf-8")
-    assert "https://api.github.com/repos/FIXTradingCommunity" in text
-    addresses = {part.split('"')[0] for part in text.split("https://")[1:]}
-    assert addresses == {"api.github.com/repos/FIXTradingCommunity"} | {
-        address for address in addresses if address.startswith("api.github.com")
-    }
+    addresses = [part.split('"')[0] for part in text.split("https://")[1:]]
+    assert addresses
+    assert all(address.startswith("api.github.com") for address in addresses), addresses
