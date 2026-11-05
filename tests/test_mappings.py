@@ -19,15 +19,18 @@ KINDS = (
     "narrow_mappings",
 )
 
-# What FIX's transposer does with each kind of SBE element, in its SBE2Orchestra classes. The
-# set and the choice have no line there, so they stay related, with a comment in the schema.
+# What FIX's transposer does with each kind of SBE element, in its SBE2Orchestra classes. A
+# composite's members, a ref among them, become fields referenced from the component, and only
+# a stand-alone simple type becomes a datatype. The set and the choice have no line there, so
+# they stay related, with a comment in the schema.
 EXPECTED = {
     "SbeMessageSchema": ("close_mappings", "OrchestraRepositoryV10"),
     "SbeMessage": ("close_mappings", "OrchestraMessageV10"),
     "SbeGroup": ("close_mappings", "OrchestraGroupV10"),
     "SbeField": ("close_mappings", "OrchestraFieldV10"),
     "SbeSimpleType": ("close_mappings", "OrchestraDatatypeV10"),
-    "SbeMemberType": ("close_mappings", "OrchestraDatatypeV10"),
+    "SbeMemberType": ("close_mappings", "OrchestraFieldV10"),
+    "SbeRef": ("close_mappings", "OrchestraFieldV10"),
     "SbeComposite": ("close_mappings", "OrchestraComponentV10"),
     "SbeEnum": ("close_mappings", "OrchestraCodeSetV10"),
     "SbeSet": ("related_mappings", "OrchestraCodeSetV10"),

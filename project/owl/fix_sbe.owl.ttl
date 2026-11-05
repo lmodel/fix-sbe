@@ -253,9 +253,10 @@ fix_sbe:SbeGroupV2 a owl:Class ;
 fix_sbe:SbeMemberTypeV2 a owl:Class ;
 	rdfs:label "SbeMemberTypeV2" ;
 	rdfs:subClassOf fix_sbe:SbeMemberV2 , _:c14n11 , _:c14n140 , _:c14n152 , _:c14n175 , _:c14n211 , _:c14n229 , _:c14n251 , _:c14n263 , _:c14n270 , _:c14n273 , _:c14n275 , _:c14n28 , _:c14n295 , _:c14n32 , _:c14n347 , _:c14n376 , _:c14n378 , _:c14n381 , _:c14n383 , _:c14n411 , _:c14n428 , _:c14n456 , _:c14n48 , _:c14n51 , _:c14n53 , _:c14n74 , _:c14n82 ;
-	skos:closeMatch fix_orchestra:OrchestraDatatypeV10 ;
+	skos:closeMatch fix_orchestra:OrchestraFieldV10 ;
 	skos:definition "A simple encoding inside a composite, which may say it is optional or constant." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_v2_0 ;
+	skos:note "FIX's transposer carries every composite member to an Orchestra field, referenced from the component, and only a stand-alone simple type to a datatype." ;
 	fix_sbe:xml_element "type" ;
 	fix_sbe:xsd_type "memberDataType" .
 fix_sbe:SbeMemberV1 a owl:Class ;
@@ -378,15 +379,19 @@ fix_sbe:SbePrimitiveType a owl:Class ;
 fix_sbe:SbeRefV1 a owl:Class ;
 	rdfs:label "SbeRefV1" ;
 	rdfs:subClassOf fix_sbe:SbeMemberV1 , _:c14n14 , _:c14n297 , _:c14n333 ;
+	skos:closeMatch fix_orchestra:OrchestraFieldV10 ;
 	skos:definition "A composite's member that reuses an encoding defined elsewhere in the schema." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_v1_0 ;
+	skos:note "FIX's transposer carries a ref to an Orchestra field whose type is the encoding it names." ;
 	fix_sbe:xml_element "ref" ;
 	fix_sbe:xsd_type "refType" .
 fix_sbe:SbeRefV2 a owl:Class ;
 	rdfs:label "SbeRefV2" ;
 	rdfs:subClassOf fix_sbe:SbeMemberV2 , _:c14n174 , _:c14n196 , _:c14n247 ;
+	skos:closeMatch fix_orchestra:OrchestraFieldV10 ;
 	skos:definition "A composite's member that reuses an encoding defined elsewhere in the schema." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_v2_0 ;
+	skos:note "FIX's transposer carries a ref to an Orchestra field whose type is the encoding it names." ;
 	fix_sbe:xml_element "ref" ;
 	fix_sbe:xsd_type "refType" .
 fix_sbe:SbeSetV1 a owl:Class ;
@@ -413,6 +418,7 @@ fix_sbe:SbeSimpleTypeV1 a owl:Class ;
 	skos:closeMatch fix_orchestra:OrchestraDatatypeV10 ;
 	skos:definition "An encoding backed by one primitive value, or several in an array." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_v1_0 ;
+	skos:note "FIX's transposer carries a stand-alone simple type to an Orchestra datatype, and one that is a composite's member to a field referenced from the component." ;
 	fix_sbe:xml_element "type" ;
 	fix_sbe:xsd_type "encodedDataType" .
 fix_sbe:SbeSimpleTypeV2 a owl:Class ;

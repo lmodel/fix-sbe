@@ -78,6 +78,10 @@ classes:
   SbeRefV1:
     is_a: SbeMemberV1
     description: A composite's member that reuses an encoding defined elsewhere in the schema.
+    comments:
+      - FIX's transposer carries a ref to an Orchestra field whose type is the encoding it names.
+    close_mappings:
+      - fix_orchestra:OrchestraFieldV10
     slots:
       - encoding_name
     annotations:
@@ -98,6 +102,10 @@ classes:
   SbeSimpleTypeV1:
     is_a: SbeEncodingV1
     description: An encoding backed by one primitive value, or several in an array.
+    comments:
+      - >-
+        FIX's transposer carries a stand-alone simple type to an Orchestra datatype, and one that
+        is a composite's member to a field referenced from the component.
     close_mappings:
       - fix_orchestra:OrchestraDatatypeV10
     slots:

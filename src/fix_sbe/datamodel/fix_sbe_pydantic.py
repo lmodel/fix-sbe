@@ -544,6 +544,9 @@ class SbeRefV1(SbeMemberV1):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'xml_element': {'tag': 'xml_element', 'value': 'ref'},
                          'xsd_type': {'tag': 'xsd_type', 'value': 'refType'}},
+         'close_mappings': ['fix_orchestra:OrchestraFieldV10'],
+         'comments': ["FIX's transposer carries a ref to an Orchestra field whose type "
+                      'is the encoding it names.'],
          'from_schema': 'https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v1_0'})
 
     encoding_name: str = Field(default=..., description="""Which encoding this element uses, by name.""", json_schema_extra = { "linkml_meta": {'aliases': ['type'],
@@ -704,6 +707,9 @@ class SbeSimpleTypeV1(SbeEncodingV1):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'xml_element': {'tag': 'xml_element', 'value': 'type'},
                          'xsd_type': {'tag': 'xsd_type', 'value': 'encodedDataType'}},
          'close_mappings': ['fix_orchestra:OrchestraDatatypeV10'],
+         'comments': ["FIX's transposer carries a stand-alone simple type to an "
+                      "Orchestra datatype, and one that is a composite's member to a "
+                      'field referenced from the component.'],
          'from_schema': 'https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v1_0',
          'rules': [{'annotations': {'sbe_section': {'tag': 'sbe_section',
                                                     'value': '4: Field attributes'}},
@@ -2055,7 +2061,10 @@ class SbeMemberTypeV2(SbeMemberV2):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'xml_element': {'tag': 'xml_element', 'value': 'type'},
                          'xsd_type': {'tag': 'xsd_type', 'value': 'memberDataType'}},
-         'close_mappings': ['fix_orchestra:OrchestraDatatypeV10'],
+         'close_mappings': ['fix_orchestra:OrchestraFieldV10'],
+         'comments': ["FIX's transposer carries every composite member to an Orchestra "
+                      'field, referenced from the component, and only a stand-alone '
+                      'simple type to a datatype.'],
          'from_schema': 'https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v2_0',
          'rules': [{'annotations': {'sbe_section': {'tag': 'sbe_section',
                                                     'value': '4: Field attributes'}},
@@ -2222,6 +2231,9 @@ class SbeRefV2(SbeMemberV2):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'xml_element': {'tag': 'xml_element', 'value': 'ref'},
                          'xsd_type': {'tag': 'xsd_type', 'value': 'refType'}},
+         'close_mappings': ['fix_orchestra:OrchestraFieldV10'],
+         'comments': ["FIX's transposer carries a ref to an Orchestra field whose type "
+                      'is the encoding it names.'],
          'from_schema': 'https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v2_0'})
 
     encoding_name: str = Field(default=..., description="""Which encoding this element uses, by name.""", json_schema_extra = { "linkml_meta": {'aliases': ['type'],

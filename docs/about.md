@@ -49,4 +49,4 @@ The XSD and the JSON Schema check one element at a time. `tests/sbe_rules.py` ch
 
 ## Mappings
 
-Each element maps to the class of lmodel/fix-orchestra that FIX's own transposer carries it to, with `close_mappings`. A set and a choice have no line in the transposer, so they are `related_mappings`. No mapping is exact, because an SBE element has a place on the wire and an Orchestra element does not. `tests/test_mappings.py` lists them.
+Each element maps to the class of lmodel/fix-orchestra that FIX's own transposer carries it to, with `close_mappings`. A composite's members, a `ref` among them, become fields referenced from the component, so `SbeMemberTypeV2` and the two `SbeRef` classes map to a field, and only a stand-alone simple type maps to a datatype. A set and a choice have no line in the transposer, so they are `related_mappings`. No mapping is exact, because an SBE element has a place on the wire and an Orchestra element does not. `tests/test_mappings.py` lists them.

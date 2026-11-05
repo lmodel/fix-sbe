@@ -20,7 +20,7 @@ The schema describes a message schema of [FIX Simple Binary Encoding](https://gi
 
 ## Mappings
 
-* **[lmodel/fix-orchestra](https://github.com/lmodel/fix-orchestra)**: each element maps to the class FIX's own [transposer](https://github.com/FIXTradingCommunity/orchestra-transposer) carries it to, with `close_mappings`, or `related_mappings` for a set and a choice, which it does not carry. `tests/test_mappings.py` lists them.
+* **[lmodel/fix-orchestra](https://github.com/lmodel/fix-orchestra)**: each element maps to the class FIX's own [transposer](https://github.com/FIXTradingCommunity/orchestra-transposer) carries it to, with `close_mappings`, or `related_mappings` for a set and a choice, which it does not carry. A composite's members, a `ref` among them, map to a field, as the transposer makes them. `tests/test_mappings.py` lists them.
 
 ## Repository Structure
 

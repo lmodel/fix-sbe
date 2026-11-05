@@ -2833,7 +2833,13 @@
         }
       ],
       "description": "A composite's member that reuses an encoding defined elsewhere in the schema.",
+      "comments": [
+        "FIX's transposer carries a ref to an Orchestra field whose type is the encoding it names."
+      ],
       "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v1_0",
+      "close_mappings": [
+        "fix_orchestra:OrchestraFieldV10"
+      ],
       "is_a": "SbeMemberV1",
       "slots": [
         "encoding_kind",
@@ -2883,6 +2889,9 @@
         }
       ],
       "description": "An encoding backed by one primitive value, or several in an array.",
+      "comments": [
+        "FIX's transposer carries a stand-alone simple type to an Orchestra datatype, and one that is a composite's member to a field referenced from the component."
+      ],
       "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v1_0",
       "close_mappings": [
         "fix_orchestra:OrchestraDatatypeV10"
@@ -3557,9 +3566,12 @@
         }
       ],
       "description": "A simple encoding inside a composite, which may say it is optional or constant.",
+      "comments": [
+        "FIX's transposer carries every composite member to an Orchestra field, referenced from the component, and only a stand-alone simple type to a datatype."
+      ],
       "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v2_0",
       "close_mappings": [
-        "fix_orchestra:OrchestraDatatypeV10"
+        "fix_orchestra:OrchestraFieldV10"
       ],
       "is_a": "SbeMemberV2",
       "slots": [
@@ -3760,7 +3772,13 @@
         }
       ],
       "description": "A composite's member that reuses an encoding defined elsewhere in the schema.",
+      "comments": [
+        "FIX's transposer carries a ref to an Orchestra field whose type is the encoding it names."
+      ],
       "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v2_0",
+      "close_mappings": [
+        "fix_orchestra:OrchestraFieldV10"
+      ],
       "is_a": "SbeMemberV2",
       "slots": [
         "encoding_kind",
