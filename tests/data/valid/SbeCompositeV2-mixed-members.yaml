@@ -1,0 +1,32 @@
+encoding_kind: SbeCompositeV2
+symbolic_name: quotedPrice
+description: A price with where it came from.
+offset: 8
+alignment: 8
+since_version: 1
+deprecated_since: 2
+composite_members:
+  - encoding_kind: SbeMemberTypeV2
+    symbolic_name: mantissa
+    primitive_type: int64
+  - encoding_kind: SbeEnumV2
+    symbolic_name: source
+    encoding_type: uint8
+    valid_values:
+      - symbolic_name: venue
+        valid_value: "1"
+  - encoding_kind: SbeSetV2
+    symbolic_name: marks
+    encoding_type: uint8
+    choices:
+      - symbolic_name: stale
+        bit_position: 0
+  - encoding_kind: SbeCompositeV2
+    symbolic_name: inner
+    composite_members:
+      - encoding_kind: SbeMemberTypeV2
+        symbolic_name: left
+        primitive_type: uint8
+  - encoding_kind: SbeRefV2
+    symbolic_name: reused
+    encoding_name: counter

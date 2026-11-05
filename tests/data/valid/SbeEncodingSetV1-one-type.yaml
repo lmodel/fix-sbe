@@ -1,0 +1,4 @@
+encodings:
+  - encoding_kind: SbeSimpleTypeV1
+    symbolic_name: counter
+    primitive_type: uint32

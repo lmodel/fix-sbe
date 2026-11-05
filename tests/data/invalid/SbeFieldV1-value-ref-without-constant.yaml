@@ -1,0 +1,6 @@
+# Fails at: /presence
+symbolic_name: Count
+sbe_id: 1
+encoding_name: counter
+presence: optional
+value_ref: sideEnum.Buy

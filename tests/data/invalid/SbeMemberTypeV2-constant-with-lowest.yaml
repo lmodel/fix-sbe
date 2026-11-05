@@ -1,0 +1,7 @@
+# Fails at: /
+encoding_kind: SbeMemberTypeV2
+symbolic_name: count
+primitive_type: uint8
+presence: constant
+element_value: "1"
+min_value: "0"

@@ -1,0 +1,5 @@
+# Fails at: /alignment
+encoding_kind: SbeMemberTypeV2
+symbolic_name: count
+primitive_type: uint8
+alignment: 0

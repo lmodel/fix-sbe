@@ -1,0 +1,5 @@
+# Fails at: /
+symbolic_name: Count
+sbe_id: 1
+encoding_name: sideEnum
+value_ref: sideEnum.Buy

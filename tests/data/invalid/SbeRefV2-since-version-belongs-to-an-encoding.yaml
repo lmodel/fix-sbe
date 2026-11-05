@@ -1,0 +1,5 @@
+# Fails at: /
+encoding_kind: SbeRefV2
+symbolic_name: amount
+encoding_name: price4
+since_version: 1

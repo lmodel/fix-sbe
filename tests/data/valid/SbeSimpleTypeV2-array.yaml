@@ -1,0 +1,8 @@
+encoding_kind: SbeSimpleTypeV2
+symbolic_name: currency
+primitive_type: char
+array_length: 3
+character_encoding: US-ASCII
+description: A currency code.
+since_version: 1
+deprecated_since: 2

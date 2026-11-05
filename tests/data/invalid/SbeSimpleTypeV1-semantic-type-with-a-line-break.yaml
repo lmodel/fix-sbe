@@ -1,0 +1,5 @@
+# Fails at: /semantic_type
+encoding_kind: SbeSimpleTypeV1
+symbolic_name: count
+primitive_type: char
+semantic_type: "A\nB"

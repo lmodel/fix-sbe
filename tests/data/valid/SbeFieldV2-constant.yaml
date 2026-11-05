@@ -1,0 +1,5 @@
+symbolic_name: OrderCapacity
+sbe_id: 528
+encoding_name: charEncoding
+presence: constant
+element_value: A

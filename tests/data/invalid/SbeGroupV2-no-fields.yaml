@@ -1,0 +1,4 @@
+# Fails at: /block_fields
+symbolic_name: Empty
+sbe_id: 1
+block_fields: []

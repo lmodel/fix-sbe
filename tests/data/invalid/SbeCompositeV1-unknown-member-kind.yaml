@@ -1,0 +1,6 @@
+# Fails at: /composite_members/0
+encoding_kind: SbeCompositeV1
+symbolic_name: oneOfThem
+composite_members:
+  - encoding_kind: SbeGroupV1
+    symbolic_name: left

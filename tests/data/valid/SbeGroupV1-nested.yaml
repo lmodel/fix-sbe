@@ -1,0 +1,18 @@
+symbolic_name: Outer
+sbe_id: 1000
+dimension_type: sizeEncoding
+block_fields:
+  - symbolic_name: Count
+    sbe_id: 1001
+    encoding_name: counter
+repeating_groups:
+  - symbolic_name: Inner
+    sbe_id: 1002
+    block_fields:
+      - symbolic_name: Mark
+        sbe_id: 1003
+        encoding_name: counter
+var_data_fields:
+  - symbolic_name: Note
+    sbe_id: 1004
+    encoding_name: varText

@@ -1,0 +1,5 @@
+# Fails at: /presence
+encoding_kind: SbeSimpleTypeV1
+symbolic_name: count
+primitive_type: uint8
+presence: sometimes

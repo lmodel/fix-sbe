@@ -1,0 +1,4 @@
+# Fails at: /sbe_id
+symbolic_name: Count
+sbe_id: 70000
+encoding_name: counter

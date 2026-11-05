@@ -1,0 +1,5 @@
+# Fails at: /
+encoding_kind: SbeSimpleTypeV1
+symbolic_name: unit
+primitive_type: uint8
+value_ref: timeUnit.nanosecond

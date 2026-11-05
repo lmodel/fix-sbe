@@ -1,0 +1,12 @@
+symbolic_name: Quantity
+sbe_id: 38
+encoding_name: counter
+alignment: 4
+presence: optional
+null_value: "0"
+min_value: "1"
+max_value: "100"
+semantic_type: Qty
+description: How much to trade.
+since_version: 1
+deprecated_since: 2
