@@ -24,9 +24,9 @@ status: draft
 
 # The copy of the upstream
 
-The specification's files are under CC BY-ND 4.0, which lets a copy travel whole and unchanged. The conformance suite's are under Apache-2.0.[^notice]
+The specification's files are under CC BY-ND 4.0, which allows a copy that stays whole and unchanged. The conformance suite's are under Apache-2.0.[^notice]
 
-The tests make the watch's comparison offline, and hold the schema's headers to the same pins.[^test_upstream.py]
+The tests make the watch's comparison offline, and check the schema's headers against the same pins.[^test_upstream.py]
 
 [^notice]: NOTICE, FIX Simple Binary Encoding and FIX SBE conformance suite
 [^test_upstream.py]: tests/test_upstream.py, the module's description

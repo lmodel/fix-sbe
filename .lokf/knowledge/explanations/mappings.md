@@ -25,7 +25,7 @@ status: draft
 
 Each element maps to the Orchestra class FIX's own transposer carries it to, with `close_mappings`. A set and a choice have no line in the transposer, so they are `related_mappings`.[^about.md]
 
-Nothing is exact, since an SBE element sits at a place on the wire and an Orchestra element does not.[^about.md]
+No mapping is exact, because an SBE element has a place on the wire and an Orchestra element does not.[^about.md]
 
 A test lists every mapping, and holds each target to lmodel/fix-orchestra's copy once that copy is in `tests/neighbours/`.[^test_mappings.py]
 

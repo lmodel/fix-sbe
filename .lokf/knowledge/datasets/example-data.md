@@ -21,6 +21,6 @@ status: draft
 
 Each concrete class has a valid example, and a test fails when one lacks it.[^test_data.py]
 
-A counter-example must fail at the place its first line names, and nowhere else but on the way to it.[^test_data.py]
+A counter-example must fail at the place its first line names, and nowhere else except on the path to that place.[^test_data.py]
 
 [^test_data.py]: tests/test_data.py, test_every_concrete_class_has_an_example and test_counter_examples_fail_where_they_say

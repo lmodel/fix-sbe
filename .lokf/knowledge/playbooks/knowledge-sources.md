@@ -110,7 +110,7 @@ status: draft
 
 # Knowledge sources map
 
-The bundle derives its concepts from the paths under `sources`, each re-read when `knowledge-report.sh worklist` says it moved. Paths under `exclusions` were looked at and left out, each with its reason.
+The bundle derives its concepts from the paths under `sources`, each re-read when `knowledge-report.sh worklist` says it changed. Paths under `exclusions` were looked at and left out, each with its reason.
 
 | Source | Yields | Re-check |
 | --- | --- | --- |

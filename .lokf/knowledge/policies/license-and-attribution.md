@@ -29,7 +29,7 @@ status: draft
 
 The schema and the code are under the Apache License 2.0, and the knowledge bundle is under CC BY 4.0.[^readme.md]
 
-CC BY-ND 4.0 lets a copy of FIX's files travel whole and unchanged, and does not let anyone share an adapted version. So `upstream/` holds those files unchanged, and every title, description and comment here was written from what the element does.[^notice]
+CC BY-ND 4.0 lets anyone share a whole, unchanged copy of FIX's files, and does not let anyone share an adapted version. So `upstream/` holds those files unchanged, and every title, description and comment here was written from what the element does.[^notice]
 
 A test finds any run of four words shared with the documentation in the XSDs.[^test_own_words.py]
 

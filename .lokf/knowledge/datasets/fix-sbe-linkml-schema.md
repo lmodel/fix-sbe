@@ -30,7 +30,7 @@ The header pins both editions: SBE 1.0 at the tag `v1.0-errata-Nov-2020`, and SB
 
 A document of SBE 1.0 starts at `SbeMessageSchemaV1`, the tree root, and one of SBE 2.0 RC3 at `SbeMessageSchemaV2`.[^schema]
 
-A test holds each class to its XSD type, with its attributes, children, ranges, defaults and repeat counts.[^test_coverage.py]
+A test compares each class with its XSD type: its attributes, children, ranges, defaults and repeat counts.[^test_coverage.py]
 
 [^schema]: src/fix_sbe/schema/fix_sbe.yaml, the header
 [^test_coverage.py]: tests/test_coverage.py, the module's description

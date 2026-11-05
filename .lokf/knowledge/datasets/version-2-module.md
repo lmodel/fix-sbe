@@ -24,6 +24,6 @@ status: draft
 
 The module's XSD namespace is `http://fixprotocol.io/2017/sbe`, and its version annotation is the XSD's own `2.0RC3`.[^v2]
 
-An encoding set lists a simple type, a composite, an enumeration or a set. A composite, an enumeration and a set may also sit inside a composite, where a simple type takes another shape, so no single class fits that list.[^v2]
+An encoding set lists a simple type, a composite, an enumeration or a set. A composite, an enumeration and a set may also appear inside a composite, where a simple type takes another shape, so no single class fits that list.[^v2]
 
 [^v2]: src/fix_sbe/schema/fix_sbe_v2_0.yaml, the header and SbeEncodingSetV2

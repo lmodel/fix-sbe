@@ -26,7 +26,7 @@ status: draft
 
 `.linkml/generators.yaml` holds the generators' settings. Its JSON Schema settings include the range class's descendants, because an encoding set's encodings and a composite's members range over an abstract class.[^generators.yaml]
 
-A test holds the committed JSON Schema to the generator's output.[^test_generated_json_schema.py]
+A test compares the committed JSON Schema with the generator's output.[^test_generated_json_schema.py]
 
 [^generators.yaml]: .linkml/generators.yaml, jsonschema
 [^test_generated_json_schema.py]: tests/test_generated_json_schema.py, test_the_committed_file_is_the_generators_output

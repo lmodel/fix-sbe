@@ -17,6 +17,6 @@ status: draft
 
 # Semantic type
 
-`tests/sbe_rules.py` holds an encoding's and a field's to the list in `SbeFixDatatype`, without regard to case.[^common]
+`tests/sbe_rules.py` checks the semantic type of an encoding and of a field against the list in `SbeFixDatatype`, ignoring case.[^common]
 
 [^common]: src/fix_sbe/schema/fix_sbe_common.yaml, the slot or class of that name

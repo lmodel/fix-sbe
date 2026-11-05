@@ -24,6 +24,6 @@ Use GitHub's private vulnerability reporting. Only the latest release receives f
 
 The documents under `upstream/` are FIX's, and this repository treats them as data: tests validate them, and nothing executes them. The converter follows an XInclude only within the folder of the file it reads.[^security]
 
-A problem in SBE itself belongs with the FIX Trading Community.[^security]
+Report a problem in SBE itself to the FIX Trading Community.[^security]
 
 [^security]: SECURITY.md, Reporting a vulnerability, What this repository releases and Not covered

@@ -24,6 +24,6 @@ status: draft
 
 `project/jsonschema/fix_sbe.schema.json` is the same schema for anyone without LinkML, and its `$defs` hold each class.[^index.md]
 
-The validator checks one element at a time, and `tests/sbe_rules.py` holds what compares one part of a document with another.[^index.md]
+The validator checks one element at a time, and `tests/sbe_rules.py` holds the checks that compare one part of a document with another.[^index.md]
 
 [^index.md]: docs/index.md, Validating a message schema and What the validator cannot check
