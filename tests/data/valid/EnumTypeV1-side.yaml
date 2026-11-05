@@ -1,9 +1,0 @@
-name: SideEnum
-encoding_type: charType
-valid_value:
-  - name: Buy
-    value: "1"
-    description: Buy side
-  - name: Sell
-    value: "2"
-    description: Sell side

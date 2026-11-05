@@ -1,8 +1,0 @@
-name: FlagSet
-encoding_type: uint8Type
-description: Set of feature flags (V2)
-choice:
-  - name: HasOptions
-    value: "0"
-  - name: HasExtras
-    value: "1"
