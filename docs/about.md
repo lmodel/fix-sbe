@@ -26,18 +26,18 @@ A composite's members sit in one list, each naming its class in `encoding_kind`,
 
 The XSD and the JSON Schema check one element at a time. `tests/sbe_rules.py` checks what the specification states about one part against another, and each rule has a counter-example in `tests/test_rules.py`.
 
-- **References.** A field, a ref, a group's dimension and an enum's or set's encoding each name something that exists, and a `value_ref` names a value of an enumeration.
-- **Names.** An encoding name is unique across all sets, a message's name and number are unique, and a field or group's number means one name across the schema, and the other way round.
+- **References.** A field, a ref, a group's dimension and an enum's or set's encoding each name something that exists, and a `value_ref` names an enumeration and one of its values.
+- **Names.** No two encodings share a name across the sets, a message's name and number are unique, and a field or group's number means one name across the schema, and the other way round.
 - **Versions.** Nothing has a `since_version` or `deprecated_since` later than the schema's version, and a later field cannot come before an earlier one in its list.
-- **Layout.** An offset does not overlap what came before it or pass the block's end, and a block is long enough for its fields. A fixed-length field does not use a variable-length encoding.
+- **Layout.** An offset does not overlap what came before it or pass the block's end, and a block is long enough for its fields. A field in `block_fields` does not use a variable-length encoding.
 - **Well-known composites.** The header has `blockLength`, `templateId`, `schemaId` and `version`. A group's dimension has `blockLength` and `numInGroup`. Variable-length data has `length` and `varData`. Each counter and length is unsigned. A decimal has `mantissa` and `exponent`, and a MonthYear has `year` and `month`.
 - **Values.** A null, lowest, highest or constant value fits its primitive type, an enum sits on `char` or an unsigned type, a set on an unsigned type, and a choice's bit fits its encoding.
-- **Agreement.** A field and its encoding agree on `semantic_type` and `presence`, where both state them. `semantic_type` on a field or an encoding is a FIX datatype of the specification's list, matched without regard to case.
+- **Agreement.** A field and its encoding agree on `semantic_type` and `presence`, where both state them. A field's or an encoding's `semantic_type` is a FIX datatype of the specification's list, matched without regard to case.
 
 ## What the model leaves out
 
 - The specification's text. It is under CC BY-ND 4.0, so every description here is this project's own, and [NOTICE](https://github.com/lmodel/fix-sbe/blob/main/NOTICE) states the position.
-- Messages on the wire. The schema describes a message schema, not encoded data, so the specification's rules for a received message are out of scope.
+- Encoded messages. The schema describes a message schema, not encoded data, so the specification's rules for a received message are out of scope.
 - The Simple Open Framing Header, a separate standard that the specification only cites.
 - A closed list on `semantic_type` in the schema itself. A message's value is a FIX MsgType, and FIX adds to those.
 

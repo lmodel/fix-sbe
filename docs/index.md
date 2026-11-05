@@ -1,6 +1,6 @@
 # fix-sbe
 
-This project is a LinkML model of FIX Simple Binary Encoding (SBE), the FIX Trading Community's standard for binary messages. It describes a message schema in either edition: SBE 1.0, the final standard, and SBE 2.0 Release Candidate 3, a draft that differs on the wire.
+This project is a LinkML model of FIX Simple Binary Encoding (SBE), the FIX Trading Community's standard for binary messages. It describes an SBE document in either edition: SBE 1.0, the final standard, and SBE 2.0 Release Candidate 3, a draft that differs on the wire.
 
 - [Schema documentation](elements/index.md), generated from the schema
 - [About](about.md): how the schema reads SBE, where each part comes from and what it leaves out
@@ -8,7 +8,7 @@ This project is a LinkML model of FIX Simple Binary Encoding (SBE), the FIX Trad
 
 ## Validating a message schema
 
-An SBE message schema is XML, and the model describes the record it makes. The namespace of the root element says which edition a file follows.
+An SBE schema is XML, and the model describes the record it makes. The namespace of the root element says which edition a file follows.
 
 ```bash
 uv run scripts/sbe_xml_to_yaml.py my-schema.xml --out my-schema.yaml

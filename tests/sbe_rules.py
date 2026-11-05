@@ -96,7 +96,7 @@ class _Schema:
         return None, None
 
     def octets(self, element: dict, seen: frozenset = frozenset()) -> int | None:
-        """The space an encoding takes on the wire, or None where it is not fixed."""
+        """The octets an encoding takes, or None where the number is not fixed."""
         kind = _kind(element)
         if element.get("presence") == "constant":
             return 0
@@ -120,7 +120,7 @@ class _Schema:
         return total
 
     def is_variable(self, element: dict) -> bool:
-        """Whether an encoding holds an array whose length is sent on the wire."""
+        """Whether an encoding holds an array of no fixed length."""
         if element.get("array_length") == 0:
             return True
         return any(self.is_variable(m) for m in element.get("composite_members", []))
@@ -284,7 +284,7 @@ def _member_problems(schema: _Schema, name: str, wanted: tuple[str, ...]) -> lis
 
 
 def _resolved_presence(field: dict, encoding: dict | None) -> str | None:
-    """The presence stated on a field or, failing that, on its encoding."""
+    """The presence a field states or, failing that, its encoding states."""
     return field.get("presence") or (encoding or {}).get("presence")
 
 
@@ -396,7 +396,8 @@ def _check_block(
 
 
 def _check_identity(element: dict, place: str, errors: list, identities: dict) -> None:
-    """A field or group id means one name across the schema, and a name one id (chapter 4)."""
+    """One number means one name across the schema's fields and groups, and one name one number
+    (chapter 4)."""
     number, name = element["sbe_id"], element["symbolic_name"]
     by_number, by_name = identities["numbers"], identities["names"]
     if by_number.setdefault(number, name) != name:
@@ -406,7 +407,7 @@ def _check_identity(element: dict, place: str, errors: list, identities: dict) -
 
 
 def _check_value_refs(schema: _Schema, errors: list) -> None:
-    """A value_ref names a valid value of an enumeration in the schema (chapter 4)."""
+    """A value_ref names an enumeration of the schema and one of its values (chapter 4)."""
     values = {
         enum["symbolic_name"]: {v["symbolic_name"] for v in enum["valid_values"]}
         for enum in schema.enums()

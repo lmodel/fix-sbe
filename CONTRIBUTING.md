@@ -10,7 +10,7 @@ A LinkML schema of FIX Simple Binary Encoding (SBE), the FIX Trading Community's
 | --- | --- |
 | `src/fix_sbe/schema/` | The LinkML schema: the umbrella, the shared module and one module per edition. |
 | `src/fix_sbe/datamodel/`, `project/`, `docs/schema/` | Artefacts generated from the schema. |
-| `scripts/sbe_xml_to_yaml.py` | Turns an SBE message schema in XML into the record the model describes. |
+| `scripts/sbe_xml_to_yaml.py` | Turns an SBE document in XML into the record the model describes. |
 | `upstream/` | FIX's XSDs, examples and licences, and the conformance suite's schemas, unchanged. |
 | `scripts/check_upstream_release.py`, `scripts/upstream_pins.tsv` | The weekly comparison with FIX's repositories, and each file's hash. |
 | `docs/` | The website's own pages. |

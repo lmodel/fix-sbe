@@ -14,9 +14,9 @@ FIX Simple Binary Encoding (SBE) 1.0 and 2.0 RC3 (LinkML)
 
 ## What it models
 
-The schema describes a message schema of [FIX Simple Binary Encoding](https://github.com/FIXTradingCommunity/fix-simple-binary-encoding), in the two editions FIX publishes: the 1.0 Technical Standard with its November 2020 errata, and 2.0 Release Candidate 3 as it stood in September 2026, which differs on the wire. It covers encodings, message templates, fields, repeating groups and variable-length data, and the rules the specification states about them.
+The schema describes a message schema of [FIX Simple Binary Encoding](https://github.com/FIXTradingCommunity/fix-simple-binary-encoding), in the two editions FIX publishes: the 1.0 Technical Standard with its November 2020 errata, and 2.0 Release Candidate 3 as it stood in September 2026, which has a different wire format. It covers encodings, message templates, fields, groups and variable-length data, and the rules the specification states about them.
 
-`upstream/` holds FIX's XSDs and examples, pinned by hash, and `scripts/sbe_xml_to_yaml.py` turns a message schema in XML into the record the model describes. [docs/about.md](docs/about.md) says how the schema reads SBE and what it leaves out.
+`upstream/` holds FIX's XSDs and examples, pinned by hash, and `scripts/sbe_xml_to_yaml.py` turns an SBE document in XML into the record the model describes. [docs/about.md](docs/about.md) says how the schema reads SBE and what it leaves out.
 
 ## Mappings
 

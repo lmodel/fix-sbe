@@ -3,7 +3,7 @@
 # requires-python = ">=3.10"
 # dependencies = ["pyyaml>=6"]
 # ///
-"""Turn an SBE message schema in XML into the YAML record the LinkML schema describes.
+"""Turn an SBE document in XML into the YAML record the LinkML schema describes.
 
 The namespace of the root element says which edition a document follows. A record keeps every
 attribute under the slot whose alias it is, keeps a composite's members in document order, and
@@ -283,7 +283,7 @@ def convert(path: Path) -> tuple[str, dict]:
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    parser.add_argument("file", type=Path, help="The SBE message schema to read")
+    parser.add_argument("file", type=Path, help="The XML file to read")
     parser.add_argument("--out", type=Path, help="Write here instead of standard output")
     args = parser.parse_args(argv)
     _, record = convert(args.file)
