@@ -55,8 +55,7 @@ from rdflib import (
     URIRef
 )
 
-from linkml_runtime.linkml_model.types import Integer, String, Uri
-from linkml_runtime.utils.metamodelcore import URI
+from linkml_runtime.linkml_model.types import Integer, String
 
 metamodel_version = "1.12.0"
 version = "1.0 and 2.0-rc3"
@@ -875,7 +874,7 @@ class SbeEncodingSetV2(YAMLRoot):
     encodings: Union[Union[dict, "SbeElementV2"], list[Union[dict, "SbeElementV2"]]] = None
     description: Optional[str] = None
     schema_package: Optional[str] = None
-    xml_base: Optional[Union[str, URI]] = None
+    xml_base: Optional[str] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.encodings):
@@ -888,8 +887,8 @@ class SbeEncodingSetV2(YAMLRoot):
         if self.schema_package is not None and not isinstance(self.schema_package, str):
             self.schema_package = str(self.schema_package)
 
-        if self.xml_base is not None and not isinstance(self.xml_base, URI):
-            self.xml_base = URI(self.xml_base)
+        if self.xml_base is not None and not isinstance(self.xml_base, str):
+            self.xml_base = str(self.xml_base)
 
         super().__post_init__(**kwargs)
 
@@ -909,7 +908,7 @@ class SbeMessageSetV2(YAMLRoot):
     messages: Union[Union[dict, "SbeMessageV2"], list[Union[dict, "SbeMessageV2"]]] = None
     description: Optional[str] = None
     schema_package: Optional[str] = None
-    xml_base: Optional[Union[str, URI]] = None
+    xml_base: Optional[str] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.messages):
@@ -922,8 +921,8 @@ class SbeMessageSetV2(YAMLRoot):
         if self.schema_package is not None and not isinstance(self.schema_package, str):
             self.schema_package = str(self.schema_package)
 
-        if self.xml_base is not None and not isinstance(self.xml_base, URI):
-            self.xml_base = URI(self.xml_base)
+        if self.xml_base is not None and not isinstance(self.xml_base, str):
+            self.xml_base = str(self.xml_base)
 
         super().__post_init__(**kwargs)
 
@@ -1772,7 +1771,7 @@ slots.alignment = Slot(uri=FIX_SBE.alignment, name="alignment", curie=FIX_SBE.cu
                    model_uri=FIX_SBE.alignment, domain=None, range=Optional[int])
 
 slots.xml_base = Slot(uri=FIX_SBE.xml_base, name="xml_base", curie=FIX_SBE.curie('xml_base'),
-                   model_uri=FIX_SBE.xml_base, domain=None, range=Optional[Union[str, URI]])
+                   model_uri=FIX_SBE.xml_base, domain=None, range=Optional[str])
 
 slots.sbeValidValue__valid_value = Slot(uri=FIX_SBE.valid_value, name="sbeValidValue__valid_value", curie=FIX_SBE.curie('valid_value'),
                    model_uri=FIX_SBE.sbeValidValue__valid_value, domain=None, range=Union[str, SbeToken],

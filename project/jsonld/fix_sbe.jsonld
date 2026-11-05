@@ -1513,6 +1513,11 @@
       "definition_uri": "https://w3id.org/lmodel/fix-sbe/xml_base",
       "annotations": [
         {
+          "tag": "xsd_type",
+          "value": "xs:anyURI",
+          "@type": "Annotation"
+        },
+        {
           "tag": "sbe_section",
           "value": "4: XInclude usage",
           "@type": "Annotation"
@@ -1529,7 +1534,7 @@
         "SbeEncodingSetV2",
         "SbeMessageSetV2"
       ],
-      "range": "uri",
+      "range": "string",
       "@type": "SlotDefinition"
     },
     {

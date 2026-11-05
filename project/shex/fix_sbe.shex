@@ -137,7 +137,7 @@ linkml:Sparqlpath xsd:string
 <SbeEncodingSetV2> CLOSED {
     (  $<SbeEncodingSetV2_tes> (  schema1:description @linkml:String ? ;
           <schema_package> @linkml:String ? ;
-          <xml_base> @linkml:Uri ? ;
+          <xml_base> @linkml:String ? ;
           <encodings> @<SbeElementV2> +
        ) ;
        rdf:type [ <SbeEncodingSetV2> ] ?
@@ -359,7 +359,7 @@ linkml:Sparqlpath xsd:string
 <SbeMessageSetV2> CLOSED {
     (  $<SbeMessageSetV2_tes> (  schema1:description @linkml:String ? ;
           <schema_package> @linkml:String ? ;
-          <xml_base> @linkml:Uri ? ;
+          <xml_base> @linkml:String ? ;
           <messages> @<SbeMessageV2> +
        ) ;
        rdf:type [ <SbeMessageSetV2> ] ?

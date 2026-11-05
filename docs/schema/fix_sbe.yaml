@@ -1204,6 +1204,9 @@ slots:
     name: xml_base
     definition_uri: https://w3id.org/lmodel/fix-sbe/xml_base
     annotations:
+      xsd_type:
+        tag: xsd_type
+        value: xs:anyURI
       sbe_section:
         tag: sbe_section
         value: '4: XInclude usage'
@@ -1217,7 +1220,7 @@ slots:
     domain_of:
     - SbeEncodingSetV2
     - SbeMessageSetV2
-    range: uri
+    range: string
   sbeValidValue__valid_value:
     name: sbeValidValue__valid_value
     annotations:

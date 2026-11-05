@@ -1798,7 +1798,8 @@ class SbeEncodingSetV2(ConfiguredBaseModel):
                        'SbeMessageSetV2']} })
     xml_base: Optional[str] = Field(default=None, description="""The base address that the XML Inclusion mechanism records on an element it brought in from another file.""", json_schema_extra = { "linkml_meta": {'aliases': ['xml:base'],
          'annotations': {'sbe_section': {'tag': 'sbe_section',
-                                         'value': '4: XInclude usage'}},
+                                         'value': '4: XInclude usage'},
+                         'xsd_type': {'tag': 'xsd_type', 'value': 'xs:anyURI'}},
          'domain_of': ['SbeEncodingSetV2', 'SbeMessageSetV2']} })
     encodings: list[Union[SbeCompositeV2, SbeEnumV2, SbeSetV2, SbeSimpleTypeV2]] = Field(default=..., description="""The encodings of this set.""", min_length=1, json_schema_extra = { "linkml_meta": {'aliases': ['type', 'composite', 'enum', 'set'],
          'any_of': [{'range': 'SbeSimpleTypeV2'},
@@ -1843,7 +1844,8 @@ class SbeMessageSetV2(ConfiguredBaseModel):
                        'SbeMessageSetV2']} })
     xml_base: Optional[str] = Field(default=None, description="""The base address that the XML Inclusion mechanism records on an element it brought in from another file.""", json_schema_extra = { "linkml_meta": {'aliases': ['xml:base'],
          'annotations': {'sbe_section': {'tag': 'sbe_section',
-                                         'value': '4: XInclude usage'}},
+                                         'value': '4: XInclude usage'},
+                         'xsd_type': {'tag': 'xsd_type', 'value': 'xs:anyURI'}},
          'domain_of': ['SbeEncodingSetV2', 'SbeMessageSetV2']} })
     messages: list[SbeMessageV2] = Field(default=..., description="""The message templates of this set.""", min_length=1, json_schema_extra = { "linkml_meta": {'aliases': ['message'], 'domain_of': ['SbeMessageSchemaV1', 'SbeMessageSetV2']} })
 

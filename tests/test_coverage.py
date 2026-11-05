@@ -39,7 +39,6 @@ NAME_RANGES = {
     "sbe:qualifiedName_t": "SbeQualifiedName",
     "xs:token": "SbeToken",
     "xs:string": "string",
-    "xs:anyURI": "uri",
 }
 
 
@@ -66,7 +65,9 @@ def _attribute_nodes(root, node):
         if tag == "attribute":
             yield child
         elif tag == "attributeGroup":
-            yield from _attribute_nodes(root, groups[child.get("ref").removeprefix("sbe:")])
+            yield from _attribute_nodes(
+                root, groups[child.get("ref").removeprefix("sbe:")]
+            )
         elif tag in ("simpleContent", "complexContent"):
             yield from _attribute_nodes(root, child)
         elif tag == "extension":
@@ -88,7 +89,9 @@ def _element_nodes(root, node, within=None):
         elif tag in ("complexContent", "extension"):
             base = child.get("base")
             if base and base.startswith("sbe:"):
-                yield from _element_nodes(root, types[base.removeprefix("sbe:")], within)
+                yield from _element_nodes(
+                    root, types[base.removeprefix("sbe:")], within
+                )
             yield from _element_nodes(root, child, within)
 
 
@@ -117,7 +120,9 @@ def _class_cases():
 
 def _type_node(root, annotations):
     if "xsd_type" in annotations:
-        return annotations["xsd_type"], _named(root, "complexType")[annotations["xsd_type"]]
+        return annotations["xsd_type"], _named(root, "complexType")[
+            annotations["xsd_type"]
+        ]
     element = annotations["xml_element"]
     return element, _element_definition(root, element)
 
@@ -176,7 +181,8 @@ def test_each_class_holds_its_types_attributes(name, edition, annotations):
         elif kind in NAME_RANGES:
             assert slot.range == NAME_RANGES[kind], alias
         elif attribute.get("ref") == "xml:base":
-            assert slot.range == "uri", alias
+            # An xs:anyURI may be relative, as an XInclude's address is, and LinkML's uri may not.
+            assert slot.range == "string", alias
         else:
             values = [e.get("value") for e in attribute.iter(f"{XS}enumeration")]
             permissible = view().get_enum(slot.range).permissible_values
@@ -194,7 +200,11 @@ def test_each_class_holds_its_types_children(name, edition, annotations):
         slot = slots[element]
         holder = choice if choice is not None else child
         low = int(holder.get("minOccurs", "1"))
-        high = child.get("maxOccurs", "1") if choice is None else holder.get("maxOccurs", "1")
+        high = (
+            child.get("maxOccurs", "1")
+            if choice is None
+            else holder.get("maxOccurs", "1")
+        )
         assert slot.multivalued == (high != "1"), element
         if (xsd_name, element) in STRICTER_THAN_XSD:
             assert slot.required, element
@@ -218,7 +228,9 @@ def _xsd_type_of_element(root, element, child):
 
 def _classes_under(slot):
     """The concrete classes a slot's range admits."""
-    names = [slot.range] if not slot.any_of else [option.range for option in slot.any_of]
+    names = (
+        [slot.range] if not slot.any_of else [option.range for option in slot.any_of]
+    )
     found = []
     for name in names:
         for candidate in [name, *view().class_descendants(name)]:
@@ -239,12 +251,18 @@ def test_each_child_ranges_over_the_type_the_xsd_names(name, edition, annotation
         for option in _classes_under(slots[element]):
             cls = view().get_class(option)
             found = {key: cls.annotations[key].value for key in cls.annotations}
-            offered[found.get("xml_element")] = found.get("xsd_type", found.get("xml_element"))
+            offered[found.get("xml_element")] = found.get(
+                "xsd_type", found.get("xml_element")
+            )
         if child.get("type"):
             field_like = wanted == "fieldType" or wanted == "blockType"
             assert wanted in offered.values() or field_like, (name, element, offered)
         else:
-            assert element in offered or wanted in offered.values(), (name, element, offered)
+            assert element in offered or wanted in offered.values(), (
+                name,
+                element,
+                offered,
+            )
 
 
 @pytest.mark.parametrize(("name", "edition", "annotations"), CASES, ids=IDS)
@@ -275,9 +293,25 @@ def test_the_name_patterns_accept_what_the_xsd_accepts(edition, kind, pattern_sl
     longest = restriction.find(f"{XS}maxLength")
     limit = int(longest.get("value")) if longest is not None else None
     ours = re.compile(view().get_slot(pattern_slot).pattern)
-    samples = ["a", "_", "a1", "A_b", "1a", "a b", "", "a.b", "a.", ".b", "a.b.c", "x" * 64, "x" * 65]
+    samples = [
+        "a",
+        "_",
+        "a1",
+        "A_b",
+        "1a",
+        "a b",
+        "",
+        "a.b",
+        "a.",
+        ".b",
+        "a.b.c",
+        "x" * 64,
+        "x" * 65,
+    ]
     for sample in samples:
-        accepted = bool(theirs.match(sample)) and (limit is None or len(sample) <= limit)
+        accepted = bool(theirs.match(sample)) and (
+            limit is None or len(sample) <= limit
+        )
         assert bool(ours.match(sample)) == accepted, sample
 
 

@@ -160,7 +160,6 @@
          "@id": "var_data_fields"
       },
       "xml_base": {
-         "@type": "xsd:anyURI",
          "@id": "xml_base"
       },
       "SbeBlockV1Mixin": {

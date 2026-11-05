@@ -8,37 +8,37 @@ fix_sbe:SbeBlockV1Mixin a sh:NodeShape ;
 	rdfs:comment "The body shared by a message and a group entry, which holds its fixed-length fields first, then groups, then variable-length data." ;
 	sh:closed false ;
 	sh:ignoredProperties _:c14n173 ;
-	sh:property _:c14n181 , _:c14n193 , _:c14n203 , _:c14n244 , _:c14n272 , _:c14n44 , _:c14n58 , _:c14n65 ;
+	sh:property _:c14n181 , _:c14n193 , _:c14n203 , _:c14n244 , _:c14n272 , _:c14n44 , _:c14n57 , _:c14n64 ;
 	sh:targetClass fix_sbe:SbeBlockV1Mixin .
 fix_sbe:SbeBlockV2Mixin a sh:NodeShape ;
 	rdfs:comment "The body shared by a message and a group entry, which holds its fixed-length fields first, then groups, then variable-length data." ;
 	sh:closed false ;
-	sh:ignoredProperties _:c14n146 ;
-	sh:property _:c14n151 , _:c14n161 , _:c14n214 , _:c14n223 , _:c14n225 , _:c14n261 , _:c14n269 , _:c14n45 , _:c14n64 ;
+	sh:ignoredProperties _:c14n144 ;
+	sh:property _:c14n150 , _:c14n160 , _:c14n214 , _:c14n223 , _:c14n225 , _:c14n261 , _:c14n269 , _:c14n45 , _:c14n63 ;
 	sh:targetClass fix_sbe:SbeBlockV2Mixin .
 fix_sbe:SbeChoice a sh:NodeShape ;
 	rdfs:comment "One of the alternatives of a set, which is one bit of its encoding." ;
 	sh:closed true ;
-	sh:ignoredProperties _:c14n57 ;
+	sh:ignoredProperties _:c14n56 ;
 	sh:property _:c14n13 , _:c14n205 , _:c14n208 , _:c14n239 , _:c14n41 ;
 	sh:targetClass fix_sbe:SbeChoice .
 fix_sbe:SbeCompositeV1 a sh:NodeShape ;
 	rdfs:comment "An encoding built from members sent one after another, such as a decimal's mantissa and exponent." ;
 	sh:closed true ;
-	sh:ignoredProperties _:c14n121 ;
-	sh:property _:c14n12 , _:c14n152 , _:c14n155 , _:c14n28 , _:c14n282 , _:c14n48 , _:c14n52 , _:c14n98 ;
+	sh:ignoredProperties _:c14n119 ;
+	sh:property _:c14n12 , _:c14n151 , _:c14n154 , _:c14n28 , _:c14n282 , _:c14n47 , _:c14n51 , _:c14n97 ;
 	sh:targetClass fix_sbe:SbeCompositeV1 .
 fix_sbe:SbeCompositeV2 a sh:NodeShape ;
 	rdfs:comment "An encoding built from members sent one after another, such as a decimal's mantissa and exponent." ;
 	sh:closed true ;
 	sh:ignoredProperties _:c14n266 ;
-	sh:property _:c14n131 , _:c14n16 , _:c14n200 , _:c14n201 , _:c14n210 , _:c14n216 , _:c14n254 , _:c14n5 ;
+	sh:property _:c14n129 , _:c14n16 , _:c14n200 , _:c14n201 , _:c14n210 , _:c14n216 , _:c14n254 , _:c14n5 ;
 	sh:targetClass fix_sbe:SbeCompositeV2 .
 fix_sbe:SbeElementV2 a sh:NodeShape ;
 	rdfs:comment "Anything that sets of encodings or composites hold, and the name and text they all have." ;
 	sh:closed false ;
 	sh:ignoredProperties _:c14n35 ;
-	sh:property _:c14n157 , _:c14n31 , _:c14n74 ;
+	sh:property _:c14n156 , _:c14n31 , _:c14n73 ;
 	sh:targetClass fix_sbe:SbeElementV2 .
 fix_sbe:SbeEncodingSetV1 a sh:NodeShape ;
 	rdfs:comment "A set of encodings, listed in any order, whose names are unique across the whole schema." ;
@@ -50,145 +50,145 @@ fix_sbe:SbeEncodingSetV2 a sh:NodeShape ;
 	rdfs:comment "A set of encodings, in any order, that may have its own package and may come from another file." ;
 	sh:closed true ;
 	sh:ignoredProperties _:c14n183 ;
-	sh:property _:c14n0 , _:c14n112 , _:c14n240 , _:c14n83 ;
+	sh:property _:c14n0 , _:c14n172 , _:c14n240 , _:c14n82 ;
 	sh:targetClass fix_sbe:SbeEncodingSetV2 .
 fix_sbe:SbeEncodingV1 a sh:NodeShape ;
 	rdfs:comment "An encoding of SBE 1.0, which says how a value is laid out on the wire." ;
 	sh:closed false ;
-	sh:ignoredProperties _:c14n139 ;
-	sh:property _:c14n129 , _:c14n20 , _:c14n26 , _:c14n279 , _:c14n6 , _:c14n61 , _:c14n85 ;
+	sh:ignoredProperties _:c14n137 ;
+	sh:property _:c14n127 , _:c14n20 , _:c14n26 , _:c14n279 , _:c14n6 , _:c14n60 , _:c14n84 ;
 	sh:targetClass fix_sbe:SbeEncodingV1 .
 fix_sbe:SbeEnumV1 a sh:NodeShape ;
 	rdfs:comment "An encoding whose value is one of a listed set of valid values." ;
 	sh:closed true ;
-	sh:ignoredProperties _:c14n107 ;
-	sh:property _:c14n185 , _:c14n187 , _:c14n22 , _:c14n230 , _:c14n27 , _:c14n46 , _:c14n49 , _:c14n68 , _:c14n80 ;
+	sh:ignoredProperties _:c14n106 ;
+	sh:property _:c14n185 , _:c14n187 , _:c14n22 , _:c14n230 , _:c14n27 , _:c14n46 , _:c14n48 , _:c14n67 , _:c14n79 ;
 	sh:targetClass fix_sbe:SbeEnumV1 .
 fix_sbe:SbeEnumV2 a sh:NodeShape ;
 	rdfs:comment "An encoding whose value is one of a listed set of valid values." ;
 	sh:closed true ;
-	sh:ignoredProperties _:c14n113 ;
-	sh:property _:c14n10 , _:c14n143 , _:c14n160 , _:c14n196 , _:c14n209 , _:c14n231 , _:c14n243 , _:c14n250 , _:c14n63 ;
+	sh:ignoredProperties _:c14n111 ;
+	sh:property _:c14n10 , _:c14n141 , _:c14n159 , _:c14n196 , _:c14n209 , _:c14n231 , _:c14n243 , _:c14n250 , _:c14n62 ;
 	sh:targetClass fix_sbe:SbeEnumV2 .
 fix_sbe:SbeFieldV1 a sh:NodeShape ;
 	rdfs:comment "A message's or group entry's field, which uses an encoding at a place in its block." ;
 	sh:closed true ;
 	sh:ignoredProperties _:c14n8 ;
-	sh:property _:c14n126 , _:c14n132 , _:c14n134 , _:c14n141 , _:c14n147 , _:c14n180 , _:c14n188 , _:c14n21 , _:c14n229 , _:c14n232 , _:c14n4 , _:c14n77 ;
+	sh:property _:c14n124 , _:c14n130 , _:c14n132 , _:c14n139 , _:c14n145 , _:c14n180 , _:c14n188 , _:c14n21 , _:c14n229 , _:c14n232 , _:c14n4 , _:c14n76 ;
 	sh:targetClass fix_sbe:SbeFieldV1 .
 fix_sbe:SbeFieldV2 a sh:NodeShape ;
 	rdfs:comment "A message's or group entry's field, which uses an encoding at a place in its block and may state a constant." ;
 	sh:closed true ;
 	sh:ignoredProperties _:c14n195 ;
-	sh:property _:c14n168 , _:c14n202 , _:c14n235 , _:c14n249 , _:c14n25 , _:c14n265 , _:c14n278 , _:c14n30 , _:c14n40 , _:c14n42 , _:c14n51 , _:c14n55 , _:c14n72 , _:c14n79 , _:c14n82 ;
+	sh:property _:c14n167 , _:c14n202 , _:c14n235 , _:c14n249 , _:c14n25 , _:c14n265 , _:c14n278 , _:c14n30 , _:c14n40 , _:c14n42 , _:c14n50 , _:c14n54 , _:c14n71 , _:c14n78 , _:c14n81 ;
 	sh:targetClass fix_sbe:SbeFieldV2 .
 fix_sbe:SbeGroupV1 a sh:NodeShape ;
 	rdfs:comment "A repeating group, whose entries each hold the same fields, and which cannot be without a field." ;
 	sh:closed true ;
-	sh:ignoredProperties _:c14n148 ;
-	sh:property _:c14n133 , _:c14n174 , _:c14n19 , _:c14n191 , _:c14n213 , _:c14n226 , _:c14n280 , _:c14n56 , _:c14n60 , _:c14n84 , _:c14n9 ;
+	sh:ignoredProperties _:c14n146 ;
+	sh:property _:c14n131 , _:c14n174 , _:c14n19 , _:c14n191 , _:c14n213 , _:c14n226 , _:c14n280 , _:c14n55 , _:c14n59 , _:c14n83 , _:c14n9 ;
 	sh:targetClass fix_sbe:SbeGroupV1 .
 fix_sbe:SbeGroupV2 a sh:NodeShape ;
 	rdfs:comment "A repeating group, whose entries each hold the same fields, and which cannot be without a field." ;
 	sh:closed true ;
 	sh:ignoredProperties _:c14n3 ;
-	sh:property _:c14n103 , _:c14n128 , _:c14n15 , _:c14n18 , _:c14n199 , _:c14n245 , _:c14n247 , _:c14n264 , _:c14n288 , _:c14n78 , _:c14n88 , _:c14n95 ;
+	sh:property _:c14n102 , _:c14n126 , _:c14n15 , _:c14n18 , _:c14n199 , _:c14n245 , _:c14n247 , _:c14n264 , _:c14n288 , _:c14n77 , _:c14n87 , _:c14n94 ;
 	sh:targetClass fix_sbe:SbeGroupV2 .
 fix_sbe:SbeMemberTypeV2 a sh:NodeShape ;
 	rdfs:comment "A simple encoding inside a composite, which may say it is optional or constant." ;
 	sh:closed true ;
 	sh:ignoredProperties _:c14n281 ;
-	sh:property _:c14n100 , _:c14n108 , _:c14n142 , _:c14n159 , _:c14n179 , _:c14n184 , _:c14n204 , _:c14n217 , _:c14n274 , _:c14n277 , _:c14n38 , _:c14n50 , _:c14n69 , _:c14n70 ;
+	sh:property _:c14n107 , _:c14n140 , _:c14n158 , _:c14n179 , _:c14n184 , _:c14n204 , _:c14n217 , _:c14n274 , _:c14n277 , _:c14n38 , _:c14n49 , _:c14n68 , _:c14n69 , _:c14n99 ;
 	sh:targetClass fix_sbe:SbeMemberTypeV2 .
 fix_sbe:SbeMemberV1 a sh:NodeShape ;
 	rdfs:comment "Anything a composite may hold in the order it is sent." ;
 	sh:closed false ;
 	sh:ignoredProperties _:c14n233 ;
-	sh:property _:c14n115 , _:c14n144 , _:c14n175 , _:c14n241 , _:c14n260 ;
+	sh:property _:c14n113 , _:c14n142 , _:c14n175 , _:c14n241 , _:c14n260 ;
 	sh:targetClass fix_sbe:SbeMemberV1 .
 fix_sbe:SbeMemberV2 a sh:NodeShape ;
 	rdfs:comment "Anything a composite may hold in the order it is sent." ;
 	sh:closed false ;
 	sh:ignoredProperties _:c14n258 ;
-	sh:property _:c14n111 , _:c14n234 , _:c14n36 , _:c14n7 , _:c14n96 ;
+	sh:property _:c14n110 , _:c14n234 , _:c14n36 , _:c14n7 , _:c14n95 ;
 	sh:targetClass fix_sbe:SbeMemberV2 .
 fix_sbe:SbeMessageSchemaV1 a sh:NodeShape ;
 	rdfs:comment "One SBE 1.0 message schema, with its encodings and message templates." ;
 	sh:closed true ;
 	sh:ignoredProperties _:c14n11 ;
-	sh:property _:c14n101 , _:c14n123 , _:c14n163 , _:c14n164 , _:c14n169 , _:c14n190 , _:c14n212 , _:c14n67 , _:c14n91 ;
+	sh:property _:c14n100 , _:c14n121 , _:c14n162 , _:c14n163 , _:c14n168 , _:c14n190 , _:c14n212 , _:c14n66 , _:c14n90 ;
 	sh:targetClass fix_sbe:SbeMessageSchemaV1 .
 fix_sbe:SbeMessageSchemaV2 a sh:NodeShape ;
 	rdfs:comment "One SBE 2.0 message schema, with its encodings and message templates." ;
 	sh:closed true ;
 	sh:ignoredProperties _:c14n1 ;
-	sh:property _:c14n117 , _:c14n165 , _:c14n167 , _:c14n176 , _:c14n192 , _:c14n2 , _:c14n238 , _:c14n275 , _:c14n94 ;
+	sh:property _:c14n115 , _:c14n164 , _:c14n166 , _:c14n176 , _:c14n192 , _:c14n2 , _:c14n238 , _:c14n275 , _:c14n93 ;
 	sh:targetClass fix_sbe:SbeMessageSchemaV2 .
 fix_sbe:SbeMessageSetV2 a sh:NodeShape ;
 	rdfs:comment "Message templates held together, which may have their own package and may come from another file." ;
 	sh:closed true ;
 	sh:ignoredProperties _:c14n39 ;
-	sh:property _:c14n186 , _:c14n215 , _:c14n263 , _:c14n47 ;
+	sh:property _:c14n147 , _:c14n186 , _:c14n215 , _:c14n263 ;
 	sh:targetClass fix_sbe:SbeMessageSetV2 .
 fix_sbe:SbeMessageV1 a sh:NodeShape ;
 	rdfs:comment "A message template, whose number and block length are sent in each message's header." ;
 	sh:closed true ;
-	sh:ignoredProperties _:c14n156 ;
-	sh:property _:c14n114 , _:c14n127 , _:c14n198 , _:c14n236 , _:c14n237 , _:c14n248 , _:c14n54 , _:c14n71 , _:c14n92 , _:c14n97 ;
+	sh:ignoredProperties _:c14n155 ;
+	sh:property _:c14n112 , _:c14n125 , _:c14n198 , _:c14n236 , _:c14n237 , _:c14n248 , _:c14n53 , _:c14n70 , _:c14n91 , _:c14n96 ;
 	sh:targetClass fix_sbe:SbeMessageV1 .
 fix_sbe:SbeMessageV2 a sh:NodeShape ;
 	rdfs:comment "A message template, whose number and block length are sent in each message's header." ;
 	sh:closed true ;
 	sh:ignoredProperties _:c14n251 ;
-	sh:property _:c14n118 , _:c14n120 , _:c14n122 , _:c14n14 , _:c14n145 , _:c14n218 , _:c14n262 , _:c14n270 , _:c14n286 , _:c14n290 , _:c14n99 ;
+	sh:property _:c14n116 , _:c14n118 , _:c14n120 , _:c14n14 , _:c14n143 , _:c14n218 , _:c14n262 , _:c14n270 , _:c14n286 , _:c14n290 , _:c14n98 ;
 	sh:targetClass fix_sbe:SbeMessageV2 .
 fix_sbe:SbeRefV1 a sh:NodeShape ;
 	rdfs:comment "A composite's member that reuses an encoding defined elsewhere in the schema." ;
 	sh:closed true ;
-	sh:ignoredProperties _:c14n86 ;
-	sh:property _:c14n106 , _:c14n158 , _:c14n17 , _:c14n220 , _:c14n221 , _:c14n252 ;
+	sh:ignoredProperties _:c14n85 ;
+	sh:property _:c14n105 , _:c14n157 , _:c14n17 , _:c14n220 , _:c14n221 , _:c14n252 ;
 	sh:targetClass fix_sbe:SbeRefV1 .
 fix_sbe:SbeRefV2 a sh:NodeShape ;
 	rdfs:comment "A composite's member that reuses an encoding defined elsewhere in the schema." ;
 	sh:closed true ;
-	sh:ignoredProperties _:c14n140 ;
-	sh:property _:c14n116 , _:c14n125 , _:c14n154 , _:c14n170 , _:c14n23 , _:c14n259 ;
+	sh:ignoredProperties _:c14n138 ;
+	sh:property _:c14n114 , _:c14n123 , _:c14n153 , _:c14n169 , _:c14n23 , _:c14n259 ;
 	sh:targetClass fix_sbe:SbeRefV2 .
 fix_sbe:SbeSetV1 a sh:NodeShape ;
 	rdfs:comment "An encoding whose value is any combination of up to 64 choices, sent as a bitset." ;
 	sh:closed true ;
 	sh:ignoredProperties _:c14n32 ;
-	sh:property _:c14n102 , _:c14n119 , _:c14n136 , _:c14n177 , _:c14n24 , _:c14n246 , _:c14n33 , _:c14n34 , _:c14n90 ;
+	sh:property _:c14n101 , _:c14n117 , _:c14n134 , _:c14n177 , _:c14n24 , _:c14n246 , _:c14n33 , _:c14n34 , _:c14n89 ;
 	sh:targetClass fix_sbe:SbeSetV1 .
 fix_sbe:SbeSetV2 a sh:NodeShape ;
 	rdfs:comment "An encoding whose value is any combination of up to 64 choices, sent as a bitset." ;
 	sh:closed true ;
-	sh:ignoredProperties _:c14n162 ;
-	sh:property _:c14n110 , _:c14n149 , _:c14n182 , _:c14n224 , _:c14n257 , _:c14n66 , _:c14n75 , _:c14n81 , _:c14n93 ;
+	sh:ignoredProperties _:c14n161 ;
+	sh:property _:c14n109 , _:c14n148 , _:c14n182 , _:c14n224 , _:c14n257 , _:c14n65 , _:c14n74 , _:c14n80 , _:c14n92 ;
 	sh:targetClass fix_sbe:SbeSetV2 .
 fix_sbe:SbeSimpleTypeV1 a sh:NodeShape ;
 	rdfs:comment "An encoding backed by one primitive value, or several in an array." ;
 	sh:closed true ;
 	sh:ignoredProperties _:c14n194 ;
-	sh:property _:c14n104 , _:c14n166 , _:c14n189 , _:c14n206 , _:c14n222 , _:c14n228 , _:c14n255 , _:c14n256 , _:c14n267 , _:c14n268 , _:c14n283 , _:c14n284 , _:c14n285 , _:c14n287 , _:c14n37 , _:c14n87 ;
+	sh:property _:c14n103 , _:c14n165 , _:c14n189 , _:c14n206 , _:c14n222 , _:c14n228 , _:c14n255 , _:c14n256 , _:c14n267 , _:c14n268 , _:c14n283 , _:c14n284 , _:c14n285 , _:c14n287 , _:c14n37 , _:c14n86 ;
 	sh:targetClass fix_sbe:SbeSimpleTypeV1 .
 fix_sbe:SbeSimpleTypeV2 a sh:NodeShape ;
 	rdfs:comment "A simple encoding that stands alone in a set, backed by one primitive value, or several in an array." ;
 	sh:closed true ;
 	sh:ignoredProperties _:c14n227 ;
-	sh:property _:c14n137 , _:c14n150 , _:c14n153 , _:c14n178 , _:c14n273 , _:c14n289 , _:c14n29 , _:c14n53 , _:c14n89 ;
+	sh:property _:c14n135 , _:c14n149 , _:c14n152 , _:c14n178 , _:c14n273 , _:c14n289 , _:c14n29 , _:c14n52 , _:c14n88 ;
 	sh:targetClass fix_sbe:SbeSimpleTypeV2 .
 fix_sbe:SbeValidValue a sh:NodeShape ;
 	rdfs:comment "One of the values an enumeration allows." ;
 	sh:closed true ;
-	sh:ignoredProperties _:c14n109 ;
-	sh:property _:c14n130 , _:c14n135 , _:c14n43 , _:c14n62 , _:c14n73 ;
+	sh:ignoredProperties _:c14n108 ;
+	sh:property _:c14n128 , _:c14n133 , _:c14n43 , _:c14n61 , _:c14n72 ;
 	sh:targetClass fix_sbe:SbeValidValue .
 fix_sbe:SbeVersionedMixin a sh:NodeShape ;
 	rdfs:comment "The two attributes that record when an element entered a schema and when it should leave." ;
 	sh:closed false ;
-	sh:ignoredProperties _:c14n59 ;
-	sh:property _:c14n207 , _:c14n76 ;
+	sh:ignoredProperties _:c14n58 ;
+	sh:property _:c14n207 , _:c14n75 ;
 	sh:targetClass fix_sbe:SbeVersionedMixin .
 _:c14n0 sh:datatype xsd:string ;
 	sh:description "Free text about this element, for the people who read the schema." ;
@@ -204,13 +204,7 @@ _:c14n10 sh:datatype xsd:string ;
 	sh:nodeKind sh:Literal ;
 	sh:order 8 ;
 	sh:path schema1:description .
-_:c14n100 sh:description "The wire type under this encoding." ;
-	sh:in _:c14n316 ;
-	sh:maxCount 1 ;
-	sh:minCount 1 ;
-	sh:order 1 ;
-	sh:path fix_sbe:primitive_type .
-_:c14n101 sh:datatype xsd:integer ;
+_:c14n100 sh:datatype xsd:integer ;
 	sh:description "The version of this message schema, starting at zero." ;
 	sh:maxCount 1 ;
 	sh:minCount 1 ;
@@ -218,29 +212,29 @@ _:c14n101 sh:datatype xsd:integer ;
 	sh:nodeKind sh:Literal ;
 	sh:order 2 ;
 	sh:path fix_sbe:schema_version .
-_:c14n102 sh:class fix_sbe:SbeChoice ;
+_:c14n101 sh:class fix_sbe:SbeChoice ;
 	sh:description "The alternatives of this set." ;
 	sh:maxCount 64 ;
 	sh:minCount 1 ;
 	sh:nodeKind sh:BlankNodeOrIRI ;
 	sh:order 1 ;
 	sh:path fix_sbe:choices .
-_:c14n103 sh:class fix_sbe:SbeFieldV2 ;
+_:c14n102 sh:class fix_sbe:SbeFieldV2 ;
 	sh:description "Fixed-length fields, listed in wire order." ;
 	sh:minCount 1 ;
 	sh:nodeKind sh:BlankNodeOrIRI ;
 	sh:order 9 ;
 	sh:path fix_sbe:block_fields .
-_:c14n104 sh:datatype xsd:integer ;
+_:c14n103 sh:datatype xsd:integer ;
 	sh:description "The schema version that retired this element, which stays only for older applications." ;
 	sh:maxCount 1 ;
 	sh:minInclusive 0 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 15 ;
 	sh:path fix_sbe:deprecated_since .
-_:c14n105 rdf:first _:c14n138 ;
+_:c14n104 rdf:first _:c14n136 ;
 	rdf:rest _:c14n400 .
-_:c14n106 sh:datatype xsd:integer ;
+_:c14n105 sh:datatype xsd:integer ;
 	sh:description "The octet this element starts at, counted from zero at the start of its block or composite." ;
 	sh:maxCount 1 ;
 	sh:maxInclusive 4294967295 ;
@@ -248,46 +242,41 @@ _:c14n106 sh:datatype xsd:integer ;
 	sh:nodeKind sh:Literal ;
 	sh:order 3 ;
 	sh:path fix_sbe:offset .
-_:c14n107 rdf:first rdf:type ;
+_:c14n106 rdf:first rdf:type ;
 	rdf:rest rdf:nil .
-_:c14n108 sh:datatype xsd:string ;
+_:c14n107 sh:datatype xsd:string ;
 	sh:description "The highest value allowed, written as text." ;
 	sh:maxCount 1 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 7 ;
 	sh:path fix_sbe:max_value .
-_:c14n109 rdf:first rdf:type ;
+_:c14n108 rdf:first rdf:type ;
 	rdf:rest rdf:nil .
-_:c14n11 rdf:first rdf:type ;
-	rdf:rest rdf:nil .
-_:c14n110 sh:datatype xsd:integer ;
+_:c14n109 sh:datatype xsd:integer ;
 	sh:description "The schema version that added this element." ;
 	sh:maxCount 1 ;
 	sh:minInclusive 0 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 2 ;
 	sh:path fix_sbe:since_version .
-_:c14n111 sh:datatype xsd:string ;
+_:c14n11 rdf:first rdf:type ;
+	rdf:rest rdf:nil .
+_:c14n110 sh:datatype xsd:string ;
 	sh:description "Free text about this element, for the people who read the schema." ;
 	sh:maxCount 1 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 4 ;
 	sh:path schema1:description .
-_:c14n112 sh:description "The base address that the XML Inclusion mechanism records on an element it brought in from another file." ;
-	sh:maxCount 1 ;
-	sh:nodeKind sh:IRI ;
-	sh:order 2 ;
-	sh:path fix_sbe:xml_base .
-_:c14n113 rdf:first rdf:type ;
+_:c14n111 rdf:first rdf:type ;
 	rdf:rest rdf:nil .
-_:c14n114 sh:datatype xsd:integer ;
+_:c14n112 sh:datatype xsd:integer ;
 	sh:description "The octets set aside for a message's fixed-length fields, or for those of each group entry." ;
 	sh:maxCount 1 ;
 	sh:minInclusive 0 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 4 ;
 	sh:path fix_sbe:block_length .
-_:c14n115 sh:datatype xsd:string ;
+_:c14n113 sh:datatype xsd:string ;
 	sh:description "What the schema calls this element." ;
 	sh:maxCount 1 ;
 	sh:minCount 1 ;
@@ -295,31 +284,40 @@ _:c14n115 sh:datatype xsd:string ;
 	sh:order 1 ;
 	sh:path fix_sbe:symbolic_name ;
 	sh:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
-_:c14n116 sh:datatype xsd:integer ;
+_:c14n114 sh:datatype xsd:integer ;
 	sh:description "The multiple of octets the start of this element is placed on." ;
 	sh:maxCount 1 ;
 	sh:minInclusive 1 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 2 ;
 	sh:path fix_sbe:alignment .
-_:c14n117 sh:defaultValue "littleEndian" ;
+_:c14n115 sh:defaultValue "littleEndian" ;
 	sh:description "How the octets of every number in this schema's messages are ordered." ;
 	sh:in _:c14n294 ;
 	sh:maxCount 1 ;
 	sh:order 5 ;
 	sh:path fix_sbe:byte_order .
-_:c14n118 sh:class fix_sbe:SbeFieldV2 ;
+_:c14n116 sh:class fix_sbe:SbeFieldV2 ;
 	sh:description "Fixed-length fields, listed in wire order." ;
 	sh:nodeKind sh:BlankNodeOrIRI ;
 	sh:order 8 ;
 	sh:path fix_sbe:block_fields .
-_:c14n119 sh:datatype xsd:integer ;
+_:c14n117 sh:datatype xsd:integer ;
 	sh:description "The schema version that added this element." ;
 	sh:maxCount 1 ;
 	sh:minInclusive 0 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 7 ;
 	sh:path fix_sbe:since_version .
+_:c14n118 sh:datatype xsd:integer ;
+	sh:description "The schema version that added this element." ;
+	sh:maxCount 1 ;
+	sh:minInclusive 0 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 0 ;
+	sh:path fix_sbe:since_version .
+_:c14n119 rdf:first rdf:type ;
+	rdf:rest rdf:nil .
 _:c14n12 sh:datatype xsd:string ;
 	sh:description "The class of this encoding or composite member, which stands for its XML element." ;
 	sh:maxCount 1 ;
@@ -328,29 +326,20 @@ _:c14n12 sh:datatype xsd:string ;
 	sh:order 3 ;
 	sh:path fix_sbe:encoding_kind .
 _:c14n120 sh:datatype xsd:integer ;
-	sh:description "The schema version that added this element." ;
-	sh:maxCount 1 ;
-	sh:minInclusive 0 ;
-	sh:nodeKind sh:Literal ;
-	sh:order 0 ;
-	sh:path fix_sbe:since_version .
-_:c14n121 rdf:first rdf:type ;
-	rdf:rest rdf:nil .
-_:c14n122 sh:datatype xsd:integer ;
 	sh:description "The multiple of octets where a message or each group entry begins." ;
 	sh:maxCount 1 ;
 	sh:minInclusive 1 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 5 ;
 	sh:path fix_sbe:alignment .
-_:c14n123 sh:class fix_sbe:SbeMessageV1 ;
+_:c14n121 sh:class fix_sbe:SbeMessageV1 ;
 	sh:description "The message templates of this set." ;
 	sh:minCount 1 ;
 	sh:nodeKind sh:BlankNodeOrIRI ;
 	sh:order 8 ;
 	sh:path fix_sbe:messages .
-_:c14n124 sh:class fix_sbe:SbeCompositeV2 .
-_:c14n125 sh:datatype xsd:string ;
+_:c14n122 sh:class fix_sbe:SbeCompositeV2 .
+_:c14n123 sh:datatype xsd:string ;
 	sh:description "What the schema calls this element." ;
 	sh:maxCount 1 ;
 	sh:minCount 1 ;
@@ -358,34 +347,47 @@ _:c14n125 sh:datatype xsd:string ;
 	sh:order 4 ;
 	sh:path fix_sbe:symbolic_name ;
 	sh:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
-_:c14n126 sh:datatype xsd:integer ;
+_:c14n124 sh:datatype xsd:integer ;
 	sh:description "The schema version that retired this element, which stays only for older applications." ;
 	sh:maxCount 1 ;
 	sh:minInclusive 0 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 11 ;
 	sh:path fix_sbe:deprecated_since .
-_:c14n127 sh:datatype xsd:integer ;
+_:c14n125 sh:datatype xsd:integer ;
 	sh:description "The schema version that retired this element, which stays only for older applications." ;
 	sh:maxCount 1 ;
 	sh:minInclusive 0 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 1 ;
 	sh:path fix_sbe:deprecated_since .
-_:c14n128 sh:datatype xsd:token ;
+_:c14n126 sh:datatype xsd:token ;
 	sh:description "What this element means at the FIX application layer." ;
 	sh:maxCount 1 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 7 ;
 	sh:path fix_sbe:semantic_type ;
 	sh:pattern "^\\S+( \\S+)*$" .
-_:c14n129 sh:datatype xsd:integer ;
+_:c14n127 sh:datatype xsd:integer ;
 	sh:description "The schema version that added this element." ;
 	sh:maxCount 1 ;
 	sh:minInclusive 0 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 5 ;
 	sh:path fix_sbe:since_version .
+_:c14n128 sh:datatype xsd:string ;
+	sh:description "Free text about this element, for the people who read the schema." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 1 ;
+	sh:path schema1:description .
+_:c14n129 sh:datatype xsd:string ;
+	sh:description "The class of this encoding or composite member, which stands for its XML element." ;
+	sh:maxCount 1 ;
+	sh:minCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 5 ;
+	sh:path fix_sbe:encoding_kind .
 _:c14n13 sh:datatype xsd:integer ;
 	sh:description "The schema version that added this element." ;
 	sh:maxCount 1 ;
@@ -394,26 +396,13 @@ _:c14n13 sh:datatype xsd:integer ;
 	sh:order 3 ;
 	sh:path fix_sbe:since_version .
 _:c14n130 sh:datatype xsd:string ;
-	sh:description "Free text about this element, for the people who read the schema." ;
-	sh:maxCount 1 ;
-	sh:nodeKind sh:Literal ;
-	sh:order 1 ;
-	sh:path schema1:description .
-_:c14n131 sh:datatype xsd:string ;
-	sh:description "The class of this encoding or composite member, which stands for its XML element." ;
-	sh:maxCount 1 ;
-	sh:minCount 1 ;
-	sh:nodeKind sh:Literal ;
-	sh:order 5 ;
-	sh:path fix_sbe:encoding_kind .
-_:c14n132 sh:datatype xsd:string ;
 	sh:defaultValue "nanosecond" ;
 	sh:description "The unit of a time value." ;
 	sh:maxCount 1 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 9 ;
 	sh:path fix_sbe:time_unit .
-_:c14n133 sh:datatype xsd:string ;
+_:c14n131 sh:datatype xsd:string ;
 	sh:defaultValue "groupSizeEncoding" ;
 	sh:description "The composite, by name, that sends a repeating group's entry count and entry size." ;
 	sh:maxCount 1 ;
@@ -421,56 +410,56 @@ _:c14n133 sh:datatype xsd:string ;
 	sh:order 0 ;
 	sh:path fix_sbe:dimension_type ;
 	sh:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
-_:c14n134 sh:datatype xsd:integer ;
+_:c14n132 sh:datatype xsd:integer ;
 	sh:description "The schema version that added this element." ;
 	sh:maxCount 1 ;
 	sh:minInclusive 0 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 10 ;
 	sh:path fix_sbe:since_version .
-_:c14n135 sh:datatype xsd:integer ;
+_:c14n133 sh:datatype xsd:integer ;
 	sh:description "The schema version that retired this element, which stays only for older applications." ;
 	sh:maxCount 1 ;
 	sh:minInclusive 0 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 4 ;
 	sh:path fix_sbe:deprecated_since .
-_:c14n136 sh:datatype xsd:string ;
+_:c14n134 sh:datatype xsd:string ;
 	sh:description "The class of this encoding or composite member, which stands for its XML element." ;
 	sh:maxCount 1 ;
 	sh:minCount 1 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 4 ;
 	sh:path fix_sbe:encoding_kind .
-_:c14n137 sh:description "The wire type under this encoding." ;
-	sh:in _:c14n305 ;
+_:c14n135 sh:description "The wire type under this encoding." ;
+	sh:in _:c14n327 ;
 	sh:maxCount 1 ;
 	sh:minCount 1 ;
 	sh:order 1 ;
 	sh:path fix_sbe:primitive_type .
-_:c14n138 sh:class fix_sbe:SbeSimpleTypeV2 .
-_:c14n139 rdf:first rdf:type ;
-	rdf:rest _:c14n391 .
+_:c14n136 sh:class fix_sbe:SbeSimpleTypeV2 .
+_:c14n137 rdf:first rdf:type ;
+	rdf:rest _:c14n352 .
+_:c14n138 rdf:first rdf:type ;
+	rdf:rest rdf:nil .
+_:c14n139 sh:defaultValue "required" ;
+	sh:description "Whether this element's value is required, optional or constant." ;
+	sh:in _:c14n333 ;
+	sh:maxCount 1 ;
+	sh:order 4 ;
+	sh:path fix_sbe:presence .
 _:c14n14 sh:class fix_sbe:SbeGroupV2 ;
 	sh:description "Repeating groups, listed in wire order." ;
 	sh:nodeKind sh:BlankNodeOrIRI ;
 	sh:order 9 ;
 	sh:path fix_sbe:repeating_groups .
-_:c14n140 rdf:first rdf:type ;
-	rdf:rest rdf:nil .
-_:c14n141 sh:defaultValue "required" ;
-	sh:description "Whether this element's value is required, optional or constant." ;
-	sh:in _:c14n336 ;
-	sh:maxCount 1 ;
-	sh:order 4 ;
-	sh:path fix_sbe:presence .
-_:c14n142 sh:datatype xsd:string ;
+_:c14n140 sh:datatype xsd:string ;
 	sh:description "The lowest value allowed, written as text." ;
 	sh:maxCount 1 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 6 ;
 	sh:path fix_sbe:min_value .
-_:c14n143 sh:datatype xsd:string ;
+_:c14n141 sh:datatype xsd:string ;
 	sh:description "The simple encoding or primitive type that an enumeration or set is sent as." ;
 	sh:maxCount 1 ;
 	sh:minCount 1 ;
@@ -478,7 +467,7 @@ _:c14n143 sh:datatype xsd:string ;
 	sh:order 0 ;
 	sh:path fix_sbe:encoding_type ;
 	sh:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
-_:c14n144 sh:datatype xsd:integer ;
+_:c14n142 sh:datatype xsd:integer ;
 	sh:description "The octet this element starts at, counted from zero at the start of its block or composite." ;
 	sh:maxCount 1 ;
 	sh:maxInclusive 4294967295 ;
@@ -486,16 +475,16 @@ _:c14n144 sh:datatype xsd:integer ;
 	sh:nodeKind sh:Literal ;
 	sh:order 2 ;
 	sh:path fix_sbe:offset .
-_:c14n145 sh:datatype xsd:integer ;
+_:c14n143 sh:datatype xsd:integer ;
 	sh:description "The schema version that retired this element, which stays only for older applications." ;
 	sh:maxCount 1 ;
 	sh:minInclusive 0 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 1 ;
 	sh:path fix_sbe:deprecated_since .
-_:c14n146 rdf:first rdf:type ;
+_:c14n144 rdf:first rdf:type ;
 	rdf:rest rdf:nil .
-_:c14n147 sh:datatype xsd:integer ;
+_:c14n145 sh:datatype xsd:integer ;
 	sh:description "The field's FIX tag number." ;
 	sh:maxCount 1 ;
 	sh:maxInclusive 65535 ;
@@ -504,9 +493,15 @@ _:c14n147 sh:datatype xsd:integer ;
 	sh:nodeKind sh:Literal ;
 	sh:order 1 ;
 	sh:path fix_sbe:sbe_id .
-_:c14n148 rdf:first rdf:type ;
+_:c14n146 rdf:first rdf:type ;
 	rdf:rest rdf:nil .
-_:c14n149 sh:datatype xsd:integer ;
+_:c14n147 sh:datatype xsd:string ;
+	sh:description "The base address that the XML Inclusion mechanism records on an element it brought in from another file." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 2 ;
+	sh:path fix_sbe:xml_base .
+_:c14n148 sh:datatype xsd:integer ;
 	sh:description "The octet this element starts at, counted from zero at the start of its block or composite." ;
 	sh:maxCount 1 ;
 	sh:maxInclusive 4294967295 ;
@@ -514,6 +509,13 @@ _:c14n149 sh:datatype xsd:integer ;
 	sh:nodeKind sh:Literal ;
 	sh:order 4 ;
 	sh:path fix_sbe:offset .
+_:c14n149 sh:datatype xsd:token ;
+	sh:description "The text of the XML element, which is the constant when presence is constant." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 0 ;
+	sh:path fix_sbe:element_value ;
+	sh:pattern "^\\S+( \\S+)*$" .
 _:c14n15 sh:datatype xsd:string ;
 	sh:defaultValue "groupSizeEncoding" ;
 	sh:description "The composite, by name, that sends a repeating group's entry count and entry size." ;
@@ -522,35 +524,28 @@ _:c14n15 sh:datatype xsd:string ;
 	sh:order 0 ;
 	sh:path fix_sbe:dimension_type ;
 	sh:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
-_:c14n150 sh:datatype xsd:token ;
-	sh:description "The text of the XML element, which is the constant when presence is constant." ;
-	sh:maxCount 1 ;
-	sh:nodeKind sh:Literal ;
-	sh:order 0 ;
-	sh:path fix_sbe:element_value ;
-	sh:pattern "^\\S+( \\S+)*$" .
-_:c14n151 sh:datatype xsd:integer ;
+_:c14n150 sh:datatype xsd:integer ;
 	sh:description "The multiple of octets where a message or each group entry begins." ;
 	sh:maxCount 1 ;
 	sh:minInclusive 1 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 3 ;
 	sh:path fix_sbe:alignment .
-_:c14n152 sh:datatype xsd:integer ;
+_:c14n151 sh:datatype xsd:integer ;
 	sh:description "The schema version that retired this element, which stays only for older applications." ;
 	sh:maxCount 1 ;
 	sh:minInclusive 0 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 7 ;
 	sh:path fix_sbe:deprecated_since .
-_:c14n153 sh:datatype xsd:integer ;
+_:c14n152 sh:datatype xsd:integer ;
 	sh:description "The schema version that added this element." ;
 	sh:maxCount 1 ;
 	sh:minInclusive 0 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 4 ;
 	sh:path fix_sbe:since_version .
-_:c14n154 sh:datatype xsd:string ;
+_:c14n153 sh:datatype xsd:string ;
 	sh:description "Which encoding this element uses, by name." ;
 	sh:maxCount 1 ;
 	sh:minCount 1 ;
@@ -558,15 +553,15 @@ _:c14n154 sh:datatype xsd:string ;
 	sh:order 0 ;
 	sh:path fix_sbe:encoding_name ;
 	sh:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
-_:c14n155 sh:class fix_sbe:SbeMemberV1 ;
+_:c14n154 sh:class fix_sbe:SbeMemberV1 ;
 	sh:description "The members of this composite, in the order they are sent." ;
 	sh:minCount 1 ;
 	sh:nodeKind sh:BlankNodeOrIRI ;
 	sh:order 0 ;
 	sh:path fix_sbe:composite_members .
-_:c14n156 rdf:first rdf:type ;
+_:c14n155 rdf:first rdf:type ;
 	rdf:rest rdf:nil .
-_:c14n157 sh:datatype xsd:string ;
+_:c14n156 sh:datatype xsd:string ;
 	sh:description "What the schema calls this element." ;
 	sh:maxCount 1 ;
 	sh:minCount 1 ;
@@ -574,20 +569,27 @@ _:c14n157 sh:datatype xsd:string ;
 	sh:order 1 ;
 	sh:path fix_sbe:symbolic_name ;
 	sh:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
-_:c14n158 sh:datatype xsd:integer ;
+_:c14n157 sh:datatype xsd:integer ;
 	sh:description "The schema version that retired this element, which stays only for older applications." ;
 	sh:maxCount 1 ;
 	sh:minInclusive 0 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 5 ;
 	sh:path fix_sbe:deprecated_since .
-_:c14n159 sh:datatype xsd:integer ;
+_:c14n158 sh:datatype xsd:integer ;
 	sh:description "The multiple of octets the start of this element is placed on." ;
 	sh:maxCount 1 ;
 	sh:minInclusive 1 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 10 ;
 	sh:path fix_sbe:alignment .
+_:c14n159 sh:datatype xsd:integer ;
+	sh:description "The schema version that retired this element, which stays only for older applications." ;
+	sh:maxCount 1 ;
+	sh:minInclusive 0 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 3 ;
+	sh:path fix_sbe:deprecated_since .
 _:c14n16 sh:datatype xsd:integer ;
 	sh:description "The schema version that retired this element, which stays only for older applications." ;
 	sh:maxCount 1 ;
@@ -595,29 +597,22 @@ _:c14n16 sh:datatype xsd:integer ;
 	sh:nodeKind sh:Literal ;
 	sh:order 2 ;
 	sh:path fix_sbe:deprecated_since .
-_:c14n160 sh:datatype xsd:integer ;
-	sh:description "The schema version that retired this element, which stays only for older applications." ;
-	sh:maxCount 1 ;
-	sh:minInclusive 0 ;
-	sh:nodeKind sh:Literal ;
-	sh:order 3 ;
-	sh:path fix_sbe:deprecated_since .
-_:c14n161 sh:datatype xsd:token ;
+_:c14n160 sh:datatype xsd:token ;
 	sh:description "What this element means at the FIX application layer." ;
 	sh:maxCount 1 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 4 ;
 	sh:path fix_sbe:semantic_type ;
 	sh:pattern "^\\S+( \\S+)*$" .
-_:c14n162 rdf:first rdf:type ;
+_:c14n161 rdf:first rdf:type ;
 	rdf:rest rdf:nil .
-_:c14n163 sh:datatype xsd:string ;
+_:c14n162 sh:datatype xsd:string ;
 	sh:description "Free text about this element, for the people who read the schema." ;
 	sh:maxCount 1 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 4 ;
 	sh:path schema1:description .
-_:c14n164 sh:datatype xsd:string ;
+_:c14n163 sh:datatype xsd:string ;
 	sh:defaultValue "messageHeader" ;
 	sh:description "The composite, by name, that sends each message's header in this schema." ;
 	sh:maxCount 1 ;
@@ -625,7 +620,7 @@ _:c14n164 sh:datatype xsd:string ;
 	sh:order 6 ;
 	sh:path fix_sbe:header_type ;
 	sh:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
-_:c14n165 sh:datatype xsd:integer ;
+_:c14n164 sh:datatype xsd:integer ;
 	sh:description "The version of this message schema, starting at zero." ;
 	sh:maxCount 1 ;
 	sh:minCount 1 ;
@@ -633,14 +628,14 @@ _:c14n165 sh:datatype xsd:integer ;
 	sh:nodeKind sh:Literal ;
 	sh:order 2 ;
 	sh:path fix_sbe:schema_version .
-_:c14n166 sh:datatype xsd:integer ;
+_:c14n165 sh:datatype xsd:integer ;
 	sh:description "The schema version that added this element." ;
 	sh:maxCount 1 ;
 	sh:minInclusive 0 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 14 ;
 	sh:path fix_sbe:since_version .
-_:c14n167 sh:datatype xsd:integer ;
+_:c14n166 sh:datatype xsd:integer ;
 	sh:description "The number that identifies this schema between counterparties." ;
 	sh:maxCount 1 ;
 	sh:maxInclusive 65535 ;
@@ -648,26 +643,19 @@ _:c14n167 sh:datatype xsd:integer ;
 	sh:nodeKind sh:Literal ;
 	sh:order 1 ;
 	sh:path fix_sbe:sbe_id .
-_:c14n168 sh:datatype xsd:string ;
+_:c14n167 sh:datatype xsd:string ;
 	sh:description "The highest value allowed, written as text." ;
 	sh:maxCount 1 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 9 ;
 	sh:path fix_sbe:max_value .
-_:c14n169 sh:defaultValue "littleEndian" ;
+_:c14n168 sh:defaultValue "littleEndian" ;
 	sh:description "How the octets of every number in this schema's messages are ordered." ;
 	sh:in _:c14n292 ;
 	sh:maxCount 1 ;
 	sh:order 5 ;
 	sh:path fix_sbe:byte_order .
-_:c14n17 sh:datatype xsd:integer ;
-	sh:description "The schema version that added this element." ;
-	sh:maxCount 1 ;
-	sh:minInclusive 0 ;
-	sh:nodeKind sh:Literal ;
-	sh:order 4 ;
-	sh:path fix_sbe:since_version .
-_:c14n170 sh:datatype xsd:integer ;
+_:c14n169 sh:datatype xsd:integer ;
 	sh:description "The octet this element starts at, counted from zero at the start of its block or composite." ;
 	sh:maxCount 1 ;
 	sh:maxInclusive 4294967295 ;
@@ -675,10 +663,23 @@ _:c14n170 sh:datatype xsd:integer ;
 	sh:nodeKind sh:Literal ;
 	sh:order 1 ;
 	sh:path fix_sbe:offset .
-_:c14n171 rdf:first _:c14n211 ;
+_:c14n17 sh:datatype xsd:integer ;
+	sh:description "The schema version that added this element." ;
+	sh:maxCount 1 ;
+	sh:minInclusive 0 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 4 ;
+	sh:path fix_sbe:since_version .
+_:c14n170 rdf:first _:c14n211 ;
 	rdf:rest rdf:nil .
-_:c14n172 rdf:first fix_sbe:offset ;
-	rdf:rest _:c14n395 .
+_:c14n171 rdf:first fix_sbe:offset ;
+	rdf:rest _:c14n397 .
+_:c14n172 sh:datatype xsd:string ;
+	sh:description "The base address that the XML Inclusion mechanism records on an element it brought in from another file." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 2 ;
+	sh:path fix_sbe:xml_base .
 _:c14n173 rdf:first rdf:type ;
 	rdf:rest rdf:nil .
 _:c14n174 sh:datatype xsd:integer ;
@@ -1173,7 +1174,7 @@ _:c14n241 sh:datatype xsd:integer ;
 	sh:order 3 ;
 	sh:path fix_sbe:since_version .
 _:c14n242 rdf:first rdf:type ;
-	rdf:rest _:c14n378 .
+	rdf:rest _:c14n380 .
 _:c14n243 sh:datatype xsd:integer ;
 	sh:description "The schema version that added this element." ;
 	sh:maxCount 1 ;
@@ -1245,7 +1246,7 @@ _:c14n252 sh:datatype xsd:string ;
 	sh:order 1 ;
 	sh:path fix_sbe:encoding_kind .
 _:c14n253 rdf:first fix_sbe:alignment ;
-	rdf:rest _:c14n350 .
+	rdf:rest _:c14n391 .
 _:c14n254 sh:datatype xsd:string ;
 	sh:description "What the schema calls this element." ;
 	sh:maxCount 1 ;
@@ -1255,7 +1256,7 @@ _:c14n254 sh:datatype xsd:string ;
 	sh:path fix_sbe:symbolic_name ;
 	sh:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
 _:c14n255 sh:description "The wire type under this encoding." ;
-	sh:in _:c14n327 ;
+	sh:in _:c14n316 ;
 	sh:maxCount 1 ;
 	sh:minCount 1 ;
 	sh:order 1 ;
@@ -1275,7 +1276,7 @@ _:c14n257 sh:datatype xsd:string ;
 	sh:path fix_sbe:symbolic_name ;
 	sh:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
 _:c14n258 rdf:first rdf:type ;
-	rdf:rest _:c14n366 .
+	rdf:rest _:c14n368 .
 _:c14n259 sh:datatype xsd:string ;
 	sh:description "The class of this encoding or composite member, which stands for its XML element." ;
 	sh:maxCount 1 ;
@@ -1362,7 +1363,7 @@ _:c14n270 sh:class fix_sbe:SbeFieldV2 ;
 	sh:order 10 ;
 	sh:path fix_sbe:var_data_fields .
 _:c14n271 rdf:first fix_sbe:semantic_type ;
-	rdf:rest _:c14n397 .
+	rdf:rest _:c14n392 .
 _:c14n272 sh:class fix_sbe:SbeFieldV1 ;
 	sh:description "Fixed-length fields, listed in wire order." ;
 	sh:nodeKind sh:BlankNodeOrIRI ;
@@ -1637,43 +1638,43 @@ _:c14n340 rdf:first fix_sbe:max_value ;
 _:c14n341 rdf:first fix_sbe:min_value ;
 	rdf:rest _:c14n342 .
 _:c14n342 rdf:first fix_sbe:null_value ;
-	rdf:rest _:c14n172 .
-_:c14n343 rdf:first fix_sbe:encoding_type ;
-	rdf:rest _:c14n340 .
-_:c14n344 rdf:first fix_sbe:encoding_name ;
 	rdf:rest _:c14n343 .
-_:c14n345 rdf:first fix_sbe:element_value ;
+_:c14n343 rdf:first fix_sbe:presence ;
 	rdf:rest _:c14n344 .
-_:c14n346 rdf:first fix_sbe:deprecated_since ;
+_:c14n344 rdf:first fix_sbe:primitive_type ;
 	rdf:rest _:c14n345 .
-_:c14n347 rdf:first fix_sbe:composite_members ;
+_:c14n345 rdf:first fix_sbe:valid_values ;
 	rdf:rest _:c14n346 .
-_:c14n348 rdf:first fix_sbe:choices ;
+_:c14n346 rdf:first fix_sbe:value_ref ;
+	rdf:rest rdf:nil .
+_:c14n347 rdf:first fix_sbe:encoding_type ;
+	rdf:rest _:c14n340 .
+_:c14n348 rdf:first fix_sbe:element_value ;
 	rdf:rest _:c14n347 .
-_:c14n349 rdf:first fix_sbe:character_encoding ;
+_:c14n349 rdf:first fix_sbe:composite_members ;
 	rdf:rest _:c14n348 .
 _:c14n35 rdf:first rdf:type ;
 	rdf:rest _:c14n253 .
-_:c14n350 rdf:first fix_sbe:array_length ;
+_:c14n350 rdf:first fix_sbe:choices ;
 	rdf:rest _:c14n349 .
-_:c14n351 rdf:first fix_sbe:max_value ;
-	rdf:rest _:c14n352 .
-_:c14n352 rdf:first fix_sbe:min_value ;
-	rdf:rest _:c14n353 .
-_:c14n353 rdf:first fix_sbe:null_value ;
-	rdf:rest _:c14n354 .
-_:c14n354 rdf:first fix_sbe:presence ;
-	rdf:rest _:c14n355 .
-_:c14n355 rdf:first fix_sbe:primitive_type ;
-	rdf:rest _:c14n356 .
-_:c14n356 rdf:first fix_sbe:since_version ;
-	rdf:rest _:c14n357 .
-_:c14n357 rdf:first fix_sbe:valid_values ;
-	rdf:rest _:c14n358 .
-_:c14n358 rdf:first fix_sbe:value_ref ;
-	rdf:rest rdf:nil .
-_:c14n359 rdf:first fix_sbe:encoding_type ;
+_:c14n351 rdf:first fix_sbe:character_encoding ;
+	rdf:rest _:c14n350 .
+_:c14n352 rdf:first fix_sbe:array_length ;
 	rdf:rest _:c14n351 .
+_:c14n353 rdf:first fix_sbe:max_value ;
+	rdf:rest _:c14n354 .
+_:c14n354 rdf:first fix_sbe:min_value ;
+	rdf:rest _:c14n355 .
+_:c14n355 rdf:first fix_sbe:null_value ;
+	rdf:rest _:c14n356 .
+_:c14n356 rdf:first fix_sbe:presence ;
+	rdf:rest _:c14n357 .
+_:c14n357 rdf:first fix_sbe:primitive_type ;
+	rdf:rest _:c14n358 .
+_:c14n358 rdf:first fix_sbe:since_version ;
+	rdf:rest _:c14n359 .
+_:c14n359 rdf:first fix_sbe:valid_values ;
+	rdf:rest _:c14n360 .
 _:c14n36 sh:datatype xsd:integer ;
 	sh:description "The multiple of octets the start of this element is placed on." ;
 	sh:maxCount 1 ;
@@ -1681,25 +1682,25 @@ _:c14n36 sh:datatype xsd:integer ;
 	sh:nodeKind sh:Literal ;
 	sh:order 1 ;
 	sh:path fix_sbe:alignment .
-_:c14n360 rdf:first fix_sbe:encoding_name ;
-	rdf:rest _:c14n359 .
-_:c14n361 rdf:first fix_sbe:element_value ;
-	rdf:rest _:c14n360 .
-_:c14n362 rdf:first fix_sbe:deprecated_since ;
+_:c14n360 rdf:first fix_sbe:value_ref ;
+	rdf:rest rdf:nil .
+_:c14n361 rdf:first fix_sbe:encoding_type ;
+	rdf:rest _:c14n353 .
+_:c14n362 rdf:first fix_sbe:encoding_name ;
 	rdf:rest _:c14n361 .
-_:c14n363 rdf:first fix_sbe:composite_members ;
+_:c14n363 rdf:first fix_sbe:element_value ;
 	rdf:rest _:c14n362 .
-_:c14n364 rdf:first fix_sbe:choices ;
+_:c14n364 rdf:first fix_sbe:deprecated_since ;
 	rdf:rest _:c14n363 .
-_:c14n365 rdf:first fix_sbe:character_encoding ;
+_:c14n365 rdf:first fix_sbe:composite_members ;
 	rdf:rest _:c14n364 .
-_:c14n366 rdf:first fix_sbe:array_length ;
+_:c14n366 rdf:first fix_sbe:choices ;
 	rdf:rest _:c14n365 .
-_:c14n367 rdf:first fix_sbe:max_value ;
-	rdf:rest _:c14n368 .
-_:c14n368 rdf:first fix_sbe:min_value ;
-	rdf:rest _:c14n369 .
-_:c14n369 rdf:first fix_sbe:null_value ;
+_:c14n367 rdf:first fix_sbe:character_encoding ;
+	rdf:rest _:c14n366 .
+_:c14n368 rdf:first fix_sbe:array_length ;
+	rdf:rest _:c14n367 .
+_:c14n369 rdf:first fix_sbe:max_value ;
 	rdf:rest _:c14n370 .
 _:c14n37 sh:datatype xsd:string ;
 	sh:description "The value that stands for null in place of the primitive type's default, written as text." ;
@@ -1707,47 +1708,47 @@ _:c14n37 sh:datatype xsd:string ;
 	sh:nodeKind sh:Literal ;
 	sh:order 4 ;
 	sh:path fix_sbe:null_value .
-_:c14n370 rdf:first fix_sbe:presence ;
+_:c14n370 rdf:first fix_sbe:min_value ;
 	rdf:rest _:c14n371 .
-_:c14n371 rdf:first fix_sbe:primitive_type ;
-	rdf:rest _:c14n271 .
-_:c14n372 rdf:first fix_sbe:encoding_type ;
-	rdf:rest _:c14n367 .
-_:c14n373 rdf:first fix_sbe:encoding_name ;
+_:c14n371 rdf:first fix_sbe:null_value ;
 	rdf:rest _:c14n372 .
-_:c14n374 rdf:first fix_sbe:element_value ;
+_:c14n372 rdf:first fix_sbe:presence ;
 	rdf:rest _:c14n373 .
-_:c14n375 rdf:first fix_sbe:composite_members ;
+_:c14n373 rdf:first fix_sbe:primitive_type ;
+	rdf:rest _:c14n271 .
+_:c14n374 rdf:first fix_sbe:encoding_type ;
+	rdf:rest _:c14n369 .
+_:c14n375 rdf:first fix_sbe:encoding_name ;
 	rdf:rest _:c14n374 .
-_:c14n376 rdf:first fix_sbe:choices ;
+_:c14n376 rdf:first fix_sbe:element_value ;
 	rdf:rest _:c14n375 .
-_:c14n377 rdf:first fix_sbe:character_encoding ;
+_:c14n377 rdf:first fix_sbe:composite_members ;
 	rdf:rest _:c14n376 .
-_:c14n378 rdf:first fix_sbe:array_length ;
+_:c14n378 rdf:first fix_sbe:choices ;
 	rdf:rest _:c14n377 .
-_:c14n379 rdf:first fix_sbe:max_value ;
-	rdf:rest _:c14n380 .
+_:c14n379 rdf:first fix_sbe:character_encoding ;
+	rdf:rest _:c14n378 .
 _:c14n38 sh:defaultValue "required" ;
 	sh:description "Whether this element's value is required, optional or constant." ;
-	sh:in _:c14n333 ;
+	sh:in _:c14n330 ;
 	sh:maxCount 1 ;
 	sh:order 4 ;
 	sh:path fix_sbe:presence .
-_:c14n380 rdf:first fix_sbe:min_value ;
-	rdf:rest _:c14n381 .
-_:c14n381 rdf:first fix_sbe:null_value ;
-	rdf:rest _:c14n382 .
-_:c14n382 rdf:first fix_sbe:presence ;
-	rdf:rest _:c14n383 .
-_:c14n383 rdf:first fix_sbe:primitive_type ;
-	rdf:rest _:c14n384 .
-_:c14n384 rdf:first fix_sbe:valid_values ;
-	rdf:rest _:c14n385 .
-_:c14n385 rdf:first fix_sbe:value_ref ;
-	rdf:rest rdf:nil .
-_:c14n386 rdf:first fix_sbe:encoding_type ;
+_:c14n380 rdf:first fix_sbe:array_length ;
 	rdf:rest _:c14n379 .
-_:c14n387 rdf:first fix_sbe:element_value ;
+_:c14n381 rdf:first fix_sbe:max_value ;
+	rdf:rest _:c14n382 .
+_:c14n382 rdf:first fix_sbe:min_value ;
+	rdf:rest _:c14n383 .
+_:c14n383 rdf:first fix_sbe:null_value ;
+	rdf:rest _:c14n171 .
+_:c14n384 rdf:first fix_sbe:encoding_type ;
+	rdf:rest _:c14n381 .
+_:c14n385 rdf:first fix_sbe:encoding_name ;
+	rdf:rest _:c14n384 .
+_:c14n386 rdf:first fix_sbe:element_value ;
+	rdf:rest _:c14n385 .
+_:c14n387 rdf:first fix_sbe:deprecated_since ;
 	rdf:rest _:c14n386 .
 _:c14n388 rdf:first fix_sbe:composite_members ;
 	rdf:rest _:c14n387 .
@@ -1760,21 +1761,21 @@ _:c14n390 rdf:first fix_sbe:character_encoding ;
 _:c14n391 rdf:first fix_sbe:array_length ;
 	rdf:rest _:c14n390 .
 _:c14n392 rdf:first fix_sbe:valid_values ;
-	rdf:rest _:c14n396 .
-_:c14n393 rdf:first fix_sbe:since_version ;
-	rdf:rest _:c14n392 .
-_:c14n394 rdf:first fix_sbe:primitive_type ;
 	rdf:rest _:c14n393 .
-_:c14n395 rdf:first fix_sbe:presence ;
-	rdf:rest _:c14n394 .
-_:c14n396 rdf:first fix_sbe:value_ref ;
+_:c14n393 rdf:first fix_sbe:value_ref ;
 	rdf:rest rdf:nil .
-_:c14n397 rdf:first fix_sbe:valid_values ;
+_:c14n394 rdf:first fix_sbe:valid_values ;
 	rdf:rest _:c14n398 .
+_:c14n395 rdf:first fix_sbe:since_version ;
+	rdf:rest _:c14n394 .
+_:c14n396 rdf:first fix_sbe:primitive_type ;
+	rdf:rest _:c14n395 .
+_:c14n397 rdf:first fix_sbe:presence ;
+	rdf:rest _:c14n396 .
 _:c14n398 rdf:first fix_sbe:value_ref ;
 	rdf:rest rdf:nil .
 _:c14n399 rdf:first _:c14n276 ;
-	rdf:rest _:c14n171 .
+	rdf:rest _:c14n170 .
 _:c14n4 sh:datatype xsd:string ;
 	sh:description "Which encoding this element uses, by name." ;
 	sh:maxCount 1 ;
@@ -1790,7 +1791,7 @@ _:c14n40 sh:datatype xsd:integer ;
 	sh:nodeKind sh:Literal ;
 	sh:order 13 ;
 	sh:path fix_sbe:since_version .
-_:c14n400 rdf:first _:c14n124 ;
+_:c14n400 rdf:first _:c14n122 ;
 	rdf:rest _:c14n399 .
 _:c14n41 sh:datatype xsd:integer ;
 	sh:description "The schema version that retired this element, which stays only for older applications." ;
@@ -1833,24 +1834,27 @@ _:c14n46 sh:datatype xsd:string ;
 	sh:order 0 ;
 	sh:path fix_sbe:encoding_type ;
 	sh:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
-_:c14n47 sh:description "The base address that the XML Inclusion mechanism records on an element it brought in from another file." ;
-	sh:maxCount 1 ;
-	sh:nodeKind sh:IRI ;
-	sh:order 2 ;
-	sh:path fix_sbe:xml_base .
-_:c14n48 sh:datatype xsd:string ;
+_:c14n47 sh:datatype xsd:string ;
 	sh:description "Free text about this element, for the people who read the schema." ;
 	sh:maxCount 1 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 2 ;
 	sh:path schema1:description .
-_:c14n49 sh:datatype xsd:integer ;
+_:c14n48 sh:datatype xsd:integer ;
 	sh:description "The octet this element starts at, counted from zero at the start of its block or composite." ;
 	sh:maxCount 1 ;
 	sh:maxInclusive 4294967295 ;
 	sh:minInclusive 0 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 6 ;
+	sh:path fix_sbe:offset .
+_:c14n49 sh:datatype xsd:integer ;
+	sh:description "The octet this element starts at, counted from zero at the start of its block or composite." ;
+	sh:maxCount 1 ;
+	sh:maxInclusive 4294967295 ;
+	sh:minInclusive 0 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 9 ;
 	sh:path fix_sbe:offset .
 _:c14n5 sh:datatype xsd:integer ;
 	sh:description "The multiple of octets the start of this element is placed on." ;
@@ -1859,15 +1863,7 @@ _:c14n5 sh:datatype xsd:integer ;
 	sh:nodeKind sh:Literal ;
 	sh:order 4 ;
 	sh:path fix_sbe:alignment .
-_:c14n50 sh:datatype xsd:integer ;
-	sh:description "The octet this element starts at, counted from zero at the start of its block or composite." ;
-	sh:maxCount 1 ;
-	sh:maxInclusive 4294967295 ;
-	sh:minInclusive 0 ;
-	sh:nodeKind sh:Literal ;
-	sh:order 9 ;
-	sh:path fix_sbe:offset .
-_:c14n51 sh:datatype xsd:string ;
+_:c14n50 sh:datatype xsd:string ;
 	sh:description "What the schema calls this element." ;
 	sh:maxCount 1 ;
 	sh:minCount 1 ;
@@ -1875,14 +1871,14 @@ _:c14n51 sh:datatype xsd:string ;
 	sh:order 0 ;
 	sh:path fix_sbe:symbolic_name ;
 	sh:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
-_:c14n52 sh:datatype xsd:token ;
+_:c14n51 sh:datatype xsd:token ;
 	sh:description "The FIX datatype this encoding carries." ;
 	sh:maxCount 1 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 1 ;
 	sh:path fix_sbe:semantic_type ;
 	sh:pattern "^\\S+( \\S+)*$" .
-_:c14n53 sh:datatype xsd:string ;
+_:c14n52 sh:datatype xsd:string ;
 	sh:description "What the schema calls this element." ;
 	sh:maxCount 1 ;
 	sh:minCount 1 ;
@@ -1890,26 +1886,26 @@ _:c14n53 sh:datatype xsd:string ;
 	sh:order 7 ;
 	sh:path fix_sbe:symbolic_name ;
 	sh:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
-_:c14n54 sh:datatype xsd:string ;
+_:c14n53 sh:datatype xsd:string ;
 	sh:description "Free text about this element, for the people who read the schema." ;
 	sh:maxCount 1 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 6 ;
 	sh:path schema1:description .
-_:c14n55 sh:datatype xsd:string ;
+_:c14n54 sh:datatype xsd:string ;
 	sh:description "Free text about this element, for the people who read the schema." ;
 	sh:maxCount 1 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 12 ;
 	sh:path schema1:description .
-_:c14n56 sh:class fix_sbe:SbeFieldV1 ;
+_:c14n55 sh:class fix_sbe:SbeFieldV1 ;
 	sh:description "Variable-length fields, listed in wire order." ;
 	sh:nodeKind sh:BlankNodeOrIRI ;
 	sh:order 10 ;
 	sh:path fix_sbe:var_data_fields .
-_:c14n57 rdf:first rdf:type ;
+_:c14n56 rdf:first rdf:type ;
 	rdf:rest rdf:nil .
-_:c14n58 sh:datatype xsd:string ;
+_:c14n57 sh:datatype xsd:string ;
 	sh:description "What the schema calls this element." ;
 	sh:maxCount 1 ;
 	sh:minCount 1 ;
@@ -1917,27 +1913,27 @@ _:c14n58 sh:datatype xsd:string ;
 	sh:order 0 ;
 	sh:path fix_sbe:symbolic_name ;
 	sh:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
-_:c14n59 rdf:first rdf:type ;
+_:c14n58 rdf:first rdf:type ;
 	rdf:rest rdf:nil .
+_:c14n59 sh:class fix_sbe:SbeGroupV1 ;
+	sh:description "Repeating groups, listed in wire order." ;
+	sh:nodeKind sh:BlankNodeOrIRI ;
+	sh:order 9 ;
+	sh:path fix_sbe:repeating_groups .
 _:c14n6 sh:datatype xsd:string ;
 	sh:description "Free text about this element, for the people who read the schema." ;
 	sh:maxCount 1 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 1 ;
 	sh:path schema1:description .
-_:c14n60 sh:class fix_sbe:SbeGroupV1 ;
-	sh:description "Repeating groups, listed in wire order." ;
-	sh:nodeKind sh:BlankNodeOrIRI ;
-	sh:order 9 ;
-	sh:path fix_sbe:repeating_groups .
-_:c14n61 sh:datatype xsd:string ;
+_:c14n60 sh:datatype xsd:string ;
 	sh:description "The class of this encoding or composite member, which stands for its XML element." ;
 	sh:maxCount 1 ;
 	sh:minCount 1 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 2 ;
 	sh:path fix_sbe:encoding_kind .
-_:c14n62 sh:datatype xsd:token ;
+_:c14n61 sh:datatype xsd:token ;
 	sh:description "The value as it is written in the schema, which must convert to the enumeration's encoding." ;
 	sh:maxCount 1 ;
 	sh:minCount 1 ;
@@ -1945,7 +1941,7 @@ _:c14n62 sh:datatype xsd:token ;
 	sh:order 2 ;
 	sh:path fix_sbe:valid_value ;
 	sh:pattern "^\\S+( \\S+)*$" .
-_:c14n63 sh:datatype xsd:string ;
+_:c14n62 sh:datatype xsd:string ;
 	sh:description "What the schema calls this element." ;
 	sh:maxCount 1 ;
 	sh:minCount 1 ;
@@ -1953,12 +1949,12 @@ _:c14n63 sh:datatype xsd:string ;
 	sh:order 7 ;
 	sh:path fix_sbe:symbolic_name ;
 	sh:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
-_:c14n64 sh:class fix_sbe:SbeFieldV2 ;
+_:c14n63 sh:class fix_sbe:SbeFieldV2 ;
 	sh:description "Variable-length fields, listed in wire order." ;
 	sh:nodeKind sh:BlankNodeOrIRI ;
 	sh:order 8 ;
 	sh:path fix_sbe:var_data_fields .
-_:c14n65 sh:datatype xsd:integer ;
+_:c14n64 sh:datatype xsd:integer ;
 	sh:description "The number that identifies this element." ;
 	sh:maxCount 1 ;
 	sh:maxInclusive 65535 ;
@@ -1967,33 +1963,39 @@ _:c14n65 sh:datatype xsd:integer ;
 	sh:nodeKind sh:Literal ;
 	sh:order 1 ;
 	sh:path fix_sbe:sbe_id .
-_:c14n66 sh:datatype xsd:integer ;
+_:c14n65 sh:datatype xsd:integer ;
 	sh:description "The schema version that retired this element, which stays only for older applications." ;
 	sh:maxCount 1 ;
 	sh:minInclusive 0 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 3 ;
 	sh:path fix_sbe:deprecated_since .
-_:c14n67 sh:datatype xsd:string ;
+_:c14n66 sh:datatype xsd:string ;
 	sh:description "The version of FIX whose meanings this schema uses." ;
 	sh:maxCount 1 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 3 ;
 	sh:path fix_sbe:semantic_version .
-_:c14n68 sh:datatype xsd:string ;
+_:c14n67 sh:datatype xsd:string ;
 	sh:description "The class of this encoding or composite member, which stands for its XML element." ;
 	sh:maxCount 1 ;
 	sh:minCount 1 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 4 ;
 	sh:path fix_sbe:encoding_kind .
-_:c14n69 sh:datatype xsd:string ;
+_:c14n68 sh:datatype xsd:string ;
 	sh:description "The valid value that gives a constant element its value." ;
 	sh:maxCount 1 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 8 ;
 	sh:path fix_sbe:value_ref ;
 	sh:pattern "^[A-Za-z_][0-9A-Za-z_]*\\.[A-Za-z_][0-9A-Za-z_]*$" .
+_:c14n69 sh:datatype xsd:string ;
+	sh:description "The value that stands for null in place of the primitive type's default, written as text." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 5 ;
+	sh:path fix_sbe:null_value .
 _:c14n7 sh:datatype xsd:string ;
 	sh:description "What the schema calls this element." ;
 	sh:maxCount 1 ;
@@ -2002,24 +2004,18 @@ _:c14n7 sh:datatype xsd:string ;
 	sh:order 3 ;
 	sh:path fix_sbe:symbolic_name ;
 	sh:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
-_:c14n70 sh:datatype xsd:string ;
-	sh:description "The value that stands for null in place of the primitive type's default, written as text." ;
-	sh:maxCount 1 ;
-	sh:nodeKind sh:Literal ;
-	sh:order 5 ;
-	sh:path fix_sbe:null_value .
-_:c14n71 sh:class fix_sbe:SbeFieldV1 ;
+_:c14n70 sh:class fix_sbe:SbeFieldV1 ;
 	sh:description "Variable-length fields, listed in wire order." ;
 	sh:nodeKind sh:BlankNodeOrIRI ;
 	sh:order 9 ;
 	sh:path fix_sbe:var_data_fields .
-_:c14n72 sh:defaultValue "required" ;
+_:c14n71 sh:defaultValue "required" ;
 	sh:description "Whether this element's value is required, optional or constant." ;
-	sh:in _:c14n330 ;
+	sh:in _:c14n336 ;
 	sh:maxCount 1 ;
 	sh:order 6 ;
 	sh:path fix_sbe:presence .
-_:c14n73 sh:datatype xsd:string ;
+_:c14n72 sh:datatype xsd:string ;
 	sh:description "What the schema calls this element." ;
 	sh:maxCount 1 ;
 	sh:minCount 1 ;
@@ -2027,62 +2023,62 @@ _:c14n73 sh:datatype xsd:string ;
 	sh:order 0 ;
 	sh:path fix_sbe:symbolic_name ;
 	sh:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
-_:c14n74 sh:datatype xsd:string ;
+_:c14n73 sh:datatype xsd:string ;
 	sh:description "The class of this encoding or composite member, which stands for its XML element." ;
 	sh:maxCount 1 ;
 	sh:minCount 1 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 0 ;
 	sh:path fix_sbe:encoding_kind .
-_:c14n75 sh:datatype xsd:integer ;
+_:c14n74 sh:datatype xsd:integer ;
 	sh:description "The multiple of octets the start of this element is placed on." ;
 	sh:maxCount 1 ;
 	sh:minInclusive 1 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 5 ;
 	sh:path fix_sbe:alignment .
-_:c14n76 sh:datatype xsd:integer ;
+_:c14n75 sh:datatype xsd:integer ;
 	sh:description "The schema version that retired this element, which stays only for older applications." ;
 	sh:maxCount 1 ;
 	sh:minInclusive 0 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 1 ;
 	sh:path fix_sbe:deprecated_since .
-_:c14n77 sh:datatype xsd:string ;
+_:c14n76 sh:datatype xsd:string ;
 	sh:description "Free text about this element, for the people who read the schema." ;
 	sh:maxCount 1 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 7 ;
 	sh:path schema1:description .
-_:c14n78 sh:datatype xsd:integer ;
+_:c14n77 sh:datatype xsd:integer ;
 	sh:description "The multiple of octets where a message or each group entry begins." ;
 	sh:maxCount 1 ;
 	sh:minInclusive 1 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 6 ;
 	sh:path fix_sbe:alignment .
-_:c14n79 sh:datatype xsd:integer ;
+_:c14n78 sh:datatype xsd:integer ;
 	sh:description "The multiple of octets the start of this field is placed on, in place of an offset." ;
 	sh:maxCount 1 ;
 	sh:minInclusive 1 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 5 ;
 	sh:path fix_sbe:alignment .
+_:c14n79 sh:datatype xsd:string ;
+	sh:description "Free text about this element, for the people who read the schema." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 3 ;
+	sh:path schema1:description .
 _:c14n8 rdf:first rdf:type ;
 	rdf:rest rdf:nil .
 _:c14n80 sh:datatype xsd:string ;
 	sh:description "Free text about this element, for the people who read the schema." ;
 	sh:maxCount 1 ;
 	sh:nodeKind sh:Literal ;
-	sh:order 3 ;
-	sh:path schema1:description .
-_:c14n81 sh:datatype xsd:string ;
-	sh:description "Free text about this element, for the people who read the schema." ;
-	sh:maxCount 1 ;
-	sh:nodeKind sh:Literal ;
 	sh:order 8 ;
 	sh:path schema1:description .
-_:c14n82 sh:datatype xsd:string ;
+_:c14n81 sh:datatype xsd:string ;
 	sh:description "Which encoding this element uses, by name." ;
 	sh:maxCount 1 ;
 	sh:minCount 1 ;
@@ -2090,34 +2086,34 @@ _:c14n82 sh:datatype xsd:string ;
 	sh:order 2 ;
 	sh:path fix_sbe:encoding_name ;
 	sh:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
-_:c14n83 sh:description "The encodings of this set." ;
+_:c14n82 sh:description "The encodings of this set." ;
 	sh:minCount 1 ;
-	sh:or _:c14n105 ;
+	sh:or _:c14n104 ;
 	sh:order 3 ;
 	sh:path fix_sbe:encodings .
-_:c14n84 sh:datatype xsd:token ;
+_:c14n83 sh:datatype xsd:token ;
 	sh:description "What this element means at the FIX application layer." ;
 	sh:maxCount 1 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 6 ;
 	sh:path fix_sbe:semantic_type ;
 	sh:pattern "^\\S+( \\S+)*$" .
-_:c14n85 sh:datatype xsd:token ;
+_:c14n84 sh:datatype xsd:token ;
 	sh:description "The FIX datatype this encoding carries." ;
 	sh:maxCount 1 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 0 ;
 	sh:path fix_sbe:semantic_type ;
 	sh:pattern "^\\S+( \\S+)*$" .
-_:c14n86 rdf:first rdf:type ;
+_:c14n85 rdf:first rdf:type ;
 	rdf:rest rdf:nil .
-_:c14n87 sh:datatype xsd:string ;
+_:c14n86 sh:datatype xsd:string ;
 	sh:description "Which character set, or which Unicode scheme, character data follows." ;
 	sh:maxCount 1 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 3 ;
 	sh:path fix_sbe:character_encoding .
-_:c14n88 sh:datatype xsd:string ;
+_:c14n87 sh:datatype xsd:string ;
 	sh:description "What the schema calls this element." ;
 	sh:maxCount 1 ;
 	sh:minCount 1 ;
@@ -2125,20 +2121,13 @@ _:c14n88 sh:datatype xsd:string ;
 	sh:order 3 ;
 	sh:path fix_sbe:symbolic_name ;
 	sh:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
-_:c14n89 sh:datatype xsd:string ;
+_:c14n88 sh:datatype xsd:string ;
 	sh:description "Free text about this element, for the people who read the schema." ;
 	sh:maxCount 1 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 8 ;
 	sh:path schema1:description .
-_:c14n9 sh:datatype xsd:integer ;
-	sh:description "The schema version that retired this element, which stays only for older applications." ;
-	sh:maxCount 1 ;
-	sh:minInclusive 0 ;
-	sh:nodeKind sh:Literal ;
-	sh:order 2 ;
-	sh:path fix_sbe:deprecated_since .
-_:c14n90 sh:datatype xsd:string ;
+_:c14n89 sh:datatype xsd:string ;
 	sh:description "The simple encoding or primitive type that an enumeration or set is sent as." ;
 	sh:maxCount 1 ;
 	sh:minCount 1 ;
@@ -2146,31 +2135,38 @@ _:c14n90 sh:datatype xsd:string ;
 	sh:order 0 ;
 	sh:path fix_sbe:encoding_type ;
 	sh:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
-_:c14n91 sh:class fix_sbe:SbeEncodingSetV1 ;
+_:c14n9 sh:datatype xsd:integer ;
+	sh:description "The schema version that retired this element, which stays only for older applications." ;
+	sh:maxCount 1 ;
+	sh:minInclusive 0 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 2 ;
+	sh:path fix_sbe:deprecated_since .
+_:c14n90 sh:class fix_sbe:SbeEncodingSetV1 ;
 	sh:description "The sets of encodings this schema's messages use." ;
 	sh:minCount 1 ;
 	sh:nodeKind sh:BlankNodeOrIRI ;
 	sh:order 7 ;
 	sh:path fix_sbe:encoding_sets .
-_:c14n92 sh:class fix_sbe:SbeFieldV1 ;
+_:c14n91 sh:class fix_sbe:SbeFieldV1 ;
 	sh:description "Fixed-length fields, listed in wire order." ;
 	sh:nodeKind sh:BlankNodeOrIRI ;
 	sh:order 7 ;
 	sh:path fix_sbe:block_fields .
-_:c14n93 sh:class fix_sbe:SbeChoice ;
+_:c14n92 sh:class fix_sbe:SbeChoice ;
 	sh:description "The alternatives of this set." ;
 	sh:maxCount 64 ;
 	sh:minCount 1 ;
 	sh:nodeKind sh:BlankNodeOrIRI ;
 	sh:order 1 ;
 	sh:path fix_sbe:choices .
-_:c14n94 sh:datatype xsd:string ;
+_:c14n93 sh:datatype xsd:string ;
 	sh:description "Free text about this element, for the people who read the schema." ;
 	sh:maxCount 1 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 4 ;
 	sh:path schema1:description .
-_:c14n95 sh:datatype xsd:integer ;
+_:c14n94 sh:datatype xsd:integer ;
 	sh:description "The number that identifies this element." ;
 	sh:maxCount 1 ;
 	sh:maxInclusive 65535 ;
@@ -2179,7 +2175,7 @@ _:c14n95 sh:datatype xsd:integer ;
 	sh:nodeKind sh:Literal ;
 	sh:order 4 ;
 	sh:path fix_sbe:sbe_id .
-_:c14n96 sh:datatype xsd:integer ;
+_:c14n95 sh:datatype xsd:integer ;
 	sh:description "The octet this element starts at, counted from zero at the start of its block or composite." ;
 	sh:maxCount 1 ;
 	sh:maxInclusive 4294967295 ;
@@ -2187,7 +2183,7 @@ _:c14n96 sh:datatype xsd:integer ;
 	sh:nodeKind sh:Literal ;
 	sh:order 0 ;
 	sh:path fix_sbe:offset .
-_:c14n97 sh:datatype xsd:integer ;
+_:c14n96 sh:datatype xsd:integer ;
 	sh:description "The template's number, which no other template in the schema shares." ;
 	sh:maxCount 1 ;
 	sh:maxInclusive 65535 ;
@@ -2196,7 +2192,7 @@ _:c14n97 sh:datatype xsd:integer ;
 	sh:nodeKind sh:Literal ;
 	sh:order 3 ;
 	sh:path fix_sbe:sbe_id .
-_:c14n98 sh:datatype xsd:integer ;
+_:c14n97 sh:datatype xsd:integer ;
 	sh:description "The octet this element starts at, counted from zero at the start of its block or composite." ;
 	sh:maxCount 1 ;
 	sh:maxInclusive 4294967295 ;
@@ -2204,10 +2200,16 @@ _:c14n98 sh:datatype xsd:integer ;
 	sh:nodeKind sh:Literal ;
 	sh:order 5 ;
 	sh:path fix_sbe:offset .
-_:c14n99 sh:datatype xsd:integer ;
+_:c14n98 sh:datatype xsd:integer ;
 	sh:description "The octets set aside for a message's fixed-length fields, or for those of each group entry." ;
 	sh:maxCount 1 ;
 	sh:minInclusive 0 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 4 ;
 	sh:path fix_sbe:block_length .
+_:c14n99 sh:description "The wire type under this encoding." ;
+	sh:in _:c14n305 ;
+	sh:maxCount 1 ;
+	sh:minCount 1 ;
+	sh:order 1 ;
+	sh:path fix_sbe:primitive_type .

@@ -10,7 +10,7 @@
 @prefix pav: <http://purl.org/pav/> .
 @prefix schema1: <http://schema.org/> .
 xsd:string a rdfs:Datatype ;
-	owl:equivalentClass _:c14n607 , _:c14n639 .
+	owl:equivalentClass _:c14n589 , _:c14n639 .
 xsd:token a rdfs:Datatype ;
 	owl:equivalentClass _:c14n427 .
 <https://w3id.org/lmodel/fix-sbe.owl.ttl> dcterms:license "Apache-2.0" ;
@@ -28,12 +28,12 @@ xsd:token a rdfs:Datatype ;
 	fix_sbe:upstream_v2_commit "418a8f6a8b93c65b308638dab2bc6a35dddcd864" .
 fix_sbe:SbeBlockV1Mixin a owl:Class ;
 	rdfs:label "SbeBlockV1Mixin" ;
-	rdfs:subClassOf _:c14n100 , _:c14n113 , _:c14n146 , _:c14n182 , _:c14n210 , _:c14n24 , _:c14n281 , _:c14n284 , _:c14n307 , _:c14n312 , _:c14n325 , _:c14n360 , _:c14n392 , _:c14n428 , _:c14n431 , _:c14n447 , _:c14n455 , _:c14n72 , _:c14n74 , _:c14n76 , _:c14n81 ;
+	rdfs:subClassOf _:c14n101 , _:c14n114 , _:c14n147 , _:c14n183 , _:c14n211 , _:c14n24 , _:c14n283 , _:c14n286 , _:c14n308 , _:c14n313 , _:c14n326 , _:c14n361 , _:c14n392 , _:c14n428 , _:c14n431 , _:c14n447 , _:c14n455 , _:c14n73 , _:c14n75 , _:c14n77 , _:c14n82 ;
 	skos:definition "The body shared by a message and a group entry, which holds its fixed-length fields first, then groups, then variable-length data." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_v1_0 .
 fix_sbe:SbeBlockV2Mixin a owl:Class ;
 	rdfs:label "SbeBlockV2Mixin" ;
-	rdfs:subClassOf _:c14n102 , _:c14n106 , _:c14n12 , _:c14n124 , _:c14n129 , _:c14n170 , _:c14n177 , _:c14n184 , _:c14n199 , _:c14n206 , _:c14n236 , _:c14n276 , _:c14n290 , _:c14n333 , _:c14n347 , _:c14n362 , _:c14n366 , _:c14n367 , _:c14n382 , _:c14n418 , _:c14n42 , _:c14n420 , _:c14n445 , _:c14n449 ;
+	rdfs:subClassOf _:c14n103 , _:c14n107 , _:c14n12 , _:c14n125 , _:c14n130 , _:c14n171 , _:c14n178 , _:c14n185 , _:c14n200 , _:c14n207 , _:c14n237 , _:c14n278 , _:c14n292 , _:c14n334 , _:c14n348 , _:c14n363 , _:c14n367 , _:c14n368 , _:c14n383 , _:c14n418 , _:c14n420 , _:c14n43 , _:c14n445 , _:c14n449 ;
 	skos:definition "The body shared by a message and a group entry, which holds its fixed-length fields first, then groups, then variable-length data." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_v2_0 .
 fix_sbe:SbeByteOrder\#bigEndian a owl:Class ;
@@ -46,14 +46,14 @@ fix_sbe:SbeByteOrder\#littleEndian a owl:Class ;
 	skos:definition "The least significant octet comes first." .
 fix_sbe:SbeByteOrder a owl:Class ;
 	rdfs:label "SbeByteOrder" ;
-	owl:unionOf _:c14n302 ;
+	owl:unionOf _:c14n303 ;
 	skos:definition "The order of the octets in every multi-octet number of a message." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_common ;
 	linkml:permissible_values fix_sbe:SbeByteOrder\#bigEndian , fix_sbe:SbeByteOrder\#littleEndian ;
 	fix_sbe:sbe_section "4: messageSchema attributes" .
 fix_sbe:SbeChoice a owl:Class ;
 	rdfs:label "SbeChoice" ;
-	rdfs:subClassOf fix_sbe:SbeVersionedMixin , _:c14n15 , _:c14n150 , _:c14n196 , _:c14n237 , _:c14n257 , _:c14n27 , _:c14n350 , _:c14n409 , _:c14n99 ;
+	rdfs:subClassOf fix_sbe:SbeVersionedMixin , _:c14n100 , _:c14n15 , _:c14n151 , _:c14n197 , _:c14n238 , _:c14n258 , _:c14n28 , _:c14n351 , _:c14n409 ;
 	skos:definition "One of the alternatives of a set, which is one bit of its encoding." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_common ;
 	skos:note "FIX's transposer does not carry a set to Orchestra, so the mapping is related. FIX's MultipleCharValue and MultipleStringValue fields hold such choices in a code set." ;
@@ -61,7 +61,7 @@ fix_sbe:SbeChoice a owl:Class ;
 	fix_sbe:xsd_type "choice" .
 fix_sbe:SbeCompositeV1 a owl:Class ;
 	rdfs:label "SbeCompositeV1" ;
-	rdfs:subClassOf fix_sbe:SbeEncodingV1 , _:c14n247 , _:c14n426 ;
+	rdfs:subClassOf fix_sbe:SbeEncodingV1 , _:c14n248 , _:c14n426 ;
 	skos:closeMatch fix_orchestra:OrchestraComponentV10 ;
 	skos:definition "An encoding built from members sent one after another, such as a decimal's mantissa and exponent." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_v1_0 ;
@@ -70,7 +70,7 @@ fix_sbe:SbeCompositeV1 a owl:Class ;
 	fix_sbe:xsd_type "compositeDataType" .
 fix_sbe:SbeCompositeV2 a owl:Class ;
 	rdfs:label "SbeCompositeV2" ;
-	rdfs:subClassOf fix_sbe:SbeMemberV2 , fix_sbe:SbeVersionedMixin , _:c14n126 , _:c14n303 ;
+	rdfs:subClassOf fix_sbe:SbeMemberV2 , fix_sbe:SbeVersionedMixin , _:c14n127 , _:c14n304 ;
 	skos:closeMatch fix_orchestra:OrchestraComponentV10 ;
 	skos:definition "An encoding built from members sent one after another, such as a decimal's mantissa and exponent." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_v2_0 ;
@@ -79,29 +79,29 @@ fix_sbe:SbeCompositeV2 a owl:Class ;
 	fix_sbe:xsd_type "compositeDataType" .
 fix_sbe:SbeElementV2 a owl:Class ;
 	rdfs:label "SbeElementV2" ;
-	rdfs:subClassOf _:c14n134 , _:c14n195 , _:c14n21 , _:c14n279 , _:c14n286 , _:c14n308 , _:c14n361 , _:c14n389 , _:c14n78 , _:c14n87 ;
+	rdfs:subClassOf _:c14n135 , _:c14n196 , _:c14n21 , _:c14n281 , _:c14n288 , _:c14n309 , _:c14n362 , _:c14n389 , _:c14n79 , _:c14n88 ;
 	skos:definition "Anything that sets of encodings or composites hold, and the name and text they all have." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_v2_0 .
 fix_sbe:SbeEncodingSetV1 a owl:Class ;
 	rdfs:label "SbeEncodingSetV1" ;
-	rdfs:subClassOf _:c14n149 , _:c14n162 ;
+	rdfs:subClassOf _:c14n150 , _:c14n163 ;
 	skos:definition "A set of encodings, listed in any order, whose names are unique across the whole schema." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_v1_0 ;
 	fix_sbe:xml_element "types" .
 fix_sbe:SbeEncodingSetV2 a owl:Class ;
 	rdfs:label "SbeEncodingSetV2" ;
-	rdfs:subClassOf _:c14n107 , _:c14n172 , _:c14n20 , _:c14n252 , _:c14n30 , _:c14n373 , _:c14n388 , _:c14n421 , _:c14n47 , _:c14n77 , _:c14n97 ;
+	rdfs:subClassOf _:c14n108 , _:c14n173 , _:c14n20 , _:c14n253 , _:c14n267 , _:c14n31 , _:c14n374 , _:c14n421 , _:c14n48 , _:c14n78 , _:c14n98 ;
 	skos:definition "A set of encodings, in any order, that may have its own package and may come from another file." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_v2_0 ;
 	fix_sbe:xml_element "types" .
 fix_sbe:SbeEncodingV1 a owl:Class ;
 	rdfs:label "SbeEncodingV1" ;
-	rdfs:subClassOf fix_sbe:SbeMemberV1 , _:c14n232 , _:c14n277 , _:c14n282 , _:c14n310 , _:c14n440 , _:c14n71 , _:c14n92 ;
+	rdfs:subClassOf fix_sbe:SbeMemberV1 , _:c14n233 , _:c14n279 , _:c14n284 , _:c14n311 , _:c14n440 , _:c14n72 , _:c14n93 ;
 	skos:definition "An encoding of SBE 1.0, which says how a value is laid out on the wire." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_v1_0 .
 fix_sbe:SbeEnumV1 a owl:Class ;
 	rdfs:label "SbeEnumV1" ;
-	rdfs:subClassOf fix_sbe:SbeEncodingV1 , _:c14n114 , _:c14n120 , _:c14n142 , _:c14n147 , _:c14n39 ;
+	rdfs:subClassOf fix_sbe:SbeEncodingV1 , _:c14n115 , _:c14n121 , _:c14n143 , _:c14n148 , _:c14n40 ;
 	skos:closeMatch fix_orchestra:OrchestraCodeSetV10 ;
 	skos:definition "An encoding whose value is one of a listed set of valid values." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_v1_0 ;
@@ -109,7 +109,7 @@ fix_sbe:SbeEnumV1 a owl:Class ;
 	fix_sbe:xsd_type "enumType" .
 fix_sbe:SbeEnumV2 a owl:Class ;
 	rdfs:label "SbeEnumV2" ;
-	rdfs:subClassOf fix_sbe:SbeMemberV2 , fix_sbe:SbeVersionedMixin , _:c14n203 , _:c14n270 , _:c14n272 , _:c14n343 , _:c14n41 ;
+	rdfs:subClassOf fix_sbe:SbeMemberV2 , fix_sbe:SbeVersionedMixin , _:c14n204 , _:c14n272 , _:c14n274 , _:c14n344 , _:c14n42 ;
 	skos:closeMatch fix_orchestra:OrchestraCodeSetV10 ;
 	skos:definition "An encoding whose value is one of a listed set of valid values." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_v2_0 ;
@@ -117,7 +117,7 @@ fix_sbe:SbeEnumV2 a owl:Class ;
 	fix_sbe:xsd_type "enumType" .
 fix_sbe:SbeFieldV1 a owl:Class ;
 	rdfs:label "SbeFieldV1" ;
-	rdfs:subClassOf fix_sbe:SbeVersionedMixin , _:c14n131 , _:c14n153 , _:c14n186 , _:c14n188 , _:c14n229 , _:c14n23 , _:c14n246 , _:c14n253 , _:c14n264 , _:c14n266 , _:c14n283 , _:c14n295 , _:c14n334 , _:c14n338 , _:c14n340 , _:c14n365 , _:c14n385 , _:c14n386 , _:c14n399 , _:c14n412 , _:c14n415 , _:c14n43 , _:c14n436 , _:c14n459 , _:c14n50 , _:c14n86 , _:c14n88 , _:c14n93 , _:c14n96 , _:c14n98 ;
+	rdfs:subClassOf fix_sbe:SbeVersionedMixin , _:c14n132 , _:c14n154 , _:c14n187 , _:c14n189 , _:c14n23 , _:c14n230 , _:c14n247 , _:c14n254 , _:c14n265 , _:c14n268 , _:c14n285 , _:c14n296 , _:c14n335 , _:c14n339 , _:c14n341 , _:c14n366 , _:c14n386 , _:c14n387 , _:c14n399 , _:c14n412 , _:c14n415 , _:c14n436 , _:c14n44 , _:c14n459 , _:c14n51 , _:c14n87 , _:c14n89 , _:c14n94 , _:c14n97 , _:c14n99 ;
 	skos:closeMatch fix_orchestra:OrchestraFieldV10 ;
 	skos:definition "A message's or group entry's field, which uses an encoding at a place in its block." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_v1_0 ;
@@ -126,7 +126,7 @@ fix_sbe:SbeFieldV1 a owl:Class ;
 	fix_sbe:xsd_type "fieldType" .
 fix_sbe:SbeFieldV2 a owl:Class ;
 	rdfs:label "SbeFieldV2" ;
-	rdfs:subClassOf fix_sbe:SbeVersionedMixin , _:c14n101 , _:c14n103 , _:c14n109 , _:c14n125 , _:c14n13 , _:c14n132 , _:c14n17 , _:c14n178 , _:c14n181 , _:c14n189 , _:c14n201 , _:c14n202 , _:c14n219 , _:c14n222 , _:c14n316 , _:c14n344 , _:c14n355 , _:c14n358 , _:c14n36 , _:c14n364 , _:c14n369 , _:c14n38 , _:c14n380 , _:c14n396 , _:c14n401 , _:c14n405 , _:c14n425 , _:c14n435 , _:c14n438 , _:c14n452 , _:c14n453 , _:c14n460 , _:c14n48 , _:c14n55 , _:c14n59 , _:c14n60 , _:c14n61 , _:c14n64 , _:c14n82 ;
+	rdfs:subClassOf fix_sbe:SbeVersionedMixin , _:c14n102 , _:c14n104 , _:c14n110 , _:c14n126 , _:c14n13 , _:c14n133 , _:c14n17 , _:c14n179 , _:c14n182 , _:c14n190 , _:c14n202 , _:c14n203 , _:c14n220 , _:c14n223 , _:c14n317 , _:c14n345 , _:c14n356 , _:c14n359 , _:c14n365 , _:c14n37 , _:c14n370 , _:c14n381 , _:c14n39 , _:c14n396 , _:c14n401 , _:c14n405 , _:c14n425 , _:c14n435 , _:c14n438 , _:c14n452 , _:c14n453 , _:c14n460 , _:c14n49 , _:c14n56 , _:c14n60 , _:c14n61 , _:c14n62 , _:c14n65 , _:c14n83 ;
 	skos:closeMatch fix_orchestra:OrchestraFieldV10 ;
 	skos:definition "A message's or group entry's field, which uses an encoding at a place in its block and may state a constant." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_v2_0 ;
@@ -228,7 +228,7 @@ fix_sbe:SbeFixDatatype\#int a owl:Class ;
 	rdfs:subClassOf fix_sbe:SbeFixDatatype .
 fix_sbe:SbeFixDatatype a owl:Class ;
 	rdfs:label "SbeFixDatatype" ;
-	owl:unionOf _:c14n320 ;
+	owl:unionOf _:c14n321 ;
 	skos:definition "The FIX datatypes the specification's summary table lists as a field's or an encoding's semantic type." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_common ;
 	skos:note "semantic_type stays free text in the schema, because a message's holds a MsgType value and the specification suggests matching names without regard to case. tests/sbe_rules.py holds an encoding's and a field's to this list." ;
@@ -236,7 +236,7 @@ fix_sbe:SbeFixDatatype a owl:Class ;
 	fix_sbe:sbe_section "2: FIX datatype summary" .
 fix_sbe:SbeGroupV1 a owl:Class ;
 	rdfs:label "SbeGroupV1" ;
-	rdfs:subClassOf fix_sbe:SbeBlockV1Mixin , fix_sbe:SbeVersionedMixin , _:c14n175 , _:c14n315 , _:c14n32 , _:c14n461 , _:c14n62 ;
+	rdfs:subClassOf fix_sbe:SbeBlockV1Mixin , fix_sbe:SbeVersionedMixin , _:c14n176 , _:c14n316 , _:c14n33 , _:c14n461 , _:c14n63 ;
 	skos:closeMatch fix_orchestra:OrchestraGroupV10 ;
 	skos:definition "A repeating group, whose entries each hold the same fields, and which cannot be without a field." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_v1_0 ;
@@ -244,7 +244,7 @@ fix_sbe:SbeGroupV1 a owl:Class ;
 	fix_sbe:xsd_type "groupType" .
 fix_sbe:SbeGroupV2 a owl:Class ;
 	rdfs:label "SbeGroupV2" ;
-	rdfs:subClassOf fix_sbe:SbeBlockV2Mixin , fix_sbe:SbeVersionedMixin , _:c14n117 , _:c14n221 , _:c14n275 , _:c14n314 , _:c14n403 ;
+	rdfs:subClassOf fix_sbe:SbeBlockV2Mixin , fix_sbe:SbeVersionedMixin , _:c14n118 , _:c14n222 , _:c14n277 , _:c14n315 , _:c14n403 ;
 	skos:closeMatch fix_orchestra:OrchestraGroupV10 ;
 	skos:definition "A repeating group, whose entries each hold the same fields, and which cannot be without a field." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_v2_0 ;
@@ -252,7 +252,7 @@ fix_sbe:SbeGroupV2 a owl:Class ;
 	fix_sbe:xsd_type "groupType" .
 fix_sbe:SbeMemberTypeV2 a owl:Class ;
 	rdfs:label "SbeMemberTypeV2" ;
-	rdfs:subClassOf fix_sbe:SbeMemberV2 , _:c14n11 , _:c14n140 , _:c14n152 , _:c14n174 , _:c14n209 , _:c14n227 , _:c14n249 , _:c14n261 , _:c14n268 , _:c14n271 , _:c14n273 , _:c14n28 , _:c14n294 , _:c14n33 , _:c14n346 , _:c14n374 , _:c14n376 , _:c14n379 , _:c14n381 , _:c14n410 , _:c14n429 , _:c14n456 , _:c14n49 , _:c14n52 , _:c14n54 , _:c14n75 , _:c14n84 ;
+	rdfs:subClassOf fix_sbe:SbeMemberV2 , _:c14n11 , _:c14n141 , _:c14n153 , _:c14n175 , _:c14n210 , _:c14n228 , _:c14n250 , _:c14n262 , _:c14n270 , _:c14n273 , _:c14n275 , _:c14n29 , _:c14n295 , _:c14n34 , _:c14n347 , _:c14n375 , _:c14n377 , _:c14n380 , _:c14n382 , _:c14n410 , _:c14n429 , _:c14n456 , _:c14n50 , _:c14n53 , _:c14n55 , _:c14n76 , _:c14n85 ;
 	skos:closeMatch fix_orchestra:OrchestraDatatypeV10 ;
 	skos:definition "A simple encoding inside a composite, which may say it is optional or constant." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_v2_0 ;
@@ -260,24 +260,24 @@ fix_sbe:SbeMemberTypeV2 a owl:Class ;
 	fix_sbe:xsd_type "memberDataType" .
 fix_sbe:SbeMemberV1 a owl:Class ;
 	rdfs:label "SbeMemberV1" ;
-	rdfs:subClassOf fix_sbe:SbeVersionedMixin , _:c14n122 , _:c14n145 , _:c14n244 , _:c14n265 , _:c14n274 , _:c14n335 , _:c14n356 , _:c14n442 , _:c14n53 , _:c14n67 ;
+	rdfs:subClassOf fix_sbe:SbeVersionedMixin , _:c14n123 , _:c14n146 , _:c14n245 , _:c14n266 , _:c14n276 , _:c14n336 , _:c14n357 , _:c14n442 , _:c14n54 , _:c14n68 ;
 	skos:definition "Anything a composite may hold in the order it is sent." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_v1_0 .
 fix_sbe:SbeMemberV2 a owl:Class ;
 	rdfs:label "SbeMemberV2" ;
-	rdfs:subClassOf fix_sbe:SbeElementV2 , _:c14n269 , _:c14n292 , _:c14n319 , _:c14n329 , _:c14n40 , _:c14n406 , _:c14n424 ;
+	rdfs:subClassOf fix_sbe:SbeElementV2 , _:c14n271 , _:c14n293 , _:c14n320 , _:c14n330 , _:c14n406 , _:c14n41 , _:c14n424 ;
 	skos:definition "Anything a composite may hold in the order it is sent." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_v2_0 .
 fix_sbe:SbeMessageSchemaV1 a owl:Class ;
 	rdfs:label "SbeMessageSchemaV1" ;
-	rdfs:subClassOf _:c14n111 , _:c14n128 , _:c14n133 , _:c14n141 , _:c14n157 , _:c14n158 , _:c14n171 , _:c14n215 , _:c14n22 , _:c14n233 , _:c14n267 , _:c14n285 , _:c14n288 , _:c14n293 , _:c14n297 , _:c14n298 , _:c14n339 , _:c14n35 , _:c14n353 , _:c14n395 , _:c14n434 , _:c14n6 , _:c14n66 , _:c14n7 , _:c14n9 ;
+	rdfs:subClassOf _:c14n112 , _:c14n129 , _:c14n134 , _:c14n142 , _:c14n158 , _:c14n159 , _:c14n172 , _:c14n216 , _:c14n22 , _:c14n234 , _:c14n269 , _:c14n287 , _:c14n290 , _:c14n294 , _:c14n298 , _:c14n299 , _:c14n340 , _:c14n354 , _:c14n36 , _:c14n395 , _:c14n434 , _:c14n6 , _:c14n67 , _:c14n7 , _:c14n9 ;
 	skos:closeMatch fix_orchestra:OrchestraRepositoryV10 ;
 	skos:definition "One SBE 1.0 message schema, with its encodings and message templates." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_v1_0 ;
 	fix_sbe:xml_element "messageSchema" .
 fix_sbe:SbeMessageSchemaV2 a owl:Class ;
 	rdfs:label "SbeMessageSchemaV2" ;
-	rdfs:subClassOf _:c14n10 , _:c14n112 , _:c14n118 , _:c14n123 , _:c14n167 , _:c14n176 , _:c14n18 , _:c14n190 , _:c14n248 , _:c14n255 , _:c14n258 , _:c14n263 , _:c14n278 , _:c14n300 , _:c14n301 , _:c14n306 , _:c14n311 , _:c14n342 , _:c14n372 , _:c14n378 , _:c14n411 , _:c14n419 , _:c14n443 , _:c14n462 , _:c14n83 ;
+	rdfs:subClassOf _:c14n10 , _:c14n113 , _:c14n119 , _:c14n124 , _:c14n168 , _:c14n177 , _:c14n18 , _:c14n191 , _:c14n249 , _:c14n256 , _:c14n259 , _:c14n264 , _:c14n280 , _:c14n301 , _:c14n302 , _:c14n307 , _:c14n312 , _:c14n343 , _:c14n373 , _:c14n379 , _:c14n411 , _:c14n419 , _:c14n443 , _:c14n462 , _:c14n84 ;
 	skos:closeMatch fix_orchestra:OrchestraRepositoryV10 ;
 	skos:definition "One SBE 2.0 message schema, with its encodings and message templates." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_v2_0 ;
@@ -285,13 +285,13 @@ fix_sbe:SbeMessageSchemaV2 a owl:Class ;
 	fix_sbe:xml_element "messageSchema" .
 fix_sbe:SbeMessageSetV2 a owl:Class ;
 	rdfs:label "SbeMessageSetV2" ;
-	rdfs:subClassOf _:c14n154 , _:c14n159 , _:c14n169 , _:c14n256 , _:c14n29 , _:c14n291 , _:c14n359 , _:c14n368 , _:c14n422 , _:c14n446 , _:c14n451 ;
+	rdfs:subClassOf _:c14n155 , _:c14n160 , _:c14n170 , _:c14n25 , _:c14n257 , _:c14n30 , _:c14n360 , _:c14n369 , _:c14n422 , _:c14n446 , _:c14n451 ;
 	skos:definition "Message templates held together, which may have their own package and may come from another file." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_v2_0 ;
 	fix_sbe:xml_element "messages" .
 fix_sbe:SbeMessageV1 a owl:Class ;
 	rdfs:label "SbeMessageV1" ;
-	rdfs:subClassOf fix_sbe:SbeBlockV1Mixin , fix_sbe:SbeVersionedMixin , _:c14n108 , _:c14n19 , _:c14n208 , _:c14n239 , _:c14n250 , _:c14n390 ;
+	rdfs:subClassOf fix_sbe:SbeBlockV1Mixin , fix_sbe:SbeVersionedMixin , _:c14n109 , _:c14n19 , _:c14n209 , _:c14n240 , _:c14n251 , _:c14n390 ;
 	skos:closeMatch fix_orchestra:OrchestraMessageV10 ;
 	skos:definition "A message template, whose number and block length are sent in each message's header." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_v1_0 ;
@@ -299,7 +299,7 @@ fix_sbe:SbeMessageV1 a owl:Class ;
 	fix_sbe:xsd_type "blockType" .
 fix_sbe:SbeMessageV2 a owl:Class ;
 	rdfs:label "SbeMessageV2" ;
-	rdfs:subClassOf fix_sbe:SbeBlockV2Mixin , fix_sbe:SbeVersionedMixin , _:c14n193 , _:c14n197 , _:c14n313 , _:c14n377 , _:c14n407 , _:c14n44 ;
+	rdfs:subClassOf fix_sbe:SbeBlockV2Mixin , fix_sbe:SbeVersionedMixin , _:c14n194 , _:c14n198 , _:c14n314 , _:c14n378 , _:c14n407 , _:c14n45 ;
 	skos:closeMatch fix_orchestra:OrchestraMessageV10 ;
 	skos:definition "A message template, whose number and block length are sent in each message's header." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_v2_0 ;
@@ -319,7 +319,7 @@ fix_sbe:SbePresence\#required a owl:Class ;
 	skos:definition "A value is always sent, and it is never tested for null." .
 fix_sbe:SbePresence a owl:Class ;
 	rdfs:label "SbePresence" ;
-	owl:unionOf _:c14n230 ;
+	owl:unionOf _:c14n231 ;
 	skos:definition "Whether a value is on the wire, and whether it may be null." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_common ;
 	linkml:permissible_values fix_sbe:SbePresence\#constant , fix_sbe:SbePresence\#optional , fix_sbe:SbePresence\#required ;
@@ -370,28 +370,28 @@ fix_sbe:SbePrimitiveType\#uint8 a owl:Class ;
 	skos:definition "An unsigned integer of one octet." .
 fix_sbe:SbePrimitiveType a owl:Class ;
 	rdfs:label "SbePrimitiveType" ;
-	owl:unionOf _:c14n143 ;
+	owl:unionOf _:c14n144 ;
 	skos:definition "The wire types every encoding is finally built from." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_common ;
 	linkml:permissible_values fix_sbe:SbePrimitiveType\#char , fix_sbe:SbePrimitiveType\#double , fix_sbe:SbePrimitiveType\#float , fix_sbe:SbePrimitiveType\#int16 , fix_sbe:SbePrimitiveType\#int32 , fix_sbe:SbePrimitiveType\#int64 , fix_sbe:SbePrimitiveType\#int8 , fix_sbe:SbePrimitiveType\#uint16 , fix_sbe:SbePrimitiveType\#uint32 , fix_sbe:SbePrimitiveType\#uint64 , fix_sbe:SbePrimitiveType\#uint8 ;
 	fix_sbe:sbe_section "2: Primitive type encodings" .
 fix_sbe:SbeRefV1 a owl:Class ;
 	rdfs:label "SbeRefV1" ;
-	rdfs:subClassOf fix_sbe:SbeMemberV1 , _:c14n14 , _:c14n296 , _:c14n332 ;
+	rdfs:subClassOf fix_sbe:SbeMemberV1 , _:c14n14 , _:c14n297 , _:c14n333 ;
 	skos:definition "A composite's member that reuses an encoding defined elsewhere in the schema." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_v1_0 ;
 	fix_sbe:xml_element "ref" ;
 	fix_sbe:xsd_type "refType" .
 fix_sbe:SbeRefV2 a owl:Class ;
 	rdfs:label "SbeRefV2" ;
-	rdfs:subClassOf fix_sbe:SbeMemberV2 , _:c14n173 , _:c14n194 , _:c14n245 ;
+	rdfs:subClassOf fix_sbe:SbeMemberV2 , _:c14n174 , _:c14n195 , _:c14n246 ;
 	skos:definition "A composite's member that reuses an encoding defined elsewhere in the schema." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_v2_0 ;
 	fix_sbe:xml_element "ref" ;
 	fix_sbe:xsd_type "refType" .
 fix_sbe:SbeSetV1 a owl:Class ;
 	rdfs:label "SbeSetV1" ;
-	rdfs:subClassOf fix_sbe:SbeEncodingV1 , _:c14n130 , _:c14n187 , _:c14n212 , _:c14n370 , _:c14n46 , _:c14n85 ;
+	rdfs:subClassOf fix_sbe:SbeEncodingV1 , _:c14n131 , _:c14n188 , _:c14n213 , _:c14n371 , _:c14n47 , _:c14n86 ;
 	skos:definition "An encoding whose value is any combination of up to 64 choices, sent as a bitset." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_v1_0 ;
 	skos:note "FIX's transposer does not carry a set to Orchestra, so the mapping is related. FIX's MultipleCharValue and MultipleStringValue fields hold such choices in a code set." ;
@@ -400,7 +400,7 @@ fix_sbe:SbeSetV1 a owl:Class ;
 	fix_sbe:xsd_type "setType" .
 fix_sbe:SbeSetV2 a owl:Class ;
 	rdfs:label "SbeSetV2" ;
-	rdfs:subClassOf fix_sbe:SbeMemberV2 , fix_sbe:SbeVersionedMixin , _:c14n231 , _:c14n254 , _:c14n309 , _:c14n321 , _:c14n328 , _:c14n454 ;
+	rdfs:subClassOf fix_sbe:SbeMemberV2 , fix_sbe:SbeVersionedMixin , _:c14n232 , _:c14n255 , _:c14n310 , _:c14n322 , _:c14n329 , _:c14n454 ;
 	skos:definition "An encoding whose value is any combination of up to 64 choices, sent as a bitset." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_v2_0 ;
 	skos:note "FIX's transposer does not carry a set to Orchestra, so the mapping is related. FIX's MultipleCharValue and MultipleStringValue fields hold such choices in a code set." ;
@@ -409,7 +409,7 @@ fix_sbe:SbeSetV2 a owl:Class ;
 	fix_sbe:xsd_type "setType" .
 fix_sbe:SbeSimpleTypeV1 a owl:Class ;
 	rdfs:label "SbeSimpleTypeV1" ;
-	rdfs:subClassOf fix_sbe:SbeEncodingV1 , _:c14n155 , _:c14n156 , _:c14n179 , _:c14n180 , _:c14n185 , _:c14n217 , _:c14n225 , _:c14n241 , _:c14n251 , _:c14n262 , _:c14n3 , _:c14n327 , _:c14n371 , _:c14n375 , _:c14n384 , _:c14n393 , _:c14n394 , _:c14n4 , _:c14n402 , _:c14n433 , _:c14n439 , _:c14n448 , _:c14n450 , _:c14n58 , _:c14n80 , _:c14n89 , _:c14n94 ;
+	rdfs:subClassOf fix_sbe:SbeEncodingV1 , _:c14n156 , _:c14n157 , _:c14n180 , _:c14n181 , _:c14n186 , _:c14n218 , _:c14n226 , _:c14n242 , _:c14n252 , _:c14n263 , _:c14n3 , _:c14n328 , _:c14n372 , _:c14n376 , _:c14n385 , _:c14n393 , _:c14n394 , _:c14n4 , _:c14n402 , _:c14n433 , _:c14n439 , _:c14n448 , _:c14n450 , _:c14n59 , _:c14n81 , _:c14n90 , _:c14n95 ;
 	skos:closeMatch fix_orchestra:OrchestraDatatypeV10 ;
 	skos:definition "An encoding backed by one primitive value, or several in an array." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_v1_0 ;
@@ -417,7 +417,7 @@ fix_sbe:SbeSimpleTypeV1 a owl:Class ;
 	fix_sbe:xsd_type "encodedDataType" .
 fix_sbe:SbeSimpleTypeV2 a owl:Class ;
 	rdfs:label "SbeSimpleTypeV2" ;
-	rdfs:subClassOf fix_sbe:SbeElementV2 , fix_sbe:SbeVersionedMixin , _:c14n138 , _:c14n216 , _:c14n234 , _:c14n25 , _:c14n304 , _:c14n326 , _:c14n341 , _:c14n348 , _:c14n441 , _:c14n458 , _:c14n63 , _:c14n69 ;
+	rdfs:subClassOf fix_sbe:SbeElementV2 , fix_sbe:SbeVersionedMixin , _:c14n139 , _:c14n217 , _:c14n235 , _:c14n26 , _:c14n305 , _:c14n327 , _:c14n342 , _:c14n349 , _:c14n441 , _:c14n458 , _:c14n64 , _:c14n70 ;
 	skos:closeMatch fix_orchestra:OrchestraDatatypeV10 ;
 	skos:definition "A simple encoding that stands alone in a set, backed by one primitive value, or several in an array." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_v2_0 ;
@@ -425,20 +425,20 @@ fix_sbe:SbeSimpleTypeV2 a owl:Class ;
 	fix_sbe:xsd_type "simpleDataType" .
 fix_sbe:SbeValidValue a owl:Class ;
 	rdfs:label "SbeValidValue" ;
-	rdfs:subClassOf fix_sbe:SbeVersionedMixin , _:c14n0 , _:c14n160 , _:c14n165 , _:c14n192 , _:c14n213 , _:c14n330 , _:c14n331 , _:c14n444 , _:c14n73 ;
+	rdfs:subClassOf fix_sbe:SbeVersionedMixin , _:c14n0 , _:c14n161 , _:c14n166 , _:c14n193 , _:c14n214 , _:c14n331 , _:c14n332 , _:c14n444 , _:c14n74 ;
 	skos:closeMatch fix_orchestra:OrchestraCodeV10 ;
 	skos:definition "One of the values an enumeration allows." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_common ;
 	fix_sbe:xsd_type "validValue" .
 fix_sbe:SbeVersionedMixin a owl:Class ;
 	rdfs:label "SbeVersionedMixin" ;
-	rdfs:subClassOf _:c14n204 , _:c14n207 , _:c14n31 , _:c14n34 , _:c14n357 , _:c14n56 ;
+	rdfs:subClassOf _:c14n205 , _:c14n208 , _:c14n32 , _:c14n35 , _:c14n358 , _:c14n57 ;
 	skos:definition "The two attributes that record when an element entered a schema and when it should leave." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_common ;
 	fix_sbe:xsd_attribute_group "versionAttributes" .
 fix_sbe:alignment a owl:DatatypeProperty ;
 	rdfs:label "alignment" ;
-	rdfs:range _:c14n45 ;
+	rdfs:range _:c14n46 ;
 	skos:altLabel "alignment" ;
 	skos:definition "The multiple of octets the start of this element is placed on." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_v2_0 ;
@@ -446,7 +446,7 @@ fix_sbe:alignment a owl:DatatypeProperty ;
 	fix_sbe:xsd_type "xs:positiveInteger" .
 fix_sbe:array_length a owl:DatatypeProperty ;
 	rdfs:label "array_length" ;
-	rdfs:range _:c14n137 ;
+	rdfs:range _:c14n138 ;
 	skos:altLabel "length" ;
 	skos:definition "How many values of the primitive type the encoding holds, where zero means a variable number." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_common ;
@@ -464,7 +464,7 @@ fix_sbe:block_fields a owl:DatatypeProperty ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_common .
 fix_sbe:block_length a owl:DatatypeProperty ;
 	rdfs:label "block_length" ;
-	rdfs:range _:c14n383 ;
+	rdfs:range _:c14n384 ;
 	skos:altLabel "blockLength" ;
 	skos:definition "The octets set aside for a message's fixed-length fields, or for those of each group entry." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_common ;
@@ -494,7 +494,7 @@ fix_sbe:composite_members a owl:DatatypeProperty ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_common .
 fix_sbe:deprecated_since a owl:DatatypeProperty ;
 	rdfs:label "deprecated_since" ;
-	rdfs:range _:c14n242 ;
+	rdfs:range _:c14n243 ;
 	skos:altLabel "deprecated" ;
 	skos:definition "The schema version that retired this element, which stays only for older applications." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_common ;
@@ -507,14 +507,14 @@ fix_sbe:description a owl:DatatypeProperty ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_common .
 fix_sbe:dimension_type a owl:DatatypeProperty ;
 	rdfs:label "dimension_type" ;
-	rdfs:range _:c14n79 ;
+	rdfs:range _:c14n80 ;
 	skos:altLabel "dimensionType" ;
 	skos:definition "The composite, by name, that sends a repeating group's entry count and entry size." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_common ;
 	fix_sbe:sbe_section "3: Encoding of repeating group dimensions" .
 fix_sbe:element_value a owl:DatatypeProperty ;
 	rdfs:label "element_value" ;
-	rdfs:range _:c14n336 ;
+	rdfs:range _:c14n337 ;
 	skos:definition "The text of the XML element, which is the constant when presence is constant." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_common ;
 	fix_sbe:sbe_section "4: Constant value" ;
@@ -526,7 +526,7 @@ fix_sbe:encoding_kind a owl:DatatypeProperty ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_common .
 fix_sbe:encoding_name a owl:DatatypeProperty ;
 	rdfs:label "encoding_name" ;
-	rdfs:range _:c14n354 ;
+	rdfs:range _:c14n355 ;
 	skos:altLabel "type" ;
 	skos:definition "Which encoding this element uses, by name." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_common ;
@@ -538,7 +538,7 @@ fix_sbe:encoding_sets a owl:DatatypeProperty ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_common .
 fix_sbe:encoding_type a owl:DatatypeProperty ;
 	rdfs:label "encoding_type" ;
-	rdfs:range _:c14n115 ;
+	rdfs:range _:c14n116 ;
 	skos:altLabel "encodingType" ;
 	skos:definition "The simple encoding or primitive type that an enumeration or set is sent as." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_common .
@@ -549,7 +549,7 @@ fix_sbe:encodings a owl:DatatypeProperty ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_common .
 fix_sbe:header_type a owl:DatatypeProperty ;
 	rdfs:label "header_type" ;
-	rdfs:range _:c14n317 ;
+	rdfs:range _:c14n318 ;
 	skos:altLabel "headerType" ;
 	skos:definition "The composite, by name, that sends each message's header in this schema." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_common ;
@@ -606,7 +606,7 @@ fix_sbe:repeating_groups a owl:DatatypeProperty ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_common .
 fix_sbe:sbe_id a owl:DatatypeProperty ;
 	rdfs:label "sbe_id" ;
-	rdfs:range _:c14n163 ;
+	rdfs:range _:c14n164 ;
 	skos:altLabel "id" ;
 	skos:definition "The number that identifies this element." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_common ;
@@ -626,7 +626,7 @@ fix_sbe:schema_version a owl:DatatypeProperty ;
 	fix_sbe:xsd_type "xs:nonNegativeInteger" .
 fix_sbe:semantic_type a owl:DatatypeProperty ;
 	rdfs:label "semantic_type" ;
-	rdfs:range _:c14n148 ;
+	rdfs:range _:c14n149 ;
 	skos:altLabel "semanticType" ;
 	skos:definition "What this element means at the FIX application layer." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_common ;
@@ -638,7 +638,7 @@ fix_sbe:semantic_version a owl:DatatypeProperty ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_common .
 fix_sbe:since_version a owl:DatatypeProperty ;
 	rdfs:label "since_version" ;
-	rdfs:range _:c14n37 ;
+	rdfs:range _:c14n38 ;
 	skos:altLabel "sinceVersion" ;
 	skos:definition "The schema version that added this element." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_common ;
@@ -646,7 +646,7 @@ fix_sbe:since_version a owl:DatatypeProperty ;
 	fix_sbe:xsd_type "xs:nonNegativeInteger" .
 fix_sbe:symbolic_name a owl:DatatypeProperty ;
 	rdfs:label "symbolic_name" ;
-	rdfs:range _:c14n90 ;
+	rdfs:range _:c14n91 ;
 	skos:altLabel "name" ;
 	skos:definition "What the schema calls this element." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_common .
@@ -675,7 +675,7 @@ fix_sbe:valid_values a owl:ObjectProperty ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_common .
 fix_sbe:value_ref a owl:DatatypeProperty ;
 	rdfs:label "value_ref" ;
-	rdfs:range _:c14n105 ;
+	rdfs:range _:c14n106 ;
 	skos:altLabel "valueRef" ;
 	skos:definition "The valid value that gives a constant element its value." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_common .
@@ -686,11 +686,11 @@ fix_sbe:var_data_fields a owl:DatatypeProperty ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_common .
 fix_sbe:xml_base a owl:DatatypeProperty ;
 	rdfs:label "xml_base" ;
-	rdfs:range xsd:anyURI ;
 	skos:altLabel "xml:base" ;
 	skos:definition "The base address that the XML Inclusion mechanism records on an element it brought in from another file." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_v2_0 ;
-	fix_sbe:sbe_section "4: XInclude usage" .
+	fix_sbe:sbe_section "4: XInclude usage" ;
+	fix_sbe:xsd_type "xs:anyURI" .
 _:c14n0 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty fix_sbe:valid_value .
@@ -702,87 +702,87 @@ _:c14n10 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_sbe:description .
 _:c14n100 a owl:Restriction ;
-	owl:minCardinality 1 ;
-	owl:onProperty fix_sbe:symbolic_name .
-_:c14n1000 rdf:first "constant" ;
-	rdf:rest rdf:nil .
-_:c14n1001 rdf:first fix_sbe:SbeFieldV2 ;
-	rdf:rest rdf:nil .
-_:c14n1002 rdf:first _:c14n1005 ;
-	rdf:rest _:c14n1008 .
-_:c14n1003 rdfs:subClassOf _:c14n1004 ;
-	owl:intersectionOf _:c14n1002 .
-_:c14n1004 a owl:Restriction ;
+	owl:maxCardinality 1 ;
+	owl:onProperty fix_sbe:bit_position .
+_:c14n1000 rdf:first _:c14n1003 ;
+	rdf:rest _:c14n1006 .
+_:c14n1001 rdfs:subClassOf _:c14n1002 ;
+	owl:intersectionOf _:c14n1000 .
+_:c14n1002 a owl:Restriction ;
 	owl:onProperty fix_sbe:min_value ;
 	owl:someValuesFrom xsd:string .
-_:c14n1005 a owl:Restriction ;
+_:c14n1003 a owl:Restriction ;
 	owl:onProperty fix_sbe:presence ;
-	owl:someValuesFrom _:c14n1006 .
-_:c14n1006 a rdfs:Datatype ;
-	owl:oneOf _:c14n1007 .
-_:c14n1007 rdf:first "constant" ;
+	owl:someValuesFrom _:c14n1004 .
+_:c14n1004 a rdfs:Datatype ;
+	owl:oneOf _:c14n1005 .
+_:c14n1005 rdf:first "constant" ;
 	rdf:rest rdf:nil .
-_:c14n1008 rdf:first fix_sbe:SbeSimpleTypeV1 ;
+_:c14n1006 rdf:first fix_sbe:SbeSimpleTypeV1 ;
 	rdf:rest rdf:nil .
-_:c14n1009 rdf:first _:c14n1012 ;
-	rdf:rest _:c14n1015 .
+_:c14n1007 rdf:first _:c14n1010 ;
+	rdf:rest _:c14n1013 .
+_:c14n1008 rdfs:subClassOf _:c14n1009 ;
+	owl:intersectionOf _:c14n1007 .
+_:c14n1009 a owl:Restriction ;
+	owl:onProperty fix_sbe:null_value ;
+	owl:someValuesFrom xsd:string .
 _:c14n101 a owl:Restriction ;
+	owl:minCardinality 1 ;
+	owl:onProperty fix_sbe:symbolic_name .
+_:c14n1010 a owl:Restriction ;
+	owl:onProperty fix_sbe:presence ;
+	owl:someValuesFrom _:c14n1011 .
+_:c14n1011 a rdfs:Datatype ;
+	owl:oneOf _:c14n1012 .
+_:c14n1012 rdf:first "constant" ;
+	rdf:rest rdf:nil .
+_:c14n1013 rdf:first fix_sbe:SbeSimpleTypeV1 ;
+	rdf:rest rdf:nil .
+_:c14n1014 rdf:first _:c14n1017 ;
+	rdf:rest _:c14n1020 .
+_:c14n1015 rdfs:subClassOf _:c14n1016 ;
+	owl:intersectionOf _:c14n1014 .
+_:c14n1016 a owl:Restriction ;
+	owl:onProperty fix_sbe:null_value ;
+	owl:someValuesFrom xsd:string .
+_:c14n1017 a owl:Restriction ;
+	owl:onProperty fix_sbe:presence ;
+	owl:someValuesFrom _:c14n1018 .
+_:c14n1018 a rdfs:Datatype ;
+	owl:oneOf _:c14n1019 .
+_:c14n1019 rdf:first "required" ;
+	rdf:rest rdf:nil .
+_:c14n102 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_sbe:presence .
-_:c14n1010 rdfs:subClassOf _:c14n1011 ;
-	owl:intersectionOf _:c14n1009 .
-_:c14n1011 a owl:Restriction ;
+_:c14n1020 rdf:first fix_sbe:SbeSimpleTypeV1 ;
+	rdf:rest rdf:nil .
+_:c14n1021 rdf:first _:c14n1024 ;
+	rdf:rest _:c14n1027 .
+_:c14n1022 rdfs:subClassOf _:c14n1023 ;
+	owl:intersectionOf _:c14n1021 .
+_:c14n1023 a owl:Restriction ;
 	owl:onProperty fix_sbe:null_value ;
 	owl:someValuesFrom xsd:string .
-_:c14n1012 a owl:Restriction ;
+_:c14n1024 a owl:Restriction ;
 	owl:onProperty fix_sbe:presence ;
-	owl:someValuesFrom _:c14n1013 .
-_:c14n1013 a rdfs:Datatype ;
-	owl:oneOf _:c14n1014 .
-_:c14n1014 rdf:first "constant" ;
+	owl:someValuesFrom _:c14n1025 .
+_:c14n1025 a rdfs:Datatype ;
+	owl:oneOf _:c14n1026 .
+_:c14n1026 rdf:first "required" ;
 	rdf:rest rdf:nil .
-_:c14n1015 rdf:first fix_sbe:SbeSimpleTypeV1 ;
+_:c14n1027 rdf:first fix_sbe:SbeFieldV2 ;
 	rdf:rest rdf:nil .
-_:c14n1016 rdf:first _:c14n1019 ;
-	rdf:rest _:c14n1022 .
-_:c14n1017 rdfs:subClassOf _:c14n1018 ;
-	owl:intersectionOf _:c14n1016 .
-_:c14n1018 a owl:Restriction ;
-	owl:onProperty fix_sbe:null_value ;
-	owl:someValuesFrom xsd:string .
-_:c14n1019 a owl:Restriction ;
-	owl:onProperty fix_sbe:presence ;
-	owl:someValuesFrom _:c14n1020 .
-_:c14n102 a owl:Restriction ;
-	owl:allValuesFrom _:c14n820 ;
-	owl:onProperty fix_sbe:alignment .
-_:c14n1020 a rdfs:Datatype ;
-	owl:oneOf _:c14n1021 .
-_:c14n1021 rdf:first "required" ;
-	rdf:rest rdf:nil .
-_:c14n1022 rdf:first fix_sbe:SbeSimpleTypeV1 ;
-	rdf:rest rdf:nil .
-_:c14n1023 rdf:first _:c14n1026 ;
-	rdf:rest _:c14n1029 .
-_:c14n1024 rdfs:subClassOf _:c14n1025 ;
-	owl:intersectionOf _:c14n1023 .
-_:c14n1025 a owl:Restriction ;
-	owl:onProperty fix_sbe:null_value ;
-	owl:someValuesFrom xsd:string .
-_:c14n1026 a owl:Restriction ;
-	owl:onProperty fix_sbe:presence ;
-	owl:someValuesFrom _:c14n1027 .
-_:c14n1027 a rdfs:Datatype ;
-	owl:oneOf _:c14n1028 .
-_:c14n1028 rdf:first "required" ;
-	rdf:rest rdf:nil .
-_:c14n1029 rdf:first fix_sbe:SbeFieldV2 ;
-	rdf:rest rdf:nil .
+_:c14n1028 rdf:first _:c14n282 ;
+	rdf:rest _:c14n1030 .
+_:c14n1029 rdfs:subClassOf _:c14n338 ;
+	owl:intersectionOf _:c14n1028 .
 _:c14n103 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty fix_sbe:presence .
-_:c14n1030 rdf:first _:c14n205 ;
-	rdf:rest _:c14n287 .
+	owl:allValuesFrom _:c14n817 ;
+	owl:onProperty fix_sbe:alignment .
+_:c14n1030 rdf:first fix_sbe:SbeFieldV2 ;
+	rdf:rest rdf:nil .
 _:c14n1031 rdf:first _:c14n1034 ;
 	rdf:rest _:c14n1037 .
 _:c14n1032 rdfs:subClassOf _:c14n1033 ;
@@ -802,913 +802,913 @@ _:c14n1037 rdf:first fix_sbe:SbeFieldV2 ;
 _:c14n1038 rdf:first fix_sbe:SbeSimpleTypeV1 ;
 	rdf:rest rdf:nil .
 _:c14n1039 rdf:first fix_sbe:SbeEnumV2 ;
-	rdf:rest _:c14n164 .
-_:c14n104 rdf:first fix_sbe:SbeFixDatatype\#float ;
-	rdf:rest _:c14n136 .
-_:c14n105 a rdfs:Datatype ;
-	owl:intersectionOf _:c14n624 .
-_:c14n106 a owl:Restriction ;
+	rdf:rest _:c14n165 .
+_:c14n104 a owl:Restriction ;
+	owl:maxCardinality 1 ;
+	owl:onProperty fix_sbe:presence .
+_:c14n105 rdf:first fix_sbe:SbeFixDatatype\#float ;
+	rdf:rest _:c14n137 .
+_:c14n106 a rdfs:Datatype ;
+	owl:intersectionOf _:c14n630 .
+_:c14n107 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_sbe:description .
-_:c14n107 a owl:Restriction ;
+_:c14n108 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty fix_sbe:encodings .
-_:c14n108 a owl:Restriction ;
+_:c14n109 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty fix_sbe:semantic_type .
-_:c14n109 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty fix_sbe:encoding_name .
 _:c14n11 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_sbe:array_length .
-_:c14n110 rdf:first fix_sbe:SbeByteOrder\#littleEndian ;
+_:c14n110 a owl:Restriction ;
+	owl:maxCardinality 1 ;
+	owl:onProperty fix_sbe:encoding_name .
+_:c14n111 rdf:first fix_sbe:SbeByteOrder\#littleEndian ;
 	rdf:rest rdf:nil .
-_:c14n111 a owl:Restriction ;
+_:c14n112 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_sbe:header_type .
-_:c14n112 a owl:Restriction ;
+_:c14n113 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_sbe:sbe_id .
-_:c14n113 a owl:Restriction ;
+_:c14n114 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_sbe:symbolic_name .
-_:c14n114 a owl:Restriction ;
+_:c14n115 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty fix_sbe:encoding_type .
-_:c14n115 a rdfs:Datatype ;
-	owl:intersectionOf _:c14n546 .
-_:c14n116 rdf:first fix_sbe:SbeFixDatatype\#Language ;
-	rdf:rest _:c14n168 .
-_:c14n117 a owl:Restriction ;
+_:c14n116 a rdfs:Datatype ;
+	owl:intersectionOf _:c14n564 .
+_:c14n117 rdf:first fix_sbe:SbeFixDatatype\#Language ;
+	rdf:rest _:c14n169 .
+_:c14n118 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty fix_sbe:block_fields .
-_:c14n118 a owl:Restriction ;
+_:c14n119 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_sbe:byte_order .
-_:c14n119 a owl:Restriction ;
-	rdfs:subClassOf fix_sbe:SbeMemberV1 ;
-	owl:onProperty fix_sbe:encoding_kind ;
-	owl:someValuesFrom fix_sbe:SbeMemberV1 .
 _:c14n12 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_sbe:semantic_type .
 _:c14n120 a owl:Restriction ;
+	rdfs:subClassOf fix_sbe:SbeMemberV1 ;
+	owl:onProperty fix_sbe:encoding_kind ;
+	owl:someValuesFrom fix_sbe:SbeMemberV1 .
+_:c14n121 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty fix_sbe:valid_values .
-_:c14n121 a owl:Restriction ;
+_:c14n122 a owl:Restriction ;
 	rdfs:subClassOf fix_sbe:SbeMemberTypeV2 ;
 	owl:onProperty fix_sbe:encoding_kind ;
 	owl:someValuesFrom fix_sbe:SbeMemberTypeV2 .
-_:c14n122 a owl:Restriction ;
+_:c14n123 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_sbe:symbolic_name .
-_:c14n123 a owl:Restriction ;
-	owl:minCardinality 0 ;
-	owl:onProperty fix_sbe:header_type .
 _:c14n124 a owl:Restriction ;
 	owl:minCardinality 0 ;
-	owl:onProperty fix_sbe:repeating_groups .
+	owl:onProperty fix_sbe:header_type .
 _:c14n125 a owl:Restriction ;
-	owl:allValuesFrom _:c14n476 ;
-	owl:onProperty fix_sbe:encoding_name .
+	owl:minCardinality 0 ;
+	owl:onProperty fix_sbe:repeating_groups .
 _:c14n126 a owl:Restriction ;
+	owl:allValuesFrom _:c14n507 ;
+	owl:onProperty fix_sbe:encoding_name .
+_:c14n127 a owl:Restriction ;
 	owl:allValuesFrom fix_sbe:SbeMemberV2 ;
 	owl:onProperty fix_sbe:composite_members .
-_:c14n127 rdf:first fix_sbe:SbePrimitiveType\#uint8 ;
-	rdf:rest _:c14n322 .
-_:c14n128 a owl:Restriction ;
+_:c14n128 rdf:first fix_sbe:SbePrimitiveType\#uint8 ;
+	rdf:rest _:c14n323 .
+_:c14n129 a owl:Restriction ;
 	owl:allValuesFrom fix_sbe:SbeEncodingSetV1 ;
 	owl:onProperty fix_sbe:encoding_sets .
-_:c14n129 a owl:Restriction ;
-	owl:allValuesFrom xsd:string ;
-	owl:onProperty fix_sbe:description .
 _:c14n13 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_sbe:value_ref .
 _:c14n130 a owl:Restriction ;
-	owl:allValuesFrom _:c14n598 ;
-	owl:onProperty fix_sbe:encoding_type .
+	owl:allValuesFrom xsd:string ;
+	owl:onProperty fix_sbe:description .
 _:c14n131 a owl:Restriction ;
-	owl:allValuesFrom _:c14n613 ;
-	owl:onProperty fix_sbe:symbolic_name .
+	owl:allValuesFrom _:c14n607 ;
+	owl:onProperty fix_sbe:encoding_type .
 _:c14n132 a owl:Restriction ;
+	owl:allValuesFrom _:c14n547 ;
+	owl:onProperty fix_sbe:symbolic_name .
+_:c14n133 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_sbe:max_value .
-_:c14n133 a owl:Restriction ;
+_:c14n134 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty fix_sbe:messages .
-_:c14n134 a owl:Restriction ;
+_:c14n135 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_sbe:description .
-_:c14n135 a owl:Restriction ;
+_:c14n136 a owl:Restriction ;
 	rdfs:subClassOf fix_sbe:SbeSetV1 ;
 	owl:onProperty fix_sbe:encoding_kind ;
 	owl:someValuesFrom fix_sbe:SbeSetV1 .
-_:c14n136 rdf:first fix_sbe:SbeFixDatatype\#Price ;
-	rdf:rest _:c14n305 .
-_:c14n137 a rdfs:Datatype ;
-	owl:intersectionOf _:c14n778 .
-_:c14n138 a owl:Restriction ;
+_:c14n137 rdf:first fix_sbe:SbeFixDatatype\#Price ;
+	rdf:rest _:c14n306 .
+_:c14n138 a rdfs:Datatype ;
+	owl:intersectionOf _:c14n891 .
+_:c14n139 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_sbe:array_length .
-_:c14n139 rdf:first fix_sbe:SbeFixDatatype\#UTCTimeOnly ;
-	rdf:rest _:c14n240 .
 _:c14n14 a owl:Restriction ;
-	owl:allValuesFrom _:c14n500 ;
+	owl:allValuesFrom _:c14n489 ;
 	owl:onProperty fix_sbe:encoding_name .
-_:c14n140 a owl:Restriction ;
+_:c14n140 rdf:first fix_sbe:SbeFixDatatype\#UTCTimeOnly ;
+	rdf:rest _:c14n241 .
+_:c14n141 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_sbe:max_value .
-_:c14n141 a owl:Restriction ;
+_:c14n142 a owl:Restriction ;
 	owl:allValuesFrom fix_sbe:SbeByteOrder ;
 	owl:onProperty fix_sbe:byte_order .
-_:c14n142 a owl:Restriction ;
+_:c14n143 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_sbe:encoding_type .
-_:c14n143 rdf:first fix_sbe:SbePrimitiveType\#char ;
-	rdf:rest _:c14n220 .
-_:c14n144 rdf:first fix_sbe:SbePrimitiveType\#int32 ;
-	rdf:rest _:c14n349 .
-_:c14n145 a owl:Restriction ;
-	owl:allValuesFrom _:c14n604 ;
-	owl:onProperty fix_sbe:symbolic_name .
+_:c14n144 rdf:first fix_sbe:SbePrimitiveType\#char ;
+	rdf:rest _:c14n221 .
+_:c14n145 rdf:first fix_sbe:SbePrimitiveType\#int32 ;
+	rdf:rest _:c14n350 .
 _:c14n146 a owl:Restriction ;
+	owl:allValuesFrom _:c14n495 ;
+	owl:onProperty fix_sbe:symbolic_name .
+_:c14n147 a owl:Restriction ;
 	owl:allValuesFrom fix_sbe:SbeFieldV1 ;
 	owl:onProperty fix_sbe:block_fields .
-_:c14n147 a owl:Restriction ;
-	owl:allValuesFrom _:c14n482 ;
+_:c14n148 a owl:Restriction ;
+	owl:allValuesFrom _:c14n595 ;
 	owl:onProperty fix_sbe:encoding_type .
-_:c14n148 a rdfs:Datatype ;
-	owl:intersectionOf _:c14n654 .
-_:c14n149 a owl:Restriction ;
-	owl:minCardinality 1 ;
-	owl:onProperty fix_sbe:encodings .
+_:c14n149 a rdfs:Datatype ;
+	owl:intersectionOf _:c14n666 .
 _:c14n15 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty fix_sbe:description .
 _:c14n150 a owl:Restriction ;
+	owl:minCardinality 1 ;
+	owl:onProperty fix_sbe:encodings .
+_:c14n151 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_sbe:symbolic_name .
-_:c14n151 a owl:Restriction ;
+_:c14n152 a owl:Restriction ;
 	rdfs:subClassOf fix_sbe:SbeSimpleTypeV1 ;
 	owl:onProperty fix_sbe:encoding_kind ;
 	owl:someValuesFrom fix_sbe:SbeSimpleTypeV1 .
-_:c14n152 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty fix_sbe:array_length .
 _:c14n153 a owl:Restriction ;
 	owl:maxCardinality 1 ;
-	owl:onProperty fix_sbe:description .
+	owl:onProperty fix_sbe:array_length .
 _:c14n154 a owl:Restriction ;
 	owl:maxCardinality 1 ;
-	owl:onProperty fix_sbe:schema_package .
+	owl:onProperty fix_sbe:description .
 _:c14n155 a owl:Restriction ;
+	owl:maxCardinality 1 ;
+	owl:onProperty fix_sbe:schema_package .
+_:c14n156 a owl:Restriction ;
 	owl:allValuesFrom _:c14n636 ;
 	owl:onProperty fix_sbe:value_ref .
-_:c14n156 a owl:Restriction ;
+_:c14n157 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty fix_sbe:max_value .
-_:c14n157 a owl:Restriction ;
+_:c14n158 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty fix_sbe:schema_version .
-_:c14n158 a owl:Restriction ;
+_:c14n159 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_sbe:semantic_version .
-_:c14n159 a owl:Restriction ;
+_:c14n16 a rdfs:Datatype ;
+	owl:intersectionOf _:c14n756 .
+_:c14n160 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_sbe:schema_package .
-_:c14n16 a rdfs:Datatype ;
-	owl:intersectionOf _:c14n726 .
-_:c14n160 a owl:Restriction ;
+_:c14n161 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty fix_sbe:symbolic_name .
-_:c14n161 rdf:first fix_sbe:SbeFixDatatype\#Amt ;
-	rdf:rest _:c14n228 .
-_:c14n162 a owl:Restriction ;
+_:c14n162 rdf:first fix_sbe:SbeFixDatatype\#Amt ;
+	rdf:rest _:c14n229 .
+_:c14n163 a owl:Restriction ;
 	owl:allValuesFrom fix_sbe:SbeEncodingV1 ;
 	owl:onProperty fix_sbe:encodings .
-_:c14n163 a rdfs:Datatype ;
-	owl:intersectionOf _:c14n843 .
-_:c14n164 rdf:first fix_sbe:SbeMemberTypeV2 ;
+_:c14n164 a rdfs:Datatype ;
+	owl:intersectionOf _:c14n784 .
+_:c14n165 rdf:first fix_sbe:SbeMemberTypeV2 ;
 	rdf:rest _:c14n2 .
-_:c14n165 a owl:Restriction ;
+_:c14n166 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_sbe:description .
-_:c14n166 rdf:first fix_sbe:SbePrimitiveType\#uint64 ;
-	rdf:rest _:c14n95 .
-_:c14n167 a owl:Restriction ;
+_:c14n167 rdf:first fix_sbe:SbePrimitiveType\#uint64 ;
+	rdf:rest _:c14n96 .
+_:c14n168 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_sbe:byte_order .
-_:c14n168 rdf:first fix_sbe:SbeFixDatatype\#Boolean ;
+_:c14n169 rdf:first fix_sbe:SbeFixDatatype\#Boolean ;
 	rdf:rest _:c14n413 .
-_:c14n169 a owl:Restriction ;
-	owl:allValuesFrom fix_sbe:SbeMessageV2 ;
-	owl:onProperty fix_sbe:messages .
 _:c14n17 a owl:Restriction ;
 	owl:allValuesFrom _:c14n645 ;
 	owl:onProperty fix_sbe:value_ref .
 _:c14n170 a owl:Restriction ;
+	owl:allValuesFrom fix_sbe:SbeMessageV2 ;
+	owl:onProperty fix_sbe:messages .
+_:c14n171 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_sbe:alignment .
-_:c14n171 a owl:Restriction ;
-	owl:allValuesFrom xsd:string ;
-	owl:onProperty fix_sbe:schema_package .
 _:c14n172 a owl:Restriction ;
-	owl:maxCardinality 1 ;
+	owl:allValuesFrom xsd:string ;
 	owl:onProperty fix_sbe:schema_package .
 _:c14n173 a owl:Restriction ;
+	owl:maxCardinality 1 ;
+	owl:onProperty fix_sbe:schema_package .
+_:c14n174 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty fix_sbe:encoding_name .
-_:c14n174 a owl:Restriction ;
+_:c14n175 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty fix_sbe:null_value .
-_:c14n175 a owl:Restriction ;
+_:c14n176 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_sbe:dimension_type .
-_:c14n176 a owl:Restriction ;
-	owl:minCardinality 1 ;
-	owl:onProperty fix_sbe:message_sets .
 _:c14n177 a owl:Restriction ;
 	owl:minCardinality 1 ;
-	owl:onProperty fix_sbe:sbe_id .
+	owl:onProperty fix_sbe:message_sets .
 _:c14n178 a owl:Restriction ;
+	owl:minCardinality 1 ;
+	owl:onProperty fix_sbe:sbe_id .
+_:c14n179 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_sbe:alignment .
-_:c14n179 a owl:Restriction ;
-	owl:allValuesFrom _:c14n694 ;
-	owl:onProperty fix_sbe:element_value .
 _:c14n18 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_sbe:schema_version .
 _:c14n180 a owl:Restriction ;
+	owl:allValuesFrom _:c14n718 ;
+	owl:onProperty fix_sbe:element_value .
+_:c14n181 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_sbe:null_value .
-_:c14n181 a owl:Restriction ;
-	owl:allValuesFrom _:c14n649 ;
-	owl:onProperty fix_sbe:semantic_type .
 _:c14n182 a owl:Restriction ;
+	owl:allValuesFrom _:c14n684 ;
+	owl:onProperty fix_sbe:semantic_type .
+_:c14n183 a owl:Restriction ;
 	owl:allValuesFrom fix_sbe:SbeGroupV1 ;
 	owl:onProperty fix_sbe:repeating_groups .
-_:c14n183 rdf:first fix_sbe:SbeFixDatatype\#TZTimestamp ;
+_:c14n184 rdf:first fix_sbe:SbeFixDatatype\#TZTimestamp ;
 	rdf:rest rdf:nil .
-_:c14n184 a owl:Restriction ;
-	owl:allValuesFrom _:c14n706 ;
-	owl:onProperty fix_sbe:semantic_type .
 _:c14n185 a owl:Restriction ;
+	owl:allValuesFrom _:c14n649 ;
+	owl:onProperty fix_sbe:semantic_type .
+_:c14n186 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_sbe:presence .
-_:c14n186 a owl:Restriction ;
+_:c14n187 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty fix_sbe:time_epoch .
-_:c14n187 a owl:Restriction ;
-	owl:minCardinality 1 ;
-	owl:onProperty fix_sbe:encoding_type .
 _:c14n188 a owl:Restriction ;
 	owl:minCardinality 1 ;
-	owl:onProperty fix_sbe:sbe_id .
+	owl:onProperty fix_sbe:encoding_type .
 _:c14n189 a owl:Restriction ;
-	owl:allValuesFrom _:c14n808 ;
+	owl:minCardinality 1 ;
 	owl:onProperty fix_sbe:sbe_id .
 _:c14n19 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_sbe:semantic_type .
 _:c14n190 a owl:Restriction ;
-	owl:allValuesFrom _:c14n814 ;
+	owl:allValuesFrom _:c14n856 ;
+	owl:onProperty fix_sbe:sbe_id .
+_:c14n191 a owl:Restriction ;
+	owl:allValuesFrom _:c14n897 ;
 	owl:onProperty fix_sbe:schema_version .
-_:c14n191 rdf:first fix_sbe:SbeCompositeV2 ;
+_:c14n192 rdf:first fix_sbe:SbeCompositeV2 ;
 	rdf:rest _:c14n1039 .
-_:c14n192 a owl:Restriction ;
-	owl:allValuesFrom _:c14n718 ;
-	owl:onProperty fix_sbe:valid_value .
 _:c14n193 a owl:Restriction ;
+	owl:allValuesFrom _:c14n712 ;
+	owl:onProperty fix_sbe:valid_value .
+_:c14n194 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_sbe:semantic_type .
-_:c14n194 a owl:Restriction ;
-	owl:allValuesFrom _:c14n517 ;
-	owl:onProperty fix_sbe:encoding_name .
 _:c14n195 a owl:Restriction ;
+	owl:allValuesFrom _:c14n576 ;
+	owl:onProperty fix_sbe:encoding_name .
+_:c14n196 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_sbe:encoding_kind .
-_:c14n196 a owl:Restriction ;
+_:c14n197 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty fix_sbe:symbolic_name .
-_:c14n197 a owl:Restriction ;
+_:c14n198 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty fix_sbe:sbe_id .
-_:c14n198 rdf:first fix_sbe:SbeFixDatatype\#Qty ;
-	rdf:rest _:c14n104 .
-_:c14n199 a owl:Restriction ;
-	owl:allValuesFrom fix_sbe:SbeGroupV2 ;
-	owl:onProperty fix_sbe:repeating_groups .
+_:c14n199 rdf:first fix_sbe:SbeFixDatatype\#Qty ;
+	rdf:rest _:c14n105 .
 _:c14n2 rdf:first fix_sbe:SbeRefV2 ;
 	rdf:rest _:c14n465 .
 _:c14n20 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty fix_sbe:schema_package .
-_:c14n200 rdf:first fix_sbe:SbeRefV1 ;
+_:c14n200 a owl:Restriction ;
+	owl:allValuesFrom fix_sbe:SbeGroupV2 ;
+	owl:onProperty fix_sbe:repeating_groups .
+_:c14n201 rdf:first fix_sbe:SbeRefV1 ;
 	rdf:rest rdf:nil .
-_:c14n201 a owl:Restriction ;
+_:c14n202 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty fix_sbe:encoding_name .
-_:c14n202 a owl:Restriction ;
+_:c14n203 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty fix_sbe:max_value .
-_:c14n203 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty fix_sbe:encoding_type .
 _:c14n204 a owl:Restriction ;
 	owl:maxCardinality 1 ;
+	owl:onProperty fix_sbe:encoding_type .
+_:c14n205 a owl:Restriction ;
+	owl:maxCardinality 1 ;
 	owl:onProperty fix_sbe:deprecated_since .
-_:c14n205 owl:unionOf _:c14n214 .
-_:c14n206 a owl:Restriction ;
+_:c14n206 owl:unionOf _:c14n215 .
+_:c14n207 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_sbe:symbolic_name .
-_:c14n207 a owl:Restriction ;
-	owl:allValuesFrom _:c14n870 ;
-	owl:onProperty fix_sbe:since_version .
 _:c14n208 a owl:Restriction ;
+	owl:allValuesFrom _:c14n880 ;
+	owl:onProperty fix_sbe:since_version .
+_:c14n209 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_sbe:sbe_id .
-_:c14n209 a owl:Restriction ;
-	owl:allValuesFrom xsd:string ;
-	owl:onProperty fix_sbe:character_encoding .
 _:c14n21 a owl:Restriction ;
-	owl:allValuesFrom _:c14n488 ;
+	owl:allValuesFrom _:c14n471 ;
 	owl:onProperty fix_sbe:symbolic_name .
 _:c14n210 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
+	owl:onProperty fix_sbe:character_encoding .
+_:c14n211 a owl:Restriction ;
+	owl:allValuesFrom xsd:string ;
 	owl:onProperty fix_sbe:description .
-_:c14n211 rdf:first fix_sbe:SbePrimitiveType\#int16 ;
-	rdf:rest _:c14n144 .
-_:c14n212 a owl:Restriction ;
+_:c14n212 rdf:first fix_sbe:SbePrimitiveType\#int16 ;
+	rdf:rest _:c14n145 .
+_:c14n213 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_sbe:encoding_type .
-_:c14n213 a owl:Restriction ;
-	owl:allValuesFrom _:c14n586 ;
+_:c14n214 a owl:Restriction ;
+	owl:allValuesFrom _:c14n529 ;
 	owl:onProperty fix_sbe:symbolic_name .
-_:c14n214 rdf:first fix_sbe:SbeSimpleTypeV2 ;
-	rdf:rest _:c14n299 .
-_:c14n215 a owl:Restriction ;
-	owl:allValuesFrom _:c14n535 ;
-	owl:onProperty fix_sbe:header_type .
+_:c14n215 rdf:first fix_sbe:SbeSimpleTypeV2 ;
+	rdf:rest _:c14n300 .
 _:c14n216 a owl:Restriction ;
+	owl:allValuesFrom _:c14n541 ;
+	owl:onProperty fix_sbe:header_type .
+_:c14n217 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_sbe:element_value .
-_:c14n217 a owl:Restriction ;
+_:c14n218 a owl:Restriction ;
 	owl:allValuesFrom fix_sbe:SbePresence ;
 	owl:onProperty fix_sbe:presence .
-_:c14n218 a owl:Restriction ;
+_:c14n219 a owl:Restriction ;
 	rdfs:subClassOf fix_sbe:SbeElementV2 ;
 	owl:onProperty fix_sbe:encoding_kind ;
 	owl:someValuesFrom fix_sbe:SbeElementV2 .
-_:c14n219 a owl:Restriction ;
-	owl:minCardinality 1 ;
-	owl:onProperty fix_sbe:symbolic_name .
 _:c14n22 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_sbe:semantic_version .
-_:c14n220 rdf:first fix_sbe:SbePrimitiveType\#int8 ;
-	rdf:rest _:c14n211 .
-_:c14n221 a owl:Restriction ;
+_:c14n220 a owl:Restriction ;
+	owl:minCardinality 1 ;
+	owl:onProperty fix_sbe:symbolic_name .
+_:c14n221 rdf:first fix_sbe:SbePrimitiveType\#int8 ;
+	rdf:rest _:c14n212 .
+_:c14n222 a owl:Restriction ;
 	owl:allValuesFrom owl:Thing ;
 	owl:onProperty fix_sbe:block_fields .
-_:c14n222 a owl:Restriction ;
+_:c14n223 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_sbe:min_value .
-_:c14n223 rdf:first fix_sbe:SbeFixDatatype\#DayOfMonth ;
-	rdf:rest _:c14n198 .
-_:c14n224 rdf:first fix_sbe:SbeCompositeV1 ;
+_:c14n224 rdf:first fix_sbe:SbeFixDatatype\#DayOfMonth ;
+	rdf:rest _:c14n199 .
+_:c14n225 rdf:first fix_sbe:SbeCompositeV1 ;
 	rdf:rest _:c14n430 .
-_:c14n225 a owl:Restriction ;
+_:c14n226 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty fix_sbe:primitive_type .
-_:c14n226 rdf:first fix_sbe:SbePresence\#optional ;
-	rdf:rest _:c14n68 .
-_:c14n227 a owl:Restriction ;
+_:c14n227 rdf:first fix_sbe:SbePresence\#optional ;
+	rdf:rest _:c14n69 .
+_:c14n228 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_sbe:null_value .
-_:c14n228 rdf:first fix_sbe:SbeFixDatatype\#Percentage ;
-	rdf:rest _:c14n26 .
-_:c14n229 a owl:Restriction ;
-	owl:allValuesFrom fix_sbe:SbePresence ;
-	owl:onProperty fix_sbe:presence .
+_:c14n229 rdf:first fix_sbe:SbeFixDatatype\#Percentage ;
+	rdf:rest _:c14n27 .
 _:c14n23 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_sbe:presence .
-_:c14n230 rdf:first fix_sbe:SbePresence\#required ;
-	rdf:rest _:c14n226 .
-_:c14n231 a owl:Restriction ;
+_:c14n230 a owl:Restriction ;
+	owl:allValuesFrom fix_sbe:SbePresence ;
+	owl:onProperty fix_sbe:presence .
+_:c14n231 rdf:first fix_sbe:SbePresence\#required ;
+	rdf:rest _:c14n227 .
+_:c14n232 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty fix_sbe:choices .
-_:c14n232 a owl:Restriction ;
+_:c14n233 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_sbe:description .
-_:c14n233 a owl:Restriction ;
+_:c14n234 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty fix_sbe:encoding_sets .
-_:c14n234 a owl:Restriction ;
+_:c14n235 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_sbe:character_encoding .
-_:c14n235 a owl:Restriction ;
+_:c14n236 a owl:Restriction ;
 	rdfs:subClassOf fix_sbe:SbeSimpleTypeV2 ;
 	owl:onProperty fix_sbe:encoding_kind ;
 	owl:someValuesFrom fix_sbe:SbeSimpleTypeV2 .
-_:c14n236 a owl:Restriction ;
-	owl:allValuesFrom _:c14n886 ;
-	owl:onProperty fix_sbe:sbe_id .
 _:c14n237 a owl:Restriction ;
+	owl:allValuesFrom _:c14n799 ;
+	owl:onProperty fix_sbe:sbe_id .
+_:c14n238 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_sbe:description .
-_:c14n238 rdf:first fix_sbe:SbeFixDatatype\#Country ;
-	rdf:rest _:c14n57 .
-_:c14n239 a owl:Restriction ;
+_:c14n239 rdf:first fix_sbe:SbeFixDatatype\#Country ;
+	rdf:rest _:c14n58 .
+_:c14n24 a owl:Restriction ;
+	owl:allValuesFrom _:c14n914 ;
+	owl:onProperty fix_sbe:block_length .
+_:c14n240 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_sbe:sbe_id .
-_:c14n24 a owl:Restriction ;
-	owl:allValuesFrom _:c14n920 ;
-	owl:onProperty fix_sbe:block_length .
-_:c14n240 rdf:first fix_sbe:SbeFixDatatype\#UTCDateOnly ;
+_:c14n241 rdf:first fix_sbe:SbeFixDatatype\#UTCDateOnly ;
 	rdf:rest _:c14n432 .
-_:c14n241 a owl:Restriction ;
+_:c14n242 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_sbe:max_value .
-_:c14n242 a rdfs:Datatype ;
-	owl:intersectionOf _:c14n891 .
-_:c14n243 a owl:Restriction ;
+_:c14n243 a rdfs:Datatype ;
+	owl:intersectionOf _:c14n778 .
+_:c14n244 a owl:Restriction ;
 	rdfs:subClassOf fix_sbe:SbeSetV2 ;
 	owl:onProperty fix_sbe:encoding_kind ;
 	owl:someValuesFrom fix_sbe:SbeSetV2 .
-_:c14n244 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty fix_sbe:encoding_kind .
 _:c14n245 a owl:Restriction ;
 	owl:maxCardinality 1 ;
-	owl:onProperty fix_sbe:encoding_name .
+	owl:onProperty fix_sbe:encoding_kind .
 _:c14n246 a owl:Restriction ;
-	owl:allValuesFrom _:c14n756 ;
-	owl:onProperty fix_sbe:offset .
+	owl:maxCardinality 1 ;
+	owl:onProperty fix_sbe:encoding_name .
 _:c14n247 a owl:Restriction ;
+	owl:allValuesFrom _:c14n747 ;
+	owl:onProperty fix_sbe:offset .
+_:c14n248 a owl:Restriction ;
 	owl:allValuesFrom fix_sbe:SbeMemberV1 ;
 	owl:onProperty fix_sbe:composite_members .
-_:c14n248 a owl:Restriction ;
+_:c14n249 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_sbe:header_type .
-_:c14n249 a owl:Restriction ;
+_:c14n25 a owl:Restriction ;
+	owl:allValuesFrom xsd:string ;
+	owl:onProperty fix_sbe:xml_base .
+_:c14n250 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty fix_sbe:primitive_type .
-_:c14n25 a owl:Restriction ;
-	owl:allValuesFrom _:c14n700 ;
-	owl:onProperty fix_sbe:element_value .
-_:c14n250 a owl:Restriction ;
-	owl:allValuesFrom xsd:string ;
-	owl:onProperty fix_sbe:sbe_id .
 _:c14n251 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
-	owl:onProperty fix_sbe:character_encoding .
+	owl:onProperty fix_sbe:sbe_id .
 _:c14n252 a owl:Restriction ;
-	owl:allValuesFrom _:c14n91 ;
-	owl:onProperty fix_sbe:encodings .
+	owl:allValuesFrom xsd:string ;
+	owl:onProperty fix_sbe:character_encoding .
 _:c14n253 a owl:Restriction ;
+	owl:allValuesFrom _:c14n92 ;
+	owl:onProperty fix_sbe:encodings .
+_:c14n254 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty fix_sbe:symbolic_name .
-_:c14n254 a owl:Restriction ;
-	owl:allValuesFrom _:c14n558 ;
-	owl:onProperty fix_sbe:encoding_type .
 _:c14n255 a owl:Restriction ;
+	owl:allValuesFrom _:c14n535 ;
+	owl:onProperty fix_sbe:encoding_type .
+_:c14n256 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_sbe:semantic_version .
-_:c14n256 a owl:Restriction ;
+_:c14n257 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_sbe:description .
-_:c14n257 a owl:Restriction ;
+_:c14n258 a owl:Restriction ;
 	owl:allValuesFrom _:c14n570 ;
 	owl:onProperty fix_sbe:symbolic_name .
-_:c14n258 a owl:Restriction ;
+_:c14n259 a owl:Restriction ;
 	owl:allValuesFrom fix_sbe:SbeByteOrder ;
 	owl:onProperty fix_sbe:byte_order .
-_:c14n259 rdf:first fix_sbe:SbeFixDatatype\#TZTimeOnly ;
-	rdf:rest _:c14n183 .
-_:c14n26 rdf:first fix_sbe:SbeFixDatatype\#char ;
-	rdf:rest _:c14n437 .
-_:c14n260 rdf:first fix_sbe:SbeFixDatatype\#EncodedText ;
-	rdf:rest _:c14n324 .
-_:c14n261 a owl:Restriction ;
+_:c14n26 a owl:Restriction ;
+	owl:allValuesFrom _:c14n661 ;
+	owl:onProperty fix_sbe:element_value .
+_:c14n260 rdf:first fix_sbe:SbeFixDatatype\#TZTimeOnly ;
+	rdf:rest _:c14n184 .
+_:c14n261 rdf:first fix_sbe:SbeFixDatatype\#EncodedText ;
+	rdf:rest _:c14n325 .
+_:c14n262 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_sbe:element_value .
-_:c14n262 a owl:Restriction ;
+_:c14n263 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty fix_sbe:null_value .
-_:c14n263 a owl:Restriction ;
+_:c14n264 a owl:Restriction ;
 	owl:allValuesFrom fix_sbe:SbeMessageSetV2 ;
 	owl:onProperty fix_sbe:message_sets .
-_:c14n264 a owl:Restriction ;
+_:c14n265 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_sbe:time_unit .
-_:c14n265 a owl:Restriction ;
+_:c14n266 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty fix_sbe:symbolic_name .
-_:c14n266 a owl:Restriction ;
+_:c14n267 a owl:Restriction ;
+	owl:allValuesFrom xsd:string ;
+	owl:onProperty fix_sbe:xml_base .
+_:c14n268 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_sbe:offset .
-_:c14n267 a owl:Restriction ;
-	owl:minCardinality 0 ;
-	owl:onProperty fix_sbe:sbe_id .
-_:c14n268 a owl:Restriction ;
-	owl:allValuesFrom _:c14n688 ;
-	owl:onProperty fix_sbe:element_value .
 _:c14n269 a owl:Restriction ;
 	owl:minCardinality 0 ;
-	owl:onProperty fix_sbe:offset .
-_:c14n27 a owl:Restriction ;
-	owl:minCardinality 1 ;
-	owl:onProperty fix_sbe:bit_position .
+	owl:onProperty fix_sbe:sbe_id .
+_:c14n27 rdf:first fix_sbe:SbeFixDatatype\#char ;
+	rdf:rest _:c14n437 .
 _:c14n270 a owl:Restriction ;
-	owl:minCardinality 1 ;
-	owl:onProperty fix_sbe:valid_values .
+	owl:allValuesFrom _:c14n672 ;
+	owl:onProperty fix_sbe:element_value .
 _:c14n271 a owl:Restriction ;
 	owl:minCardinality 0 ;
-	owl:onProperty fix_sbe:value_ref .
+	owl:onProperty fix_sbe:offset .
 _:c14n272 a owl:Restriction ;
 	owl:minCardinality 1 ;
-	owl:onProperty fix_sbe:encoding_type .
+	owl:onProperty fix_sbe:valid_values .
 _:c14n273 a owl:Restriction ;
 	owl:minCardinality 0 ;
-	owl:onProperty fix_sbe:presence .
+	owl:onProperty fix_sbe:value_ref .
 _:c14n274 a owl:Restriction ;
 	owl:minCardinality 1 ;
-	owl:onProperty fix_sbe:encoding_kind .
+	owl:onProperty fix_sbe:encoding_type .
 _:c14n275 a owl:Restriction ;
+	owl:minCardinality 0 ;
+	owl:onProperty fix_sbe:presence .
+_:c14n276 a owl:Restriction ;
+	owl:minCardinality 1 ;
+	owl:onProperty fix_sbe:encoding_kind .
+_:c14n277 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_sbe:dimension_type .
-_:c14n276 a owl:Restriction ;
-	owl:allValuesFrom _:c14n552 ;
+_:c14n278 a owl:Restriction ;
+	owl:allValuesFrom _:c14n559 ;
 	owl:onProperty fix_sbe:symbolic_name .
-_:c14n277 a owl:Restriction ;
+_:c14n279 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_sbe:description .
-_:c14n278 a owl:Restriction ;
+_:c14n28 a owl:Restriction ;
+	owl:minCardinality 1 ;
+	owl:onProperty fix_sbe:bit_position .
+_:c14n280 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_sbe:schema_package .
-_:c14n279 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty fix_sbe:symbolic_name .
-_:c14n28 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty fix_sbe:character_encoding .
-_:c14n280 a owl:Restriction ;
-	owl:onProperty fix_sbe:alignment ;
-	owl:someValuesFrom xsd:string .
 _:c14n281 a owl:Restriction ;
 	owl:maxCardinality 1 ;
-	owl:onProperty fix_sbe:sbe_id .
+	owl:onProperty fix_sbe:symbolic_name .
 _:c14n282 a owl:Restriction ;
-	owl:minCardinality 0 ;
-	owl:onProperty fix_sbe:semantic_type .
+	owl:onProperty fix_sbe:alignment ;
+	owl:someValuesFrom xsd:string .
 _:c14n283 a owl:Restriction ;
-	owl:minCardinality 0 ;
-	owl:onProperty fix_sbe:value_ref .
+	owl:maxCardinality 1 ;
+	owl:onProperty fix_sbe:sbe_id .
 _:c14n284 a owl:Restriction ;
 	owl:minCardinality 0 ;
-	owl:onProperty fix_sbe:repeating_groups .
+	owl:onProperty fix_sbe:semantic_type .
 _:c14n285 a owl:Restriction ;
-	owl:allValuesFrom xsd:string ;
-	owl:onProperty fix_sbe:description .
+	owl:minCardinality 0 ;
+	owl:onProperty fix_sbe:value_ref .
 _:c14n286 a owl:Restriction ;
+	owl:minCardinality 0 ;
+	owl:onProperty fix_sbe:repeating_groups .
+_:c14n287 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty fix_sbe:description .
-_:c14n287 rdf:first fix_sbe:SbeElementV2 ;
-	rdf:rest rdf:nil .
 _:c14n288 a owl:Restriction ;
+	owl:allValuesFrom xsd:string ;
+	owl:onProperty fix_sbe:description .
+_:c14n289 rdf:first fix_sbe:SbeElementV2 ;
+	rdf:rest rdf:nil .
+_:c14n29 a owl:Restriction ;
+	owl:maxCardinality 1 ;
+	owl:onProperty fix_sbe:character_encoding .
+_:c14n290 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_sbe:byte_order .
-_:c14n289 a owl:Restriction ;
+_:c14n291 a owl:Restriction ;
 	rdfs:subClassOf fix_sbe:SbeEncodingV1 ;
 	owl:onProperty fix_sbe:encoding_kind ;
 	owl:someValuesFrom fix_sbe:SbeEncodingV1 .
-_:c14n29 a owl:Restriction ;
-	owl:minCardinality 0 ;
-	owl:onProperty fix_sbe:xml_base .
-_:c14n290 a owl:Restriction ;
+_:c14n292 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_sbe:block_fields .
-_:c14n291 a owl:Restriction ;
-	owl:allValuesFrom xsd:anyURI ;
-	owl:onProperty fix_sbe:xml_base .
-_:c14n292 a owl:Restriction ;
+_:c14n293 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_sbe:alignment .
-_:c14n293 a owl:Restriction ;
+_:c14n294 a owl:Restriction ;
 	owl:allValuesFrom fix_sbe:SbeMessageV1 ;
 	owl:onProperty fix_sbe:messages .
-_:c14n294 a owl:Restriction ;
-	owl:minCardinality 0 ;
-	owl:onProperty fix_sbe:character_encoding .
 _:c14n295 a owl:Restriction ;
 	owl:minCardinality 0 ;
-	owl:onProperty fix_sbe:description .
+	owl:onProperty fix_sbe:character_encoding .
 _:c14n296 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty fix_sbe:encoding_name .
-_:c14n297 a owl:Restriction ;
-	owl:allValuesFrom xsd:string ;
-	owl:onProperty fix_sbe:semantic_version .
-_:c14n298 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_sbe:description .
-_:c14n299 rdf:first fix_sbe:SbeCompositeV2 ;
-	rdf:rest _:c14n464 .
+_:c14n297 a owl:Restriction ;
+	owl:maxCardinality 1 ;
+	owl:onProperty fix_sbe:encoding_name .
+_:c14n298 a owl:Restriction ;
+	owl:allValuesFrom xsd:string ;
+	owl:onProperty fix_sbe:semantic_version .
+_:c14n299 a owl:Restriction ;
+	owl:minCardinality 0 ;
+	owl:onProperty fix_sbe:description .
 _:c14n3 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_sbe:max_value .
 _:c14n30 a owl:Restriction ;
-	owl:allValuesFrom xsd:string ;
-	owl:onProperty fix_sbe:description .
-_:c14n300 a owl:Restriction ;
+	owl:minCardinality 0 ;
+	owl:onProperty fix_sbe:xml_base .
+_:c14n300 rdf:first fix_sbe:SbeCompositeV2 ;
+	rdf:rest _:c14n464 .
+_:c14n301 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_sbe:description .
-_:c14n301 a owl:Restriction ;
+_:c14n302 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty fix_sbe:schema_package .
-_:c14n302 rdf:first fix_sbe:SbeByteOrder\#bigEndian ;
-	rdf:rest _:c14n110 .
-_:c14n303 a owl:Restriction ;
+_:c14n303 rdf:first fix_sbe:SbeByteOrder\#bigEndian ;
+	rdf:rest _:c14n111 .
+_:c14n304 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty fix_sbe:composite_members .
-_:c14n304 a owl:Restriction ;
+_:c14n305 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_sbe:character_encoding .
-_:c14n305 rdf:first fix_sbe:SbeFixDatatype\#PriceOffset ;
-	rdf:rest _:c14n161 .
-_:c14n306 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty fix_sbe:sbe_id .
+_:c14n306 rdf:first fix_sbe:SbeFixDatatype\#PriceOffset ;
+	rdf:rest _:c14n162 .
 _:c14n307 a owl:Restriction ;
 	owl:maxCardinality 1 ;
-	owl:onProperty fix_sbe:description .
+	owl:onProperty fix_sbe:sbe_id .
 _:c14n308 a owl:Restriction ;
-	owl:minCardinality 0 ;
+	owl:maxCardinality 1 ;
 	owl:onProperty fix_sbe:description .
 _:c14n309 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty fix_sbe:encoding_type .
-_:c14n31 a owl:Restriction ;
 	owl:minCardinality 0 ;
-	owl:onProperty fix_sbe:deprecated_since .
+	owl:onProperty fix_sbe:description .
+_:c14n31 a owl:Restriction ;
+	owl:allValuesFrom xsd:string ;
+	owl:onProperty fix_sbe:description .
 _:c14n310 a owl:Restriction ;
 	owl:maxCardinality 1 ;
-	owl:onProperty fix_sbe:semantic_type .
+	owl:onProperty fix_sbe:encoding_type .
 _:c14n311 a owl:Restriction ;
-	owl:allValuesFrom _:c14n564 ;
-	owl:onProperty fix_sbe:header_type .
+	owl:maxCardinality 1 ;
+	owl:onProperty fix_sbe:semantic_type .
 _:c14n312 a owl:Restriction ;
+	owl:allValuesFrom _:c14n601 ;
+	owl:onProperty fix_sbe:header_type .
+_:c14n313 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_sbe:semantic_type .
-_:c14n313 a owl:Restriction ;
+_:c14n314 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_sbe:sbe_id .
-_:c14n314 a owl:Restriction ;
-	owl:allValuesFrom _:c14n541 ;
-	owl:onProperty fix_sbe:dimension_type .
 _:c14n315 a owl:Restriction ;
+	owl:allValuesFrom _:c14n477 ;
+	owl:onProperty fix_sbe:dimension_type .
+_:c14n316 a owl:Restriction ;
 	owl:allValuesFrom owl:Thing ;
 	owl:onProperty fix_sbe:block_fields .
-_:c14n316 a owl:Restriction ;
-	owl:allValuesFrom _:c14n592 ;
+_:c14n317 a owl:Restriction ;
+	owl:allValuesFrom _:c14n613 ;
 	owl:onProperty fix_sbe:symbolic_name .
-_:c14n317 a rdfs:Datatype ;
-	owl:intersectionOf _:c14n505 .
-_:c14n318 a owl:Restriction ;
+_:c14n318 a rdfs:Datatype ;
+	owl:intersectionOf _:c14n581 .
+_:c14n319 a owl:Restriction ;
 	rdfs:subClassOf fix_sbe:SbeRefV2 ;
 	owl:onProperty fix_sbe:encoding_kind ;
 	owl:someValuesFrom fix_sbe:SbeRefV2 .
-_:c14n319 a owl:Restriction ;
+_:c14n32 a owl:Restriction ;
+	owl:minCardinality 0 ;
+	owl:onProperty fix_sbe:deprecated_since .
+_:c14n320 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_sbe:alignment .
-_:c14n32 a owl:Restriction ;
-	owl:minCardinality 1 ;
-	owl:onProperty fix_sbe:block_fields .
-_:c14n320 rdf:first fix_sbe:SbeFixDatatype\#int ;
-	rdf:rest _:c14n345 .
-_:c14n321 a owl:Restriction ;
+_:c14n321 rdf:first fix_sbe:SbeFixDatatype\#int ;
+	rdf:rest _:c14n346 .
+_:c14n322 a owl:Restriction ;
 	owl:maxCardinality 64 ;
 	owl:onProperty fix_sbe:choices .
-_:c14n322 rdf:first fix_sbe:SbePrimitiveType\#uint16 ;
-	rdf:rest _:c14n51 .
-_:c14n323 rdf:first fix_sbe:SbeFixDatatype\#data ;
-	rdf:rest _:c14n238 .
-_:c14n324 rdf:first fix_sbe:SbeFixDatatype\#XMLData ;
-	rdf:rest _:c14n323 .
-_:c14n325 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty fix_sbe:semantic_type .
+_:c14n323 rdf:first fix_sbe:SbePrimitiveType\#uint16 ;
+	rdf:rest _:c14n52 .
+_:c14n324 rdf:first fix_sbe:SbeFixDatatype\#data ;
+	rdf:rest _:c14n239 .
+_:c14n325 rdf:first fix_sbe:SbeFixDatatype\#XMLData ;
+	rdf:rest _:c14n324 .
 _:c14n326 a owl:Restriction ;
 	owl:maxCardinality 1 ;
-	owl:onProperty fix_sbe:array_length .
+	owl:onProperty fix_sbe:semantic_type .
 _:c14n327 a owl:Restriction ;
+	owl:maxCardinality 1 ;
+	owl:onProperty fix_sbe:array_length .
+_:c14n328 a owl:Restriction ;
 	owl:allValuesFrom fix_sbe:SbePrimitiveType ;
 	owl:onProperty fix_sbe:primitive_type .
-_:c14n328 a owl:Restriction ;
+_:c14n329 a owl:Restriction ;
 	owl:allValuesFrom fix_sbe:SbeChoice ;
 	owl:onProperty fix_sbe:choices .
-_:c14n329 a owl:Restriction ;
+_:c14n33 a owl:Restriction ;
+	owl:minCardinality 1 ;
+	owl:onProperty fix_sbe:block_fields .
+_:c14n330 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_sbe:offset .
-_:c14n33 a owl:Restriction ;
-	owl:allValuesFrom xsd:string ;
-	owl:onProperty fix_sbe:max_value .
-_:c14n330 a owl:Restriction ;
+_:c14n331 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty fix_sbe:description .
-_:c14n331 a owl:Restriction ;
+_:c14n332 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_sbe:valid_value .
-_:c14n332 a owl:Restriction ;
+_:c14n333 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty fix_sbe:encoding_name .
-_:c14n333 a owl:Restriction ;
+_:c14n334 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_sbe:block_length .
-_:c14n334 a owl:Restriction ;
+_:c14n335 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_sbe:time_epoch .
-_:c14n335 a owl:Restriction ;
+_:c14n336 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_sbe:offset .
-_:c14n336 a rdfs:Datatype ;
-	owl:intersectionOf _:c14n677 .
-_:c14n337 a owl:Restriction ;
+_:c14n337 a rdfs:Datatype ;
+	owl:intersectionOf _:c14n694 .
+_:c14n338 a owl:Restriction ;
 	owl:onProperty fix_sbe:offset ;
 	owl:someValuesFrom xsd:string .
-_:c14n338 a owl:Restriction ;
+_:c14n339 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty fix_sbe:time_unit .
-_:c14n339 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty fix_sbe:sbe_id .
 _:c14n34 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty fix_sbe:since_version .
+	owl:allValuesFrom xsd:string ;
+	owl:onProperty fix_sbe:max_value .
 _:c14n340 a owl:Restriction ;
 	owl:maxCardinality 1 ;
-	owl:onProperty fix_sbe:presence .
+	owl:onProperty fix_sbe:sbe_id .
 _:c14n341 a owl:Restriction ;
 	owl:maxCardinality 1 ;
-	owl:onProperty fix_sbe:element_value .
+	owl:onProperty fix_sbe:presence .
 _:c14n342 a owl:Restriction ;
 	owl:maxCardinality 1 ;
-	owl:onProperty fix_sbe:schema_package .
+	owl:onProperty fix_sbe:element_value .
 _:c14n343 a owl:Restriction ;
-	owl:allValuesFrom _:c14n523 ;
-	owl:onProperty fix_sbe:encoding_type .
+	owl:maxCardinality 1 ;
+	owl:onProperty fix_sbe:schema_package .
 _:c14n344 a owl:Restriction ;
+	owl:allValuesFrom _:c14n483 ;
+	owl:onProperty fix_sbe:encoding_type .
+_:c14n345 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty fix_sbe:sbe_id .
-_:c14n345 rdf:first fix_sbe:SbeFixDatatype\#Length ;
+_:c14n346 rdf:first fix_sbe:SbeFixDatatype\#Length ;
 	rdf:rest _:c14n398 .
-_:c14n346 a owl:Restriction ;
+_:c14n347 a owl:Restriction ;
 	owl:allValuesFrom fix_sbe:SbePresence ;
 	owl:onProperty fix_sbe:presence .
-_:c14n347 a owl:Restriction ;
+_:c14n348 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_sbe:alignment .
-_:c14n348 a owl:Restriction ;
+_:c14n349 a owl:Restriction ;
 	owl:allValuesFrom fix_sbe:SbePrimitiveType ;
 	owl:onProperty fix_sbe:primitive_type .
-_:c14n349 rdf:first fix_sbe:SbePrimitiveType\#int64 ;
-	rdf:rest _:c14n127 .
 _:c14n35 a owl:Restriction ;
 	owl:maxCardinality 1 ;
-	owl:onProperty fix_sbe:schema_version .
-_:c14n350 a owl:Restriction ;
+	owl:onProperty fix_sbe:since_version .
+_:c14n350 rdf:first fix_sbe:SbePrimitiveType\#int64 ;
+	rdf:rest _:c14n128 .
+_:c14n351 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_sbe:description .
-_:c14n351 a owl:Restriction ;
+_:c14n352 a owl:Restriction ;
 	rdfs:subClassOf fix_sbe:SbeEnumV1 ;
 	owl:onProperty fix_sbe:encoding_kind ;
 	owl:someValuesFrom fix_sbe:SbeEnumV1 .
-_:c14n352 a owl:Restriction ;
+_:c14n353 a owl:Restriction ;
 	rdfs:subClassOf fix_sbe:SbeCompositeV2 ;
 	owl:onProperty fix_sbe:encoding_kind ;
 	owl:someValuesFrom fix_sbe:SbeCompositeV2 .
-_:c14n353 a owl:Restriction ;
-	owl:allValuesFrom _:c14n858 ;
+_:c14n354 a owl:Restriction ;
+	owl:allValuesFrom _:c14n773 ;
 	owl:onProperty fix_sbe:schema_version .
-_:c14n354 a rdfs:Datatype ;
-	owl:intersectionOf _:c14n580 .
-_:c14n355 a owl:Restriction ;
+_:c14n355 a rdfs:Datatype ;
+	owl:intersectionOf _:c14n586 .
+_:c14n356 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_sbe:null_value .
-_:c14n356 a owl:Restriction ;
-	owl:allValuesFrom _:c14n736 ;
-	owl:onProperty fix_sbe:offset .
 _:c14n357 a owl:Restriction ;
-	owl:allValuesFrom _:c14n908 ;
-	owl:onProperty fix_sbe:deprecated_since .
+	owl:allValuesFrom _:c14n737 ;
+	owl:onProperty fix_sbe:offset .
 _:c14n358 a owl:Restriction ;
+	owl:allValuesFrom _:c14n886 ;
+	owl:onProperty fix_sbe:deprecated_since .
+_:c14n359 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty fix_sbe:description .
-_:c14n359 a owl:Restriction ;
+_:c14n36 a owl:Restriction ;
+	owl:maxCardinality 1 ;
+	owl:onProperty fix_sbe:schema_version .
+_:c14n360 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty fix_sbe:messages .
-_:c14n36 a owl:Restriction ;
-	owl:minCardinality 0 ;
-	owl:onProperty fix_sbe:offset .
-_:c14n360 a owl:Restriction ;
+_:c14n361 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_sbe:description .
-_:c14n361 a owl:Restriction ;
+_:c14n362 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty fix_sbe:symbolic_name .
-_:c14n362 a owl:Restriction ;
+_:c14n363 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_sbe:semantic_type .
-_:c14n363 rdf:first fix_sbe:SbeFixDatatype\#MonthYear ;
+_:c14n364 rdf:first fix_sbe:SbeFixDatatype\#MonthYear ;
 	rdf:rest _:c14n404 .
-_:c14n364 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty fix_sbe:description .
 _:c14n365 a owl:Restriction ;
 	owl:maxCardinality 1 ;
-	owl:onProperty fix_sbe:symbolic_name .
+	owl:onProperty fix_sbe:description .
 _:c14n366 a owl:Restriction ;
-	owl:allValuesFrom _:c14n826 ;
-	owl:onProperty fix_sbe:block_length .
+	owl:maxCardinality 1 ;
+	owl:onProperty fix_sbe:symbolic_name .
 _:c14n367 a owl:Restriction ;
+	owl:allValuesFrom _:c14n805 ;
+	owl:onProperty fix_sbe:block_length .
+_:c14n368 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_sbe:sbe_id .
-_:c14n368 a owl:Restriction ;
+_:c14n369 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty fix_sbe:description .
-_:c14n369 a owl:Restriction ;
+_:c14n37 a owl:Restriction ;
+	owl:minCardinality 0 ;
+	owl:onProperty fix_sbe:offset .
+_:c14n370 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_sbe:value_ref .
-_:c14n37 a rdfs:Datatype ;
-	owl:intersectionOf _:c14n875 .
-_:c14n370 a owl:Restriction ;
+_:c14n371 a owl:Restriction ;
 	owl:allValuesFrom fix_sbe:SbeChoice ;
 	owl:onProperty fix_sbe:choices .
-_:c14n371 a owl:Restriction ;
+_:c14n372 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_sbe:element_value .
-_:c14n372 a owl:Restriction ;
+_:c14n373 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty fix_sbe:semantic_version .
-_:c14n373 a owl:Restriction ;
+_:c14n374 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_sbe:description .
-_:c14n374 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty fix_sbe:primitive_type .
 _:c14n375 a owl:Restriction ;
 	owl:maxCardinality 1 ;
-	owl:onProperty fix_sbe:presence .
+	owl:onProperty fix_sbe:primitive_type .
 _:c14n376 a owl:Restriction ;
+	owl:maxCardinality 1 ;
+	owl:onProperty fix_sbe:presence .
+_:c14n377 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_sbe:min_value .
-_:c14n377 a owl:Restriction ;
+_:c14n378 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty fix_sbe:semantic_type .
-_:c14n378 a owl:Restriction ;
+_:c14n379 a owl:Restriction ;
 	owl:allValuesFrom fix_sbe:SbeEncodingSetV2 ;
 	owl:onProperty fix_sbe:encoding_sets .
-_:c14n379 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty fix_sbe:max_value .
-_:c14n38 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty fix_sbe:sbe_id .
+_:c14n38 a rdfs:Datatype ;
+	owl:intersectionOf _:c14n902 .
 _:c14n380 a owl:Restriction ;
 	owl:maxCardinality 1 ;
-	owl:onProperty fix_sbe:min_value .
+	owl:onProperty fix_sbe:max_value .
 _:c14n381 a owl:Restriction ;
-	owl:allValuesFrom xsd:string ;
+	owl:maxCardinality 1 ;
 	owl:onProperty fix_sbe:min_value .
 _:c14n382 a owl:Restriction ;
+	owl:allValuesFrom xsd:string ;
+	owl:onProperty fix_sbe:min_value .
+_:c14n383 a owl:Restriction ;
 	owl:allValuesFrom fix_sbe:SbeFieldV2 ;
 	owl:onProperty fix_sbe:block_fields .
-_:c14n383 a rdfs:Datatype ;
-	owl:intersectionOf _:c14n896 .
-_:c14n384 a owl:Restriction ;
+_:c14n384 a rdfs:Datatype ;
+	owl:intersectionOf _:c14n833 .
+_:c14n385 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_sbe:min_value .
-_:c14n385 a owl:Restriction ;
-	owl:allValuesFrom _:c14n672 ;
-	owl:onProperty fix_sbe:semantic_type .
 _:c14n386 a owl:Restriction ;
+	owl:allValuesFrom _:c14n706 ;
+	owl:onProperty fix_sbe:semantic_type .
+_:c14n387 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_sbe:time_epoch .
-_:c14n387 rdf:first fix_sbe:SbeEncodingV1 ;
-	rdf:rest _:c14n200 .
-_:c14n388 a owl:Restriction ;
-	owl:allValuesFrom xsd:anyURI ;
-	owl:onProperty fix_sbe:xml_base .
+_:c14n388 rdf:first fix_sbe:SbeEncodingV1 ;
+	rdf:rest _:c14n201 .
 _:c14n389 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty fix_sbe:encoding_kind .
 _:c14n39 a owl:Restriction ;
-	owl:allValuesFrom fix_sbe:SbeValidValue ;
-	owl:onProperty fix_sbe:valid_values .
+	owl:maxCardinality 1 ;
+	owl:onProperty fix_sbe:sbe_id .
 _:c14n390 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_sbe:semantic_type .
@@ -1730,7 +1730,7 @@ _:c14n396 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_sbe:null_value .
 _:c14n397 rdf:first fix_sbe:SbeFixDatatype\#Exchange ;
-	rdf:rest _:c14n116 .
+	rdf:rest _:c14n117 .
 _:c14n398 rdf:first fix_sbe:SbeFixDatatype\#TagNum ;
 	rdf:rest _:c14n391 .
 _:c14n399 a owl:Restriction ;
@@ -1740,8 +1740,8 @@ _:c14n4 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_sbe:array_length .
 _:c14n40 a owl:Restriction ;
-	owl:allValuesFrom _:c14n746 ;
-	owl:onProperty fix_sbe:offset .
+	owl:allValuesFrom fix_sbe:SbeValidValue ;
+	owl:onProperty fix_sbe:valid_values .
 _:c14n400 rdf:first fix_sbe:SbePrimitiveType\#double ;
 	rdf:rest rdf:nil .
 _:c14n401 a owl:Restriction ;
@@ -1754,12 +1754,12 @@ _:c14n403 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_sbe:dimension_type .
 _:c14n404 rdf:first fix_sbe:SbeFixDatatype\#UTCTimestamp ;
-	rdf:rest _:c14n139 .
+	rdf:rest _:c14n140 .
 _:c14n405 a owl:Restriction ;
-	owl:allValuesFrom _:c14n837 ;
+	owl:allValuesFrom _:c14n828 ;
 	owl:onProperty fix_sbe:alignment .
 _:c14n406 a owl:Restriction ;
-	owl:allValuesFrom _:c14n852 ;
+	owl:allValuesFrom _:c14n850 ;
 	owl:onProperty fix_sbe:alignment .
 _:c14n407 a owl:Restriction ;
 	owl:minCardinality 0 ;
@@ -1769,11 +1769,11 @@ _:c14n408 a owl:Restriction ;
 	owl:onProperty fix_sbe:encoding_kind ;
 	owl:someValuesFrom fix_sbe:SbeRefV1 .
 _:c14n409 a owl:Restriction ;
-	owl:allValuesFrom _:c14n796 ;
+	owl:allValuesFrom _:c14n793 ;
 	owl:onProperty fix_sbe:bit_position .
 _:c14n41 a owl:Restriction ;
-	owl:allValuesFrom fix_sbe:SbeValidValue ;
-	owl:onProperty fix_sbe:valid_values .
+	owl:allValuesFrom _:c14n727 ;
+	owl:onProperty fix_sbe:offset .
 _:c14n410 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_sbe:element_value .
@@ -1801,8 +1801,8 @@ _:c14n419 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty fix_sbe:schema_version .
 _:c14n42 a owl:Restriction ;
-	owl:allValuesFrom fix_sbe:SbeFieldV2 ;
-	owl:onProperty fix_sbe:var_data_fields .
+	owl:allValuesFrom fix_sbe:SbeValidValue ;
+	owl:onProperty fix_sbe:valid_values .
 _:c14n420 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_sbe:description .
@@ -1813,8 +1813,8 @@ _:c14n422 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_sbe:xml_base .
 _:c14n423 rdf:first fix_sbe:SbeFixDatatype\#MultipleStringValue ;
-	rdf:rest _:c14n363 .
-_:c14n424 owl:unionOf _:c14n191 .
+	rdf:rest _:c14n364 .
+_:c14n424 owl:unionOf _:c14n192 .
 _:c14n425 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_sbe:description .
@@ -1822,23 +1822,23 @@ _:c14n426 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty fix_sbe:composite_members .
 _:c14n427 a rdfs:Datatype ;
-	owl:intersectionOf _:c14n682 .
+	owl:intersectionOf _:c14n689 .
 _:c14n428 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_sbe:var_data_fields .
 _:c14n429 a owl:Restriction ;
-	owl:allValuesFrom _:c14n630 ;
+	owl:allValuesFrom _:c14n625 ;
 	owl:onProperty fix_sbe:value_ref .
 _:c14n43 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty fix_sbe:semantic_type .
+	owl:allValuesFrom fix_sbe:SbeFieldV2 ;
+	owl:onProperty fix_sbe:var_data_fields .
 _:c14n430 rdf:first fix_sbe:SbeEnumV1 ;
-	rdf:rest _:c14n65 .
+	rdf:rest _:c14n66 .
 _:c14n431 a owl:Restriction ;
-	owl:allValuesFrom _:c14n864 ;
+	owl:allValuesFrom _:c14n868 ;
 	owl:onProperty fix_sbe:sbe_id .
 _:c14n432 rdf:first fix_sbe:SbeFixDatatype\#LocalMktDate ;
-	rdf:rest _:c14n259 .
+	rdf:rest _:c14n260 .
 _:c14n433 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_sbe:character_encoding .
@@ -1849,10 +1849,10 @@ _:c14n435 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_sbe:element_value .
 _:c14n436 a owl:Restriction ;
-	owl:allValuesFrom _:c14n914 ;
+	owl:allValuesFrom _:c14n908 ;
 	owl:onProperty fix_sbe:sbe_id .
 _:c14n437 rdf:first fix_sbe:SbeFixDatatype\#String ;
-	rdf:rest _:c14n260 .
+	rdf:rest _:c14n261 .
 _:c14n438 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_sbe:offset .
@@ -1862,7 +1862,7 @@ _:c14n439 a owl:Restriction ;
 _:c14n44 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_sbe:semantic_type .
-_:c14n440 owl:unionOf _:c14n224 .
+_:c14n440 owl:unionOf _:c14n225 .
 _:c14n441 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty fix_sbe:primitive_type .
@@ -1882,7 +1882,7 @@ _:c14n446 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_sbe:description .
 _:c14n447 a owl:Restriction ;
-	owl:allValuesFrom _:c14n511 ;
+	owl:allValuesFrom _:c14n501 ;
 	owl:onProperty fix_sbe:symbolic_name .
 _:c14n448 a owl:Restriction ;
 	owl:maxCardinality 1 ;
@@ -1890,8 +1890,9 @@ _:c14n448 a owl:Restriction ;
 _:c14n449 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_sbe:var_data_fields .
-_:c14n45 a rdfs:Datatype ;
-	owl:intersectionOf _:c14n880 .
+_:c14n45 a owl:Restriction ;
+	owl:maxCardinality 1 ;
+	owl:onProperty fix_sbe:semantic_type .
 _:c14n450 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_sbe:value_ref .
@@ -1923,9 +1924,8 @@ _:c14n458 a owl:Restriction ;
 _:c14n459 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_sbe:semantic_type .
-_:c14n46 a owl:Restriction ;
-	owl:minCardinality 1 ;
-	owl:onProperty fix_sbe:choices .
+_:c14n46 a rdfs:Datatype ;
+	owl:intersectionOf _:c14n838 .
 _:c14n460 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_sbe:element_value .
@@ -1950,132 +1950,132 @@ _:c14n468 a rdfs:Datatype ;
 _:c14n469 rdf:first _:c14n468 ;
 	rdf:rest rdf:nil .
 _:c14n47 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty fix_sbe:description .
+	owl:minCardinality 1 ;
+	owl:onProperty fix_sbe:choices .
 _:c14n470 rdf:first xsd:string ;
 	rdf:rest _:c14n469 .
-_:c14n471 xsd:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
-_:c14n472 rdf:first _:c14n471 ;
+_:c14n471 a rdfs:Datatype ;
+	owl:intersectionOf _:c14n470 .
+_:c14n472 xsd:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
+_:c14n473 rdf:first _:c14n472 ;
 	rdf:rest rdf:nil .
-_:c14n473 a rdfs:Datatype ;
+_:c14n474 a rdfs:Datatype ;
 	owl:onDatatype xsd:string ;
-	owl:withRestrictions _:c14n472 .
-_:c14n474 rdf:first _:c14n473 ;
+	owl:withRestrictions _:c14n473 .
+_:c14n475 rdf:first _:c14n474 ;
 	rdf:rest rdf:nil .
-_:c14n475 rdf:first xsd:string ;
-	rdf:rest _:c14n474 .
-_:c14n476 a rdfs:Datatype ;
-	owl:intersectionOf _:c14n475 .
-_:c14n477 xsd:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
-_:c14n478 rdf:first _:c14n477 ;
+_:c14n476 rdf:first xsd:string ;
+	rdf:rest _:c14n475 .
+_:c14n477 a rdfs:Datatype ;
+	owl:intersectionOf _:c14n476 .
+_:c14n478 xsd:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
+_:c14n479 rdf:first _:c14n478 ;
 	rdf:rest rdf:nil .
-_:c14n479 a rdfs:Datatype ;
-	owl:onDatatype xsd:string ;
-	owl:withRestrictions _:c14n478 .
 _:c14n48 a owl:Restriction ;
+	owl:maxCardinality 1 ;
+	owl:onProperty fix_sbe:description .
+_:c14n480 a rdfs:Datatype ;
+	owl:onDatatype xsd:string ;
+	owl:withRestrictions _:c14n479 .
+_:c14n481 rdf:first _:c14n480 ;
+	rdf:rest rdf:nil .
+_:c14n482 rdf:first xsd:string ;
+	rdf:rest _:c14n481 .
+_:c14n483 a rdfs:Datatype ;
+	owl:intersectionOf _:c14n482 .
+_:c14n484 xsd:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
+_:c14n485 rdf:first _:c14n484 ;
+	rdf:rest rdf:nil .
+_:c14n486 a rdfs:Datatype ;
+	owl:onDatatype xsd:string ;
+	owl:withRestrictions _:c14n485 .
+_:c14n487 rdf:first _:c14n486 ;
+	rdf:rest rdf:nil .
+_:c14n488 rdf:first xsd:string ;
+	rdf:rest _:c14n487 .
+_:c14n489 a rdfs:Datatype ;
+	owl:intersectionOf _:c14n488 .
+_:c14n49 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_sbe:max_value .
-_:c14n480 rdf:first _:c14n479 ;
+_:c14n490 xsd:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
+_:c14n491 rdf:first _:c14n490 ;
 	rdf:rest rdf:nil .
-_:c14n481 rdf:first xsd:string ;
-	rdf:rest _:c14n480 .
-_:c14n482 a rdfs:Datatype ;
-	owl:intersectionOf _:c14n481 .
-_:c14n483 xsd:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
-_:c14n484 rdf:first _:c14n483 ;
-	rdf:rest rdf:nil .
-_:c14n485 a rdfs:Datatype ;
+_:c14n492 a rdfs:Datatype ;
 	owl:onDatatype xsd:string ;
-	owl:withRestrictions _:c14n484 .
-_:c14n486 rdf:first _:c14n485 ;
+	owl:withRestrictions _:c14n491 .
+_:c14n493 rdf:first _:c14n492 ;
 	rdf:rest rdf:nil .
-_:c14n487 rdf:first xsd:string ;
-	rdf:rest _:c14n486 .
-_:c14n488 a rdfs:Datatype ;
-	owl:intersectionOf _:c14n487 .
-_:c14n489 xsd:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
-_:c14n49 a owl:Restriction ;
+_:c14n494 rdf:first xsd:string ;
+	rdf:rest _:c14n493 .
+_:c14n495 a rdfs:Datatype ;
+	owl:intersectionOf _:c14n494 .
+_:c14n496 xsd:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
+_:c14n497 rdf:first _:c14n496 ;
+	rdf:rest rdf:nil .
+_:c14n498 a rdfs:Datatype ;
+	owl:onDatatype xsd:string ;
+	owl:withRestrictions _:c14n497 .
+_:c14n499 rdf:first _:c14n498 ;
+	rdf:rest rdf:nil .
+_:c14n5 rdf:first fix_sbe:SbeFixDatatype\#NumInGroup ;
+	rdf:rest _:c14n224 .
+_:c14n50 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_sbe:value_ref .
-_:c14n490 rdf:first _:c14n489 ;
+_:c14n500 rdf:first xsd:string ;
+	rdf:rest _:c14n499 .
+_:c14n501 a rdfs:Datatype ;
+	owl:intersectionOf _:c14n500 .
+_:c14n502 xsd:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
+_:c14n503 rdf:first _:c14n502 ;
 	rdf:rest rdf:nil .
-_:c14n491 a rdfs:Datatype ;
+_:c14n504 a rdfs:Datatype ;
 	owl:onDatatype xsd:string ;
-	owl:withRestrictions _:c14n490 .
-_:c14n492 rdf:first _:c14n491 ;
+	owl:withRestrictions _:c14n503 .
+_:c14n505 rdf:first _:c14n504 ;
 	rdf:rest rdf:nil .
-_:c14n493 rdf:first xsd:string ;
-	rdf:rest _:c14n492 .
-_:c14n494 a rdfs:Datatype ;
-	owl:intersectionOf _:c14n493 .
-_:c14n495 xsd:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
-_:c14n496 rdf:first _:c14n495 ;
-	rdf:rest rdf:nil .
-_:c14n497 a rdfs:Datatype ;
-	owl:onDatatype xsd:string ;
-	owl:withRestrictions _:c14n496 .
-_:c14n498 rdf:first _:c14n497 ;
-	rdf:rest rdf:nil .
-_:c14n499 rdf:first xsd:string ;
-	rdf:rest _:c14n498 .
-_:c14n5 rdf:first fix_sbe:SbeFixDatatype\#NumInGroup ;
-	rdf:rest _:c14n223 .
-_:c14n50 a owl:Restriction ;
-	owl:allValuesFrom _:c14n529 ;
-	owl:onProperty fix_sbe:encoding_name .
-_:c14n500 a rdfs:Datatype ;
-	owl:intersectionOf _:c14n499 .
-_:c14n501 xsd:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
-_:c14n502 rdf:first _:c14n501 ;
-	rdf:rest rdf:nil .
-_:c14n503 a rdfs:Datatype ;
-	owl:onDatatype xsd:string ;
-	owl:withRestrictions _:c14n502 .
-_:c14n504 rdf:first _:c14n503 ;
-	rdf:rest rdf:nil .
-_:c14n505 rdf:first xsd:string ;
-	rdf:rest _:c14n504 .
-_:c14n506 xsd:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
-_:c14n507 rdf:first _:c14n506 ;
-	rdf:rest rdf:nil .
-_:c14n508 a rdfs:Datatype ;
-	owl:onDatatype xsd:string ;
-	owl:withRestrictions _:c14n507 .
+_:c14n506 rdf:first xsd:string ;
+	rdf:rest _:c14n505 .
+_:c14n507 a rdfs:Datatype ;
+	owl:intersectionOf _:c14n506 .
+_:c14n508 xsd:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
 _:c14n509 rdf:first _:c14n508 ;
 	rdf:rest rdf:nil .
-_:c14n51 rdf:first fix_sbe:SbePrimitiveType\#uint32 ;
-	rdf:rest _:c14n166 .
-_:c14n510 rdf:first xsd:string ;
-	rdf:rest _:c14n509 .
-_:c14n511 a rdfs:Datatype ;
-	owl:intersectionOf _:c14n510 .
-_:c14n512 xsd:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
-_:c14n513 rdf:first _:c14n512 ;
-	rdf:rest rdf:nil .
-_:c14n514 a rdfs:Datatype ;
+_:c14n51 a owl:Restriction ;
+	owl:allValuesFrom _:c14n518 ;
+	owl:onProperty fix_sbe:encoding_name .
+_:c14n510 a rdfs:Datatype ;
 	owl:onDatatype xsd:string ;
-	owl:withRestrictions _:c14n513 .
-_:c14n515 rdf:first _:c14n514 ;
+	owl:withRestrictions _:c14n509 .
+_:c14n511 rdf:first _:c14n510 ;
 	rdf:rest rdf:nil .
-_:c14n516 rdf:first xsd:string ;
-	rdf:rest _:c14n515 .
-_:c14n517 a rdfs:Datatype ;
-	owl:intersectionOf _:c14n516 .
-_:c14n518 xsd:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
-_:c14n519 rdf:first _:c14n518 ;
+_:c14n512 rdf:first xsd:string ;
+	rdf:rest _:c14n511 .
+_:c14n513 xsd:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
+_:c14n514 rdf:first _:c14n513 ;
 	rdf:rest rdf:nil .
-_:c14n52 a owl:Restriction ;
-	owl:allValuesFrom _:c14n790 ;
-	owl:onProperty fix_sbe:array_length .
-_:c14n520 a rdfs:Datatype ;
+_:c14n515 a rdfs:Datatype ;
 	owl:onDatatype xsd:string ;
-	owl:withRestrictions _:c14n519 .
-_:c14n521 rdf:first _:c14n520 ;
+	owl:withRestrictions _:c14n514 .
+_:c14n516 rdf:first _:c14n515 ;
 	rdf:rest rdf:nil .
-_:c14n522 rdf:first xsd:string ;
-	rdf:rest _:c14n521 .
-_:c14n523 a rdfs:Datatype ;
-	owl:intersectionOf _:c14n522 .
+_:c14n517 rdf:first xsd:string ;
+	rdf:rest _:c14n516 .
+_:c14n518 a rdfs:Datatype ;
+	owl:intersectionOf _:c14n517 .
+_:c14n519 xsd:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
+_:c14n52 rdf:first fix_sbe:SbePrimitiveType\#uint32 ;
+	rdf:rest _:c14n167 .
+_:c14n520 rdf:first _:c14n519 ;
+	rdf:rest rdf:nil .
+_:c14n521 a rdfs:Datatype ;
+	owl:onDatatype xsd:string ;
+	owl:withRestrictions _:c14n520 .
+_:c14n522 rdf:first _:c14n521 ;
+	rdf:rest rdf:nil .
+_:c14n523 rdf:first xsd:string ;
+	rdf:rest _:c14n522 .
 _:c14n524 xsd:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
 _:c14n525 rdf:first _:c14n524 ;
 	rdf:rest rdf:nil .
@@ -2088,7 +2088,9 @@ _:c14n528 rdf:first xsd:string ;
 	rdf:rest _:c14n527 .
 _:c14n529 a rdfs:Datatype ;
 	owl:intersectionOf _:c14n528 .
-_:c14n53 owl:unionOf _:c14n387 .
+_:c14n53 a owl:Restriction ;
+	owl:allValuesFrom _:c14n862 ;
+	owl:onProperty fix_sbe:array_length .
 _:c14n530 xsd:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
 _:c14n531 rdf:first _:c14n530 ;
 	rdf:rest rdf:nil .
@@ -2109,9 +2111,7 @@ _:c14n538 a rdfs:Datatype ;
 	owl:withRestrictions _:c14n537 .
 _:c14n539 rdf:first _:c14n538 ;
 	rdf:rest rdf:nil .
-_:c14n54 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty fix_sbe:presence .
+_:c14n54 owl:unionOf _:c14n388 .
 _:c14n540 rdf:first xsd:string ;
 	rdf:rest _:c14n539 .
 _:c14n541 a rdfs:Datatype ;
@@ -2126,48 +2126,48 @@ _:c14n545 rdf:first _:c14n544 ;
 	rdf:rest rdf:nil .
 _:c14n546 rdf:first xsd:string ;
 	rdf:rest _:c14n545 .
-_:c14n547 xsd:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
-_:c14n548 rdf:first _:c14n547 ;
+_:c14n547 a rdfs:Datatype ;
+	owl:intersectionOf _:c14n546 .
+_:c14n548 xsd:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
+_:c14n549 rdf:first _:c14n548 ;
 	rdf:rest rdf:nil .
-_:c14n549 a rdfs:Datatype ;
-	owl:onDatatype xsd:string ;
-	owl:withRestrictions _:c14n548 .
 _:c14n55 a owl:Restriction ;
 	owl:maxCardinality 1 ;
-	owl:onProperty fix_sbe:semantic_type .
-_:c14n550 rdf:first _:c14n549 ;
-	rdf:rest rdf:nil .
-_:c14n551 rdf:first xsd:string ;
-	rdf:rest _:c14n550 .
-_:c14n552 a rdfs:Datatype ;
-	owl:intersectionOf _:c14n551 .
-_:c14n553 xsd:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
-_:c14n554 rdf:first _:c14n553 ;
-	rdf:rest rdf:nil .
-_:c14n555 a rdfs:Datatype ;
+	owl:onProperty fix_sbe:presence .
+_:c14n550 a rdfs:Datatype ;
 	owl:onDatatype xsd:string ;
-	owl:withRestrictions _:c14n554 .
-_:c14n556 rdf:first _:c14n555 ;
+	owl:withRestrictions _:c14n549 .
+_:c14n551 rdf:first _:c14n550 ;
 	rdf:rest rdf:nil .
-_:c14n557 rdf:first xsd:string ;
-	rdf:rest _:c14n556 .
-_:c14n558 a rdfs:Datatype ;
-	owl:intersectionOf _:c14n557 .
-_:c14n559 xsd:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
+_:c14n552 rdf:first xsd:string ;
+	rdf:rest _:c14n551 .
+_:c14n553 a rdfs:Datatype ;
+	owl:intersectionOf _:c14n552 .
+_:c14n554 xsd:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
+_:c14n555 rdf:first _:c14n554 ;
+	rdf:rest rdf:nil .
+_:c14n556 a rdfs:Datatype ;
+	owl:onDatatype xsd:string ;
+	owl:withRestrictions _:c14n555 .
+_:c14n557 rdf:first _:c14n556 ;
+	rdf:rest rdf:nil .
+_:c14n558 rdf:first xsd:string ;
+	rdf:rest _:c14n557 .
+_:c14n559 a rdfs:Datatype ;
+	owl:intersectionOf _:c14n558 .
 _:c14n56 a owl:Restriction ;
-	owl:minCardinality 0 ;
-	owl:onProperty fix_sbe:since_version .
-_:c14n560 rdf:first _:c14n559 ;
+	owl:maxCardinality 1 ;
+	owl:onProperty fix_sbe:semantic_type .
+_:c14n560 xsd:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
+_:c14n561 rdf:first _:c14n560 ;
 	rdf:rest rdf:nil .
-_:c14n561 a rdfs:Datatype ;
+_:c14n562 a rdfs:Datatype ;
 	owl:onDatatype xsd:string ;
-	owl:withRestrictions _:c14n560 .
-_:c14n562 rdf:first _:c14n561 ;
+	owl:withRestrictions _:c14n561 .
+_:c14n563 rdf:first _:c14n562 ;
 	rdf:rest rdf:nil .
-_:c14n563 rdf:first xsd:string ;
-	rdf:rest _:c14n562 .
-_:c14n564 a rdfs:Datatype ;
-	owl:intersectionOf _:c14n563 .
+_:c14n564 rdf:first xsd:string ;
+	rdf:rest _:c14n563 .
 _:c14n565 xsd:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
 _:c14n566 rdf:first _:c14n565 ;
 	rdf:rest rdf:nil .
@@ -2178,8 +2178,9 @@ _:c14n568 rdf:first _:c14n567 ;
 	rdf:rest rdf:nil .
 _:c14n569 rdf:first xsd:string ;
 	rdf:rest _:c14n568 .
-_:c14n57 rdf:first fix_sbe:SbeFixDatatype\#Currency ;
-	rdf:rest _:c14n397 .
+_:c14n57 a owl:Restriction ;
+	owl:minCardinality 0 ;
+	owl:onProperty fix_sbe:since_version .
 _:c14n570 a rdfs:Datatype ;
 	owl:intersectionOf _:c14n569 .
 _:c14n571 xsd:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
@@ -2192,31 +2193,30 @@ _:c14n574 rdf:first _:c14n573 ;
 	rdf:rest rdf:nil .
 _:c14n575 rdf:first xsd:string ;
 	rdf:rest _:c14n574 .
-_:c14n576 xsd:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
-_:c14n577 rdf:first _:c14n576 ;
+_:c14n576 a rdfs:Datatype ;
+	owl:intersectionOf _:c14n575 .
+_:c14n577 xsd:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
+_:c14n578 rdf:first _:c14n577 ;
 	rdf:rest rdf:nil .
-_:c14n578 a rdfs:Datatype ;
+_:c14n579 a rdfs:Datatype ;
 	owl:onDatatype xsd:string ;
-	owl:withRestrictions _:c14n577 .
-_:c14n579 rdf:first _:c14n578 ;
+	owl:withRestrictions _:c14n578 .
+_:c14n58 rdf:first fix_sbe:SbeFixDatatype\#Currency ;
+	rdf:rest _:c14n397 .
+_:c14n580 rdf:first _:c14n579 ;
 	rdf:rest rdf:nil .
-_:c14n58 a owl:Restriction ;
-	owl:allValuesFrom _:c14n784 ;
-	owl:onProperty fix_sbe:array_length .
-_:c14n580 rdf:first xsd:string ;
-	rdf:rest _:c14n579 .
-_:c14n581 xsd:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
-_:c14n582 rdf:first _:c14n581 ;
+_:c14n581 rdf:first xsd:string ;
+	rdf:rest _:c14n580 .
+_:c14n582 xsd:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
+_:c14n583 rdf:first _:c14n582 ;
 	rdf:rest rdf:nil .
-_:c14n583 a rdfs:Datatype ;
+_:c14n584 a rdfs:Datatype ;
 	owl:onDatatype xsd:string ;
-	owl:withRestrictions _:c14n582 .
-_:c14n584 rdf:first _:c14n583 ;
+	owl:withRestrictions _:c14n583 .
+_:c14n585 rdf:first _:c14n584 ;
 	rdf:rest rdf:nil .
-_:c14n585 rdf:first xsd:string ;
-	rdf:rest _:c14n584 .
-_:c14n586 a rdfs:Datatype ;
-	owl:intersectionOf _:c14n585 .
+_:c14n586 rdf:first xsd:string ;
+	rdf:rest _:c14n585 .
 _:c14n587 xsd:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
 _:c14n588 rdf:first _:c14n587 ;
 	rdf:rest rdf:nil .
@@ -2224,56 +2224,56 @@ _:c14n589 a rdfs:Datatype ;
 	owl:onDatatype xsd:string ;
 	owl:withRestrictions _:c14n588 .
 _:c14n59 a owl:Restriction ;
-	owl:allValuesFrom xsd:string ;
-	owl:onProperty fix_sbe:null_value .
-_:c14n590 rdf:first _:c14n589 ;
+	owl:allValuesFrom _:c14n844 ;
+	owl:onProperty fix_sbe:array_length .
+_:c14n590 xsd:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
+_:c14n591 rdf:first _:c14n590 ;
 	rdf:rest rdf:nil .
-_:c14n591 rdf:first xsd:string ;
-	rdf:rest _:c14n590 .
 _:c14n592 a rdfs:Datatype ;
-	owl:intersectionOf _:c14n591 .
-_:c14n593 xsd:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
-_:c14n594 rdf:first _:c14n593 ;
-	rdf:rest rdf:nil .
-_:c14n595 a rdfs:Datatype ;
 	owl:onDatatype xsd:string ;
-	owl:withRestrictions _:c14n594 .
-_:c14n596 rdf:first _:c14n595 ;
+	owl:withRestrictions _:c14n591 .
+_:c14n593 rdf:first _:c14n592 ;
 	rdf:rest rdf:nil .
-_:c14n597 rdf:first xsd:string ;
-	rdf:rest _:c14n596 .
+_:c14n594 rdf:first xsd:string ;
+	rdf:rest _:c14n593 .
+_:c14n595 a rdfs:Datatype ;
+	owl:intersectionOf _:c14n594 .
+_:c14n596 xsd:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
+_:c14n597 rdf:first _:c14n596 ;
+	rdf:rest rdf:nil .
 _:c14n598 a rdfs:Datatype ;
-	owl:intersectionOf _:c14n597 .
-_:c14n599 xsd:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
+	owl:onDatatype xsd:string ;
+	owl:withRestrictions _:c14n597 .
+_:c14n599 rdf:first _:c14n598 ;
+	rdf:rest rdf:nil .
 _:c14n6 a owl:Restriction ;
-	owl:allValuesFrom _:c14n802 ;
+	owl:allValuesFrom _:c14n811 ;
 	owl:onProperty fix_sbe:sbe_id .
 _:c14n60 a owl:Restriction ;
-	owl:minCardinality 0 ;
-	owl:onProperty fix_sbe:semantic_type .
-_:c14n600 rdf:first _:c14n599 ;
-	rdf:rest rdf:nil .
+	owl:allValuesFrom xsd:string ;
+	owl:onProperty fix_sbe:null_value .
+_:c14n600 rdf:first xsd:string ;
+	rdf:rest _:c14n599 .
 _:c14n601 a rdfs:Datatype ;
-	owl:onDatatype xsd:string ;
-	owl:withRestrictions _:c14n600 .
-_:c14n602 rdf:first _:c14n601 ;
+	owl:intersectionOf _:c14n600 .
+_:c14n602 xsd:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
+_:c14n603 rdf:first _:c14n602 ;
 	rdf:rest rdf:nil .
-_:c14n603 rdf:first xsd:string ;
-	rdf:rest _:c14n602 .
 _:c14n604 a rdfs:Datatype ;
-	owl:intersectionOf _:c14n603 .
-_:c14n605 xsd:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
-_:c14n606 rdf:first _:c14n605 ;
-	rdf:rest rdf:nil .
-_:c14n607 a rdfs:Datatype ;
 	owl:onDatatype xsd:string ;
-	owl:withRestrictions _:c14n606 .
+	owl:withRestrictions _:c14n603 .
+_:c14n605 rdf:first _:c14n604 ;
+	rdf:rest rdf:nil .
+_:c14n606 rdf:first xsd:string ;
+	rdf:rest _:c14n605 .
+_:c14n607 a rdfs:Datatype ;
+	owl:intersectionOf _:c14n606 .
 _:c14n608 xsd:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" .
 _:c14n609 rdf:first _:c14n608 ;
 	rdf:rest rdf:nil .
 _:c14n61 a owl:Restriction ;
-	owl:allValuesFrom fix_sbe:SbePresence ;
-	owl:onProperty fix_sbe:presence .
+	owl:minCardinality 0 ;
+	owl:onProperty fix_sbe:semantic_type .
 _:c14n610 a rdfs:Datatype ;
 	owl:onDatatype xsd:string ;
 	owl:withRestrictions _:c14n609 .
@@ -2296,8 +2296,8 @@ _:c14n618 rdf:first xsd:string ;
 _:c14n619 a rdfs:Datatype ;
 	owl:intersectionOf _:c14n618 .
 _:c14n62 a owl:Restriction ;
-	owl:allValuesFrom _:c14n494 ;
-	owl:onProperty fix_sbe:dimension_type .
+	owl:allValuesFrom fix_sbe:SbePresence ;
+	owl:onProperty fix_sbe:presence .
 _:c14n620 xsd:pattern "^[A-Za-z_][0-9A-Za-z_]*\\.[A-Za-z_][0-9A-Za-z_]*$" .
 _:c14n621 rdf:first _:c14n620 ;
 	rdf:rest rdf:nil .
@@ -2308,21 +2308,21 @@ _:c14n623 rdf:first _:c14n622 ;
 	rdf:rest rdf:nil .
 _:c14n624 rdf:first xsd:string ;
 	rdf:rest _:c14n623 .
-_:c14n625 xsd:pattern "^[A-Za-z_][0-9A-Za-z_]*\\.[A-Za-z_][0-9A-Za-z_]*$" .
-_:c14n626 rdf:first _:c14n625 ;
+_:c14n625 a rdfs:Datatype ;
+	owl:intersectionOf _:c14n624 .
+_:c14n626 xsd:pattern "^[A-Za-z_][0-9A-Za-z_]*\\.[A-Za-z_][0-9A-Za-z_]*$" .
+_:c14n627 rdf:first _:c14n626 ;
 	rdf:rest rdf:nil .
-_:c14n627 a rdfs:Datatype ;
+_:c14n628 a rdfs:Datatype ;
 	owl:onDatatype xsd:string ;
-	owl:withRestrictions _:c14n626 .
-_:c14n628 rdf:first _:c14n627 ;
+	owl:withRestrictions _:c14n627 .
+_:c14n629 rdf:first _:c14n628 ;
 	rdf:rest rdf:nil .
-_:c14n629 rdf:first xsd:string ;
-	rdf:rest _:c14n628 .
 _:c14n63 a owl:Restriction ;
-	owl:allValuesFrom _:c14n773 ;
-	owl:onProperty fix_sbe:array_length .
-_:c14n630 a rdfs:Datatype ;
-	owl:intersectionOf _:c14n629 .
+	owl:allValuesFrom _:c14n553 ;
+	owl:onProperty fix_sbe:dimension_type .
+_:c14n630 rdf:first xsd:string ;
+	rdf:rest _:c14n629 .
 _:c14n631 xsd:pattern "^[A-Za-z_][0-9A-Za-z_]*\\.[A-Za-z_][0-9A-Za-z_]*$" .
 _:c14n632 rdf:first _:c14n631 ;
 	rdf:rest rdf:nil .
@@ -2342,8 +2342,8 @@ _:c14n639 a rdfs:Datatype ;
 	owl:onDatatype xsd:string ;
 	owl:withRestrictions _:c14n638 .
 _:c14n64 a owl:Restriction ;
-	owl:allValuesFrom _:c14n660 ;
-	owl:onProperty fix_sbe:element_value .
+	owl:allValuesFrom _:c14n874 ;
+	owl:onProperty fix_sbe:array_length .
 _:c14n640 xsd:pattern "^[A-Za-z_][0-9A-Za-z_]*\\.[A-Za-z_][0-9A-Za-z_]*$" .
 _:c14n641 rdf:first _:c14n640 ;
 	rdf:rest rdf:nil .
@@ -2365,45 +2365,45 @@ _:c14n648 rdf:first xsd:token ;
 	rdf:rest _:c14n647 .
 _:c14n649 a rdfs:Datatype ;
 	owl:intersectionOf _:c14n648 .
-_:c14n65 rdf:first fix_sbe:SbeSetV1 ;
-	rdf:rest _:c14n1038 .
+_:c14n65 a owl:Restriction ;
+	owl:allValuesFrom _:c14n700 ;
+	owl:onProperty fix_sbe:element_value .
 _:c14n650 rdf:first _:c14n651 ;
 	rdf:rest rdf:nil .
 _:c14n651 xsd:pattern "^\\S+( \\S+)*$" .
 _:c14n652 a rdfs:Datatype ;
 	owl:onDatatype xsd:string ;
-	owl:withRestrictions _:c14n655 .
+	owl:withRestrictions _:c14n656 .
 _:c14n653 rdf:first _:c14n652 ;
 	rdf:rest rdf:nil .
 _:c14n654 rdf:first xsd:token ;
 	rdf:rest _:c14n653 .
-_:c14n655 rdf:first _:c14n656 ;
+_:c14n655 a rdfs:Datatype ;
+	owl:intersectionOf _:c14n654 .
+_:c14n656 rdf:first _:c14n657 ;
 	rdf:rest rdf:nil .
-_:c14n656 xsd:pattern "^\\S+( \\S+)*$" .
-_:c14n657 a rdfs:Datatype ;
+_:c14n657 xsd:pattern "^\\S+( \\S+)*$" .
+_:c14n658 a rdfs:Datatype ;
 	owl:onDatatype xsd:string ;
-	owl:withRestrictions _:c14n661 .
-_:c14n658 rdf:first _:c14n657 ;
+	owl:withRestrictions _:c14n662 .
+_:c14n659 rdf:first _:c14n658 ;
 	rdf:rest rdf:nil .
-_:c14n659 rdf:first xsd:token ;
-	rdf:rest _:c14n658 .
-_:c14n66 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty fix_sbe:description .
-_:c14n660 a rdfs:Datatype ;
-	owl:intersectionOf _:c14n659 .
-_:c14n661 rdf:first _:c14n662 ;
+_:c14n66 rdf:first fix_sbe:SbeSetV1 ;
+	rdf:rest _:c14n1038 .
+_:c14n660 rdf:first xsd:token ;
+	rdf:rest _:c14n659 .
+_:c14n661 a rdfs:Datatype ;
+	owl:intersectionOf _:c14n660 .
+_:c14n662 rdf:first _:c14n663 ;
 	rdf:rest rdf:nil .
-_:c14n662 xsd:pattern "^\\S+( \\S+)*$" .
-_:c14n663 a rdfs:Datatype ;
+_:c14n663 xsd:pattern "^\\S+( \\S+)*$" .
+_:c14n664 a rdfs:Datatype ;
 	owl:onDatatype xsd:string ;
 	owl:withRestrictions _:c14n667 .
-_:c14n664 rdf:first _:c14n663 ;
+_:c14n665 rdf:first _:c14n664 ;
 	rdf:rest rdf:nil .
-_:c14n665 rdf:first xsd:token ;
-	rdf:rest _:c14n664 .
-_:c14n666 a rdfs:Datatype ;
-	owl:intersectionOf _:c14n665 .
+_:c14n666 rdf:first xsd:token ;
+	rdf:rest _:c14n665 .
 _:c14n667 rdf:first _:c14n668 ;
 	rdf:rest rdf:nil .
 _:c14n668 xsd:pattern "^\\S+( \\S+)*$" .
@@ -2411,8 +2411,8 @@ _:c14n669 a rdfs:Datatype ;
 	owl:onDatatype xsd:string ;
 	owl:withRestrictions _:c14n673 .
 _:c14n67 a owl:Restriction ;
-	owl:minCardinality 0 ;
-	owl:onProperty fix_sbe:offset .
+	owl:maxCardinality 1 ;
+	owl:onProperty fix_sbe:description .
 _:c14n670 rdf:first _:c14n669 ;
 	rdf:rest rdf:nil .
 _:c14n671 rdf:first xsd:token ;
@@ -2424,50 +2424,50 @@ _:c14n673 rdf:first _:c14n674 ;
 _:c14n674 xsd:pattern "^\\S+( \\S+)*$" .
 _:c14n675 a rdfs:Datatype ;
 	owl:onDatatype xsd:string ;
-	owl:withRestrictions _:c14n678 .
+	owl:withRestrictions _:c14n679 .
 _:c14n676 rdf:first _:c14n675 ;
 	rdf:rest rdf:nil .
 _:c14n677 rdf:first xsd:token ;
 	rdf:rest _:c14n676 .
-_:c14n678 rdf:first _:c14n679 ;
+_:c14n678 a rdfs:Datatype ;
+	owl:intersectionOf _:c14n677 .
+_:c14n679 rdf:first _:c14n680 ;
 	rdf:rest rdf:nil .
-_:c14n679 xsd:pattern "^\\S+( \\S+)*$" .
-_:c14n68 rdf:first fix_sbe:SbePresence\#constant ;
-	rdf:rest rdf:nil .
-_:c14n680 a rdfs:Datatype ;
+_:c14n68 a owl:Restriction ;
+	owl:minCardinality 0 ;
+	owl:onProperty fix_sbe:offset .
+_:c14n680 xsd:pattern "^\\S+( \\S+)*$" .
+_:c14n681 a rdfs:Datatype ;
 	owl:onDatatype xsd:string ;
-	owl:withRestrictions _:c14n683 .
-_:c14n681 rdf:first _:c14n680 ;
+	owl:withRestrictions _:c14n685 .
+_:c14n682 rdf:first _:c14n681 ;
 	rdf:rest rdf:nil .
-_:c14n682 rdf:first xsd:string ;
-	rdf:rest _:c14n681 .
-_:c14n683 rdf:first _:c14n684 ;
+_:c14n683 rdf:first xsd:token ;
+	rdf:rest _:c14n682 .
+_:c14n684 a rdfs:Datatype ;
+	owl:intersectionOf _:c14n683 .
+_:c14n685 rdf:first _:c14n686 ;
 	rdf:rest rdf:nil .
-_:c14n684 xsd:pattern "^\\S+( \\S+)*$" .
-_:c14n685 a rdfs:Datatype ;
+_:c14n686 xsd:pattern "^\\S+( \\S+)*$" .
+_:c14n687 a rdfs:Datatype ;
 	owl:onDatatype xsd:string ;
-	owl:withRestrictions _:c14n689 .
-_:c14n686 rdf:first _:c14n685 ;
+	owl:withRestrictions _:c14n690 .
+_:c14n688 rdf:first _:c14n687 ;
 	rdf:rest rdf:nil .
-_:c14n687 rdf:first xsd:token ;
-	rdf:rest _:c14n686 .
-_:c14n688 a rdfs:Datatype ;
-	owl:intersectionOf _:c14n687 .
-_:c14n689 rdf:first _:c14n690 ;
+_:c14n689 rdf:first xsd:string ;
+	rdf:rest _:c14n688 .
+_:c14n69 rdf:first fix_sbe:SbePresence\#constant ;
 	rdf:rest rdf:nil .
-_:c14n69 a owl:Restriction ;
-	owl:allValuesFrom xsd:string ;
-	owl:onProperty fix_sbe:character_encoding .
-_:c14n690 xsd:pattern "^\\S+( \\S+)*$" .
-_:c14n691 a rdfs:Datatype ;
+_:c14n690 rdf:first _:c14n691 ;
+	rdf:rest rdf:nil .
+_:c14n691 xsd:pattern "^\\S+( \\S+)*$" .
+_:c14n692 a rdfs:Datatype ;
 	owl:onDatatype xsd:string ;
 	owl:withRestrictions _:c14n695 .
-_:c14n692 rdf:first _:c14n691 ;
+_:c14n693 rdf:first _:c14n692 ;
 	rdf:rest rdf:nil .
-_:c14n693 rdf:first xsd:token ;
-	rdf:rest _:c14n692 .
-_:c14n694 a rdfs:Datatype ;
-	owl:intersectionOf _:c14n693 .
+_:c14n694 rdf:first xsd:token ;
+	rdf:rest _:c14n693 .
 _:c14n695 rdf:first _:c14n696 ;
 	rdf:rest rdf:nil .
 _:c14n696 xsd:pattern "^\\S+( \\S+)*$" .
@@ -2482,9 +2482,8 @@ _:c14n7 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_sbe:schema_package .
 _:c14n70 a owl:Restriction ;
-	rdfs:subClassOf fix_sbe:SbeEnumV2 ;
-	owl:onProperty fix_sbe:encoding_kind ;
-	owl:someValuesFrom fix_sbe:SbeEnumV2 .
+	owl:allValuesFrom xsd:string ;
+	owl:onProperty fix_sbe:character_encoding .
 _:c14n700 a rdfs:Datatype ;
 	owl:intersectionOf _:c14n699 .
 _:c14n701 rdf:first _:c14n702 ;
@@ -2506,8 +2505,9 @@ _:c14n709 a rdfs:Datatype ;
 	owl:onDatatype xsd:string ;
 	owl:withRestrictions _:c14n713 .
 _:c14n71 a owl:Restriction ;
-	owl:allValuesFrom xsd:string ;
-	owl:onProperty fix_sbe:description .
+	rdfs:subClassOf fix_sbe:SbeEnumV2 ;
+	owl:onProperty fix_sbe:encoding_kind ;
+	owl:someValuesFrom fix_sbe:SbeEnumV2 .
 _:c14n710 rdf:first _:c14n709 ;
 	rdf:rest rdf:nil .
 _:c14n711 rdf:first xsd:token ;
@@ -2529,8 +2529,8 @@ _:c14n718 a rdfs:Datatype ;
 _:c14n719 rdf:first _:c14n720 ;
 	rdf:rest rdf:nil .
 _:c14n72 a owl:Restriction ;
-	owl:allValuesFrom fix_sbe:SbeFieldV1 ;
-	owl:onProperty fix_sbe:var_data_fields .
+	owl:allValuesFrom xsd:string ;
+	owl:onProperty fix_sbe:description .
 _:c14n720 xsd:pattern "^\\S+( \\S+)*$" .
 _:c14n721 xsd:maxInclusive 4294967295 .
 _:c14n722 rdf:first _:c14n721 ;
@@ -2540,79 +2540,79 @@ _:c14n723 a rdfs:Datatype ;
 	owl:withRestrictions _:c14n722 .
 _:c14n724 rdf:first _:c14n723 ;
 	rdf:rest rdf:nil .
-_:c14n725 rdf:first _:c14n727 ;
+_:c14n725 rdf:first _:c14n728 ;
 	rdf:rest _:c14n724 .
 _:c14n726 rdf:first xsd:integer ;
 	rdf:rest _:c14n725 .
 _:c14n727 a rdfs:Datatype ;
+	owl:intersectionOf _:c14n726 .
+_:c14n728 a rdfs:Datatype ;
 	owl:onDatatype xsd:integer ;
-	owl:withRestrictions _:c14n728 .
-_:c14n728 rdf:first _:c14n729 ;
+	owl:withRestrictions _:c14n729 .
+_:c14n729 rdf:first _:c14n730 ;
 	rdf:rest rdf:nil .
-_:c14n729 xsd:minInclusive 0 .
 _:c14n73 a owl:Restriction ;
+	owl:allValuesFrom fix_sbe:SbeFieldV1 ;
+	owl:onProperty fix_sbe:var_data_fields .
+_:c14n730 xsd:minInclusive 0 .
+_:c14n731 xsd:maxInclusive 4294967295 .
+_:c14n732 rdf:first _:c14n731 ;
+	rdf:rest rdf:nil .
+_:c14n733 a rdfs:Datatype ;
+	owl:onDatatype xsd:integer ;
+	owl:withRestrictions _:c14n732 .
+_:c14n734 rdf:first _:c14n733 ;
+	rdf:rest rdf:nil .
+_:c14n735 rdf:first _:c14n738 ;
+	rdf:rest _:c14n734 .
+_:c14n736 rdf:first xsd:integer ;
+	rdf:rest _:c14n735 .
+_:c14n737 a rdfs:Datatype ;
+	owl:intersectionOf _:c14n736 .
+_:c14n738 a rdfs:Datatype ;
+	owl:onDatatype xsd:integer ;
+	owl:withRestrictions _:c14n739 .
+_:c14n739 rdf:first _:c14n740 ;
+	rdf:rest rdf:nil .
+_:c14n74 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_sbe:symbolic_name .
-_:c14n730 xsd:maxInclusive 4294967295 .
-_:c14n731 rdf:first _:c14n730 ;
+_:c14n740 xsd:minInclusive 0 .
+_:c14n741 xsd:maxInclusive 4294967295 .
+_:c14n742 rdf:first _:c14n741 ;
 	rdf:rest rdf:nil .
-_:c14n732 a rdfs:Datatype ;
+_:c14n743 a rdfs:Datatype ;
 	owl:onDatatype xsd:integer ;
-	owl:withRestrictions _:c14n731 .
-_:c14n733 rdf:first _:c14n732 ;
+	owl:withRestrictions _:c14n742 .
+_:c14n744 rdf:first _:c14n743 ;
 	rdf:rest rdf:nil .
-_:c14n734 rdf:first _:c14n737 ;
-	rdf:rest _:c14n733 .
-_:c14n735 rdf:first xsd:integer ;
-	rdf:rest _:c14n734 .
-_:c14n736 a rdfs:Datatype ;
-	owl:intersectionOf _:c14n735 .
-_:c14n737 a rdfs:Datatype ;
+_:c14n745 rdf:first _:c14n748 ;
+	rdf:rest _:c14n744 .
+_:c14n746 rdf:first xsd:integer ;
+	rdf:rest _:c14n745 .
+_:c14n747 a rdfs:Datatype ;
+	owl:intersectionOf _:c14n746 .
+_:c14n748 a rdfs:Datatype ;
 	owl:onDatatype xsd:integer ;
-	owl:withRestrictions _:c14n738 .
-_:c14n738 rdf:first _:c14n739 ;
+	owl:withRestrictions _:c14n749 .
+_:c14n749 rdf:first _:c14n750 ;
 	rdf:rest rdf:nil .
-_:c14n739 xsd:minInclusive 0 .
-_:c14n74 a owl:Restriction ;
+_:c14n75 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty fix_sbe:sbe_id .
-_:c14n740 xsd:maxInclusive 4294967295 .
-_:c14n741 rdf:first _:c14n740 ;
+_:c14n750 xsd:minInclusive 0 .
+_:c14n751 xsd:maxInclusive 4294967295 .
+_:c14n752 rdf:first _:c14n751 ;
 	rdf:rest rdf:nil .
-_:c14n742 a rdfs:Datatype ;
+_:c14n753 a rdfs:Datatype ;
 	owl:onDatatype xsd:integer ;
-	owl:withRestrictions _:c14n741 .
-_:c14n743 rdf:first _:c14n742 ;
+	owl:withRestrictions _:c14n752 .
+_:c14n754 rdf:first _:c14n753 ;
 	rdf:rest rdf:nil .
-_:c14n744 rdf:first _:c14n747 ;
-	rdf:rest _:c14n743 .
-_:c14n745 rdf:first xsd:integer ;
-	rdf:rest _:c14n744 .
-_:c14n746 a rdfs:Datatype ;
-	owl:intersectionOf _:c14n745 .
-_:c14n747 a rdfs:Datatype ;
-	owl:onDatatype xsd:integer ;
-	owl:withRestrictions _:c14n748 .
-_:c14n748 rdf:first _:c14n749 ;
-	rdf:rest rdf:nil .
-_:c14n749 xsd:minInclusive 0 .
-_:c14n75 a owl:Restriction ;
-	owl:allValuesFrom fix_sbe:SbePrimitiveType ;
-	owl:onProperty fix_sbe:primitive_type .
-_:c14n750 xsd:maxInclusive 4294967295 .
-_:c14n751 rdf:first _:c14n750 ;
-	rdf:rest rdf:nil .
-_:c14n752 a rdfs:Datatype ;
-	owl:onDatatype xsd:integer ;
-	owl:withRestrictions _:c14n751 .
-_:c14n753 rdf:first _:c14n752 ;
-	rdf:rest rdf:nil .
-_:c14n754 rdf:first _:c14n757 ;
-	rdf:rest _:c14n753 .
-_:c14n755 rdf:first xsd:integer ;
+_:c14n755 rdf:first _:c14n757 ;
 	rdf:rest _:c14n754 .
-_:c14n756 a rdfs:Datatype ;
-	owl:intersectionOf _:c14n755 .
+_:c14n756 rdf:first xsd:integer ;
+	rdf:rest _:c14n755 .
 _:c14n757 a rdfs:Datatype ;
 	owl:onDatatype xsd:integer ;
 	owl:withRestrictions _:c14n758 .
@@ -2620,8 +2620,8 @@ _:c14n758 rdf:first _:c14n759 ;
 	rdf:rest rdf:nil .
 _:c14n759 xsd:minInclusive 0 .
 _:c14n76 a owl:Restriction ;
-	owl:allValuesFrom _:c14n712 ;
-	owl:onProperty fix_sbe:semantic_type .
+	owl:allValuesFrom fix_sbe:SbePrimitiveType ;
+	owl:onProperty fix_sbe:primitive_type .
 _:c14n760 xsd:maxInclusive 4294967295 .
 _:c14n761 rdf:first _:c14n760 ;
 	rdf:rest rdf:nil .
@@ -2643,8 +2643,8 @@ _:c14n768 rdf:first _:c14n769 ;
 	rdf:rest rdf:nil .
 _:c14n769 xsd:minInclusive 0 .
 _:c14n77 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty fix_sbe:xml_base .
+	owl:allValuesFrom _:c14n678 ;
+	owl:onProperty fix_sbe:semantic_type .
 _:c14n770 a rdfs:Datatype ;
 	owl:onDatatype xsd:integer ;
 	owl:withRestrictions _:c14n774 .
@@ -2666,243 +2666,243 @@ _:c14n778 rdf:first xsd:integer ;
 	rdf:rest _:c14n777 .
 _:c14n779 rdf:first _:c14n780 ;
 	rdf:rest rdf:nil .
-_:c14n78 owl:unionOf _:c14n414 .
+_:c14n78 a owl:Restriction ;
+	owl:maxCardinality 1 ;
+	owl:onProperty fix_sbe:xml_base .
 _:c14n780 xsd:minInclusive 0 .
 _:c14n781 a rdfs:Datatype ;
 	owl:onDatatype xsd:integer ;
-	owl:withRestrictions _:c14n785 .
+	owl:withRestrictions _:c14n788 .
 _:c14n782 rdf:first _:c14n781 ;
 	rdf:rest rdf:nil .
-_:c14n783 rdf:first xsd:integer ;
+_:c14n783 rdf:first _:c14n785 ;
 	rdf:rest _:c14n782 .
-_:c14n784 a rdfs:Datatype ;
-	owl:intersectionOf _:c14n783 .
-_:c14n785 rdf:first _:c14n786 ;
-	rdf:rest rdf:nil .
-_:c14n786 xsd:minInclusive 0 .
-_:c14n787 a rdfs:Datatype ;
+_:c14n784 rdf:first xsd:integer ;
+	rdf:rest _:c14n783 .
+_:c14n785 a rdfs:Datatype ;
 	owl:onDatatype xsd:integer ;
-	owl:withRestrictions _:c14n791 .
-_:c14n788 rdf:first _:c14n787 ;
+	owl:withRestrictions _:c14n786 .
+_:c14n786 rdf:first _:c14n787 ;
 	rdf:rest rdf:nil .
-_:c14n789 rdf:first xsd:integer ;
-	rdf:rest _:c14n788 .
-_:c14n79 a rdfs:Datatype ;
-	owl:intersectionOf _:c14n575 .
+_:c14n787 xsd:minInclusive 0 .
+_:c14n788 rdf:first _:c14n789 ;
+	rdf:rest rdf:nil .
+_:c14n789 xsd:maxInclusive 65535 .
+_:c14n79 owl:unionOf _:c14n414 .
 _:c14n790 a rdfs:Datatype ;
-	owl:intersectionOf _:c14n789 .
-_:c14n791 rdf:first _:c14n792 ;
+	owl:onDatatype xsd:integer ;
+	owl:withRestrictions _:c14n794 .
+_:c14n791 rdf:first _:c14n790 ;
 	rdf:rest rdf:nil .
-_:c14n792 xsd:minInclusive 0 .
+_:c14n792 rdf:first xsd:integer ;
+	rdf:rest _:c14n791 .
 _:c14n793 a rdfs:Datatype ;
-	owl:onDatatype xsd:integer ;
-	owl:withRestrictions _:c14n797 .
-_:c14n794 rdf:first _:c14n793 ;
+	owl:intersectionOf _:c14n792 .
+_:c14n794 rdf:first _:c14n795 ;
 	rdf:rest rdf:nil .
-_:c14n795 rdf:first xsd:integer ;
-	rdf:rest _:c14n794 .
+_:c14n795 xsd:minInclusive 0 .
 _:c14n796 a rdfs:Datatype ;
-	owl:intersectionOf _:c14n795 .
-_:c14n797 rdf:first _:c14n798 ;
+	owl:onDatatype xsd:integer ;
+	owl:withRestrictions _:c14n800 .
+_:c14n797 rdf:first _:c14n796 ;
 	rdf:rest rdf:nil .
-_:c14n798 xsd:minInclusive 0 .
+_:c14n798 rdf:first xsd:integer ;
+	rdf:rest _:c14n797 .
 _:c14n799 a rdfs:Datatype ;
-	owl:onDatatype xsd:integer ;
-	owl:withRestrictions _:c14n803 .
+	owl:intersectionOf _:c14n798 .
 _:c14n8 a rdfs:Datatype ;
-	owl:intersectionOf _:c14n831 .
-_:c14n80 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty fix_sbe:primitive_type .
-_:c14n800 rdf:first _:c14n799 ;
+	owl:intersectionOf _:c14n822 .
+_:c14n80 a rdfs:Datatype ;
+	owl:intersectionOf _:c14n523 .
+_:c14n800 rdf:first _:c14n801 ;
 	rdf:rest rdf:nil .
-_:c14n801 rdf:first xsd:integer ;
-	rdf:rest _:c14n800 .
+_:c14n801 xsd:maxInclusive 65535 .
 _:c14n802 a rdfs:Datatype ;
-	owl:intersectionOf _:c14n801 .
-_:c14n803 rdf:first _:c14n804 ;
-	rdf:rest rdf:nil .
-_:c14n804 xsd:maxInclusive 65535 .
-_:c14n805 a rdfs:Datatype ;
 	owl:onDatatype xsd:integer ;
-	owl:withRestrictions _:c14n809 .
-_:c14n806 rdf:first _:c14n805 ;
+	owl:withRestrictions _:c14n806 .
+_:c14n803 rdf:first _:c14n802 ;
 	rdf:rest rdf:nil .
-_:c14n807 rdf:first xsd:integer ;
-	rdf:rest _:c14n806 .
+_:c14n804 rdf:first xsd:integer ;
+	rdf:rest _:c14n803 .
+_:c14n805 a rdfs:Datatype ;
+	owl:intersectionOf _:c14n804 .
+_:c14n806 rdf:first _:c14n807 ;
+	rdf:rest rdf:nil .
+_:c14n807 xsd:minInclusive 0 .
 _:c14n808 a rdfs:Datatype ;
-	owl:intersectionOf _:c14n807 .
-_:c14n809 rdf:first _:c14n810 ;
+	owl:onDatatype xsd:integer ;
+	owl:withRestrictions _:c14n812 .
+_:c14n809 rdf:first _:c14n808 ;
 	rdf:rest rdf:nil .
 _:c14n81 a owl:Restriction ;
+	owl:maxCardinality 1 ;
+	owl:onProperty fix_sbe:primitive_type .
+_:c14n810 rdf:first xsd:integer ;
+	rdf:rest _:c14n809 .
+_:c14n811 a rdfs:Datatype ;
+	owl:intersectionOf _:c14n810 .
+_:c14n812 rdf:first _:c14n813 ;
+	rdf:rest rdf:nil .
+_:c14n813 xsd:maxInclusive 65535 .
+_:c14n814 a rdfs:Datatype ;
+	owl:onDatatype xsd:integer ;
+	owl:withRestrictions _:c14n818 .
+_:c14n815 rdf:first _:c14n814 ;
+	rdf:rest rdf:nil .
+_:c14n816 rdf:first xsd:integer ;
+	rdf:rest _:c14n815 .
+_:c14n817 a rdfs:Datatype ;
+	owl:intersectionOf _:c14n816 .
+_:c14n818 rdf:first _:c14n819 ;
+	rdf:rest rdf:nil .
+_:c14n819 xsd:minInclusive 1 .
+_:c14n82 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_sbe:block_length .
-_:c14n810 xsd:maxInclusive 65535 .
-_:c14n811 a rdfs:Datatype ;
+_:c14n820 a rdfs:Datatype ;
 	owl:onDatatype xsd:integer ;
-	owl:withRestrictions _:c14n815 .
-_:c14n812 rdf:first _:c14n811 ;
+	owl:withRestrictions _:c14n823 .
+_:c14n821 rdf:first _:c14n820 ;
 	rdf:rest rdf:nil .
-_:c14n813 rdf:first xsd:integer ;
-	rdf:rest _:c14n812 .
-_:c14n814 a rdfs:Datatype ;
-	owl:intersectionOf _:c14n813 .
-_:c14n815 rdf:first _:c14n816 ;
+_:c14n822 rdf:first xsd:integer ;
+	rdf:rest _:c14n821 .
+_:c14n823 rdf:first _:c14n824 ;
 	rdf:rest rdf:nil .
-_:c14n816 xsd:minInclusive 0 .
-_:c14n817 a rdfs:Datatype ;
+_:c14n824 xsd:minInclusive 0 .
+_:c14n825 a rdfs:Datatype ;
 	owl:onDatatype xsd:integer ;
-	owl:withRestrictions _:c14n821 .
-_:c14n818 rdf:first _:c14n817 ;
+	owl:withRestrictions _:c14n829 .
+_:c14n826 rdf:first _:c14n825 ;
 	rdf:rest rdf:nil .
-_:c14n819 rdf:first xsd:integer ;
-	rdf:rest _:c14n818 .
-_:c14n82 a owl:Restriction ;
+_:c14n827 rdf:first xsd:integer ;
+	rdf:rest _:c14n826 .
+_:c14n828 a rdfs:Datatype ;
+	owl:intersectionOf _:c14n827 .
+_:c14n829 rdf:first _:c14n830 ;
+	rdf:rest rdf:nil .
+_:c14n83 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_sbe:alignment .
-_:c14n820 a rdfs:Datatype ;
-	owl:intersectionOf _:c14n819 .
-_:c14n821 rdf:first _:c14n822 ;
-	rdf:rest rdf:nil .
-_:c14n822 xsd:minInclusive 1 .
-_:c14n823 a rdfs:Datatype ;
+_:c14n830 xsd:minInclusive 1 .
+_:c14n831 a rdfs:Datatype ;
 	owl:onDatatype xsd:integer ;
-	owl:withRestrictions _:c14n827 .
-_:c14n824 rdf:first _:c14n823 ;
+	owl:withRestrictions _:c14n834 .
+_:c14n832 rdf:first _:c14n831 ;
 	rdf:rest rdf:nil .
-_:c14n825 rdf:first xsd:integer ;
-	rdf:rest _:c14n824 .
-_:c14n826 a rdfs:Datatype ;
-	owl:intersectionOf _:c14n825 .
-_:c14n827 rdf:first _:c14n828 ;
+_:c14n833 rdf:first xsd:integer ;
+	rdf:rest _:c14n832 .
+_:c14n834 rdf:first _:c14n835 ;
 	rdf:rest rdf:nil .
-_:c14n828 xsd:minInclusive 0 .
-_:c14n829 a rdfs:Datatype ;
+_:c14n835 xsd:minInclusive 0 .
+_:c14n836 a rdfs:Datatype ;
 	owl:onDatatype xsd:integer ;
-	owl:withRestrictions _:c14n832 .
-_:c14n83 a owl:Restriction ;
-	owl:allValuesFrom _:c14n902 ;
-	owl:onProperty fix_sbe:sbe_id .
-_:c14n830 rdf:first _:c14n829 ;
+	owl:withRestrictions _:c14n839 .
+_:c14n837 rdf:first _:c14n836 ;
 	rdf:rest rdf:nil .
-_:c14n831 rdf:first xsd:integer ;
-	rdf:rest _:c14n830 .
-_:c14n832 rdf:first _:c14n833 ;
+_:c14n838 rdf:first xsd:integer ;
+	rdf:rest _:c14n837 .
+_:c14n839 rdf:first _:c14n840 ;
 	rdf:rest rdf:nil .
-_:c14n833 xsd:minInclusive 0 .
-_:c14n834 a rdfs:Datatype ;
-	owl:onDatatype xsd:integer ;
-	owl:withRestrictions _:c14n838 .
-_:c14n835 rdf:first _:c14n834 ;
-	rdf:rest rdf:nil .
-_:c14n836 rdf:first xsd:integer ;
-	rdf:rest _:c14n835 .
-_:c14n837 a rdfs:Datatype ;
-	owl:intersectionOf _:c14n836 .
-_:c14n838 rdf:first _:c14n839 ;
-	rdf:rest rdf:nil .
-_:c14n839 xsd:minInclusive 1 .
 _:c14n84 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty fix_sbe:null_value .
-_:c14n840 a rdfs:Datatype ;
+	owl:allValuesFrom _:c14n920 ;
+	owl:onProperty fix_sbe:sbe_id .
+_:c14n840 xsd:minInclusive 1 .
+_:c14n841 a rdfs:Datatype ;
 	owl:onDatatype xsd:integer ;
-	owl:withRestrictions _:c14n847 .
-_:c14n841 rdf:first _:c14n840 ;
+	owl:withRestrictions _:c14n845 .
+_:c14n842 rdf:first _:c14n841 ;
 	rdf:rest rdf:nil .
-_:c14n842 rdf:first _:c14n844 ;
-	rdf:rest _:c14n841 .
 _:c14n843 rdf:first xsd:integer ;
 	rdf:rest _:c14n842 .
 _:c14n844 a rdfs:Datatype ;
-	owl:onDatatype xsd:integer ;
-	owl:withRestrictions _:c14n845 .
+	owl:intersectionOf _:c14n843 .
 _:c14n845 rdf:first _:c14n846 ;
 	rdf:rest rdf:nil .
 _:c14n846 xsd:minInclusive 0 .
-_:c14n847 rdf:first _:c14n848 ;
-	rdf:rest rdf:nil .
-_:c14n848 xsd:maxInclusive 65535 .
-_:c14n849 a rdfs:Datatype ;
+_:c14n847 a rdfs:Datatype ;
 	owl:onDatatype xsd:integer ;
-	owl:withRestrictions _:c14n853 .
+	owl:withRestrictions _:c14n851 .
+_:c14n848 rdf:first _:c14n847 ;
+	rdf:rest rdf:nil .
+_:c14n849 rdf:first xsd:integer ;
+	rdf:rest _:c14n848 .
 _:c14n85 a owl:Restriction ;
+	owl:maxCardinality 1 ;
+	owl:onProperty fix_sbe:null_value .
+_:c14n850 a rdfs:Datatype ;
+	owl:intersectionOf _:c14n849 .
+_:c14n851 rdf:first _:c14n852 ;
+	rdf:rest rdf:nil .
+_:c14n852 xsd:minInclusive 1 .
+_:c14n853 a rdfs:Datatype ;
+	owl:onDatatype xsd:integer ;
+	owl:withRestrictions _:c14n857 .
+_:c14n854 rdf:first _:c14n853 ;
+	rdf:rest rdf:nil .
+_:c14n855 rdf:first xsd:integer ;
+	rdf:rest _:c14n854 .
+_:c14n856 a rdfs:Datatype ;
+	owl:intersectionOf _:c14n855 .
+_:c14n857 rdf:first _:c14n858 ;
+	rdf:rest rdf:nil .
+_:c14n858 xsd:maxInclusive 65535 .
+_:c14n859 a rdfs:Datatype ;
+	owl:onDatatype xsd:integer ;
+	owl:withRestrictions _:c14n863 .
+_:c14n86 a owl:Restriction ;
 	owl:maxCardinality 64 ;
 	owl:onProperty fix_sbe:choices .
-_:c14n850 rdf:first _:c14n849 ;
+_:c14n860 rdf:first _:c14n859 ;
 	rdf:rest rdf:nil .
-_:c14n851 rdf:first xsd:integer ;
-	rdf:rest _:c14n850 .
-_:c14n852 a rdfs:Datatype ;
-	owl:intersectionOf _:c14n851 .
-_:c14n853 rdf:first _:c14n854 ;
+_:c14n861 rdf:first xsd:integer ;
+	rdf:rest _:c14n860 .
+_:c14n862 a rdfs:Datatype ;
+	owl:intersectionOf _:c14n861 .
+_:c14n863 rdf:first _:c14n864 ;
 	rdf:rest rdf:nil .
-_:c14n854 xsd:minInclusive 1 .
-_:c14n855 a rdfs:Datatype ;
+_:c14n864 xsd:minInclusive 0 .
+_:c14n865 a rdfs:Datatype ;
 	owl:onDatatype xsd:integer ;
-	owl:withRestrictions _:c14n859 .
-_:c14n856 rdf:first _:c14n855 ;
+	owl:withRestrictions _:c14n869 .
+_:c14n866 rdf:first _:c14n865 ;
 	rdf:rest rdf:nil .
-_:c14n857 rdf:first xsd:integer ;
-	rdf:rest _:c14n856 .
-_:c14n858 a rdfs:Datatype ;
-	owl:intersectionOf _:c14n857 .
-_:c14n859 rdf:first _:c14n860 ;
+_:c14n867 rdf:first xsd:integer ;
+	rdf:rest _:c14n866 .
+_:c14n868 a rdfs:Datatype ;
+	owl:intersectionOf _:c14n867 .
+_:c14n869 rdf:first _:c14n870 ;
 	rdf:rest rdf:nil .
-_:c14n86 a owl:Restriction ;
+_:c14n87 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_sbe:sbe_id .
-_:c14n860 xsd:minInclusive 0 .
-_:c14n861 a rdfs:Datatype ;
+_:c14n870 xsd:maxInclusive 65535 .
+_:c14n871 a rdfs:Datatype ;
 	owl:onDatatype xsd:integer ;
-	owl:withRestrictions _:c14n865 .
-_:c14n862 rdf:first _:c14n861 ;
+	owl:withRestrictions _:c14n875 .
+_:c14n872 rdf:first _:c14n871 ;
 	rdf:rest rdf:nil .
-_:c14n863 rdf:first xsd:integer ;
-	rdf:rest _:c14n862 .
-_:c14n864 a rdfs:Datatype ;
-	owl:intersectionOf _:c14n863 .
-_:c14n865 rdf:first _:c14n866 ;
+_:c14n873 rdf:first xsd:integer ;
+	rdf:rest _:c14n872 .
+_:c14n874 a rdfs:Datatype ;
+	owl:intersectionOf _:c14n873 .
+_:c14n875 rdf:first _:c14n876 ;
 	rdf:rest rdf:nil .
-_:c14n866 xsd:maxInclusive 65535 .
-_:c14n867 a rdfs:Datatype ;
-	owl:onDatatype xsd:integer ;
-	owl:withRestrictions _:c14n871 .
-_:c14n868 rdf:first _:c14n867 ;
-	rdf:rest rdf:nil .
-_:c14n869 rdf:first xsd:integer ;
-	rdf:rest _:c14n868 .
-_:c14n87 a owl:Restriction ;
-	owl:allValuesFrom xsd:string ;
-	owl:onProperty fix_sbe:encoding_kind .
-_:c14n870 a rdfs:Datatype ;
-	owl:intersectionOf _:c14n869 .
-_:c14n871 rdf:first _:c14n872 ;
-	rdf:rest rdf:nil .
-_:c14n872 xsd:minInclusive 0 .
-_:c14n873 a rdfs:Datatype ;
-	owl:onDatatype xsd:integer ;
-	owl:withRestrictions _:c14n876 .
-_:c14n874 rdf:first _:c14n873 ;
-	rdf:rest rdf:nil .
-_:c14n875 rdf:first xsd:integer ;
-	rdf:rest _:c14n874 .
-_:c14n876 rdf:first _:c14n877 ;
-	rdf:rest rdf:nil .
-_:c14n877 xsd:minInclusive 0 .
-_:c14n878 a rdfs:Datatype ;
+_:c14n876 xsd:minInclusive 0 .
+_:c14n877 a rdfs:Datatype ;
 	owl:onDatatype xsd:integer ;
 	owl:withRestrictions _:c14n881 .
-_:c14n879 rdf:first _:c14n878 ;
+_:c14n878 rdf:first _:c14n877 ;
 	rdf:rest rdf:nil .
+_:c14n879 rdf:first xsd:integer ;
+	rdf:rest _:c14n878 .
 _:c14n88 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty fix_sbe:time_unit .
-_:c14n880 rdf:first xsd:integer ;
-	rdf:rest _:c14n879 .
+	owl:allValuesFrom xsd:string ;
+	owl:onProperty fix_sbe:encoding_kind .
+_:c14n880 a rdfs:Datatype ;
+	owl:intersectionOf _:c14n879 .
 _:c14n881 rdf:first _:c14n882 ;
 	rdf:rest rdf:nil .
-_:c14n882 xsd:minInclusive 1 .
+_:c14n882 xsd:minInclusive 0 .
 _:c14n883 a rdfs:Datatype ;
 	owl:onDatatype xsd:integer ;
 	owl:withRestrictions _:c14n887 .
@@ -2914,13 +2914,13 @@ _:c14n886 a rdfs:Datatype ;
 	owl:intersectionOf _:c14n885 .
 _:c14n887 rdf:first _:c14n888 ;
 	rdf:rest rdf:nil .
-_:c14n888 xsd:maxInclusive 65535 .
+_:c14n888 xsd:minInclusive 0 .
 _:c14n889 a rdfs:Datatype ;
 	owl:onDatatype xsd:integer ;
 	owl:withRestrictions _:c14n892 .
 _:c14n89 a owl:Restriction ;
 	owl:maxCardinality 1 ;
-	owl:onProperty fix_sbe:character_encoding .
+	owl:onProperty fix_sbe:time_unit .
 _:c14n890 rdf:first _:c14n889 ;
 	rdf:rest rdf:nil .
 _:c14n891 rdf:first xsd:integer ;
@@ -2930,31 +2930,32 @@ _:c14n892 rdf:first _:c14n893 ;
 _:c14n893 xsd:minInclusive 0 .
 _:c14n894 a rdfs:Datatype ;
 	owl:onDatatype xsd:integer ;
-	owl:withRestrictions _:c14n897 .
+	owl:withRestrictions _:c14n898 .
 _:c14n895 rdf:first _:c14n894 ;
 	rdf:rest rdf:nil .
 _:c14n896 rdf:first xsd:integer ;
 	rdf:rest _:c14n895 .
-_:c14n897 rdf:first _:c14n898 ;
+_:c14n897 a rdfs:Datatype ;
+	owl:intersectionOf _:c14n896 .
+_:c14n898 rdf:first _:c14n899 ;
 	rdf:rest rdf:nil .
-_:c14n898 xsd:minInclusive 0 .
-_:c14n899 a rdfs:Datatype ;
-	owl:onDatatype xsd:integer ;
-	owl:withRestrictions _:c14n903 .
+_:c14n899 xsd:minInclusive 0 .
 _:c14n9 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_sbe:header_type .
-_:c14n90 a rdfs:Datatype ;
-	owl:intersectionOf _:c14n470 .
-_:c14n900 rdf:first _:c14n899 ;
+_:c14n90 a owl:Restriction ;
+	owl:maxCardinality 1 ;
+	owl:onProperty fix_sbe:character_encoding .
+_:c14n900 a rdfs:Datatype ;
+	owl:onDatatype xsd:integer ;
+	owl:withRestrictions _:c14n903 .
+_:c14n901 rdf:first _:c14n900 ;
 	rdf:rest rdf:nil .
-_:c14n901 rdf:first xsd:integer ;
-	rdf:rest _:c14n900 .
-_:c14n902 a rdfs:Datatype ;
-	owl:intersectionOf _:c14n901 .
+_:c14n902 rdf:first xsd:integer ;
+	rdf:rest _:c14n901 .
 _:c14n903 rdf:first _:c14n904 ;
 	rdf:rest rdf:nil .
-_:c14n904 xsd:maxInclusive 65535 .
+_:c14n904 xsd:minInclusive 0 .
 _:c14n905 a rdfs:Datatype ;
 	owl:onDatatype xsd:integer ;
 	owl:withRestrictions _:c14n909 .
@@ -2966,8 +2967,9 @@ _:c14n908 a rdfs:Datatype ;
 	owl:intersectionOf _:c14n907 .
 _:c14n909 rdf:first _:c14n910 ;
 	rdf:rest rdf:nil .
-_:c14n91 owl:intersectionOf _:c14n1030 .
-_:c14n910 xsd:minInclusive 0 .
+_:c14n91 a rdfs:Datatype ;
+	owl:intersectionOf _:c14n512 .
+_:c14n910 xsd:maxInclusive 65535 .
 _:c14n911 a rdfs:Datatype ;
 	owl:onDatatype xsd:integer ;
 	owl:withRestrictions _:c14n915 .
@@ -2979,7 +2981,7 @@ _:c14n914 a rdfs:Datatype ;
 	owl:intersectionOf _:c14n913 .
 _:c14n915 rdf:first _:c14n916 ;
 	rdf:rest rdf:nil .
-_:c14n916 xsd:maxInclusive 65535 .
+_:c14n916 xsd:minInclusive 0 .
 _:c14n917 a rdfs:Datatype ;
 	owl:onDatatype xsd:integer ;
 	owl:withRestrictions _:c14n921 .
@@ -2987,14 +2989,12 @@ _:c14n918 rdf:first _:c14n917 ;
 	rdf:rest rdf:nil .
 _:c14n919 rdf:first xsd:integer ;
 	rdf:rest _:c14n918 .
-_:c14n92 a owl:Restriction ;
-	owl:allValuesFrom _:c14n666 ;
-	owl:onProperty fix_sbe:semantic_type .
+_:c14n92 owl:intersectionOf _:c14n999 .
 _:c14n920 a rdfs:Datatype ;
 	owl:intersectionOf _:c14n919 .
 _:c14n921 rdf:first _:c14n922 ;
 	rdf:rest rdf:nil .
-_:c14n922 xsd:minInclusive 0 .
+_:c14n922 xsd:maxInclusive 65535 .
 _:c14n923 rdf:first fix_sbe:SbeMemberTypeV2 ;
 	rdf:rest rdf:nil .
 _:c14n924 rdf:first _:c14n927 ;
@@ -3012,8 +3012,8 @@ _:c14n928 a rdfs:Datatype ;
 _:c14n929 rdf:first "constant" ;
 	rdf:rest rdf:nil .
 _:c14n93 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty fix_sbe:encoding_name .
+	owl:allValuesFrom _:c14n655 ;
+	owl:onProperty fix_sbe:semantic_type .
 _:c14n930 rdf:first fix_sbe:SbeMemberTypeV2 ;
 	rdf:rest rdf:nil .
 _:c14n931 rdf:first _:c14n934 ;
@@ -3037,8 +3037,8 @@ _:c14n938 rdf:first _:c14n941 ;
 _:c14n939 rdfs:subClassOf _:c14n940 ;
 	owl:intersectionOf _:c14n938 .
 _:c14n94 a owl:Restriction ;
-	owl:minCardinality 0 ;
-	owl:onProperty fix_sbe:min_value .
+	owl:maxCardinality 1 ;
+	owl:onProperty fix_sbe:encoding_name .
 _:c14n940 a owl:Restriction ;
 	owl:onProperty fix_sbe:min_value ;
 	owl:someValuesFrom xsd:string .
@@ -3062,8 +3062,9 @@ _:c14n948 a rdfs:Datatype ;
 	owl:oneOf _:c14n949 .
 _:c14n949 rdf:first "constant" ;
 	rdf:rest rdf:nil .
-_:c14n95 rdf:first fix_sbe:SbePrimitiveType\#float ;
-	rdf:rest _:c14n400 .
+_:c14n95 a owl:Restriction ;
+	owl:minCardinality 0 ;
+	owl:onProperty fix_sbe:min_value .
 _:c14n950 a owl:Restriction ;
 	owl:onProperty fix_sbe:value_ref ;
 	owl:someValuesFrom xsd:string .
@@ -3088,9 +3089,8 @@ _:c14n958 a owl:Restriction ;
 	owl:someValuesFrom xsd:string .
 _:c14n959 rdf:first _:c14n958 ;
 	rdf:rest _:c14n964 .
-_:c14n96 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty fix_sbe:value_ref .
+_:c14n96 rdf:first fix_sbe:SbePrimitiveType\#float ;
+	rdf:rest _:c14n400 .
 _:c14n960 rdfs:subClassOf _:c14n961 ;
 	owl:intersectionOf _:c14n959 .
 _:c14n961 a owl:Restriction ;
@@ -3115,8 +3115,8 @@ _:c14n968 a owl:Restriction ;
 _:c14n969 a rdfs:Datatype ;
 	owl:oneOf _:c14n970 .
 _:c14n97 a owl:Restriction ;
-	owl:minCardinality 0 ;
-	owl:onProperty fix_sbe:schema_package .
+	owl:maxCardinality 1 ;
+	owl:onProperty fix_sbe:value_ref .
 _:c14n970 rdf:first "constant" ;
 	rdf:rest rdf:nil .
 _:c14n971 rdf:first fix_sbe:SbeSimpleTypeV1 ;
@@ -3140,8 +3140,8 @@ _:c14n978 rdf:first _:c14n981 ;
 _:c14n979 rdfs:subClassOf _:c14n980 ;
 	owl:intersectionOf _:c14n978 .
 _:c14n98 a owl:Restriction ;
-	owl:allValuesFrom xsd:string ;
-	owl:onProperty fix_sbe:description .
+	owl:minCardinality 0 ;
+	owl:onProperty fix_sbe:schema_package .
 _:c14n980 a owl:Restriction ;
 	owl:onProperty fix_sbe:max_value ;
 	owl:someValuesFrom xsd:string .
@@ -3167,28 +3167,28 @@ _:c14n988 a owl:Restriction ;
 _:c14n989 a rdfs:Datatype ;
 	owl:oneOf _:c14n990 .
 _:c14n99 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty fix_sbe:bit_position .
+	owl:allValuesFrom xsd:string ;
+	owl:onProperty fix_sbe:description .
 _:c14n990 rdf:first "constant" ;
 	rdf:rest rdf:nil .
 _:c14n991 rdf:first fix_sbe:SbeFieldV2 ;
 	rdf:rest rdf:nil .
-_:c14n992 rdf:first _:c14n280 ;
-	rdf:rest _:c14n994 .
-_:c14n993 rdfs:subClassOf _:c14n337 ;
+_:c14n992 rdf:first _:c14n995 ;
+	rdf:rest _:c14n998 .
+_:c14n993 rdfs:subClassOf _:c14n994 ;
 	owl:intersectionOf _:c14n992 .
-_:c14n994 rdf:first fix_sbe:SbeFieldV2 ;
-	rdf:rest rdf:nil .
-_:c14n995 rdf:first _:c14n998 ;
-	rdf:rest _:c14n1001 .
-_:c14n996 rdfs:subClassOf _:c14n997 ;
-	owl:intersectionOf _:c14n995 .
-_:c14n997 a owl:Restriction ;
+_:c14n994 a owl:Restriction ;
 	owl:onProperty fix_sbe:min_value ;
 	owl:someValuesFrom xsd:string .
-_:c14n998 a owl:Restriction ;
+_:c14n995 a owl:Restriction ;
 	owl:onProperty fix_sbe:presence ;
-	owl:someValuesFrom _:c14n999 .
-_:c14n999 a rdfs:Datatype ;
-	owl:oneOf _:c14n1000 .
+	owl:someValuesFrom _:c14n996 .
+_:c14n996 a rdfs:Datatype ;
+	owl:oneOf _:c14n997 .
+_:c14n997 rdf:first "constant" ;
+	rdf:rest rdf:nil .
+_:c14n998 rdf:first fix_sbe:SbeFieldV2 ;
+	rdf:rest rdf:nil .
+_:c14n999 rdf:first _:c14n206 ;
+	rdf:rest _:c14n289 .
 
