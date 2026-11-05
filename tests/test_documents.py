@@ -191,6 +191,52 @@ def test_the_converter_refuses_what_the_schema_has_no_place_for(tmp_path):
             convert.convert(path)
 
 
+V2_ROOT = (
+    '<messageSchema xmlns="http://fixprotocol.io/2017/sbe" version="0" '
+    'xmlns:xi="http://www.w3.org/2001/XInclude">{}</messageSchema>'
+)
+
+
+@pytest.mark.parametrize(
+    ("include", "reason"),
+    [
+        ("<xi:include/>", "names no file"),
+        ('<xi:include href="types.xml" parse="text"/>', "text or for part"),
+        ('<xi:include href="types.xml" xpointer="t"/>', "text or for part"),
+        ('<xi:include href="types.xml"><xi:fallback/></xi:include>', "fallback"),
+    ],
+    ids=["no-href", "parse-text", "xpointer", "fallback"],
+)
+def test_the_converter_refuses_an_include_it_cannot_take(tmp_path, include, reason):
+    convert = conversion.converter()
+    path = tmp_path / "bad.xml"
+    path.write_text(V2_ROOT.format(include), encoding="utf-8")
+    with pytest.raises(convert.Unmodelled, match=reason):
+        convert.convert(path)
+
+
+@pytest.mark.parametrize(
+    ("text", "reason"),
+    [
+        (V2_ROOT.format('<xi:include href="nope.xml"/>'), "No such file"),
+        (V2_ROOT.format("<types>"), "mismatched tag"),
+        (V2_ROOT.format("<types/>").replace('version="0"', 'version="0x1"'), "0x1"),
+        (V2_ROOT.format("<unknown/>"), "holds <unknown>"),
+    ],
+    ids=["missing-file", "malformed-xml", "not-a-number", "unmodelled"],
+)
+def test_the_command_stops_with_one_line_on_a_bad_document(
+    tmp_path, capsys, text, reason
+):
+    convert = conversion.converter()
+    path = tmp_path / "bad.xml"
+    path.write_text(text, encoding="utf-8")
+    assert convert.main([str(path)]) == 1
+    out, err = capsys.readouterr()
+    assert out == ""
+    assert err.count("\n") == 1 and reason in err
+
+
 def test_the_converter_refuses_an_include_outside_its_folder(tmp_path):
     convert = conversion.converter()
     path = tmp_path / "bad.xml"

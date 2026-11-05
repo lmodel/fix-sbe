@@ -10,7 +10,9 @@ attribute under the slot whose alias it is, keeps a composite's members in docum
 names each encoding's class in encoding_kind, because an XML element's name stands for its
 class. Whatever the schema has no place for stops the run, so nothing is lost without notice.
 
-An XInclude brings in a file from the document's own folder only. Usage::
+An XInclude brings in a whole XML file from the document's own folder only: no text include,
+no part of a file by xpointer, and no fallback. Anything else, a file that cannot be read or
+parsed, or a number that is not one, stops the run with one line on standard error. Usage::
 
     uv run scripts/sbe_xml_to_yaml.py FILE [--out FILE]
 """
@@ -30,6 +32,7 @@ EDITIONS = {V1: "V1", V2: "V2"}
 XML = "{http://www.w3.org/XML/1998/namespace}"
 XSI = "{http://www.w3.org/2001/XMLSchema-instance}"
 XINCLUDE = "{http://www.w3.org/2001/XInclude}include"
+XI_FALLBACK = "{http://www.w3.org/2001/XInclude}fallback"
 
 # Each XML attribute, the slot that holds it and, for a number, its conversion.
 ATTRIBUTES = {
@@ -255,6 +258,14 @@ def _expand(root: ET.Element, folder: Path) -> None:
         for index, child in enumerate(list(parent)):
             if child.tag != XINCLUDE:
                 continue
+            if "href" not in child.attrib:
+                raise Unmodelled("an XInclude names no file")
+            if child.attrib.get("parse", "xml") != "xml" or "xpointer" in child.attrib:
+                raise Unmodelled("an XInclude asks for text or for part of a file")
+            if any(grandchild.tag == XI_FALLBACK for grandchild in child):
+                raise Unmodelled(
+                    "an XInclude has a fallback, which the converter cannot take"
+                )
             href = child.attrib["href"]
             target = (folder / href).resolve()
             if target.parent != folder.resolve():
@@ -288,7 +299,13 @@ def main(argv: list[str] | None = None) -> int:
         "--out", type=Path, help="Write here instead of standard output"
     )
     args = parser.parse_args(argv)
-    _, record = convert(args.file)
+    try:
+        _, record = convert(args.file)
+    # Unmodelled and ValueError for what the schema has no place for, including a number that
+    # is not one, ParseError for XML that does not parse, OSError for a file that cannot be read.
+    except (ValueError, ET.ParseError, OSError) as err:
+        print(f"{args.file}: {err}", file=sys.stderr)
+        return 1
     text = yaml.safe_dump(record, sort_keys=False, allow_unicode=True)
     if args.out:
         args.out.write_text(text, encoding="utf-8")
