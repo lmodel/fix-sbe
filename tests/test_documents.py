@@ -38,7 +38,11 @@ def xsd(path):
 
 
 def _parse(path):
-    tree = etree.parse(str(path), etree.XMLParser(no_network=True))
+    # The documents are pinned, so these settings guard a future one, not today's.
+    tree = etree.parse(
+        str(path),
+        etree.XMLParser(no_network=True, resolve_entities=False, huge_tree=False),
+    )
     tree.xinclude()
     return tree
 
