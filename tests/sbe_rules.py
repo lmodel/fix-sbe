@@ -31,6 +31,19 @@ PRIMITIVE_OCTETS = {
     "double": 8,
 }
 UNSIGNED = {"uint8", "uint16", "uint32", "uint64"}
+# The null value of each integer type where the schema states none (chapter 2). A float's is
+# NaN, which no enumeration sits on.
+DEFAULT_NULL = {
+    "char": 0,
+    "int8": -(2**7),
+    "int16": -(2**15),
+    "int32": -(2**31),
+    "int64": -(2**63),
+    "uint8": 2**8 - 1,
+    "uint16": 2**16 - 1,
+    "uint32": 2**32 - 1,
+    "uint64": 2**64 - 1,
+}
 ENUM_ENCODINGS = UNSIGNED | {"char"}
 FLOATING = {"float", "double"}
 DECIMAL_TYPES = {"qty", "price", "priceoffset", "amt", "percentage"}
@@ -153,6 +166,23 @@ def _scalar_error(text: str, primitive: str) -> str | None:
     return None if low <= value <= high else f"is outside {low} to {high}"
 
 
+def _as_number(text: str, primitive: str) -> int | float:
+    """A written value that _scalar_error accepted, as the number it encodes."""
+    if primitive == "char":
+        return ord(text)
+    return float(text) if primitive in FLOATING else int(text)
+
+
+def _stated_bound(
+    encoding: dict | None, slot: str, primitive: str
+) -> int | float | None:
+    """A null, lowest or highest value the enum's encoding type states, where it fits."""
+    text = (encoding or {}).get(slot)
+    if text is None or _scalar_error(text, primitive):
+        return None
+    return _as_number(text, primitive)
+
+
 def _check_versions(schema: _Schema, element: dict, place: str, errors: list) -> None:
     """A version on an element cannot be later than the schema's (chapter 4, chapter 5)."""
     for slot in ("since_version", "deprecated_since"):
@@ -190,7 +220,8 @@ def _check_simple(element: dict, place: str, errors: list) -> None:
 
 
 def _check_enum(schema: _Schema, element: dict, place: str, errors: list) -> None:
-    """An enum sits on char or an unsigned type, with named values that fit it (chapter 4)."""
+    """An enum sits on char or an unsigned type, with distinct named values that fit it and
+    are not its null (chapter 4)."""
     primitive, length = schema.primitive(element["encoding_type"])
     if primitive is None:
         errors.append((place, "unknown-encoding", element["encoding_type"]))
@@ -200,21 +231,40 @@ def _check_enum(schema: _Schema, element: dict, place: str, errors: list) -> Non
     names = [value["symbolic_name"] for value in element["valid_values"]]
     for name in sorted({name for name in names if names.count(name) > 1}):
         errors.append((place, "duplicate-value-name", name))
+    # A value is neither the encoding's null, stated or the type's default, nor outside the
+    # lowest and highest values the encoding type states, and no two values encode alike.
+    encoding = schema.encodings.get(element["encoding_type"])
+    null = _stated_bound(encoding, "null_value", primitive)
+    if null is None:
+        null = DEFAULT_NULL.get(primitive)
+    low = _stated_bound(encoding, "min_value", primitive)
+    high = _stated_bound(encoding, "max_value", primitive)
+    numbers = []
     for v, value in enumerate(element["valid_values"]):
-        _check_versions(schema, value, f"{place}/valid_values/{v}", errors)
+        here = f"{place}/valid_values/{v}"
+        _check_versions(schema, value, here, errors)
         why = _scalar_error(value["valid_value"], primitive)
         if why:
+            errors.append((here, "value-out-of-range", f"valid_value {why}"))
+            continue
+        number = _as_number(value["valid_value"], primitive)
+        numbers.append(number)
+        if number == null:
+            errors.append((here, "value-is-null", value["valid_value"]))
+        if (low is not None and number < low) or (high is not None and number > high):
             errors.append(
                 (
-                    f"{place}/valid_values/{v}",
-                    "value-out-of-range",
-                    f"valid_value {why}",
+                    here,
+                    "value-outside-type-range",
+                    f"{value['valid_value']} not in {low} to {high}",
                 )
             )
+    for number in sorted({n for n in numbers if numbers.count(n) > 1}):
+        errors.append((place, "duplicate-value", str(number)))
 
 
 def _check_set(schema: _Schema, element: dict, place: str, errors: list) -> None:
-    """A set sits on an unsigned type, with one bit per choice (chapter 4)."""
+    """A set sits on an unsigned type, with one distinct bit per choice (chapter 4)."""
     primitive, length = schema.primitive(element["encoding_type"])
     if primitive is None:
         errors.append((place, "unknown-encoding", element["encoding_type"]))
@@ -222,18 +272,21 @@ def _check_set(schema: _Schema, element: dict, place: str, errors: list) -> None
     if primitive not in UNSIGNED or length != 1:
         errors.append((place, "set-encoding", f"{primitive}, length {length}"))
         return
-    bits = PRIMITIVE_OCTETS[primitive] * 8
+    width = PRIMITIVE_OCTETS[primitive] * 8
     names = [choice["symbolic_name"] for choice in element["choices"]]
     for name in sorted({name for name in names if names.count(name) > 1}):
         errors.append((place, "duplicate-value-name", name))
+    bits = [choice["bit_position"] for choice in element["choices"]]
+    for bit in sorted({bit for bit in bits if bits.count(bit) > 1}):
+        errors.append((place, "duplicate-bit", str(bit)))
     for c, choice in enumerate(element["choices"]):
         _check_versions(schema, choice, f"{place}/choices/{c}", errors)
-        if choice["bit_position"] >= bits:
+        if choice["bit_position"] >= width:
             errors.append(
                 (
                     f"{place}/choices/{c}",
                     "choice-past-bits",
-                    f"{choice['bit_position']} of {bits}",
+                    f"{choice['bit_position']} of {width}",
                 )
             )
 

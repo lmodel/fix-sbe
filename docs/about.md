@@ -31,7 +31,7 @@ The XSD and the JSON Schema check one element at a time. `tests/sbe_rules.py` ch
 - **Versions.** Nothing has a `since_version` or `deprecated_since` later than the schema's version, and a later field cannot come before an earlier one in its list.
 - **Layout.** An offset does not overlap what came before it or pass the block's end, and a block is long enough for its fields. A field in `block_fields` does not use a variable-length encoding.
 - **Well-known composites.** The header has `blockLength`, `templateId`, `schemaId` and `version`. A group's dimension has `blockLength` and `numInGroup`. Variable-length data has `length` and `varData`. Each counter and length is unsigned. A decimal has `mantissa` and `exponent`, and a MonthYear has `year` and `month`.
-- **Values.** A null, lowest, highest or constant value fits its primitive type, an enum uses `char` or an unsigned type, a set uses an unsigned type, and a choice's bit fits its encoding.
+- **Values.** A null, lowest, highest or constant value fits its primitive type, an enum uses `char` or an unsigned type, a set uses an unsigned type, and a choice's bit fits its encoding. No two valid values encode alike and no two choices share a bit, and a valid value is neither its encoding's null nor outside the lowest and highest values its type states.
 - **Agreement.** A field and its encoding agree on `semantic_type` and `presence`, where both state them. A field's or an encoding's `semantic_type` is a FIX datatype, ignoring case. The list is FIX Latest's, read from FIX's Orchestra file in the `orchestrations` repository, with `EncodedText` from the specification's summary table.
 
 ## What the model leaves out

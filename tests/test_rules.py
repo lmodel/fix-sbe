@@ -112,8 +112,8 @@ def _unknown_set_encoding(record):
 
 def _signed_enum(record):
     _encoding(record, "sideEnum")["encoding_type"] = "int8"
-    for value in _encoding(record, "sideEnum")["valid_values"]:
-        value["valid_value"] = "1"
+    for number, value in enumerate(_encoding(record, "sideEnum")["valid_values"], 1):
+        value["valid_value"] = str(number)
 
 
 def _array_enum(record):
@@ -136,6 +136,26 @@ def _duplicate_value_name(record):
 def _duplicate_choice_name(record):
     choices = _encoding(record, "orderFlags")["choices"]
     choices[1]["symbolic_name"] = choices[0]["symbolic_name"]
+
+
+def _duplicate_value(record):
+    values = _encoding(record, "sideEnum")["valid_values"]
+    values[1]["valid_value"] = values[0]["valid_value"]
+
+
+def _duplicate_bit(record):
+    choices = _encoding(record, "orderFlags")["choices"]
+    choices[1]["bit_position"] = choices[0]["bit_position"]
+
+
+def _value_is_the_default_null(record):
+    _member(_encoding(record, "quotedPrice"), "source")["valid_values"][0][
+        "valid_value"
+    ] = "255"
+
+
+def _values_outside_the_types_range(record):
+    _encoding(record, "charEncoding").update(min_value="A", max_value="Z")
 
 
 def _value_outside_encoding(record):
@@ -424,6 +444,17 @@ COMMON = [
         [("ENC_orderFlags", "duplicate-value-name")],
     ),
     (
+        "two valid values encode alike",
+        _duplicate_value,
+        [("ENC_sideEnum", "duplicate-value")],
+    ),
+    ("two choices share a bit", _duplicate_bit, [("ENC_orderFlags", "duplicate-bit")]),
+    (
+        "a valid value is the type's null",
+        _value_is_the_default_null,
+        [("ENC_quotedPrice/composite_members/1/valid_values/0", "value-is-null")],
+    ),
+    (
         "a valid value does not fit",
         _value_outside_encoding,
         [("ENC_quotedPrice/composite_members/1/valid_values/0", "value-out-of-range")],
@@ -615,7 +646,18 @@ def _own_month_without_month(record):
     _member(_encoding(record, "expiry"), "month")["symbolic_name"] = "moon"
 
 
+# Only the 1.0 XSD lets a stand-alone type state minValue and maxValue, which 2.0 moves to the
+# field or composite member that uses it, so an enum's values can be outside its type's range
+# in 1.0 alone.
 ONLY_V1 = [
+    (
+        "an enum's values are outside its type's range",
+        _values_outside_the_types_range,
+        [
+            ("ENC_sideEnum/valid_values/0", "value-outside-type-range"),
+            ("ENC_sideEnum/valid_values/1", "value-outside-type-range"),
+        ],
+    ),
     (
         "a MonthYear encoding has no month",
         _own_month_without_month,
