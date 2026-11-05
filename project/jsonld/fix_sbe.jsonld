@@ -541,104 +541,168 @@
           "value": "2: FIX datatype summary"
         }
       ],
-      "description": "The FIX datatypes the specification's summary table lists as a field's or an encoding's semantic type.",
+      "description": "The FIX datatypes a field's or an encoding's semantic type may name: those of FIX Latest, and EncodedText, which the specification's summary table adds.",
       "comments": [
+        "The list is the datatypes of FIX Latest in FIXTradingCommunity/orchestrations (Apache-2.0), file \"FIX Standard/OrchestraFIXLatest.xml\" at commit cd24169a2abd8daba7c360987c7a46ca11873a12, in that file's order, with EncodedText last.",
         "semantic_type stays free text in the schema, because a message's holds a MsgType value and the specification suggests matching names ignoring case. tests/sbe_rules.py checks an encoding's and a field's against this list."
       ],
       "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
       "permissible_values": [
         {
-          "text": "int"
+          "text": "int",
+          "description": "A whole number."
         },
         {
-          "text": "Length"
+          "text": "Length",
+          "description": "A whole number that counts the octets of another field."
         },
         {
-          "text": "TagNum"
+          "text": "TagNum",
+          "description": "A whole number that is a field's tag."
         },
         {
-          "text": "SeqNum"
+          "text": "SeqNum",
+          "description": "A whole number that orders messages in a session."
         },
         {
-          "text": "NumInGroup"
+          "text": "NumInGroup",
+          "description": "A whole number that counts the entries of a repeating group."
         },
         {
-          "text": "DayOfMonth"
+          "text": "DayOfMonth",
+          "description": "A whole number from 1 to 31."
         },
         {
-          "text": "Qty"
+          "text": "float",
+          "description": "A decimal number."
         },
         {
-          "text": "float"
+          "text": "Qty",
+          "description": "A decimal number that is an amount of something traded."
         },
         {
-          "text": "Price"
+          "text": "Price",
+          "description": "A decimal number that is a price."
         },
         {
-          "text": "PriceOffset"
+          "text": "PriceOffset",
+          "description": "A decimal number that is a difference from a price."
         },
         {
-          "text": "Amt"
+          "text": "Amt",
+          "description": "A decimal number that is a quantity multiplied by a price."
         },
         {
-          "text": "Percentage"
+          "text": "Percentage",
+          "description": "A decimal number that is a proportion, where 0.1 is ten percent."
         },
         {
-          "text": "char"
+          "text": "char",
+          "description": "One character."
         },
         {
-          "text": "String"
+          "text": "Boolean",
+          "description": "A character that is Y or N."
         },
         {
-          "text": "EncodedText"
+          "text": "String",
+          "description": "Text of any length."
         },
         {
-          "text": "XMLData"
+          "text": "MultipleCharValue",
+          "description": "One or more single characters, separated by spaces, each chosen from a list."
         },
         {
-          "text": "data"
+          "text": "MultipleStringValue",
+          "description": "One or more words, separated by spaces, each chosen from a list."
         },
         {
-          "text": "Country"
+          "text": "Country",
+          "description": "A two-letter country code of ISO 3166-1."
         },
         {
-          "text": "Currency"
+          "text": "Currency",
+          "description": "A three-letter currency code of ISO 4217."
         },
         {
-          "text": "Exchange"
+          "text": "Exchange",
+          "description": "A market identifier code of ISO 10383."
         },
         {
-          "text": "Language"
+          "text": "MonthYear",
+          "description": "A year and month, with an optional day or week."
         },
         {
-          "text": "Boolean"
+          "text": "UTCTimestamp",
+          "description": "A date and time in UTC."
         },
         {
-          "text": "MultipleCharValue"
+          "text": "UTCTimeOnly",
+          "description": "A time of day in UTC."
         },
         {
-          "text": "MultipleStringValue"
+          "text": "UTCDateOnly",
+          "description": "A calendar date in UTC."
         },
         {
-          "text": "MonthYear"
+          "text": "LocalMktDate",
+          "description": "A calendar date in the market's local time."
         },
         {
-          "text": "UTCTimestamp"
+          "text": "TZTimeOnly",
+          "description": "A time of day with its offset from UTC."
         },
         {
-          "text": "UTCTimeOnly"
+          "text": "TZTimestamp",
+          "description": "A date and time with their offset from UTC."
         },
         {
-          "text": "UTCDateOnly"
+          "text": "data",
+          "description": "Raw octets, whose count a Length field before them gives."
         },
         {
-          "text": "LocalMktDate"
+          "text": "Pattern",
+          "description": "Text that another field's value must match."
         },
         {
-          "text": "TZTimeOnly"
+          "text": "Tenor",
+          "description": "A period expressed as a count of days, weeks, months or years."
         },
         {
-          "text": "TZTimestamp"
+          "text": "Reserved100Plus",
+          "description": "A whole number of 100 or more, kept for values a counterparty defines."
+        },
+        {
+          "text": "Reserved1000Plus",
+          "description": "A whole number of 1000 or more, kept for values a counterparty defines."
+        },
+        {
+          "text": "Reserved4000Plus",
+          "description": "A whole number of 4000 or more, kept for values a counterparty defines."
+        },
+        {
+          "text": "XMLData",
+          "description": "An XML document carried as text."
+        },
+        {
+          "text": "Language",
+          "description": "A language code of ISO 639-1."
+        },
+        {
+          "text": "LocalMktTime",
+          "description": "A time of day in the market's local time."
+        },
+        {
+          "text": "XID",
+          "description": "An identifier that is unique within a message."
+        },
+        {
+          "text": "XIDREF",
+          "description": "A reference to an XID in the same message."
+        },
+        {
+          "text": "EncodedText",
+          "description": "Text in the character set a field beside it names, rather than ASCII."
         }
       ]
     }

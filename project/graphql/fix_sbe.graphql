@@ -14,24 +14,20 @@ enum SbeFixDatatype
     SeqNum
     NumInGroup
     DayOfMonth
-    Qty
     float
+    Qty
     Price
     PriceOffset
     Amt
     Percentage
     char
+    Boolean
     String
-    EncodedText
-    XMLData
-    data
+    MultipleCharValue
+    MultipleStringValue
     Country
     Currency
     Exchange
-    Language
-    Boolean
-    MultipleCharValue
-    MultipleStringValue
     MonthYear
     UTCTimestamp
     UTCTimeOnly
@@ -39,6 +35,18 @@ enum SbeFixDatatype
     LocalMktDate
     TZTimeOnly
     TZTimestamp
+    data
+    Pattern
+    Tenor
+    Reserved100Plus
+    Reserved1000Plus
+    Reserved4000Plus
+    XMLData
+    Language
+    LocalMktTime
+    XID
+    XIDREF
+    EncodedText
   }
 
 enum SbePresence

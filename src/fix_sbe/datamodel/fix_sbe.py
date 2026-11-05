@@ -1608,43 +1608,130 @@ class SbePrimitiveType(EnumDefinitionImpl):
 
 class SbeFixDatatype(EnumDefinitionImpl):
     """
-    The FIX datatypes the specification's summary table lists as a field's or an encoding's semantic type.
+    The FIX datatypes a field's or an encoding's semantic type may name: those of FIX Latest, and EncodedText, which
+    the specification's summary table adds.
     """
-    int = PermissibleValue(text="int")
-    Length = PermissibleValue(text="Length")
-    TagNum = PermissibleValue(text="TagNum")
-    SeqNum = PermissibleValue(text="SeqNum")
-    NumInGroup = PermissibleValue(text="NumInGroup")
-    DayOfMonth = PermissibleValue(text="DayOfMonth")
-    Qty = PermissibleValue(text="Qty")
-    float = PermissibleValue(text="float")
-    Price = PermissibleValue(text="Price")
-    PriceOffset = PermissibleValue(text="PriceOffset")
-    Amt = PermissibleValue(text="Amt")
-    Percentage = PermissibleValue(text="Percentage")
-    char = PermissibleValue(text="char")
-    String = PermissibleValue(text="String")
-    EncodedText = PermissibleValue(text="EncodedText")
-    XMLData = PermissibleValue(text="XMLData")
-    data = PermissibleValue(text="data")
-    Country = PermissibleValue(text="Country")
-    Currency = PermissibleValue(text="Currency")
-    Exchange = PermissibleValue(text="Exchange")
-    Language = PermissibleValue(text="Language")
-    Boolean = PermissibleValue(text="Boolean")
-    MultipleCharValue = PermissibleValue(text="MultipleCharValue")
-    MultipleStringValue = PermissibleValue(text="MultipleStringValue")
-    MonthYear = PermissibleValue(text="MonthYear")
-    UTCTimestamp = PermissibleValue(text="UTCTimestamp")
-    UTCTimeOnly = PermissibleValue(text="UTCTimeOnly")
-    UTCDateOnly = PermissibleValue(text="UTCDateOnly")
-    LocalMktDate = PermissibleValue(text="LocalMktDate")
-    TZTimeOnly = PermissibleValue(text="TZTimeOnly")
-    TZTimestamp = PermissibleValue(text="TZTimestamp")
+    int = PermissibleValue(
+        text="int",
+        description="A whole number.")
+    Length = PermissibleValue(
+        text="Length",
+        description="A whole number that counts the octets of another field.")
+    TagNum = PermissibleValue(
+        text="TagNum",
+        description="A whole number that is a field's tag.")
+    SeqNum = PermissibleValue(
+        text="SeqNum",
+        description="A whole number that orders messages in a session.")
+    NumInGroup = PermissibleValue(
+        text="NumInGroup",
+        description="A whole number that counts the entries of a repeating group.")
+    DayOfMonth = PermissibleValue(
+        text="DayOfMonth",
+        description="A whole number from 1 to 31.")
+    float = PermissibleValue(
+        text="float",
+        description="A decimal number.")
+    Qty = PermissibleValue(
+        text="Qty",
+        description="A decimal number that is an amount of something traded.")
+    Price = PermissibleValue(
+        text="Price",
+        description="A decimal number that is a price.")
+    PriceOffset = PermissibleValue(
+        text="PriceOffset",
+        description="A decimal number that is a difference from a price.")
+    Amt = PermissibleValue(
+        text="Amt",
+        description="A decimal number that is a quantity multiplied by a price.")
+    Percentage = PermissibleValue(
+        text="Percentage",
+        description="A decimal number that is a proportion, where 0.1 is ten percent.")
+    char = PermissibleValue(
+        text="char",
+        description="One character.")
+    Boolean = PermissibleValue(
+        text="Boolean",
+        description="A character that is Y or N.")
+    String = PermissibleValue(
+        text="String",
+        description="Text of any length.")
+    MultipleCharValue = PermissibleValue(
+        text="MultipleCharValue",
+        description="One or more single characters, separated by spaces, each chosen from a list.")
+    MultipleStringValue = PermissibleValue(
+        text="MultipleStringValue",
+        description="One or more words, separated by spaces, each chosen from a list.")
+    Country = PermissibleValue(
+        text="Country",
+        description="A two-letter country code of ISO 3166-1.")
+    Currency = PermissibleValue(
+        text="Currency",
+        description="A three-letter currency code of ISO 4217.")
+    Exchange = PermissibleValue(
+        text="Exchange",
+        description="A market identifier code of ISO 10383.")
+    MonthYear = PermissibleValue(
+        text="MonthYear",
+        description="A year and month, with an optional day or week.")
+    UTCTimestamp = PermissibleValue(
+        text="UTCTimestamp",
+        description="A date and time in UTC.")
+    UTCTimeOnly = PermissibleValue(
+        text="UTCTimeOnly",
+        description="A time of day in UTC.")
+    UTCDateOnly = PermissibleValue(
+        text="UTCDateOnly",
+        description="A calendar date in UTC.")
+    LocalMktDate = PermissibleValue(
+        text="LocalMktDate",
+        description="A calendar date in the market's local time.")
+    TZTimeOnly = PermissibleValue(
+        text="TZTimeOnly",
+        description="A time of day with its offset from UTC.")
+    TZTimestamp = PermissibleValue(
+        text="TZTimestamp",
+        description="A date and time with their offset from UTC.")
+    data = PermissibleValue(
+        text="data",
+        description="Raw octets, whose count a Length field before them gives.")
+    Pattern = PermissibleValue(
+        text="Pattern",
+        description="Text that another field's value must match.")
+    Tenor = PermissibleValue(
+        text="Tenor",
+        description="A period expressed as a count of days, weeks, months or years.")
+    Reserved100Plus = PermissibleValue(
+        text="Reserved100Plus",
+        description="A whole number of 100 or more, kept for values a counterparty defines.")
+    Reserved1000Plus = PermissibleValue(
+        text="Reserved1000Plus",
+        description="A whole number of 1000 or more, kept for values a counterparty defines.")
+    Reserved4000Plus = PermissibleValue(
+        text="Reserved4000Plus",
+        description="A whole number of 4000 or more, kept for values a counterparty defines.")
+    XMLData = PermissibleValue(
+        text="XMLData",
+        description="An XML document carried as text.")
+    Language = PermissibleValue(
+        text="Language",
+        description="A language code of ISO 639-1.")
+    LocalMktTime = PermissibleValue(
+        text="LocalMktTime",
+        description="A time of day in the market's local time.")
+    XID = PermissibleValue(
+        text="XID",
+        description="An identifier that is unique within a message.")
+    XIDREF = PermissibleValue(
+        text="XIDREF",
+        description="A reference to an XID in the same message.")
+    EncodedText = PermissibleValue(
+        text="EncodedText",
+        description="Text in the character set a field beside it names, rather than ASCII.")
 
     _defn = EnumDefinition(
         name="SbeFixDatatype",
-        description="""The FIX datatypes the specification's summary table lists as a field's or an encoding's semantic type.""",
+        description="""The FIX datatypes a field's or an encoding's semantic type may name: those of FIX Latest, and EncodedText, which the specification's summary table adds.""",
     )
 
 # Slots

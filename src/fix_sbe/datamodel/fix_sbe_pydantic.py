@@ -192,39 +192,164 @@ class SbePrimitiveType(str, Enum):
 
 class SbeFixDatatype(str, Enum):
     """
-    The FIX datatypes the specification's summary table lists as a field's or an encoding's semantic type.
+    The FIX datatypes a field's or an encoding's semantic type may name: those of FIX Latest, and EncodedText, which the specification's summary table adds.
     """
     int = "int"
+    """
+    A whole number.
+    """
     Length = "Length"
+    """
+    A whole number that counts the octets of another field.
+    """
     TagNum = "TagNum"
+    """
+    A whole number that is a field's tag.
+    """
     SeqNum = "SeqNum"
+    """
+    A whole number that orders messages in a session.
+    """
     NumInGroup = "NumInGroup"
+    """
+    A whole number that counts the entries of a repeating group.
+    """
     DayOfMonth = "DayOfMonth"
-    Qty = "Qty"
+    """
+    A whole number from 1 to 31.
+    """
     float = "float"
+    """
+    A decimal number.
+    """
+    Qty = "Qty"
+    """
+    A decimal number that is an amount of something traded.
+    """
     Price = "Price"
+    """
+    A decimal number that is a price.
+    """
     PriceOffset = "PriceOffset"
+    """
+    A decimal number that is a difference from a price.
+    """
     Amt = "Amt"
+    """
+    A decimal number that is a quantity multiplied by a price.
+    """
     Percentage = "Percentage"
+    """
+    A decimal number that is a proportion, where 0.1 is ten percent.
+    """
     char = "char"
-    String = "String"
-    EncodedText = "EncodedText"
-    XMLData = "XMLData"
-    data = "data"
-    Country = "Country"
-    Currency = "Currency"
-    Exchange = "Exchange"
-    Language = "Language"
+    """
+    One character.
+    """
     Boolean = "Boolean"
+    """
+    A character that is Y or N.
+    """
+    String = "String"
+    """
+    Text of any length.
+    """
     MultipleCharValue = "MultipleCharValue"
+    """
+    One or more single characters, separated by spaces, each chosen from a list.
+    """
     MultipleStringValue = "MultipleStringValue"
+    """
+    One or more words, separated by spaces, each chosen from a list.
+    """
+    Country = "Country"
+    """
+    A two-letter country code of ISO 3166-1.
+    """
+    Currency = "Currency"
+    """
+    A three-letter currency code of ISO 4217.
+    """
+    Exchange = "Exchange"
+    """
+    A market identifier code of ISO 10383.
+    """
     MonthYear = "MonthYear"
+    """
+    A year and month, with an optional day or week.
+    """
     UTCTimestamp = "UTCTimestamp"
+    """
+    A date and time in UTC.
+    """
     UTCTimeOnly = "UTCTimeOnly"
+    """
+    A time of day in UTC.
+    """
     UTCDateOnly = "UTCDateOnly"
+    """
+    A calendar date in UTC.
+    """
     LocalMktDate = "LocalMktDate"
+    """
+    A calendar date in the market's local time.
+    """
     TZTimeOnly = "TZTimeOnly"
+    """
+    A time of day with its offset from UTC.
+    """
     TZTimestamp = "TZTimestamp"
+    """
+    A date and time with their offset from UTC.
+    """
+    data = "data"
+    """
+    Raw octets, whose count a Length field before them gives.
+    """
+    Pattern = "Pattern"
+    """
+    Text that another field's value must match.
+    """
+    Tenor = "Tenor"
+    """
+    A period expressed as a count of days, weeks, months or years.
+    """
+    Reserved100Plus = "Reserved100Plus"
+    """
+    A whole number of 100 or more, kept for values a counterparty defines.
+    """
+    Reserved1000Plus = "Reserved1000Plus"
+    """
+    A whole number of 1000 or more, kept for values a counterparty defines.
+    """
+    Reserved4000Plus = "Reserved4000Plus"
+    """
+    A whole number of 4000 or more, kept for values a counterparty defines.
+    """
+    XMLData = "XMLData"
+    """
+    An XML document carried as text.
+    """
+    Language = "Language"
+    """
+    A language code of ISO 639-1.
+    """
+    LocalMktTime = "LocalMktTime"
+    """
+    A time of day in the market's local time.
+    """
+    XID = "XID"
+    """
+    An identifier that is unique within a message.
+    """
+    XIDREF = "XIDREF"
+    """
+    A reference to an XID in the same message.
+    """
+    EncodedText = "EncodedText"
+    """
+    Text in the character set a field beside it names, rather than ASCII.
+    """
 
 
 

@@ -49,41 +49,88 @@ export enum SbePrimitiveType {
     double = "double",
 };
 /**
-* The FIX datatypes the specification's summary table lists as a field's or an encoding's semantic type.
+* The FIX datatypes a field's or an encoding's semantic type may name: those of FIX Latest, and EncodedText, which the specification's summary table adds.
 */
 export enum SbeFixDatatype {
     
+    /** A whole number. */
     int = "int",
+    /** A whole number that counts the octets of another field. */
     Length = "Length",
+    /** A whole number that is a field's tag. */
     TagNum = "TagNum",
+    /** A whole number that orders messages in a session. */
     SeqNum = "SeqNum",
+    /** A whole number that counts the entries of a repeating group. */
     NumInGroup = "NumInGroup",
+    /** A whole number from 1 to 31. */
     DayOfMonth = "DayOfMonth",
-    Qty = "Qty",
+    /** A decimal number. */
     float = "float",
+    /** A decimal number that is an amount of something traded. */
+    Qty = "Qty",
+    /** A decimal number that is a price. */
     Price = "Price",
+    /** A decimal number that is a difference from a price. */
     PriceOffset = "PriceOffset",
+    /** A decimal number that is a quantity multiplied by a price. */
     Amt = "Amt",
+    /** A decimal number that is a proportion, where 0.1 is ten percent. */
     Percentage = "Percentage",
+    /** One character. */
     char = "char",
-    String = "String",
-    EncodedText = "EncodedText",
-    XMLData = "XMLData",
-    data = "data",
-    Country = "Country",
-    Currency = "Currency",
-    Exchange = "Exchange",
-    Language = "Language",
+    /** A character that is Y or N. */
     Boolean = "Boolean",
+    /** Text of any length. */
+    String = "String",
+    /** One or more single characters, separated by spaces, each chosen from a list. */
     MultipleCharValue = "MultipleCharValue",
+    /** One or more words, separated by spaces, each chosen from a list. */
     MultipleStringValue = "MultipleStringValue",
+    /** A two-letter country code of ISO 3166-1. */
+    Country = "Country",
+    /** A three-letter currency code of ISO 4217. */
+    Currency = "Currency",
+    /** A market identifier code of ISO 10383. */
+    Exchange = "Exchange",
+    /** A year and month, with an optional day or week. */
     MonthYear = "MonthYear",
+    /** A date and time in UTC. */
     UTCTimestamp = "UTCTimestamp",
+    /** A time of day in UTC. */
     UTCTimeOnly = "UTCTimeOnly",
+    /** A calendar date in UTC. */
     UTCDateOnly = "UTCDateOnly",
+    /** A calendar date in the market's local time. */
     LocalMktDate = "LocalMktDate",
+    /** A time of day with its offset from UTC. */
     TZTimeOnly = "TZTimeOnly",
+    /** A date and time with their offset from UTC. */
     TZTimestamp = "TZTimestamp",
+    /** Raw octets, whose count a Length field before them gives. */
+    data = "data",
+    /** Text that another field's value must match. */
+    Pattern = "Pattern",
+    /** A period expressed as a count of days, weeks, months or years. */
+    Tenor = "Tenor",
+    /** A whole number of 100 or more, kept for values a counterparty defines. */
+    Reserved100Plus = "Reserved100Plus",
+    /** A whole number of 1000 or more, kept for values a counterparty defines. */
+    Reserved1000Plus = "Reserved1000Plus",
+    /** A whole number of 4000 or more, kept for values a counterparty defines. */
+    Reserved4000Plus = "Reserved4000Plus",
+    /** An XML document carried as text. */
+    XMLData = "XMLData",
+    /** A language code of ISO 639-1. */
+    Language = "Language",
+    /** A time of day in the market's local time. */
+    LocalMktTime = "LocalMktTime",
+    /** An identifier that is unique within a message. */
+    XID = "XID",
+    /** A reference to an XID in the same message. */
+    XIDREF = "XIDREF",
+    /** Text in the character set a field beside it names, rather than ASCII. */
+    EncodedText = "EncodedText",
 };
 
 
