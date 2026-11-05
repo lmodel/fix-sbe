@@ -47,7 +47,7 @@ The copy roots a message schema and a message template of each edition on `Conce
 SbeMessageSchemaV1, SbeMessageSchemaV2, SbeMessageV1, SbeMessageV2
 ```
 
-`description` folds into LOKF's, and no other key needs renaming. `tests/test_schema_rules.py` keeps the copy's keys apart from LOKF and the released copies in `tests/neighbours/`, and it lists the keys shared with a neighbour.
+`description` folds into LOKF's, and no other key needs renaming. `tests/test_schema_rules.py` keeps the copy's keys apart from LOKF and the released copies in `tests/neighbours/`.
 
 ## License
 
