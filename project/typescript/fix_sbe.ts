@@ -278,7 +278,7 @@ export interface SbeMessageV1 extends SbeVersionedMixin, SbeBlockV1Mixin {
 
 
 /**
- * A repeating group, whose entries each hold the same fields, and which cannot be without a field.
+ * A repeating group, whose entries each hold the same fields, and which must have at least one field.
  */
 export interface SbeGroupV1 extends SbeVersionedMixin, SbeBlockV1Mixin {
     /** The composite, by name, that sends a repeating group's entry count and entry size. */
@@ -505,7 +505,7 @@ export interface SbeMessageV2 extends SbeVersionedMixin, SbeBlockV2Mixin {
 
 
 /**
- * A repeating group, whose entries each hold the same fields, and which cannot be without a field.
+ * A repeating group, whose entries each hold the same fields, and which must have at least one field.
  */
 export interface SbeGroupV2 extends SbeVersionedMixin, SbeBlockV2Mixin {
     /** The composite, by name, that sends a repeating group's entry count and entry size. */

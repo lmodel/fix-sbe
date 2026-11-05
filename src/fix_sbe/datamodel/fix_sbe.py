@@ -666,7 +666,7 @@ class SbeMessageV1(YAMLRoot):
 @dataclass(repr=False)
 class SbeGroupV1(YAMLRoot):
     """
-    A repeating group, whose entries each hold the same fields, and which cannot be without a field.
+    A repeating group, whose entries each hold the same fields, and which must have at least one field.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
@@ -1379,7 +1379,7 @@ class SbeMessageV2(YAMLRoot):
 @dataclass(repr=False)
 class SbeGroupV2(YAMLRoot):
     """
-    A repeating group, whose entries each hold the same fields, and which cannot be without a field.
+    A repeating group, whose entries each hold the same fields, and which must have at least one field.
     """
     _inherited_slots: ClassVar[list[str]] = []
 

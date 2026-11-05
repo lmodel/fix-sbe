@@ -27,8 +27,8 @@ annotations:
 comments:
   - >-
     A document of SBE 1.0 starts at SbeMessageSchemaV1, the tree root, and one of SBE 2.0 RC3
-    at SbeMessageSchemaV2. upstream/ holds both XSDs unchanged, tests/test_coverage.py holds the
-    modules to them, and scripts/check_upstream_release.py reports when either moves.
+    at SbeMessageSchemaV2. upstream/ holds both XSDs unchanged, tests/test_coverage.py compares
+    the modules with them, and scripts/check_upstream_release.py reports when either changes.
 prefixes:
   fix_sbe: https://w3id.org/lmodel/fix-sbe/
   linkml: https://w3id.org/linkml/

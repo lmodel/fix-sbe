@@ -17,8 +17,8 @@ title: FIX Simple Binary Encoding (SBE)
 comments:
 - A document of SBE 1.0 starts at SbeMessageSchemaV1, the tree root, and one of SBE
   2.0 RC3 at SbeMessageSchemaV2. upstream/ holds both XSDs unchanged, tests/test_coverage.py
-  holds the modules to them, and scripts/check_upstream_release.py reports when either
-  moves.
+  compares the modules with them, and scripts/check_upstream_release.py reports when
+  either changes.
 source: https://github.com/FIXTradingCommunity/fix-simple-binary-encoding
 see_also:
 - https://lmodel.github.io/fix-sbe
@@ -454,8 +454,8 @@ enums:
       or an encoding's semantic type.
     comments:
     - semantic_type stays free text in the schema, because a message's holds a MsgType
-      value and the specification suggests matching names without regard to case.
-      tests/sbe_rules.py holds an encoding's and a field's to this list.
+      value and the specification suggests matching names ignoring case. tests/sbe_rules.py
+      checks an encoding's and a field's against this list.
     from_schema: https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common
     permissible_values:
       int:
@@ -850,7 +850,7 @@ slots:
     comments:
     - It holds a name and not a class reference, because a name is unique only within
       one schema document, where several documents may be listed side by side. tests/sbe_rules.py
-      holds each to an encoding of its document.
+      checks that each names an encoding of its document.
     from_schema: https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common
     aliases:
     - type
@@ -2547,7 +2547,7 @@ classes:
         tag: xml_element
         value: group
     description: A repeating group, whose entries each hold the same fields, and which
-      cannot be without a field.
+      must have at least one field.
     from_schema: https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v1_0
     close_mappings:
     - fix_orchestra:OrchestraGroupV10
@@ -2585,9 +2585,9 @@ classes:
     description: A message's or group entry's field, which uses an encoding at a place
       in its block.
     comments:
-    - The old mapping called this an exact match of an Orchestra field, but the two
-      differ. This one sits at a place in one block, and FIX's transposer carries
-      one with a composite encoding to a component reference, not a field.
+    - The mapping to an Orchestra field is close, not exact. This field has a place
+      in one block, and FIX's transposer carries one with a composite encoding to
+      a component reference, not a field.
     from_schema: https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v1_0
     close_mappings:
     - fix_orchestra:OrchestraFieldV10
@@ -3113,7 +3113,7 @@ classes:
         tag: xml_element
         value: group
     description: A repeating group, whose entries each hold the same fields, and which
-      cannot be without a field.
+      must have at least one field.
     from_schema: https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v2_0
     close_mappings:
     - fix_orchestra:OrchestraGroupV10
@@ -3152,9 +3152,9 @@ classes:
     description: A message's or group entry's field, which uses an encoding at a place
       in its block and may state a constant.
     comments:
-    - The old mapping called this an exact match of an Orchestra field, but the two
-      differ. This one sits at a place in one block, and FIX's transposer carries
-      one with a composite encoding to a component reference, not a field.
+    - The mapping to an Orchestra field is close, not exact. This field has a place
+      in one block, and FIX's transposer carries one with a composite encoding to
+      a component reference, not a field.
     from_schema: https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v2_0
     close_mappings:
     - fix_orchestra:OrchestraFieldV10
@@ -3288,6 +3288,6 @@ classes:
       title: An offset or an alignment, not both
 metamodel_version: 1.12.0
 source_file: fix_sbe.yaml
-source_file_date: '2026-11-05T17:42:34'
-source_file_size: 1594
+source_file_date: '2026-11-05T18:08:36'
+source_file_size: 1601
 

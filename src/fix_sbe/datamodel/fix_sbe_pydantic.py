@@ -74,9 +74,9 @@ linkml_meta = LinkMLMeta({'annotations': {'upstream_v1_commit': {'tag': 'upstrea
                                             'value': '418a8f6a8b93c65b308638dab2bc6a35dddcd864'}},
      'comments': ['A document of SBE 1.0 starts at SbeMessageSchemaV1, the tree '
                   'root, and one of SBE 2.0 RC3 at SbeMessageSchemaV2. upstream/ '
-                  'holds both XSDs unchanged, tests/test_coverage.py holds the '
-                  'modules to them, and scripts/check_upstream_release.py reports '
-                  'when either moves.'],
+                  'holds both XSDs unchanged, tests/test_coverage.py compares the '
+                  'modules with them, and scripts/check_upstream_release.py '
+                  'reports when either changes.'],
      'default_prefix': 'fix_sbe',
      'default_range': 'string',
      'description': 'A LinkML model of FIX Simple Binary Encoding, a standard from '
@@ -549,8 +549,8 @@ class SbeRefV1(SbeMemberV1):
     encoding_name: str = Field(default=..., description="""Which encoding this element uses, by name.""", json_schema_extra = { "linkml_meta": {'aliases': ['type'],
          'comments': ['It holds a name and not a class reference, because a name is '
                       'unique only within one schema document, where several documents '
-                      'may be listed side by side. tests/sbe_rules.py holds each to an '
-                      'encoding of its document.'],
+                      'may be listed side by side. tests/sbe_rules.py checks that each '
+                      'names an encoding of its document.'],
          'domain_of': ['SbeRefV1', 'SbeFieldV1', 'SbeRefV2', 'SbeFieldV2']} })
     encoding_kind: Literal["SbeRefV1"] = Field(default="SbeRefV1", description="""The class of this encoding or composite member, which stands for its XML element.""", json_schema_extra = { "linkml_meta": {'designates_type': True, 'domain_of': ['SbeMemberV1', 'SbeElementV2']} })
     symbolic_name: str = Field(default=..., description="""What the schema calls this element.""", json_schema_extra = { "linkml_meta": {'aliases': ['name'],
@@ -1391,7 +1391,7 @@ class SbeMessageV1(SbeBlockV1Mixin, SbeVersionedMixin):
 
 class SbeGroupV1(SbeBlockV1Mixin, SbeVersionedMixin):
     """
-    A repeating group, whose entries each hold the same fields, and which cannot be without a field.
+    A repeating group, whose entries each hold the same fields, and which must have at least one field.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'xml_element': {'tag': 'xml_element', 'value': 'group'},
                          'xsd_type': {'tag': 'xsd_type', 'value': 'groupType'}},
@@ -1516,10 +1516,10 @@ class SbeFieldV1(SbeVersionedMixin):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'xml_element': {'tag': 'xml_element', 'value': 'field'},
                          'xsd_type': {'tag': 'xsd_type', 'value': 'fieldType'}},
          'close_mappings': ['fix_orchestra:OrchestraFieldV10'],
-         'comments': ['The old mapping called this an exact match of an Orchestra '
-                      'field, but the two differ. This one sits at a place in one '
-                      "block, and FIX's transposer carries one with a composite "
-                      'encoding to a component reference, not a field.'],
+         'comments': ['The mapping to an Orchestra field is close, not exact. This '
+                      "field has a place in one block, and FIX's transposer carries "
+                      'one with a composite encoding to a component reference, not a '
+                      'field.'],
          'from_schema': 'https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v1_0',
          'mixins': ['SbeVersionedMixin'],
          'rules': [{'annotations': {'sbe_section': {'tag': 'sbe_section',
@@ -1558,8 +1558,8 @@ class SbeFieldV1(SbeVersionedMixin):
     encoding_name: str = Field(default=..., description="""Which encoding this element uses, by name.""", json_schema_extra = { "linkml_meta": {'aliases': ['type'],
          'comments': ['It holds a name and not a class reference, because a name is '
                       'unique only within one schema document, where several documents '
-                      'may be listed side by side. tests/sbe_rules.py holds each to an '
-                      'encoding of its document.'],
+                      'may be listed side by side. tests/sbe_rules.py checks that each '
+                      'names an encoding of its document.'],
          'domain_of': ['SbeRefV1', 'SbeFieldV1', 'SbeRefV2', 'SbeFieldV2']} })
     offset: Optional[int] = Field(default=None, description="""The octet this element starts at, counted from zero at the start of its block or composite.""", ge=0, le=4294967295, json_schema_extra = { "linkml_meta": {'aliases': ['offset'],
          'annotations': {'sbe_section': {'tag': 'sbe_section',
@@ -2223,8 +2223,8 @@ class SbeRefV2(SbeMemberV2):
     encoding_name: str = Field(default=..., description="""Which encoding this element uses, by name.""", json_schema_extra = { "linkml_meta": {'aliases': ['type'],
          'comments': ['It holds a name and not a class reference, because a name is '
                       'unique only within one schema document, where several documents '
-                      'may be listed side by side. tests/sbe_rules.py holds each to an '
-                      'encoding of its document.'],
+                      'may be listed side by side. tests/sbe_rules.py checks that each '
+                      'names an encoding of its document.'],
          'domain_of': ['SbeRefV1', 'SbeFieldV1', 'SbeRefV2', 'SbeFieldV2']} })
     offset: Optional[int] = Field(default=None, description="""The octet this element starts at, counted from zero at the start of its block or composite.""", ge=0, le=4294967295, json_schema_extra = { "linkml_meta": {'aliases': ['offset'],
          'annotations': {'sbe_section': {'tag': 'sbe_section',
@@ -2767,7 +2767,7 @@ class SbeMessageV2(SbeBlockV2Mixin, SbeVersionedMixin):
 
 class SbeGroupV2(SbeBlockV2Mixin, SbeVersionedMixin):
     """
-    A repeating group, whose entries each hold the same fields, and which cannot be without a field.
+    A repeating group, whose entries each hold the same fields, and which must have at least one field.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'xml_element': {'tag': 'xml_element', 'value': 'group'},
                          'xsd_type': {'tag': 'xsd_type', 'value': 'groupType'}},
@@ -2898,10 +2898,10 @@ class SbeFieldV2(SbeVersionedMixin):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'xml_element': {'tag': 'xml_element', 'value': 'field'},
                          'xsd_type': {'tag': 'xsd_type', 'value': 'fieldType'}},
          'close_mappings': ['fix_orchestra:OrchestraFieldV10'],
-         'comments': ['The old mapping called this an exact match of an Orchestra '
-                      'field, but the two differ. This one sits at a place in one '
-                      "block, and FIX's transposer carries one with a composite "
-                      'encoding to a component reference, not a field.'],
+         'comments': ['The mapping to an Orchestra field is close, not exact. This '
+                      "field has a place in one block, and FIX's transposer carries "
+                      'one with a composite encoding to a component reference, not a '
+                      'field.'],
          'from_schema': 'https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v2_0',
          'mixins': ['SbeVersionedMixin'],
          'rules': [{'annotations': {'sbe_section': {'tag': 'sbe_section',
@@ -2993,8 +2993,8 @@ class SbeFieldV2(SbeVersionedMixin):
     encoding_name: str = Field(default=..., description="""Which encoding this element uses, by name.""", json_schema_extra = { "linkml_meta": {'aliases': ['type'],
          'comments': ['It holds a name and not a class reference, because a name is '
                       'unique only within one schema document, where several documents '
-                      'may be listed side by side. tests/sbe_rules.py holds each to an '
-                      'encoding of its document.'],
+                      'may be listed side by side. tests/sbe_rules.py checks that each '
+                      'names an encoding of its document.'],
          'domain_of': ['SbeRefV1', 'SbeFieldV1', 'SbeRefV2', 'SbeFieldV2']} })
     element_value: Optional[str] = Field(default=None, description="""The text of the XML element, which is the constant when presence is constant.""", json_schema_extra = { "linkml_meta": {'annotations': {'sbe_section': {'tag': 'sbe_section',
                                          'value': '4: Constant value'},

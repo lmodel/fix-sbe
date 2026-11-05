@@ -83,13 +83,13 @@ fix_sbe:SbeFieldV2 a sh:NodeShape ;
 	sh:property _:c14n167 , _:c14n202 , _:c14n235 , _:c14n249 , _:c14n25 , _:c14n265 , _:c14n278 , _:c14n30 , _:c14n40 , _:c14n42 , _:c14n50 , _:c14n54 , _:c14n71 , _:c14n78 , _:c14n81 ;
 	sh:targetClass fix_sbe:SbeFieldV2 .
 fix_sbe:SbeGroupV1 a sh:NodeShape ;
-	rdfs:comment "A repeating group, whose entries each hold the same fields, and which cannot be without a field." ;
+	rdfs:comment "A repeating group, whose entries each hold the same fields, and which must have at least one field." ;
 	sh:closed true ;
 	sh:ignoredProperties _:c14n146 ;
 	sh:property _:c14n131 , _:c14n174 , _:c14n19 , _:c14n191 , _:c14n213 , _:c14n226 , _:c14n280 , _:c14n55 , _:c14n59 , _:c14n83 , _:c14n9 ;
 	sh:targetClass fix_sbe:SbeGroupV1 .
 fix_sbe:SbeGroupV2 a sh:NodeShape ;
-	rdfs:comment "A repeating group, whose entries each hold the same fields, and which cannot be without a field." ;
+	rdfs:comment "A repeating group, whose entries each hold the same fields, and which must have at least one field." ;
 	sh:closed true ;
 	sh:ignoredProperties _:c14n3 ;
 	sh:property _:c14n102 , _:c14n126 , _:c14n15 , _:c14n18 , _:c14n199 , _:c14n245 , _:c14n247 , _:c14n264 , _:c14n288 , _:c14n77 , _:c14n87 , _:c14n94 ;

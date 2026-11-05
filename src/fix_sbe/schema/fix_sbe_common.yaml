@@ -114,8 +114,8 @@ enums:
     comments:
       - >-
         semantic_type stays free text in the schema, because a message's holds a MsgType value
-        and the specification suggests matching names without regard to case. tests/sbe_rules.py
-        holds an encoding's and a field's to this list.
+        and the specification suggests matching names ignoring case. tests/sbe_rules.py
+        checks an encoding's and a field's against this list.
     permissible_values:
       int:
       Length:
@@ -275,7 +275,7 @@ slots:
       - >-
         It holds a name and not a class reference, because a name is unique only within one
         schema document, where several documents may be listed side by side.
-        tests/sbe_rules.py holds each to an encoding of its document.
+        tests/sbe_rules.py checks that each names an encoding of its document.
     range: SbeSymbolicName
     pattern: '^[A-Za-z_][0-9A-Za-z_]{0,63}$'
     required: true

@@ -10,7 +10,7 @@ import java.util.List;
 import lombok.*;
 
 /**
-  A repeating group, whose entries each hold the same fields, and which cannot be without a field.
+  A repeating group, whose entries each hold the same fields, and which must have at least one field.
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)

@@ -237,7 +237,7 @@ message SbeFieldV2 {
   // The schema version that retired this element, which stays only for older applications.
   int32 deprecated_since = 15;
 }
-// A repeating group, whose entries each hold the same fields, and which cannot be without a field.
+// A repeating group, whose entries each hold the same fields, and which must have at least one field.
 message SbeGroupV1 {
   // The composite, by name, that sends a repeating group's entry count and entry size.
   string dimension_type = 1;
@@ -262,7 +262,7 @@ message SbeGroupV1 {
   // Variable-length fields, listed in wire order.
   repeated SbeFieldV1 var_data_fields = 11;
 }
-// A repeating group, whose entries each hold the same fields, and which cannot be without a field.
+// A repeating group, whose entries each hold the same fields, and which must have at least one field.
 message SbeGroupV2 {
   // The composite, by name, that sends a repeating group's entry count and entry size.
   string dimension_type = 1;

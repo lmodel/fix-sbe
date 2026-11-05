@@ -263,7 +263,7 @@ classes:
     mixins:
       - SbeVersionedMixin
       - SbeBlockV1Mixin
-    description: A repeating group, whose entries each hold the same fields, and which cannot be without a field.
+    description: A repeating group, whose entries each hold the same fields, and which must have at least one field.
     close_mappings:
       - fix_orchestra:OrchestraGroupV10
     slots:
@@ -282,9 +282,9 @@ classes:
     description: A message's or group entry's field, which uses an encoding at a place in its block.
     comments:
       - >-
-        The old mapping called this an exact match of an Orchestra field, but the two differ.
-        This one sits at a place in one block, and FIX's transposer carries one with a composite
-        encoding to a component reference, not a field.
+        The mapping to an Orchestra field is close, not exact. This field has a place in one
+        block, and FIX's transposer carries one with a composite encoding to a component
+        reference, not a field.
     close_mappings:
       - fix_orchestra:OrchestraFieldV10
     slots:

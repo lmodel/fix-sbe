@@ -22,7 +22,7 @@ xsd:token a rdfs:Datatype ;
 	rdfs:label "fix_sbe" ;
 	rdfs:seeAlso <https://github.com/FIXTradingCommunity/fix-simple-binary-encoding> , <https://lmodel.github.io/fix-sbe> , <https://www.iana.org/assignments/media-types/application/sbe> ;
 	skos:definition "A LinkML model of FIX Simple Binary Encoding, a standard from the FIX Trading Community for encoding messages in binary. It describes SBE message schemas: encodings, message templates, fields, groups and variable-length data. The two editions differ on the wire and in their XML, so each has a module of its own." ;
-	skos:note "A document of SBE 1.0 starts at SbeMessageSchemaV1, the tree root, and one of SBE 2.0 RC3 at SbeMessageSchemaV2. upstream/ holds both XSDs unchanged, tests/test_coverage.py holds the modules to them, and scripts/check_upstream_release.py reports when either moves." ;
+	skos:note "A document of SBE 1.0 starts at SbeMessageSchemaV1, the tree root, and one of SBE 2.0 RC3 at SbeMessageSchemaV2. upstream/ holds both XSDs unchanged, tests/test_coverage.py compares the modules with them, and scripts/check_upstream_release.py reports when either changes." ;
 	fix_sbe:upstream_v1_commit "6321e6b9bce5bc198f88f462054cbaf4f33d8f60" ;
 	fix_sbe:upstream_v1_tag "v1.0-errata-Nov-2020" ;
 	fix_sbe:upstream_v2_commit "418a8f6a8b93c65b308638dab2bc6a35dddcd864" .
@@ -121,7 +121,7 @@ fix_sbe:SbeFieldV1 a owl:Class ;
 	skos:closeMatch fix_orchestra:OrchestraFieldV10 ;
 	skos:definition "A message's or group entry's field, which uses an encoding at a place in its block." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_v1_0 ;
-	skos:note "The old mapping called this an exact match of an Orchestra field, but the two differ. This one sits at a place in one block, and FIX's transposer carries one with a composite encoding to a component reference, not a field." ;
+	skos:note "The mapping to an Orchestra field is close, not exact. This field has a place in one block, and FIX's transposer carries one with a composite encoding to a component reference, not a field." ;
 	fix_sbe:xml_element "field" ;
 	fix_sbe:xsd_type "fieldType" .
 fix_sbe:SbeFieldV2 a owl:Class ;
@@ -130,7 +130,7 @@ fix_sbe:SbeFieldV2 a owl:Class ;
 	skos:closeMatch fix_orchestra:OrchestraFieldV10 ;
 	skos:definition "A message's or group entry's field, which uses an encoding at a place in its block and may state a constant." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_v2_0 ;
-	skos:note "The old mapping called this an exact match of an Orchestra field, but the two differ. This one sits at a place in one block, and FIX's transposer carries one with a composite encoding to a component reference, not a field." ;
+	skos:note "The mapping to an Orchestra field is close, not exact. This field has a place in one block, and FIX's transposer carries one with a composite encoding to a component reference, not a field." ;
 	fix_sbe:xml_element "field" ;
 	fix_sbe:xsd_type "fieldType" .
 fix_sbe:SbeFixDatatype\#Amt a owl:Class ;
@@ -231,14 +231,14 @@ fix_sbe:SbeFixDatatype a owl:Class ;
 	owl:unionOf _:c14n321 ;
 	skos:definition "The FIX datatypes the specification's summary table lists as a field's or an encoding's semantic type." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_common ;
-	skos:note "semantic_type stays free text in the schema, because a message's holds a MsgType value and the specification suggests matching names without regard to case. tests/sbe_rules.py holds an encoding's and a field's to this list." ;
+	skos:note "semantic_type stays free text in the schema, because a message's holds a MsgType value and the specification suggests matching names ignoring case. tests/sbe_rules.py checks an encoding's and a field's against this list." ;
 	linkml:permissible_values fix_sbe:SbeFixDatatype\#Amt , fix_sbe:SbeFixDatatype\#Boolean , fix_sbe:SbeFixDatatype\#Country , fix_sbe:SbeFixDatatype\#Currency , fix_sbe:SbeFixDatatype\#DayOfMonth , fix_sbe:SbeFixDatatype\#EncodedText , fix_sbe:SbeFixDatatype\#Exchange , fix_sbe:SbeFixDatatype\#Language , fix_sbe:SbeFixDatatype\#Length , fix_sbe:SbeFixDatatype\#LocalMktDate , fix_sbe:SbeFixDatatype\#MonthYear , fix_sbe:SbeFixDatatype\#MultipleCharValue , fix_sbe:SbeFixDatatype\#MultipleStringValue , fix_sbe:SbeFixDatatype\#NumInGroup , fix_sbe:SbeFixDatatype\#Percentage , fix_sbe:SbeFixDatatype\#Price , fix_sbe:SbeFixDatatype\#PriceOffset , fix_sbe:SbeFixDatatype\#Qty , fix_sbe:SbeFixDatatype\#SeqNum , fix_sbe:SbeFixDatatype\#String , fix_sbe:SbeFixDatatype\#TZTimeOnly , fix_sbe:SbeFixDatatype\#TZTimestamp , fix_sbe:SbeFixDatatype\#TagNum , fix_sbe:SbeFixDatatype\#UTCDateOnly , fix_sbe:SbeFixDatatype\#UTCTimeOnly , fix_sbe:SbeFixDatatype\#UTCTimestamp , fix_sbe:SbeFixDatatype\#XMLData , fix_sbe:SbeFixDatatype\#char , fix_sbe:SbeFixDatatype\#data , fix_sbe:SbeFixDatatype\#float , fix_sbe:SbeFixDatatype\#int ;
 	fix_sbe:sbe_section "2: FIX datatype summary" .
 fix_sbe:SbeGroupV1 a owl:Class ;
 	rdfs:label "SbeGroupV1" ;
 	rdfs:subClassOf fix_sbe:SbeBlockV1Mixin , fix_sbe:SbeVersionedMixin , _:c14n176 , _:c14n316 , _:c14n33 , _:c14n461 , _:c14n63 ;
 	skos:closeMatch fix_orchestra:OrchestraGroupV10 ;
-	skos:definition "A repeating group, whose entries each hold the same fields, and which cannot be without a field." ;
+	skos:definition "A repeating group, whose entries each hold the same fields, and which must have at least one field." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_v1_0 ;
 	fix_sbe:xml_element "group" ;
 	fix_sbe:xsd_type "groupType" .
@@ -246,7 +246,7 @@ fix_sbe:SbeGroupV2 a owl:Class ;
 	rdfs:label "SbeGroupV2" ;
 	rdfs:subClassOf fix_sbe:SbeBlockV2Mixin , fix_sbe:SbeVersionedMixin , _:c14n118 , _:c14n222 , _:c14n277 , _:c14n315 , _:c14n403 ;
 	skos:closeMatch fix_orchestra:OrchestraGroupV10 ;
-	skos:definition "A repeating group, whose entries each hold the same fields, and which cannot be without a field." ;
+	skos:definition "A repeating group, whose entries each hold the same fields, and which must have at least one field." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_v2_0 ;
 	fix_sbe:xml_element "group" ;
 	fix_sbe:xsd_type "groupType" .
@@ -530,7 +530,7 @@ fix_sbe:encoding_name a owl:DatatypeProperty ;
 	skos:altLabel "type" ;
 	skos:definition "Which encoding this element uses, by name." ;
 	skos:inScheme fix_sbe:schema\/fix_sbe_common ;
-	skos:note "It holds a name and not a class reference, because a name is unique only within one schema document, where several documents may be listed side by side. tests/sbe_rules.py holds each to an encoding of its document." .
+	skos:note "It holds a name and not a class reference, because a name is unique only within one schema document, where several documents may be listed side by side. tests/sbe_rules.py checks that each names an encoding of its document." .
 fix_sbe:encoding_sets a owl:DatatypeProperty ;
 	rdfs:label "encoding_sets" ;
 	skos:altLabel "types" ;

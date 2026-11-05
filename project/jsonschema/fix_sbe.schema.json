@@ -1145,7 +1145,7 @@
         },
         "SbeGroupV1": {
             "additionalProperties": false,
-            "description": "A repeating group, whose entries each hold the same fields, and which cannot be without a field.",
+            "description": "A repeating group, whose entries each hold the same fields, and which must have at least one field.",
             "properties": {
                 "block_fields": {
                     "description": "Fixed-length fields, listed in wire order.",
@@ -1244,7 +1244,7 @@
         },
         "SbeGroupV2": {
             "additionalProperties": false,
-            "description": "A repeating group, whose entries each hold the same fields, and which cannot be without a field.",
+            "description": "A repeating group, whose entries each hold the same fields, and which must have at least one field.",
             "properties": {
                 "alignment": {
                     "description": "The multiple of octets where a message or each group entry begins.",

@@ -26,8 +26,8 @@ annotations:
   upstream_v2_commit: 418a8f6a8b93c65b308638dab2bc6a35dddcd864
 comments:
 - A document of SBE 1.0 starts at SbeMessageSchemaV1, the tree root, and one of SBE 2.0 RC3 at SbeMessageSchemaV2.
-  upstream/ holds both XSDs unchanged, tests/test_coverage.py holds the modules to them, and scripts/check_upstream_release.py
-  reports when either moves.
+  upstream/ holds both XSDs unchanged, tests/test_coverage.py compares the modules with them, and scripts/check_upstream_release.py
+  reports when either changes.
 prefixes:
   fix_sbe: https://w3id.org/lmodel/fix-sbe/
   linkml: https://w3id.org/linkml/
@@ -326,8 +326,8 @@ classes:
     mixins:
     - SbeVersionedMixin
     - SbeBlockV1Mixin
-    description: A repeating group, whose entries each hold the same fields, and which cannot be without
-      a field.
+    description: A repeating group, whose entries each hold the same fields, and which must have at least
+      one field.
     close_mappings:
     - fix_orchestra:OrchestraGroupV10
     slots:
@@ -344,9 +344,8 @@ classes:
     - SbeVersionedMixin
     description: A message's or group entry's field, which uses an encoding at a place in its block.
     comments:
-    - The old mapping called this an exact match of an Orchestra field, but the two differ. This one sits
-      at a place in one block, and FIX's transposer carries one with a composite encoding to a component
-      reference, not a field.
+    - The mapping to an Orchestra field is close, not exact. This field has a place in one block, and
+      FIX's transposer carries one with a composite encoding to a component reference, not a field.
     close_mappings:
     - fix_orchestra:OrchestraFieldV10
     slots:
@@ -682,8 +681,8 @@ classes:
     mixins:
     - SbeVersionedMixin
     - SbeBlockV2Mixin
-    description: A repeating group, whose entries each hold the same fields, and which cannot be without
-      a field.
+    description: A repeating group, whose entries each hold the same fields, and which must have at least
+      one field.
     close_mappings:
     - fix_orchestra:OrchestraGroupV10
     slots:
@@ -701,9 +700,8 @@ classes:
     description: A message's or group entry's field, which uses an encoding at a place in its block and
       may state a constant.
     comments:
-    - The old mapping called this an exact match of an Orchestra field, but the two differ. This one sits
-      at a place in one block, and FIX's transposer carries one with a composite encoding to a component
-      reference, not a field.
+    - The mapping to an Orchestra field is close, not exact. This field has a place in one block, and
+      FIX's transposer carries one with a composite encoding to a component reference, not a field.
     close_mappings:
     - fix_orchestra:OrchestraFieldV10
     slots:
@@ -922,8 +920,8 @@ slots:
     description: Which encoding this element uses, by name.
     comments:
     - It holds a name and not a class reference, because a name is unique only within one schema document,
-      where several documents may be listed side by side. tests/sbe_rules.py holds each to an encoding
-      of its document.
+      where several documents may be listed side by side. tests/sbe_rules.py checks that each names an
+      encoding of its document.
     range: SbeSymbolicName
     pattern: ^[A-Za-z_][0-9A-Za-z_]{0,63}$
     required: true
@@ -1139,8 +1137,8 @@ enums:
       semantic type.
     comments:
     - semantic_type stays free text in the schema, because a message's holds a MsgType value and the specification
-      suggests matching names without regard to case. tests/sbe_rules.py holds an encoding's and a field's
-      to this list.
+      suggests matching names ignoring case. tests/sbe_rules.py checks an encoding's and a field's against
+      this list.
     permissible_values:
       int: null
       Length: null

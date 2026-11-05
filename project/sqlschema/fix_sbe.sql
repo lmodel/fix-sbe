@@ -122,7 +122,7 @@
 --     * Slot: semantic_type Description: The FIX MsgType(35) this template stands for, where several templates may share one.
 --     * Slot: description Description: Free text about this element, for the people who read the schema.
 --     * Slot: SbeMessageSchemaV1_id Description: Autocreated FK slot
--- # Class: SbeGroupV1 Description: A repeating group, whose entries each hold the same fields, and which cannot be without a field.
+-- # Class: SbeGroupV1 Description: A repeating group, whose entries each hold the same fields, and which must have at least one field.
 --     * Slot: id
 --     * Slot: dimension_type Description: The composite, by name, that sends a repeating group's entry count and entry size.
 --     * Slot: since_version Description: The schema version that added this element.
@@ -270,7 +270,7 @@
 --     * Slot: semantic_type Description: The FIX MsgType(35) this template stands for, where several templates may share one.
 --     * Slot: description Description: Free text about this element, for the people who read the schema.
 --     * Slot: SbeMessageSetV2_id Description: Autocreated FK slot
--- # Class: SbeGroupV2 Description: A repeating group, whose entries each hold the same fields, and which cannot be without a field.
+-- # Class: SbeGroupV2 Description: A repeating group, whose entries each hold the same fields, and which must have at least one field.
 --     * Slot: id
 --     * Slot: dimension_type Description: The composite, by name, that sends a repeating group's entry count and entry size.
 --     * Slot: since_version Description: The schema version that added this element.
