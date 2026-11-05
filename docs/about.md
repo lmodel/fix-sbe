@@ -18,9 +18,9 @@ SBE 1.0 is the final standard, with its November 2020 errata. SBE 2.0 Release Ca
 
 SBE's schemas are XML, so a record is YAML that `scripts/sbe_xml_to_yaml.py` writes. Each attribute becomes a snake_case slot, and the slot's alias is the XML name. Eight take a different word because the plain one is taken elsewhere in the family: `name` is `symbolic_name`, `id` is `sbe_id`, `type` is `encoding_name`, `version` is `schema_version`, `package` is `schema_package`, `length` is `array_length`, `deprecated` is `deprecated_since` and `epoch` is `time_epoch`.
 
-A composite's members sit in one list, each naming its class in `encoding_kind`, because their order is their order on the wire. A message keeps its fields, groups and variable-length data in three lists, because the XSD fixes that sequence.
+A composite's members are in one list, each naming its class in `encoding_kind`, because their order is their order on the wire. A message keeps its fields, groups and variable-length data in three lists, because the XSD fixes that sequence.
 
-`upstream/` holds the XSDs, FIX's examples and the conformance suite's schemas, pinned by git object hash. `tests/test_coverage.py` holds each class to its XSD type. `tests/test_documents.py` takes each document through lxml, through the JSON Schema, and through a separate walk of the XML.
+`upstream/` holds the XSDs, FIX's examples and the conformance suite's schemas, pinned by git object hash. `tests/test_coverage.py` compares each class with its XSD type. `tests/test_documents.py` checks each document with lxml, with the JSON Schema and with a separate walk of the XML.
 
 ## Rules that span a document
 
@@ -31,8 +31,8 @@ The XSD and the JSON Schema check one element at a time. `tests/sbe_rules.py` ch
 - **Versions.** Nothing has a `since_version` or `deprecated_since` later than the schema's version, and a later field cannot come before an earlier one in its list.
 - **Layout.** An offset does not overlap what came before it or pass the block's end, and a block is long enough for its fields. A field in `block_fields` does not use a variable-length encoding.
 - **Well-known composites.** The header has `blockLength`, `templateId`, `schemaId` and `version`. A group's dimension has `blockLength` and `numInGroup`. Variable-length data has `length` and `varData`. Each counter and length is unsigned. A decimal has `mantissa` and `exponent`, and a MonthYear has `year` and `month`.
-- **Values.** A null, lowest, highest or constant value fits its primitive type, an enum sits on `char` or an unsigned type, a set on an unsigned type, and a choice's bit fits its encoding.
-- **Agreement.** A field and its encoding agree on `semantic_type` and `presence`, where both state them. A field's or an encoding's `semantic_type` is a FIX datatype of the specification's list, matched without regard to case.
+- **Values.** A null, lowest, highest or constant value fits its primitive type, an enum uses `char` or an unsigned type, a set uses an unsigned type, and a choice's bit fits its encoding.
+- **Agreement.** A field and its encoding agree on `semantic_type` and `presence`, where both state them. A field's or an encoding's `semantic_type` is a FIX datatype of the specification's list, ignoring case.
 
 ## What the model leaves out
 
@@ -49,4 +49,4 @@ The XSD and the JSON Schema check one element at a time. `tests/sbe_rules.py` ch
 
 ## Mappings
 
-Each element maps to the class of lmodel/fix-orchestra that FIX's own transposer carries it to, with `close_mappings`. A set and a choice have no line in the transposer, so they are `related_mappings`, and nothing is exact, since an SBE element sits at a place on the wire and an Orchestra element does not. `tests/test_mappings.py` lists them.
+Each element maps to the class of lmodel/fix-orchestra that FIX's own transposer carries it to, with `close_mappings`. A set and a choice have no line in the transposer, so they are `related_mappings`. No mapping is exact, because an SBE element has a place on the wire and an Orchestra element does not. `tests/test_mappings.py` lists them.

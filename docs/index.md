@@ -8,7 +8,7 @@ This project is a LinkML model of FIX Simple Binary Encoding (SBE), the FIX Trad
 
 ## Validating a message schema
 
-An SBE schema is XML, and the model describes the record it makes. The namespace of the root element says which edition a file follows.
+An SBE schema is XML, and the model describes the record the converter writes from it. The namespace of the root element says which edition a file follows.
 
 ```bash
 uv run scripts/sbe_xml_to_yaml.py my-schema.xml --out my-schema.yaml
@@ -33,4 +33,4 @@ messages:
 
 ## What the validator cannot check
 
-`tests/sbe_rules.py` holds what compares one part of a document with another. It names an encoding a field uses, an offset against the sizes before it, a version against the schema's, and the rest of [About](about.md#rules-that-span-a-document).
+`tests/sbe_rules.py` holds the checks that compare one part of a document with another: the encoding a field names, an offset against the sizes before it, a version against the schema's, and the rest of [About](about.md#rules-that-span-a-document).

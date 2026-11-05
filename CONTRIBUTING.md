@@ -40,11 +40,11 @@ npx skills add noelmcloughlin/knowledge-trust-ladder --skill ktl-curator --yes  
 ## Before opening a pull request
 
 - **Edit the schema, then regenerate.** Run `just gen-project`, `just gen-doc` and `just lokf-adapt`, and commit the output. `project/`, `src/fix_sbe/datamodel/`, `docs/schema/` and `.lokf/fix_sbe.yaml` are generated.
-- **An element follows its XSD.** `tests/test_coverage.py` holds each class to its XSD type, and `tests/test_documents.py` walks FIX's own documents through lxml, the JSON Schema and a separate tree.
+- **An element follows its XSD.** `tests/test_coverage.py` compares each class with its XSD type, and `tests/test_documents.py` checks FIX's documents with lxml, the JSON Schema and a separate walk of the XML.
 - **A rule says where it comes from.** Each rule names the specification's chapter and heading. What JSON Schema can hold goes in the schema, the rest in `tests/sbe_rules.py`, with a counter-example.
 - **FIX's words stay FIX's.** Write every title, description and comment from what the element does. `tests/test_own_words.py` finds a run of four words shared with the XSDs. The same check against the specification's text is a person's to run, because that text stays out of this repository.
 - **A mapping follows FIX's transposer.** `tests/test_mappings.py` lists each one. A term with no sure match stays unmapped.
-- **Model the pinned editions.** `tests/test_upstream.py` holds the schema headers, `scripts/check_upstream_release.py` and `upstream/` equal.
+- **Model the pinned editions.** `tests/test_upstream.py` checks that the schema headers, `scripts/check_upstream_release.py` and `upstream/` agree.
 - **Keep names apart.** A host imports this adapt copy beside the Linked Open Knowledge Format (LOKF) schema and the released copies in `tests/neighbours/`. `tests/test_schema_rules.py` checks this.
 - **Run the tests**: `just test` (schema generation, `pytest` and the examples under `tests/data/`). Example data goes in `tests/data/valid/` and `tests/data/invalid/`, named `ClassName-suffix.yaml`; an invalid example's first line, `# Fails at: <pointer>`, names where it fails.
 - **Follow the schema's conventions**: PascalCase classes with the `Sbe` prefix and the edition's suffix, snake_case slots whose alias is the XML name, and a short description on every element.
@@ -66,7 +66,7 @@ Artificial intelligence (AI) assistance is welcome; [AI_COVENANT.md](AI_COVENANT
 
 ## Reporting issues
 
-Use the [issue tracker](https://github.com/lmodel/fix-sbe/issues) for the schema. A problem in SBE itself belongs with the [FIX Trading Community](https://github.com/FIXTradingCommunity/fix-simple-binary-encoding/issues).
+Use the [issue tracker](https://github.com/lmodel/fix-sbe/issues) for the schema. Report a problem in SBE itself to the [FIX Trading Community](https://github.com/FIXTradingCommunity/fix-simple-binary-encoding/issues).
 
 ## Releasing (maintainers)
 

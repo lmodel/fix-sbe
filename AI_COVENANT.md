@@ -25,7 +25,7 @@ Two failure modes are worse here than elsewhere. One is a constraint or mapping 
 
 So:
 
-- **An element says what the XSD says.** `tests/test_coverage.py` holds each class to its XSD type. Name the XSD type or the specification's chapter and heading in the pull request. "The model said so" is not a source.
+- **An element says what the XSD says.** `tests/test_coverage.py` compares each class with its XSD type. Name the XSD type or the specification's chapter and heading in the pull request. "The model said so" is not a source.
 - **A rule states only what the specification states.** Each rule in the schema and in `tests/sbe_rules.py` names its chapter. Leave out what you cannot find there.
 - **A mapping follows FIX's transposer or it is absent.** `tests/test_mappings.py` lists each one. Leave out what you cannot confirm at its source.
 - **FIX's words stay FIX's.** Every title, description and comment here is this project's own, written from what the element does. `tests/test_own_words.py` looks for a run of four words shared with the XSDs. [NOTICE](NOTICE) states the terms.
