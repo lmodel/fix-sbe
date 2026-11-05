@@ -1,0 +1,8 @@
+symbolic_name: Heartbeat
+sbe_id: 1
+block_length: 0
+alignment: 8
+semantic_type: "0"
+description: A message with no fields.
+since_version: 1
+deprecated_since: 2

@@ -1,0 +1,4 @@
+encoding_kind: SbeMemberTypeV2
+symbolic_name: time
+primitive_type: uint64
+alignment: 8

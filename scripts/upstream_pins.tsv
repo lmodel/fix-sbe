@@ -1,0 +1,11 @@
+fix-simple-binary-encoding/LICENSE	c23bcfa0671360d5377b70d0d0a1d13edc38dd3c
+fix-simple-binary-encoding/v1-0-STANDARD/resources/sbe.xsd	b4fea0b6603a4e5f7ea62fafe86e3c6b0443e6f4
+fix-simple-binary-encoding/v1-0-STANDARD/resources/Examples.xml	7d715019dbb1095caba6251f726e02147da84fd3
+fix-simple-binary-encoding/v2-0-RC3/resources/xsd/sbe-2.0rc3.xsd	e02cf7e549a8dd27f4a0d4054be2c84a065f0c9c
+fix-simple-binary-encoding/v2-0-RC3/resources/xml/examples.xml	667ded8e4eb8f0ecc1e276e58f2e34d1239409ba
+fix-simple-binary-encoding/v2-0-RC3/resources/xml/messages-include.xml	15c67839f590c202c0843903764a4599f21d29a7
+fix-simple-binary-encoding/v2-0-RC3/resources/xml/types-include.xml	da18df2b3a705848bead95cf1bb401bb2591f3d7
+fix-sbe-conformance/LICENSE	8dada3edaf50dbc082c9a125058f25def75e625a
+fix-sbe-conformance/src/main/resources/schema1.xml	763562c066dd7636905d56eb0acd96ea0260ce8d
+fix-sbe-conformance/src/main/resources/schema2.xml	afeb64d1701100b9a6326399b6dcc32907862dae
+fix-sbe-conformance/src/main/resources/schema3.xml	200c623860f7a5375f0e596fc380e3a08337ba0a

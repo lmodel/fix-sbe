@@ -1,0 +1,5 @@
+# Fails at: /valid_values
+encoding_kind: SbeEnumV1
+symbolic_name: sideEnum
+encoding_type: char
+valid_values: []

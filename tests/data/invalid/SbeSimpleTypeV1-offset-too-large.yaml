@@ -1,0 +1,5 @@
+# Fails at: /offset
+encoding_kind: SbeSimpleTypeV1
+symbolic_name: count
+primitive_type: uint8
+offset: 4294967296

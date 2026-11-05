@@ -1,0 +1,5 @@
+# Fails at: /choices
+encoding_kind: SbeSetV1
+symbolic_name: flags
+encoding_type: uint8
+choices: []

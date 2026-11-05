@@ -1,324 +1,669 @@
- syntax="proto3";
- package
-// metamodel_version: 1.11.0
-// Base type of message and repeating group entry
-message BlockTypeV1
- {
- repeated  fieldTypeV1 field = 0
- repeated  groupTypeV1 group = 0
- repeated  fieldTypeV1 data = 0
-  symbolicName name = 0
-  integer id = 0
-  integer blockLength = 0
-  string semanticType = 0
-  string description = 0
-  integer sinceVersion = 0
-  integer deprecated = 0
- }
-// Base type of message and repeating group entry
-message BlockTypeV2
- {
- repeated  fieldTypeV2 field = 0
- repeated  groupTypeV2 group = 0
- repeated  fieldTypeV2 data = 0
-  symbolicName name = 0
-  integer id = 0
-  integer blockLength = 0
-  integer alignment = 0
-  string semanticType = 0
-  string description = 0
-  integer sinceVersion = 0
-  integer deprecated = 0
- }
-// A choice within a multi value set. Value is the position within a bitset (zero-based index).
-message Choice
- {
-  symbolicName name = 0
-  string description = 0
-  string value = 0
-  integer sinceVersion = 0
-  integer deprecated = 0
- }
-// A wire encoding composed of multiple parts
-message CompositeDataTypeV1
- {
- repeated  encodedDataTypeV1 type = 0
- repeated  enumTypeV1 enum = 0
- repeated  setTypeV1 set = 0
- repeated  compositeDataTypeV1 composite = 0
- repeated  refTypeV1 ref = 0
-  symbolicName name = 0
-  string value = 0
-  integer offset = 0
-  string semanticType = 0
-  string description = 0
-  integer sinceVersion = 0
-  integer deprecated = 0
- }
-// A wire encoding composed of multiple parts
-message CompositeDataTypeV2
- {
- repeated  memberDataTypeV2 type = 0
- repeated  enumTypeV2 enum = 0
- repeated  setTypeV2 set = 0
- repeated  compositeDataTypeV2 composite = 0
- repeated  refTypeV2 ref = 0
-  symbolicName name = 0
-  string description = 0
-  string value = 0
-  integer offset = 0
-  integer alignment = 0
-  integer sinceVersion = 0
-  integer deprecated = 0
- }
-// Simple wire encoding consisting of a primitive type or array of primitives
-message EncodedDataTypeV1
- {
-  symbolicName name = 0
-  string nullValue = 0
-  string minValue = 0
-  string maxValue = 0
-  integer length = 0
-  primitiveTypeV1 primitiveType = 0
-  string characterEncoding = 0
-  string value = 0
-  integer offset = 0
-  presence presence = 0
-  qualifiedName valueRef = 0
-  string semanticType = 0
-  string description = 0
-  integer sinceVersion = 0
-  integer deprecated = 0
- }
-// An enumeration of valid values
-message EnumTypeV1
- {
- repeated  validValue validValue = 0
-  symbolicName name = 0
-  symbolicName encodingType = 0
-  string value = 0
-  integer offset = 0
-  string semanticType = 0
-  string description = 0
-  integer sinceVersion = 0
-  integer deprecated = 0
- }
-// An enumeration of valid values
-message EnumTypeV2
- {
- repeated  validValue validValue = 0
-  symbolicName name = 0
-  symbolicName encodingType = 0
-  string description = 0
-  string value = 0
-  integer offset = 0
-  integer alignment = 0
-  integer sinceVersion = 0
-  integer deprecated = 0
- }
-// A field of a message of a specified dataType
-message FieldTypeV1
- {
-  symbolicName name = 0
-  integer id = 0
-  symbolicName type = 0
-  string epoch = 0
-  string timeUnit = 0
-  integer offset = 0
-  presence presence = 0
-  qualifiedName valueRef = 0
-  string semanticType = 0
-  string description = 0
-  integer sinceVersion = 0
-  integer deprecated = 0
- }
-// A field of a message of a specified dataType
-message FieldTypeV2
- {
-  symbolicName name = 0
-  integer id = 0
-  symbolicName type = 0
-  string value = 0
-  integer offset = 0
-  integer alignment = 0
-  presence presence = 0
-  string nullValue = 0
-  string minValue = 0
-  string maxValue = 0
-  qualifiedName valueRef = 0
-  string semanticType = 0
-  string description = 0
-  integer sinceVersion = 0
-  integer deprecated = 0
- }
-// A repeating group contains an array of entries
-message GroupTypeV1
- {
- repeated  fieldTypeV1 field = 0
- repeated  groupTypeV1 group = 0
- repeated  fieldTypeV1 data = 0
-  symbolicName name = 0
-  integer id = 0
-  integer blockLength = 0
-  string semanticType = 0
-  string description = 0
-  integer sinceVersion = 0
-  integer deprecated = 0
-  symbolicName dimensionType = 0
- }
-// A repeating group contains an array of entries
-message GroupTypeV2
- {
- repeated  fieldTypeV2 field = 0
- repeated  groupTypeV2 group = 0
- repeated  fieldTypeV2 data = 0
-  symbolicName name = 0
-  integer id = 0
-  integer blockLength = 0
-  integer alignment = 0
-  string semanticType = 0
-  string description = 0
-  integer sinceVersion = 0
-  integer deprecated = 0
-  symbolicName dimensionType = 0
- }
-// A simple type used as a member of a composite type
-message MemberDataTypeV2
- {
-  symbolicName name = 0
-  string description = 0
-  string value = 0
-  primitiveTypeV2 primitiveType = 0
-  integer length = 0
-  string characterEncoding = 0
-  integer offset = 0
-  integer alignment = 0
-  presence presence = 0
-  string nullValue = 0
-  string minValue = 0
-  string maxValue = 0
-  qualifiedName valueRef = 0
- }
-// Root of XML document, holds all message templates and their elements
-message MessageSchemaV1
- {
- repeated  string types = 0
- repeated  messageV1 message = 0
-  string package = 0
-  integer id = 0
-  integer version = 0
-  string semanticVersion = 0
-  string description = 0
-  byteOrder byteOrder = 0
-  symbolicName headerType = 0
- }
-// Root of XML document, holds all message templates and their elements
-message MessageSchemaV2
- {
- repeated  typesV2 types = 0
- repeated  messagesV2 messages = 0
-  string package = 0
-  integer id = 0
-  integer version = 0
-  string semanticVersion = 0
-  string description = 0
-  byteOrder byteOrder = 0
-  symbolicName headerType = 0
- }
-message MessagesV2
- {
- repeated  blockTypeV2 message = 0
-  string description = 0
-  string package = 0
- }
-// A message type, also known as a message template
-message MessageV1
- {
- repeated  fieldTypeV1 field = 0
- repeated  groupTypeV1 group = 0
- repeated  fieldTypeV1 data = 0
-  symbolicName name = 0
-  integer id = 0
-  integer blockLength = 0
-  string semanticType = 0
-  string description = 0
-  integer sinceVersion = 0
-  integer deprecated = 0
- }
-// A reference to any existing encoding type (simple type, enum or set) to reuse as a member of a composite type
-message RefTypeV1
- {
-  symbolicName name = 0
-  symbolicName type = 0
-  string value = 0
-  integer offset = 0
-  integer sinceVersion = 0
-  integer deprecated = 0
- }
-// A reference to any existing encoding type (simple type, enum or set) to reuse as a member of a composite type
-message RefTypeV2
- {
-  symbolicName name = 0
-  symbolicName type = 0
-  string description = 0
-  string value = 0
-  integer offset = 0
-  integer alignment = 0
- }
-// A multi value choice (encoded as a bitset)
-message SetTypeV1
- {
- repeated  choice choice = 0
-  symbolicName name = 0
-  symbolicName encodingType = 0
-  string value = 0
-  integer offset = 0
-  string semanticType = 0
-  string description = 0
-  integer sinceVersion = 0
-  integer deprecated = 0
- }
-// A multi value choice (encoded as a bitset)
-message SetTypeV2
- {
- repeated  choice choice = 0
-  symbolicName name = 0
-  symbolicName encodingType = 0
-  string description = 0
-  string value = 0
-  integer offset = 0
-  integer alignment = 0
-  integer sinceVersion = 0
-  integer deprecated = 0
- }
-// Simple wire encoding consisting of a primitive type or array of primitives
-message SimpleDataTypeV2
- {
-  symbolicName name = 0
-  string description = 0
-  string value = 0
-  primitiveTypeV2 primitiveType = 0
-  integer length = 0
-  string characterEncoding = 0
-  integer sinceVersion = 0
-  integer deprecated = 0
- }
-// More than one set of types may be provided. Names must be unique across all encoding types. Encoding types may appear in any order.
-message TypesV2
- {
- repeated  simpleDataTypeV2 type = 0
- repeated  compositeDataTypeV2 composite = 0
- repeated  enumTypeV2 enum = 0
- repeated  setTypeV2 set = 0
-  string description = 0
-  string package = 0
- }
-// Valid value as a string
-message ValidValue
- {
-  symbolicName name = 0
-  string description = 0
-  string value = 0
-  integer sinceVersion = 0
-  integer deprecated = 0
- }
+syntax = "proto3";
+package fix_sbe;
+// metamodel_version: 1.12.0
+// version: 1.0 and 2.0-rc3
+// The body shared by a message and a group entry, which holds its fixed-length fields first, then groups, then variable-length data.
+message SbeBlockV1Mixin {
+  // What the schema calls this element.
+  string symbolic_name = 1;
+  // The number that identifies this element.
+  int32 sbe_id = 2;
+  // The octets set aside for a message's fixed-length fields, or for those of each group entry.
+  int32 block_length = 3;
+  // What this element means at the FIX application layer.
+  string semantic_type = 4;
+  // Free text about this element, for the people who read the schema.
+  string description = 5;
+  // Fixed-length fields, listed in wire order.
+  repeated SbeFieldV1 block_fields = 6;
+  // Repeating groups, listed in wire order.
+  repeated SbeGroupV1 repeating_groups = 7;
+  // Variable-length fields, listed in wire order.
+  repeated SbeFieldV1 var_data_fields = 8;
+}
+// The body shared by a message and a group entry, which holds its fixed-length fields first, then groups, then variable-length data.
+message SbeBlockV2Mixin {
+  // What the schema calls this element.
+  string symbolic_name = 1;
+  // The number that identifies this element.
+  int32 sbe_id = 2;
+  // The octets set aside for a message's fixed-length fields, or for those of each group entry.
+  int32 block_length = 3;
+  // The multiple of octets where a message or each group entry begins.
+  int32 alignment = 4;
+  // What this element means at the FIX application layer.
+  string semantic_type = 5;
+  // Free text about this element, for the people who read the schema.
+  string description = 6;
+  // Fixed-length fields, listed in wire order.
+  repeated SbeFieldV2 block_fields = 7;
+  // Repeating groups, listed in wire order.
+  repeated SbeGroupV2 repeating_groups = 8;
+  // Variable-length fields, listed in wire order.
+  repeated SbeFieldV2 var_data_fields = 9;
+}
+// One of the alternatives of a set, which is one bit of its encoding.
+message SbeChoice {
+  // What the schema calls this element.
+  string symbolic_name = 1;
+  // Free text about this element, for the people who read the schema.
+  string description = 2;
+  // Which bit stands for this choice, counted from zero at the least significant.
+  int32 bit_position = 3;
+  // The schema version that added this element.
+  int32 since_version = 4;
+  // The schema version that retired this element, which stays only for older applications.
+  int32 deprecated_since = 5;
+}
+// An encoding built from members sent one after another, such as a decimal's mantissa and exponent.
+message SbeCompositeV1 {
+  // The class of this encoding or composite member, which stands for its XML element.
+  string encoding_kind = 1;
+  // What the schema calls this element.
+  string symbolic_name = 2;
+  // The octet this element starts at, counted from zero at the start of its block or composite.
+  int32 offset = 3;
+  // The schema version that added this element.
+  int32 since_version = 4;
+  // The schema version that retired this element, which stays only for older applications.
+  int32 deprecated_since = 5;
+  // The FIX datatype this encoding carries.
+  string semantic_type = 6;
+  // Free text about this element, for the people who read the schema.
+  string description = 7;
+  // The members of this composite, in the order they are sent.
+  repeated SbeMemberV1 composite_members = 8;
+}
+// An encoding built from members sent one after another, such as a decimal's mantissa and exponent.
+message SbeCompositeV2 {
+  // The class of this encoding or composite member, which stands for its XML element.
+  string encoding_kind = 1;
+  // What the schema calls this element.
+  string symbolic_name = 2;
+  // Free text about this element, for the people who read the schema.
+  string description = 3;
+  // The octet this element starts at, counted from zero at the start of its block or composite.
+  int32 offset = 4;
+  // The multiple of octets the start of this element is placed on.
+  int32 alignment = 5;
+  // The members of this composite, in the order they are sent.
+  repeated SbeMemberV2 composite_members = 6;
+  // The schema version that added this element.
+  int32 since_version = 7;
+  // The schema version that retired this element, which stays only for older applications.
+  int32 deprecated_since = 8;
+}
+// Anything that sets of encodings or composites hold, and the name and text they all have.
+message SbeElementV2 {
+  // The class of this encoding or composite member, which stands for its XML element.
+  string encoding_kind = 1;
+  // What the schema calls this element.
+  string symbolic_name = 2;
+  // Free text about this element, for the people who read the schema.
+  string description = 3;
+}
+// A set of encodings, listed in any order, whose names are unique across the whole schema.
+message SbeEncodingSetV1 {
+  // The encodings of this set.
+  repeated SbeEncodingV1 encodings = 1;
+}
+// A set of encodings, in any order, that may have its own package and may come from another file.
+message SbeEncodingSetV2 {
+  // Free text about this element, for the people who read the schema.
+  string description = 1;
+  // A package for this set in place of the schema's.
+  string schema_package = 2;
+  // The base address that the XML Inclusion mechanism records on an element it brought in from another file.
+  string sbe_xml_base = 3;
+  // The encodings of this set.
+  repeated SbeElementV2 encodings = 4;
+}
+// An encoding of SBE 1.0, which says how a value is laid out on the wire.
+message SbeEncodingV1 {
+  // The class of this encoding or composite member, which stands for its XML element.
+  string encoding_kind = 1;
+  // What the schema calls this element.
+  string symbolic_name = 2;
+  // The octet this element starts at, counted from zero at the start of its block or composite.
+  int32 offset = 3;
+  // The schema version that added this element.
+  int32 since_version = 4;
+  // The schema version that retired this element, which stays only for older applications.
+  int32 deprecated_since = 5;
+  // The FIX datatype this encoding carries.
+  string semantic_type = 6;
+  // Free text about this element, for the people who read the schema.
+  string description = 7;
+}
+// An encoding whose value is one of a listed set of valid values.
+message SbeEnumV1 {
+  // The class of this encoding or composite member, which stands for its XML element.
+  string encoding_kind = 1;
+  // What the schema calls this element.
+  string symbolic_name = 2;
+  // The octet this element starts at, counted from zero at the start of its block or composite.
+  int32 offset = 3;
+  // The schema version that added this element.
+  int32 since_version = 4;
+  // The schema version that retired this element, which stays only for older applications.
+  int32 deprecated_since = 5;
+  // The FIX datatype this encoding carries.
+  string semantic_type = 6;
+  // Free text about this element, for the people who read the schema.
+  string description = 7;
+  // The simple encoding or primitive type that an enumeration or set is sent as.
+  string encoding_type = 8;
+  // The values this enumeration allows.
+  repeated SbeValidValue valid_values = 9;
+}
+// An encoding whose value is one of a listed set of valid values.
+message SbeEnumV2 {
+  // The class of this encoding or composite member, which stands for its XML element.
+  string encoding_kind = 1;
+  // What the schema calls this element.
+  string symbolic_name = 2;
+  // Free text about this element, for the people who read the schema.
+  string description = 3;
+  // The octet this element starts at, counted from zero at the start of its block or composite.
+  int32 offset = 4;
+  // The multiple of octets the start of this element is placed on.
+  int32 alignment = 5;
+  // The simple encoding or primitive type that an enumeration or set is sent as.
+  string encoding_type = 6;
+  // The values this enumeration allows.
+  repeated SbeValidValue valid_values = 7;
+  // The schema version that added this element.
+  int32 since_version = 8;
+  // The schema version that retired this element, which stays only for older applications.
+  int32 deprecated_since = 9;
+}
+// A message's or group entry's field, which uses an encoding at a place in its block.
+message SbeFieldV1 {
+  // What the schema calls this element.
+  string symbolic_name = 1;
+  // The field's FIX tag number.
+  int32 sbe_id = 2;
+  // Which encoding this element uses, by name.
+  string encoding_name = 3;
+  // The octet this element starts at, counted from zero at the start of its block or composite.
+  int32 offset = 4;
+  // Whether this element's value is required, optional or constant.
+  SbePresence presence = 5;
+  // The valid value that gives a constant element its value.
+  string value_ref = 6;
+  // The FIX datatype this field carries.
+  string semantic_type = 7;
+  // Free text about this element, for the people who read the schema.
+  string description = 8;
+  // Where the period a time value counts from begins.
+  string time_epoch = 9;
+  // The unit of a time value.
+  string time_unit = 10;
+  // The schema version that added this element.
+  int32 since_version = 11;
+  // The schema version that retired this element, which stays only for older applications.
+  int32 deprecated_since = 12;
+}
+// A message's or group entry's field, which uses an encoding at a place in its block and may state a constant.
+message SbeFieldV2 {
+  // What the schema calls this element.
+  string symbolic_name = 1;
+  // The field's FIX tag number.
+  int32 sbe_id = 2;
+  // Which encoding this element uses, by name.
+  string encoding_name = 3;
+  // The text of the XML element, which is the constant when presence is constant.
+  string element_value = 4;
+  // The octet this element starts at, counted from zero at the start of its block or composite.
+  int32 offset = 5;
+  // The multiple of octets the start of this field is placed on, in place of an offset.
+  int32 alignment = 6;
+  // Whether this element's value is required, optional or constant.
+  SbePresence presence = 7;
+  // The value that stands for null in place of the primitive type's default, written as text.
+  string null_value = 8;
+  // The lowest value allowed, written as text.
+  string min_value = 9;
+  // The highest value allowed, written as text.
+  string max_value = 10;
+  // The valid value that gives a constant element its value.
+  string value_ref = 11;
+  // The FIX datatype this field carries.
+  string semantic_type = 12;
+  // Free text about this element, for the people who read the schema.
+  string description = 13;
+  // The schema version that added this element.
+  int32 since_version = 14;
+  // The schema version that retired this element, which stays only for older applications.
+  int32 deprecated_since = 15;
+}
+// A repeating group, whose entries each hold the same fields, and which must have at least one field.
+message SbeGroupV1 {
+  // The composite, by name, that sends a repeating group's entry count and entry size.
+  string dimension_type = 1;
+  // Fixed-length fields, listed in wire order.
+  repeated SbeFieldV1 block_fields = 2;
+  // The schema version that added this element.
+  int32 since_version = 3;
+  // The schema version that retired this element, which stays only for older applications.
+  int32 deprecated_since = 4;
+  // What the schema calls this element.
+  string symbolic_name = 5;
+  // The number that identifies this element.
+  int32 sbe_id = 6;
+  // The octets set aside for a message's fixed-length fields, or for those of each group entry.
+  int32 block_length = 7;
+  // What this element means at the FIX application layer.
+  string semantic_type = 8;
+  // Free text about this element, for the people who read the schema.
+  string description = 9;
+  // Repeating groups, listed in wire order.
+  repeated SbeGroupV1 repeating_groups = 10;
+  // Variable-length fields, listed in wire order.
+  repeated SbeFieldV1 var_data_fields = 11;
+}
+// A repeating group, whose entries each hold the same fields, and which must have at least one field.
+message SbeGroupV2 {
+  // The composite, by name, that sends a repeating group's entry count and entry size.
+  string dimension_type = 1;
+  // Fixed-length fields, listed in wire order.
+  repeated SbeFieldV2 block_fields = 2;
+  // The schema version that added this element.
+  int32 since_version = 3;
+  // The schema version that retired this element, which stays only for older applications.
+  int32 deprecated_since = 4;
+  // What the schema calls this element.
+  string symbolic_name = 5;
+  // The number that identifies this element.
+  int32 sbe_id = 6;
+  // The octets set aside for a message's fixed-length fields, or for those of each group entry.
+  int32 block_length = 7;
+  // The multiple of octets where a message or each group entry begins.
+  int32 alignment = 8;
+  // What this element means at the FIX application layer.
+  string semantic_type = 9;
+  // Free text about this element, for the people who read the schema.
+  string description = 10;
+  // Repeating groups, listed in wire order.
+  repeated SbeGroupV2 repeating_groups = 11;
+  // Variable-length fields, listed in wire order.
+  repeated SbeFieldV2 var_data_fields = 12;
+}
+// A simple encoding inside a composite, which may say it is optional or constant.
+message SbeMemberTypeV2 {
+  // The class of this encoding or composite member, which stands for its XML element.
+  string encoding_kind = 1;
+  // What the schema calls this element.
+  string symbolic_name = 2;
+  // Free text about this element, for the people who read the schema.
+  string description = 3;
+  // The octet this element starts at, counted from zero at the start of its block or composite.
+  int32 offset = 4;
+  // The multiple of octets the start of this element is placed on.
+  int32 alignment = 5;
+  // The text of the XML element, which is the constant when presence is constant.
+  string element_value = 6;
+  // The wire type under this encoding.
+  SbePrimitiveType primitive_type = 7;
+  // How many values of the primitive type the encoding holds, where zero means a variable number.
+  int32 array_length = 8;
+  // Which character set, or which Unicode scheme, character data follows.
+  string character_encoding = 9;
+  // Whether this element's value is required, optional or constant.
+  SbePresence presence = 10;
+  // The value that stands for null in place of the primitive type's default, written as text.
+  string null_value = 11;
+  // The lowest value allowed, written as text.
+  string min_value = 12;
+  // The highest value allowed, written as text.
+  string max_value = 13;
+  // The valid value that gives a constant element its value.
+  string value_ref = 14;
+}
+// Anything a composite may hold in the order it is sent.
+message SbeMemberV1 {
+  // The class of this encoding or composite member, which stands for its XML element.
+  string encoding_kind = 1;
+  // What the schema calls this element.
+  string symbolic_name = 2;
+  // The octet this element starts at, counted from zero at the start of its block or composite.
+  int32 offset = 3;
+  // The schema version that added this element.
+  int32 since_version = 4;
+  // The schema version that retired this element, which stays only for older applications.
+  int32 deprecated_since = 5;
+}
+// Anything a composite may hold in the order it is sent.
+message SbeMemberV2 {
+  // The class of this encoding or composite member, which stands for its XML element.
+  string encoding_kind = 1;
+  // What the schema calls this element.
+  string symbolic_name = 2;
+  // Free text about this element, for the people who read the schema.
+  string description = 3;
+  // The octet this element starts at, counted from zero at the start of its block or composite.
+  int32 offset = 4;
+  // The multiple of octets the start of this element is placed on.
+  int32 alignment = 5;
+}
+// One SBE 1.0 message schema, with its encodings and message templates.
+message SbeMessageSchemaV1 {
+  // The name or category that a set of counterparties knows this schema or part of it by.
+  string schema_package = 1;
+  // The number that identifies this schema between counterparties.
+  int32 sbe_id = 2;
+  // The version of this message schema, starting at zero.
+  int32 schema_version = 3;
+  // The version of FIX whose meanings this schema uses.
+  string semantic_version = 4;
+  // Free text about this element, for the people who read the schema.
+  string description = 5;
+  // How the octets of every number in this schema's messages are ordered.
+  SbeByteOrder byte_order = 6;
+  // The composite, by name, that sends each message's header in this schema.
+  string header_type = 7;
+  // The sets of encodings this schema's messages use.
+  repeated SbeEncodingSetV1 encoding_sets = 8;
+  // The message templates of this set.
+  repeated SbeMessageV1 messages = 9;
+}
+// One SBE 2.0 message schema, with its encodings and message templates.
+message SbeMessageSchemaV2 {
+  // The name or category that a set of counterparties knows this schema or part of it by.
+  string schema_package = 1;
+  // The number that identifies this schema between counterparties.
+  int32 sbe_id = 2;
+  // The version of this message schema, starting at zero.
+  int32 schema_version = 3;
+  // The version of FIX whose meanings this schema uses.
+  string semantic_version = 4;
+  // Free text about this element, for the people who read the schema.
+  string description = 5;
+  // How the octets of every number in this schema's messages are ordered.
+  SbeByteOrder byte_order = 6;
+  // The composite, by name, that sends each message's header in this schema.
+  string header_type = 7;
+  // The sets of encodings this schema's messages use.
+  repeated SbeEncodingSetV2 encoding_sets = 8;
+  // The sets of message templates of this schema.
+  repeated SbeMessageSetV2 message_sets = 9;
+}
+// Message templates held together, which may have their own package and may come from another file.
+message SbeMessageSetV2 {
+  // Free text about this element, for the people who read the schema.
+  string description = 1;
+  // A package for this set in place of the schema's.
+  string schema_package = 2;
+  // The base address that the XML Inclusion mechanism records on an element it brought in from another file.
+  string sbe_xml_base = 3;
+  // The message templates of this set.
+  repeated SbeMessageV2 messages = 4;
+}
+// A message template, whose number and block length are sent in each message's header.
+message SbeMessageV1 {
+  // The template's number, which no other template in the schema shares.
+  int32 sbe_id = 1;
+  // The FIX MsgType(35) this template stands for, where several templates may share one.
+  string semantic_type = 2;
+  // The schema version that added this element.
+  int32 since_version = 3;
+  // The schema version that retired this element, which stays only for older applications.
+  int32 deprecated_since = 4;
+  // What the schema calls this element.
+  string symbolic_name = 5;
+  // The octets set aside for a message's fixed-length fields, or for those of each group entry.
+  int32 block_length = 6;
+  // Free text about this element, for the people who read the schema.
+  string description = 7;
+  // Fixed-length fields, listed in wire order.
+  repeated SbeFieldV1 block_fields = 8;
+  // Repeating groups, listed in wire order.
+  repeated SbeGroupV1 repeating_groups = 9;
+  // Variable-length fields, listed in wire order.
+  repeated SbeFieldV1 var_data_fields = 10;
+}
+// A message template, whose number and block length are sent in each message's header.
+message SbeMessageV2 {
+  // The template's number, which no other template in the schema shares.
+  int32 sbe_id = 1;
+  // The FIX MsgType(35) this template stands for, where several templates may share one.
+  string semantic_type = 2;
+  // The schema version that added this element.
+  int32 since_version = 3;
+  // The schema version that retired this element, which stays only for older applications.
+  int32 deprecated_since = 4;
+  // What the schema calls this element.
+  string symbolic_name = 5;
+  // The octets set aside for a message's fixed-length fields, or for those of each group entry.
+  int32 block_length = 6;
+  // The multiple of octets where a message or each group entry begins.
+  int32 alignment = 7;
+  // Free text about this element, for the people who read the schema.
+  string description = 8;
+  // Fixed-length fields, listed in wire order.
+  repeated SbeFieldV2 block_fields = 9;
+  // Repeating groups, listed in wire order.
+  repeated SbeGroupV2 repeating_groups = 10;
+  // Variable-length fields, listed in wire order.
+  repeated SbeFieldV2 var_data_fields = 11;
+}
+// A composite's member that reuses an encoding defined elsewhere in the schema.
+message SbeRefV1 {
+  // The class of this encoding or composite member, which stands for its XML element.
+  string encoding_kind = 1;
+  // What the schema calls this element.
+  string symbolic_name = 2;
+  // The octet this element starts at, counted from zero at the start of its block or composite.
+  int32 offset = 3;
+  // The schema version that added this element.
+  int32 since_version = 4;
+  // The schema version that retired this element, which stays only for older applications.
+  int32 deprecated_since = 5;
+  // Which encoding this element uses, by name.
+  string encoding_name = 6;
+}
+// A composite's member that reuses an encoding defined elsewhere in the schema.
+message SbeRefV2 {
+  // The class of this encoding or composite member, which stands for its XML element.
+  string encoding_kind = 1;
+  // What the schema calls this element.
+  string symbolic_name = 2;
+  // Free text about this element, for the people who read the schema.
+  string description = 3;
+  // The octet this element starts at, counted from zero at the start of its block or composite.
+  int32 offset = 4;
+  // The multiple of octets the start of this element is placed on.
+  int32 alignment = 5;
+  // Which encoding this element uses, by name.
+  string encoding_name = 6;
+}
+// An encoding whose value is any combination of up to 64 choices, sent as a bitset.
+message SbeSetV1 {
+  // The class of this encoding or composite member, which stands for its XML element.
+  string encoding_kind = 1;
+  // What the schema calls this element.
+  string symbolic_name = 2;
+  // The octet this element starts at, counted from zero at the start of its block or composite.
+  int32 offset = 3;
+  // The schema version that added this element.
+  int32 since_version = 4;
+  // The schema version that retired this element, which stays only for older applications.
+  int32 deprecated_since = 5;
+  // The FIX datatype this encoding carries.
+  string semantic_type = 6;
+  // Free text about this element, for the people who read the schema.
+  string description = 7;
+  // The simple encoding or primitive type that an enumeration or set is sent as.
+  string encoding_type = 8;
+  // The alternatives of this set.
+  repeated SbeChoice choices = 9;
+}
+// An encoding whose value is any combination of up to 64 choices, sent as a bitset.
+message SbeSetV2 {
+  // The class of this encoding or composite member, which stands for its XML element.
+  string encoding_kind = 1;
+  // What the schema calls this element.
+  string symbolic_name = 2;
+  // Free text about this element, for the people who read the schema.
+  string description = 3;
+  // The octet this element starts at, counted from zero at the start of its block or composite.
+  int32 offset = 4;
+  // The multiple of octets the start of this element is placed on.
+  int32 alignment = 5;
+  // The simple encoding or primitive type that an enumeration or set is sent as.
+  string encoding_type = 6;
+  // The alternatives of this set.
+  repeated SbeChoice choices = 7;
+  // The schema version that added this element.
+  int32 since_version = 8;
+  // The schema version that retired this element, which stays only for older applications.
+  int32 deprecated_since = 9;
+}
+// An encoding backed by one primitive value, or several in an array.
+message SbeSimpleTypeV1 {
+  // The class of this encoding or composite member, which stands for its XML element.
+  string encoding_kind = 1;
+  // What the schema calls this element.
+  string symbolic_name = 2;
+  // The octet this element starts at, counted from zero at the start of its block or composite.
+  int32 offset = 3;
+  // The schema version that added this element.
+  int32 since_version = 4;
+  // The schema version that retired this element, which stays only for older applications.
+  int32 deprecated_since = 5;
+  // The FIX datatype this encoding carries.
+  string semantic_type = 6;
+  // Free text about this element, for the people who read the schema.
+  string description = 7;
+  // The text of the XML element, which is the constant when presence is constant.
+  string element_value = 8;
+  // The wire type under this encoding.
+  SbePrimitiveType primitive_type = 9;
+  // How many values of the primitive type the encoding holds, where zero means a variable number.
+  int32 array_length = 10;
+  // Which character set, or which Unicode scheme, character data follows.
+  string character_encoding = 11;
+  // The value that stands for null in place of the primitive type's default, written as text.
+  string null_value = 12;
+  // The lowest value allowed, written as text.
+  string min_value = 13;
+  // The highest value allowed, written as text.
+  string max_value = 14;
+  // Whether this element's value is required, optional or constant.
+  SbePresence presence = 15;
+  // The valid value that gives a constant element its value.
+  string value_ref = 16;
+}
+// A simple encoding that stands alone in a set, backed by one primitive value, or several in an array.
+message SbeSimpleTypeV2 {
+  // The class of this encoding or composite member, which stands for its XML element.
+  string encoding_kind = 1;
+  // What the schema calls this element.
+  string symbolic_name = 2;
+  // Free text about this element, for the people who read the schema.
+  string description = 3;
+  // The text of the XML element, which is the constant when presence is constant.
+  string element_value = 4;
+  // The wire type under this encoding.
+  SbePrimitiveType primitive_type = 5;
+  // How many values of the primitive type the encoding holds, where zero means a variable number.
+  int32 array_length = 6;
+  // Which character set, or which Unicode scheme, character data follows.
+  string character_encoding = 7;
+  // The schema version that added this element.
+  int32 since_version = 8;
+  // The schema version that retired this element, which stays only for older applications.
+  int32 deprecated_since = 9;
+}
+// One of the values an enumeration allows.
+message SbeValidValue {
+  // What the schema calls this element.
+  string symbolic_name = 1;
+  // Free text about this element, for the people who read the schema.
+  string description = 2;
+  // The value as it is written in the schema, which must convert to the enumeration's encoding.
+  string valid_value = 3;
+  // The schema version that added this element.
+  int32 since_version = 4;
+  // The schema version that retired this element, which stays only for older applications.
+  int32 deprecated_since = 5;
+}
+// The two attributes that record when an element entered a schema and when it should leave.
+message SbeVersionedMixin {
+  // The schema version that added this element.
+  int32 since_version = 1;
+  // The schema version that retired this element, which stays only for older applications.
+  int32 deprecated_since = 2;
+}
+
+// The order of the octets in every multi-octet number of a message.
+enum SbeByteOrder {
+  SBE_BYTE_ORDER_UNSPECIFIED = 0;
+  SBE_BYTE_ORDER_BIG_ENDIAN = 1;
+  SBE_BYTE_ORDER_LITTLE_ENDIAN = 2;
+}
+// The FIX datatypes a field's or an encoding's semantic type may name: those of FIX Latest, and EncodedText, which the specification's summary table adds.
+enum SbeFixDatatype {
+  SBE_FIX_DATATYPE_UNSPECIFIED = 0;
+  SBE_FIX_DATATYPE_INT = 1;
+  SBE_FIX_DATATYPE_LENGTH = 2;
+  SBE_FIX_DATATYPE_TAG_NUM = 3;
+  SBE_FIX_DATATYPE_SEQ_NUM = 4;
+  SBE_FIX_DATATYPE_NUM_IN_GROUP = 5;
+  SBE_FIX_DATATYPE_DAY_OF_MONTH = 6;
+  SBE_FIX_DATATYPE_FLOAT = 7;
+  SBE_FIX_DATATYPE_QTY = 8;
+  SBE_FIX_DATATYPE_PRICE = 9;
+  SBE_FIX_DATATYPE_PRICE_OFFSET = 10;
+  SBE_FIX_DATATYPE_AMT = 11;
+  SBE_FIX_DATATYPE_PERCENTAGE = 12;
+  SBE_FIX_DATATYPE_CHAR = 13;
+  SBE_FIX_DATATYPE_BOOLEAN = 14;
+  SBE_FIX_DATATYPE_STRING = 15;
+  SBE_FIX_DATATYPE_MULTIPLE_CHAR_VALUE = 16;
+  SBE_FIX_DATATYPE_MULTIPLE_STRING_VALUE = 17;
+  SBE_FIX_DATATYPE_COUNTRY = 18;
+  SBE_FIX_DATATYPE_CURRENCY = 19;
+  SBE_FIX_DATATYPE_EXCHANGE = 20;
+  SBE_FIX_DATATYPE_MONTH_YEAR = 21;
+  SBE_FIX_DATATYPE_UTCTIMESTAMP = 22;
+  SBE_FIX_DATATYPE_UTCTIME_ONLY = 23;
+  SBE_FIX_DATATYPE_UTCDATE_ONLY = 24;
+  SBE_FIX_DATATYPE_LOCAL_MKT_DATE = 25;
+  SBE_FIX_DATATYPE_TZTIME_ONLY = 26;
+  SBE_FIX_DATATYPE_TZTIMESTAMP = 27;
+  SBE_FIX_DATATYPE_DATA = 28;
+  SBE_FIX_DATATYPE_PATTERN = 29;
+  SBE_FIX_DATATYPE_TENOR = 30;
+  SBE_FIX_DATATYPE_RESERVED100_PLUS = 31;
+  SBE_FIX_DATATYPE_RESERVED1000_PLUS = 32;
+  SBE_FIX_DATATYPE_RESERVED4000_PLUS = 33;
+  SBE_FIX_DATATYPE_XMLDATA = 34;
+  SBE_FIX_DATATYPE_LANGUAGE = 35;
+  SBE_FIX_DATATYPE_LOCAL_MKT_TIME = 36;
+  SBE_FIX_DATATYPE_XID = 37;
+  SBE_FIX_DATATYPE_XIDREF = 38;
+  SBE_FIX_DATATYPE_ENCODED_TEXT = 39;
+}
+// Whether a value is on the wire, and whether it may be null.
+enum SbePresence {
+  SBE_PRESENCE_UNSPECIFIED = 0;
+  SBE_PRESENCE_REQUIRED = 1;
+  SBE_PRESENCE_OPTIONAL = 2;
+  SBE_PRESENCE_CONSTANT = 3;
+}
+// The wire types every encoding is finally built from.
+enum SbePrimitiveType {
+  SBE_PRIMITIVE_TYPE_UNSPECIFIED = 0;
+  SBE_PRIMITIVE_TYPE_CHAR = 1;
+  SBE_PRIMITIVE_TYPE_INT8 = 2;
+  SBE_PRIMITIVE_TYPE_INT16 = 3;
+  SBE_PRIMITIVE_TYPE_INT32 = 4;
+  SBE_PRIMITIVE_TYPE_INT64 = 5;
+  SBE_PRIMITIVE_TYPE_UINT8 = 6;
+  SBE_PRIMITIVE_TYPE_UINT16 = 7;
+  SBE_PRIMITIVE_TYPE_UINT32 = 8;
+  SBE_PRIMITIVE_TYPE_UINT64 = 9;
+  SBE_PRIMITIVE_TYPE_FLOAT = 10;
+  SBE_PRIMITIVE_TYPE_DOUBLE = 11;
+}

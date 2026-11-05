@@ -143,18 +143,10 @@ dmypy.json
 # Local vscode editor config
 .vscode
 
-# Upstream FIX SBE releases: ignore the bulky tree but keep the two XSDs used
-# as inputs by scripts/schema_to_linkml.py.
-upstream-releases/fix-simple-binary-encoding/.git
-upstream-releases/fix-simple-binary-encoding/**
-!upstream-releases/fix-simple-binary-encoding/v1-0-STANDARD/
-!upstream-releases/fix-simple-binary-encoding/v1-0-STANDARD/resources/
-!upstream-releases/fix-simple-binary-encoding/v1-0-STANDARD/resources/sbe.xsd
-!upstream-releases/fix-simple-binary-encoding/v2-0-RC2/
-!upstream-releases/fix-simple-binary-encoding/v2-0-RC2/resources/
-!upstream-releases/fix-simple-binary-encoding/v2-0-RC2/resources/xsd/
-!upstream-releases/fix-simple-binary-encoding/v2-0-RC2/resources/xsd/sbe-2.0rc2.xsd
-!upstream-releases/fix-simple-binary-encoding/v2-0-RC3/
-!upstream-releases/fix-simple-binary-encoding/v2-0-RC3/resources/
-!upstream-releases/fix-simple-binary-encoding/v2-0-RC3/resources/xsd/
-!upstream-releases/fix-simple-binary-encoding/v2-0-RC3/resources/xsd/sbe-2.0rc3.xsd
+# Agent skills are installed at run time, never committed.
+.agents/
+.claude/
+skills-lock.json
+
+# The release job's tools, installed from .github/release/package-lock.json
+/.github/release/node_modules/

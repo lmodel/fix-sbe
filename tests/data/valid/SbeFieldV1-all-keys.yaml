@@ -1,0 +1,11 @@
+symbolic_name: TransactTime
+sbe_id: 60
+encoding_name: timestamp
+offset: 16
+presence: optional
+semantic_type: UTCTimestamp
+description: When the order was placed.
+time_epoch: unix
+time_unit: millisecond
+since_version: 1
+deprecated_since: 2

@@ -1,0 +1,7 @@
+# Fails at: /composite_members/0
+encoding_kind: SbeCompositeV2
+symbolic_name: price
+composite_members:
+  - encoding_kind: SbeSimpleTypeV2
+    symbolic_name: mantissa
+    primitive_type: int32

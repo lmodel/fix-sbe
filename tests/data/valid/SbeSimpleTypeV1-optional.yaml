@@ -1,0 +1,11 @@
+encoding_kind: SbeSimpleTypeV1
+symbolic_name: smallCount
+primitive_type: uint8
+presence: optional
+null_value: "255"
+min_value: "1"
+max_value: "254"
+semantic_type: int
+description: A count that may be absent.
+since_version: 1
+deprecated_since: 2

@@ -1,0 +1,6 @@
+# Fails at: /
+encoding_kind: SbeEnumV1
+symbolic_name: sideEnum
+valid_values:
+  - symbolic_name: Buy
+    valid_value: "1"

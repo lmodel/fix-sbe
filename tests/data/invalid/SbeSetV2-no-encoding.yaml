@@ -1,0 +1,6 @@
+# Fails at: /
+encoding_kind: SbeSetV2
+symbolic_name: flags
+choices:
+  - symbolic_name: Hidden
+    bit_position: 0

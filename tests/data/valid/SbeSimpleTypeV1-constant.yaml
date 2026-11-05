@@ -1,0 +1,5 @@
+encoding_kind: SbeSimpleTypeV1
+symbolic_name: exponent
+primitive_type: int8
+presence: constant
+element_value: "-4"

@@ -1,0 +1,5 @@
+# Fails at: /array_length
+encoding_kind: SbeSimpleTypeV1
+symbolic_name: count
+primitive_type: uint8
+array_length: -1

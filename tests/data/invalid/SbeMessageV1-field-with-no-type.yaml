@@ -1,0 +1,6 @@
+# Fails at: /block_fields/0
+symbolic_name: Heartbeat
+sbe_id: 1
+block_fields:
+  - symbolic_name: Count
+    sbe_id: 2

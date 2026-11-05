@@ -1,0 +1,11 @@
+# Fails at: /byte_order
+schema_version: 0
+byte_order: middleEndian
+encoding_sets:
+  - encodings:
+      - encoding_kind: SbeSimpleTypeV1
+        symbolic_name: counter
+        primitive_type: uint32
+messages:
+  - symbolic_name: Heartbeat
+    sbe_id: 1

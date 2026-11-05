@@ -1,0 +1,166 @@
+# One schema that holds every kind of encoding and every kind of member of a block.
+schema_package: lmodel.example
+sbe_id: 8
+schema_version: 1
+description: A small order entry schema.
+byte_order: bigEndian
+encoding_sets:
+  - description: The encodings every message needs.
+    schema_package: lmodel.example.common
+    encodings:
+      - encoding_kind: SbeCompositeV2
+        symbolic_name: messageHeader
+        composite_members:
+          - encoding_kind: SbeMemberTypeV2
+            symbolic_name: blockLength
+            primitive_type: uint16
+          - encoding_kind: SbeMemberTypeV2
+            symbolic_name: templateId
+            primitive_type: uint16
+          - encoding_kind: SbeMemberTypeV2
+            symbolic_name: schemaId
+            primitive_type: uint16
+          - encoding_kind: SbeMemberTypeV2
+            symbolic_name: version
+            primitive_type: uint16
+          - encoding_kind: SbeMemberTypeV2
+            symbolic_name: numGroups
+            primitive_type: uint16
+          - encoding_kind: SbeMemberTypeV2
+            symbolic_name: numVarDataFields
+            primitive_type: uint16
+      - encoding_kind: SbeCompositeV2
+        symbolic_name: groupSizeEncoding
+        composite_members:
+          - encoding_kind: SbeMemberTypeV2
+            symbolic_name: blockLength
+            primitive_type: uint16
+          - encoding_kind: SbeMemberTypeV2
+            symbolic_name: numInGroup
+            primitive_type: uint16
+      - encoding_kind: SbeCompositeV2
+        symbolic_name: varText
+        composite_members:
+          - encoding_kind: SbeMemberTypeV2
+            symbolic_name: length
+            primitive_type: uint16
+          - encoding_kind: SbeMemberTypeV2
+            symbolic_name: varData
+            primitive_type: uint8
+            array_length: 0
+            character_encoding: UTF-8
+  - encodings:
+      - encoding_kind: SbeCompositeV2
+        symbolic_name: price4
+        description: A price with four decimal places.
+        composite_members:
+          - encoding_kind: SbeMemberTypeV2
+            symbolic_name: mantissa
+            primitive_type: int32
+            presence: optional
+            null_value: "0"
+          - encoding_kind: SbeMemberTypeV2
+            symbolic_name: exponent
+            primitive_type: int8
+            presence: constant
+            element_value: "-4"
+      - encoding_kind: SbeCompositeV2
+        symbolic_name: quotedPrice
+        composite_members:
+          - encoding_kind: SbeRefV2
+            symbolic_name: value
+            encoding_name: price4
+            description: The price the venue quoted.
+          - encoding_kind: SbeEnumV2
+            symbolic_name: source
+            encoding_type: uint8
+            offset: 4
+            valid_values:
+              - symbolic_name: venue
+                valid_value: "1"
+      - encoding_kind: SbeSimpleTypeV2
+        symbolic_name: idString
+        primitive_type: char
+        array_length: 8
+      - encoding_kind: SbeSimpleTypeV2
+        symbolic_name: charEncoding
+        primitive_type: char
+      - encoding_kind: SbeSimpleTypeV2
+        symbolic_name: counter
+        primitive_type: uint32
+        description: A whole number of units.
+      - encoding_kind: SbeEnumV2
+        symbolic_name: sideEnum
+        encoding_type: charEncoding
+        valid_values:
+          - symbolic_name: Buy
+            valid_value: "1"
+          - symbolic_name: Sell
+            valid_value: "2"
+      - encoding_kind: SbeSetV2
+        symbolic_name: orderFlags
+        encoding_type: uint8
+        choices:
+          - symbolic_name: Hidden
+            bit_position: 0
+          - symbolic_name: PostOnly
+            bit_position: 1
+            since_version: 1
+message_sets:
+  - description: The messages of order entry.
+    messages:
+      - symbolic_name: OrderEntry
+        sbe_id: 1
+        block_length: 32
+        alignment: 8
+        semantic_type: D
+        block_fields:
+          - symbolic_name: ClientOrderId
+            sbe_id: 11
+            encoding_name: idString
+            semantic_type: String
+          - symbolic_name: Side
+            sbe_id: 54
+            encoding_name: sideEnum
+            offset: 8
+          - symbolic_name: LimitPrice
+            sbe_id: 44
+            encoding_name: price4
+            alignment: 4
+            presence: optional
+            semantic_type: Price
+          - symbolic_name: Quantity
+            sbe_id: 38
+            encoding_name: counter
+            presence: optional
+            null_value: "0"
+            min_value: "1"
+            max_value: "4000000000"
+            semantic_type: Qty
+          - symbolic_name: OrderCapacity
+            sbe_id: 528
+            encoding_name: charEncoding
+            presence: constant
+            element_value: A
+          - symbolic_name: Flags
+            sbe_id: 7001
+            encoding_name: orderFlags
+            since_version: 1
+        repeating_groups:
+          - symbolic_name: PartyGroup
+            sbe_id: 453
+            dimension_type: groupSizeEncoding
+            alignment: 4
+            block_fields:
+              - symbolic_name: PartyId
+                sbe_id: 448
+                encoding_name: idString
+              - symbolic_name: PartySide
+                sbe_id: 7002
+                encoding_name: sideEnum
+                presence: constant
+                value_ref: sideEnum.Buy
+        var_data_fields:
+          - symbolic_name: Text
+            sbe_id: 58
+            encoding_name: varText

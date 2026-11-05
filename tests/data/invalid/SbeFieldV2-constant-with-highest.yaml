@@ -1,0 +1,7 @@
+# Fails at: /
+symbolic_name: Count
+sbe_id: 1
+encoding_name: counter
+presence: constant
+element_value: "1"
+max_value: "9"

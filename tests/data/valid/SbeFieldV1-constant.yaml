@@ -1,0 +1,5 @@
+symbolic_name: PartySource
+sbe_id: 447
+encoding_name: sourceEnum
+presence: constant
+value_ref: sourceEnum.proprietary

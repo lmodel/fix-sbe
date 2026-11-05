@@ -1,0 +1,6 @@
+encoding_kind: SbeRefV2
+symbolic_name: amount
+encoding_name: price4
+description: The amount of the fill.
+offset: 3
+alignment: 4

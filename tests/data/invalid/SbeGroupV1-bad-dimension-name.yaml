@@ -1,0 +1,8 @@
+# Fails at: /dimension_type
+symbolic_name: Empty
+sbe_id: 1
+dimension_type: not a name
+block_fields:
+  - symbolic_name: Count
+    sbe_id: 2
+    encoding_name: counter

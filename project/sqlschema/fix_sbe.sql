@@ -1,761 +1,744 @@
--- # Class: SemanticAttributes Description: Application layer class. Maps a field to a FIX data type or a template to a FIX message.
+-- # Class: SbeVersionedMixin Description: The two attributes that record when an element entered a schema and when it should leave.
 --     * Slot: id
---     * Slot: semantic_type
---     * Slot: description
--- # Class: VersionAttributes Description: Schema versioning supports message extension
+--     * Slot: since_version Description: The schema version that added this element.
+--     * Slot: deprecated_since Description: The schema version that retired this element, which stays only for older applications.
+-- # Class: SbeValidValue Description: One of the values an enumeration allows.
 --     * Slot: id
---     * Slot: since_version Description: The schema version in which an element was added
---     * Slot: deprecated Description: The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version.
--- # Class: ValidValue Description: Valid value as a string
+--     * Slot: symbolic_name Description: What the schema calls this element.
+--     * Slot: description Description: Free text about this element, for the people who read the schema.
+--     * Slot: valid_value Description: The value as it is written in the schema, which must convert to the enumeration's encoding.
+--     * Slot: since_version Description: The schema version that added this element.
+--     * Slot: deprecated_since Description: The schema version that retired this element, which stays only for older applications.
+--     * Slot: SbeEnumV1_id Description: Autocreated FK slot
+--     * Slot: SbeEnumV2_id Description: Autocreated FK slot
+-- # Class: SbeChoice Description: One of the alternatives of a set, which is one bit of its encoding.
 --     * Slot: id
---     * Slot: name
---     * Slot: description
---     * Slot: value Description: Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``).
---     * Slot: since_version Description: The schema version in which an element was added
---     * Slot: deprecated Description: The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version.
---     * Slot: EnumTypeV1_id Description: Autocreated FK slot
---     * Slot: EnumTypeV2_id Description: Autocreated FK slot
--- # Class: Choice Description: A choice within a multi value set. Value is the position within a bitset (zero-based index).
+--     * Slot: symbolic_name Description: What the schema calls this element.
+--     * Slot: description Description: Free text about this element, for the people who read the schema.
+--     * Slot: bit_position Description: Which bit stands for this choice, counted from zero at the least significant.
+--     * Slot: since_version Description: The schema version that added this element.
+--     * Slot: deprecated_since Description: The schema version that retired this element, which stays only for older applications.
+--     * Slot: SbeSetV1_id Description: Autocreated FK slot
+--     * Slot: SbeSetV2_id Description: Autocreated FK slot
+-- # Class: SbeMessageSchemaV1 Description: One SBE 1.0 message schema, with its encodings and message templates.
 --     * Slot: id
---     * Slot: name
---     * Slot: description
---     * Slot: value Description: Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``).
---     * Slot: since_version Description: The schema version in which an element was added
---     * Slot: deprecated Description: The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version.
---     * Slot: SetTypeV1_id Description: Autocreated FK slot
---     * Slot: SetTypeV2_id Description: Autocreated FK slot
--- # Class: AlignmentAttributesV1
+--     * Slot: schema_package Description: The name or category that a set of counterparties knows this schema or part of it by.
+--     * Slot: sbe_id Description: The number that identifies this schema between counterparties.
+--     * Slot: schema_version Description: The version of this message schema, starting at zero.
+--     * Slot: semantic_version Description: The version of FIX whose meanings this schema uses.
+--     * Slot: description Description: Free text about this element, for the people who read the schema.
+--     * Slot: byte_order Description: How the octets of every number in this schema's messages are ordered.
+--     * Slot: header_type Description: The composite, by name, that sends each message's header in this schema.
+-- # Class: SbeEncodingSetV1 Description: A set of encodings, listed in any order, whose names are unique across the whole schema.
 --     * Slot: id
---     * Slot: offset Description: Offset from start of a composite type or block as a zero-based index.
--- # Class: PresenceAttributesV1
+--     * Slot: SbeMessageSchemaV1_id Description: Autocreated FK slot
+-- # Abstract Class: SbeMemberV1 Description: Anything a composite may hold in the order it is sent.
 --     * Slot: id
---     * Slot: presence
---     * Slot: value_ref Description: A constant value as valid value of an enum in the form enum-name.valid-value-name
--- # Class: BlockTypeV1 Description: Base type of message and repeating group entry
---     * Slot: uid
---     * Slot: name
---     * Slot: id Description: Unique ID of a message template
---     * Slot: block_length Description: Space reserved for root level of message, not include groups or variable-length data elements.
---     * Slot: semantic_type
---     * Slot: description
---     * Slot: since_version Description: The schema version in which an element was added
---     * Slot: deprecated Description: The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version.
--- # Class: GroupTypeV1 Description: A repeating group contains an array of entries
---     * Slot: uid
---     * Slot: dimension_type
---     * Slot: name
---     * Slot: id Description: Unique ID of a message template
---     * Slot: block_length Description: Space reserved for root level of message, not include groups or variable-length data elements.
---     * Slot: semantic_type
---     * Slot: description
---     * Slot: since_version Description: The schema version in which an element was added
---     * Slot: deprecated Description: The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version.
---     * Slot: BlockTypeV1_uid Description: Autocreated FK slot
---     * Slot: GroupTypeV1_uid Description: Autocreated FK slot
---     * Slot: MessageV1_uid Description: Autocreated FK slot
--- # Class: EncodedDataTypeV1 Description: Simple wire encoding consisting of a primitive type or array of primitives
+--     * Slot: encoding_kind Description: The class of this encoding or composite member, which stands for its XML element.
+--     * Slot: symbolic_name Description: What the schema calls this element.
+--     * Slot: offset Description: The octet this element starts at, counted from zero at the start of its block or composite.
+--     * Slot: since_version Description: The schema version that added this element.
+--     * Slot: deprecated_since Description: The schema version that retired this element, which stays only for older applications.
+--     * Slot: SbeCompositeV1_id Description: Autocreated FK slot
+-- # Class: SbeRefV1 Description: A composite's member that reuses an encoding defined elsewhere in the schema.
 --     * Slot: id
---     * Slot: name
---     * Slot: null_value Description: Override of default null indicator for the data type in SBE specification, as a string.
---     * Slot: min_value
---     * Slot: max_value
---     * Slot: length
---     * Slot: primitive_type
---     * Slot: character_encoding
---     * Slot: value Description: Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``).
---     * Slot: offset Description: Offset from start of a composite type or block as a zero-based index.
---     * Slot: presence
---     * Slot: value_ref Description: A constant value as valid value of an enum in the form enum-name.valid-value-name
---     * Slot: semantic_type
---     * Slot: description
---     * Slot: since_version Description: The schema version in which an element was added
---     * Slot: deprecated Description: The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version.
---     * Slot: CompositeDataTypeV1_id Description: Autocreated FK slot
--- # Class: CompositeDataTypeV1 Description: A wire encoding composed of multiple parts
+--     * Slot: encoding_name Description: Which encoding this element uses, by name.
+--     * Slot: encoding_kind Description: The class of this encoding or composite member, which stands for its XML element.
+--     * Slot: symbolic_name Description: What the schema calls this element.
+--     * Slot: offset Description: The octet this element starts at, counted from zero at the start of its block or composite.
+--     * Slot: since_version Description: The schema version that added this element.
+--     * Slot: deprecated_since Description: The schema version that retired this element, which stays only for older applications.
+-- # Abstract Class: SbeEncodingV1 Description: An encoding of SBE 1.0, which says how a value is laid out on the wire.
 --     * Slot: id
---     * Slot: name
---     * Slot: value Description: Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``).
---     * Slot: offset Description: Offset from start of a composite type or block as a zero-based index.
---     * Slot: semantic_type
---     * Slot: description
---     * Slot: since_version Description: The schema version in which an element was added
---     * Slot: deprecated Description: The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version.
---     * Slot: CompositeDataTypeV1_id Description: Autocreated FK slot
--- # Class: EnumTypeV1 Description: An enumeration of valid values
+--     * Slot: semantic_type Description: The FIX datatype this encoding carries.
+--     * Slot: description Description: Free text about this element, for the people who read the schema.
+--     * Slot: encoding_kind Description: The class of this encoding or composite member, which stands for its XML element.
+--     * Slot: symbolic_name Description: What the schema calls this element.
+--     * Slot: offset Description: The octet this element starts at, counted from zero at the start of its block or composite.
+--     * Slot: since_version Description: The schema version that added this element.
+--     * Slot: deprecated_since Description: The schema version that retired this element, which stays only for older applications.
+--     * Slot: SbeEncodingSetV1_id Description: Autocreated FK slot
+-- # Class: SbeSimpleTypeV1 Description: An encoding backed by one primitive value, or several in an array.
 --     * Slot: id
---     * Slot: name
---     * Slot: encoding_type
---     * Slot: value Description: Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``).
---     * Slot: offset Description: Offset from start of a composite type or block as a zero-based index.
---     * Slot: semantic_type
---     * Slot: description
---     * Slot: since_version Description: The schema version in which an element was added
---     * Slot: deprecated Description: The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version.
---     * Slot: CompositeDataTypeV1_id Description: Autocreated FK slot
--- # Class: RefTypeV1 Description: A reference to any existing encoding type (simple type, enum or set) to reuse as a member of a composite type
+--     * Slot: element_value Description: The text of the XML element, which is the constant when presence is constant.
+--     * Slot: primitive_type Description: The wire type under this encoding.
+--     * Slot: array_length Description: How many values of the primitive type the encoding holds, where zero means a variable number.
+--     * Slot: character_encoding Description: Which character set, or which Unicode scheme, character data follows.
+--     * Slot: null_value Description: The value that stands for null in place of the primitive type's default, written as text.
+--     * Slot: min_value Description: The lowest value allowed, written as text.
+--     * Slot: max_value Description: The highest value allowed, written as text.
+--     * Slot: presence Description: Whether this element's value is required, optional or constant.
+--     * Slot: value_ref Description: The valid value that gives a constant element its value.
+--     * Slot: semantic_type Description: The FIX datatype this encoding carries.
+--     * Slot: description Description: Free text about this element, for the people who read the schema.
+--     * Slot: encoding_kind Description: The class of this encoding or composite member, which stands for its XML element.
+--     * Slot: symbolic_name Description: What the schema calls this element.
+--     * Slot: offset Description: The octet this element starts at, counted from zero at the start of its block or composite.
+--     * Slot: since_version Description: The schema version that added this element.
+--     * Slot: deprecated_since Description: The schema version that retired this element, which stays only for older applications.
+-- # Class: SbeCompositeV1 Description: An encoding built from members sent one after another, such as a decimal's mantissa and exponent.
 --     * Slot: id
---     * Slot: name
---     * Slot: type
---     * Slot: value Description: Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``).
---     * Slot: offset Description: Offset from start of a composite type or block as a zero-based index.
---     * Slot: since_version Description: The schema version in which an element was added
---     * Slot: deprecated Description: The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version.
---     * Slot: CompositeDataTypeV1_id Description: Autocreated FK slot
--- # Class: SetTypeV1 Description: A multi value choice (encoded as a bitset)
+--     * Slot: semantic_type Description: The FIX datatype this encoding carries.
+--     * Slot: description Description: Free text about this element, for the people who read the schema.
+--     * Slot: encoding_kind Description: The class of this encoding or composite member, which stands for its XML element.
+--     * Slot: symbolic_name Description: What the schema calls this element.
+--     * Slot: offset Description: The octet this element starts at, counted from zero at the start of its block or composite.
+--     * Slot: since_version Description: The schema version that added this element.
+--     * Slot: deprecated_since Description: The schema version that retired this element, which stays only for older applications.
+-- # Class: SbeEnumV1 Description: An encoding whose value is one of a listed set of valid values.
 --     * Slot: id
---     * Slot: name
---     * Slot: encoding_type
---     * Slot: value Description: Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``).
---     * Slot: offset Description: Offset from start of a composite type or block as a zero-based index.
---     * Slot: semantic_type
---     * Slot: description
---     * Slot: since_version Description: The schema version in which an element was added
---     * Slot: deprecated Description: The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version.
---     * Slot: CompositeDataTypeV1_id Description: Autocreated FK slot
--- # Class: FieldTypeV1 Description: A field of a message of a specified dataType
---     * Slot: uid
---     * Slot: name
+--     * Slot: encoding_type Description: The simple encoding or primitive type that an enumeration or set is sent as.
+--     * Slot: semantic_type Description: The FIX datatype this encoding carries.
+--     * Slot: description Description: Free text about this element, for the people who read the schema.
+--     * Slot: encoding_kind Description: The class of this encoding or composite member, which stands for its XML element.
+--     * Slot: symbolic_name Description: What the schema calls this element.
+--     * Slot: offset Description: The octet this element starts at, counted from zero at the start of its block or composite.
+--     * Slot: since_version Description: The schema version that added this element.
+--     * Slot: deprecated_since Description: The schema version that retired this element, which stays only for older applications.
+-- # Class: SbeSetV1 Description: An encoding whose value is any combination of up to 64 choices, sent as a bitset.
 --     * Slot: id
---     * Slot: type Description: Must match the name of an encoding contained by 'types' element
---     * Slot: epoch
---     * Slot: time_unit Description: Deprecated - only for back compatibility with RC2
---     * Slot: offset Description: Offset from start of a composite type or block as a zero-based index.
---     * Slot: presence
---     * Slot: value_ref Description: A constant value as valid value of an enum in the form enum-name.valid-value-name
---     * Slot: semantic_type
---     * Slot: description
---     * Slot: since_version Description: The schema version in which an element was added
---     * Slot: deprecated Description: The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version.
---     * Slot: BlockTypeV1_uid Description: Autocreated FK slot
---     * Slot: GroupTypeV1_uid Description: Autocreated FK slot
---     * Slot: MessageV1_uid Description: Autocreated FK slot
--- # Class: MessageSchemaV1 Description: Root of XML document, holds all message templates and their elements
---     * Slot: uid
---     * Slot: package
---     * Slot: id Description: Unique ID of a message schema
---     * Slot: version Description: The version of a message schema. Initial version is 0.
---     * Slot: semantic_version Description: Application layer specification version, such as FIX version 'FIX.5.0SP2'
---     * Slot: description
---     * Slot: byte_order
---     * Slot: header_type Description: Name of the encoding type of the message header, which is the same for all messages in a schema. The name has a default, but an encoding of that name must be present under a 'types' element.
--- # Class: MessageV1 Description: A message type, also known as a message template
---     * Slot: uid
---     * Slot: name
---     * Slot: id Description: Unique ID of a message template
---     * Slot: block_length Description: Space reserved for root level of message, not include groups or variable-length data elements.
---     * Slot: semantic_type
---     * Slot: description
---     * Slot: since_version Description: The schema version in which an element was added
---     * Slot: deprecated Description: The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version.
---     * Slot: MessageSchemaV1_uid Description: Autocreated FK slot
--- # Class: AlignmentAttributesV2
+--     * Slot: encoding_type Description: The simple encoding or primitive type that an enumeration or set is sent as.
+--     * Slot: semantic_type Description: The FIX datatype this encoding carries.
+--     * Slot: description Description: Free text about this element, for the people who read the schema.
+--     * Slot: encoding_kind Description: The class of this encoding or composite member, which stands for its XML element.
+--     * Slot: symbolic_name Description: What the schema calls this element.
+--     * Slot: offset Description: The octet this element starts at, counted from zero at the start of its block or composite.
+--     * Slot: since_version Description: The schema version that added this element.
+--     * Slot: deprecated_since Description: The schema version that retired this element, which stays only for older applications.
+-- # Class: SbeBlockV1Mixin Description: The body shared by a message and a group entry, which holds its fixed-length fields first, then groups, then variable-length data.
 --     * Slot: id
---     * Slot: alignment Description: Byte alignment of the start of a block (message root or repeating group instance).
--- # Class: OffsetAttributesV2
+--     * Slot: symbolic_name Description: What the schema calls this element.
+--     * Slot: sbe_id Description: The number that identifies this element.
+--     * Slot: block_length Description: The octets set aside for a message's fixed-length fields, or for those of each group entry.
+--     * Slot: semantic_type Description: What this element means at the FIX application layer.
+--     * Slot: description Description: Free text about this element, for the people who read the schema.
+-- # Class: SbeMessageV1 Description: A message template, whose number and block length are sent in each message's header.
 --     * Slot: id
---     * Slot: offset Description: Offset from start of a composite type or block as a zero-based index.
---     * Slot: alignment Description: Byte alignment of the start of a block (message root or repeating group instance).
--- # Class: PresenceAttributesV2
+--     * Slot: since_version Description: The schema version that added this element.
+--     * Slot: deprecated_since Description: The schema version that retired this element, which stays only for older applications.
+--     * Slot: symbolic_name Description: What the schema calls this element.
+--     * Slot: sbe_id Description: The template's number, which no other template in the schema shares.
+--     * Slot: block_length Description: The octets set aside for a message's fixed-length fields, or for those of each group entry.
+--     * Slot: semantic_type Description: The FIX MsgType(35) this template stands for, where several templates may share one.
+--     * Slot: description Description: Free text about this element, for the people who read the schema.
+--     * Slot: SbeMessageSchemaV1_id Description: Autocreated FK slot
+-- # Class: SbeGroupV1 Description: A repeating group, whose entries each hold the same fields, and which must have at least one field.
 --     * Slot: id
---     * Slot: presence
---     * Slot: null_value Description: Override of default null indicator for the data type in SBE specification, as a string.
---     * Slot: min_value Description: Lower bound of a range
---     * Slot: max_value Description: Upper bound of a range
---     * Slot: value_ref Description: A constant value as valid value of an enum in the form enum-name.valid-value-name. Only valid if presence='constant'.
--- # Class: PrimitiveTypeAttributesV2
+--     * Slot: dimension_type Description: The composite, by name, that sends a repeating group's entry count and entry size.
+--     * Slot: since_version Description: The schema version that added this element.
+--     * Slot: deprecated_since Description: The schema version that retired this element, which stays only for older applications.
+--     * Slot: symbolic_name Description: What the schema calls this element.
+--     * Slot: sbe_id Description: The number that identifies this element.
+--     * Slot: block_length Description: The octets set aside for a message's fixed-length fields, or for those of each group entry.
+--     * Slot: semantic_type Description: What this element means at the FIX application layer.
+--     * Slot: description Description: Free text about this element, for the people who read the schema.
+--     * Slot: SbeBlockV1Mixin_id Description: Autocreated FK slot
+--     * Slot: SbeMessageV1_id Description: Autocreated FK slot
+--     * Slot: SbeGroupV1_id Description: Autocreated FK slot
+-- # Class: SbeFieldV1 Description: A message's or group entry's field, which uses an encoding at a place in its block.
 --     * Slot: id
---     * Slot: primitive_type
---     * Slot: length
---     * Slot: character_encoding Description: Character set or Unicode encoding scheme
--- # Class: BlockTypeV2 Description: Base type of message and repeating group entry
---     * Slot: uid
---     * Slot: name
---     * Slot: id Description: Unique ID of a message template
---     * Slot: block_length Description: Space reserved for root level of message or repeating group, not including nested groups or variable-length data elements.
---     * Slot: alignment Description: Byte alignment of the start of a block (message root or repeating group instance).
---     * Slot: semantic_type
---     * Slot: description
---     * Slot: since_version Description: The schema version in which an element was added
---     * Slot: deprecated Description: The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version.
---     * Slot: MessagesV2_id Description: Autocreated FK slot
--- # Class: GroupTypeV2 Description: A repeating group contains an array of entries
---     * Slot: uid
---     * Slot: dimension_type
---     * Slot: name
---     * Slot: id Description: Unique ID of a message template
---     * Slot: block_length Description: Space reserved for root level of message or repeating group, not including nested groups or variable-length data elements.
---     * Slot: alignment Description: Byte alignment of the start of a block (message root or repeating group instance).
---     * Slot: semantic_type
---     * Slot: description
---     * Slot: since_version Description: The schema version in which an element was added
---     * Slot: deprecated Description: The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version.
---     * Slot: BlockTypeV2_uid Description: Autocreated FK slot
---     * Slot: GroupTypeV2_uid Description: Autocreated FK slot
--- # Class: SimpleDataTypeV2 Description: Simple wire encoding consisting of a primitive type or array of primitives
+--     * Slot: symbolic_name Description: What the schema calls this element.
+--     * Slot: sbe_id Description: The field's FIX tag number.
+--     * Slot: encoding_name Description: Which encoding this element uses, by name.
+--     * Slot: offset Description: The octet this element starts at, counted from zero at the start of its block or composite.
+--     * Slot: presence Description: Whether this element's value is required, optional or constant.
+--     * Slot: value_ref Description: The valid value that gives a constant element its value.
+--     * Slot: semantic_type Description: The FIX datatype this field carries.
+--     * Slot: description Description: Free text about this element, for the people who read the schema.
+--     * Slot: time_epoch Description: Where the period a time value counts from begins.
+--     * Slot: time_unit Description: The unit of a time value.
+--     * Slot: since_version Description: The schema version that added this element.
+--     * Slot: deprecated_since Description: The schema version that retired this element, which stays only for older applications.
+--     * Slot: SbeBlockV1Mixin_id Description: Autocreated FK slot
+--     * Slot: SbeMessageV1_id Description: Autocreated FK slot
+--     * Slot: SbeGroupV1_id Description: Autocreated FK slot
+-- # Class: SbeMessageSchemaV2 Description: One SBE 2.0 message schema, with its encodings and message templates.
 --     * Slot: id
---     * Slot: name
---     * Slot: description
---     * Slot: value Description: Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``).
---     * Slot: primitive_type
---     * Slot: length
---     * Slot: character_encoding Description: Character set or Unicode encoding scheme
---     * Slot: since_version Description: The schema version in which an element was added
---     * Slot: deprecated Description: The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version.
---     * Slot: TypesV2_id Description: Autocreated FK slot
--- # Class: MemberDataTypeV2 Description: A simple type used as a member of a composite type
+--     * Slot: schema_package Description: The name or category that a set of counterparties knows this schema or part of it by.
+--     * Slot: sbe_id Description: The number that identifies this schema between counterparties.
+--     * Slot: schema_version Description: The version of this message schema, starting at zero.
+--     * Slot: semantic_version Description: The version of FIX whose meanings this schema uses.
+--     * Slot: description Description: Free text about this element, for the people who read the schema.
+--     * Slot: byte_order Description: How the octets of every number in this schema's messages are ordered.
+--     * Slot: header_type Description: The composite, by name, that sends each message's header in this schema.
+-- # Class: SbeEncodingSetV2 Description: A set of encodings, in any order, that may have its own package and may come from another file.
 --     * Slot: id
---     * Slot: name
---     * Slot: description
---     * Slot: value Description: Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``).
---     * Slot: primitive_type
---     * Slot: length
---     * Slot: character_encoding Description: Character set or Unicode encoding scheme
---     * Slot: offset Description: Offset from start of a composite type or block as a zero-based index.
---     * Slot: alignment Description: Byte alignment of the start of a block (message root or repeating group instance).
---     * Slot: presence
---     * Slot: null_value Description: Override of default null indicator for the data type in SBE specification, as a string.
---     * Slot: min_value Description: Lower bound of a range
---     * Slot: max_value Description: Upper bound of a range
---     * Slot: value_ref Description: A constant value as valid value of an enum in the form enum-name.valid-value-name. Only valid if presence='constant'.
---     * Slot: CompositeDataTypeV2_id Description: Autocreated FK slot
--- # Class: CompositeDataTypeV2 Description: A wire encoding composed of multiple parts
+--     * Slot: description Description: Free text about this element, for the people who read the schema.
+--     * Slot: schema_package Description: A package for this set in place of the schema's.
+--     * Slot: sbe_xml_base Description: The base address that the XML Inclusion mechanism records on an element it brought in from another file.
+--     * Slot: SbeMessageSchemaV2_id Description: Autocreated FK slot
+-- # Class: SbeMessageSetV2 Description: Message templates held together, which may have their own package and may come from another file.
 --     * Slot: id
---     * Slot: name
---     * Slot: description
---     * Slot: value Description: Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``).
---     * Slot: offset Description: Offset from start of a composite type or block as a zero-based index.
---     * Slot: alignment Description: Byte alignment of the start of a block (message root or repeating group instance).
---     * Slot: since_version Description: The schema version in which an element was added
---     * Slot: deprecated Description: The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version.
---     * Slot: CompositeDataTypeV2_id Description: Autocreated FK slot
---     * Slot: TypesV2_id Description: Autocreated FK slot
--- # Class: EnumTypeV2 Description: An enumeration of valid values
+--     * Slot: description Description: Free text about this element, for the people who read the schema.
+--     * Slot: schema_package Description: A package for this set in place of the schema's.
+--     * Slot: sbe_xml_base Description: The base address that the XML Inclusion mechanism records on an element it brought in from another file.
+--     * Slot: SbeMessageSchemaV2_id Description: Autocreated FK slot
+-- # Abstract Class: SbeElementV2 Description: Anything that sets of encodings or composites hold, and the name and text they all have.
 --     * Slot: id
---     * Slot: name
---     * Slot: encoding_type
---     * Slot: description
---     * Slot: value Description: Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``).
---     * Slot: offset Description: Offset from start of a composite type or block as a zero-based index.
---     * Slot: alignment Description: Byte alignment of the start of a block (message root or repeating group instance).
---     * Slot: since_version Description: The schema version in which an element was added
---     * Slot: deprecated Description: The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version.
---     * Slot: CompositeDataTypeV2_id Description: Autocreated FK slot
---     * Slot: TypesV2_id Description: Autocreated FK slot
--- # Class: RefTypeV2 Description: A reference to any existing encoding type (simple type, enum or set) to reuse as a member of a composite type
+--     * Slot: encoding_kind Description: The class of this encoding or composite member, which stands for its XML element.
+--     * Slot: symbolic_name Description: What the schema calls this element.
+--     * Slot: description Description: Free text about this element, for the people who read the schema.
+--     * Slot: SbeEncodingSetV2_id Description: Autocreated FK slot
+-- # Abstract Class: SbeMemberV2 Description: Anything a composite may hold in the order it is sent.
 --     * Slot: id
---     * Slot: name
---     * Slot: type
---     * Slot: description Description: How the referenced type is used
---     * Slot: value Description: Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``).
---     * Slot: offset Description: Offset from start of a composite type or block as a zero-based index.
---     * Slot: alignment Description: Byte alignment of the start of a block (message root or repeating group instance).
---     * Slot: CompositeDataTypeV2_id Description: Autocreated FK slot
--- # Class: SetTypeV2 Description: A multi value choice (encoded as a bitset)
+--     * Slot: offset Description: The octet this element starts at, counted from zero at the start of its block or composite.
+--     * Slot: alignment Description: The multiple of octets the start of this element is placed on.
+--     * Slot: encoding_kind Description: The class of this encoding or composite member, which stands for its XML element.
+--     * Slot: symbolic_name Description: What the schema calls this element.
+--     * Slot: description Description: Free text about this element, for the people who read the schema.
+--     * Slot: SbeCompositeV2_id Description: Autocreated FK slot
+-- # Class: SbeSimpleTypeV2 Description: A simple encoding that stands alone in a set, backed by one primitive value, or several in an array.
 --     * Slot: id
---     * Slot: name
---     * Slot: encoding_type
---     * Slot: description
---     * Slot: value Description: Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``).
---     * Slot: offset Description: Offset from start of a composite type or block as a zero-based index.
---     * Slot: alignment Description: Byte alignment of the start of a block (message root or repeating group instance).
---     * Slot: since_version Description: The schema version in which an element was added
---     * Slot: deprecated Description: The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version.
---     * Slot: CompositeDataTypeV2_id Description: Autocreated FK slot
---     * Slot: TypesV2_id Description: Autocreated FK slot
--- # Class: FieldTypeV2 Description: A field of a message of a specified dataType
---     * Slot: uid
---     * Slot: name
+--     * Slot: element_value Description: The text of the XML element, which is the constant when presence is constant.
+--     * Slot: primitive_type Description: The wire type under this encoding.
+--     * Slot: array_length Description: How many values of the primitive type the encoding holds, where zero means a variable number.
+--     * Slot: character_encoding Description: Which character set, or which Unicode scheme, character data follows.
+--     * Slot: since_version Description: The schema version that added this element.
+--     * Slot: deprecated_since Description: The schema version that retired this element, which stays only for older applications.
+--     * Slot: encoding_kind Description: The class of this encoding or composite member, which stands for its XML element.
+--     * Slot: symbolic_name Description: What the schema calls this element.
+--     * Slot: description Description: Free text about this element, for the people who read the schema.
+-- # Class: SbeMemberTypeV2 Description: A simple encoding inside a composite, which may say it is optional or constant.
 --     * Slot: id
---     * Slot: type Description: Must match the name of an encoding contained by 'types' element
---     * Slot: value Description: Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``).
---     * Slot: offset Description: Offset from start of a composite type or block as a zero-based index.
---     * Slot: alignment Description: Byte alignment of the start of a block (message root or repeating group instance).
---     * Slot: presence
---     * Slot: null_value Description: Override of default null indicator for the data type in SBE specification, as a string.
---     * Slot: min_value Description: Lower bound of a range
---     * Slot: max_value Description: Upper bound of a range
---     * Slot: value_ref Description: A constant value as valid value of an enum in the form enum-name.valid-value-name. Only valid if presence='constant'.
---     * Slot: semantic_type
---     * Slot: description
---     * Slot: since_version Description: The schema version in which an element was added
---     * Slot: deprecated Description: The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version.
---     * Slot: BlockTypeV2_uid Description: Autocreated FK slot
---     * Slot: GroupTypeV2_uid Description: Autocreated FK slot
--- # Class: MessageSchemaV2 Description: Root of XML document, holds all message templates and their elements
---     * Slot: uid
---     * Slot: package
---     * Slot: id Description: Unique ID of a message schema
---     * Slot: version Description: The version of a message schema. Initial version is 0.
---     * Slot: semantic_version Description: Application layer specification version, such as FIX version 'FIX.5.0SP2'
---     * Slot: description
---     * Slot: byte_order
---     * Slot: header_type Description: Name of the encoding type of the message header, which is the same for all messages in a schema. The name has a default, but an encoding of that name must be present under a 'types' element.
--- # Class: MessagesV2
+--     * Slot: element_value Description: The text of the XML element, which is the constant when presence is constant.
+--     * Slot: primitive_type Description: The wire type under this encoding.
+--     * Slot: array_length Description: How many values of the primitive type the encoding holds, where zero means a variable number.
+--     * Slot: character_encoding Description: Which character set, or which Unicode scheme, character data follows.
+--     * Slot: presence Description: Whether this element's value is required, optional or constant.
+--     * Slot: null_value Description: The value that stands for null in place of the primitive type's default, written as text.
+--     * Slot: min_value Description: The lowest value allowed, written as text.
+--     * Slot: max_value Description: The highest value allowed, written as text.
+--     * Slot: value_ref Description: The valid value that gives a constant element its value.
+--     * Slot: offset Description: The octet this element starts at, counted from zero at the start of its block or composite.
+--     * Slot: alignment Description: The multiple of octets the start of this element is placed on.
+--     * Slot: encoding_kind Description: The class of this encoding or composite member, which stands for its XML element.
+--     * Slot: symbolic_name Description: What the schema calls this element.
+--     * Slot: description Description: Free text about this element, for the people who read the schema.
+-- # Class: SbeRefV2 Description: A composite's member that reuses an encoding defined elsewhere in the schema.
 --     * Slot: id
---     * Slot: description
---     * Slot: package Description: Overrides the messageSchema package
---     * Slot: MessageSchemaV2_uid Description: Autocreated FK slot
--- # Class: TypesV2 Description: More than one set of types may be provided. Names must be unique across all encoding types. Encoding types may appear in any order.
+--     * Slot: encoding_name Description: Which encoding this element uses, by name.
+--     * Slot: offset Description: The octet this element starts at, counted from zero at the start of its block or composite.
+--     * Slot: alignment Description: The multiple of octets the start of this element is placed on.
+--     * Slot: encoding_kind Description: The class of this encoding or composite member, which stands for its XML element.
+--     * Slot: symbolic_name Description: What the schema calls this element.
+--     * Slot: description Description: Free text about this element, for the people who read the schema.
+-- # Class: SbeCompositeV2 Description: An encoding built from members sent one after another, such as a decimal's mantissa and exponent.
 --     * Slot: id
---     * Slot: description
---     * Slot: package Description: Overrides the messageSchema package
---     * Slot: MessageSchemaV2_uid Description: Autocreated FK slot
--- # Class: MessageSchemaV1_types
---     * Slot: MessageSchemaV1_uid Description: Autocreated FK slot
---     * Slot: types Description: More than one set of types may be provided. Names must be unique across all encoding types. Encoding types may appear in any order.
+--     * Slot: since_version Description: The schema version that added this element.
+--     * Slot: deprecated_since Description: The schema version that retired this element, which stays only for older applications.
+--     * Slot: offset Description: The octet this element starts at, counted from zero at the start of its block or composite.
+--     * Slot: alignment Description: The multiple of octets the start of this element is placed on.
+--     * Slot: encoding_kind Description: The class of this encoding or composite member, which stands for its XML element.
+--     * Slot: symbolic_name Description: What the schema calls this element.
+--     * Slot: description Description: Free text about this element, for the people who read the schema.
+-- # Class: SbeEnumV2 Description: An encoding whose value is one of a listed set of valid values.
+--     * Slot: id
+--     * Slot: encoding_type Description: The simple encoding or primitive type that an enumeration or set is sent as.
+--     * Slot: since_version Description: The schema version that added this element.
+--     * Slot: deprecated_since Description: The schema version that retired this element, which stays only for older applications.
+--     * Slot: offset Description: The octet this element starts at, counted from zero at the start of its block or composite.
+--     * Slot: alignment Description: The multiple of octets the start of this element is placed on.
+--     * Slot: encoding_kind Description: The class of this encoding or composite member, which stands for its XML element.
+--     * Slot: symbolic_name Description: What the schema calls this element.
+--     * Slot: description Description: Free text about this element, for the people who read the schema.
+-- # Class: SbeSetV2 Description: An encoding whose value is any combination of up to 64 choices, sent as a bitset.
+--     * Slot: id
+--     * Slot: encoding_type Description: The simple encoding or primitive type that an enumeration or set is sent as.
+--     * Slot: since_version Description: The schema version that added this element.
+--     * Slot: deprecated_since Description: The schema version that retired this element, which stays only for older applications.
+--     * Slot: offset Description: The octet this element starts at, counted from zero at the start of its block or composite.
+--     * Slot: alignment Description: The multiple of octets the start of this element is placed on.
+--     * Slot: encoding_kind Description: The class of this encoding or composite member, which stands for its XML element.
+--     * Slot: symbolic_name Description: What the schema calls this element.
+--     * Slot: description Description: Free text about this element, for the people who read the schema.
+-- # Class: SbeBlockV2Mixin Description: The body shared by a message and a group entry, which holds its fixed-length fields first, then groups, then variable-length data.
+--     * Slot: id
+--     * Slot: symbolic_name Description: What the schema calls this element.
+--     * Slot: sbe_id Description: The number that identifies this element.
+--     * Slot: block_length Description: The octets set aside for a message's fixed-length fields, or for those of each group entry.
+--     * Slot: alignment Description: The multiple of octets where a message or each group entry begins.
+--     * Slot: semantic_type Description: What this element means at the FIX application layer.
+--     * Slot: description Description: Free text about this element, for the people who read the schema.
+-- # Class: SbeMessageV2 Description: A message template, whose number and block length are sent in each message's header.
+--     * Slot: id
+--     * Slot: since_version Description: The schema version that added this element.
+--     * Slot: deprecated_since Description: The schema version that retired this element, which stays only for older applications.
+--     * Slot: symbolic_name Description: What the schema calls this element.
+--     * Slot: sbe_id Description: The template's number, which no other template in the schema shares.
+--     * Slot: block_length Description: The octets set aside for a message's fixed-length fields, or for those of each group entry.
+--     * Slot: alignment Description: The multiple of octets where a message or each group entry begins.
+--     * Slot: semantic_type Description: The FIX MsgType(35) this template stands for, where several templates may share one.
+--     * Slot: description Description: Free text about this element, for the people who read the schema.
+--     * Slot: SbeMessageSetV2_id Description: Autocreated FK slot
+-- # Class: SbeGroupV2 Description: A repeating group, whose entries each hold the same fields, and which must have at least one field.
+--     * Slot: id
+--     * Slot: dimension_type Description: The composite, by name, that sends a repeating group's entry count and entry size.
+--     * Slot: since_version Description: The schema version that added this element.
+--     * Slot: deprecated_since Description: The schema version that retired this element, which stays only for older applications.
+--     * Slot: symbolic_name Description: What the schema calls this element.
+--     * Slot: sbe_id Description: The number that identifies this element.
+--     * Slot: block_length Description: The octets set aside for a message's fixed-length fields, or for those of each group entry.
+--     * Slot: alignment Description: The multiple of octets where a message or each group entry begins.
+--     * Slot: semantic_type Description: What this element means at the FIX application layer.
+--     * Slot: description Description: Free text about this element, for the people who read the schema.
+--     * Slot: SbeBlockV2Mixin_id Description: Autocreated FK slot
+--     * Slot: SbeMessageV2_id Description: Autocreated FK slot
+--     * Slot: SbeGroupV2_id Description: Autocreated FK slot
+-- # Class: SbeFieldV2 Description: A message's or group entry's field, which uses an encoding at a place in its block and may state a constant.
+--     * Slot: id
+--     * Slot: symbolic_name Description: What the schema calls this element.
+--     * Slot: sbe_id Description: The field's FIX tag number.
+--     * Slot: encoding_name Description: Which encoding this element uses, by name.
+--     * Slot: element_value Description: The text of the XML element, which is the constant when presence is constant.
+--     * Slot: offset Description: The octet this element starts at, counted from zero at the start of its block or composite.
+--     * Slot: alignment Description: The multiple of octets the start of this field is placed on, in place of an offset.
+--     * Slot: presence Description: Whether this element's value is required, optional or constant.
+--     * Slot: null_value Description: The value that stands for null in place of the primitive type's default, written as text.
+--     * Slot: min_value Description: The lowest value allowed, written as text.
+--     * Slot: max_value Description: The highest value allowed, written as text.
+--     * Slot: value_ref Description: The valid value that gives a constant element its value.
+--     * Slot: semantic_type Description: The FIX datatype this field carries.
+--     * Slot: description Description: Free text about this element, for the people who read the schema.
+--     * Slot: since_version Description: The schema version that added this element.
+--     * Slot: deprecated_since Description: The schema version that retired this element, which stays only for older applications.
+--     * Slot: SbeBlockV2Mixin_id Description: Autocreated FK slot
+--     * Slot: SbeMessageV2_id Description: Autocreated FK slot
+--     * Slot: SbeGroupV2_id Description: Autocreated FK slot
 
-CREATE TABLE "SemanticAttributes" (
-	id INTEGER NOT NULL,
-	semantic_type TEXT,
-	description TEXT,
-	PRIMARY KEY (id)
-);
-CREATE INDEX "ix_SemanticAttributes_id" ON "SemanticAttributes" (id);
-
-CREATE TABLE "VersionAttributes" (
+CREATE TABLE "SbeVersionedMixin" (
 	id INTEGER NOT NULL,
 	since_version INTEGER,
-	deprecated INTEGER,
+	deprecated_since INTEGER,
 	PRIMARY KEY (id)
 );
-CREATE INDEX "ix_VersionAttributes_id" ON "VersionAttributes" (id);
+CREATE INDEX "ix_SbeVersionedMixin_id" ON "SbeVersionedMixin" (id);
 
-CREATE TABLE "AlignmentAttributesV1" (
+CREATE TABLE "SbeMessageSchemaV1" (
 	id INTEGER NOT NULL,
-	"offset" INTEGER,
-	PRIMARY KEY (id)
-);
-CREATE INDEX "ix_AlignmentAttributesV1_id" ON "AlignmentAttributesV1" (id);
-
-CREATE TABLE "PresenceAttributesV1" (
-	id INTEGER NOT NULL,
-	presence VARCHAR(8),
-	value_ref TEXT,
-	PRIMARY KEY (id)
-);
-CREATE INDEX "ix_PresenceAttributesV1_id" ON "PresenceAttributesV1" (id);
-
-CREATE TABLE "BlockTypeV1" (
-	uid INTEGER NOT NULL,
-	name TEXT NOT NULL,
-	id INTEGER NOT NULL,
-	block_length INTEGER,
-	semantic_type TEXT,
-	description TEXT,
-	since_version INTEGER,
-	deprecated INTEGER,
-	PRIMARY KEY (uid)
-);
-CREATE INDEX "ix_BlockTypeV1_uid" ON "BlockTypeV1" (uid);
-
-CREATE TABLE "CompositeDataTypeV1" (
-	id INTEGER NOT NULL,
-	name TEXT NOT NULL,
-	value TEXT,
-	"offset" INTEGER,
-	semantic_type TEXT,
-	description TEXT,
-	since_version INTEGER,
-	deprecated INTEGER,
-	"CompositeDataTypeV1_id" INTEGER,
-	PRIMARY KEY (id),
-	FOREIGN KEY("CompositeDataTypeV1_id") REFERENCES "CompositeDataTypeV1" (id)
-);
-CREATE INDEX "ix_CompositeDataTypeV1_id" ON "CompositeDataTypeV1" (id);
-
-CREATE TABLE "MessageSchemaV1" (
-	uid INTEGER NOT NULL,
-	package TEXT,
-	id INTEGER,
-	version INTEGER NOT NULL,
+	schema_package TEXT,
+	sbe_id INTEGER,
+	schema_version INTEGER NOT NULL,
 	semantic_version TEXT,
 	description TEXT,
 	byte_order VARCHAR(12),
 	header_type TEXT,
-	PRIMARY KEY (uid)
-);
-CREATE INDEX "ix_MessageSchemaV1_uid" ON "MessageSchemaV1" (uid);
-
-CREATE TABLE "AlignmentAttributesV2" (
-	id INTEGER NOT NULL,
-	alignment INTEGER,
 	PRIMARY KEY (id)
 );
-CREATE INDEX "ix_AlignmentAttributesV2_id" ON "AlignmentAttributesV2" (id);
+CREATE INDEX "ix_SbeMessageSchemaV1_id" ON "SbeMessageSchemaV1" (id);
 
-CREATE TABLE "OffsetAttributesV2" (
+CREATE TABLE "SbeRefV1" (
 	id INTEGER NOT NULL,
+	encoding_name TEXT NOT NULL,
+	encoding_kind TEXT NOT NULL,
+	symbolic_name TEXT NOT NULL,
 	"offset" INTEGER,
-	alignment INTEGER,
+	since_version INTEGER,
+	deprecated_since INTEGER,
 	PRIMARY KEY (id)
 );
-CREATE INDEX "ix_OffsetAttributesV2_id" ON "OffsetAttributesV2" (id);
+CREATE INDEX "ix_SbeRefV1_id" ON "SbeRefV1" (id);
 
-CREATE TABLE "PresenceAttributesV2" (
+CREATE TABLE "SbeSimpleTypeV1" (
 	id INTEGER NOT NULL,
+	element_value TEXT,
+	primitive_type VARCHAR(6) NOT NULL,
+	array_length INTEGER,
+	character_encoding TEXT,
+	null_value TEXT,
+	min_value TEXT,
+	max_value TEXT,
+	presence VARCHAR(8),
+	value_ref TEXT,
+	semantic_type TEXT,
+	description TEXT,
+	encoding_kind TEXT NOT NULL,
+	symbolic_name TEXT NOT NULL,
+	"offset" INTEGER,
+	since_version INTEGER,
+	deprecated_since INTEGER,
+	PRIMARY KEY (id)
+);
+CREATE INDEX "ix_SbeSimpleTypeV1_id" ON "SbeSimpleTypeV1" (id);
+
+CREATE TABLE "SbeCompositeV1" (
+	id INTEGER NOT NULL,
+	semantic_type TEXT,
+	description TEXT,
+	encoding_kind TEXT NOT NULL,
+	symbolic_name TEXT NOT NULL,
+	"offset" INTEGER,
+	since_version INTEGER,
+	deprecated_since INTEGER,
+	PRIMARY KEY (id)
+);
+CREATE INDEX "ix_SbeCompositeV1_id" ON "SbeCompositeV1" (id);
+
+CREATE TABLE "SbeEnumV1" (
+	id INTEGER NOT NULL,
+	encoding_type TEXT NOT NULL,
+	semantic_type TEXT,
+	description TEXT,
+	encoding_kind TEXT NOT NULL,
+	symbolic_name TEXT NOT NULL,
+	"offset" INTEGER,
+	since_version INTEGER,
+	deprecated_since INTEGER,
+	PRIMARY KEY (id)
+);
+CREATE INDEX "ix_SbeEnumV1_id" ON "SbeEnumV1" (id);
+
+CREATE TABLE "SbeSetV1" (
+	id INTEGER NOT NULL,
+	encoding_type TEXT NOT NULL,
+	semantic_type TEXT,
+	description TEXT,
+	encoding_kind TEXT NOT NULL,
+	symbolic_name TEXT NOT NULL,
+	"offset" INTEGER,
+	since_version INTEGER,
+	deprecated_since INTEGER,
+	PRIMARY KEY (id)
+);
+CREATE INDEX "ix_SbeSetV1_id" ON "SbeSetV1" (id);
+
+CREATE TABLE "SbeBlockV1Mixin" (
+	id INTEGER NOT NULL,
+	symbolic_name TEXT NOT NULL,
+	sbe_id INTEGER NOT NULL,
+	block_length INTEGER,
+	semantic_type TEXT,
+	description TEXT,
+	PRIMARY KEY (id)
+);
+CREATE INDEX "ix_SbeBlockV1Mixin_id" ON "SbeBlockV1Mixin" (id);
+
+CREATE TABLE "SbeMessageSchemaV2" (
+	id INTEGER NOT NULL,
+	schema_package TEXT,
+	sbe_id INTEGER,
+	schema_version INTEGER NOT NULL,
+	semantic_version TEXT,
+	description TEXT,
+	byte_order VARCHAR(12),
+	header_type TEXT,
+	PRIMARY KEY (id)
+);
+CREATE INDEX "ix_SbeMessageSchemaV2_id" ON "SbeMessageSchemaV2" (id);
+
+CREATE TABLE "SbeSimpleTypeV2" (
+	id INTEGER NOT NULL,
+	element_value TEXT,
+	primitive_type VARCHAR(6) NOT NULL,
+	array_length INTEGER,
+	character_encoding TEXT,
+	since_version INTEGER,
+	deprecated_since INTEGER,
+	encoding_kind TEXT NOT NULL,
+	symbolic_name TEXT NOT NULL,
+	description TEXT,
+	PRIMARY KEY (id)
+);
+CREATE INDEX "ix_SbeSimpleTypeV2_id" ON "SbeSimpleTypeV2" (id);
+
+CREATE TABLE "SbeMemberTypeV2" (
+	id INTEGER NOT NULL,
+	element_value TEXT,
+	primitive_type VARCHAR(6) NOT NULL,
+	array_length INTEGER,
+	character_encoding TEXT,
 	presence VARCHAR(8),
 	null_value TEXT,
 	min_value TEXT,
 	max_value TEXT,
 	value_ref TEXT,
+	"offset" INTEGER,
+	alignment INTEGER,
+	encoding_kind TEXT NOT NULL,
+	symbolic_name TEXT NOT NULL,
+	description TEXT,
 	PRIMARY KEY (id)
 );
-CREATE INDEX "ix_PresenceAttributesV2_id" ON "PresenceAttributesV2" (id);
+CREATE INDEX "ix_SbeMemberTypeV2_id" ON "SbeMemberTypeV2" (id);
 
-CREATE TABLE "PrimitiveTypeAttributesV2" (
+CREATE TABLE "SbeRefV2" (
 	id INTEGER NOT NULL,
-	primitive_type VARCHAR(6) NOT NULL,
-	length INTEGER,
-	character_encoding TEXT,
+	encoding_name TEXT NOT NULL,
+	"offset" INTEGER,
+	alignment INTEGER,
+	encoding_kind TEXT NOT NULL,
+	symbolic_name TEXT NOT NULL,
+	description TEXT,
 	PRIMARY KEY (id)
 );
-CREATE INDEX "ix_PrimitiveTypeAttributesV2_id" ON "PrimitiveTypeAttributesV2" (id);
+CREATE INDEX "ix_SbeRefV2_id" ON "SbeRefV2" (id);
 
-CREATE TABLE "MessageSchemaV2" (
-	uid INTEGER NOT NULL,
-	package TEXT,
-	id INTEGER,
-	version INTEGER NOT NULL,
-	semantic_version TEXT,
-	description TEXT,
-	byte_order VARCHAR(12),
-	header_type TEXT,
-	PRIMARY KEY (uid)
-);
-CREATE INDEX "ix_MessageSchemaV2_uid" ON "MessageSchemaV2" (uid);
-
-CREATE TABLE "EncodedDataTypeV1" (
+CREATE TABLE "SbeCompositeV2" (
 	id INTEGER NOT NULL,
-	name TEXT NOT NULL,
-	null_value TEXT,
-	min_value TEXT,
-	max_value TEXT,
-	length INTEGER,
-	primitive_type VARCHAR(6) NOT NULL,
-	character_encoding TEXT,
-	value TEXT,
-	"offset" INTEGER,
-	presence VARCHAR(8),
-	value_ref TEXT,
-	semantic_type TEXT,
-	description TEXT,
 	since_version INTEGER,
-	deprecated INTEGER,
-	"CompositeDataTypeV1_id" INTEGER,
-	PRIMARY KEY (id),
-	FOREIGN KEY("CompositeDataTypeV1_id") REFERENCES "CompositeDataTypeV1" (id)
+	deprecated_since INTEGER,
+	"offset" INTEGER,
+	alignment INTEGER,
+	encoding_kind TEXT NOT NULL,
+	symbolic_name TEXT NOT NULL,
+	description TEXT,
+	PRIMARY KEY (id)
 );
-CREATE INDEX "ix_EncodedDataTypeV1_id" ON "EncodedDataTypeV1" (id);
+CREATE INDEX "ix_SbeCompositeV2_id" ON "SbeCompositeV2" (id);
 
-CREATE TABLE "EnumTypeV1" (
+CREATE TABLE "SbeEnumV2" (
 	id INTEGER NOT NULL,
-	name TEXT NOT NULL,
 	encoding_type TEXT NOT NULL,
-	value TEXT,
+	since_version INTEGER,
+	deprecated_since INTEGER,
 	"offset" INTEGER,
-	semantic_type TEXT,
+	alignment INTEGER,
+	encoding_kind TEXT NOT NULL,
+	symbolic_name TEXT NOT NULL,
 	description TEXT,
-	since_version INTEGER,
-	deprecated INTEGER,
-	"CompositeDataTypeV1_id" INTEGER,
-	PRIMARY KEY (id),
-	FOREIGN KEY("CompositeDataTypeV1_id") REFERENCES "CompositeDataTypeV1" (id)
+	PRIMARY KEY (id)
 );
-CREATE INDEX "ix_EnumTypeV1_id" ON "EnumTypeV1" (id);
+CREATE INDEX "ix_SbeEnumV2_id" ON "SbeEnumV2" (id);
 
-CREATE TABLE "RefTypeV1" (
+CREATE TABLE "SbeSetV2" (
 	id INTEGER NOT NULL,
-	name TEXT NOT NULL,
-	type TEXT NOT NULL,
-	value TEXT,
-	"offset" INTEGER,
-	since_version INTEGER,
-	deprecated INTEGER,
-	"CompositeDataTypeV1_id" INTEGER,
-	PRIMARY KEY (id),
-	FOREIGN KEY("CompositeDataTypeV1_id") REFERENCES "CompositeDataTypeV1" (id)
-);
-CREATE INDEX "ix_RefTypeV1_id" ON "RefTypeV1" (id);
-
-CREATE TABLE "SetTypeV1" (
-	id INTEGER NOT NULL,
-	name TEXT NOT NULL,
 	encoding_type TEXT NOT NULL,
-	value TEXT,
+	since_version INTEGER,
+	deprecated_since INTEGER,
 	"offset" INTEGER,
+	alignment INTEGER,
+	encoding_kind TEXT NOT NULL,
+	symbolic_name TEXT NOT NULL,
+	description TEXT,
+	PRIMARY KEY (id)
+);
+CREATE INDEX "ix_SbeSetV2_id" ON "SbeSetV2" (id);
+
+CREATE TABLE "SbeBlockV2Mixin" (
+	id INTEGER NOT NULL,
+	symbolic_name TEXT NOT NULL,
+	sbe_id INTEGER NOT NULL,
+	block_length INTEGER,
+	alignment INTEGER,
 	semantic_type TEXT,
 	description TEXT,
-	since_version INTEGER,
-	deprecated INTEGER,
-	"CompositeDataTypeV1_id" INTEGER,
-	PRIMARY KEY (id),
-	FOREIGN KEY("CompositeDataTypeV1_id") REFERENCES "CompositeDataTypeV1" (id)
+	PRIMARY KEY (id)
 );
-CREATE INDEX "ix_SetTypeV1_id" ON "SetTypeV1" (id);
+CREATE INDEX "ix_SbeBlockV2Mixin_id" ON "SbeBlockV2Mixin" (id);
 
-CREATE TABLE "MessageV1" (
-	uid INTEGER NOT NULL,
-	name TEXT NOT NULL,
+CREATE TABLE "SbeValidValue" (
 	id INTEGER NOT NULL,
+	symbolic_name TEXT NOT NULL,
+	description TEXT,
+	valid_value TEXT NOT NULL,
+	since_version INTEGER,
+	deprecated_since INTEGER,
+	"SbeEnumV1_id" INTEGER,
+	"SbeEnumV2_id" INTEGER,
+	PRIMARY KEY (id),
+	FOREIGN KEY("SbeEnumV1_id") REFERENCES "SbeEnumV1" (id),
+	FOREIGN KEY("SbeEnumV2_id") REFERENCES "SbeEnumV2" (id)
+);
+CREATE INDEX "ix_SbeValidValue_id" ON "SbeValidValue" (id);
+
+CREATE TABLE "SbeChoice" (
+	id INTEGER NOT NULL,
+	symbolic_name TEXT NOT NULL,
+	description TEXT,
+	bit_position INTEGER NOT NULL,
+	since_version INTEGER,
+	deprecated_since INTEGER,
+	"SbeSetV1_id" INTEGER,
+	"SbeSetV2_id" INTEGER,
+	PRIMARY KEY (id),
+	FOREIGN KEY("SbeSetV1_id") REFERENCES "SbeSetV1" (id),
+	FOREIGN KEY("SbeSetV2_id") REFERENCES "SbeSetV2" (id)
+);
+CREATE INDEX "ix_SbeChoice_id" ON "SbeChoice" (id);
+
+CREATE TABLE "SbeEncodingSetV1" (
+	id INTEGER NOT NULL,
+	"SbeMessageSchemaV1_id" INTEGER,
+	PRIMARY KEY (id),
+	FOREIGN KEY("SbeMessageSchemaV1_id") REFERENCES "SbeMessageSchemaV1" (id)
+);
+CREATE INDEX "ix_SbeEncodingSetV1_id" ON "SbeEncodingSetV1" (id);
+
+CREATE TABLE "SbeMemberV1" (
+	id INTEGER NOT NULL,
+	encoding_kind TEXT NOT NULL,
+	symbolic_name TEXT NOT NULL,
+	"offset" INTEGER,
+	since_version INTEGER,
+	deprecated_since INTEGER,
+	"SbeCompositeV1_id" INTEGER,
+	PRIMARY KEY (id),
+	FOREIGN KEY("SbeCompositeV1_id") REFERENCES "SbeCompositeV1" (id)
+);
+CREATE INDEX "ix_SbeMemberV1_id" ON "SbeMemberV1" (id);
+
+CREATE TABLE "SbeMessageV1" (
+	id INTEGER NOT NULL,
+	since_version INTEGER,
+	deprecated_since INTEGER,
+	symbolic_name TEXT NOT NULL,
+	sbe_id INTEGER NOT NULL,
 	block_length INTEGER,
 	semantic_type TEXT,
 	description TEXT,
+	"SbeMessageSchemaV1_id" INTEGER,
+	PRIMARY KEY (id),
+	FOREIGN KEY("SbeMessageSchemaV1_id") REFERENCES "SbeMessageSchemaV1" (id)
+);
+CREATE INDEX "ix_SbeMessageV1_id" ON "SbeMessageV1" (id);
+
+CREATE TABLE "SbeEncodingSetV2" (
+	id INTEGER NOT NULL,
+	description TEXT,
+	schema_package TEXT,
+	sbe_xml_base TEXT,
+	"SbeMessageSchemaV2_id" INTEGER,
+	PRIMARY KEY (id),
+	FOREIGN KEY("SbeMessageSchemaV2_id") REFERENCES "SbeMessageSchemaV2" (id)
+);
+CREATE INDEX "ix_SbeEncodingSetV2_id" ON "SbeEncodingSetV2" (id);
+
+CREATE TABLE "SbeMessageSetV2" (
+	id INTEGER NOT NULL,
+	description TEXT,
+	schema_package TEXT,
+	sbe_xml_base TEXT,
+	"SbeMessageSchemaV2_id" INTEGER,
+	PRIMARY KEY (id),
+	FOREIGN KEY("SbeMessageSchemaV2_id") REFERENCES "SbeMessageSchemaV2" (id)
+);
+CREATE INDEX "ix_SbeMessageSetV2_id" ON "SbeMessageSetV2" (id);
+
+CREATE TABLE "SbeMemberV2" (
+	id INTEGER NOT NULL,
+	"offset" INTEGER,
+	alignment INTEGER,
+	encoding_kind TEXT NOT NULL,
+	symbolic_name TEXT NOT NULL,
+	description TEXT,
+	"SbeCompositeV2_id" INTEGER,
+	PRIMARY KEY (id),
+	FOREIGN KEY("SbeCompositeV2_id") REFERENCES "SbeCompositeV2" (id)
+);
+CREATE INDEX "ix_SbeMemberV2_id" ON "SbeMemberV2" (id);
+
+CREATE TABLE "SbeEncodingV1" (
+	id INTEGER NOT NULL,
+	semantic_type TEXT,
+	description TEXT,
+	encoding_kind TEXT NOT NULL,
+	symbolic_name TEXT NOT NULL,
+	"offset" INTEGER,
 	since_version INTEGER,
-	deprecated INTEGER,
-	"MessageSchemaV1_uid" INTEGER,
-	PRIMARY KEY (uid),
-	FOREIGN KEY("MessageSchemaV1_uid") REFERENCES "MessageSchemaV1" (uid)
-);
-CREATE INDEX "ix_MessageV1_uid" ON "MessageV1" (uid);
-
-CREATE TABLE "MessagesV2" (
-	id INTEGER NOT NULL,
-	description TEXT,
-	package TEXT,
-	"MessageSchemaV2_uid" INTEGER,
+	deprecated_since INTEGER,
+	"SbeEncodingSetV1_id" INTEGER,
 	PRIMARY KEY (id),
-	FOREIGN KEY("MessageSchemaV2_uid") REFERENCES "MessageSchemaV2" (uid)
+	FOREIGN KEY("SbeEncodingSetV1_id") REFERENCES "SbeEncodingSetV1" (id)
 );
-CREATE INDEX "ix_MessagesV2_id" ON "MessagesV2" (id);
+CREATE INDEX "ix_SbeEncodingV1_id" ON "SbeEncodingV1" (id);
 
-CREATE TABLE "TypesV2" (
+CREATE TABLE "SbeGroupV1" (
 	id INTEGER NOT NULL,
-	description TEXT,
-	package TEXT,
-	"MessageSchemaV2_uid" INTEGER,
-	PRIMARY KEY (id),
-	FOREIGN KEY("MessageSchemaV2_uid") REFERENCES "MessageSchemaV2" (uid)
-);
-CREATE INDEX "ix_TypesV2_id" ON "TypesV2" (id);
-
-CREATE TABLE "MessageSchemaV1_types" (
-	"MessageSchemaV1_uid" INTEGER,
-	types TEXT NOT NULL,
-	PRIMARY KEY ("MessageSchemaV1_uid", types),
-	FOREIGN KEY("MessageSchemaV1_uid") REFERENCES "MessageSchemaV1" (uid)
-);
-CREATE INDEX "ix_MessageSchemaV1_types_types" ON "MessageSchemaV1_types" (types);
-CREATE INDEX "ix_MessageSchemaV1_types_MessageSchemaV1_uid" ON "MessageSchemaV1_types" ("MessageSchemaV1_uid");
-
-CREATE TABLE "GroupTypeV1" (
-	uid INTEGER NOT NULL,
 	dimension_type TEXT,
-	name TEXT NOT NULL,
-	id INTEGER NOT NULL,
+	since_version INTEGER,
+	deprecated_since INTEGER,
+	symbolic_name TEXT NOT NULL,
+	sbe_id INTEGER NOT NULL,
 	block_length INTEGER,
 	semantic_type TEXT,
 	description TEXT,
-	since_version INTEGER,
-	deprecated INTEGER,
-	"BlockTypeV1_uid" INTEGER,
-	"GroupTypeV1_uid" INTEGER,
-	"MessageV1_uid" INTEGER,
-	PRIMARY KEY (uid),
-	FOREIGN KEY("BlockTypeV1_uid") REFERENCES "BlockTypeV1" (uid),
-	FOREIGN KEY("GroupTypeV1_uid") REFERENCES "GroupTypeV1" (uid),
-	FOREIGN KEY("MessageV1_uid") REFERENCES "MessageV1" (uid)
+	"SbeBlockV1Mixin_id" INTEGER,
+	"SbeMessageV1_id" INTEGER,
+	"SbeGroupV1_id" INTEGER,
+	PRIMARY KEY (id),
+	FOREIGN KEY("SbeBlockV1Mixin_id") REFERENCES "SbeBlockV1Mixin" (id),
+	FOREIGN KEY("SbeMessageV1_id") REFERENCES "SbeMessageV1" (id),
+	FOREIGN KEY("SbeGroupV1_id") REFERENCES "SbeGroupV1" (id)
 );
-CREATE INDEX "ix_GroupTypeV1_uid" ON "GroupTypeV1" (uid);
+CREATE INDEX "ix_SbeGroupV1_id" ON "SbeGroupV1" (id);
 
-CREATE TABLE "BlockTypeV2" (
-	uid INTEGER NOT NULL,
-	name TEXT NOT NULL,
+CREATE TABLE "SbeElementV2" (
 	id INTEGER NOT NULL,
+	encoding_kind TEXT NOT NULL,
+	symbolic_name TEXT NOT NULL,
+	description TEXT,
+	"SbeEncodingSetV2_id" INTEGER,
+	PRIMARY KEY (id),
+	FOREIGN KEY("SbeEncodingSetV2_id") REFERENCES "SbeEncodingSetV2" (id)
+);
+CREATE INDEX "ix_SbeElementV2_id" ON "SbeElementV2" (id);
+
+CREATE TABLE "SbeMessageV2" (
+	id INTEGER NOT NULL,
+	since_version INTEGER,
+	deprecated_since INTEGER,
+	symbolic_name TEXT NOT NULL,
+	sbe_id INTEGER NOT NULL,
 	block_length INTEGER,
 	alignment INTEGER,
 	semantic_type TEXT,
 	description TEXT,
-	since_version INTEGER,
-	deprecated INTEGER,
-	"MessagesV2_id" INTEGER,
-	PRIMARY KEY (uid),
-	FOREIGN KEY("MessagesV2_id") REFERENCES "MessagesV2" (id)
-);
-CREATE INDEX "ix_BlockTypeV2_uid" ON "BlockTypeV2" (uid);
-
-CREATE TABLE "SimpleDataTypeV2" (
-	id INTEGER NOT NULL,
-	name TEXT NOT NULL,
-	description TEXT,
-	value TEXT,
-	primitive_type VARCHAR(6) NOT NULL,
-	length INTEGER,
-	character_encoding TEXT,
-	since_version INTEGER,
-	deprecated INTEGER,
-	"TypesV2_id" INTEGER,
+	"SbeMessageSetV2_id" INTEGER,
 	PRIMARY KEY (id),
-	FOREIGN KEY("TypesV2_id") REFERENCES "TypesV2" (id)
+	FOREIGN KEY("SbeMessageSetV2_id") REFERENCES "SbeMessageSetV2" (id)
 );
-CREATE INDEX "ix_SimpleDataTypeV2_id" ON "SimpleDataTypeV2" (id);
+CREATE INDEX "ix_SbeMessageV2_id" ON "SbeMessageV2" (id);
 
-CREATE TABLE "CompositeDataTypeV2" (
+CREATE TABLE "SbeFieldV1" (
 	id INTEGER NOT NULL,
-	name TEXT NOT NULL,
-	description TEXT,
-	value TEXT,
+	symbolic_name TEXT NOT NULL,
+	sbe_id INTEGER NOT NULL,
+	encoding_name TEXT NOT NULL,
 	"offset" INTEGER,
-	alignment INTEGER,
-	since_version INTEGER,
-	deprecated INTEGER,
-	"CompositeDataTypeV2_id" INTEGER,
-	"TypesV2_id" INTEGER,
-	PRIMARY KEY (id),
-	FOREIGN KEY("CompositeDataTypeV2_id") REFERENCES "CompositeDataTypeV2" (id),
-	FOREIGN KEY("TypesV2_id") REFERENCES "TypesV2" (id)
-);
-CREATE INDEX "ix_CompositeDataTypeV2_id" ON "CompositeDataTypeV2" (id);
-
-CREATE TABLE "FieldTypeV1" (
-	uid INTEGER NOT NULL,
-	name TEXT NOT NULL,
-	id INTEGER NOT NULL,
-	type TEXT NOT NULL,
-	epoch TEXT,
+	presence VARCHAR(8),
+	value_ref TEXT,
+	semantic_type TEXT,
+	description TEXT,
+	time_epoch TEXT,
 	time_unit TEXT,
-	"offset" INTEGER,
-	presence VARCHAR(8),
-	value_ref TEXT,
-	semantic_type TEXT,
-	description TEXT,
 	since_version INTEGER,
-	deprecated INTEGER,
-	"BlockTypeV1_uid" INTEGER,
-	"GroupTypeV1_uid" INTEGER,
-	"MessageV1_uid" INTEGER,
-	PRIMARY KEY (uid),
-	FOREIGN KEY("BlockTypeV1_uid") REFERENCES "BlockTypeV1" (uid),
-	FOREIGN KEY("GroupTypeV1_uid") REFERENCES "GroupTypeV1" (uid),
-	FOREIGN KEY("MessageV1_uid") REFERENCES "MessageV1" (uid)
+	deprecated_since INTEGER,
+	"SbeBlockV1Mixin_id" INTEGER,
+	"SbeMessageV1_id" INTEGER,
+	"SbeGroupV1_id" INTEGER,
+	PRIMARY KEY (id),
+	FOREIGN KEY("SbeBlockV1Mixin_id") REFERENCES "SbeBlockV1Mixin" (id),
+	FOREIGN KEY("SbeMessageV1_id") REFERENCES "SbeMessageV1" (id),
+	FOREIGN KEY("SbeGroupV1_id") REFERENCES "SbeGroupV1" (id)
 );
-CREATE INDEX "ix_FieldTypeV1_uid" ON "FieldTypeV1" (uid);
+CREATE INDEX "ix_SbeFieldV1_id" ON "SbeFieldV1" (id);
 
-CREATE TABLE "GroupTypeV2" (
-	uid INTEGER NOT NULL,
-	dimension_type TEXT,
-	name TEXT NOT NULL,
+CREATE TABLE "SbeGroupV2" (
 	id INTEGER NOT NULL,
+	dimension_type TEXT,
+	since_version INTEGER,
+	deprecated_since INTEGER,
+	symbolic_name TEXT NOT NULL,
+	sbe_id INTEGER NOT NULL,
 	block_length INTEGER,
 	alignment INTEGER,
 	semantic_type TEXT,
 	description TEXT,
-	since_version INTEGER,
-	deprecated INTEGER,
-	"BlockTypeV2_uid" INTEGER,
-	"GroupTypeV2_uid" INTEGER,
-	PRIMARY KEY (uid),
-	FOREIGN KEY("BlockTypeV2_uid") REFERENCES "BlockTypeV2" (uid),
-	FOREIGN KEY("GroupTypeV2_uid") REFERENCES "GroupTypeV2" (uid)
-);
-CREATE INDEX "ix_GroupTypeV2_uid" ON "GroupTypeV2" (uid);
-
-CREATE TABLE "MemberDataTypeV2" (
-	id INTEGER NOT NULL,
-	name TEXT NOT NULL,
-	description TEXT,
-	value TEXT,
-	primitive_type VARCHAR(6) NOT NULL,
-	length INTEGER,
-	character_encoding TEXT,
-	"offset" INTEGER,
-	alignment INTEGER,
-	presence VARCHAR(8),
-	null_value TEXT,
-	min_value TEXT,
-	max_value TEXT,
-	value_ref TEXT,
-	"CompositeDataTypeV2_id" INTEGER,
+	"SbeBlockV2Mixin_id" INTEGER,
+	"SbeMessageV2_id" INTEGER,
+	"SbeGroupV2_id" INTEGER,
 	PRIMARY KEY (id),
-	FOREIGN KEY("CompositeDataTypeV2_id") REFERENCES "CompositeDataTypeV2" (id)
+	FOREIGN KEY("SbeBlockV2Mixin_id") REFERENCES "SbeBlockV2Mixin" (id),
+	FOREIGN KEY("SbeMessageV2_id") REFERENCES "SbeMessageV2" (id),
+	FOREIGN KEY("SbeGroupV2_id") REFERENCES "SbeGroupV2" (id)
 );
-CREATE INDEX "ix_MemberDataTypeV2_id" ON "MemberDataTypeV2" (id);
+CREATE INDEX "ix_SbeGroupV2_id" ON "SbeGroupV2" (id);
 
-CREATE TABLE "EnumTypeV2" (
+CREATE TABLE "SbeFieldV2" (
 	id INTEGER NOT NULL,
-	name TEXT NOT NULL,
-	encoding_type TEXT NOT NULL,
-	description TEXT,
-	value TEXT,
-	"offset" INTEGER,
-	alignment INTEGER,
-	since_version INTEGER,
-	deprecated INTEGER,
-	"CompositeDataTypeV2_id" INTEGER,
-	"TypesV2_id" INTEGER,
-	PRIMARY KEY (id),
-	FOREIGN KEY("CompositeDataTypeV2_id") REFERENCES "CompositeDataTypeV2" (id),
-	FOREIGN KEY("TypesV2_id") REFERENCES "TypesV2" (id)
-);
-CREATE INDEX "ix_EnumTypeV2_id" ON "EnumTypeV2" (id);
-
-CREATE TABLE "RefTypeV2" (
-	id INTEGER NOT NULL,
-	name TEXT NOT NULL,
-	type TEXT NOT NULL,
-	description TEXT,
-	value TEXT,
-	"offset" INTEGER,
-	alignment INTEGER,
-	"CompositeDataTypeV2_id" INTEGER,
-	PRIMARY KEY (id),
-	FOREIGN KEY("CompositeDataTypeV2_id") REFERENCES "CompositeDataTypeV2" (id)
-);
-CREATE INDEX "ix_RefTypeV2_id" ON "RefTypeV2" (id);
-
-CREATE TABLE "SetTypeV2" (
-	id INTEGER NOT NULL,
-	name TEXT NOT NULL,
-	encoding_type TEXT NOT NULL,
-	description TEXT,
-	value TEXT,
-	"offset" INTEGER,
-	alignment INTEGER,
-	since_version INTEGER,
-	deprecated INTEGER,
-	"CompositeDataTypeV2_id" INTEGER,
-	"TypesV2_id" INTEGER,
-	PRIMARY KEY (id),
-	FOREIGN KEY("CompositeDataTypeV2_id") REFERENCES "CompositeDataTypeV2" (id),
-	FOREIGN KEY("TypesV2_id") REFERENCES "TypesV2" (id)
-);
-CREATE INDEX "ix_SetTypeV2_id" ON "SetTypeV2" (id);
-
-CREATE TABLE "ValidValue" (
-	id INTEGER NOT NULL,
-	name TEXT NOT NULL,
-	description TEXT,
-	value TEXT,
-	since_version INTEGER,
-	deprecated INTEGER,
-	"EnumTypeV1_id" INTEGER,
-	"EnumTypeV2_id" INTEGER,
-	PRIMARY KEY (id),
-	FOREIGN KEY("EnumTypeV1_id") REFERENCES "EnumTypeV1" (id),
-	FOREIGN KEY("EnumTypeV2_id") REFERENCES "EnumTypeV2" (id)
-);
-CREATE INDEX "ix_ValidValue_id" ON "ValidValue" (id);
-
-CREATE TABLE "Choice" (
-	id INTEGER NOT NULL,
-	name TEXT NOT NULL,
-	description TEXT,
-	value TEXT,
-	since_version INTEGER,
-	deprecated INTEGER,
-	"SetTypeV1_id" INTEGER,
-	"SetTypeV2_id" INTEGER,
-	PRIMARY KEY (id),
-	FOREIGN KEY("SetTypeV1_id") REFERENCES "SetTypeV1" (id),
-	FOREIGN KEY("SetTypeV2_id") REFERENCES "SetTypeV2" (id)
-);
-CREATE INDEX "ix_Choice_id" ON "Choice" (id);
-
-CREATE TABLE "FieldTypeV2" (
-	uid INTEGER NOT NULL,
-	name TEXT NOT NULL,
-	id INTEGER NOT NULL,
-	type TEXT NOT NULL,
-	value TEXT,
+	symbolic_name TEXT NOT NULL,
+	sbe_id INTEGER NOT NULL,
+	encoding_name TEXT NOT NULL,
+	element_value TEXT,
 	"offset" INTEGER,
 	alignment INTEGER,
 	presence VARCHAR(8),
@@ -766,11 +749,13 @@ CREATE TABLE "FieldTypeV2" (
 	semantic_type TEXT,
 	description TEXT,
 	since_version INTEGER,
-	deprecated INTEGER,
-	"BlockTypeV2_uid" INTEGER,
-	"GroupTypeV2_uid" INTEGER,
-	PRIMARY KEY (uid),
-	FOREIGN KEY("BlockTypeV2_uid") REFERENCES "BlockTypeV2" (uid),
-	FOREIGN KEY("GroupTypeV2_uid") REFERENCES "GroupTypeV2" (uid)
+	deprecated_since INTEGER,
+	"SbeBlockV2Mixin_id" INTEGER,
+	"SbeMessageV2_id" INTEGER,
+	"SbeGroupV2_id" INTEGER,
+	PRIMARY KEY (id),
+	FOREIGN KEY("SbeBlockV2Mixin_id") REFERENCES "SbeBlockV2Mixin" (id),
+	FOREIGN KEY("SbeMessageV2_id") REFERENCES "SbeMessageV2" (id),
+	FOREIGN KEY("SbeGroupV2_id") REFERENCES "SbeGroupV2" (id)
 );
-CREATE INDEX "ix_FieldTypeV2_uid" ON "FieldTypeV2" (uid);
+CREATE INDEX "ix_SbeFieldV2_id" ON "SbeFieldV2" (id);

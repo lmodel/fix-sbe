@@ -1,0 +1,11 @@
+encoding_kind: SbeEnumV2
+symbolic_name: sideEnum
+encoding_type: char
+description: The side of an order.
+offset: 4
+alignment: 4
+since_version: 1
+deprecated_since: 2
+valid_values:
+  - symbolic_name: Buy
+    valid_value: "1"

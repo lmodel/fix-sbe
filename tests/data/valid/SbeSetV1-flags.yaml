@@ -1,0 +1,8 @@
+encoding_kind: SbeSetV1
+symbolic_name: orderFlags
+encoding_type: uint8
+semantic_type: MultipleCharValue
+choices:
+  - symbolic_name: Hidden
+    bit_position: 0
+    description: Not shown in the book.

@@ -1,9 +1,8 @@
 # Auto generated from fix_sbe.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-05-25T19:08:30
 # Schema: fix_sbe
 #
 # id: https://w3id.org/lmodel/fix-sbe
-# description: Umbrella LinkML schema for the FIX Simple Binary Encoding (SBE) standard. Imports three overlays: ``fix_sbe_common`` (entities structurally identical across SBE versions, kept unsuffixed) plus two per-version overlays ``fix_sbe_v1_0`` and ``fix_sbe_v2_0`` (remaining version-specific entities, PascalCase names suffixed with ``V1`` or ``V2`` to disambiguate). Per-version validation can be performed by targeting an overlay file directly.
+# description: A LinkML model of FIX Simple Binary Encoding, a standard from the FIX Trading Community for encoding messages in binary. It describes SBE message schemas: encodings, message templates, fields, groups and variable-length data. The two editions differ on the wire and in their XML, so each has a module of its own.
 # license: Apache-2.0
 
 import dataclasses
@@ -58,37 +57,41 @@ from rdflib import (
 
 from linkml_runtime.linkml_model.types import Integer, String
 
-metamodel_version = "1.11.0"
-version = None
+metamodel_version = "1.12.0"
+version = "1.0 and 2.0-rc3"
 
 # Namespaces
-DCT = CurieNamespace('dct', 'http://purl.org/dc/terms/')
 FIX_ORCHESTRA = CurieNamespace('fix_orchestra', 'https://w3id.org/lmodel/fix-orchestra/')
 FIX_SBE = CurieNamespace('fix_sbe', 'https://w3id.org/lmodel/fix-sbe/')
 LINKML = CurieNamespace('linkml', 'https://w3id.org/linkml/')
-RDF = CurieNamespace('rdf', 'http://www.w3.org/1999/02/22-rdf-syntax-ns#')
-RDFS = CurieNamespace('rdfs', 'http://www.w3.org/2000/01/rdf-schema#')
-SBE_V1 = CurieNamespace('sbe_v1', 'http://fixprotocol.io/2016/sbe/')
-SBE_V2 = CurieNamespace('sbe_v2', 'http://fixprotocol.io/2017/sbe/')
 SCHEMA = CurieNamespace('schema', 'http://schema.org/')
-SKOS = CurieNamespace('skos', 'http://www.w3.org/2004/02/skos/core#')
 XSD = CurieNamespace('xsd', 'http://www.w3.org/2001/XMLSchema#')
 DEFAULT_ = FIX_SBE
 
 
 # Types
-class SymbolicName(String):
-    type_class_uri = FIX_SBE["SymbolicName"]
-    type_class_curie = "fix_sbe:SymbolicName"
-    type_name = "SymbolicName"
-    type_model_uri = FIX_SBE.SymbolicName
+class SbeSymbolicName(String):
+    """ A name of one to 64 letters, digits and underscores that starts with a letter or underscore. """
+    type_class_uri = XSD["string"]
+    type_class_curie = "xsd:string"
+    type_name = "SbeSymbolicName"
+    type_model_uri = FIX_SBE.SbeSymbolicName
 
 
-class QualifiedName(String):
-    type_class_uri = FIX_SBE["QualifiedName"]
-    type_class_curie = "fix_sbe:QualifiedName"
-    type_name = "QualifiedName"
-    type_model_uri = FIX_SBE.QualifiedName
+class SbeQualifiedName(String):
+    """ An enumeration's name and one of its valid values' names, joined by a dot. """
+    type_class_uri = XSD["string"]
+    type_class_curie = "xsd:string"
+    type_name = "SbeQualifiedName"
+    type_model_uri = FIX_SBE.SbeQualifiedName
+
+
+class SbeToken(String):
+    """ Text with no line break, tab or doubled space, and no space at either end. """
+    type_class_uri = XSD["token"]
+    type_class_curie = "xsd:token"
+    type_name = "SbeToken"
+    type_model_uri = FIX_SBE.SbeToken
 
 
 # Class references
@@ -96,292 +99,346 @@ class QualifiedName(String):
 
 
 @dataclass(repr=False)
-class SemanticAttributes(YAMLRoot):
+class SbeVersionedMixin(YAMLRoot):
     """
-    Application layer class. Maps a field to a FIX data type or a template to a FIX message.
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = FIX_SBE["SemanticAttributes"]
-    class_class_curie: ClassVar[str] = "fix_sbe:SemanticAttributes"
-    class_name: ClassVar[str] = "SemanticAttributes"
-    class_model_uri: ClassVar[URIRef] = FIX_SBE.SemanticAttributes
-
-    semantic_type: Optional[str] = None
-    description: Optional[str] = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self.semantic_type is not None and not isinstance(self.semantic_type, str):
-            self.semantic_type = str(self.semantic_type)
-
-        if self.description is not None and not isinstance(self.description, str):
-            self.description = str(self.description)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class VersionAttributes(YAMLRoot):
-    """
-    Schema versioning supports message extension
+    The two attributes that record when an element entered a schema and when it should leave.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = FIX_SBE["VersionAttributes"]
-    class_class_curie: ClassVar[str] = "fix_sbe:VersionAttributes"
-    class_name: ClassVar[str] = "VersionAttributes"
-    class_model_uri: ClassVar[URIRef] = FIX_SBE.VersionAttributes
+    class_class_uri: ClassVar[URIRef] = FIX_SBE["SbeVersionedMixin"]
+    class_class_curie: ClassVar[str] = "fix_sbe:SbeVersionedMixin"
+    class_name: ClassVar[str] = "SbeVersionedMixin"
+    class_model_uri: ClassVar[URIRef] = FIX_SBE.SbeVersionedMixin
 
     since_version: Optional[int] = 0
-    deprecated: Optional[int] = None
+    deprecated_since: Optional[int] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self.since_version is not None and not isinstance(self.since_version, int):
             self.since_version = int(self.since_version)
 
-        if self.deprecated is not None and not isinstance(self.deprecated, int):
-            self.deprecated = int(self.deprecated)
+        if self.deprecated_since is not None and not isinstance(self.deprecated_since, int):
+            self.deprecated_since = int(self.deprecated_since)
 
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class ValidValue(YAMLRoot):
+class SbeValidValue(YAMLRoot):
     """
-    Valid value as a string
+    One of the values an enumeration allows.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = FIX_SBE["ValidValue"]
-    class_class_curie: ClassVar[str] = "fix_sbe:ValidValue"
-    class_name: ClassVar[str] = "ValidValue"
-    class_model_uri: ClassVar[URIRef] = FIX_SBE.ValidValue
+    class_class_uri: ClassVar[URIRef] = FIX_SBE["SbeValidValue"]
+    class_class_curie: ClassVar[str] = "fix_sbe:SbeValidValue"
+    class_name: ClassVar[str] = "SbeValidValue"
+    class_model_uri: ClassVar[URIRef] = FIX_SBE.SbeValidValue
 
-    name: Union[str, SymbolicName] = None
+    symbolic_name: Union[str, SbeSymbolicName] = None
+    valid_value: Union[str, SbeToken] = None
     description: Optional[str] = None
-    value: Optional[str] = None
     since_version: Optional[int] = 0
-    deprecated: Optional[int] = None
+    deprecated_since: Optional[int] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.name):
-            self.MissingRequiredField("name")
-        if not isinstance(self.name, SymbolicName):
-            self.name = SymbolicName(self.name)
+        if self._is_empty(self.symbolic_name):
+            self.MissingRequiredField("symbolic_name")
+        if not isinstance(self.symbolic_name, SbeSymbolicName):
+            self.symbolic_name = SbeSymbolicName(self.symbolic_name)
+
+        if self._is_empty(self.valid_value):
+            self.MissingRequiredField("valid_value")
+        if not isinstance(self.valid_value, SbeToken):
+            self.valid_value = SbeToken(self.valid_value)
 
         if self.description is not None and not isinstance(self.description, str):
             self.description = str(self.description)
 
-        if self.value is not None and not isinstance(self.value, str):
-            self.value = str(self.value)
-
         if self.since_version is not None and not isinstance(self.since_version, int):
             self.since_version = int(self.since_version)
 
-        if self.deprecated is not None and not isinstance(self.deprecated, int):
-            self.deprecated = int(self.deprecated)
+        if self.deprecated_since is not None and not isinstance(self.deprecated_since, int):
+            self.deprecated_since = int(self.deprecated_since)
 
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class Choice(YAMLRoot):
+class SbeChoice(YAMLRoot):
     """
-    A choice within a multi value set. Value is the position within a bitset (zero-based index).
+    One of the alternatives of a set, which is one bit of its encoding.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = FIX_SBE["Choice"]
-    class_class_curie: ClassVar[str] = "fix_sbe:Choice"
-    class_name: ClassVar[str] = "Choice"
-    class_model_uri: ClassVar[URIRef] = FIX_SBE.Choice
+    class_class_uri: ClassVar[URIRef] = FIX_SBE["SbeChoice"]
+    class_class_curie: ClassVar[str] = "fix_sbe:SbeChoice"
+    class_name: ClassVar[str] = "SbeChoice"
+    class_model_uri: ClassVar[URIRef] = FIX_SBE.SbeChoice
 
-    name: Union[str, SymbolicName] = None
+    symbolic_name: Union[str, SbeSymbolicName] = None
+    bit_position: int = None
     description: Optional[str] = None
-    value: Optional[str] = None
     since_version: Optional[int] = 0
-    deprecated: Optional[int] = None
+    deprecated_since: Optional[int] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.name):
-            self.MissingRequiredField("name")
-        if not isinstance(self.name, SymbolicName):
-            self.name = SymbolicName(self.name)
+        if self._is_empty(self.symbolic_name):
+            self.MissingRequiredField("symbolic_name")
+        if not isinstance(self.symbolic_name, SbeSymbolicName):
+            self.symbolic_name = SbeSymbolicName(self.symbolic_name)
+
+        if self._is_empty(self.bit_position):
+            self.MissingRequiredField("bit_position")
+        if not isinstance(self.bit_position, int):
+            self.bit_position = int(self.bit_position)
 
         if self.description is not None and not isinstance(self.description, str):
             self.description = str(self.description)
 
-        if self.value is not None and not isinstance(self.value, str):
-            self.value = str(self.value)
-
         if self.since_version is not None and not isinstance(self.since_version, int):
             self.since_version = int(self.since_version)
 
-        if self.deprecated is not None and not isinstance(self.deprecated, int):
-            self.deprecated = int(self.deprecated)
+        if self.deprecated_since is not None and not isinstance(self.deprecated_since, int):
+            self.deprecated_since = int(self.deprecated_since)
 
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class AlignmentAttributesV1(YAMLRoot):
+class SbeMessageSchemaV1(YAMLRoot):
+    """
+    One SBE 1.0 message schema, with its encodings and message templates.
+    """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = FIX_SBE["AlignmentAttributesV1"]
-    class_class_curie: ClassVar[str] = "fix_sbe:AlignmentAttributesV1"
-    class_name: ClassVar[str] = "AlignmentAttributesV1"
-    class_model_uri: ClassVar[URIRef] = FIX_SBE.AlignmentAttributesV1
+    class_class_uri: ClassVar[URIRef] = FIX_SBE["SbeMessageSchemaV1"]
+    class_class_curie: ClassVar[str] = "fix_sbe:SbeMessageSchemaV1"
+    class_name: ClassVar[str] = "SbeMessageSchemaV1"
+    class_model_uri: ClassVar[URIRef] = FIX_SBE.SbeMessageSchemaV1
 
+    schema_version: int = None
+    encoding_sets: Union[Union[dict, "SbeEncodingSetV1"], list[Union[dict, "SbeEncodingSetV1"]]] = None
+    messages: Union[Union[dict, "SbeMessageV1"], list[Union[dict, "SbeMessageV1"]]] = None
+    schema_package: Optional[str] = None
+    sbe_id: Optional[int] = None
+    semantic_version: Optional[str] = None
+    description: Optional[str] = None
+    byte_order: Optional[Union[str, "SbeByteOrder"]] = 'littleEndian'
+    header_type: Optional[Union[str, SbeSymbolicName]] = "messageHeader"
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.schema_version):
+            self.MissingRequiredField("schema_version")
+        if not isinstance(self.schema_version, int):
+            self.schema_version = int(self.schema_version)
+
+        if self._is_empty(self.encoding_sets):
+            self.MissingRequiredField("encoding_sets")
+        if not isinstance(self.encoding_sets, list):
+            self.encoding_sets = [self.encoding_sets] if self.encoding_sets is not None else []
+        self.encoding_sets = [v if isinstance(v, SbeEncodingSetV1) else SbeEncodingSetV1(**as_dict(v)) for v in self.encoding_sets]
+
+        if self._is_empty(self.messages):
+            self.MissingRequiredField("messages")
+        self._normalize_inlined_as_list(slot_name="messages", slot_type=SbeMessageV1, key_name="sbe_id", keyed=False)
+
+        if self.schema_package is not None and not isinstance(self.schema_package, str):
+            self.schema_package = str(self.schema_package)
+
+        if self.sbe_id is not None and not isinstance(self.sbe_id, int):
+            self.sbe_id = int(self.sbe_id)
+
+        if self.semantic_version is not None and not isinstance(self.semantic_version, str):
+            self.semantic_version = str(self.semantic_version)
+
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
+
+        if self.byte_order is not None and not isinstance(self.byte_order, SbeByteOrder):
+            self.byte_order = SbeByteOrder(self.byte_order)
+
+        if self.header_type is not None and not isinstance(self.header_type, SbeSymbolicName):
+            self.header_type = SbeSymbolicName(self.header_type)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class SbeEncodingSetV1(YAMLRoot):
+    """
+    A set of encodings, listed in any order, whose names are unique across the whole schema.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = FIX_SBE["SbeEncodingSetV1"]
+    class_class_curie: ClassVar[str] = "fix_sbe:SbeEncodingSetV1"
+    class_name: ClassVar[str] = "SbeEncodingSetV1"
+    class_model_uri: ClassVar[URIRef] = FIX_SBE.SbeEncodingSetV1
+
+    encodings: Union[Union[dict, "SbeEncodingV1"], list[Union[dict, "SbeEncodingV1"]]] = None
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.encodings):
+            self.MissingRequiredField("encodings")
+        self._normalize_inlined_as_list(slot_name="encodings", slot_type=SbeEncodingV1, key_name="encoding_kind", keyed=False)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class SbeMemberV1(YAMLRoot):
+    """
+    Anything a composite may hold in the order it is sent.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = FIX_SBE["SbeMemberV1"]
+    class_class_curie: ClassVar[str] = "fix_sbe:SbeMemberV1"
+    class_name: ClassVar[str] = "SbeMemberV1"
+    class_model_uri: ClassVar[URIRef] = FIX_SBE.SbeMemberV1
+
+    encoding_kind: str = None
+    symbolic_name: Union[str, SbeSymbolicName] = None
     offset: Optional[int] = None
+    since_version: Optional[int] = 0
+    deprecated_since: Optional[int] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.encoding_kind):
+            self.MissingRequiredField("encoding_kind")
+        self.encoding_kind = str(self.class_name)
+
+        if self._is_empty(self.symbolic_name):
+            self.MissingRequiredField("symbolic_name")
+        if not isinstance(self.symbolic_name, SbeSymbolicName):
+            self.symbolic_name = SbeSymbolicName(self.symbolic_name)
+
         if self.offset is not None and not isinstance(self.offset, int):
             self.offset = int(self.offset)
 
+        if self.since_version is not None and not isinstance(self.since_version, int):
+            self.since_version = int(self.since_version)
+
+        if self.deprecated_since is not None and not isinstance(self.deprecated_since, int):
+            self.deprecated_since = int(self.deprecated_since)
+
         super().__post_init__(**kwargs)
 
 
+    def __new__(cls, *args, **kwargs):
+
+        type_designator = "encoding_kind"
+        if not type_designator in kwargs:
+            return super().__new__(cls,*args,**kwargs)
+        else:
+            type_designator_value = kwargs[type_designator]
+            target_cls = cls._class_for("class_name", type_designator_value)
+
+
+            if target_cls is None:
+                raise ValueError(f"Wrong type designator value: class {cls.__name__} "
+                                 f"has no subclass with ['class_name']='{kwargs[type_designator]}'")
+            return super().__new__(target_cls,*args,**kwargs)
+
+
+
 @dataclass(repr=False)
-class PresenceAttributesV1(YAMLRoot):
+class SbeRefV1(SbeMemberV1):
+    """
+    A composite's member that reuses an encoding defined elsewhere in the schema.
+    """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = FIX_SBE["PresenceAttributesV1"]
-    class_class_curie: ClassVar[str] = "fix_sbe:PresenceAttributesV1"
-    class_name: ClassVar[str] = "PresenceAttributesV1"
-    class_model_uri: ClassVar[URIRef] = FIX_SBE.PresenceAttributesV1
+    class_class_uri: ClassVar[URIRef] = FIX_SBE["SbeRefV1"]
+    class_class_curie: ClassVar[str] = "fix_sbe:SbeRefV1"
+    class_name: ClassVar[str] = "SbeRefV1"
+    class_model_uri: ClassVar[URIRef] = FIX_SBE.SbeRefV1
 
-    presence: Optional[Union[str, "Presence"]] = 'required'
-    value_ref: Optional[Union[str, QualifiedName]] = None
+    encoding_kind: str = None
+    symbolic_name: Union[str, SbeSymbolicName] = None
+    encoding_name: Union[str, SbeSymbolicName] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
-        if self.presence is not None and not isinstance(self.presence, Presence):
-            self.presence = Presence(self.presence)
-
-        if self.value_ref is not None and not isinstance(self.value_ref, QualifiedName):
-            self.value_ref = QualifiedName(self.value_ref)
+        if self._is_empty(self.encoding_name):
+            self.MissingRequiredField("encoding_name")
+        if not isinstance(self.encoding_name, SbeSymbolicName):
+            self.encoding_name = SbeSymbolicName(self.encoding_name)
 
         super().__post_init__(**kwargs)
+        if self._is_empty(self.encoding_kind):
+            self.MissingRequiredField("encoding_kind")
+        self.encoding_kind = str(self.class_name)
 
 
 @dataclass(repr=False)
-class BlockTypeV1(YAMLRoot):
+class SbeEncodingV1(SbeMemberV1):
     """
-    Base type of message and repeating group entry
+    An encoding of SBE 1.0, which says how a value is laid out on the wire.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = FIX_SBE["BlockTypeV1"]
-    class_class_curie: ClassVar[str] = "fix_sbe:BlockTypeV1"
-    class_name: ClassVar[str] = "BlockTypeV1"
-    class_model_uri: ClassVar[URIRef] = FIX_SBE.BlockTypeV1
+    class_class_uri: ClassVar[URIRef] = FIX_SBE["SbeEncodingV1"]
+    class_class_curie: ClassVar[str] = "fix_sbe:SbeEncodingV1"
+    class_name: ClassVar[str] = "SbeEncodingV1"
+    class_model_uri: ClassVar[URIRef] = FIX_SBE.SbeEncodingV1
 
-    name: Union[str, SymbolicName] = None
-    id: int = None
-    field: Optional[Union[Union[dict, "FieldTypeV1"], list[Union[dict, "FieldTypeV1"]]]] = empty_list()
-    group: Optional[Union[Union[dict, "GroupTypeV1"], list[Union[dict, "GroupTypeV1"]]]] = empty_list()
-    data: Optional[Union[Union[dict, "FieldTypeV1"], list[Union[dict, "FieldTypeV1"]]]] = empty_list()
-    block_length: Optional[int] = None
-    semantic_type: Optional[str] = None
+    encoding_kind: str = None
+    symbolic_name: Union[str, SbeSymbolicName] = None
+    semantic_type: Optional[Union[str, SbeToken]] = None
     description: Optional[str] = None
-    since_version: Optional[int] = 0
-    deprecated: Optional[int] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.name):
-            self.MissingRequiredField("name")
-        if not isinstance(self.name, SymbolicName):
-            self.name = SymbolicName(self.name)
-
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, int):
-            self.id = int(self.id)
-
-        self._normalize_inlined_as_list(slot_name="field", slot_type=FieldTypeV1, key_name="name", keyed=False)
-
-        self._normalize_inlined_as_list(slot_name="group", slot_type=GroupTypeV1, key_name="name", keyed=False)
-
-        self._normalize_inlined_as_list(slot_name="data", slot_type=FieldTypeV1, key_name="name", keyed=False)
-
-        if self.block_length is not None and not isinstance(self.block_length, int):
-            self.block_length = int(self.block_length)
-
-        if self.semantic_type is not None and not isinstance(self.semantic_type, str):
-            self.semantic_type = str(self.semantic_type)
+        if self.semantic_type is not None and not isinstance(self.semantic_type, SbeToken):
+            self.semantic_type = SbeToken(self.semantic_type)
 
         if self.description is not None and not isinstance(self.description, str):
             self.description = str(self.description)
 
-        if self.since_version is not None and not isinstance(self.since_version, int):
-            self.since_version = int(self.since_version)
-
-        if self.deprecated is not None and not isinstance(self.deprecated, int):
-            self.deprecated = int(self.deprecated)
-
         super().__post_init__(**kwargs)
+        if self._is_empty(self.encoding_kind):
+            self.MissingRequiredField("encoding_kind")
+        self.encoding_kind = str(self.class_name)
 
 
 @dataclass(repr=False)
-class GroupTypeV1(BlockTypeV1):
+class SbeSimpleTypeV1(SbeEncodingV1):
     """
-    A repeating group contains an array of entries
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = FIX_SBE["GroupTypeV1"]
-    class_class_curie: ClassVar[str] = "fix_sbe:GroupTypeV1"
-    class_name: ClassVar[str] = "GroupTypeV1"
-    class_model_uri: ClassVar[URIRef] = FIX_SBE.GroupTypeV1
-
-    name: Union[str, SymbolicName] = None
-    id: int = None
-    dimension_type: Optional[Union[str, SymbolicName]] = "groupSizeEncoding"
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self.dimension_type is not None and not isinstance(self.dimension_type, SymbolicName):
-            self.dimension_type = SymbolicName(self.dimension_type)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class EncodedDataTypeV1(YAMLRoot):
-    """
-    Simple wire encoding consisting of a primitive type or array of primitives
+    An encoding backed by one primitive value, or several in an array.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = FIX_SBE["EncodedDataTypeV1"]
-    class_class_curie: ClassVar[str] = "fix_sbe:EncodedDataTypeV1"
-    class_name: ClassVar[str] = "EncodedDataTypeV1"
-    class_model_uri: ClassVar[URIRef] = FIX_SBE.EncodedDataTypeV1
+    class_class_uri: ClassVar[URIRef] = FIX_SBE["SbeSimpleTypeV1"]
+    class_class_curie: ClassVar[str] = "fix_sbe:SbeSimpleTypeV1"
+    class_name: ClassVar[str] = "SbeSimpleTypeV1"
+    class_model_uri: ClassVar[URIRef] = FIX_SBE.SbeSimpleTypeV1
 
-    name: Union[str, SymbolicName] = None
-    primitive_type: Union[str, "PrimitiveTypeV1"] = None
+    encoding_kind: str = None
+    symbolic_name: Union[str, SbeSymbolicName] = None
+    primitive_type: Union[str, "SbePrimitiveType"] = None
+    element_value: Optional[Union[str, SbeToken]] = None
+    array_length: Optional[int] = 1
+    character_encoding: Optional[str] = None
     null_value: Optional[str] = None
     min_value: Optional[str] = None
     max_value: Optional[str] = None
-    length: Optional[int] = 1
-    character_encoding: Optional[str] = None
-    value: Optional[str] = None
-    offset: Optional[int] = None
-    presence: Optional[Union[str, "Presence"]] = 'required'
-    value_ref: Optional[Union[str, QualifiedName]] = None
-    semantic_type: Optional[str] = None
-    description: Optional[str] = None
-    since_version: Optional[int] = 0
-    deprecated: Optional[int] = None
+    presence: Optional[Union[str, "SbePresence"]] = 'required'
+    value_ref: Optional[Union[str, SbeQualifiedName]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.name):
-            self.MissingRequiredField("name")
-        if not isinstance(self.name, SymbolicName):
-            self.name = SymbolicName(self.name)
-
         if self._is_empty(self.primitive_type):
             self.MissingRequiredField("primitive_type")
-        if not isinstance(self.primitive_type, PrimitiveTypeV1):
-            self.primitive_type = PrimitiveTypeV1(self.primitive_type)
+        if not isinstance(self.primitive_type, SbePrimitiveType):
+            self.primitive_type = SbePrimitiveType(self.primitive_type)
+
+        if self.element_value is not None and not isinstance(self.element_value, SbeToken):
+            self.element_value = SbeToken(self.element_value)
+
+        if self.array_length is not None and not isinstance(self.array_length, int):
+            self.array_length = int(self.array_length)
+
+        if self.character_encoding is not None and not isinstance(self.character_encoding, str):
+            self.character_encoding = str(self.character_encoding)
 
         if self.null_value is not None and not isinstance(self.null_value, str):
             self.null_value = str(self.null_value)
@@ -392,376 +449,400 @@ class EncodedDataTypeV1(YAMLRoot):
         if self.max_value is not None and not isinstance(self.max_value, str):
             self.max_value = str(self.max_value)
 
-        if self.length is not None and not isinstance(self.length, int):
-            self.length = int(self.length)
+        if self.presence is not None and not isinstance(self.presence, SbePresence):
+            self.presence = SbePresence(self.presence)
 
-        if self.character_encoding is not None and not isinstance(self.character_encoding, str):
-            self.character_encoding = str(self.character_encoding)
-
-        if self.value is not None and not isinstance(self.value, str):
-            self.value = str(self.value)
-
-        if self.offset is not None and not isinstance(self.offset, int):
-            self.offset = int(self.offset)
-
-        if self.presence is not None and not isinstance(self.presence, Presence):
-            self.presence = Presence(self.presence)
-
-        if self.value_ref is not None and not isinstance(self.value_ref, QualifiedName):
-            self.value_ref = QualifiedName(self.value_ref)
-
-        if self.semantic_type is not None and not isinstance(self.semantic_type, str):
-            self.semantic_type = str(self.semantic_type)
-
-        if self.description is not None and not isinstance(self.description, str):
-            self.description = str(self.description)
-
-        if self.since_version is not None and not isinstance(self.since_version, int):
-            self.since_version = int(self.since_version)
-
-        if self.deprecated is not None and not isinstance(self.deprecated, int):
-            self.deprecated = int(self.deprecated)
+        if self.value_ref is not None and not isinstance(self.value_ref, SbeQualifiedName):
+            self.value_ref = SbeQualifiedName(self.value_ref)
 
         super().__post_init__(**kwargs)
+        if self._is_empty(self.encoding_kind):
+            self.MissingRequiredField("encoding_kind")
+        self.encoding_kind = str(self.class_name)
 
 
 @dataclass(repr=False)
-class CompositeDataTypeV1(YAMLRoot):
+class SbeCompositeV1(SbeEncodingV1):
     """
-    A wire encoding composed of multiple parts
+    An encoding built from members sent one after another, such as a decimal's mantissa and exponent.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = FIX_SBE["CompositeDataTypeV1"]
-    class_class_curie: ClassVar[str] = "fix_sbe:CompositeDataTypeV1"
-    class_name: ClassVar[str] = "CompositeDataTypeV1"
-    class_model_uri: ClassVar[URIRef] = FIX_SBE.CompositeDataTypeV1
+    class_class_uri: ClassVar[URIRef] = FIX_SBE["SbeCompositeV1"]
+    class_class_curie: ClassVar[str] = "fix_sbe:SbeCompositeV1"
+    class_name: ClassVar[str] = "SbeCompositeV1"
+    class_model_uri: ClassVar[URIRef] = FIX_SBE.SbeCompositeV1
 
-    name: Union[str, SymbolicName] = None
-    type: Optional[Union[Union[dict, EncodedDataTypeV1], list[Union[dict, EncodedDataTypeV1]]]] = empty_list()
-    enum: Optional[Union[Union[dict, "EnumTypeV1"], list[Union[dict, "EnumTypeV1"]]]] = empty_list()
-    set: Optional[Union[Union[dict, "SetTypeV1"], list[Union[dict, "SetTypeV1"]]]] = empty_list()
-    composite: Optional[Union[Union[dict, "CompositeDataTypeV1"], list[Union[dict, "CompositeDataTypeV1"]]]] = empty_list()
-    ref: Optional[Union[Union[dict, "RefTypeV1"], list[Union[dict, "RefTypeV1"]]]] = empty_list()
-    value: Optional[str] = None
-    offset: Optional[int] = None
-    semantic_type: Optional[str] = None
-    description: Optional[str] = None
-    since_version: Optional[int] = 0
-    deprecated: Optional[int] = None
+    encoding_kind: str = None
+    symbolic_name: Union[str, SbeSymbolicName] = None
+    composite_members: Union[Union[dict, SbeMemberV1], list[Union[dict, SbeMemberV1]]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.name):
-            self.MissingRequiredField("name")
-        if not isinstance(self.name, SymbolicName):
-            self.name = SymbolicName(self.name)
-
-        self._normalize_inlined_as_list(slot_name="type", slot_type=EncodedDataTypeV1, key_name="name", keyed=False)
-
-        self._normalize_inlined_as_list(slot_name="enum", slot_type=EnumTypeV1, key_name="name", keyed=False)
-
-        self._normalize_inlined_as_list(slot_name="set", slot_type=SetTypeV1, key_name="name", keyed=False)
-
-        self._normalize_inlined_as_list(slot_name="composite", slot_type=CompositeDataTypeV1, key_name="name", keyed=False)
-
-        self._normalize_inlined_as_list(slot_name="ref", slot_type=RefTypeV1, key_name="name", keyed=False)
-
-        if self.value is not None and not isinstance(self.value, str):
-            self.value = str(self.value)
-
-        if self.offset is not None and not isinstance(self.offset, int):
-            self.offset = int(self.offset)
-
-        if self.semantic_type is not None and not isinstance(self.semantic_type, str):
-            self.semantic_type = str(self.semantic_type)
-
-        if self.description is not None and not isinstance(self.description, str):
-            self.description = str(self.description)
-
-        if self.since_version is not None and not isinstance(self.since_version, int):
-            self.since_version = int(self.since_version)
-
-        if self.deprecated is not None and not isinstance(self.deprecated, int):
-            self.deprecated = int(self.deprecated)
+        if self._is_empty(self.composite_members):
+            self.MissingRequiredField("composite_members")
+        self._normalize_inlined_as_list(slot_name="composite_members", slot_type=SbeMemberV1, key_name="encoding_kind", keyed=False)
 
         super().__post_init__(**kwargs)
+        if self._is_empty(self.encoding_kind):
+            self.MissingRequiredField("encoding_kind")
+        self.encoding_kind = str(self.class_name)
 
 
 @dataclass(repr=False)
-class EnumTypeV1(YAMLRoot):
+class SbeEnumV1(SbeEncodingV1):
     """
-    An enumeration of valid values
+    An encoding whose value is one of a listed set of valid values.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = FIX_SBE["EnumTypeV1"]
-    class_class_curie: ClassVar[str] = "fix_sbe:EnumTypeV1"
-    class_name: ClassVar[str] = "EnumTypeV1"
-    class_model_uri: ClassVar[URIRef] = FIX_SBE.EnumTypeV1
+    class_class_uri: ClassVar[URIRef] = FIX_SBE["SbeEnumV1"]
+    class_class_curie: ClassVar[str] = "fix_sbe:SbeEnumV1"
+    class_name: ClassVar[str] = "SbeEnumV1"
+    class_model_uri: ClassVar[URIRef] = FIX_SBE.SbeEnumV1
 
-    valid_value: Union[Union[dict, ValidValue], list[Union[dict, ValidValue]]] = None
-    name: Union[str, SymbolicName] = None
-    encoding_type: Union[str, SymbolicName] = None
-    value: Optional[str] = None
-    offset: Optional[int] = None
-    semantic_type: Optional[str] = None
-    description: Optional[str] = None
-    since_version: Optional[int] = 0
-    deprecated: Optional[int] = None
+    encoding_kind: str = None
+    symbolic_name: Union[str, SbeSymbolicName] = None
+    encoding_type: Union[str, SbeSymbolicName] = None
+    valid_values: Union[Union[dict, SbeValidValue], list[Union[dict, SbeValidValue]]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.valid_value):
-            self.MissingRequiredField("valid_value")
-        self._normalize_inlined_as_list(slot_name="valid_value", slot_type=ValidValue, key_name="name", keyed=False)
-
-        if self._is_empty(self.name):
-            self.MissingRequiredField("name")
-        if not isinstance(self.name, SymbolicName):
-            self.name = SymbolicName(self.name)
-
         if self._is_empty(self.encoding_type):
             self.MissingRequiredField("encoding_type")
-        if not isinstance(self.encoding_type, SymbolicName):
-            self.encoding_type = SymbolicName(self.encoding_type)
+        if not isinstance(self.encoding_type, SbeSymbolicName):
+            self.encoding_type = SbeSymbolicName(self.encoding_type)
 
-        if self.value is not None and not isinstance(self.value, str):
-            self.value = str(self.value)
-
-        if self.offset is not None and not isinstance(self.offset, int):
-            self.offset = int(self.offset)
-
-        if self.semantic_type is not None and not isinstance(self.semantic_type, str):
-            self.semantic_type = str(self.semantic_type)
-
-        if self.description is not None and not isinstance(self.description, str):
-            self.description = str(self.description)
-
-        if self.since_version is not None and not isinstance(self.since_version, int):
-            self.since_version = int(self.since_version)
-
-        if self.deprecated is not None and not isinstance(self.deprecated, int):
-            self.deprecated = int(self.deprecated)
+        if self._is_empty(self.valid_values):
+            self.MissingRequiredField("valid_values")
+        self._normalize_inlined_as_list(slot_name="valid_values", slot_type=SbeValidValue, key_name="symbolic_name", keyed=False)
 
         super().__post_init__(**kwargs)
+        if self._is_empty(self.encoding_kind):
+            self.MissingRequiredField("encoding_kind")
+        self.encoding_kind = str(self.class_name)
 
 
 @dataclass(repr=False)
-class RefTypeV1(YAMLRoot):
+class SbeSetV1(SbeEncodingV1):
     """
-    A reference to any existing encoding type (simple type, enum or set) to reuse as a member of a composite type
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = FIX_SBE["RefTypeV1"]
-    class_class_curie: ClassVar[str] = "fix_sbe:RefTypeV1"
-    class_name: ClassVar[str] = "RefTypeV1"
-    class_model_uri: ClassVar[URIRef] = FIX_SBE.RefTypeV1
-
-    name: Union[str, SymbolicName] = None
-    type: Union[str, SymbolicName] = None
-    value: Optional[str] = None
-    offset: Optional[int] = None
-    since_version: Optional[int] = 0
-    deprecated: Optional[int] = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.name):
-            self.MissingRequiredField("name")
-        if not isinstance(self.name, SymbolicName):
-            self.name = SymbolicName(self.name)
-
-        if self._is_empty(self.type):
-            self.MissingRequiredField("type")
-        if not isinstance(self.type, SymbolicName):
-            self.type = SymbolicName(self.type)
-
-        if self.value is not None and not isinstance(self.value, str):
-            self.value = str(self.value)
-
-        if self.offset is not None and not isinstance(self.offset, int):
-            self.offset = int(self.offset)
-
-        if self.since_version is not None and not isinstance(self.since_version, int):
-            self.since_version = int(self.since_version)
-
-        if self.deprecated is not None and not isinstance(self.deprecated, int):
-            self.deprecated = int(self.deprecated)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class SetTypeV1(YAMLRoot):
-    """
-    A multi value choice (encoded as a bitset)
+    An encoding whose value is any combination of up to 64 choices, sent as a bitset.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = FIX_SBE["SetTypeV1"]
-    class_class_curie: ClassVar[str] = "fix_sbe:SetTypeV1"
-    class_name: ClassVar[str] = "SetTypeV1"
-    class_model_uri: ClassVar[URIRef] = FIX_SBE.SetTypeV1
+    class_class_uri: ClassVar[URIRef] = FIX_SBE["SbeSetV1"]
+    class_class_curie: ClassVar[str] = "fix_sbe:SbeSetV1"
+    class_name: ClassVar[str] = "SbeSetV1"
+    class_model_uri: ClassVar[URIRef] = FIX_SBE.SbeSetV1
 
-    choice: Union[Union[dict, Choice], list[Union[dict, Choice]]] = None
-    name: Union[str, SymbolicName] = None
-    encoding_type: Union[str, SymbolicName] = None
-    value: Optional[str] = None
-    offset: Optional[int] = None
-    semantic_type: Optional[str] = None
-    description: Optional[str] = None
-    since_version: Optional[int] = 0
-    deprecated: Optional[int] = None
+    encoding_kind: str = None
+    symbolic_name: Union[str, SbeSymbolicName] = None
+    encoding_type: Union[str, SbeSymbolicName] = None
+    choices: Union[Union[dict, SbeChoice], list[Union[dict, SbeChoice]]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.choice):
-            self.MissingRequiredField("choice")
-        self._normalize_inlined_as_list(slot_name="choice", slot_type=Choice, key_name="name", keyed=False)
-
-        if self._is_empty(self.name):
-            self.MissingRequiredField("name")
-        if not isinstance(self.name, SymbolicName):
-            self.name = SymbolicName(self.name)
-
         if self._is_empty(self.encoding_type):
             self.MissingRequiredField("encoding_type")
-        if not isinstance(self.encoding_type, SymbolicName):
-            self.encoding_type = SymbolicName(self.encoding_type)
+        if not isinstance(self.encoding_type, SbeSymbolicName):
+            self.encoding_type = SbeSymbolicName(self.encoding_type)
 
-        if self.value is not None and not isinstance(self.value, str):
-            self.value = str(self.value)
+        if self._is_empty(self.choices):
+            self.MissingRequiredField("choices")
+        self._normalize_inlined_as_list(slot_name="choices", slot_type=SbeChoice, key_name="symbolic_name", keyed=False)
 
-        if self.offset is not None and not isinstance(self.offset, int):
-            self.offset = int(self.offset)
+        super().__post_init__(**kwargs)
+        if self._is_empty(self.encoding_kind):
+            self.MissingRequiredField("encoding_kind")
+        self.encoding_kind = str(self.class_name)
 
-        if self.semantic_type is not None and not isinstance(self.semantic_type, str):
-            self.semantic_type = str(self.semantic_type)
+
+@dataclass(repr=False)
+class SbeBlockV1Mixin(YAMLRoot):
+    """
+    The body shared by a message and a group entry, which holds its fixed-length fields first, then groups, then
+    variable-length data.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = FIX_SBE["SbeBlockV1Mixin"]
+    class_class_curie: ClassVar[str] = "fix_sbe:SbeBlockV1Mixin"
+    class_name: ClassVar[str] = "SbeBlockV1Mixin"
+    class_model_uri: ClassVar[URIRef] = FIX_SBE.SbeBlockV1Mixin
+
+    symbolic_name: Union[str, SbeSymbolicName] = None
+    sbe_id: int = None
+    block_length: Optional[int] = None
+    semantic_type: Optional[Union[str, SbeToken]] = None
+    description: Optional[str] = None
+    block_fields: Optional[Union[Union[dict, "SbeFieldV1"], list[Union[dict, "SbeFieldV1"]]]] = empty_list()
+    repeating_groups: Optional[Union[Union[dict, "SbeGroupV1"], list[Union[dict, "SbeGroupV1"]]]] = empty_list()
+    var_data_fields: Optional[Union[Union[dict, "SbeFieldV1"], list[Union[dict, "SbeFieldV1"]]]] = empty_list()
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.symbolic_name):
+            self.MissingRequiredField("symbolic_name")
+        if not isinstance(self.symbolic_name, SbeSymbolicName):
+            self.symbolic_name = SbeSymbolicName(self.symbolic_name)
+
+        if self._is_empty(self.sbe_id):
+            self.MissingRequiredField("sbe_id")
+        if not isinstance(self.sbe_id, int):
+            self.sbe_id = int(self.sbe_id)
+
+        if self.block_length is not None and not isinstance(self.block_length, int):
+            self.block_length = int(self.block_length)
+
+        if self.semantic_type is not None and not isinstance(self.semantic_type, SbeToken):
+            self.semantic_type = SbeToken(self.semantic_type)
 
         if self.description is not None and not isinstance(self.description, str):
             self.description = str(self.description)
 
-        if self.since_version is not None and not isinstance(self.since_version, int):
-            self.since_version = int(self.since_version)
+        self._normalize_inlined_as_list(slot_name="block_fields", slot_type=SbeFieldV1, key_name="symbolic_name", keyed=False)
 
-        if self.deprecated is not None and not isinstance(self.deprecated, int):
-            self.deprecated = int(self.deprecated)
+        self._normalize_inlined_as_list(slot_name="repeating_groups", slot_type=SbeGroupV1, key_name="symbolic_name", keyed=False)
+
+        self._normalize_inlined_as_list(slot_name="var_data_fields", slot_type=SbeFieldV1, key_name="symbolic_name", keyed=False)
 
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class FieldTypeV1(YAMLRoot):
+class SbeMessageV1(YAMLRoot):
     """
-    A field of a message of a specified dataType
+    A message template, whose number and block length are sent in each message's header.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = FIX_SBE["FieldTypeV1"]
-    class_class_curie: ClassVar[str] = "fix_sbe:FieldTypeV1"
-    class_name: ClassVar[str] = "FieldTypeV1"
-    class_model_uri: ClassVar[URIRef] = FIX_SBE.FieldTypeV1
+    class_class_uri: ClassVar[URIRef] = FIX_SBE["SbeMessageV1"]
+    class_class_curie: ClassVar[str] = "fix_sbe:SbeMessageV1"
+    class_name: ClassVar[str] = "SbeMessageV1"
+    class_model_uri: ClassVar[URIRef] = FIX_SBE.SbeMessageV1
 
-    name: Union[str, SymbolicName] = None
-    id: int = None
-    type: Union[str, SymbolicName] = None
-    epoch: Optional[str] = "unix"
+    sbe_id: int = None
+    symbolic_name: Union[str, SbeSymbolicName] = None
+    semantic_type: Optional[Union[str, SbeToken]] = None
+    since_version: Optional[int] = 0
+    deprecated_since: Optional[int] = None
+    block_length: Optional[int] = None
+    description: Optional[str] = None
+    block_fields: Optional[Union[Union[dict, "SbeFieldV1"], list[Union[dict, "SbeFieldV1"]]]] = empty_list()
+    repeating_groups: Optional[Union[Union[dict, "SbeGroupV1"], list[Union[dict, "SbeGroupV1"]]]] = empty_list()
+    var_data_fields: Optional[Union[Union[dict, "SbeFieldV1"], list[Union[dict, "SbeFieldV1"]]]] = empty_list()
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.sbe_id):
+            self.MissingRequiredField("sbe_id")
+        if not isinstance(self.sbe_id, int):
+            self.sbe_id = int(self.sbe_id)
+
+        if self._is_empty(self.symbolic_name):
+            self.MissingRequiredField("symbolic_name")
+        if not isinstance(self.symbolic_name, SbeSymbolicName):
+            self.symbolic_name = SbeSymbolicName(self.symbolic_name)
+
+        if self.semantic_type is not None and not isinstance(self.semantic_type, SbeToken):
+            self.semantic_type = SbeToken(self.semantic_type)
+
+        if self.since_version is not None and not isinstance(self.since_version, int):
+            self.since_version = int(self.since_version)
+
+        if self.deprecated_since is not None and not isinstance(self.deprecated_since, int):
+            self.deprecated_since = int(self.deprecated_since)
+
+        if self.block_length is not None and not isinstance(self.block_length, int):
+            self.block_length = int(self.block_length)
+
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
+
+        self._normalize_inlined_as_list(slot_name="block_fields", slot_type=SbeFieldV1, key_name="symbolic_name", keyed=False)
+
+        self._normalize_inlined_as_list(slot_name="repeating_groups", slot_type=SbeGroupV1, key_name="symbolic_name", keyed=False)
+
+        self._normalize_inlined_as_list(slot_name="var_data_fields", slot_type=SbeFieldV1, key_name="symbolic_name", keyed=False)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class SbeGroupV1(YAMLRoot):
+    """
+    A repeating group, whose entries each hold the same fields, and which must have at least one field.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = FIX_SBE["SbeGroupV1"]
+    class_class_curie: ClassVar[str] = "fix_sbe:SbeGroupV1"
+    class_name: ClassVar[str] = "SbeGroupV1"
+    class_model_uri: ClassVar[URIRef] = FIX_SBE.SbeGroupV1
+
+    block_fields: Union[Union[dict, "SbeFieldV1"], list[Union[dict, "SbeFieldV1"]]] = None
+    symbolic_name: Union[str, SbeSymbolicName] = None
+    sbe_id: int = None
+    dimension_type: Optional[Union[str, SbeSymbolicName]] = "groupSizeEncoding"
+    since_version: Optional[int] = 0
+    deprecated_since: Optional[int] = None
+    block_length: Optional[int] = None
+    semantic_type: Optional[Union[str, SbeToken]] = None
+    description: Optional[str] = None
+    repeating_groups: Optional[Union[Union[dict, "SbeGroupV1"], list[Union[dict, "SbeGroupV1"]]]] = empty_list()
+    var_data_fields: Optional[Union[Union[dict, "SbeFieldV1"], list[Union[dict, "SbeFieldV1"]]]] = empty_list()
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.block_fields):
+            self.MissingRequiredField("block_fields")
+        self._normalize_inlined_as_list(slot_name="block_fields", slot_type=SbeFieldV1, key_name="symbolic_name", keyed=False)
+
+        if self._is_empty(self.symbolic_name):
+            self.MissingRequiredField("symbolic_name")
+        if not isinstance(self.symbolic_name, SbeSymbolicName):
+            self.symbolic_name = SbeSymbolicName(self.symbolic_name)
+
+        if self._is_empty(self.sbe_id):
+            self.MissingRequiredField("sbe_id")
+        if not isinstance(self.sbe_id, int):
+            self.sbe_id = int(self.sbe_id)
+
+        if self.dimension_type is not None and not isinstance(self.dimension_type, SbeSymbolicName):
+            self.dimension_type = SbeSymbolicName(self.dimension_type)
+
+        if self.since_version is not None and not isinstance(self.since_version, int):
+            self.since_version = int(self.since_version)
+
+        if self.deprecated_since is not None and not isinstance(self.deprecated_since, int):
+            self.deprecated_since = int(self.deprecated_since)
+
+        if self.block_length is not None and not isinstance(self.block_length, int):
+            self.block_length = int(self.block_length)
+
+        if self.semantic_type is not None and not isinstance(self.semantic_type, SbeToken):
+            self.semantic_type = SbeToken(self.semantic_type)
+
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
+
+        self._normalize_inlined_as_list(slot_name="repeating_groups", slot_type=SbeGroupV1, key_name="symbolic_name", keyed=False)
+
+        self._normalize_inlined_as_list(slot_name="var_data_fields", slot_type=SbeFieldV1, key_name="symbolic_name", keyed=False)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class SbeFieldV1(YAMLRoot):
+    """
+    A message's or group entry's field, which uses an encoding at a place in its block.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = FIX_SBE["SbeFieldV1"]
+    class_class_curie: ClassVar[str] = "fix_sbe:SbeFieldV1"
+    class_name: ClassVar[str] = "SbeFieldV1"
+    class_model_uri: ClassVar[URIRef] = FIX_SBE.SbeFieldV1
+
+    symbolic_name: Union[str, SbeSymbolicName] = None
+    sbe_id: int = None
+    encoding_name: Union[str, SbeSymbolicName] = None
+    offset: Optional[int] = None
+    presence: Optional[Union[str, "SbePresence"]] = 'required'
+    value_ref: Optional[Union[str, SbeQualifiedName]] = None
+    semantic_type: Optional[Union[str, SbeToken]] = None
+    description: Optional[str] = None
+    time_epoch: Optional[str] = "unix"
     time_unit: Optional[str] = "nanosecond"
-    offset: Optional[int] = None
-    presence: Optional[Union[str, "Presence"]] = 'required'
-    value_ref: Optional[Union[str, QualifiedName]] = None
-    semantic_type: Optional[str] = None
-    description: Optional[str] = None
     since_version: Optional[int] = 0
-    deprecated: Optional[int] = None
+    deprecated_since: Optional[int] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.name):
-            self.MissingRequiredField("name")
-        if not isinstance(self.name, SymbolicName):
-            self.name = SymbolicName(self.name)
+        if self._is_empty(self.symbolic_name):
+            self.MissingRequiredField("symbolic_name")
+        if not isinstance(self.symbolic_name, SbeSymbolicName):
+            self.symbolic_name = SbeSymbolicName(self.symbolic_name)
 
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, int):
-            self.id = int(self.id)
+        if self._is_empty(self.sbe_id):
+            self.MissingRequiredField("sbe_id")
+        if not isinstance(self.sbe_id, int):
+            self.sbe_id = int(self.sbe_id)
 
-        if self._is_empty(self.type):
-            self.MissingRequiredField("type")
-        if not isinstance(self.type, SymbolicName):
-            self.type = SymbolicName(self.type)
+        if self._is_empty(self.encoding_name):
+            self.MissingRequiredField("encoding_name")
+        if not isinstance(self.encoding_name, SbeSymbolicName):
+            self.encoding_name = SbeSymbolicName(self.encoding_name)
 
-        if self.epoch is not None and not isinstance(self.epoch, str):
-            self.epoch = str(self.epoch)
+        if self.offset is not None and not isinstance(self.offset, int):
+            self.offset = int(self.offset)
+
+        if self.presence is not None and not isinstance(self.presence, SbePresence):
+            self.presence = SbePresence(self.presence)
+
+        if self.value_ref is not None and not isinstance(self.value_ref, SbeQualifiedName):
+            self.value_ref = SbeQualifiedName(self.value_ref)
+
+        if self.semantic_type is not None and not isinstance(self.semantic_type, SbeToken):
+            self.semantic_type = SbeToken(self.semantic_type)
+
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
+
+        if self.time_epoch is not None and not isinstance(self.time_epoch, str):
+            self.time_epoch = str(self.time_epoch)
 
         if self.time_unit is not None and not isinstance(self.time_unit, str):
             self.time_unit = str(self.time_unit)
 
-        if self.offset is not None and not isinstance(self.offset, int):
-            self.offset = int(self.offset)
-
-        if self.presence is not None and not isinstance(self.presence, Presence):
-            self.presence = Presence(self.presence)
-
-        if self.value_ref is not None and not isinstance(self.value_ref, QualifiedName):
-            self.value_ref = QualifiedName(self.value_ref)
-
-        if self.semantic_type is not None and not isinstance(self.semantic_type, str):
-            self.semantic_type = str(self.semantic_type)
-
-        if self.description is not None and not isinstance(self.description, str):
-            self.description = str(self.description)
-
         if self.since_version is not None and not isinstance(self.since_version, int):
             self.since_version = int(self.since_version)
 
-        if self.deprecated is not None and not isinstance(self.deprecated, int):
-            self.deprecated = int(self.deprecated)
+        if self.deprecated_since is not None and not isinstance(self.deprecated_since, int):
+            self.deprecated_since = int(self.deprecated_since)
 
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class MessageSchemaV1(YAMLRoot):
+class SbeMessageSchemaV2(YAMLRoot):
     """
-    Root of XML document, holds all message templates and their elements
+    One SBE 2.0 message schema, with its encodings and message templates.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = FIX_SBE["MessageSchemaV1"]
-    class_class_curie: ClassVar[str] = "fix_sbe:MessageSchemaV1"
-    class_name: ClassVar[str] = "MessageSchemaV1"
-    class_model_uri: ClassVar[URIRef] = FIX_SBE.MessageSchemaV1
+    class_class_uri: ClassVar[URIRef] = FIX_SBE["SbeMessageSchemaV2"]
+    class_class_curie: ClassVar[str] = "fix_sbe:SbeMessageSchemaV2"
+    class_name: ClassVar[str] = "SbeMessageSchemaV2"
+    class_model_uri: ClassVar[URIRef] = FIX_SBE.SbeMessageSchemaV2
 
-    types: Union[str, list[str]] = None
-    message: Union[Union[dict, "MessageV1"], list[Union[dict, "MessageV1"]]] = None
-    version: int = None
-    package: Optional[str] = None
-    id: Optional[int] = None
+    schema_version: int = None
+    encoding_sets: Union[Union[dict, "SbeEncodingSetV2"], list[Union[dict, "SbeEncodingSetV2"]]] = None
+    message_sets: Union[Union[dict, "SbeMessageSetV2"], list[Union[dict, "SbeMessageSetV2"]]] = None
+    schema_package: Optional[str] = None
+    sbe_id: Optional[int] = None
     semantic_version: Optional[str] = None
     description: Optional[str] = None
-    byte_order: Optional[Union[str, "ByteOrder"]] = 'littleEndian'
-    header_type: Optional[Union[str, SymbolicName]] = "messageHeader"
+    byte_order: Optional[Union[str, "SbeByteOrder"]] = 'littleEndian'
+    header_type: Optional[Union[str, SbeSymbolicName]] = "messageHeader"
 
     def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.types):
-            self.MissingRequiredField("types")
-        if not isinstance(self.types, list):
-            self.types = [self.types] if self.types is not None else []
-        self.types = [v if isinstance(v, str) else str(v) for v in self.types]
+        if self._is_empty(self.schema_version):
+            self.MissingRequiredField("schema_version")
+        if not isinstance(self.schema_version, int):
+            self.schema_version = int(self.schema_version)
 
-        if self._is_empty(self.message):
-            self.MissingRequiredField("message")
-        self._normalize_inlined_as_list(slot_name="message", slot_type=MessageV1, key_name="name", keyed=False)
+        if self._is_empty(self.encoding_sets):
+            self.MissingRequiredField("encoding_sets")
+        if not isinstance(self.encoding_sets, list):
+            self.encoding_sets = [self.encoding_sets] if self.encoding_sets is not None else []
+        self.encoding_sets = [v if isinstance(v, SbeEncodingSetV2) else SbeEncodingSetV2(**as_dict(v)) for v in self.encoding_sets]
 
-        if self._is_empty(self.version):
-            self.MissingRequiredField("version")
-        if not isinstance(self.version, int):
-            self.version = int(self.version)
+        if self._is_empty(self.message_sets):
+            self.MissingRequiredField("message_sets")
+        if not isinstance(self.message_sets, list):
+            self.message_sets = [self.message_sets] if self.message_sets is not None else []
+        self.message_sets = [v if isinstance(v, SbeMessageSetV2) else SbeMessageSetV2(**as_dict(v)) for v in self.message_sets]
 
-        if self.package is not None and not isinstance(self.package, str):
-            self.package = str(self.package)
+        if self.schema_package is not None and not isinstance(self.schema_package, str):
+            self.schema_package = str(self.schema_package)
 
-        if self.id is not None and not isinstance(self.id, int):
-            self.id = int(self.id)
+        if self.sbe_id is not None and not isinstance(self.sbe_id, int):
+            self.sbe_id = int(self.sbe_id)
 
         if self.semantic_version is not None and not isinstance(self.semantic_version, str):
             self.semantic_version = str(self.semantic_version)
@@ -769,57 +850,146 @@ class MessageSchemaV1(YAMLRoot):
         if self.description is not None and not isinstance(self.description, str):
             self.description = str(self.description)
 
-        if self.byte_order is not None and not isinstance(self.byte_order, ByteOrder):
-            self.byte_order = ByteOrder(self.byte_order)
+        if self.byte_order is not None and not isinstance(self.byte_order, SbeByteOrder):
+            self.byte_order = SbeByteOrder(self.byte_order)
 
-        if self.header_type is not None and not isinstance(self.header_type, SymbolicName):
-            self.header_type = SymbolicName(self.header_type)
+        if self.header_type is not None and not isinstance(self.header_type, SbeSymbolicName):
+            self.header_type = SbeSymbolicName(self.header_type)
 
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class MessageV1(BlockTypeV1):
+class SbeEncodingSetV2(YAMLRoot):
     """
-    A message type, also known as a message template
+    A set of encodings, in any order, that may have its own package and may come from another file.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = FIX_SBE["MessageV1"]
-    class_class_curie: ClassVar[str] = "fix_sbe:MessageV1"
-    class_name: ClassVar[str] = "MessageV1"
-    class_model_uri: ClassVar[URIRef] = FIX_SBE.MessageV1
+    class_class_uri: ClassVar[URIRef] = FIX_SBE["SbeEncodingSetV2"]
+    class_class_curie: ClassVar[str] = "fix_sbe:SbeEncodingSetV2"
+    class_name: ClassVar[str] = "SbeEncodingSetV2"
+    class_model_uri: ClassVar[URIRef] = FIX_SBE.SbeEncodingSetV2
 
-    name: Union[str, SymbolicName] = None
-    id: int = None
-
-@dataclass(repr=False)
-class AlignmentAttributesV2(YAMLRoot):
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = FIX_SBE["AlignmentAttributesV2"]
-    class_class_curie: ClassVar[str] = "fix_sbe:AlignmentAttributesV2"
-    class_name: ClassVar[str] = "AlignmentAttributesV2"
-    class_model_uri: ClassVar[URIRef] = FIX_SBE.AlignmentAttributesV2
-
-    alignment: Optional[int] = None
+    encodings: Union[Union[dict, "SbeElementV2"], list[Union[dict, "SbeElementV2"]]] = None
+    description: Optional[str] = None
+    schema_package: Optional[str] = None
+    sbe_xml_base: Optional[str] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
-        if self.alignment is not None and not isinstance(self.alignment, int):
-            self.alignment = int(self.alignment)
+        if self._is_empty(self.encodings):
+            self.MissingRequiredField("encodings")
+        self._normalize_inlined_as_list(slot_name="encodings", slot_type=SbeElementV2, key_name="encoding_kind", keyed=False)
+
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
+
+        if self.schema_package is not None and not isinstance(self.schema_package, str):
+            self.schema_package = str(self.schema_package)
+
+        if self.sbe_xml_base is not None and not isinstance(self.sbe_xml_base, str):
+            self.sbe_xml_base = str(self.sbe_xml_base)
 
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class OffsetAttributesV2(YAMLRoot):
+class SbeMessageSetV2(YAMLRoot):
+    """
+    Message templates held together, which may have their own package and may come from another file.
+    """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = FIX_SBE["OffsetAttributesV2"]
-    class_class_curie: ClassVar[str] = "fix_sbe:OffsetAttributesV2"
-    class_name: ClassVar[str] = "OffsetAttributesV2"
-    class_model_uri: ClassVar[URIRef] = FIX_SBE.OffsetAttributesV2
+    class_class_uri: ClassVar[URIRef] = FIX_SBE["SbeMessageSetV2"]
+    class_class_curie: ClassVar[str] = "fix_sbe:SbeMessageSetV2"
+    class_name: ClassVar[str] = "SbeMessageSetV2"
+    class_model_uri: ClassVar[URIRef] = FIX_SBE.SbeMessageSetV2
 
+    messages: Union[Union[dict, "SbeMessageV2"], list[Union[dict, "SbeMessageV2"]]] = None
+    description: Optional[str] = None
+    schema_package: Optional[str] = None
+    sbe_xml_base: Optional[str] = None
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.messages):
+            self.MissingRequiredField("messages")
+        self._normalize_inlined_as_list(slot_name="messages", slot_type=SbeMessageV2, key_name="sbe_id", keyed=False)
+
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
+
+        if self.schema_package is not None and not isinstance(self.schema_package, str):
+            self.schema_package = str(self.schema_package)
+
+        if self.sbe_xml_base is not None and not isinstance(self.sbe_xml_base, str):
+            self.sbe_xml_base = str(self.sbe_xml_base)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class SbeElementV2(YAMLRoot):
+    """
+    Anything that sets of encodings or composites hold, and the name and text they all have.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = FIX_SBE["SbeElementV2"]
+    class_class_curie: ClassVar[str] = "fix_sbe:SbeElementV2"
+    class_name: ClassVar[str] = "SbeElementV2"
+    class_model_uri: ClassVar[URIRef] = FIX_SBE.SbeElementV2
+
+    encoding_kind: str = None
+    symbolic_name: Union[str, SbeSymbolicName] = None
+    description: Optional[str] = None
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.encoding_kind):
+            self.MissingRequiredField("encoding_kind")
+        self.encoding_kind = str(self.class_name)
+
+        if self._is_empty(self.symbolic_name):
+            self.MissingRequiredField("symbolic_name")
+        if not isinstance(self.symbolic_name, SbeSymbolicName):
+            self.symbolic_name = SbeSymbolicName(self.symbolic_name)
+
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
+
+        super().__post_init__(**kwargs)
+
+
+    def __new__(cls, *args, **kwargs):
+
+        type_designator = "encoding_kind"
+        if not type_designator in kwargs:
+            return super().__new__(cls,*args,**kwargs)
+        else:
+            type_designator_value = kwargs[type_designator]
+            target_cls = cls._class_for("class_name", type_designator_value)
+
+
+            if target_cls is None:
+                raise ValueError(f"Wrong type designator value: class {cls.__name__} "
+                                 f"has no subclass with ['class_name']='{kwargs[type_designator]}'")
+            return super().__new__(target_cls,*args,**kwargs)
+
+
+
+@dataclass(repr=False)
+class SbeMemberV2(SbeElementV2):
+    """
+    Anything a composite may hold in the order it is sent.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = FIX_SBE["SbeMemberV2"]
+    class_class_curie: ClassVar[str] = "fix_sbe:SbeMemberV2"
+    class_name: ClassVar[str] = "SbeMemberV2"
+    class_model_uri: ClassVar[URIRef] = FIX_SBE.SbeMemberV2
+
+    encoding_kind: str = None
+    symbolic_name: Union[str, SbeSymbolicName] = None
     offset: Optional[int] = None
     alignment: Optional[int] = None
 
@@ -831,26 +1001,100 @@ class OffsetAttributesV2(YAMLRoot):
             self.alignment = int(self.alignment)
 
         super().__post_init__(**kwargs)
+        if self._is_empty(self.encoding_kind):
+            self.MissingRequiredField("encoding_kind")
+        self.encoding_kind = str(self.class_name)
 
 
 @dataclass(repr=False)
-class PresenceAttributesV2(YAMLRoot):
+class SbeSimpleTypeV2(SbeElementV2):
+    """
+    A simple encoding that stands alone in a set, backed by one primitive value, or several in an array.
+    """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = FIX_SBE["PresenceAttributesV2"]
-    class_class_curie: ClassVar[str] = "fix_sbe:PresenceAttributesV2"
-    class_name: ClassVar[str] = "PresenceAttributesV2"
-    class_model_uri: ClassVar[URIRef] = FIX_SBE.PresenceAttributesV2
+    class_class_uri: ClassVar[URIRef] = FIX_SBE["SbeSimpleTypeV2"]
+    class_class_curie: ClassVar[str] = "fix_sbe:SbeSimpleTypeV2"
+    class_name: ClassVar[str] = "SbeSimpleTypeV2"
+    class_model_uri: ClassVar[URIRef] = FIX_SBE.SbeSimpleTypeV2
 
-    presence: Optional[Union[str, "Presence"]] = 'required'
+    encoding_kind: str = None
+    symbolic_name: Union[str, SbeSymbolicName] = None
+    primitive_type: Union[str, "SbePrimitiveType"] = None
+    element_value: Optional[Union[str, SbeToken]] = None
+    array_length: Optional[int] = 1
+    character_encoding: Optional[str] = None
+    since_version: Optional[int] = 0
+    deprecated_since: Optional[int] = None
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.primitive_type):
+            self.MissingRequiredField("primitive_type")
+        if not isinstance(self.primitive_type, SbePrimitiveType):
+            self.primitive_type = SbePrimitiveType(self.primitive_type)
+
+        if self.element_value is not None and not isinstance(self.element_value, SbeToken):
+            self.element_value = SbeToken(self.element_value)
+
+        if self.array_length is not None and not isinstance(self.array_length, int):
+            self.array_length = int(self.array_length)
+
+        if self.character_encoding is not None and not isinstance(self.character_encoding, str):
+            self.character_encoding = str(self.character_encoding)
+
+        if self.since_version is not None and not isinstance(self.since_version, int):
+            self.since_version = int(self.since_version)
+
+        if self.deprecated_since is not None and not isinstance(self.deprecated_since, int):
+            self.deprecated_since = int(self.deprecated_since)
+
+        super().__post_init__(**kwargs)
+        if self._is_empty(self.encoding_kind):
+            self.MissingRequiredField("encoding_kind")
+        self.encoding_kind = str(self.class_name)
+
+
+@dataclass(repr=False)
+class SbeMemberTypeV2(SbeMemberV2):
+    """
+    A simple encoding inside a composite, which may say it is optional or constant.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = FIX_SBE["SbeMemberTypeV2"]
+    class_class_curie: ClassVar[str] = "fix_sbe:SbeMemberTypeV2"
+    class_name: ClassVar[str] = "SbeMemberTypeV2"
+    class_model_uri: ClassVar[URIRef] = FIX_SBE.SbeMemberTypeV2
+
+    encoding_kind: str = None
+    symbolic_name: Union[str, SbeSymbolicName] = None
+    primitive_type: Union[str, "SbePrimitiveType"] = None
+    element_value: Optional[Union[str, SbeToken]] = None
+    array_length: Optional[int] = 1
+    character_encoding: Optional[str] = None
+    presence: Optional[Union[str, "SbePresence"]] = 'required'
     null_value: Optional[str] = None
     min_value: Optional[str] = None
     max_value: Optional[str] = None
-    value_ref: Optional[Union[str, QualifiedName]] = None
+    value_ref: Optional[Union[str, SbeQualifiedName]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
-        if self.presence is not None and not isinstance(self.presence, Presence):
-            self.presence = Presence(self.presence)
+        if self._is_empty(self.primitive_type):
+            self.MissingRequiredField("primitive_type")
+        if not isinstance(self.primitive_type, SbePrimitiveType):
+            self.primitive_type = SbePrimitiveType(self.primitive_type)
+
+        if self.element_value is not None and not isinstance(self.element_value, SbeToken):
+            self.element_value = SbeToken(self.element_value)
+
+        if self.array_length is not None and not isinstance(self.array_length, int):
+            self.array_length = int(self.array_length)
+
+        if self.character_encoding is not None and not isinstance(self.character_encoding, str):
+            self.character_encoding = str(self.character_encoding)
+
+        if self.presence is not None and not isinstance(self.presence, SbePresence):
+            self.presence = SbePresence(self.presence)
 
         if self.null_value is not None and not isinstance(self.null_value, str):
             self.null_value = str(self.null_value)
@@ -861,80 +1105,193 @@ class PresenceAttributesV2(YAMLRoot):
         if self.max_value is not None and not isinstance(self.max_value, str):
             self.max_value = str(self.max_value)
 
-        if self.value_ref is not None and not isinstance(self.value_ref, QualifiedName):
-            self.value_ref = QualifiedName(self.value_ref)
+        if self.value_ref is not None and not isinstance(self.value_ref, SbeQualifiedName):
+            self.value_ref = SbeQualifiedName(self.value_ref)
 
         super().__post_init__(**kwargs)
+        if self._is_empty(self.encoding_kind):
+            self.MissingRequiredField("encoding_kind")
+        self.encoding_kind = str(self.class_name)
 
 
 @dataclass(repr=False)
-class PrimitiveTypeAttributesV2(YAMLRoot):
+class SbeRefV2(SbeMemberV2):
+    """
+    A composite's member that reuses an encoding defined elsewhere in the schema.
+    """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = FIX_SBE["PrimitiveTypeAttributesV2"]
-    class_class_curie: ClassVar[str] = "fix_sbe:PrimitiveTypeAttributesV2"
-    class_name: ClassVar[str] = "PrimitiveTypeAttributesV2"
-    class_model_uri: ClassVar[URIRef] = FIX_SBE.PrimitiveTypeAttributesV2
+    class_class_uri: ClassVar[URIRef] = FIX_SBE["SbeRefV2"]
+    class_class_curie: ClassVar[str] = "fix_sbe:SbeRefV2"
+    class_name: ClassVar[str] = "SbeRefV2"
+    class_model_uri: ClassVar[URIRef] = FIX_SBE.SbeRefV2
 
-    primitive_type: Union[str, "PrimitiveTypeV2"] = None
-    length: Optional[int] = 1
-    character_encoding: Optional[str] = None
+    encoding_kind: str = None
+    symbolic_name: Union[str, SbeSymbolicName] = None
+    encoding_name: Union[str, SbeSymbolicName] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.primitive_type):
-            self.MissingRequiredField("primitive_type")
-        if not isinstance(self.primitive_type, PrimitiveTypeV2):
-            self.primitive_type = PrimitiveTypeV2(self.primitive_type)
-
-        if self.length is not None and not isinstance(self.length, int):
-            self.length = int(self.length)
-
-        if self.character_encoding is not None and not isinstance(self.character_encoding, str):
-            self.character_encoding = str(self.character_encoding)
+        if self._is_empty(self.encoding_name):
+            self.MissingRequiredField("encoding_name")
+        if not isinstance(self.encoding_name, SbeSymbolicName):
+            self.encoding_name = SbeSymbolicName(self.encoding_name)
 
         super().__post_init__(**kwargs)
+        if self._is_empty(self.encoding_kind):
+            self.MissingRequiredField("encoding_kind")
+        self.encoding_kind = str(self.class_name)
 
 
 @dataclass(repr=False)
-class BlockTypeV2(YAMLRoot):
+class SbeCompositeV2(SbeMemberV2):
     """
-    Base type of message and repeating group entry
+    An encoding built from members sent one after another, such as a decimal's mantissa and exponent.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = FIX_SBE["BlockTypeV2"]
-    class_class_curie: ClassVar[str] = "fix_sbe:BlockTypeV2"
-    class_name: ClassVar[str] = "BlockTypeV2"
-    class_model_uri: ClassVar[URIRef] = FIX_SBE.BlockTypeV2
+    class_class_uri: ClassVar[URIRef] = FIX_SBE["SbeCompositeV2"]
+    class_class_curie: ClassVar[str] = "fix_sbe:SbeCompositeV2"
+    class_name: ClassVar[str] = "SbeCompositeV2"
+    class_model_uri: ClassVar[URIRef] = FIX_SBE.SbeCompositeV2
 
-    name: Union[str, SymbolicName] = None
-    id: int = None
-    field: Optional[Union[Union[dict, "FieldTypeV2"], list[Union[dict, "FieldTypeV2"]]]] = empty_list()
-    group: Optional[Union[Union[dict, "GroupTypeV2"], list[Union[dict, "GroupTypeV2"]]]] = empty_list()
-    data: Optional[Union[Union[dict, "FieldTypeV2"], list[Union[dict, "FieldTypeV2"]]]] = empty_list()
+    encoding_kind: str = None
+    symbolic_name: Union[str, SbeSymbolicName] = None
+    composite_members: Union[Union[dict, SbeMemberV2], list[Union[dict, SbeMemberV2]]] = None
+    since_version: Optional[int] = 0
+    deprecated_since: Optional[int] = None
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.composite_members):
+            self.MissingRequiredField("composite_members")
+        self._normalize_inlined_as_list(slot_name="composite_members", slot_type=SbeMemberV2, key_name="encoding_kind", keyed=False)
+
+        if self.since_version is not None and not isinstance(self.since_version, int):
+            self.since_version = int(self.since_version)
+
+        if self.deprecated_since is not None and not isinstance(self.deprecated_since, int):
+            self.deprecated_since = int(self.deprecated_since)
+
+        super().__post_init__(**kwargs)
+        if self._is_empty(self.encoding_kind):
+            self.MissingRequiredField("encoding_kind")
+        self.encoding_kind = str(self.class_name)
+
+
+@dataclass(repr=False)
+class SbeEnumV2(SbeMemberV2):
+    """
+    An encoding whose value is one of a listed set of valid values.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = FIX_SBE["SbeEnumV2"]
+    class_class_curie: ClassVar[str] = "fix_sbe:SbeEnumV2"
+    class_name: ClassVar[str] = "SbeEnumV2"
+    class_model_uri: ClassVar[URIRef] = FIX_SBE.SbeEnumV2
+
+    encoding_kind: str = None
+    symbolic_name: Union[str, SbeSymbolicName] = None
+    encoding_type: Union[str, SbeSymbolicName] = None
+    valid_values: Union[Union[dict, SbeValidValue], list[Union[dict, SbeValidValue]]] = None
+    since_version: Optional[int] = 0
+    deprecated_since: Optional[int] = None
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.encoding_type):
+            self.MissingRequiredField("encoding_type")
+        if not isinstance(self.encoding_type, SbeSymbolicName):
+            self.encoding_type = SbeSymbolicName(self.encoding_type)
+
+        if self._is_empty(self.valid_values):
+            self.MissingRequiredField("valid_values")
+        self._normalize_inlined_as_list(slot_name="valid_values", slot_type=SbeValidValue, key_name="symbolic_name", keyed=False)
+
+        if self.since_version is not None and not isinstance(self.since_version, int):
+            self.since_version = int(self.since_version)
+
+        if self.deprecated_since is not None and not isinstance(self.deprecated_since, int):
+            self.deprecated_since = int(self.deprecated_since)
+
+        super().__post_init__(**kwargs)
+        if self._is_empty(self.encoding_kind):
+            self.MissingRequiredField("encoding_kind")
+        self.encoding_kind = str(self.class_name)
+
+
+@dataclass(repr=False)
+class SbeSetV2(SbeMemberV2):
+    """
+    An encoding whose value is any combination of up to 64 choices, sent as a bitset.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = FIX_SBE["SbeSetV2"]
+    class_class_curie: ClassVar[str] = "fix_sbe:SbeSetV2"
+    class_name: ClassVar[str] = "SbeSetV2"
+    class_model_uri: ClassVar[URIRef] = FIX_SBE.SbeSetV2
+
+    encoding_kind: str = None
+    symbolic_name: Union[str, SbeSymbolicName] = None
+    encoding_type: Union[str, SbeSymbolicName] = None
+    choices: Union[Union[dict, SbeChoice], list[Union[dict, SbeChoice]]] = None
+    since_version: Optional[int] = 0
+    deprecated_since: Optional[int] = None
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.encoding_type):
+            self.MissingRequiredField("encoding_type")
+        if not isinstance(self.encoding_type, SbeSymbolicName):
+            self.encoding_type = SbeSymbolicName(self.encoding_type)
+
+        if self._is_empty(self.choices):
+            self.MissingRequiredField("choices")
+        self._normalize_inlined_as_list(slot_name="choices", slot_type=SbeChoice, key_name="symbolic_name", keyed=False)
+
+        if self.since_version is not None and not isinstance(self.since_version, int):
+            self.since_version = int(self.since_version)
+
+        if self.deprecated_since is not None and not isinstance(self.deprecated_since, int):
+            self.deprecated_since = int(self.deprecated_since)
+
+        super().__post_init__(**kwargs)
+        if self._is_empty(self.encoding_kind):
+            self.MissingRequiredField("encoding_kind")
+        self.encoding_kind = str(self.class_name)
+
+
+@dataclass(repr=False)
+class SbeBlockV2Mixin(YAMLRoot):
+    """
+    The body shared by a message and a group entry, which holds its fixed-length fields first, then groups, then
+    variable-length data.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = FIX_SBE["SbeBlockV2Mixin"]
+    class_class_curie: ClassVar[str] = "fix_sbe:SbeBlockV2Mixin"
+    class_name: ClassVar[str] = "SbeBlockV2Mixin"
+    class_model_uri: ClassVar[URIRef] = FIX_SBE.SbeBlockV2Mixin
+
+    symbolic_name: Union[str, SbeSymbolicName] = None
+    sbe_id: int = None
     block_length: Optional[int] = None
     alignment: Optional[int] = None
-    semantic_type: Optional[str] = None
+    semantic_type: Optional[Union[str, SbeToken]] = None
     description: Optional[str] = None
-    since_version: Optional[int] = 0
-    deprecated: Optional[int] = None
+    block_fields: Optional[Union[Union[dict, "SbeFieldV2"], list[Union[dict, "SbeFieldV2"]]]] = empty_list()
+    repeating_groups: Optional[Union[Union[dict, "SbeGroupV2"], list[Union[dict, "SbeGroupV2"]]]] = empty_list()
+    var_data_fields: Optional[Union[Union[dict, "SbeFieldV2"], list[Union[dict, "SbeFieldV2"]]]] = empty_list()
 
     def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.name):
-            self.MissingRequiredField("name")
-        if not isinstance(self.name, SymbolicName):
-            self.name = SymbolicName(self.name)
+        if self._is_empty(self.symbolic_name):
+            self.MissingRequiredField("symbolic_name")
+        if not isinstance(self.symbolic_name, SbeSymbolicName):
+            self.symbolic_name = SbeSymbolicName(self.symbolic_name)
 
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, int):
-            self.id = int(self.id)
-
-        self._normalize_inlined_as_list(slot_name="field", slot_type=FieldTypeV2, key_name="name", keyed=False)
-
-        self._normalize_inlined_as_list(slot_name="group", slot_type=GroupTypeV2, key_name="name", keyed=False)
-
-        self._normalize_inlined_as_list(slot_name="data", slot_type=FieldTypeV2, key_name="name", keyed=False)
+        if self._is_empty(self.sbe_id):
+            self.MissingRequiredField("sbe_id")
+        if not isinstance(self.sbe_id, int):
+            self.sbe_id = int(self.sbe_id)
 
         if self.block_length is not None and not isinstance(self.block_length, int):
             self.block_length = int(self.block_length)
@@ -942,145 +1299,197 @@ class BlockTypeV2(YAMLRoot):
         if self.alignment is not None and not isinstance(self.alignment, int):
             self.alignment = int(self.alignment)
 
-        if self.semantic_type is not None and not isinstance(self.semantic_type, str):
-            self.semantic_type = str(self.semantic_type)
+        if self.semantic_type is not None and not isinstance(self.semantic_type, SbeToken):
+            self.semantic_type = SbeToken(self.semantic_type)
 
         if self.description is not None and not isinstance(self.description, str):
             self.description = str(self.description)
 
-        if self.since_version is not None and not isinstance(self.since_version, int):
-            self.since_version = int(self.since_version)
+        self._normalize_inlined_as_list(slot_name="block_fields", slot_type=SbeFieldV2, key_name="symbolic_name", keyed=False)
 
-        if self.deprecated is not None and not isinstance(self.deprecated, int):
-            self.deprecated = int(self.deprecated)
+        self._normalize_inlined_as_list(slot_name="repeating_groups", slot_type=SbeGroupV2, key_name="symbolic_name", keyed=False)
 
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class GroupTypeV2(BlockTypeV2):
-    """
-    A repeating group contains an array of entries
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = FIX_SBE["GroupTypeV2"]
-    class_class_curie: ClassVar[str] = "fix_sbe:GroupTypeV2"
-    class_name: ClassVar[str] = "GroupTypeV2"
-    class_model_uri: ClassVar[URIRef] = FIX_SBE.GroupTypeV2
-
-    name: Union[str, SymbolicName] = None
-    id: int = None
-    dimension_type: Optional[Union[str, SymbolicName]] = "groupSizeEncoding"
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self.dimension_type is not None and not isinstance(self.dimension_type, SymbolicName):
-            self.dimension_type = SymbolicName(self.dimension_type)
+        self._normalize_inlined_as_list(slot_name="var_data_fields", slot_type=SbeFieldV2, key_name="symbolic_name", keyed=False)
 
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class SimpleDataTypeV2(YAMLRoot):
+class SbeMessageV2(YAMLRoot):
     """
-    Simple wire encoding consisting of a primitive type or array of primitives
+    A message template, whose number and block length are sent in each message's header.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = FIX_SBE["SimpleDataTypeV2"]
-    class_class_curie: ClassVar[str] = "fix_sbe:SimpleDataTypeV2"
-    class_name: ClassVar[str] = "SimpleDataTypeV2"
-    class_model_uri: ClassVar[URIRef] = FIX_SBE.SimpleDataTypeV2
+    class_class_uri: ClassVar[URIRef] = FIX_SBE["SbeMessageV2"]
+    class_class_curie: ClassVar[str] = "fix_sbe:SbeMessageV2"
+    class_name: ClassVar[str] = "SbeMessageV2"
+    class_model_uri: ClassVar[URIRef] = FIX_SBE.SbeMessageV2
 
-    name: Union[str, SymbolicName] = None
-    primitive_type: Union[str, "PrimitiveTypeV2"] = None
-    description: Optional[str] = None
-    value: Optional[str] = None
-    length: Optional[int] = 1
-    character_encoding: Optional[str] = None
+    sbe_id: int = None
+    symbolic_name: Union[str, SbeSymbolicName] = None
+    semantic_type: Optional[Union[str, SbeToken]] = None
     since_version: Optional[int] = 0
-    deprecated: Optional[int] = None
+    deprecated_since: Optional[int] = None
+    block_length: Optional[int] = None
+    alignment: Optional[int] = None
+    description: Optional[str] = None
+    block_fields: Optional[Union[Union[dict, "SbeFieldV2"], list[Union[dict, "SbeFieldV2"]]]] = empty_list()
+    repeating_groups: Optional[Union[Union[dict, "SbeGroupV2"], list[Union[dict, "SbeGroupV2"]]]] = empty_list()
+    var_data_fields: Optional[Union[Union[dict, "SbeFieldV2"], list[Union[dict, "SbeFieldV2"]]]] = empty_list()
 
     def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.name):
-            self.MissingRequiredField("name")
-        if not isinstance(self.name, SymbolicName):
-            self.name = SymbolicName(self.name)
+        if self._is_empty(self.sbe_id):
+            self.MissingRequiredField("sbe_id")
+        if not isinstance(self.sbe_id, int):
+            self.sbe_id = int(self.sbe_id)
 
-        if self._is_empty(self.primitive_type):
-            self.MissingRequiredField("primitive_type")
-        if not isinstance(self.primitive_type, PrimitiveTypeV2):
-            self.primitive_type = PrimitiveTypeV2(self.primitive_type)
+        if self._is_empty(self.symbolic_name):
+            self.MissingRequiredField("symbolic_name")
+        if not isinstance(self.symbolic_name, SbeSymbolicName):
+            self.symbolic_name = SbeSymbolicName(self.symbolic_name)
 
-        if self.description is not None and not isinstance(self.description, str):
-            self.description = str(self.description)
-
-        if self.value is not None and not isinstance(self.value, str):
-            self.value = str(self.value)
-
-        if self.length is not None and not isinstance(self.length, int):
-            self.length = int(self.length)
-
-        if self.character_encoding is not None and not isinstance(self.character_encoding, str):
-            self.character_encoding = str(self.character_encoding)
+        if self.semantic_type is not None and not isinstance(self.semantic_type, SbeToken):
+            self.semantic_type = SbeToken(self.semantic_type)
 
         if self.since_version is not None and not isinstance(self.since_version, int):
             self.since_version = int(self.since_version)
 
-        if self.deprecated is not None and not isinstance(self.deprecated, int):
-            self.deprecated = int(self.deprecated)
+        if self.deprecated_since is not None and not isinstance(self.deprecated_since, int):
+            self.deprecated_since = int(self.deprecated_since)
+
+        if self.block_length is not None and not isinstance(self.block_length, int):
+            self.block_length = int(self.block_length)
+
+        if self.alignment is not None and not isinstance(self.alignment, int):
+            self.alignment = int(self.alignment)
+
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
+
+        self._normalize_inlined_as_list(slot_name="block_fields", slot_type=SbeFieldV2, key_name="symbolic_name", keyed=False)
+
+        self._normalize_inlined_as_list(slot_name="repeating_groups", slot_type=SbeGroupV2, key_name="symbolic_name", keyed=False)
+
+        self._normalize_inlined_as_list(slot_name="var_data_fields", slot_type=SbeFieldV2, key_name="symbolic_name", keyed=False)
 
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class MemberDataTypeV2(YAMLRoot):
+class SbeGroupV2(YAMLRoot):
     """
-    A simple type used as a member of a composite type
+    A repeating group, whose entries each hold the same fields, and which must have at least one field.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = FIX_SBE["MemberDataTypeV2"]
-    class_class_curie: ClassVar[str] = "fix_sbe:MemberDataTypeV2"
-    class_name: ClassVar[str] = "MemberDataTypeV2"
-    class_model_uri: ClassVar[URIRef] = FIX_SBE.MemberDataTypeV2
+    class_class_uri: ClassVar[URIRef] = FIX_SBE["SbeGroupV2"]
+    class_class_curie: ClassVar[str] = "fix_sbe:SbeGroupV2"
+    class_name: ClassVar[str] = "SbeGroupV2"
+    class_model_uri: ClassVar[URIRef] = FIX_SBE.SbeGroupV2
 
-    name: Union[str, SymbolicName] = None
-    primitive_type: Union[str, "PrimitiveTypeV2"] = None
+    block_fields: Union[Union[dict, "SbeFieldV2"], list[Union[dict, "SbeFieldV2"]]] = None
+    symbolic_name: Union[str, SbeSymbolicName] = None
+    sbe_id: int = None
+    dimension_type: Optional[Union[str, SbeSymbolicName]] = "groupSizeEncoding"
+    since_version: Optional[int] = 0
+    deprecated_since: Optional[int] = None
+    block_length: Optional[int] = None
+    alignment: Optional[int] = None
+    semantic_type: Optional[Union[str, SbeToken]] = None
     description: Optional[str] = None
-    value: Optional[str] = None
-    length: Optional[int] = 1
-    character_encoding: Optional[str] = None
+    repeating_groups: Optional[Union[Union[dict, "SbeGroupV2"], list[Union[dict, "SbeGroupV2"]]]] = empty_list()
+    var_data_fields: Optional[Union[Union[dict, "SbeFieldV2"], list[Union[dict, "SbeFieldV2"]]]] = empty_list()
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.block_fields):
+            self.MissingRequiredField("block_fields")
+        self._normalize_inlined_as_list(slot_name="block_fields", slot_type=SbeFieldV2, key_name="symbolic_name", keyed=False)
+
+        if self._is_empty(self.symbolic_name):
+            self.MissingRequiredField("symbolic_name")
+        if not isinstance(self.symbolic_name, SbeSymbolicName):
+            self.symbolic_name = SbeSymbolicName(self.symbolic_name)
+
+        if self._is_empty(self.sbe_id):
+            self.MissingRequiredField("sbe_id")
+        if not isinstance(self.sbe_id, int):
+            self.sbe_id = int(self.sbe_id)
+
+        if self.dimension_type is not None and not isinstance(self.dimension_type, SbeSymbolicName):
+            self.dimension_type = SbeSymbolicName(self.dimension_type)
+
+        if self.since_version is not None and not isinstance(self.since_version, int):
+            self.since_version = int(self.since_version)
+
+        if self.deprecated_since is not None and not isinstance(self.deprecated_since, int):
+            self.deprecated_since = int(self.deprecated_since)
+
+        if self.block_length is not None and not isinstance(self.block_length, int):
+            self.block_length = int(self.block_length)
+
+        if self.alignment is not None and not isinstance(self.alignment, int):
+            self.alignment = int(self.alignment)
+
+        if self.semantic_type is not None and not isinstance(self.semantic_type, SbeToken):
+            self.semantic_type = SbeToken(self.semantic_type)
+
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
+
+        self._normalize_inlined_as_list(slot_name="repeating_groups", slot_type=SbeGroupV2, key_name="symbolic_name", keyed=False)
+
+        self._normalize_inlined_as_list(slot_name="var_data_fields", slot_type=SbeFieldV2, key_name="symbolic_name", keyed=False)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class SbeFieldV2(YAMLRoot):
+    """
+    A message's or group entry's field, which uses an encoding at a place in its block and may state a constant.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = FIX_SBE["SbeFieldV2"]
+    class_class_curie: ClassVar[str] = "fix_sbe:SbeFieldV2"
+    class_name: ClassVar[str] = "SbeFieldV2"
+    class_model_uri: ClassVar[URIRef] = FIX_SBE.SbeFieldV2
+
+    symbolic_name: Union[str, SbeSymbolicName] = None
+    sbe_id: int = None
+    encoding_name: Union[str, SbeSymbolicName] = None
+    element_value: Optional[Union[str, SbeToken]] = None
     offset: Optional[int] = None
     alignment: Optional[int] = None
-    presence: Optional[Union[str, "Presence"]] = 'required'
+    presence: Optional[Union[str, "SbePresence"]] = 'required'
     null_value: Optional[str] = None
     min_value: Optional[str] = None
     max_value: Optional[str] = None
-    value_ref: Optional[Union[str, QualifiedName]] = None
+    value_ref: Optional[Union[str, SbeQualifiedName]] = None
+    semantic_type: Optional[Union[str, SbeToken]] = None
+    description: Optional[str] = None
+    since_version: Optional[int] = 0
+    deprecated_since: Optional[int] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.name):
-            self.MissingRequiredField("name")
-        if not isinstance(self.name, SymbolicName):
-            self.name = SymbolicName(self.name)
+        if self._is_empty(self.symbolic_name):
+            self.MissingRequiredField("symbolic_name")
+        if not isinstance(self.symbolic_name, SbeSymbolicName):
+            self.symbolic_name = SbeSymbolicName(self.symbolic_name)
 
-        if self._is_empty(self.primitive_type):
-            self.MissingRequiredField("primitive_type")
-        if not isinstance(self.primitive_type, PrimitiveTypeV2):
-            self.primitive_type = PrimitiveTypeV2(self.primitive_type)
+        if self._is_empty(self.sbe_id):
+            self.MissingRequiredField("sbe_id")
+        if not isinstance(self.sbe_id, int):
+            self.sbe_id = int(self.sbe_id)
 
-        if self.description is not None and not isinstance(self.description, str):
-            self.description = str(self.description)
+        if self._is_empty(self.encoding_name):
+            self.MissingRequiredField("encoding_name")
+        if not isinstance(self.encoding_name, SbeSymbolicName):
+            self.encoding_name = SbeSymbolicName(self.encoding_name)
 
-        if self.value is not None and not isinstance(self.value, str):
-            self.value = str(self.value)
-
-        if self.length is not None and not isinstance(self.length, int):
-            self.length = int(self.length)
-
-        if self.character_encoding is not None and not isinstance(self.character_encoding, str):
-            self.character_encoding = str(self.character_encoding)
+        if self.element_value is not None and not isinstance(self.element_value, SbeToken):
+            self.element_value = SbeToken(self.element_value)
 
         if self.offset is not None and not isinstance(self.offset, int):
             self.offset = int(self.offset)
@@ -1088,8 +1497,8 @@ class MemberDataTypeV2(YAMLRoot):
         if self.alignment is not None and not isinstance(self.alignment, int):
             self.alignment = int(self.alignment)
 
-        if self.presence is not None and not isinstance(self.presence, Presence):
-            self.presence = Presence(self.presence)
+        if self.presence is not None and not isinstance(self.presence, SbePresence):
+            self.presence = SbePresence(self.presence)
 
         if self.null_value is not None and not isinstance(self.null_value, str):
             self.null_value = str(self.null_value)
@@ -1100,305 +1509,11 @@ class MemberDataTypeV2(YAMLRoot):
         if self.max_value is not None and not isinstance(self.max_value, str):
             self.max_value = str(self.max_value)
 
-        if self.value_ref is not None and not isinstance(self.value_ref, QualifiedName):
-            self.value_ref = QualifiedName(self.value_ref)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class CompositeDataTypeV2(YAMLRoot):
-    """
-    A wire encoding composed of multiple parts
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = FIX_SBE["CompositeDataTypeV2"]
-    class_class_curie: ClassVar[str] = "fix_sbe:CompositeDataTypeV2"
-    class_name: ClassVar[str] = "CompositeDataTypeV2"
-    class_model_uri: ClassVar[URIRef] = FIX_SBE.CompositeDataTypeV2
-
-    name: Union[str, SymbolicName] = None
-    type: Optional[Union[Union[dict, MemberDataTypeV2], list[Union[dict, MemberDataTypeV2]]]] = empty_list()
-    enum: Optional[Union[Union[dict, "EnumTypeV2"], list[Union[dict, "EnumTypeV2"]]]] = empty_list()
-    set: Optional[Union[Union[dict, "SetTypeV2"], list[Union[dict, "SetTypeV2"]]]] = empty_list()
-    composite: Optional[Union[Union[dict, "CompositeDataTypeV2"], list[Union[dict, "CompositeDataTypeV2"]]]] = empty_list()
-    ref: Optional[Union[Union[dict, "RefTypeV2"], list[Union[dict, "RefTypeV2"]]]] = empty_list()
-    description: Optional[str] = None
-    value: Optional[str] = None
-    offset: Optional[int] = None
-    alignment: Optional[int] = None
-    since_version: Optional[int] = 0
-    deprecated: Optional[int] = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.name):
-            self.MissingRequiredField("name")
-        if not isinstance(self.name, SymbolicName):
-            self.name = SymbolicName(self.name)
-
-        self._normalize_inlined_as_list(slot_name="type", slot_type=MemberDataTypeV2, key_name="name", keyed=False)
-
-        self._normalize_inlined_as_list(slot_name="enum", slot_type=EnumTypeV2, key_name="name", keyed=False)
-
-        self._normalize_inlined_as_list(slot_name="set", slot_type=SetTypeV2, key_name="name", keyed=False)
-
-        self._normalize_inlined_as_list(slot_name="composite", slot_type=CompositeDataTypeV2, key_name="name", keyed=False)
-
-        self._normalize_inlined_as_list(slot_name="ref", slot_type=RefTypeV2, key_name="name", keyed=False)
-
-        if self.description is not None and not isinstance(self.description, str):
-            self.description = str(self.description)
-
-        if self.value is not None and not isinstance(self.value, str):
-            self.value = str(self.value)
-
-        if self.offset is not None and not isinstance(self.offset, int):
-            self.offset = int(self.offset)
-
-        if self.alignment is not None and not isinstance(self.alignment, int):
-            self.alignment = int(self.alignment)
-
-        if self.since_version is not None and not isinstance(self.since_version, int):
-            self.since_version = int(self.since_version)
-
-        if self.deprecated is not None and not isinstance(self.deprecated, int):
-            self.deprecated = int(self.deprecated)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class EnumTypeV2(YAMLRoot):
-    """
-    An enumeration of valid values
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = FIX_SBE["EnumTypeV2"]
-    class_class_curie: ClassVar[str] = "fix_sbe:EnumTypeV2"
-    class_name: ClassVar[str] = "EnumTypeV2"
-    class_model_uri: ClassVar[URIRef] = FIX_SBE.EnumTypeV2
-
-    valid_value: Union[Union[dict, ValidValue], list[Union[dict, ValidValue]]] = None
-    name: Union[str, SymbolicName] = None
-    encoding_type: Union[str, SymbolicName] = None
-    description: Optional[str] = None
-    value: Optional[str] = None
-    offset: Optional[int] = None
-    alignment: Optional[int] = None
-    since_version: Optional[int] = 0
-    deprecated: Optional[int] = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.valid_value):
-            self.MissingRequiredField("valid_value")
-        self._normalize_inlined_as_list(slot_name="valid_value", slot_type=ValidValue, key_name="name", keyed=False)
-
-        if self._is_empty(self.name):
-            self.MissingRequiredField("name")
-        if not isinstance(self.name, SymbolicName):
-            self.name = SymbolicName(self.name)
-
-        if self._is_empty(self.encoding_type):
-            self.MissingRequiredField("encoding_type")
-        if not isinstance(self.encoding_type, SymbolicName):
-            self.encoding_type = SymbolicName(self.encoding_type)
-
-        if self.description is not None and not isinstance(self.description, str):
-            self.description = str(self.description)
-
-        if self.value is not None and not isinstance(self.value, str):
-            self.value = str(self.value)
-
-        if self.offset is not None and not isinstance(self.offset, int):
-            self.offset = int(self.offset)
-
-        if self.alignment is not None and not isinstance(self.alignment, int):
-            self.alignment = int(self.alignment)
-
-        if self.since_version is not None and not isinstance(self.since_version, int):
-            self.since_version = int(self.since_version)
-
-        if self.deprecated is not None and not isinstance(self.deprecated, int):
-            self.deprecated = int(self.deprecated)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class RefTypeV2(YAMLRoot):
-    """
-    A reference to any existing encoding type (simple type, enum or set) to reuse as a member of a composite type
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = FIX_SBE["RefTypeV2"]
-    class_class_curie: ClassVar[str] = "fix_sbe:RefTypeV2"
-    class_name: ClassVar[str] = "RefTypeV2"
-    class_model_uri: ClassVar[URIRef] = FIX_SBE.RefTypeV2
-
-    name: Union[str, SymbolicName] = None
-    type: Union[str, SymbolicName] = None
-    description: Optional[str] = None
-    value: Optional[str] = None
-    offset: Optional[int] = None
-    alignment: Optional[int] = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.name):
-            self.MissingRequiredField("name")
-        if not isinstance(self.name, SymbolicName):
-            self.name = SymbolicName(self.name)
-
-        if self._is_empty(self.type):
-            self.MissingRequiredField("type")
-        if not isinstance(self.type, SymbolicName):
-            self.type = SymbolicName(self.type)
-
-        if self.description is not None and not isinstance(self.description, str):
-            self.description = str(self.description)
-
-        if self.value is not None and not isinstance(self.value, str):
-            self.value = str(self.value)
-
-        if self.offset is not None and not isinstance(self.offset, int):
-            self.offset = int(self.offset)
-
-        if self.alignment is not None and not isinstance(self.alignment, int):
-            self.alignment = int(self.alignment)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class SetTypeV2(YAMLRoot):
-    """
-    A multi value choice (encoded as a bitset)
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = FIX_SBE["SetTypeV2"]
-    class_class_curie: ClassVar[str] = "fix_sbe:SetTypeV2"
-    class_name: ClassVar[str] = "SetTypeV2"
-    class_model_uri: ClassVar[URIRef] = FIX_SBE.SetTypeV2
-
-    choice: Union[Union[dict, Choice], list[Union[dict, Choice]]] = None
-    name: Union[str, SymbolicName] = None
-    encoding_type: Union[str, SymbolicName] = None
-    description: Optional[str] = None
-    value: Optional[str] = None
-    offset: Optional[int] = None
-    alignment: Optional[int] = None
-    since_version: Optional[int] = 0
-    deprecated: Optional[int] = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.choice):
-            self.MissingRequiredField("choice")
-        self._normalize_inlined_as_list(slot_name="choice", slot_type=Choice, key_name="name", keyed=False)
-
-        if self._is_empty(self.name):
-            self.MissingRequiredField("name")
-        if not isinstance(self.name, SymbolicName):
-            self.name = SymbolicName(self.name)
-
-        if self._is_empty(self.encoding_type):
-            self.MissingRequiredField("encoding_type")
-        if not isinstance(self.encoding_type, SymbolicName):
-            self.encoding_type = SymbolicName(self.encoding_type)
-
-        if self.description is not None and not isinstance(self.description, str):
-            self.description = str(self.description)
-
-        if self.value is not None and not isinstance(self.value, str):
-            self.value = str(self.value)
-
-        if self.offset is not None and not isinstance(self.offset, int):
-            self.offset = int(self.offset)
-
-        if self.alignment is not None and not isinstance(self.alignment, int):
-            self.alignment = int(self.alignment)
-
-        if self.since_version is not None and not isinstance(self.since_version, int):
-            self.since_version = int(self.since_version)
-
-        if self.deprecated is not None and not isinstance(self.deprecated, int):
-            self.deprecated = int(self.deprecated)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class FieldTypeV2(YAMLRoot):
-    """
-    A field of a message of a specified dataType
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = FIX_SBE["FieldTypeV2"]
-    class_class_curie: ClassVar[str] = "fix_sbe:FieldTypeV2"
-    class_name: ClassVar[str] = "FieldTypeV2"
-    class_model_uri: ClassVar[URIRef] = FIX_SBE.FieldTypeV2
-
-    name: Union[str, SymbolicName] = None
-    id: int = None
-    type: Union[str, SymbolicName] = None
-    value: Optional[str] = None
-    offset: Optional[int] = None
-    alignment: Optional[int] = None
-    presence: Optional[Union[str, "Presence"]] = 'required'
-    null_value: Optional[str] = None
-    min_value: Optional[str] = None
-    max_value: Optional[str] = None
-    value_ref: Optional[Union[str, QualifiedName]] = None
-    semantic_type: Optional[str] = None
-    description: Optional[str] = None
-    since_version: Optional[int] = 0
-    deprecated: Optional[int] = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.name):
-            self.MissingRequiredField("name")
-        if not isinstance(self.name, SymbolicName):
-            self.name = SymbolicName(self.name)
-
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, int):
-            self.id = int(self.id)
-
-        if self._is_empty(self.type):
-            self.MissingRequiredField("type")
-        if not isinstance(self.type, SymbolicName):
-            self.type = SymbolicName(self.type)
-
-        if self.value is not None and not isinstance(self.value, str):
-            self.value = str(self.value)
-
-        if self.offset is not None and not isinstance(self.offset, int):
-            self.offset = int(self.offset)
-
-        if self.alignment is not None and not isinstance(self.alignment, int):
-            self.alignment = int(self.alignment)
-
-        if self.presence is not None and not isinstance(self.presence, Presence):
-            self.presence = Presence(self.presence)
-
-        if self.null_value is not None and not isinstance(self.null_value, str):
-            self.null_value = str(self.null_value)
-
-        if self.min_value is not None and not isinstance(self.min_value, str):
-            self.min_value = str(self.min_value)
-
-        if self.max_value is not None and not isinstance(self.max_value, str):
-            self.max_value = str(self.max_value)
-
-        if self.value_ref is not None and not isinstance(self.value_ref, QualifiedName):
-            self.value_ref = QualifiedName(self.value_ref)
-
-        if self.semantic_type is not None and not isinstance(self.semantic_type, str):
-            self.semantic_type = str(self.semantic_type)
+        if self.value_ref is not None and not isinstance(self.value_ref, SbeQualifiedName):
+            self.value_ref = SbeQualifiedName(self.value_ref)
+
+        if self.semantic_type is not None and not isinstance(self.semantic_type, SbeToken):
+            self.semantic_type = SbeToken(self.semantic_type)
 
         if self.description is not None and not isinstance(self.description, str):
             self.description = str(self.description)
@@ -1406,598 +1521,461 @@ class FieldTypeV2(YAMLRoot):
         if self.since_version is not None and not isinstance(self.since_version, int):
             self.since_version = int(self.since_version)
 
-        if self.deprecated is not None and not isinstance(self.deprecated, int):
-            self.deprecated = int(self.deprecated)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class MessageSchemaV2(YAMLRoot):
-    """
-    Root of XML document, holds all message templates and their elements
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = FIX_SBE["MessageSchemaV2"]
-    class_class_curie: ClassVar[str] = "fix_sbe:MessageSchemaV2"
-    class_name: ClassVar[str] = "MessageSchemaV2"
-    class_model_uri: ClassVar[URIRef] = FIX_SBE.MessageSchemaV2
-
-    types: Union[Union[dict, "TypesV2"], list[Union[dict, "TypesV2"]]] = None
-    messages: Union[Union[dict, "MessagesV2"], list[Union[dict, "MessagesV2"]]] = None
-    version: int = None
-    package: Optional[str] = None
-    id: Optional[int] = None
-    semantic_version: Optional[str] = None
-    description: Optional[str] = None
-    byte_order: Optional[Union[str, "ByteOrder"]] = 'littleEndian'
-    header_type: Optional[Union[str, SymbolicName]] = "messageHeader"
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.types):
-            self.MissingRequiredField("types")
-        if not isinstance(self.types, list):
-            self.types = [self.types] if self.types is not None else []
-        self.types = [v if isinstance(v, TypesV2) else TypesV2(**as_dict(v)) for v in self.types]
-
-        if self._is_empty(self.messages):
-            self.MissingRequiredField("messages")
-        if not isinstance(self.messages, list):
-            self.messages = [self.messages] if self.messages is not None else []
-        self.messages = [v if isinstance(v, MessagesV2) else MessagesV2(**as_dict(v)) for v in self.messages]
-
-        if self._is_empty(self.version):
-            self.MissingRequiredField("version")
-        if not isinstance(self.version, int):
-            self.version = int(self.version)
-
-        if self.package is not None and not isinstance(self.package, str):
-            self.package = str(self.package)
-
-        if self.id is not None and not isinstance(self.id, int):
-            self.id = int(self.id)
-
-        if self.semantic_version is not None and not isinstance(self.semantic_version, str):
-            self.semantic_version = str(self.semantic_version)
-
-        if self.description is not None and not isinstance(self.description, str):
-            self.description = str(self.description)
-
-        if self.byte_order is not None and not isinstance(self.byte_order, ByteOrder):
-            self.byte_order = ByteOrder(self.byte_order)
-
-        if self.header_type is not None and not isinstance(self.header_type, SymbolicName):
-            self.header_type = SymbolicName(self.header_type)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class MessagesV2(YAMLRoot):
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = FIX_SBE["MessagesV2"]
-    class_class_curie: ClassVar[str] = "fix_sbe:MessagesV2"
-    class_name: ClassVar[str] = "MessagesV2"
-    class_model_uri: ClassVar[URIRef] = FIX_SBE.MessagesV2
-
-    message: Union[Union[dict, BlockTypeV2], list[Union[dict, BlockTypeV2]]] = None
-    description: Optional[str] = None
-    package: Optional[str] = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.message):
-            self.MissingRequiredField("message")
-        self._normalize_inlined_as_list(slot_name="message", slot_type=BlockTypeV2, key_name="name", keyed=False)
-
-        if self.description is not None and not isinstance(self.description, str):
-            self.description = str(self.description)
-
-        if self.package is not None and not isinstance(self.package, str):
-            self.package = str(self.package)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class TypesV2(YAMLRoot):
-    """
-    More than one set of types may be provided. Names must be unique across all encoding types. Encoding types may
-    appear in any order.
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = FIX_SBE["TypesV2"]
-    class_class_curie: ClassVar[str] = "fix_sbe:TypesV2"
-    class_name: ClassVar[str] = "TypesV2"
-    class_model_uri: ClassVar[URIRef] = FIX_SBE.TypesV2
-
-    type: Optional[Union[Union[dict, SimpleDataTypeV2], list[Union[dict, SimpleDataTypeV2]]]] = empty_list()
-    composite: Optional[Union[Union[dict, CompositeDataTypeV2], list[Union[dict, CompositeDataTypeV2]]]] = empty_list()
-    enum: Optional[Union[Union[dict, EnumTypeV2], list[Union[dict, EnumTypeV2]]]] = empty_list()
-    set: Optional[Union[Union[dict, SetTypeV2], list[Union[dict, SetTypeV2]]]] = empty_list()
-    description: Optional[str] = None
-    package: Optional[str] = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        self._normalize_inlined_as_list(slot_name="type", slot_type=SimpleDataTypeV2, key_name="name", keyed=False)
-
-        self._normalize_inlined_as_list(slot_name="composite", slot_type=CompositeDataTypeV2, key_name="name", keyed=False)
-
-        self._normalize_inlined_as_list(slot_name="enum", slot_type=EnumTypeV2, key_name="name", keyed=False)
-
-        self._normalize_inlined_as_list(slot_name="set", slot_type=SetTypeV2, key_name="name", keyed=False)
-
-        if self.description is not None and not isinstance(self.description, str):
-            self.description = str(self.description)
-
-        if self.package is not None and not isinstance(self.package, str):
-            self.package = str(self.package)
+        if self.deprecated_since is not None and not isinstance(self.deprecated_since, int):
+            self.deprecated_since = int(self.deprecated_since)
 
         super().__post_init__(**kwargs)
 
 
 # Enumerations
-class Presence(EnumDefinitionImpl):
+class SbePresence(EnumDefinitionImpl):
     """
-    Inline enumeration lifted from XSD attribute ``presence`` on ``presenceAttributes``.
+    Whether a value is on the wire, and whether it may be null.
     """
     required = PermissibleValue(
         text="required",
-        description="The value must always be populated")
+        description="A value is always sent, and it is never tested for null.")
     optional = PermissibleValue(
         text="optional",
-        description="Value may be set to nullValue for its data type")
+        description="A value is sent, and a null marker says that none is set.")
     constant = PermissibleValue(
         text="constant",
-        description="Value does not vary so it need not be serialized on the wire")
+        description="The schema states the value, so nothing is sent.")
 
     _defn = EnumDefinition(
-        name="Presence",
-        description="Inline enumeration lifted from XSD attribute ``presence`` on ``presenceAttributes``.",
+        name="SbePresence",
+        description="Whether a value is on the wire, and whether it may be null.",
     )
 
-class ByteOrder(EnumDefinitionImpl):
+class SbeByteOrder(EnumDefinitionImpl):
     """
-    Inline enumeration lifted from XSD attribute ``byteOrder`` on ``messageSchema``.
+    The order of the octets in every multi-octet number of a message.
     """
-    bigEndian = PermissibleValue(text="bigEndian")
-    littleEndian = PermissibleValue(text="littleEndian")
+    bigEndian = PermissibleValue(
+        text="bigEndian",
+        description="The most significant octet comes first.")
+    littleEndian = PermissibleValue(
+        text="littleEndian",
+        description="The least significant octet comes first.")
 
     _defn = EnumDefinition(
-        name="ByteOrder",
-        description="Inline enumeration lifted from XSD attribute ``byteOrder`` on ``messageSchema``.",
+        name="SbeByteOrder",
+        description="The order of the octets in every multi-octet number of a message.",
     )
 
-class PrimitiveTypeV1(EnumDefinitionImpl):
+class SbePrimitiveType(EnumDefinitionImpl):
     """
-    Inline enumeration lifted from XSD attribute ``primitiveType`` on ``encodedDataType``.
-    """
-    char = PermissibleValue(text="char")
-    int8 = PermissibleValue(text="int8")
-    int16 = PermissibleValue(text="int16")
-    int32 = PermissibleValue(text="int32")
-    int64 = PermissibleValue(text="int64")
-    uint8 = PermissibleValue(text="uint8")
-    uint16 = PermissibleValue(text="uint16")
-    uint32 = PermissibleValue(text="uint32")
-    uint64 = PermissibleValue(text="uint64")
-    float = PermissibleValue(text="float")
-    double = PermissibleValue(text="double")
-
-    _defn = EnumDefinition(
-        name="PrimitiveTypeV1",
-        description="Inline enumeration lifted from XSD attribute ``primitiveType`` on ``encodedDataType``.",
-    )
-
-class PrimitiveTypeV2(EnumDefinitionImpl):
-    """
-    Inline enumeration lifted from XSD attribute ``primitiveType`` on ``primitiveTypeAttributes``.
+    The wire types every encoding is finally built from.
     """
     char = PermissibleValue(
         text="char",
-        description="A value of a single-byte character set")
-    int8 = PermissibleValue(text="int8")
-    int16 = PermissibleValue(text="int16")
-    int32 = PermissibleValue(text="int32")
-    int64 = PermissibleValue(text="int64")
-    uint8 = PermissibleValue(text="uint8")
-    uint16 = PermissibleValue(text="uint16")
-    uint32 = PermissibleValue(text="uint32")
-    uint64 = PermissibleValue(text="uint64")
-    float = PermissibleValue(text="float")
-    double = PermissibleValue(text="double")
+        description="One character of one octet.")
+    int8 = PermissibleValue(
+        text="int8",
+        description="A signed integer of one octet.")
+    int16 = PermissibleValue(
+        text="int16",
+        description="A signed integer of two octets.")
+    int32 = PermissibleValue(
+        text="int32",
+        description="A signed integer of four octets.")
+    int64 = PermissibleValue(
+        text="int64",
+        description="A signed integer of eight octets.")
+    uint8 = PermissibleValue(
+        text="uint8",
+        description="An unsigned integer of one octet.")
+    uint16 = PermissibleValue(
+        text="uint16",
+        description="An unsigned integer of two octets.")
+    uint32 = PermissibleValue(
+        text="uint32",
+        description="An unsigned integer of four octets.")
+    uint64 = PermissibleValue(
+        text="uint64",
+        description="An unsigned integer of eight octets.")
+    float = PermissibleValue(
+        text="float",
+        description="A four-octet number in binary floating point.")
+    double = PermissibleValue(
+        text="double",
+        description="An eight-octet number in binary floating point.")
 
     _defn = EnumDefinition(
-        name="PrimitiveTypeV2",
-        description="Inline enumeration lifted from XSD attribute ``primitiveType`` on ``primitiveTypeAttributes``.",
+        name="SbePrimitiveType",
+        description="The wire types every encoding is finally built from.",
+    )
+
+class SbeFixDatatype(EnumDefinitionImpl):
+    """
+    The FIX datatypes a field's or an encoding's semantic type may name: those of FIX Latest, and EncodedText, which
+    the specification's summary table adds.
+    """
+    int = PermissibleValue(
+        text="int",
+        description="A whole number.")
+    Length = PermissibleValue(
+        text="Length",
+        description="A whole number that counts the octets of another field.")
+    TagNum = PermissibleValue(
+        text="TagNum",
+        description="A whole number that is a field's tag.")
+    SeqNum = PermissibleValue(
+        text="SeqNum",
+        description="A whole number that orders messages in a session.")
+    NumInGroup = PermissibleValue(
+        text="NumInGroup",
+        description="A whole number that counts the entries of a repeating group.")
+    DayOfMonth = PermissibleValue(
+        text="DayOfMonth",
+        description="A whole number from 1 to 31.")
+    float = PermissibleValue(
+        text="float",
+        description="A decimal number.")
+    Qty = PermissibleValue(
+        text="Qty",
+        description="A decimal number that is an amount of something traded.")
+    Price = PermissibleValue(
+        text="Price",
+        description="A decimal number that is a price.")
+    PriceOffset = PermissibleValue(
+        text="PriceOffset",
+        description="A decimal number that is a difference from a price.")
+    Amt = PermissibleValue(
+        text="Amt",
+        description="A decimal number that is a quantity multiplied by a price.")
+    Percentage = PermissibleValue(
+        text="Percentage",
+        description="A decimal number that is a proportion, where 0.1 is ten percent.")
+    char = PermissibleValue(
+        text="char",
+        description="One character.")
+    Boolean = PermissibleValue(
+        text="Boolean",
+        description="A character that is Y or N.")
+    String = PermissibleValue(
+        text="String",
+        description="Text of any length.")
+    MultipleCharValue = PermissibleValue(
+        text="MultipleCharValue",
+        description="One or more single characters, separated by spaces, each chosen from a list.")
+    MultipleStringValue = PermissibleValue(
+        text="MultipleStringValue",
+        description="One or more words, separated by spaces, each chosen from a list.")
+    Country = PermissibleValue(
+        text="Country",
+        description="A two-letter country code of ISO 3166-1.")
+    Currency = PermissibleValue(
+        text="Currency",
+        description="A three-letter currency code of ISO 4217.")
+    Exchange = PermissibleValue(
+        text="Exchange",
+        description="A market identifier code of ISO 10383.")
+    MonthYear = PermissibleValue(
+        text="MonthYear",
+        description="A year and month, with an optional day or week.")
+    UTCTimestamp = PermissibleValue(
+        text="UTCTimestamp",
+        description="A date and time in UTC.")
+    UTCTimeOnly = PermissibleValue(
+        text="UTCTimeOnly",
+        description="A time of day in UTC.")
+    UTCDateOnly = PermissibleValue(
+        text="UTCDateOnly",
+        description="A calendar date in UTC.")
+    LocalMktDate = PermissibleValue(
+        text="LocalMktDate",
+        description="A calendar date in the market's local time.")
+    TZTimeOnly = PermissibleValue(
+        text="TZTimeOnly",
+        description="A time of day with its offset from UTC.")
+    TZTimestamp = PermissibleValue(
+        text="TZTimestamp",
+        description="A date and time with their offset from UTC.")
+    data = PermissibleValue(
+        text="data",
+        description="Raw octets, whose count a Length field before them gives.")
+    Pattern = PermissibleValue(
+        text="Pattern",
+        description="Text that another field's value must match.")
+    Tenor = PermissibleValue(
+        text="Tenor",
+        description="A period expressed as a count of days, weeks, months or years.")
+    Reserved100Plus = PermissibleValue(
+        text="Reserved100Plus",
+        description="A whole number of 100 or more, kept for values a counterparty defines.")
+    Reserved1000Plus = PermissibleValue(
+        text="Reserved1000Plus",
+        description="A whole number of 1000 or more, kept for values a counterparty defines.")
+    Reserved4000Plus = PermissibleValue(
+        text="Reserved4000Plus",
+        description="A whole number of 4000 or more, kept for values a counterparty defines.")
+    XMLData = PermissibleValue(
+        text="XMLData",
+        description="An XML document carried as text.")
+    Language = PermissibleValue(
+        text="Language",
+        description="A language code of ISO 639-1.")
+    LocalMktTime = PermissibleValue(
+        text="LocalMktTime",
+        description="A time of day in the market's local time.")
+    XID = PermissibleValue(
+        text="XID",
+        description="An identifier that is unique within a message.")
+    XIDREF = PermissibleValue(
+        text="XIDREF",
+        description="A reference to an XID in the same message.")
+    EncodedText = PermissibleValue(
+        text="EncodedText",
+        description="Text in the character set a field beside it names, rather than ASCII.")
+
+    _defn = EnumDefinition(
+        name="SbeFixDatatype",
+        description="""The FIX datatypes a field's or an encoding's semantic type may name: those of FIX Latest, and EncodedText, which the specification's summary table adds.""",
     )
 
 # Slots
 class slots:
     pass
 
-slots.semanticAttributes__semantic_type = Slot(uri=FIX_SBE.semantic_type, name="semanticAttributes__semantic_type", curie=FIX_SBE.curie('semantic_type'),
-                   model_uri=FIX_SBE.semanticAttributes__semantic_type, domain=None, range=Optional[str])
+slots.symbolic_name = Slot(uri=FIX_SBE.symbolic_name, name="symbolic_name", curie=FIX_SBE.curie('symbolic_name'),
+                   model_uri=FIX_SBE.symbolic_name, domain=None, range=Union[str, SbeSymbolicName],
+                   pattern=re.compile(r'^[A-Za-z_][0-9A-Za-z_]{0,63}$'))
 
-slots.semanticAttributes__description = Slot(uri=FIX_SBE.description, name="semanticAttributes__description", curie=FIX_SBE.curie('description'),
-                   model_uri=FIX_SBE.semanticAttributes__description, domain=None, range=Optional[str])
+slots.sbe_id = Slot(uri=FIX_SBE.sbe_id, name="sbe_id", curie=FIX_SBE.curie('sbe_id'),
+                   model_uri=FIX_SBE.sbe_id, domain=None, range=Optional[int])
 
-slots.versionAttributes__since_version = Slot(uri=FIX_SBE.since_version, name="versionAttributes__since_version", curie=FIX_SBE.curie('since_version'),
-                   model_uri=FIX_SBE.versionAttributes__since_version, domain=None, range=Optional[int])
+slots.description = Slot(uri=SCHEMA.description, name="description", curie=SCHEMA.curie('description'),
+                   model_uri=FIX_SBE.description, domain=None, range=Optional[str])
 
-slots.versionAttributes__deprecated = Slot(uri=FIX_SBE.deprecated, name="versionAttributes__deprecated", curie=FIX_SBE.curie('deprecated'),
-                   model_uri=FIX_SBE.versionAttributes__deprecated, domain=None, range=Optional[int])
+slots.semantic_type = Slot(uri=FIX_SBE.semantic_type, name="semantic_type", curie=FIX_SBE.curie('semantic_type'),
+                   model_uri=FIX_SBE.semantic_type, domain=None, range=Optional[Union[str, SbeToken]],
+                   pattern=re.compile(r'^\S+( \S+)*$'))
 
-slots.validValue__name = Slot(uri=FIX_SBE.name, name="validValue__name", curie=FIX_SBE.curie('name'),
-                   model_uri=FIX_SBE.validValue__name, domain=None, range=Union[str, SymbolicName])
+slots.since_version = Slot(uri=FIX_SBE.since_version, name="since_version", curie=FIX_SBE.curie('since_version'),
+                   model_uri=FIX_SBE.since_version, domain=None, range=Optional[int])
 
-slots.validValue__description = Slot(uri=FIX_SBE.description, name="validValue__description", curie=FIX_SBE.curie('description'),
-                   model_uri=FIX_SBE.validValue__description, domain=None, range=Optional[str])
+slots.deprecated_since = Slot(uri=FIX_SBE.deprecated_since, name="deprecated_since", curie=FIX_SBE.curie('deprecated_since'),
+                   model_uri=FIX_SBE.deprecated_since, domain=None, range=Optional[int])
 
-slots.validValue__value = Slot(uri=FIX_SBE.value, name="validValue__value", curie=FIX_SBE.curie('value'),
-                   model_uri=FIX_SBE.validValue__value, domain=None, range=Optional[str])
+slots.offset = Slot(uri=FIX_SBE.offset, name="offset", curie=FIX_SBE.curie('offset'),
+                   model_uri=FIX_SBE.offset, domain=None, range=Optional[int])
 
-slots.choice__name = Slot(uri=FIX_SBE.name, name="choice__name", curie=FIX_SBE.curie('name'),
-                   model_uri=FIX_SBE.choice__name, domain=None, range=Union[str, SymbolicName])
+slots.presence = Slot(uri=FIX_SBE.presence, name="presence", curie=FIX_SBE.curie('presence'),
+                   model_uri=FIX_SBE.presence, domain=None, range=Optional[Union[str, "SbePresence"]])
 
-slots.choice__description = Slot(uri=FIX_SBE.description, name="choice__description", curie=FIX_SBE.curie('description'),
-                   model_uri=FIX_SBE.choice__description, domain=None, range=Optional[str])
+slots.value_ref = Slot(uri=FIX_SBE.value_ref, name="value_ref", curie=FIX_SBE.curie('value_ref'),
+                   model_uri=FIX_SBE.value_ref, domain=None, range=Optional[Union[str, SbeQualifiedName]],
+                   pattern=re.compile(r'^[A-Za-z_][0-9A-Za-z_]*\.[A-Za-z_][0-9A-Za-z_]*$'))
 
-slots.choice__value = Slot(uri=FIX_SBE.value, name="choice__value", curie=FIX_SBE.curie('value'),
-                   model_uri=FIX_SBE.choice__value, domain=None, range=Optional[str])
+slots.element_value = Slot(uri=FIX_SBE.element_value, name="element_value", curie=FIX_SBE.curie('element_value'),
+                   model_uri=FIX_SBE.element_value, domain=None, range=Optional[Union[str, SbeToken]],
+                   pattern=re.compile(r'^\S+( \S+)*$'))
 
-slots.alignmentAttributesV1__offset = Slot(uri=FIX_SBE.offset, name="alignmentAttributesV1__offset", curie=FIX_SBE.curie('offset'),
-                   model_uri=FIX_SBE.alignmentAttributesV1__offset, domain=None, range=Optional[int])
+slots.primitive_type = Slot(uri=FIX_SBE.primitive_type, name="primitive_type", curie=FIX_SBE.curie('primitive_type'),
+                   model_uri=FIX_SBE.primitive_type, domain=None, range=Union[str, "SbePrimitiveType"])
 
-slots.presenceAttributesV1__presence = Slot(uri=FIX_SBE.presence, name="presenceAttributesV1__presence", curie=FIX_SBE.curie('presence'),
-                   model_uri=FIX_SBE.presenceAttributesV1__presence, domain=None, range=Optional[Union[str, "Presence"]])
+slots.array_length = Slot(uri=FIX_SBE.array_length, name="array_length", curie=FIX_SBE.curie('array_length'),
+                   model_uri=FIX_SBE.array_length, domain=None, range=Optional[int])
 
-slots.presenceAttributesV1__value_ref = Slot(uri=FIX_SBE.value_ref, name="presenceAttributesV1__value_ref", curie=FIX_SBE.curie('value_ref'),
-                   model_uri=FIX_SBE.presenceAttributesV1__value_ref, domain=None, range=Optional[Union[str, QualifiedName]])
+slots.character_encoding = Slot(uri=FIX_SBE.character_encoding, name="character_encoding", curie=FIX_SBE.curie('character_encoding'),
+                   model_uri=FIX_SBE.character_encoding, domain=None, range=Optional[str])
 
-slots.blockTypeV1__field = Slot(uri=FIX_SBE.field, name="blockTypeV1__field", curie=FIX_SBE.curie('field'),
-                   model_uri=FIX_SBE.blockTypeV1__field, domain=None, range=Optional[Union[Union[dict, FieldTypeV1], list[Union[dict, FieldTypeV1]]]])
+slots.null_value = Slot(uri=FIX_SBE.null_value, name="null_value", curie=FIX_SBE.curie('null_value'),
+                   model_uri=FIX_SBE.null_value, domain=None, range=Optional[str])
 
-slots.blockTypeV1__group = Slot(uri=FIX_SBE.group, name="blockTypeV1__group", curie=FIX_SBE.curie('group'),
-                   model_uri=FIX_SBE.blockTypeV1__group, domain=None, range=Optional[Union[Union[dict, GroupTypeV1], list[Union[dict, GroupTypeV1]]]])
+slots.min_value = Slot(uri=FIX_SBE.min_value, name="min_value", curie=FIX_SBE.curie('min_value'),
+                   model_uri=FIX_SBE.min_value, domain=None, range=Optional[str])
 
-slots.blockTypeV1__data = Slot(uri=FIX_SBE.data, name="blockTypeV1__data", curie=FIX_SBE.curie('data'),
-                   model_uri=FIX_SBE.blockTypeV1__data, domain=None, range=Optional[Union[Union[dict, FieldTypeV1], list[Union[dict, FieldTypeV1]]]])
+slots.max_value = Slot(uri=FIX_SBE.max_value, name="max_value", curie=FIX_SBE.curie('max_value'),
+                   model_uri=FIX_SBE.max_value, domain=None, range=Optional[str])
 
-slots.blockTypeV1__name = Slot(uri=FIX_SBE.name, name="blockTypeV1__name", curie=FIX_SBE.curie('name'),
-                   model_uri=FIX_SBE.blockTypeV1__name, domain=None, range=Union[str, SymbolicName])
+slots.encoding_type = Slot(uri=FIX_SBE.encoding_type, name="encoding_type", curie=FIX_SBE.curie('encoding_type'),
+                   model_uri=FIX_SBE.encoding_type, domain=None, range=Union[str, SbeSymbolicName],
+                   pattern=re.compile(r'^[A-Za-z_][0-9A-Za-z_]{0,63}$'))
 
-slots.blockTypeV1__id = Slot(uri=FIX_SBE.id, name="blockTypeV1__id", curie=FIX_SBE.curie('id'),
-                   model_uri=FIX_SBE.blockTypeV1__id, domain=None, range=int)
+slots.encoding_name = Slot(uri=FIX_SBE.encoding_name, name="encoding_name", curie=FIX_SBE.curie('encoding_name'),
+                   model_uri=FIX_SBE.encoding_name, domain=None, range=Union[str, SbeSymbolicName],
+                   pattern=re.compile(r'^[A-Za-z_][0-9A-Za-z_]{0,63}$'))
 
-slots.blockTypeV1__block_length = Slot(uri=FIX_SBE.block_length, name="blockTypeV1__block_length", curie=FIX_SBE.curie('block_length'),
-                   model_uri=FIX_SBE.blockTypeV1__block_length, domain=None, range=Optional[int])
+slots.block_length = Slot(uri=FIX_SBE.block_length, name="block_length", curie=FIX_SBE.curie('block_length'),
+                   model_uri=FIX_SBE.block_length, domain=None, range=Optional[int])
 
-slots.groupTypeV1__dimension_type = Slot(uri=FIX_SBE.dimension_type, name="groupTypeV1__dimension_type", curie=FIX_SBE.curie('dimension_type'),
-                   model_uri=FIX_SBE.groupTypeV1__dimension_type, domain=None, range=Optional[Union[str, SymbolicName]])
+slots.dimension_type = Slot(uri=FIX_SBE.dimension_type, name="dimension_type", curie=FIX_SBE.curie('dimension_type'),
+                   model_uri=FIX_SBE.dimension_type, domain=None, range=Optional[Union[str, SbeSymbolicName]],
+                   pattern=re.compile(r'^[A-Za-z_][0-9A-Za-z_]{0,63}$'))
 
-slots.encodedDataTypeV1__name = Slot(uri=FIX_SBE.name, name="encodedDataTypeV1__name", curie=FIX_SBE.curie('name'),
-                   model_uri=FIX_SBE.encodedDataTypeV1__name, domain=None, range=Union[str, SymbolicName])
+slots.schema_package = Slot(uri=FIX_SBE.schema_package, name="schema_package", curie=FIX_SBE.curie('schema_package'),
+                   model_uri=FIX_SBE.schema_package, domain=None, range=Optional[str])
 
-slots.encodedDataTypeV1__null_value = Slot(uri=FIX_SBE.null_value, name="encodedDataTypeV1__null_value", curie=FIX_SBE.curie('null_value'),
-                   model_uri=FIX_SBE.encodedDataTypeV1__null_value, domain=None, range=Optional[str])
+slots.schema_version = Slot(uri=FIX_SBE.schema_version, name="schema_version", curie=FIX_SBE.curie('schema_version'),
+                   model_uri=FIX_SBE.schema_version, domain=None, range=int)
 
-slots.encodedDataTypeV1__min_value = Slot(uri=FIX_SBE.min_value, name="encodedDataTypeV1__min_value", curie=FIX_SBE.curie('min_value'),
-                   model_uri=FIX_SBE.encodedDataTypeV1__min_value, domain=None, range=Optional[str])
+slots.semantic_version = Slot(uri=FIX_SBE.semantic_version, name="semantic_version", curie=FIX_SBE.curie('semantic_version'),
+                   model_uri=FIX_SBE.semantic_version, domain=None, range=Optional[str])
 
-slots.encodedDataTypeV1__max_value = Slot(uri=FIX_SBE.max_value, name="encodedDataTypeV1__max_value", curie=FIX_SBE.curie('max_value'),
-                   model_uri=FIX_SBE.encodedDataTypeV1__max_value, domain=None, range=Optional[str])
+slots.byte_order = Slot(uri=FIX_SBE.byte_order, name="byte_order", curie=FIX_SBE.curie('byte_order'),
+                   model_uri=FIX_SBE.byte_order, domain=None, range=Optional[Union[str, "SbeByteOrder"]])
 
-slots.encodedDataTypeV1__length = Slot(uri=FIX_SBE.length, name="encodedDataTypeV1__length", curie=FIX_SBE.curie('length'),
-                   model_uri=FIX_SBE.encodedDataTypeV1__length, domain=None, range=Optional[int])
+slots.header_type = Slot(uri=FIX_SBE.header_type, name="header_type", curie=FIX_SBE.curie('header_type'),
+                   model_uri=FIX_SBE.header_type, domain=None, range=Optional[Union[str, SbeSymbolicName]],
+                   pattern=re.compile(r'^[A-Za-z_][0-9A-Za-z_]{0,63}$'))
 
-slots.encodedDataTypeV1__primitive_type = Slot(uri=FIX_SBE.primitive_type, name="encodedDataTypeV1__primitive_type", curie=FIX_SBE.curie('primitive_type'),
-                   model_uri=FIX_SBE.encodedDataTypeV1__primitive_type, domain=None, range=Union[str, "PrimitiveTypeV1"])
+slots.encoding_kind = Slot(uri=FIX_SBE.encoding_kind, name="encoding_kind", curie=FIX_SBE.curie('encoding_kind'),
+                   model_uri=FIX_SBE.encoding_kind, domain=None, range=str)
 
-slots.encodedDataTypeV1__character_encoding = Slot(uri=FIX_SBE.character_encoding, name="encodedDataTypeV1__character_encoding", curie=FIX_SBE.curie('character_encoding'),
-                   model_uri=FIX_SBE.encodedDataTypeV1__character_encoding, domain=None, range=Optional[str])
+slots.encoding_sets = Slot(uri=FIX_SBE.encoding_sets, name="encoding_sets", curie=FIX_SBE.curie('encoding_sets'),
+                   model_uri=FIX_SBE.encoding_sets, domain=None, range=Union[str, list[str]])
 
-slots.encodedDataTypeV1__value = Slot(uri=FIX_SBE.value, name="encodedDataTypeV1__value", curie=FIX_SBE.curie('value'),
-                   model_uri=FIX_SBE.encodedDataTypeV1__value, domain=None, range=Optional[str])
+slots.message_sets = Slot(uri=FIX_SBE.message_sets, name="message_sets", curie=FIX_SBE.curie('message_sets'),
+                   model_uri=FIX_SBE.message_sets, domain=None, range=Union[str, list[str]])
 
-slots.compositeDataTypeV1__type = Slot(uri=FIX_SBE.type, name="compositeDataTypeV1__type", curie=FIX_SBE.curie('type'),
-                   model_uri=FIX_SBE.compositeDataTypeV1__type, domain=None, range=Optional[Union[Union[dict, EncodedDataTypeV1], list[Union[dict, EncodedDataTypeV1]]]])
+slots.messages = Slot(uri=FIX_SBE.messages, name="messages", curie=FIX_SBE.curie('messages'),
+                   model_uri=FIX_SBE.messages, domain=None, range=Union[str, list[str]])
 
-slots.compositeDataTypeV1__enum = Slot(uri=FIX_SBE.enum, name="compositeDataTypeV1__enum", curie=FIX_SBE.curie('enum'),
-                   model_uri=FIX_SBE.compositeDataTypeV1__enum, domain=None, range=Optional[Union[Union[dict, EnumTypeV1], list[Union[dict, EnumTypeV1]]]])
+slots.encodings = Slot(uri=FIX_SBE.encodings, name="encodings", curie=FIX_SBE.curie('encodings'),
+                   model_uri=FIX_SBE.encodings, domain=None, range=Union[str, list[str]])
 
-slots.compositeDataTypeV1__set = Slot(uri=FIX_SBE.set, name="compositeDataTypeV1__set", curie=FIX_SBE.curie('set'),
-                   model_uri=FIX_SBE.compositeDataTypeV1__set, domain=None, range=Optional[Union[Union[dict, SetTypeV1], list[Union[dict, SetTypeV1]]]])
+slots.composite_members = Slot(uri=FIX_SBE.composite_members, name="composite_members", curie=FIX_SBE.curie('composite_members'),
+                   model_uri=FIX_SBE.composite_members, domain=None, range=Union[str, list[str]])
 
-slots.compositeDataTypeV1__composite = Slot(uri=FIX_SBE.composite, name="compositeDataTypeV1__composite", curie=FIX_SBE.curie('composite'),
-                   model_uri=FIX_SBE.compositeDataTypeV1__composite, domain=None, range=Optional[Union[Union[dict, CompositeDataTypeV1], list[Union[dict, CompositeDataTypeV1]]]])
+slots.valid_values = Slot(uri=FIX_SBE.valid_values, name="valid_values", curie=FIX_SBE.curie('valid_values'),
+                   model_uri=FIX_SBE.valid_values, domain=None, range=Union[Union[dict, SbeValidValue], list[Union[dict, SbeValidValue]]])
 
-slots.compositeDataTypeV1__ref = Slot(uri=FIX_SBE.ref, name="compositeDataTypeV1__ref", curie=FIX_SBE.curie('ref'),
-                   model_uri=FIX_SBE.compositeDataTypeV1__ref, domain=None, range=Optional[Union[Union[dict, RefTypeV1], list[Union[dict, RefTypeV1]]]])
+slots.choices = Slot(uri=FIX_SBE.choices, name="choices", curie=FIX_SBE.curie('choices'),
+                   model_uri=FIX_SBE.choices, domain=None, range=Union[Union[dict, SbeChoice], list[Union[dict, SbeChoice]]])
 
-slots.compositeDataTypeV1__name = Slot(uri=FIX_SBE.name, name="compositeDataTypeV1__name", curie=FIX_SBE.curie('name'),
-                   model_uri=FIX_SBE.compositeDataTypeV1__name, domain=None, range=Union[str, SymbolicName])
+slots.block_fields = Slot(uri=FIX_SBE.block_fields, name="block_fields", curie=FIX_SBE.curie('block_fields'),
+                   model_uri=FIX_SBE.block_fields, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.compositeDataTypeV1__value = Slot(uri=FIX_SBE.value, name="compositeDataTypeV1__value", curie=FIX_SBE.curie('value'),
-                   model_uri=FIX_SBE.compositeDataTypeV1__value, domain=None, range=Optional[str])
+slots.repeating_groups = Slot(uri=FIX_SBE.repeating_groups, name="repeating_groups", curie=FIX_SBE.curie('repeating_groups'),
+                   model_uri=FIX_SBE.repeating_groups, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.enumTypeV1__valid_value = Slot(uri=FIX_SBE.valid_value, name="enumTypeV1__valid_value", curie=FIX_SBE.curie('valid_value'),
-                   model_uri=FIX_SBE.enumTypeV1__valid_value, domain=None, range=Union[Union[dict, ValidValue], list[Union[dict, ValidValue]]])
+slots.var_data_fields = Slot(uri=FIX_SBE.var_data_fields, name="var_data_fields", curie=FIX_SBE.curie('var_data_fields'),
+                   model_uri=FIX_SBE.var_data_fields, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.enumTypeV1__name = Slot(uri=FIX_SBE.name, name="enumTypeV1__name", curie=FIX_SBE.curie('name'),
-                   model_uri=FIX_SBE.enumTypeV1__name, domain=None, range=Union[str, SymbolicName])
+slots.alignment = Slot(uri=FIX_SBE.alignment, name="alignment", curie=FIX_SBE.curie('alignment'),
+                   model_uri=FIX_SBE.alignment, domain=None, range=Optional[int])
 
-slots.enumTypeV1__encoding_type = Slot(uri=FIX_SBE.encoding_type, name="enumTypeV1__encoding_type", curie=FIX_SBE.curie('encoding_type'),
-                   model_uri=FIX_SBE.enumTypeV1__encoding_type, domain=None, range=Union[str, SymbolicName])
+slots.sbe_xml_base = Slot(uri=FIX_SBE.sbe_xml_base, name="sbe_xml_base", curie=FIX_SBE.curie('sbe_xml_base'),
+                   model_uri=FIX_SBE.sbe_xml_base, domain=None, range=Optional[str])
 
-slots.enumTypeV1__value = Slot(uri=FIX_SBE.value, name="enumTypeV1__value", curie=FIX_SBE.curie('value'),
-                   model_uri=FIX_SBE.enumTypeV1__value, domain=None, range=Optional[str])
+slots.sbeValidValue__valid_value = Slot(uri=FIX_SBE.valid_value, name="sbeValidValue__valid_value", curie=FIX_SBE.curie('valid_value'),
+                   model_uri=FIX_SBE.sbeValidValue__valid_value, domain=None, range=Union[str, SbeToken],
+                   pattern=re.compile(r'^\S+( \S+)*$'))
 
-slots.refTypeV1__name = Slot(uri=FIX_SBE.name, name="refTypeV1__name", curie=FIX_SBE.curie('name'),
-                   model_uri=FIX_SBE.refTypeV1__name, domain=None, range=Union[str, SymbolicName])
+slots.sbeChoice__bit_position = Slot(uri=FIX_SBE.bit_position, name="sbeChoice__bit_position", curie=FIX_SBE.curie('bit_position'),
+                   model_uri=FIX_SBE.sbeChoice__bit_position, domain=None, range=int)
 
-slots.refTypeV1__type = Slot(uri=FIX_SBE.type, name="refTypeV1__type", curie=FIX_SBE.curie('type'),
-                   model_uri=FIX_SBE.refTypeV1__type, domain=None, range=Union[str, SymbolicName])
+slots.sbeFieldV1__time_epoch = Slot(uri=FIX_SBE.time_epoch, name="sbeFieldV1__time_epoch", curie=FIX_SBE.curie('time_epoch'),
+                   model_uri=FIX_SBE.sbeFieldV1__time_epoch, domain=None, range=Optional[str])
 
-slots.refTypeV1__value = Slot(uri=FIX_SBE.value, name="refTypeV1__value", curie=FIX_SBE.curie('value'),
-                   model_uri=FIX_SBE.refTypeV1__value, domain=None, range=Optional[str])
+slots.sbeFieldV1__time_unit = Slot(uri=FIX_SBE.time_unit, name="sbeFieldV1__time_unit", curie=FIX_SBE.curie('time_unit'),
+                   model_uri=FIX_SBE.sbeFieldV1__time_unit, domain=None, range=Optional[str])
 
-slots.setTypeV1__choice = Slot(uri=FIX_SBE.choice, name="setTypeV1__choice", curie=FIX_SBE.curie('choice'),
-                   model_uri=FIX_SBE.setTypeV1__choice, domain=None, range=Union[Union[dict, Choice], list[Union[dict, Choice]]])
+slots.SbeMessageSchemaV1_sbe_id = Slot(uri=FIX_SBE.sbe_id, name="SbeMessageSchemaV1_sbe_id", curie=FIX_SBE.curie('sbe_id'),
+                   model_uri=FIX_SBE.SbeMessageSchemaV1_sbe_id, domain=SbeMessageSchemaV1, range=Optional[int])
 
-slots.setTypeV1__name = Slot(uri=FIX_SBE.name, name="setTypeV1__name", curie=FIX_SBE.curie('name'),
-                   model_uri=FIX_SBE.setTypeV1__name, domain=None, range=Union[str, SymbolicName])
+slots.SbeMessageSchemaV1_encoding_sets = Slot(uri=FIX_SBE.encoding_sets, name="SbeMessageSchemaV1_encoding_sets", curie=FIX_SBE.curie('encoding_sets'),
+                   model_uri=FIX_SBE.SbeMessageSchemaV1_encoding_sets, domain=SbeMessageSchemaV1, range=Union[Union[dict, "SbeEncodingSetV1"], list[Union[dict, "SbeEncodingSetV1"]]])
 
-slots.setTypeV1__encoding_type = Slot(uri=FIX_SBE.encoding_type, name="setTypeV1__encoding_type", curie=FIX_SBE.curie('encoding_type'),
-                   model_uri=FIX_SBE.setTypeV1__encoding_type, domain=None, range=Union[str, SymbolicName])
+slots.SbeMessageSchemaV1_messages = Slot(uri=FIX_SBE.messages, name="SbeMessageSchemaV1_messages", curie=FIX_SBE.curie('messages'),
+                   model_uri=FIX_SBE.SbeMessageSchemaV1_messages, domain=SbeMessageSchemaV1, range=Union[Union[dict, "SbeMessageV1"], list[Union[dict, "SbeMessageV1"]]])
 
-slots.setTypeV1__value = Slot(uri=FIX_SBE.value, name="setTypeV1__value", curie=FIX_SBE.curie('value'),
-                   model_uri=FIX_SBE.setTypeV1__value, domain=None, range=Optional[str])
+slots.SbeEncodingSetV1_encodings = Slot(uri=FIX_SBE.encodings, name="SbeEncodingSetV1_encodings", curie=FIX_SBE.curie('encodings'),
+                   model_uri=FIX_SBE.SbeEncodingSetV1_encodings, domain=SbeEncodingSetV1, range=Union[Union[dict, "SbeEncodingV1"], list[Union[dict, "SbeEncodingV1"]]])
 
-slots.fieldTypeV1__name = Slot(uri=FIX_SBE.name, name="fieldTypeV1__name", curie=FIX_SBE.curie('name'),
-                   model_uri=FIX_SBE.fieldTypeV1__name, domain=None, range=Union[str, SymbolicName])
+slots.SbeEncodingV1_semantic_type = Slot(uri=FIX_SBE.semantic_type, name="SbeEncodingV1_semantic_type", curie=FIX_SBE.curie('semantic_type'),
+                   model_uri=FIX_SBE.SbeEncodingV1_semantic_type, domain=SbeEncodingV1, range=Optional[Union[str, SbeToken]],
+                   pattern=re.compile(r'^\S+( \S+)*$'))
 
-slots.fieldTypeV1__id = Slot(uri=FIX_SBE.id, name="fieldTypeV1__id", curie=FIX_SBE.curie('id'),
-                   model_uri=FIX_SBE.fieldTypeV1__id, domain=None, range=int)
+slots.SbeCompositeV1_composite_members = Slot(uri=FIX_SBE.composite_members, name="SbeCompositeV1_composite_members", curie=FIX_SBE.curie('composite_members'),
+                   model_uri=FIX_SBE.SbeCompositeV1_composite_members, domain=SbeCompositeV1, range=Union[Union[dict, SbeMemberV1], list[Union[dict, SbeMemberV1]]])
 
-slots.fieldTypeV1__type = Slot(uri=FIX_SBE.type, name="fieldTypeV1__type", curie=FIX_SBE.curie('type'),
-                   model_uri=FIX_SBE.fieldTypeV1__type, domain=None, range=Union[str, SymbolicName])
+slots.SbeBlockV1Mixin_sbe_id = Slot(uri=FIX_SBE.sbe_id, name="SbeBlockV1Mixin_sbe_id", curie=FIX_SBE.curie('sbe_id'),
+                   model_uri=FIX_SBE.SbeBlockV1Mixin_sbe_id, domain=None, range=int)
 
-slots.fieldTypeV1__epoch = Slot(uri=FIX_SBE.epoch, name="fieldTypeV1__epoch", curie=FIX_SBE.curie('epoch'),
-                   model_uri=FIX_SBE.fieldTypeV1__epoch, domain=None, range=Optional[str])
+slots.SbeBlockV1Mixin_block_fields = Slot(uri=FIX_SBE.block_fields, name="SbeBlockV1Mixin_block_fields", curie=FIX_SBE.curie('block_fields'),
+                   model_uri=FIX_SBE.SbeBlockV1Mixin_block_fields, domain=None, range=Optional[Union[Union[dict, "SbeFieldV1"], list[Union[dict, "SbeFieldV1"]]]])
 
-slots.fieldTypeV1__time_unit = Slot(uri=FIX_SBE.time_unit, name="fieldTypeV1__time_unit", curie=FIX_SBE.curie('time_unit'),
-                   model_uri=FIX_SBE.fieldTypeV1__time_unit, domain=None, range=Optional[str])
+slots.SbeBlockV1Mixin_repeating_groups = Slot(uri=FIX_SBE.repeating_groups, name="SbeBlockV1Mixin_repeating_groups", curie=FIX_SBE.curie('repeating_groups'),
+                   model_uri=FIX_SBE.SbeBlockV1Mixin_repeating_groups, domain=None, range=Optional[Union[Union[dict, "SbeGroupV1"], list[Union[dict, "SbeGroupV1"]]]])
 
-slots.messageSchemaV1__types = Slot(uri=FIX_SBE.types, name="messageSchemaV1__types", curie=FIX_SBE.curie('types'),
-                   model_uri=FIX_SBE.messageSchemaV1__types, domain=None, range=Union[str, list[str]])
+slots.SbeBlockV1Mixin_var_data_fields = Slot(uri=FIX_SBE.var_data_fields, name="SbeBlockV1Mixin_var_data_fields", curie=FIX_SBE.curie('var_data_fields'),
+                   model_uri=FIX_SBE.SbeBlockV1Mixin_var_data_fields, domain=None, range=Optional[Union[Union[dict, "SbeFieldV1"], list[Union[dict, "SbeFieldV1"]]]])
 
-slots.messageSchemaV1__message = Slot(uri=FIX_SBE.message, name="messageSchemaV1__message", curie=FIX_SBE.curie('message'),
-                   model_uri=FIX_SBE.messageSchemaV1__message, domain=None, range=Union[Union[dict, MessageV1], list[Union[dict, MessageV1]]])
+slots.SbeMessageV1_sbe_id = Slot(uri=FIX_SBE.sbe_id, name="SbeMessageV1_sbe_id", curie=FIX_SBE.curie('sbe_id'),
+                   model_uri=FIX_SBE.SbeMessageV1_sbe_id, domain=SbeMessageV1, range=int)
 
-slots.messageSchemaV1__package = Slot(uri=FIX_SBE.package, name="messageSchemaV1__package", curie=FIX_SBE.curie('package'),
-                   model_uri=FIX_SBE.messageSchemaV1__package, domain=None, range=Optional[str])
+slots.SbeMessageV1_semantic_type = Slot(uri=FIX_SBE.semantic_type, name="SbeMessageV1_semantic_type", curie=FIX_SBE.curie('semantic_type'),
+                   model_uri=FIX_SBE.SbeMessageV1_semantic_type, domain=SbeMessageV1, range=Optional[Union[str, SbeToken]],
+                   pattern=re.compile(r'^\S+( \S+)*$'))
 
-slots.messageSchemaV1__id = Slot(uri=FIX_SBE.id, name="messageSchemaV1__id", curie=FIX_SBE.curie('id'),
-                   model_uri=FIX_SBE.messageSchemaV1__id, domain=None, range=Optional[int])
+slots.SbeGroupV1_block_fields = Slot(uri=FIX_SBE.block_fields, name="SbeGroupV1_block_fields", curie=FIX_SBE.curie('block_fields'),
+                   model_uri=FIX_SBE.SbeGroupV1_block_fields, domain=SbeGroupV1, range=Union[Union[dict, "SbeFieldV1"], list[Union[dict, "SbeFieldV1"]]])
 
-slots.messageSchemaV1__version = Slot(uri=FIX_SBE.version, name="messageSchemaV1__version", curie=FIX_SBE.curie('version'),
-                   model_uri=FIX_SBE.messageSchemaV1__version, domain=None, range=int)
+slots.SbeFieldV1_sbe_id = Slot(uri=FIX_SBE.sbe_id, name="SbeFieldV1_sbe_id", curie=FIX_SBE.curie('sbe_id'),
+                   model_uri=FIX_SBE.SbeFieldV1_sbe_id, domain=SbeFieldV1, range=int)
 
-slots.messageSchemaV1__semantic_version = Slot(uri=FIX_SBE.semantic_version, name="messageSchemaV1__semantic_version", curie=FIX_SBE.curie('semantic_version'),
-                   model_uri=FIX_SBE.messageSchemaV1__semantic_version, domain=None, range=Optional[str])
+slots.SbeFieldV1_semantic_type = Slot(uri=FIX_SBE.semantic_type, name="SbeFieldV1_semantic_type", curie=FIX_SBE.curie('semantic_type'),
+                   model_uri=FIX_SBE.SbeFieldV1_semantic_type, domain=SbeFieldV1, range=Optional[Union[str, SbeToken]],
+                   pattern=re.compile(r'^\S+( \S+)*$'))
 
-slots.messageSchemaV1__description = Slot(uri=FIX_SBE.description, name="messageSchemaV1__description", curie=FIX_SBE.curie('description'),
-                   model_uri=FIX_SBE.messageSchemaV1__description, domain=None, range=Optional[str])
+slots.SbeMessageSchemaV2_sbe_id = Slot(uri=FIX_SBE.sbe_id, name="SbeMessageSchemaV2_sbe_id", curie=FIX_SBE.curie('sbe_id'),
+                   model_uri=FIX_SBE.SbeMessageSchemaV2_sbe_id, domain=SbeMessageSchemaV2, range=Optional[int])
 
-slots.messageSchemaV1__byte_order = Slot(uri=FIX_SBE.byte_order, name="messageSchemaV1__byte_order", curie=FIX_SBE.curie('byte_order'),
-                   model_uri=FIX_SBE.messageSchemaV1__byte_order, domain=None, range=Optional[Union[str, "ByteOrder"]])
+slots.SbeMessageSchemaV2_encoding_sets = Slot(uri=FIX_SBE.encoding_sets, name="SbeMessageSchemaV2_encoding_sets", curie=FIX_SBE.curie('encoding_sets'),
+                   model_uri=FIX_SBE.SbeMessageSchemaV2_encoding_sets, domain=SbeMessageSchemaV2, range=Union[Union[dict, "SbeEncodingSetV2"], list[Union[dict, "SbeEncodingSetV2"]]])
 
-slots.messageSchemaV1__header_type = Slot(uri=FIX_SBE.header_type, name="messageSchemaV1__header_type", curie=FIX_SBE.curie('header_type'),
-                   model_uri=FIX_SBE.messageSchemaV1__header_type, domain=None, range=Optional[Union[str, SymbolicName]])
+slots.SbeMessageSchemaV2_message_sets = Slot(uri=FIX_SBE.message_sets, name="SbeMessageSchemaV2_message_sets", curie=FIX_SBE.curie('message_sets'),
+                   model_uri=FIX_SBE.SbeMessageSchemaV2_message_sets, domain=SbeMessageSchemaV2, range=Union[Union[dict, "SbeMessageSetV2"], list[Union[dict, "SbeMessageSetV2"]]])
 
-slots.alignmentAttributesV2__alignment = Slot(uri=FIX_SBE.alignment, name="alignmentAttributesV2__alignment", curie=FIX_SBE.curie('alignment'),
-                   model_uri=FIX_SBE.alignmentAttributesV2__alignment, domain=None, range=Optional[int])
+slots.SbeEncodingSetV2_schema_package = Slot(uri=FIX_SBE.schema_package, name="SbeEncodingSetV2_schema_package", curie=FIX_SBE.curie('schema_package'),
+                   model_uri=FIX_SBE.SbeEncodingSetV2_schema_package, domain=SbeEncodingSetV2, range=Optional[str])
 
-slots.offsetAttributesV2__offset = Slot(uri=FIX_SBE.offset, name="offsetAttributesV2__offset", curie=FIX_SBE.curie('offset'),
-                   model_uri=FIX_SBE.offsetAttributesV2__offset, domain=None, range=Optional[int])
+slots.SbeEncodingSetV2_encodings = Slot(uri=FIX_SBE.encodings, name="SbeEncodingSetV2_encodings", curie=FIX_SBE.curie('encodings'),
+                   model_uri=FIX_SBE.SbeEncodingSetV2_encodings, domain=SbeEncodingSetV2, range=Union[Union[dict, "SbeElementV2"], list[Union[dict, "SbeElementV2"]]])
 
-slots.offsetAttributesV2__alignment = Slot(uri=FIX_SBE.alignment, name="offsetAttributesV2__alignment", curie=FIX_SBE.curie('alignment'),
-                   model_uri=FIX_SBE.offsetAttributesV2__alignment, domain=None, range=Optional[int])
+slots.SbeMessageSetV2_schema_package = Slot(uri=FIX_SBE.schema_package, name="SbeMessageSetV2_schema_package", curie=FIX_SBE.curie('schema_package'),
+                   model_uri=FIX_SBE.SbeMessageSetV2_schema_package, domain=SbeMessageSetV2, range=Optional[str])
 
-slots.presenceAttributesV2__presence = Slot(uri=FIX_SBE.presence, name="presenceAttributesV2__presence", curie=FIX_SBE.curie('presence'),
-                   model_uri=FIX_SBE.presenceAttributesV2__presence, domain=None, range=Optional[Union[str, "Presence"]])
+slots.SbeMessageSetV2_messages = Slot(uri=FIX_SBE.messages, name="SbeMessageSetV2_messages", curie=FIX_SBE.curie('messages'),
+                   model_uri=FIX_SBE.SbeMessageSetV2_messages, domain=SbeMessageSetV2, range=Union[Union[dict, "SbeMessageV2"], list[Union[dict, "SbeMessageV2"]]])
 
-slots.presenceAttributesV2__null_value = Slot(uri=FIX_SBE.null_value, name="presenceAttributesV2__null_value", curie=FIX_SBE.curie('null_value'),
-                   model_uri=FIX_SBE.presenceAttributesV2__null_value, domain=None, range=Optional[str])
+slots.SbeCompositeV2_composite_members = Slot(uri=FIX_SBE.composite_members, name="SbeCompositeV2_composite_members", curie=FIX_SBE.curie('composite_members'),
+                   model_uri=FIX_SBE.SbeCompositeV2_composite_members, domain=SbeCompositeV2, range=Union[Union[dict, SbeMemberV2], list[Union[dict, SbeMemberV2]]])
 
-slots.presenceAttributesV2__min_value = Slot(uri=FIX_SBE.min_value, name="presenceAttributesV2__min_value", curie=FIX_SBE.curie('min_value'),
-                   model_uri=FIX_SBE.presenceAttributesV2__min_value, domain=None, range=Optional[str])
+slots.SbeBlockV2Mixin_sbe_id = Slot(uri=FIX_SBE.sbe_id, name="SbeBlockV2Mixin_sbe_id", curie=FIX_SBE.curie('sbe_id'),
+                   model_uri=FIX_SBE.SbeBlockV2Mixin_sbe_id, domain=None, range=int)
 
-slots.presenceAttributesV2__max_value = Slot(uri=FIX_SBE.max_value, name="presenceAttributesV2__max_value", curie=FIX_SBE.curie('max_value'),
-                   model_uri=FIX_SBE.presenceAttributesV2__max_value, domain=None, range=Optional[str])
+slots.SbeBlockV2Mixin_alignment = Slot(uri=FIX_SBE.alignment, name="SbeBlockV2Mixin_alignment", curie=FIX_SBE.curie('alignment'),
+                   model_uri=FIX_SBE.SbeBlockV2Mixin_alignment, domain=None, range=Optional[int])
 
-slots.presenceAttributesV2__value_ref = Slot(uri=FIX_SBE.value_ref, name="presenceAttributesV2__value_ref", curie=FIX_SBE.curie('value_ref'),
-                   model_uri=FIX_SBE.presenceAttributesV2__value_ref, domain=None, range=Optional[Union[str, QualifiedName]])
+slots.SbeBlockV2Mixin_block_fields = Slot(uri=FIX_SBE.block_fields, name="SbeBlockV2Mixin_block_fields", curie=FIX_SBE.curie('block_fields'),
+                   model_uri=FIX_SBE.SbeBlockV2Mixin_block_fields, domain=None, range=Optional[Union[Union[dict, "SbeFieldV2"], list[Union[dict, "SbeFieldV2"]]]])
 
-slots.primitiveTypeAttributesV2__primitive_type = Slot(uri=FIX_SBE.primitive_type, name="primitiveTypeAttributesV2__primitive_type", curie=FIX_SBE.curie('primitive_type'),
-                   model_uri=FIX_SBE.primitiveTypeAttributesV2__primitive_type, domain=None, range=Union[str, "PrimitiveTypeV2"])
+slots.SbeBlockV2Mixin_repeating_groups = Slot(uri=FIX_SBE.repeating_groups, name="SbeBlockV2Mixin_repeating_groups", curie=FIX_SBE.curie('repeating_groups'),
+                   model_uri=FIX_SBE.SbeBlockV2Mixin_repeating_groups, domain=None, range=Optional[Union[Union[dict, "SbeGroupV2"], list[Union[dict, "SbeGroupV2"]]]])
 
-slots.primitiveTypeAttributesV2__length = Slot(uri=FIX_SBE.length, name="primitiveTypeAttributesV2__length", curie=FIX_SBE.curie('length'),
-                   model_uri=FIX_SBE.primitiveTypeAttributesV2__length, domain=None, range=Optional[int])
+slots.SbeBlockV2Mixin_var_data_fields = Slot(uri=FIX_SBE.var_data_fields, name="SbeBlockV2Mixin_var_data_fields", curie=FIX_SBE.curie('var_data_fields'),
+                   model_uri=FIX_SBE.SbeBlockV2Mixin_var_data_fields, domain=None, range=Optional[Union[Union[dict, "SbeFieldV2"], list[Union[dict, "SbeFieldV2"]]]])
 
-slots.primitiveTypeAttributesV2__character_encoding = Slot(uri=FIX_SBE.character_encoding, name="primitiveTypeAttributesV2__character_encoding", curie=FIX_SBE.curie('character_encoding'),
-                   model_uri=FIX_SBE.primitiveTypeAttributesV2__character_encoding, domain=None, range=Optional[str])
+slots.SbeMessageV2_sbe_id = Slot(uri=FIX_SBE.sbe_id, name="SbeMessageV2_sbe_id", curie=FIX_SBE.curie('sbe_id'),
+                   model_uri=FIX_SBE.SbeMessageV2_sbe_id, domain=SbeMessageV2, range=int)
 
-slots.blockTypeV2__field = Slot(uri=FIX_SBE.field, name="blockTypeV2__field", curie=FIX_SBE.curie('field'),
-                   model_uri=FIX_SBE.blockTypeV2__field, domain=None, range=Optional[Union[Union[dict, FieldTypeV2], list[Union[dict, FieldTypeV2]]]])
+slots.SbeMessageV2_semantic_type = Slot(uri=FIX_SBE.semantic_type, name="SbeMessageV2_semantic_type", curie=FIX_SBE.curie('semantic_type'),
+                   model_uri=FIX_SBE.SbeMessageV2_semantic_type, domain=SbeMessageV2, range=Optional[Union[str, SbeToken]],
+                   pattern=re.compile(r'^\S+( \S+)*$'))
 
-slots.blockTypeV2__group = Slot(uri=FIX_SBE.group, name="blockTypeV2__group", curie=FIX_SBE.curie('group'),
-                   model_uri=FIX_SBE.blockTypeV2__group, domain=None, range=Optional[Union[Union[dict, GroupTypeV2], list[Union[dict, GroupTypeV2]]]])
+slots.SbeGroupV2_block_fields = Slot(uri=FIX_SBE.block_fields, name="SbeGroupV2_block_fields", curie=FIX_SBE.curie('block_fields'),
+                   model_uri=FIX_SBE.SbeGroupV2_block_fields, domain=SbeGroupV2, range=Union[Union[dict, "SbeFieldV2"], list[Union[dict, "SbeFieldV2"]]])
 
-slots.blockTypeV2__data = Slot(uri=FIX_SBE.data, name="blockTypeV2__data", curie=FIX_SBE.curie('data'),
-                   model_uri=FIX_SBE.blockTypeV2__data, domain=None, range=Optional[Union[Union[dict, FieldTypeV2], list[Union[dict, FieldTypeV2]]]])
+slots.SbeFieldV2_sbe_id = Slot(uri=FIX_SBE.sbe_id, name="SbeFieldV2_sbe_id", curie=FIX_SBE.curie('sbe_id'),
+                   model_uri=FIX_SBE.SbeFieldV2_sbe_id, domain=SbeFieldV2, range=int)
 
-slots.blockTypeV2__name = Slot(uri=FIX_SBE.name, name="blockTypeV2__name", curie=FIX_SBE.curie('name'),
-                   model_uri=FIX_SBE.blockTypeV2__name, domain=None, range=Union[str, SymbolicName])
+slots.SbeFieldV2_semantic_type = Slot(uri=FIX_SBE.semantic_type, name="SbeFieldV2_semantic_type", curie=FIX_SBE.curie('semantic_type'),
+                   model_uri=FIX_SBE.SbeFieldV2_semantic_type, domain=SbeFieldV2, range=Optional[Union[str, SbeToken]],
+                   pattern=re.compile(r'^\S+( \S+)*$'))
 
-slots.blockTypeV2__id = Slot(uri=FIX_SBE.id, name="blockTypeV2__id", curie=FIX_SBE.curie('id'),
-                   model_uri=FIX_SBE.blockTypeV2__id, domain=None, range=int)
-
-slots.blockTypeV2__block_length = Slot(uri=FIX_SBE.block_length, name="blockTypeV2__block_length", curie=FIX_SBE.curie('block_length'),
-                   model_uri=FIX_SBE.blockTypeV2__block_length, domain=None, range=Optional[int])
-
-slots.groupTypeV2__dimension_type = Slot(uri=FIX_SBE.dimension_type, name="groupTypeV2__dimension_type", curie=FIX_SBE.curie('dimension_type'),
-                   model_uri=FIX_SBE.groupTypeV2__dimension_type, domain=None, range=Optional[Union[str, SymbolicName]])
-
-slots.simpleDataTypeV2__name = Slot(uri=FIX_SBE.name, name="simpleDataTypeV2__name", curie=FIX_SBE.curie('name'),
-                   model_uri=FIX_SBE.simpleDataTypeV2__name, domain=None, range=Union[str, SymbolicName])
-
-slots.simpleDataTypeV2__description = Slot(uri=FIX_SBE.description, name="simpleDataTypeV2__description", curie=FIX_SBE.curie('description'),
-                   model_uri=FIX_SBE.simpleDataTypeV2__description, domain=None, range=Optional[str])
-
-slots.simpleDataTypeV2__value = Slot(uri=FIX_SBE.value, name="simpleDataTypeV2__value", curie=FIX_SBE.curie('value'),
-                   model_uri=FIX_SBE.simpleDataTypeV2__value, domain=None, range=Optional[str])
-
-slots.memberDataTypeV2__name = Slot(uri=FIX_SBE.name, name="memberDataTypeV2__name", curie=FIX_SBE.curie('name'),
-                   model_uri=FIX_SBE.memberDataTypeV2__name, domain=None, range=Union[str, SymbolicName])
-
-slots.memberDataTypeV2__description = Slot(uri=FIX_SBE.description, name="memberDataTypeV2__description", curie=FIX_SBE.curie('description'),
-                   model_uri=FIX_SBE.memberDataTypeV2__description, domain=None, range=Optional[str])
-
-slots.memberDataTypeV2__value = Slot(uri=FIX_SBE.value, name="memberDataTypeV2__value", curie=FIX_SBE.curie('value'),
-                   model_uri=FIX_SBE.memberDataTypeV2__value, domain=None, range=Optional[str])
-
-slots.compositeDataTypeV2__type = Slot(uri=FIX_SBE.type, name="compositeDataTypeV2__type", curie=FIX_SBE.curie('type'),
-                   model_uri=FIX_SBE.compositeDataTypeV2__type, domain=None, range=Optional[Union[Union[dict, MemberDataTypeV2], list[Union[dict, MemberDataTypeV2]]]])
-
-slots.compositeDataTypeV2__enum = Slot(uri=FIX_SBE.enum, name="compositeDataTypeV2__enum", curie=FIX_SBE.curie('enum'),
-                   model_uri=FIX_SBE.compositeDataTypeV2__enum, domain=None, range=Optional[Union[Union[dict, EnumTypeV2], list[Union[dict, EnumTypeV2]]]])
-
-slots.compositeDataTypeV2__set = Slot(uri=FIX_SBE.set, name="compositeDataTypeV2__set", curie=FIX_SBE.curie('set'),
-                   model_uri=FIX_SBE.compositeDataTypeV2__set, domain=None, range=Optional[Union[Union[dict, SetTypeV2], list[Union[dict, SetTypeV2]]]])
-
-slots.compositeDataTypeV2__composite = Slot(uri=FIX_SBE.composite, name="compositeDataTypeV2__composite", curie=FIX_SBE.curie('composite'),
-                   model_uri=FIX_SBE.compositeDataTypeV2__composite, domain=None, range=Optional[Union[Union[dict, CompositeDataTypeV2], list[Union[dict, CompositeDataTypeV2]]]])
-
-slots.compositeDataTypeV2__ref = Slot(uri=FIX_SBE.ref, name="compositeDataTypeV2__ref", curie=FIX_SBE.curie('ref'),
-                   model_uri=FIX_SBE.compositeDataTypeV2__ref, domain=None, range=Optional[Union[Union[dict, RefTypeV2], list[Union[dict, RefTypeV2]]]])
-
-slots.compositeDataTypeV2__name = Slot(uri=FIX_SBE.name, name="compositeDataTypeV2__name", curie=FIX_SBE.curie('name'),
-                   model_uri=FIX_SBE.compositeDataTypeV2__name, domain=None, range=Union[str, SymbolicName])
-
-slots.compositeDataTypeV2__description = Slot(uri=FIX_SBE.description, name="compositeDataTypeV2__description", curie=FIX_SBE.curie('description'),
-                   model_uri=FIX_SBE.compositeDataTypeV2__description, domain=None, range=Optional[str])
-
-slots.compositeDataTypeV2__value = Slot(uri=FIX_SBE.value, name="compositeDataTypeV2__value", curie=FIX_SBE.curie('value'),
-                   model_uri=FIX_SBE.compositeDataTypeV2__value, domain=None, range=Optional[str])
-
-slots.enumTypeV2__valid_value = Slot(uri=FIX_SBE.valid_value, name="enumTypeV2__valid_value", curie=FIX_SBE.curie('valid_value'),
-                   model_uri=FIX_SBE.enumTypeV2__valid_value, domain=None, range=Union[Union[dict, ValidValue], list[Union[dict, ValidValue]]])
-
-slots.enumTypeV2__name = Slot(uri=FIX_SBE.name, name="enumTypeV2__name", curie=FIX_SBE.curie('name'),
-                   model_uri=FIX_SBE.enumTypeV2__name, domain=None, range=Union[str, SymbolicName])
-
-slots.enumTypeV2__encoding_type = Slot(uri=FIX_SBE.encoding_type, name="enumTypeV2__encoding_type", curie=FIX_SBE.curie('encoding_type'),
-                   model_uri=FIX_SBE.enumTypeV2__encoding_type, domain=None, range=Union[str, SymbolicName])
-
-slots.enumTypeV2__description = Slot(uri=FIX_SBE.description, name="enumTypeV2__description", curie=FIX_SBE.curie('description'),
-                   model_uri=FIX_SBE.enumTypeV2__description, domain=None, range=Optional[str])
-
-slots.enumTypeV2__value = Slot(uri=FIX_SBE.value, name="enumTypeV2__value", curie=FIX_SBE.curie('value'),
-                   model_uri=FIX_SBE.enumTypeV2__value, domain=None, range=Optional[str])
-
-slots.refTypeV2__name = Slot(uri=FIX_SBE.name, name="refTypeV2__name", curie=FIX_SBE.curie('name'),
-                   model_uri=FIX_SBE.refTypeV2__name, domain=None, range=Union[str, SymbolicName])
-
-slots.refTypeV2__type = Slot(uri=FIX_SBE.type, name="refTypeV2__type", curie=FIX_SBE.curie('type'),
-                   model_uri=FIX_SBE.refTypeV2__type, domain=None, range=Union[str, SymbolicName])
-
-slots.refTypeV2__description = Slot(uri=FIX_SBE.description, name="refTypeV2__description", curie=FIX_SBE.curie('description'),
-                   model_uri=FIX_SBE.refTypeV2__description, domain=None, range=Optional[str])
-
-slots.refTypeV2__value = Slot(uri=FIX_SBE.value, name="refTypeV2__value", curie=FIX_SBE.curie('value'),
-                   model_uri=FIX_SBE.refTypeV2__value, domain=None, range=Optional[str])
-
-slots.setTypeV2__choice = Slot(uri=FIX_SBE.choice, name="setTypeV2__choice", curie=FIX_SBE.curie('choice'),
-                   model_uri=FIX_SBE.setTypeV2__choice, domain=None, range=Union[Union[dict, Choice], list[Union[dict, Choice]]])
-
-slots.setTypeV2__name = Slot(uri=FIX_SBE.name, name="setTypeV2__name", curie=FIX_SBE.curie('name'),
-                   model_uri=FIX_SBE.setTypeV2__name, domain=None, range=Union[str, SymbolicName])
-
-slots.setTypeV2__encoding_type = Slot(uri=FIX_SBE.encoding_type, name="setTypeV2__encoding_type", curie=FIX_SBE.curie('encoding_type'),
-                   model_uri=FIX_SBE.setTypeV2__encoding_type, domain=None, range=Union[str, SymbolicName])
-
-slots.setTypeV2__description = Slot(uri=FIX_SBE.description, name="setTypeV2__description", curie=FIX_SBE.curie('description'),
-                   model_uri=FIX_SBE.setTypeV2__description, domain=None, range=Optional[str])
-
-slots.setTypeV2__value = Slot(uri=FIX_SBE.value, name="setTypeV2__value", curie=FIX_SBE.curie('value'),
-                   model_uri=FIX_SBE.setTypeV2__value, domain=None, range=Optional[str])
-
-slots.fieldTypeV2__name = Slot(uri=FIX_SBE.name, name="fieldTypeV2__name", curie=FIX_SBE.curie('name'),
-                   model_uri=FIX_SBE.fieldTypeV2__name, domain=None, range=Union[str, SymbolicName])
-
-slots.fieldTypeV2__id = Slot(uri=FIX_SBE.id, name="fieldTypeV2__id", curie=FIX_SBE.curie('id'),
-                   model_uri=FIX_SBE.fieldTypeV2__id, domain=None, range=int)
-
-slots.fieldTypeV2__type = Slot(uri=FIX_SBE.type, name="fieldTypeV2__type", curie=FIX_SBE.curie('type'),
-                   model_uri=FIX_SBE.fieldTypeV2__type, domain=None, range=Union[str, SymbolicName])
-
-slots.fieldTypeV2__value = Slot(uri=FIX_SBE.value, name="fieldTypeV2__value", curie=FIX_SBE.curie('value'),
-                   model_uri=FIX_SBE.fieldTypeV2__value, domain=None, range=Optional[str])
-
-slots.messageSchemaV2__types = Slot(uri=FIX_SBE.types, name="messageSchemaV2__types", curie=FIX_SBE.curie('types'),
-                   model_uri=FIX_SBE.messageSchemaV2__types, domain=None, range=Union[Union[dict, TypesV2], list[Union[dict, TypesV2]]])
-
-slots.messageSchemaV2__messages = Slot(uri=FIX_SBE.messages, name="messageSchemaV2__messages", curie=FIX_SBE.curie('messages'),
-                   model_uri=FIX_SBE.messageSchemaV2__messages, domain=None, range=Union[Union[dict, MessagesV2], list[Union[dict, MessagesV2]]])
-
-slots.messageSchemaV2__package = Slot(uri=FIX_SBE.package, name="messageSchemaV2__package", curie=FIX_SBE.curie('package'),
-                   model_uri=FIX_SBE.messageSchemaV2__package, domain=None, range=Optional[str])
-
-slots.messageSchemaV2__id = Slot(uri=FIX_SBE.id, name="messageSchemaV2__id", curie=FIX_SBE.curie('id'),
-                   model_uri=FIX_SBE.messageSchemaV2__id, domain=None, range=Optional[int])
-
-slots.messageSchemaV2__version = Slot(uri=FIX_SBE.version, name="messageSchemaV2__version", curie=FIX_SBE.curie('version'),
-                   model_uri=FIX_SBE.messageSchemaV2__version, domain=None, range=int)
-
-slots.messageSchemaV2__semantic_version = Slot(uri=FIX_SBE.semantic_version, name="messageSchemaV2__semantic_version", curie=FIX_SBE.curie('semantic_version'),
-                   model_uri=FIX_SBE.messageSchemaV2__semantic_version, domain=None, range=Optional[str])
-
-slots.messageSchemaV2__description = Slot(uri=FIX_SBE.description, name="messageSchemaV2__description", curie=FIX_SBE.curie('description'),
-                   model_uri=FIX_SBE.messageSchemaV2__description, domain=None, range=Optional[str])
-
-slots.messageSchemaV2__byte_order = Slot(uri=FIX_SBE.byte_order, name="messageSchemaV2__byte_order", curie=FIX_SBE.curie('byte_order'),
-                   model_uri=FIX_SBE.messageSchemaV2__byte_order, domain=None, range=Optional[Union[str, "ByteOrder"]])
-
-slots.messageSchemaV2__header_type = Slot(uri=FIX_SBE.header_type, name="messageSchemaV2__header_type", curie=FIX_SBE.curie('header_type'),
-                   model_uri=FIX_SBE.messageSchemaV2__header_type, domain=None, range=Optional[Union[str, SymbolicName]])
-
-slots.messagesV2__message = Slot(uri=FIX_SBE.message, name="messagesV2__message", curie=FIX_SBE.curie('message'),
-                   model_uri=FIX_SBE.messagesV2__message, domain=None, range=Union[Union[dict, BlockTypeV2], list[Union[dict, BlockTypeV2]]])
-
-slots.messagesV2__description = Slot(uri=FIX_SBE.description, name="messagesV2__description", curie=FIX_SBE.curie('description'),
-                   model_uri=FIX_SBE.messagesV2__description, domain=None, range=Optional[str])
-
-slots.messagesV2__package = Slot(uri=FIX_SBE.package, name="messagesV2__package", curie=FIX_SBE.curie('package'),
-                   model_uri=FIX_SBE.messagesV2__package, domain=None, range=Optional[str])
-
-slots.typesV2__type = Slot(uri=FIX_SBE.type, name="typesV2__type", curie=FIX_SBE.curie('type'),
-                   model_uri=FIX_SBE.typesV2__type, domain=None, range=Optional[Union[Union[dict, SimpleDataTypeV2], list[Union[dict, SimpleDataTypeV2]]]])
-
-slots.typesV2__composite = Slot(uri=FIX_SBE.composite, name="typesV2__composite", curie=FIX_SBE.curie('composite'),
-                   model_uri=FIX_SBE.typesV2__composite, domain=None, range=Optional[Union[Union[dict, CompositeDataTypeV2], list[Union[dict, CompositeDataTypeV2]]]])
-
-slots.typesV2__enum = Slot(uri=FIX_SBE.enum, name="typesV2__enum", curie=FIX_SBE.curie('enum'),
-                   model_uri=FIX_SBE.typesV2__enum, domain=None, range=Optional[Union[Union[dict, EnumTypeV2], list[Union[dict, EnumTypeV2]]]])
-
-slots.typesV2__set = Slot(uri=FIX_SBE.set, name="typesV2__set", curie=FIX_SBE.curie('set'),
-                   model_uri=FIX_SBE.typesV2__set, domain=None, range=Optional[Union[Union[dict, SetTypeV2], list[Union[dict, SetTypeV2]]]])
-
-slots.typesV2__description = Slot(uri=FIX_SBE.description, name="typesV2__description", curie=FIX_SBE.curie('description'),
-                   model_uri=FIX_SBE.typesV2__description, domain=None, range=Optional[str])
-
-slots.typesV2__package = Slot(uri=FIX_SBE.package, name="typesV2__package", curie=FIX_SBE.curie('package'),
-                   model_uri=FIX_SBE.typesV2__package, domain=None, range=Optional[str])
+slots.SbeFieldV2_alignment = Slot(uri=FIX_SBE.alignment, name="SbeFieldV2_alignment", curie=FIX_SBE.curie('alignment'),
+                   model_uri=FIX_SBE.SbeFieldV2_alignment, domain=SbeFieldV2, range=Optional[int])

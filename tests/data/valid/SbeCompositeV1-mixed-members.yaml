@@ -1,0 +1,28 @@
+encoding_kind: SbeCompositeV1
+symbolic_name: quotedPrice
+semantic_type: Price
+composite_members:
+  - encoding_kind: SbeSimpleTypeV1
+    symbolic_name: mantissa
+    primitive_type: int64
+  - encoding_kind: SbeEnumV1
+    symbolic_name: source
+    encoding_type: uint8
+    valid_values:
+      - symbolic_name: venue
+        valid_value: "1"
+  - encoding_kind: SbeSetV1
+    symbolic_name: marks
+    encoding_type: uint8
+    choices:
+      - symbolic_name: stale
+        bit_position: 0
+  - encoding_kind: SbeCompositeV1
+    symbolic_name: inner
+    composite_members:
+      - encoding_kind: SbeSimpleTypeV1
+        symbolic_name: left
+        primitive_type: uint8
+  - encoding_kind: SbeRefV1
+    symbolic_name: reused
+    encoding_name: counter

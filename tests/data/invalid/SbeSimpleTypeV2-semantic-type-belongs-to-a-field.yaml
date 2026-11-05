@@ -1,0 +1,5 @@
+# Fails at: /
+encoding_kind: SbeSimpleTypeV2
+symbolic_name: count
+primitive_type: uint8
+semantic_type: int

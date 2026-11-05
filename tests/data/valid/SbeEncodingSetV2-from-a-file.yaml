@@ -1,0 +1,7 @@
+description: Types that several schemas share.
+schema_package: lmodel.example.common
+sbe_xml_base: types-include.xml
+encodings:
+  - encoding_kind: SbeSimpleTypeV2
+    symbolic_name: counter
+    primitive_type: uint32

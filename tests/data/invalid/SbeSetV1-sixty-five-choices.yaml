@@ -1,0 +1,135 @@
+# Fails at: /choices
+encoding_kind: SbeSetV1
+symbolic_name: flags
+encoding_type: uint64
+choices:
+  - symbolic_name: bit0
+    bit_position: 0
+  - symbolic_name: bit1
+    bit_position: 1
+  - symbolic_name: bit2
+    bit_position: 2
+  - symbolic_name: bit3
+    bit_position: 3
+  - symbolic_name: bit4
+    bit_position: 4
+  - symbolic_name: bit5
+    bit_position: 5
+  - symbolic_name: bit6
+    bit_position: 6
+  - symbolic_name: bit7
+    bit_position: 7
+  - symbolic_name: bit8
+    bit_position: 8
+  - symbolic_name: bit9
+    bit_position: 9
+  - symbolic_name: bit10
+    bit_position: 10
+  - symbolic_name: bit11
+    bit_position: 11
+  - symbolic_name: bit12
+    bit_position: 12
+  - symbolic_name: bit13
+    bit_position: 13
+  - symbolic_name: bit14
+    bit_position: 14
+  - symbolic_name: bit15
+    bit_position: 15
+  - symbolic_name: bit16
+    bit_position: 16
+  - symbolic_name: bit17
+    bit_position: 17
+  - symbolic_name: bit18
+    bit_position: 18
+  - symbolic_name: bit19
+    bit_position: 19
+  - symbolic_name: bit20
+    bit_position: 20
+  - symbolic_name: bit21
+    bit_position: 21
+  - symbolic_name: bit22
+    bit_position: 22
+  - symbolic_name: bit23
+    bit_position: 23
+  - symbolic_name: bit24
+    bit_position: 24
+  - symbolic_name: bit25
+    bit_position: 25
+  - symbolic_name: bit26
+    bit_position: 26
+  - symbolic_name: bit27
+    bit_position: 27
+  - symbolic_name: bit28
+    bit_position: 28
+  - symbolic_name: bit29
+    bit_position: 29
+  - symbolic_name: bit30
+    bit_position: 30
+  - symbolic_name: bit31
+    bit_position: 31
+  - symbolic_name: bit32
+    bit_position: 32
+  - symbolic_name: bit33
+    bit_position: 33
+  - symbolic_name: bit34
+    bit_position: 34
+  - symbolic_name: bit35
+    bit_position: 35
+  - symbolic_name: bit36
+    bit_position: 36
+  - symbolic_name: bit37
+    bit_position: 37
+  - symbolic_name: bit38
+    bit_position: 38
+  - symbolic_name: bit39
+    bit_position: 39
+  - symbolic_name: bit40
+    bit_position: 40
+  - symbolic_name: bit41
+    bit_position: 41
+  - symbolic_name: bit42
+    bit_position: 42
+  - symbolic_name: bit43
+    bit_position: 43
+  - symbolic_name: bit44
+    bit_position: 44
+  - symbolic_name: bit45
+    bit_position: 45
+  - symbolic_name: bit46
+    bit_position: 46
+  - symbolic_name: bit47
+    bit_position: 47
+  - symbolic_name: bit48
+    bit_position: 48
+  - symbolic_name: bit49
+    bit_position: 49
+  - symbolic_name: bit50
+    bit_position: 50
+  - symbolic_name: bit51
+    bit_position: 51
+  - symbolic_name: bit52
+    bit_position: 52
+  - symbolic_name: bit53
+    bit_position: 53
+  - symbolic_name: bit54
+    bit_position: 54
+  - symbolic_name: bit55
+    bit_position: 55
+  - symbolic_name: bit56
+    bit_position: 56
+  - symbolic_name: bit57
+    bit_position: 57
+  - symbolic_name: bit58
+    bit_position: 58
+  - symbolic_name: bit59
+    bit_position: 59
+  - symbolic_name: bit60
+    bit_position: 60
+  - symbolic_name: bit61
+    bit_position: 61
+  - symbolic_name: bit62
+    bit_position: 62
+  - symbolic_name: bit63
+    bit_position: 63
+  - symbolic_name: bit64
+    bit_position: 64

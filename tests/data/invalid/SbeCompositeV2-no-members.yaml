@@ -1,0 +1,4 @@
+# Fails at: /composite_members
+encoding_kind: SbeCompositeV2
+symbolic_name: empty
+composite_members: []

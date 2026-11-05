@@ -1,0 +1,6 @@
+encoding_kind: SbeRefV1
+symbolic_name: amount
+encoding_name: price4
+offset: 3
+since_version: 1
+deprecated_since: 2

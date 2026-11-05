@@ -1,0 +1,9 @@
+encoding_kind: SbeMemberTypeV2
+symbolic_name: mantissa
+primitive_type: int64
+presence: optional
+null_value: "-9223372036854775808"
+min_value: "1"
+max_value: "100"
+offset: 8
+description: The digits of a price.

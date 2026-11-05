@@ -1,0 +1,4 @@
+# Fails at: /symbolic_name
+encoding_kind: SbeSimpleTypeV1
+symbolic_name: a2345678901234567890123456789012345678901234567890123456789012345
+primitive_type: uint8

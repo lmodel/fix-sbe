@@ -1,0 +1,5 @@
+# Fails at: /
+encoding_kind: SbeMemberTypeV2
+symbolic_name: count
+primitive_type: uint8
+value_ref: sideEnum.Buy

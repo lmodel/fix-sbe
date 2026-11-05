@@ -1,446 +1,595 @@
 /**
-* Inline enumeration lifted from XSD attribute ``presence`` on ``presenceAttributes``.
+* Whether a value is on the wire, and whether it may be null.
 */
-export enum Presence {
+export enum SbePresence {
     
-    /** The value must always be populated */
+    /** A value is always sent, and it is never tested for null. */
     required = "required",
-    /** Value may be set to nullValue for its data type */
+    /** A value is sent, and a null marker says that none is set. */
     optional = "optional",
-    /** Value does not vary so it need not be serialized on the wire */
+    /** The schema states the value, so nothing is sent. */
     constant = "constant",
 };
 /**
-* Inline enumeration lifted from XSD attribute ``byteOrder`` on ``messageSchema``.
+* The order of the octets in every multi-octet number of a message.
 */
-export enum ByteOrder {
+export enum SbeByteOrder {
     
+    /** The most significant octet comes first. */
     bigEndian = "bigEndian",
+    /** The least significant octet comes first. */
     littleEndian = "littleEndian",
 };
 /**
-* Inline enumeration lifted from XSD attribute ``primitiveType`` on ``encodedDataType``.
+* The wire types every encoding is finally built from.
 */
-export enum PrimitiveTypeV1 {
+export enum SbePrimitiveType {
     
+    /** One character of one octet. */
     char = "char",
+    /** A signed integer of one octet. */
     int8 = "int8",
+    /** A signed integer of two octets. */
     int16 = "int16",
+    /** A signed integer of four octets. */
     int32 = "int32",
+    /** A signed integer of eight octets. */
     int64 = "int64",
+    /** An unsigned integer of one octet. */
     uint8 = "uint8",
+    /** An unsigned integer of two octets. */
     uint16 = "uint16",
+    /** An unsigned integer of four octets. */
     uint32 = "uint32",
+    /** An unsigned integer of eight octets. */
     uint64 = "uint64",
+    /** A four-octet number in binary floating point. */
     float = "float",
+    /** An eight-octet number in binary floating point. */
     double = "double",
 };
 /**
-* Inline enumeration lifted from XSD attribute ``primitiveType`` on ``primitiveTypeAttributes``.
+* The FIX datatypes a field's or an encoding's semantic type may name: those of FIX Latest, and EncodedText, which the specification's summary table adds.
 */
-export enum PrimitiveTypeV2 {
+export enum SbeFixDatatype {
     
-    /** A value of a single-byte character set */
-    char = "char",
-    int8 = "int8",
-    int16 = "int16",
-    int32 = "int32",
-    int64 = "int64",
-    uint8 = "uint8",
-    uint16 = "uint16",
-    uint32 = "uint32",
-    uint64 = "uint64",
+    /** A whole number. */
+    int = "int",
+    /** A whole number that counts the octets of another field. */
+    Length = "Length",
+    /** A whole number that is a field's tag. */
+    TagNum = "TagNum",
+    /** A whole number that orders messages in a session. */
+    SeqNum = "SeqNum",
+    /** A whole number that counts the entries of a repeating group. */
+    NumInGroup = "NumInGroup",
+    /** A whole number from 1 to 31. */
+    DayOfMonth = "DayOfMonth",
+    /** A decimal number. */
     float = "float",
-    double = "double",
+    /** A decimal number that is an amount of something traded. */
+    Qty = "Qty",
+    /** A decimal number that is a price. */
+    Price = "Price",
+    /** A decimal number that is a difference from a price. */
+    PriceOffset = "PriceOffset",
+    /** A decimal number that is a quantity multiplied by a price. */
+    Amt = "Amt",
+    /** A decimal number that is a proportion, where 0.1 is ten percent. */
+    Percentage = "Percentage",
+    /** One character. */
+    char = "char",
+    /** A character that is Y or N. */
+    Boolean = "Boolean",
+    /** Text of any length. */
+    String = "String",
+    /** One or more single characters, separated by spaces, each chosen from a list. */
+    MultipleCharValue = "MultipleCharValue",
+    /** One or more words, separated by spaces, each chosen from a list. */
+    MultipleStringValue = "MultipleStringValue",
+    /** A two-letter country code of ISO 3166-1. */
+    Country = "Country",
+    /** A three-letter currency code of ISO 4217. */
+    Currency = "Currency",
+    /** A market identifier code of ISO 10383. */
+    Exchange = "Exchange",
+    /** A year and month, with an optional day or week. */
+    MonthYear = "MonthYear",
+    /** A date and time in UTC. */
+    UTCTimestamp = "UTCTimestamp",
+    /** A time of day in UTC. */
+    UTCTimeOnly = "UTCTimeOnly",
+    /** A calendar date in UTC. */
+    UTCDateOnly = "UTCDateOnly",
+    /** A calendar date in the market's local time. */
+    LocalMktDate = "LocalMktDate",
+    /** A time of day with its offset from UTC. */
+    TZTimeOnly = "TZTimeOnly",
+    /** A date and time with their offset from UTC. */
+    TZTimestamp = "TZTimestamp",
+    /** Raw octets, whose count a Length field before them gives. */
+    data = "data",
+    /** Text that another field's value must match. */
+    Pattern = "Pattern",
+    /** A period expressed as a count of days, weeks, months or years. */
+    Tenor = "Tenor",
+    /** A whole number of 100 or more, kept for values a counterparty defines. */
+    Reserved100Plus = "Reserved100Plus",
+    /** A whole number of 1000 or more, kept for values a counterparty defines. */
+    Reserved1000Plus = "Reserved1000Plus",
+    /** A whole number of 4000 or more, kept for values a counterparty defines. */
+    Reserved4000Plus = "Reserved4000Plus",
+    /** An XML document carried as text. */
+    XMLData = "XMLData",
+    /** A language code of ISO 639-1. */
+    Language = "Language",
+    /** A time of day in the market's local time. */
+    LocalMktTime = "LocalMktTime",
+    /** An identifier that is unique within a message. */
+    XID = "XID",
+    /** A reference to an XID in the same message. */
+    XIDREF = "XIDREF",
+    /** Text in the character set a field beside it names, rather than ASCII. */
+    EncodedText = "EncodedText",
 };
 
 
 /**
- * Application layer class. Maps a field to a FIX data type or a template to a FIX message.
+ * The two attributes that record when an element entered a schema and when it should leave.
  */
-export interface SemanticAttributes {
-    semantic_type?: string,
-    description?: string,
-}
-
-
-/**
- * Schema versioning supports message extension
- */
-export interface VersionAttributes {
-    /** The schema version in which an element was added */
+export interface SbeVersionedMixin {
+    /** The schema version that added this element. */
     since_version?: number,
-    /** The version of the schema in which an element was deprecated. It is retained for back compatibility but should no longer be used by updated applications. It may be removed in a later version. */
-    deprecated?: number,
+    /** The schema version that retired this element, which stays only for older applications. */
+    deprecated_since?: number,
 }
 
 
 /**
- * Valid value as a string
+ * One of the values an enumeration allows.
  */
-export interface ValidValue extends VersionAttributes {
-    name: string,
+export interface SbeValidValue extends SbeVersionedMixin {
+    /** What the schema calls this element. */
+    symbolic_name: string,
+    /** Free text about this element, for the people who read the schema. */
     description?: string,
-    /** Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``). */
-    value?: string,
+    /** The value as it is written in the schema, which must convert to the enumeration's encoding. */
+    valid_value: string,
 }
 
 
 /**
- * A choice within a multi value set. Value is the position within a bitset (zero-based index).
+ * One of the alternatives of a set, which is one bit of its encoding.
  */
-export interface Choice extends VersionAttributes {
-    name: string,
+export interface SbeChoice extends SbeVersionedMixin {
+    /** What the schema calls this element. */
+    symbolic_name: string,
+    /** Free text about this element, for the people who read the schema. */
     description?: string,
-    /** Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``). */
-    value?: string,
+    /** Which bit stands for this choice, counted from zero at the least significant. */
+    bit_position: number,
 }
 
 
+/**
+ * One SBE 1.0 message schema, with its encodings and message templates.
+ */
+export interface SbeMessageSchemaV1 {
+    /** The name or category that a set of counterparties knows this schema or part of it by. */
+    schema_package?: string,
+    /** The number that identifies this schema between counterparties. */
+    sbe_id?: number,
+    /** The version of this message schema, starting at zero. */
+    schema_version: number,
+    /** The version of FIX whose meanings this schema uses. */
+    semantic_version?: string,
+    /** Free text about this element, for the people who read the schema. */
+    description?: string,
+    /** How the octets of every number in this schema's messages are ordered. */
+    byte_order?: string,
+    /** The composite, by name, that sends each message's header in this schema. */
+    header_type?: string,
+    /** The sets of encodings this schema's messages use. */
+    encoding_sets: SbeEncodingSetV1[],
+    /** The message templates of this set. */
+    messages: SbeMessageV1[],
+}
 
-export interface AlignmentAttributesV1 {
-    /** Offset from start of a composite type or block as a zero-based index. */
+
+/**
+ * A set of encodings, listed in any order, whose names are unique across the whole schema.
+ */
+export interface SbeEncodingSetV1 {
+    /** The encodings of this set. */
+    encodings: SbeEncodingV1[],
+}
+
+
+/**
+ * Anything a composite may hold in the order it is sent.
+ */
+export interface SbeMemberV1 extends SbeVersionedMixin {
+    /** The class of this encoding or composite member, which stands for its XML element. */
+    encoding_kind: string,
+    /** What the schema calls this element. */
+    symbolic_name: string,
+    /** The octet this element starts at, counted from zero at the start of its block or composite. */
     offset?: number,
 }
 
 
+/**
+ * A composite's member that reuses an encoding defined elsewhere in the schema.
+ */
+export interface SbeRefV1 extends SbeMemberV1 {
+    /** Which encoding this element uses, by name. */
+    encoding_name: string,
+}
 
-export interface PresenceAttributesV1 {
+
+/**
+ * An encoding of SBE 1.0, which says how a value is laid out on the wire.
+ */
+export interface SbeEncodingV1 extends SbeMemberV1 {
+    /** The FIX datatype this encoding carries. */
+    semantic_type?: string,
+    /** Free text about this element, for the people who read the schema. */
+    description?: string,
+}
+
+
+/**
+ * An encoding backed by one primitive value, or several in an array.
+ */
+export interface SbeSimpleTypeV1 extends SbeEncodingV1 {
+    /** The text of the XML element, which is the constant when presence is constant. */
+    element_value?: string,
+    /** The wire type under this encoding. */
+    primitive_type: string,
+    /** How many values of the primitive type the encoding holds, where zero means a variable number. */
+    array_length?: number,
+    /** Which character set, or which Unicode scheme, character data follows. */
+    character_encoding?: string,
+    /** The value that stands for null in place of the primitive type's default, written as text. */
+    null_value?: string,
+    /** The lowest value allowed, written as text. */
+    min_value?: string,
+    /** The highest value allowed, written as text. */
+    max_value?: string,
+    /** Whether this element's value is required, optional or constant. */
     presence?: string,
-    /** A constant value as valid value of an enum in the form enum-name.valid-value-name */
+    /** The valid value that gives a constant element its value. */
     value_ref?: string,
 }
 
 
 /**
- * Base type of message and repeating group entry
+ * An encoding built from members sent one after another, such as a decimal's mantissa and exponent.
  */
-export interface BlockTypeV1 extends SemanticAttributes, VersionAttributes {
-    /** Fixed-length fields */
-    field?: FieldTypeV1[],
-    group?: GroupTypeV1[],
-    /** Variable-length fields */
-    data?: FieldTypeV1[],
-    name: string,
-    /** Unique ID of a message template */
-    id: number,
-    /** Space reserved for root level of message, not include groups or variable-length data elements. */
-    block_length?: number,
+export interface SbeCompositeV1 extends SbeEncodingV1 {
+    /** The members of this composite, in the order they are sent. */
+    composite_members: SbeMemberV1[],
 }
 
 
 /**
- * A repeating group contains an array of entries
+ * An encoding whose value is one of a listed set of valid values.
  */
-export interface GroupTypeV1 extends BlockTypeV1 {
+export interface SbeEnumV1 extends SbeEncodingV1 {
+    /** The simple encoding or primitive type that an enumeration or set is sent as. */
+    encoding_type: string,
+    /** The values this enumeration allows. */
+    valid_values: SbeValidValue[],
+}
+
+
+/**
+ * An encoding whose value is any combination of up to 64 choices, sent as a bitset.
+ */
+export interface SbeSetV1 extends SbeEncodingV1 {
+    /** The simple encoding or primitive type that an enumeration or set is sent as. */
+    encoding_type: string,
+    /** The alternatives of this set. */
+    choices: SbeChoice[],
+}
+
+
+/**
+ * The body shared by a message and a group entry, which holds its fixed-length fields first, then groups, then variable-length data.
+ */
+export interface SbeBlockV1Mixin {
+    /** What the schema calls this element. */
+    symbolic_name: string,
+    /** The number that identifies this element. */
+    sbe_id: number,
+    /** The octets set aside for a message's fixed-length fields, or for those of each group entry. */
+    block_length?: number,
+    /** What this element means at the FIX application layer. */
+    semantic_type?: string,
+    /** Free text about this element, for the people who read the schema. */
+    description?: string,
+    /** Fixed-length fields, listed in wire order. */
+    block_fields?: SbeFieldV1[],
+    /** Repeating groups, listed in wire order. */
+    repeating_groups?: SbeGroupV1[],
+    /** Variable-length fields, listed in wire order. */
+    var_data_fields?: SbeFieldV1[],
+}
+
+
+/**
+ * A message template, whose number and block length are sent in each message's header.
+ */
+export interface SbeMessageV1 extends SbeVersionedMixin, SbeBlockV1Mixin {
+}
+
+
+/**
+ * A repeating group, whose entries each hold the same fields, and which must have at least one field.
+ */
+export interface SbeGroupV1 extends SbeVersionedMixin, SbeBlockV1Mixin {
+    /** The composite, by name, that sends a repeating group's entry count and entry size. */
     dimension_type?: string,
 }
 
 
 /**
- * Simple wire encoding consisting of a primitive type or array of primitives
+ * A message's or group entry's field, which uses an encoding at a place in its block.
  */
-export interface EncodedDataTypeV1 extends AlignmentAttributesV1, PresenceAttributesV1, SemanticAttributes, VersionAttributes {
-    name: string,
-    /** Override of default null indicator for the data type in SBE specification, as a string. */
-    null_value?: string,
-    min_value?: string,
-    max_value?: string,
-    length?: number,
-    primitive_type: string,
-    character_encoding?: string,
-    /** Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``). */
-    value?: string,
-}
-
-
-/**
- * A wire encoding composed of multiple parts
- */
-export interface CompositeDataTypeV1 extends AlignmentAttributesV1, SemanticAttributes, VersionAttributes {
-    type?: EncodedDataTypeV1[],
-    enum?: EnumTypeV1[],
-    set?: SetTypeV1[],
-    composite?: CompositeDataTypeV1[],
-    ref?: RefTypeV1[],
-    name: string,
-    /** Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``). */
-    value?: string,
-}
-
-
-/**
- * An enumeration of valid values
- */
-export interface EnumTypeV1 extends AlignmentAttributesV1, SemanticAttributes, VersionAttributes {
-    valid_value: ValidValue[],
-    name: string,
-    encoding_type: string,
-    /** Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``). */
-    value?: string,
-}
-
-
-/**
- * A reference to any existing encoding type (simple type, enum or set) to reuse as a member of a composite type
- */
-export interface RefTypeV1 extends AlignmentAttributesV1, VersionAttributes {
-    name: string,
-    type: string,
-    /** Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``). */
-    value?: string,
-}
-
-
-/**
- * A multi value choice (encoded as a bitset)
- */
-export interface SetTypeV1 extends AlignmentAttributesV1, SemanticAttributes, VersionAttributes {
-    choice: Choice[],
-    name: string,
-    encoding_type: string,
-    /** Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``). */
-    value?: string,
-}
-
-
-/**
- * A field of a message of a specified dataType
- */
-export interface FieldTypeV1 extends AlignmentAttributesV1, PresenceAttributesV1, SemanticAttributes, VersionAttributes {
-    name: string,
-    id: number,
-    /** Must match the name of an encoding contained by 'types' element */
-    type: string,
-    epoch?: string,
-    /** Deprecated - only for back compatibility with RC2 */
+export interface SbeFieldV1 extends SbeVersionedMixin {
+    /** What the schema calls this element. */
+    symbolic_name: string,
+    /** The field's FIX tag number. */
+    sbe_id: number,
+    /** Which encoding this element uses, by name. */
+    encoding_name: string,
+    /** The octet this element starts at, counted from zero at the start of its block or composite. */
+    offset?: number,
+    /** Whether this element's value is required, optional or constant. */
+    presence?: string,
+    /** The valid value that gives a constant element its value. */
+    value_ref?: string,
+    /** The FIX datatype this field carries. */
+    semantic_type?: string,
+    /** Free text about this element, for the people who read the schema. */
+    description?: string,
+    /** Where the period a time value counts from begins. */
+    time_epoch?: string,
+    /** The unit of a time value. */
     time_unit?: string,
 }
 
 
 /**
- * Root of XML document, holds all message templates and their elements
+ * One SBE 2.0 message schema, with its encodings and message templates.
  */
-export interface MessageSchemaV1 {
-    /** More than one set of types may be provided. Names must be unique across all encoding types. Encoding types may appear in any order. */
-    types: string[],
-    message: MessageV1[],
-    package?: string,
-    /** Unique ID of a message schema */
-    id?: number,
-    /** The version of a message schema. Initial version is 0. */
-    version: number,
-    /** Application layer specification version, such as FIX version 'FIX.5.0SP2' */
+export interface SbeMessageSchemaV2 {
+    /** The name or category that a set of counterparties knows this schema or part of it by. */
+    schema_package?: string,
+    /** The number that identifies this schema between counterparties. */
+    sbe_id?: number,
+    /** The version of this message schema, starting at zero. */
+    schema_version: number,
+    /** The version of FIX whose meanings this schema uses. */
     semantic_version?: string,
+    /** Free text about this element, for the people who read the schema. */
     description?: string,
+    /** How the octets of every number in this schema's messages are ordered. */
     byte_order?: string,
-    /** Name of the encoding type of the message header, which is the same for all messages in a schema. The name has a default, but an encoding of that name must be present under a 'types' element. */
+    /** The composite, by name, that sends each message's header in this schema. */
     header_type?: string,
+    /** The sets of encodings this schema's messages use. */
+    encoding_sets: SbeEncodingSetV2[],
+    /** The sets of message templates of this schema. */
+    message_sets: SbeMessageSetV2[],
 }
 
 
 /**
- * A message type, also known as a message template
+ * A set of encodings, in any order, that may have its own package and may come from another file.
  */
-export interface MessageV1 extends BlockTypeV1 {
+export interface SbeEncodingSetV2 {
+    /** Free text about this element, for the people who read the schema. */
+    description?: string,
+    /** A package for this set in place of the schema's. */
+    schema_package?: string,
+    /** The base address that the XML Inclusion mechanism records on an element it brought in from another file. */
+    sbe_xml_base?: string,
+    /** The encodings of this set. */
+    encodings: SbeElementV2[],
 }
 
 
-
-export interface AlignmentAttributesV2 {
-    /** Byte alignment of the start of a block (message root or repeating group instance). */
-    alignment?: number,
+/**
+ * Message templates held together, which may have their own package and may come from another file.
+ */
+export interface SbeMessageSetV2 {
+    /** Free text about this element, for the people who read the schema. */
+    description?: string,
+    /** A package for this set in place of the schema's. */
+    schema_package?: string,
+    /** The base address that the XML Inclusion mechanism records on an element it brought in from another file. */
+    sbe_xml_base?: string,
+    /** The message templates of this set. */
+    messages: SbeMessageV2[],
 }
 
 
+/**
+ * Anything that sets of encodings or composites hold, and the name and text they all have.
+ */
+export interface SbeElementV2 {
+    /** The class of this encoding or composite member, which stands for its XML element. */
+    encoding_kind: string,
+    /** What the schema calls this element. */
+    symbolic_name: string,
+    /** Free text about this element, for the people who read the schema. */
+    description?: string,
+}
 
-export interface OffsetAttributesV2 {
-    /** Offset from start of a composite type or block as a zero-based index. */
+
+/**
+ * Anything a composite may hold in the order it is sent.
+ */
+export interface SbeMemberV2 extends SbeElementV2 {
+    /** The octet this element starts at, counted from zero at the start of its block or composite. */
     offset?: number,
-    /** Byte alignment of the start of a block (message root or repeating group instance). */
+    /** The multiple of octets the start of this element is placed on. */
     alignment?: number,
 }
 
 
-
-export interface PresenceAttributesV2 {
-    presence?: string,
-    /** Override of default null indicator for the data type in SBE specification, as a string. */
-    null_value?: string,
-    /** Lower bound of a range */
-    min_value?: string,
-    /** Upper bound of a range */
-    max_value?: string,
-    /** A constant value as valid value of an enum in the form enum-name.valid-value-name. Only valid if presence='constant'. */
-    value_ref?: string,
-}
-
-
-
-export interface PrimitiveTypeAttributesV2 {
+/**
+ * A simple encoding that stands alone in a set, backed by one primitive value, or several in an array.
+ */
+export interface SbeSimpleTypeV2 extends SbeElementV2, SbeVersionedMixin {
+    /** The text of the XML element, which is the constant when presence is constant. */
+    element_value?: string,
+    /** The wire type under this encoding. */
     primitive_type: string,
-    length?: number,
-    /** Character set or Unicode encoding scheme */
+    /** How many values of the primitive type the encoding holds, where zero means a variable number. */
+    array_length?: number,
+    /** Which character set, or which Unicode scheme, character data follows. */
     character_encoding?: string,
 }
 
 
 /**
- * Base type of message and repeating group entry
+ * A simple encoding inside a composite, which may say it is optional or constant.
  */
-export interface BlockTypeV2 extends AlignmentAttributesV2, SemanticAttributes, VersionAttributes {
-    /** Fixed-length fields */
-    field?: FieldTypeV2[],
-    group?: GroupTypeV2[],
-    /** Variable-length fields */
-    data?: FieldTypeV2[],
-    name: string,
-    /** Unique ID of a message template */
-    id: number,
-    /** Space reserved for root level of message or repeating group, not including nested groups or variable-length data elements. */
-    block_length?: number,
+export interface SbeMemberTypeV2 extends SbeMemberV2 {
+    /** The text of the XML element, which is the constant when presence is constant. */
+    element_value?: string,
+    /** The wire type under this encoding. */
+    primitive_type: string,
+    /** How many values of the primitive type the encoding holds, where zero means a variable number. */
+    array_length?: number,
+    /** Which character set, or which Unicode scheme, character data follows. */
+    character_encoding?: string,
+    /** Whether this element's value is required, optional or constant. */
+    presence?: string,
+    /** The value that stands for null in place of the primitive type's default, written as text. */
+    null_value?: string,
+    /** The lowest value allowed, written as text. */
+    min_value?: string,
+    /** The highest value allowed, written as text. */
+    max_value?: string,
+    /** The valid value that gives a constant element its value. */
+    value_ref?: string,
 }
 
 
 /**
- * A repeating group contains an array of entries
+ * A composite's member that reuses an encoding defined elsewhere in the schema.
  */
-export interface GroupTypeV2 extends BlockTypeV2 {
+export interface SbeRefV2 extends SbeMemberV2 {
+    /** Which encoding this element uses, by name. */
+    encoding_name: string,
+}
+
+
+/**
+ * An encoding built from members sent one after another, such as a decimal's mantissa and exponent.
+ */
+export interface SbeCompositeV2 extends SbeMemberV2, SbeVersionedMixin {
+    /** The members of this composite, in the order they are sent. */
+    composite_members: SbeMemberV2[],
+}
+
+
+/**
+ * An encoding whose value is one of a listed set of valid values.
+ */
+export interface SbeEnumV2 extends SbeMemberV2, SbeVersionedMixin {
+    /** The simple encoding or primitive type that an enumeration or set is sent as. */
+    encoding_type: string,
+    /** The values this enumeration allows. */
+    valid_values: SbeValidValue[],
+}
+
+
+/**
+ * An encoding whose value is any combination of up to 64 choices, sent as a bitset.
+ */
+export interface SbeSetV2 extends SbeMemberV2, SbeVersionedMixin {
+    /** The simple encoding or primitive type that an enumeration or set is sent as. */
+    encoding_type: string,
+    /** The alternatives of this set. */
+    choices: SbeChoice[],
+}
+
+
+/**
+ * The body shared by a message and a group entry, which holds its fixed-length fields first, then groups, then variable-length data.
+ */
+export interface SbeBlockV2Mixin {
+    /** What the schema calls this element. */
+    symbolic_name: string,
+    /** The number that identifies this element. */
+    sbe_id: number,
+    /** The octets set aside for a message's fixed-length fields, or for those of each group entry. */
+    block_length?: number,
+    /** The multiple of octets where a message or each group entry begins. */
+    alignment?: number,
+    /** What this element means at the FIX application layer. */
+    semantic_type?: string,
+    /** Free text about this element, for the people who read the schema. */
+    description?: string,
+    /** Fixed-length fields, listed in wire order. */
+    block_fields?: SbeFieldV2[],
+    /** Repeating groups, listed in wire order. */
+    repeating_groups?: SbeGroupV2[],
+    /** Variable-length fields, listed in wire order. */
+    var_data_fields?: SbeFieldV2[],
+}
+
+
+/**
+ * A message template, whose number and block length are sent in each message's header.
+ */
+export interface SbeMessageV2 extends SbeVersionedMixin, SbeBlockV2Mixin {
+}
+
+
+/**
+ * A repeating group, whose entries each hold the same fields, and which must have at least one field.
+ */
+export interface SbeGroupV2 extends SbeVersionedMixin, SbeBlockV2Mixin {
+    /** The composite, by name, that sends a repeating group's entry count and entry size. */
     dimension_type?: string,
 }
 
 
 /**
- * Simple wire encoding consisting of a primitive type or array of primitives
+ * A message's or group entry's field, which uses an encoding at a place in its block and may state a constant.
  */
-export interface SimpleDataTypeV2 extends PrimitiveTypeAttributesV2, VersionAttributes {
-    name: string,
+export interface SbeFieldV2 extends SbeVersionedMixin {
+    /** What the schema calls this element. */
+    symbolic_name: string,
+    /** The field's FIX tag number. */
+    sbe_id: number,
+    /** Which encoding this element uses, by name. */
+    encoding_name: string,
+    /** The text of the XML element, which is the constant when presence is constant. */
+    element_value?: string,
+    /** The octet this element starts at, counted from zero at the start of its block or composite. */
+    offset?: number,
+    /** The multiple of octets the start of this field is placed on, in place of an offset. */
+    alignment?: number,
+    /** Whether this element's value is required, optional or constant. */
+    presence?: string,
+    /** The value that stands for null in place of the primitive type's default, written as text. */
+    null_value?: string,
+    /** The lowest value allowed, written as text. */
+    min_value?: string,
+    /** The highest value allowed, written as text. */
+    max_value?: string,
+    /** The valid value that gives a constant element its value. */
+    value_ref?: string,
+    /** The FIX datatype this field carries. */
+    semantic_type?: string,
+    /** Free text about this element, for the people who read the schema. */
     description?: string,
-    /** Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``). */
-    value?: string,
-}
-
-
-/**
- * A simple type used as a member of a composite type
- */
-export interface MemberDataTypeV2 extends PrimitiveTypeAttributesV2, OffsetAttributesV2, PresenceAttributesV2 {
-    name: string,
-    description?: string,
-    /** Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``). */
-    value?: string,
-}
-
-
-/**
- * A wire encoding composed of multiple parts
- */
-export interface CompositeDataTypeV2 extends OffsetAttributesV2, VersionAttributes {
-    type?: MemberDataTypeV2[],
-    enum?: EnumTypeV2[],
-    set?: SetTypeV2[],
-    composite?: CompositeDataTypeV2[],
-    ref?: RefTypeV2[],
-    name: string,
-    description?: string,
-    /** Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``). */
-    value?: string,
-}
-
-
-/**
- * An enumeration of valid values
- */
-export interface EnumTypeV2 extends OffsetAttributesV2, VersionAttributes {
-    valid_value: ValidValue[],
-    name: string,
-    encoding_type: string,
-    description?: string,
-    /** Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``). */
-    value?: string,
-}
-
-
-/**
- * A reference to any existing encoding type (simple type, enum or set) to reuse as a member of a composite type
- */
-export interface RefTypeV2 extends OffsetAttributesV2 {
-    name: string,
-    type: string,
-    /** How the referenced type is used */
-    description?: string,
-    /** Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``). */
-    value?: string,
-}
-
-
-/**
- * A multi value choice (encoded as a bitset)
- */
-export interface SetTypeV2 extends OffsetAttributesV2, VersionAttributes {
-    choice: Choice[],
-    name: string,
-    encoding_type: string,
-    description?: string,
-    /** Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``). */
-    value?: string,
-}
-
-
-/**
- * A field of a message of a specified dataType
- */
-export interface FieldTypeV2 extends OffsetAttributesV2, PresenceAttributesV2, SemanticAttributes, VersionAttributes {
-    name: string,
-    id: number,
-    /** Must match the name of an encoding contained by 'types' element */
-    type: string,
-    /** Text content of the element. For SBE this carries the constant or default value (e.g. ``<type presence='constant'>-3</type>``). */
-    value?: string,
-}
-
-
-/**
- * Root of XML document, holds all message templates and their elements
- */
-export interface MessageSchemaV2 {
-    types: TypesV2[],
-    messages: MessagesV2[],
-    package?: string,
-    /** Unique ID of a message schema */
-    id?: number,
-    /** The version of a message schema. Initial version is 0. */
-    version: number,
-    /** Application layer specification version, such as FIX version 'FIX.5.0SP2' */
-    semantic_version?: string,
-    description?: string,
-    byte_order?: string,
-    /** Name of the encoding type of the message header, which is the same for all messages in a schema. The name has a default, but an encoding of that name must be present under a 'types' element. */
-    header_type?: string,
-}
-
-
-
-export interface MessagesV2 {
-    /** A message type, also known as a message template */
-    message: BlockTypeV2[],
-    description?: string,
-    /** Overrides the messageSchema package */
-    package?: string,
-}
-
-
-/**
- * More than one set of types may be provided. Names must be unique across all encoding types. Encoding types may appear in any order.
- */
-export interface TypesV2 {
-    type?: SimpleDataTypeV2[],
-    composite?: CompositeDataTypeV2[],
-    enum?: EnumTypeV2[],
-    set?: SetTypeV2[],
-    description?: string,
-    /** Overrides the messageSchema package */
-    package?: string,
 }
 
 

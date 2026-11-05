@@ -1,0 +1,8 @@
+# Fails at: /
+encoding_kind: SbeEnumV2
+symbolic_name: sideEnum
+encoding_type: char
+semantic_type: char
+valid_values:
+  - symbolic_name: Buy
+    valid_value: "1"

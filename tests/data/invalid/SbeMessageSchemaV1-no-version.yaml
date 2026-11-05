@@ -1,0 +1,9 @@
+# Fails at: /
+encoding_sets:
+  - encodings:
+      - encoding_kind: SbeSimpleTypeV1
+        symbolic_name: counter
+        primitive_type: uint32
+messages:
+  - symbolic_name: Heartbeat
+    sbe_id: 1

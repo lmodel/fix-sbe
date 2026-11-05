@@ -1,0 +1,6 @@
+# Fails at: /value_ref
+encoding_kind: SbeSimpleTypeV1
+symbolic_name: unit
+primitive_type: uint8
+presence: constant
+value_ref: nanosecond

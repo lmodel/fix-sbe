@@ -1,95 +1,52 @@
-# About fix-simple-binary-encoding
+# About fix-sbe
 
-A LinkML schema for the FIX Simple Binary Encoding (SBE) standard — the binary message encoding protocol defined by the FIX Trading Community's High Performance Working Group.
+This page says how the schema reads SBE, where each part comes from, and what the model leaves out. It is for someone who will use the schema or change it.
 
-## Project Status
+## Two editions
 
-| Area | Status |
-|------|--------|
-| LinkML schema | **Complete** — umbrella `fix_sbe.yaml` imports `fix_sbe_common`, `fix_sbe_v1_0`, `fix_sbe_v2_0` overlays (4 YAML files) |
-| XML→LinkML converter | **Complete** — `scripts/fix_xml_to_linkml.py` converts upstream SBE XML to LinkML-validated YAML |
-| SSSOM overlay tool | **Complete** — `scripts/apply_sssom_overlay.py` applies semantic mappings |
-| Schema generator | **Complete** — `scripts/schema_to_linkml.py` generates LinkML from upstream XSD |
-| Test suite | **65 tests passing**, 0 skips |
-| Upstream coverage | SBE v1.0 (RC3, RC4, Standard) and v2.0 (RC1, RC2, RC3) — 10 XML files validated end-to-end |
-| Conformance suite | FIX SBE Conformance integrated — 3 schema versions (v0 → v1 → v2) exercising the `sinceVersion` extension mechanism |
+SBE 1.0 is the final standard, with its November 2020 errata. SBE 2.0 Release Candidate 3 is a draft, and FIX says it differs from 1.0 both on the wire and in its XML. So each has a module, `fix_sbe_v1_0` and `fix_sbe_v2_0`, and each class carries its edition: `SbeFieldV1`, `SbeFieldV2`. `fix_sbe_common` holds what the two define alike, and the umbrella `fix_sbe` imports all three. A host can import one edition's module alone.
 
-## Design
+| In SBE 2.0 | Compared with SBE 1.0 |
+| --- | --- |
+| `SbeMessageSetV2` and `SbeEncodingSetV2` | A set may carry a package and may come from another file by XInclude. In 1.0 a schema lists its messages directly. |
+| `alignment` | New on a block, a field and a composite's members, and a field cannot have both an alignment and an offset. |
+| `SbeSimpleTypeV2`, `SbeMemberTypeV2` | A simple type has two shapes. One stands alone, and one inside a composite can be optional or constant. |
+| `element_value` on a field | A field may state its constant, as only a simple type can in 1.0. |
+| `semantic_type` | Only a field and a block hold it. In 1.0 an encoding may too. |
 
-### Schema layout
+## A record of a schema
 
-A small umbrella schema imports three version-scoped overlays:
+SBE's schemas are XML, so a record is YAML that `scripts/sbe_xml_to_yaml.py` writes. Each attribute becomes a snake_case slot, and the slot's alias is the XML name. Eight take a different word because the plain one is taken elsewhere in the family: `name` is `symbolic_name`, `id` is `sbe_id`, `type` is `encoding_name`, `version` is `schema_version`, `package` is `schema_package`, `length` is `array_length`, `deprecated` is `deprecated_since` and `epoch` is `time_epoch`.
 
-- `fix_sbe.yaml` — top-level umbrella; re-exports common + v1.0 + v2.0
-- `fix_sbe_common.yaml` — shared types and slots (`SemanticAttributes`, `VersionAttributes`, `ValidValue`, `Choice`, primitive-type enums)
-- `fix_sbe_v1_0.yaml` — `BlockTypeV1`, `MessageSchemaV1`, `EnumTypeV1`, `FieldTypeV1`, …
-- `fix_sbe_v2_0.yaml` — `BlockTypeV2`, `MessageSchemaV2`, `MessagesV2`, `TypesV2`, presence/offset/primitive-attribute overlays, …
+A composite's members are in one list, each naming its class in `encoding_kind`, because their order is their order on the wire. A message keeps its fields, groups and variable-length data in three lists, because the XSD fixes that sequence.
 
-Splitting by SBE version lets v2 add attributes (offset, presence, primitive-type) without disturbing v1, and lets the converter dispatch to a specific target class per upstream file shape.
+`upstream/` holds the XSDs, FIX's examples and the conformance suite's schemas, pinned by git object hash. `tests/test_coverage.py` compares each class with its XSD type. `tests/test_documents.py` checks each document with lxml, with the JSON Schema and with a separate walk of the XML.
 
-### Validation pipeline
+## Rules that span a document
 
-Upstream FIX XML is not natively LinkML-readable, so the test pipeline is a two-step *transform then validate*:
+The XSD and the JSON Schema check one element at a time. `tests/sbe_rules.py` checks what the specification states about one part against another, and each rule has a counter-example in `tests/test_rules.py`.
 
-```
-upstream .xml ──[ scripts/fix_xml_to_linkml.py ]──▶ .yaml ──[ linkml-validate ]──▶ result
-                          --target-class                          --target-class
-```
+- **References.** A field, a ref, a group's dimension and an enum's or set's encoding each name something that exists, and a `value_ref` names an enumeration and one of its values.
+- **Names.** No two encodings share a name across the sets, a message's name and number are unique, and a field or group's number means one name across the schema, and the other way round.
+- **Versions.** Nothing has a `since_version` or `deprecated_since` later than the schema's version, and a later field cannot come before an earlier one in its list.
+- **Layout.** An offset does not overlap what came before it or pass the block's end, an alignment moves a field or a composite's member up to its multiple, and a block is long enough for its fields. A field in `block_fields` does not use a variable-length encoding.
+- **Well-known composites.** The header has `blockLength`, `templateId`, `schemaId` and `version`. A group's dimension has `blockLength` and `numInGroup`. Variable-length data has `length` and `varData`. Each counter and length is unsigned. A decimal has `mantissa` and `exponent`, and a MonthYear has `year` and `month`.
+- **Values.** A null, lowest, highest or constant value fits its primitive type, an enum uses `char` or an unsigned type, a set uses an unsigned type, and a choice's bit fits its encoding. No two valid values encode alike and no two choices share a bit, and a valid value is neither its encoding's null nor outside the lowest and highest values its type states.
+- **Agreement.** A field and its encoding agree on `semantic_type` and `presence`, where both state them. A field's or an encoding's `semantic_type` is a FIX datatype, ignoring case. The list is FIX Latest's, read from FIX's Orchestra file in the `orchestrations` repository, with `EncodedText` from the specification's summary table.
 
-The target class is pinned per upstream file in [`tests/test_third_party.py`](../tests/test_third_party.py)'s `CASES` and `CONFORMANCE_SCHEMAS` tables — `MessageSchemaV1`, `MessageSchemaV2`, `MessagesV2`, `TypesV2` — so a new XML shape produces an explicit routing decision rather than a silent fall-through.
+## What the model leaves out
 
-### Test corpus layout
+- The specification's text. It is under CC BY-ND 4.0, so every description here is this project's own, and [NOTICE](https://github.com/lmodel/fix-sbe/blob/main/NOTICE) states the position.
+- Encoded messages. The schema describes a message schema, not encoded data, so the specification's rules for a received message are out of scope.
+- The Simple Open Framing Header, a separate standard that the specification only cites.
+- A closed list on `semantic_type` in the schema itself. A message's value is a FIX MsgType, and FIX adds to those.
 
-Three categories under `tests/data/`:
+## What FIX's documents show
 
-- `valid/` — hand-authored class-stem fixtures (`<ClassName>-<desc>.yaml`) for round-trip loader checks against the generated Python datamodel
-- `invalid/` — negative fixtures
-- `third-party/` — upstream artefacts copied in-tree:
-    - `fix-sbe/<version>/.../Examples.xml` — official FIX Trading Community samples
-    - `fix-sbe-conformance/` — class-stem YAML fixtures derived from the conformance corpus
-    - `fix-sbe-conformance/xml/schema{1,2,3}.xml` — raw conformance schemas, isolated in `xml/` so the parent directory keeps its class-stem YAML naming convention
+- None of them holds a `ref`, a `set` or a `choice`, so `tests/data/valid/` alone exercises those.
+- SBE 2.0 RC3's XSD says `2.0RC3` in its `version` attribute and "2.0 RC2" in its header comment.
+- The 1.0 text shows a `ref` with a `semanticType`, which the 1.0 XSD does not allow.
 
-Upstream artefacts are assumed well-formed; the suite intentionally has no separate XML parseability gate. A failure should mean the LinkML schema diverged from the standard, not that an upstream byte got corrupted.
+## Mappings
 
-### Test gates
-
-[`tests/test_data.py`](../tests/test_data.py):
-
-- `test_valid_data_files` — load each `valid/*.yaml` via `yaml_loader` against the LinkML-generated Python class derived from the filename stem
-- `test_conformance_yaml_files` — same loader gate, over the 21 conformance YAML fixtures
-
-[`tests/test_third_party.py`](../tests/test_third_party.py):
-
-- `test_third_party_xml_validates_against_linkml` — XML → YAML → `linkml-validate` on the 10 upstream SBE samples; errors must stay within the per-file budget (`max_errors`, currently 0 across the board)
-- `test_conformance_xml_validates_against_linkml` — same pipeline on the 3 conformance schemas
-- `test_conformance_schema_version_progression` — semantic check on `sinceVersion`: every value must be ≤ the schema's own version, and v0 schemas must carry none at all
-
-A session-scoped `fix_record_tally` fixture in [`tests/conftest.py`](../tests/conftest.py) accumulates per-file record counts and reports the corpus-wide total at session teardown (currently **25** records validated across all third-party files).
-
-## Test Data
-
-- **28** valid YAML fixtures (`tests/data/valid/`) — core LinkML class validation
-- **16** invalid YAML fixtures (`tests/data/invalid/`) — negative validation cases
-- **21** conformance YAML fixtures (`tests/data/third-party/fix-sbe-conformance/`) — extracted from FIX SBE Conformance schemas covering enums (char + int encoding), composites (`messageHeader`, `groupSizeEncoding`, `MONTH_YEAR`, `DATA`, decimal, qty), messages with repeating groups and variable-length data, and `VersionAttributes` progression (`sinceVersion`)
-- **3** conformance XML schemas (`tests/data/third-party/fix-sbe-conformance/xml/`) — progressive versioning (v0 baseline → v1 field extension → v2 var-length data)
-- **10** upstream SBE XML examples (`tests/data/third-party/fix-sbe/`) — official FIX Trading Community samples
-
-## Schema Coverage
-
-The LinkML schema models:
-
-- **Primitive types** — all SBE wire types (uint8–uint64, int8–int64, float, double, char)
-- **Encoded data types** — simple encodings with null/min/max/length attributes
-- **Composite data types** — multi-part wire encodings (decimal, timestamp, headers)
-- **Enum types** — with char and integer encoding types
-- **Set types** — multi-value bitsets with choices
-- **Field types** — message fields with presence semantics (required, optional, constant)
-- **Block/Message types** — message templates with fixed fields, repeating groups, and variable-length data
-- **Message schema** — root container with versioning, byte order, and header type
-- **Version attributes** — `sinceVersion` / `deprecated` for schema extension mechanism
-- **Semantic attributes** — FIX semantic type mappings
-
-## Upstream Sources
-
-- [FIX Simple Binary Encoding](https://github.com/FIXTradingCommunity/fix-simple-binary-encoding) — specification and XSD
-- [FIX SBE Conformance](https://github.com/FIXTradingCommunity/fix-sbe-conformance) — interoperability test suite
+Each element maps to the class of lmodel/fix-orchestra that FIX's own transposer carries it to, with `close_mappings`. A composite's members, a `ref` among them, become fields referenced from the component, so `SbeMemberTypeV2` and the two `SbeRef` classes map to a field, and only a stand-alone simple type maps to a datatype. A set and a choice have no line in the transposer, so they are `related_mappings`. No mapping is exact, because an SBE element has a place on the wire and an Orchestra element does not. `tests/test_mappings.py` lists them.

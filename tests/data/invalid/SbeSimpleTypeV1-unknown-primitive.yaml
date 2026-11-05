@@ -1,0 +1,4 @@
+# Fails at: /primitive_type
+encoding_kind: SbeSimpleTypeV1
+symbolic_name: count
+primitive_type: int128

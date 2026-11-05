@@ -1,0 +1,9 @@
+encoding_kind: SbeSetV2
+symbolic_name: orderFlags
+encoding_type: uint16
+description: The marks on an order.
+offset: 2
+since_version: 1
+choices:
+  - symbolic_name: Hidden
+    bit_position: 0

@@ -1,0 +1,8 @@
+# Fails at: /messages
+schema_version: 0
+encoding_sets:
+  - encodings:
+      - encoding_kind: SbeSimpleTypeV1
+        symbolic_name: counter
+        primitive_type: uint32
+messages: []

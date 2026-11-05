@@ -1,0 +1,5 @@
+# Fails at: /encodings/0
+encodings:
+  - encoding_kind: SbeMemberTypeV2
+    symbolic_name: counter
+    primitive_type: uint32
