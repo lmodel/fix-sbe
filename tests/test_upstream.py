@@ -36,7 +36,9 @@ def _header(name):
 
 def test_upstream_holds_only_the_pinned_files():
     found = {
-        path.relative_to(UPSTREAM).as_posix() for path in UPSTREAM.rglob("*") if path.is_file()
+        path.relative_to(UPSTREAM).as_posix()
+        for path in UPSTREAM.rglob("*")
+        if path.is_file()
     }
     assert found == set(_watch().pins())
     assert len(found) == 11
@@ -44,7 +46,9 @@ def test_upstream_holds_only_the_pinned_files():
 
 def test_copies_match_the_pinned_blobs():
     """Each file has the git object hash the watch pins."""
-    wrong = [path for path, sha in _watch().pins().items() if _blob(UPSTREAM / path) != sha]
+    wrong = [
+        path for path, sha in _watch().pins().items() if _blob(UPSTREAM / path) != sha
+    ]
     assert not wrong
 
 
@@ -70,7 +74,9 @@ def test_the_umbrella_names_the_pinned_commits():
 
 def test_each_module_says_what_it_is_licensed_under():
     for path in SCHEMA_DIR.glob("*.yaml"):
-        assert yaml.safe_load(path.read_text(encoding="utf-8"))["license"] == "Apache-2.0"
+        assert (
+            yaml.safe_load(path.read_text(encoding="utf-8"))["license"] == "Apache-2.0"
+        )
 
 
 def test_the_xsds_state_the_editions_they_hold():
@@ -79,7 +85,7 @@ def test_the_xsds_state_the_editions_they_hold():
 
 
 def test_the_notice_carries_what_the_licences_ask():
-    """CC BY-ND asks for attribution and a link to the licence, and Apache-2.0 for its notice,
+    """CC BY-AND asks for attribution and a link to the licence, and Apache-2.0 for its notice,
     and FIX's marks stay FIX's."""
     notice = (ROOT / "NOTICE").read_text(encoding="utf-8")
     for needed in (

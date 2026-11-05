@@ -31,7 +31,11 @@ def _encoding(record, name):
 
 
 def _message(record):
-    return record["messages"][0] if "messages" in record else record["message_sets"][0]["messages"][0]
+    return (
+        record["messages"][0]
+        if "messages" in record
+        else record["message_sets"][0]["messages"][0]
+    )
 
 
 def _member(composite, name):
@@ -39,7 +43,9 @@ def _member(composite, name):
 
 
 def _field(record, name):
-    return next(f for f in _message(record)["block_fields"] if f["symbolic_name"] == name)
+    return next(
+        f for f in _message(record)["block_fields"] if f["symbolic_name"] == name
+    )
 
 
 def _rename_header(record):
@@ -54,7 +60,9 @@ def _header_without_schema_id(record):
 
 
 def _signed_template_id(record):
-    _member(_encoding(record, "messageHeader"), "templateId")["primitive_type"] = "int16"
+    _member(_encoding(record, "messageHeader"), "templateId")["primitive_type"] = (
+        "int16"
+    )
 
 
 def _duplicate_encoding(record):
@@ -89,7 +97,9 @@ def _unknown_field_encoding(record):
 
 
 def _unknown_ref(record):
-    _member(_encoding(record, "quotedPrice"), "value")["encoding_name"] = "noSuchEncoding"
+    _member(_encoding(record, "quotedPrice"), "value")["encoding_name"] = (
+        "noSuchEncoding"
+    )
 
 
 def _unknown_enum_encoding(record):
@@ -129,7 +139,9 @@ def _duplicate_choice_name(record):
 
 
 def _value_outside_encoding(record):
-    _member(_encoding(record, "quotedPrice"), "source")["valid_values"][0]["valid_value"] = "256"
+    _member(_encoding(record, "quotedPrice"), "source")["valid_values"][0][
+        "valid_value"
+    ] = "256"
 
 
 def _null_outside_type(record):
@@ -240,7 +252,9 @@ def _dimension_without_counter(record):
 
 
 def _signed_dimension(record):
-    _member(_encoding(record, "groupSizeEncoding"), "numInGroup")["primitive_type"] = "int16"
+    _member(_encoding(record, "groupSizeEncoding"), "numInGroup")["primitive_type"] = (
+        "int16"
+    )
 
 
 def _data_on_a_plain_type(record):
@@ -321,67 +335,276 @@ def _month_without_month(record):
 
 
 COMMON = [
-    ("the header's encoding is missing", _rename_header, [("header_type", "message-header")]),
-    ("the header lacks a member", _header_without_schema_id, [("header_type", "message-header")]),
-    ("the header holds a signed member", _signed_template_id, [("header_type", "message-header")]),
-    ("an encoding name is used twice", _duplicate_encoding, [("LAST_ENCODING", "duplicate-encoding")]),
-    ("a message name is used twice", _duplicate_message_name, [("messages/1", "duplicate-message")]),
-    ("a message id is used twice", _duplicate_message_id, [("messages/1", "duplicate-message")]),
-    ("a field names no encoding", _unknown_field_encoding, [("FIELD_Quantity", "unknown-encoding")]),
-    ("a ref names no encoding", _unknown_ref, [("ENC_quotedPrice/composite_members/0", "unknown-encoding")]),
-    ("an enum names no encoding", _unknown_enum_encoding, [("ENC_sideEnum", "unknown-encoding")]),
-    ("a set names no encoding", _unknown_set_encoding, [("ENC_orderFlags", "unknown-encoding")]),
-    ("an enum sits on a signed type", _signed_enum, [("ENC_sideEnum", "enum-encoding")]),
+    (
+        "the header's encoding is missing",
+        _rename_header,
+        [("header_type", "message-header")],
+    ),
+    (
+        "the header lacks a member",
+        _header_without_schema_id,
+        [("header_type", "message-header")],
+    ),
+    (
+        "the header holds a signed member",
+        _signed_template_id,
+        [("header_type", "message-header")],
+    ),
+    (
+        "an encoding name is used twice",
+        _duplicate_encoding,
+        [("LAST_ENCODING", "duplicate-encoding")],
+    ),
+    (
+        "a message name is used twice",
+        _duplicate_message_name,
+        [("messages/1", "duplicate-message")],
+    ),
+    (
+        "a message id is used twice",
+        _duplicate_message_id,
+        [("messages/1", "duplicate-message")],
+    ),
+    (
+        "a field names no encoding",
+        _unknown_field_encoding,
+        [("FIELD_Quantity", "unknown-encoding")],
+    ),
+    (
+        "a ref names no encoding",
+        _unknown_ref,
+        [("ENC_quotedPrice/composite_members/0", "unknown-encoding")],
+    ),
+    (
+        "an enum names no encoding",
+        _unknown_enum_encoding,
+        [("ENC_sideEnum", "unknown-encoding")],
+    ),
+    (
+        "a set names no encoding",
+        _unknown_set_encoding,
+        [("ENC_orderFlags", "unknown-encoding")],
+    ),
+    (
+        "an enum sits on a signed type",
+        _signed_enum,
+        [("ENC_sideEnum", "enum-encoding")],
+    ),
     ("an enum sits on an array", _array_enum, [("ENC_sideEnum", "enum-encoding")]),
     ("a set sits on char", _char_set, [("ENC_orderFlags", "set-encoding")]),
-    ("a choice is past the encoding's bits", _choice_past_bits, [("ENC_orderFlags/choices/0", "choice-past-bits")]),
-    ("two valid values share a name", _duplicate_value_name, [("ENC_sideEnum", "duplicate-value-name")]),
-    ("two choices share a name", _duplicate_choice_name, [("ENC_orderFlags", "duplicate-value-name")]),
-    ("a valid value does not fit", _value_outside_encoding, [("ENC_quotedPrice/composite_members/1/valid_values/0", "value-out-of-range")]),
-    ("a null value does not fit", _null_outside_type, [("ENC_price4/composite_members/0", "value-out-of-range")]),
-    ("a null value is no number", _not_a_number, [("ENC_price4/composite_members/0", "value-out-of-range")]),
-    ("a constant does not fit", _constant_outside_type, [("ENC_price4/composite_members/1", "value-out-of-range")]),
-    ("a field is added after the schema", _since_after_schema, [("FIELD_LAST", "version-after-schema")]),
-    ("a field is deprecated after the schema", _deprecated_after_schema, [("FIELD_LAST", "version-after-schema")]),
-    ("a choice is added after the schema", _choice_since_after_schema, [("ENC_orderFlags/choices/1", "version-after-schema")]),
-    ("a value is added after the schema", _value_since_after_schema, [("ENC_sideEnum/valid_values/1", "version-after-schema")]),
-    ("an encoding is added after the schema", _encoding_since_after_schema, [("ENC_sideEnum", "version-after-schema")]),
-    ("a message is added after the schema", _message_since_after_schema, [("messages/0", "version-after-schema")]),
-    ("an older field follows a newer one", _out_of_order_field, [("FIELD_LAST", "extension-out-of-order")]),
-    ("an older group follows a newer one", _out_of_order_group, [("messages/0/repeating_groups/1", "extension-out-of-order")]),
-    ("older data follows newer data", _out_of_order_data, [("messages/0/var_data_fields/1", "extension-out-of-order")]),
-    ("a field overlaps the one before", _overlapping_field, [("FIELD_Side", "offset-overlaps")]),
-    ("a member overlaps the one before", _overlapping_member, [("ENC_quotedPrice/composite_members/1", "offset-overlaps")]),
-    ("a field's offset is past the block", _offset_past_block, [("FIELD_Flags", "offset-past-block"), ("messages/0", "block-too-short")]),
-    ("a block is shorter than its fields", _short_block, [("messages/0", "block-too-short")]),
-    ("a group's block is shorter than its fields", _short_group_block, [("messages/0/repeating_groups/0", "block-too-short")]),
-    ("a fixed-length field is variable", _variable_field, [("FIELD_Quantity", "variable-length-field")]),
-    ("a group's dimension is missing", _group_without_dimension, [("messages/0/repeating_groups/0", "group-dimension")]),
-    ("a dimension has no counter", _dimension_without_counter, [("messages/0/repeating_groups/0", "group-dimension")]),
-    ("a dimension holds a signed member", _signed_dimension, [("messages/0/repeating_groups/0", "group-dimension")]),
-    ("data sits on a plain type", _data_on_a_plain_type, [("messages/0/var_data_fields/0", "var-data-encoding")]),
-    ("data's composite has no length", _data_without_length, [("messages/0/var_data_fields/0", "var-data-encoding")]),
-    ("data's composite is not variable", _data_fixed_length, [("messages/0/var_data_fields/0", "var-data-encoding")]),
-    ("a composite has one member", _composite_of_one, [("ENC_quotedPrice", "composite-of-one")]),
-    ("two members share a name", _duplicate_member, [("ENC_quotedPrice", "duplicate-member-name")]),
-    ("one id has two names", _field_id_two_names, [("FIELD_Quantity", "field-identity")]),
-    ("one name has two ids", _field_name_two_ids, [("messages/0/repeating_groups/0/block_fields/0", "field-identity")]),
-    ("a field's semantic type is no FIX datatype", _unknown_semantic_on_field, [("FIELD_ClientOrderId", "unknown-semantic-type")]),
-    ("a constant type has no value", _constant_type_without_value, [("ENC_price4/composite_members/1", "constant-without-value")]),
-    ("a constant field has no value", _constant_field_without_value, [("FIELD_Quantity", "constant-without-value")]),
-    ("a reference names no enum", _unknown_value_ref_enum, [("ENC_price4/composite_members/1", "value-ref-unknown")]),
-    ("a reference names no value", _unknown_value_ref_value, [("ENC_price4/composite_members/1", "value-ref-unknown")]),
-    ("a decimal has no exponent", _decimal_without_exponent, [("FIELD_LimitPrice", "reserved-members")]),
+    (
+        "a choice is past the encoding's bits",
+        _choice_past_bits,
+        [("ENC_orderFlags/choices/0", "choice-past-bits")],
+    ),
+    (
+        "two valid values share a name",
+        _duplicate_value_name,
+        [("ENC_sideEnum", "duplicate-value-name")],
+    ),
+    (
+        "two choices share a name",
+        _duplicate_choice_name,
+        [("ENC_orderFlags", "duplicate-value-name")],
+    ),
+    (
+        "a valid value does not fit",
+        _value_outside_encoding,
+        [("ENC_quotedPrice/composite_members/1/valid_values/0", "value-out-of-range")],
+    ),
+    (
+        "a null value does not fit",
+        _null_outside_type,
+        [("ENC_price4/composite_members/0", "value-out-of-range")],
+    ),
+    (
+        "a null value is no number",
+        _not_a_number,
+        [("ENC_price4/composite_members/0", "value-out-of-range")],
+    ),
+    (
+        "a constant does not fit",
+        _constant_outside_type,
+        [("ENC_price4/composite_members/1", "value-out-of-range")],
+    ),
+    (
+        "a field is added after the schema",
+        _since_after_schema,
+        [("FIELD_LAST", "version-after-schema")],
+    ),
+    (
+        "a field is deprecated after the schema",
+        _deprecated_after_schema,
+        [("FIELD_LAST", "version-after-schema")],
+    ),
+    (
+        "a choice is added after the schema",
+        _choice_since_after_schema,
+        [("ENC_orderFlags/choices/1", "version-after-schema")],
+    ),
+    (
+        "a value is added after the schema",
+        _value_since_after_schema,
+        [("ENC_sideEnum/valid_values/1", "version-after-schema")],
+    ),
+    (
+        "an encoding is added after the schema",
+        _encoding_since_after_schema,
+        [("ENC_sideEnum", "version-after-schema")],
+    ),
+    (
+        "a message is added after the schema",
+        _message_since_after_schema,
+        [("messages/0", "version-after-schema")],
+    ),
+    (
+        "an older field follows a newer one",
+        _out_of_order_field,
+        [("FIELD_LAST", "extension-out-of-order")],
+    ),
+    (
+        "an older group follows a newer one",
+        _out_of_order_group,
+        [("messages/0/repeating_groups/1", "extension-out-of-order")],
+    ),
+    (
+        "older data follows newer data",
+        _out_of_order_data,
+        [("messages/0/var_data_fields/1", "extension-out-of-order")],
+    ),
+    (
+        "a field overlaps the one before",
+        _overlapping_field,
+        [("FIELD_Side", "offset-overlaps")],
+    ),
+    (
+        "a member overlaps the one before",
+        _overlapping_member,
+        [("ENC_quotedPrice/composite_members/1", "offset-overlaps")],
+    ),
+    (
+        "a field's offset is past the block",
+        _offset_past_block,
+        [("FIELD_Flags", "offset-past-block"), ("messages/0", "block-too-short")],
+    ),
+    (
+        "a block is shorter than its fields",
+        _short_block,
+        [("messages/0", "block-too-short")],
+    ),
+    (
+        "a group's block is shorter than its fields",
+        _short_group_block,
+        [("messages/0/repeating_groups/0", "block-too-short")],
+    ),
+    (
+        "a fixed-length field is variable",
+        _variable_field,
+        [("FIELD_Quantity", "variable-length-field")],
+    ),
+    (
+        "a group's dimension is missing",
+        _group_without_dimension,
+        [("messages/0/repeating_groups/0", "group-dimension")],
+    ),
+    (
+        "a dimension has no counter",
+        _dimension_without_counter,
+        [("messages/0/repeating_groups/0", "group-dimension")],
+    ),
+    (
+        "a dimension holds a signed member",
+        _signed_dimension,
+        [("messages/0/repeating_groups/0", "group-dimension")],
+    ),
+    (
+        "data sits on a plain type",
+        _data_on_a_plain_type,
+        [("messages/0/var_data_fields/0", "var-data-encoding")],
+    ),
+    (
+        "data's composite has no length",
+        _data_without_length,
+        [("messages/0/var_data_fields/0", "var-data-encoding")],
+    ),
+    (
+        "data's composite is not variable",
+        _data_fixed_length,
+        [("messages/0/var_data_fields/0", "var-data-encoding")],
+    ),
+    (
+        "a composite has one member",
+        _composite_of_one,
+        [("ENC_quotedPrice", "composite-of-one")],
+    ),
+    (
+        "two members share a name",
+        _duplicate_member,
+        [("ENC_quotedPrice", "duplicate-member-name")],
+    ),
+    (
+        "one id has two names",
+        _field_id_two_names,
+        [("FIELD_Quantity", "field-identity")],
+    ),
+    (
+        "one name has two ids",
+        _field_name_two_ids,
+        [("messages/0/repeating_groups/0/block_fields/0", "field-identity")],
+    ),
+    (
+        "a field's semantic type is no FIX datatype",
+        _unknown_semantic_on_field,
+        [("FIELD_ClientOrderId", "unknown-semantic-type")],
+    ),
+    (
+        "a constant type has no value",
+        _constant_type_without_value,
+        [("ENC_price4/composite_members/1", "constant-without-value")],
+    ),
+    (
+        "a constant field has no value",
+        _constant_field_without_value,
+        [("FIELD_Quantity", "constant-without-value")],
+    ),
+    (
+        "a reference names no enum",
+        _unknown_value_ref_enum,
+        [("ENC_price4/composite_members/1", "value-ref-unknown")],
+    ),
+    (
+        "a reference names no value",
+        _unknown_value_ref_value,
+        [("ENC_price4/composite_members/1", "value-ref-unknown")],
+    ),
+    (
+        "a decimal has no exponent",
+        _decimal_without_exponent,
+        [("FIELD_LimitPrice", "reserved-members")],
+    ),
 ]
+
 
 def _own_month_without_month(record):
     _member(_encoding(record, "expiry"), "month")["symbolic_name"] = "moon"
 
 
 ONLY_V1 = [
-    ("a MonthYear encoding has no month", _own_month_without_month, [("ENC_expiry", "reserved-members")]),
-    ("a field's semantic type differs from its encoding's", _semantic_mismatch, [("FIELD_ClientOrderId", "semantic-type-mismatch")]),
-    ("a MonthYear has no month", _month_without_month, [("FIELD_Expiry", "reserved-members")]),
+    (
+        "a MonthYear encoding has no month",
+        _own_month_without_month,
+        [("ENC_expiry", "reserved-members")],
+    ),
+    (
+        "a field's semantic type differs from its encoding's",
+        _semantic_mismatch,
+        [("FIELD_ClientOrderId", "semantic-type-mismatch")],
+    ),
+    (
+        "a MonthYear has no month",
+        _month_without_month,
+        [("FIELD_Expiry", "reserved-members")],
+    ),
 ]
 
 
@@ -390,7 +613,9 @@ def _places(record):
     found = {}
     for s, group in enumerate(record["encoding_sets"]):
         for e, encoding in enumerate(group["encodings"]):
-            found[f"ENC_{encoding['symbolic_name']}"] = f"encoding_sets/{s}/encodings/{e}"
+            found[f"ENC_{encoding['symbolic_name']}"] = (
+                f"encoding_sets/{s}/encodings/{e}"
+            )
     for f, field in enumerate(_message(record)["block_fields"]):
         found[f"FIELD_{field['symbolic_name']}"] = f"messages/0/block_fields/{f}"
     found["FIELD_LAST"] = f"messages/0/block_fields/{f}"

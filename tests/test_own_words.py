@@ -1,6 +1,6 @@
 """Checks that the project's words are its own.
 
-FIX licenses the specification and its XSDs under CC BY-ND 4.0, which lets a whole copy travel but
+FIX licenses the specification and its XSDs under CC BY-AND 4.0, which lets a whole copy travel but
 no adaptation, so no sentence of FIX's belongs in the schema or the docs. This test looks for a
 run of four or more words the project's text shares with the documentation in the pinned XSDs,
 the same check NOTICE describes.

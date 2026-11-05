@@ -49,7 +49,11 @@ def test_the_top_of_the_file_is_a_1_0_message_schema():
     assert schema()["title"] == "fix_sbe"
     assert schema()["additionalProperties"] is False
     assert set(schema()["required"]) == {"schema_version", "encoding_sets", "messages"}
-    assert not list(jsonschema.Draft202012Validator(schema()).iter_errors(_load("SbeMessageSchemaV1-small")))
+    assert not list(
+        jsonschema.Draft202012Validator(schema()).iter_errors(
+            _load("SbeMessageSchemaV1-small")
+        )
+    )
 
 
 def test_every_class_is_closed():
@@ -66,8 +70,12 @@ def test_each_edition_validates_under_its_own_class(edition):
 
 
 def test_an_edition_refuses_the_others_document():
-    assert list(validator("SbeMessageSchemaV1").iter_errors(_load("SbeMessageSchemaV2-small")))
-    assert list(validator("SbeMessageSchemaV2").iter_errors(_load("SbeMessageSchemaV1-small")))
+    assert list(
+        validator("SbeMessageSchemaV1").iter_errors(_load("SbeMessageSchemaV2-small"))
+    )
+    assert list(
+        validator("SbeMessageSchemaV2").iter_errors(_load("SbeMessageSchemaV1-small"))
+    )
 
 
 def test_a_rule_reaches_the_file():

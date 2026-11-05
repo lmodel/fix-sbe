@@ -11,7 +11,13 @@ import yaml
 from tests.paths import ROOT, SCHEMA_DIR
 
 NEIGHBOUR = ROOT / "tests" / "neighbours" / "fix-orchestra.yaml"
-KINDS = ("exact_mappings", "close_mappings", "related_mappings", "broad_mappings", "narrow_mappings")
+KINDS = (
+    "exact_mappings",
+    "close_mappings",
+    "related_mappings",
+    "broad_mappings",
+    "narrow_mappings",
+)
 
 # What FIX's transposer does with each kind of SBE element, in its SBE2Orchestra classes. The
 # set and the choice have no line there, so they stay related, with a comment in the schema.
@@ -76,11 +82,11 @@ def test_no_mapping_says_exact():
 
 def test_every_target_exists_in_the_neighbour():
     if not NEIGHBOUR.exists():
-        pytest.skip("tests/neighbours/fix-orchestra.yaml waits for lmodel/fix-orchestra's asset")
+        pytest.skip(
+            "tests/neighbours/fix-orchestra.yaml waits for lmodel/fix-orchestra's asset"
+        )
     classes = yaml.safe_load(NEIGHBOUR.read_text(encoding="utf-8"))["classes"]
     missing = {
-        target
-        for *_, target in _stated()
-        if target.partition(":")[2] not in classes
+        target for *_, target in _stated() if target.partition(":")[2] not in classes
     }
     assert not missing

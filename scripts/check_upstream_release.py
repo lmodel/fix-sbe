@@ -233,9 +233,7 @@ def check_suite() -> tuple[list[str], bool]:
     lines = []
     if commit != SUITE_COMMIT:
         lines.append(f"- **The suite's tag {SUITE_TAG} moved to {_code(commit)}.**")
-    expected = {
-        path: sha for path, sha in _pins_of(SUITE).items() if path != "LICENSE"
-    }
+    expected = {path: sha for path, sha in _pins_of(SUITE).items() if path != "LICENSE"}
     lines += _compare(_blobs(SUITE, commit), expected, f"at {SUITE_TAG}")
     lines += _compare(_blobs(SUITE, BRANCH), expected, f"on {BRANCH}")
     if lines:
@@ -247,7 +245,10 @@ def check_licences() -> tuple[list[str], bool]:
     """Report whether each licence on the default branch is the pinned file."""
     lines = []
     for repository in (SPEC, SUITE):
-        root = {e["path"]: e["sha"] for e in _get(f"/{repository}/git/trees/{BRANCH}")["tree"]}
+        root = {
+            e["path"]: e["sha"]
+            for e in _get(f"/{repository}/git/trees/{BRANCH}")["tree"]
+        }
         if root.get("LICENSE") != pins()[f"{repository}/LICENSE"]:
             lines.append(
                 f"- **The LICENSE of {repository} changed on the default branch.** Read what "

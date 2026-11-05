@@ -284,7 +284,9 @@ def convert(path: Path) -> tuple[str, dict]:
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("file", type=Path, help="The XML file to read")
-    parser.add_argument("--out", type=Path, help="Write here instead of standard output")
+    parser.add_argument(
+        "--out", type=Path, help="Write here instead of standard output"
+    )
     args = parser.parse_args(argv)
     _, record = convert(args.file)
     text = yaml.safe_dump(record, sort_keys=False, allow_unicode=True)

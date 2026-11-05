@@ -62,7 +62,12 @@ def _xml_tree(element):
         attributes[name.replace(XML_NS, "xml:")] = value
     children = [_xml_tree(child) for child in element if isinstance(child.tag, str)]
     text = " ".join((element.text or "").split())
-    return etree.QName(element).localname, attributes, text if not children else "", children
+    return (
+        etree.QName(element).localname,
+        attributes,
+        text if not children else "",
+        children,
+    )
 
 
 def _class_slots(name):
@@ -158,7 +163,9 @@ def test_the_documents_are_not_trivial():
     tags = set()
     for path in DOCUMENTS:
         tags |= {
-            etree.QName(e).localname for e in _parse(path).iter() if isinstance(e.tag, str)
+            etree.QName(e).localname
+            for e in _parse(path).iter()
+            if isinstance(e.tag, str)
         }
     assert tags >= {
         "messageSchema", "messages", "types", "type", "composite", "enum", "validValue",

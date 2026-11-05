@@ -11,10 +11,22 @@ CONVERTER = ROOT / "scripts" / "sbe_xml_to_yaml.py"
 # not a whole schema, so the rules on a whole schema read it through the document that
 # includes it.
 DOCUMENTS = {
-    SPEC / "v1-0-STANDARD" / "resources" / "Examples.xml": (XSD_V1, "SbeMessageSchemaV1"),
-    SPEC / "v2-0-RC3" / "resources" / "xml" / "examples.xml": (XSD_V2, "SbeMessageSchemaV2"),
-    SPEC / "v2-0-RC3" / "resources" / "xml" / "types-include.xml": (XSD_V2, "SbeEncodingSetV2"),
-    SPEC / "v2-0-RC3" / "resources" / "xml" / "messages-include.xml": (XSD_V2, "SbeMessageSetV2"),
+    SPEC / "v1-0-STANDARD" / "resources" / "Examples.xml": (
+        XSD_V1,
+        "SbeMessageSchemaV1",
+    ),
+    SPEC / "v2-0-RC3" / "resources" / "xml" / "examples.xml": (
+        XSD_V2,
+        "SbeMessageSchemaV2",
+    ),
+    SPEC / "v2-0-RC3" / "resources" / "xml" / "types-include.xml": (
+        XSD_V2,
+        "SbeEncodingSetV2",
+    ),
+    SPEC / "v2-0-RC3" / "resources" / "xml" / "messages-include.xml": (
+        XSD_V2,
+        "SbeMessageSetV2",
+    ),
     SUITE / "schema1.xml": (XSD_V1, "SbeMessageSchemaV1"),
     SUITE / "schema2.xml": (XSD_V1, "SbeMessageSchemaV1"),
     SUITE / "schema3.xml": (XSD_V1, "SbeMessageSchemaV1"),

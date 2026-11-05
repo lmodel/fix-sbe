@@ -39,7 +39,9 @@ def _root(watch, repository, folders=()):
     """The top of one repository's default branch, with its licence and any folders."""
     licence = watch.pins()[f"{repository}/LICENSE"]
     entries = [{"path": "LICENSE", "type": "blob", "sha": licence}]
-    entries += [{"path": name, "type": "tree", "sha": f"tree-{name}"} for name in folders]
+    entries += [
+        {"path": name, "type": "tree", "sha": f"tree-{name}"} for name in folders
+    ]
     return {"tree": entries}
 
 
@@ -50,8 +52,12 @@ def _answers(watch):
     return {
         f"/{spec}/tags?per_page=100": [{"name": tag} for tag in watch.KNOWN_TAGS],
         f"/{spec}/git/trees/{watch.BRANCH}": _root(watch, spec, watch.KNOWN_FOLDERS),
-        f"/{spec}/git/ref/tags/{watch.V1_TAG}": {"object": {"type": "tag", "sha": annotated}},
-        f"/{spec}/git/tags/{annotated}": {"object": {"type": "commit", "sha": watch.V1_COMMIT}},
+        f"/{spec}/git/ref/tags/{watch.V1_TAG}": {
+            "object": {"type": "tag", "sha": annotated}
+        },
+        f"/{spec}/git/tags/{annotated}": {
+            "object": {"type": "commit", "sha": watch.V1_COMMIT}
+        },
         f"/{spec}/git/trees/{watch.V1_COMMIT}?recursive=1": _tree(watch, spec),
         f"/{spec}/git/trees/{watch.V2_COMMIT}?recursive=1": _tree(watch, spec),
         f"/{spec}/git/trees/{watch.BRANCH}?recursive=1": _tree(watch, spec),
@@ -112,7 +118,9 @@ def test_a_folder_that_names_no_edition_stays_quiet(watch, capsys):
 def test_a_moved_tag_is_reported(watch, capsys):
     answers = _answers(watch)
     moved = "2" * 40
-    answers[f"/{watch.SPEC}/git/tags/{'1' * 40}"] = {"object": {"type": "commit", "sha": moved}}
+    answers[f"/{watch.SPEC}/git/tags/{'1' * 40}"] = {
+        "object": {"type": "commit", "sha": moved}
+    }
     answers[f"/{watch.SPEC}/git/trees/{moved}?recursive=1"] = _tree(watch, watch.SPEC)
     code, report = _run(watch, answers, capsys)
     assert code == 1
@@ -215,7 +223,9 @@ def test_a_redirect_off_the_api_is_refused(watch):
     with pytest.raises(ValueError, match="leads off"):
         handler.redirect_request(None, None, 302, "Found", {}, "https://example.org/x")
     with pytest.raises(ValueError, match="leads off"):
-        handler.redirect_request(None, None, 302, "Found", {}, "http://api.github.com/x")
+        handler.redirect_request(
+            None, None, 302, "Found", {}, "http://api.github.com/x"
+        )
 
 
 def test_the_report_goes_to_a_file_when_asked(watch, capsys, tmp_path):

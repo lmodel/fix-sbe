@@ -39,7 +39,9 @@ HEADER_COUNTERS = ("numGroups", "numVarDataFields")
 DIMENSION_MEMBERS = ("blockLength", "numInGroup")
 VAR_DATA_MEMBERS = ("length", "varData")
 
-_common = yaml.safe_load((SCHEMA_DIR / "fix_sbe_common.yaml").read_text(encoding="utf-8"))
+_common = yaml.safe_load(
+    (SCHEMA_DIR / "fix_sbe_common.yaml").read_text(encoding="utf-8")
+)
 FIX_DATATYPES = {
     name.lower() for name in _common["enums"]["SbeFixDatatype"]["permissible_values"]
 }
@@ -102,7 +104,9 @@ class _Schema:
             return 0
         if _is_simple(element):
             length = element.get("array_length", 1)
-            return PRIMITIVE_OCTETS[element["primitive_type"]] * length if length else None
+            return (
+                PRIMITIVE_OCTETS[element["primitive_type"]] * length if length else None
+            )
         if kind in ("Enum", "Set"):
             primitive, _ = self.primitive(element["encoding_type"])
             return PRIMITIVE_OCTETS[primitive] if primitive else None
@@ -175,7 +179,9 @@ def _check_simple(element: dict, place: str, errors: list) -> None:
         length = element.get("array_length", 1)
         if primitive == "char":
             if length and len(value) > length:
-                errors.append((place, "value-out-of-range", f"element_value is over {length}"))
+                errors.append(
+                    (place, "value-out-of-range", f"element_value is over {length}")
+                )
         elif length == 1:
             why = _scalar_error(value, primitive)
             if why:
@@ -198,7 +204,11 @@ def _check_enum(schema: _Schema, element: dict, place: str, errors: list) -> Non
         why = _scalar_error(value["valid_value"], primitive)
         if why:
             errors.append(
-                (f"{place}/valid_values/{v}", "value-out-of-range", f"valid_value {why}")
+                (
+                    f"{place}/valid_values/{v}",
+                    "value-out-of-range",
+                    f"valid_value {why}",
+                )
             )
 
 
@@ -219,7 +229,11 @@ def _check_set(schema: _Schema, element: dict, place: str, errors: list) -> None
         _check_versions(schema, choice, f"{place}/choices/{c}", errors)
         if choice["bit_position"] >= bits:
             errors.append(
-                (f"{place}/choices/{c}", "choice-past-bits", f"{choice['bit_position']} of {bits}")
+                (
+                    f"{place}/choices/{c}",
+                    "choice-past-bits",
+                    f"{choice['bit_position']} of {bits}",
+                )
             )
 
 
@@ -322,9 +336,13 @@ def _check_decimal(composite: dict, semantic: str, place: str, errors: list) -> 
     """A composite for a decimal or MonthYear holds the reserved members (chapters 2, 4)."""
     members = {m["symbolic_name"] for m in composite["composite_members"]}
     if semantic.lower() in DECIMAL_TYPES and not {"mantissa", "exponent"} <= members:
-        errors.append((place, "reserved-members", f"{composite['symbolic_name']} for {semantic}"))
+        errors.append(
+            (place, "reserved-members", f"{composite['symbolic_name']} for {semantic}")
+        )
     if semantic.lower() == "monthyear" and not {"year", "month"} <= members:
-        errors.append((place, "reserved-members", f"{composite['symbolic_name']} for {semantic}"))
+        errors.append(
+            (place, "reserved-members", f"{composite['symbolic_name']} for {semantic}")
+        )
 
 
 def _check_block(
@@ -389,10 +407,13 @@ def _check_block(
             errors.append((here, "var-data-encoding", problem))
         if not _member_problems(schema, name, VAR_DATA_MEMBERS):
             members = {
-                m["symbolic_name"]: m for m in schema.encodings[name]["composite_members"]
+                m["symbolic_name"]: m
+                for m in schema.encodings[name]["composite_members"]
             }
             if members["varData"].get("array_length", 1) != 0:
-                errors.append((here, "var-data-encoding", f"{name}.varData is not variable"))
+                errors.append(
+                    (here, "var-data-encoding", f"{name}.varData is not variable")
+                )
 
 
 def _check_identity(element: dict, place: str, errors: list, identities: dict) -> None:
@@ -401,9 +422,13 @@ def _check_identity(element: dict, place: str, errors: list, identities: dict) -
     number, name = element["sbe_id"], element["symbolic_name"]
     by_number, by_name = identities["numbers"], identities["names"]
     if by_number.setdefault(number, name) != name:
-        errors.append((place, "field-identity", f"id {number} is {name} and {by_number[number]}"))
+        errors.append(
+            (place, "field-identity", f"id {number} is {name} and {by_number[number]}")
+        )
     if by_name.setdefault(name, number) != number:
-        errors.append((place, "field-identity", f"{name} is {number} and {by_name[name]}"))
+        errors.append(
+            (place, "field-identity", f"{name} is {number} and {by_name[name]}")
+        )
 
 
 def _check_value_refs(schema: _Schema, errors: list) -> None:
@@ -419,7 +444,12 @@ def _check_value_refs(schema: _Schema, errors: list) -> None:
             enum, _, value = ref.partition(".")
             if value not in values.get(enum, ()):
                 errors.append((place, "value-ref-unknown", ref))
-        for key in ("composite_members", "block_fields", "repeating_groups", "var_data_fields"):
+        for key in (
+            "composite_members",
+            "block_fields",
+            "repeating_groups",
+            "var_data_fields",
+        ):
             for index, child in enumerate(element.get(key, [])):
                 check(child, f"{place}/{key}/{index}")
 
@@ -441,7 +471,9 @@ def rule_errors(record: dict) -> list[tuple[str, str, str]]:
         errors.append(("header_type", "message-header", problem))
     for s, group in enumerate(record.get("encoding_sets", [])):
         for e, encoding in enumerate(group["encodings"]):
-            _check_encoding(schema, encoding, f"encoding_sets/{s}/encodings/{e}", errors)
+            _check_encoding(
+                schema, encoding, f"encoding_sets/{s}/encodings/{e}", errors
+            )
     names: dict[str, int] = {}
     numbers: dict[int, str] = {}
     identities: dict[str, dict] = {"numbers": {}, "names": {}}

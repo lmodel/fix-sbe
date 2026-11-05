@@ -120,7 +120,10 @@ def _names(path):
     elements = {kind: set(doc.get(kind) or {}) for kind in ELEMENT_KINDS}
     slots = {}
     owners = [doc.get("slots") or {}]
-    owners += [(cls or {}).get("attributes") or {} for cls in (doc.get("classes") or {}).values()]
+    owners += [
+        (cls or {}).get("attributes") or {}
+        for cls in (doc.get("classes") or {}).values()
+    ]
     for owner in owners:
         for name, slot in owner.items():
             uri = (slot or {}).get("slot_uri") or f"{default}:{name}"
@@ -162,7 +165,9 @@ def test_names_apart_from_each_neighbour(name):
     their_elements, their_slots = _names(NEIGHBOUR_DIR / name)
     for kind in ELEMENT_KINDS:
         assert not elements[kind] & their_elements[kind], kind
-    differ = {k for k in slots.keys() & their_slots.keys() if slots[k] != their_slots[k]}
+    differ = {
+        k for k in slots.keys() & their_slots.keys() if slots[k] != their_slots[k]
+    }
     assert not differ
 
 
@@ -178,7 +183,9 @@ def test_copy_roots_the_concept_classes():
     """The copy re-roots exactly the named classes on Concept, and imports nothing but the LinkML
     types and LOKF."""
     doc = _load(COPY)
-    rooted = {name for name, cls in doc["classes"].items() if cls.get("is_a") == "Concept"}
+    rooted = {
+        name for name, cls in doc["classes"].items() if cls.get("is_a") == "Concept"
+    }
     assert rooted == ROOTS
     assert doc["imports"] == ["linkml:types", "lokf"]
     assert not any(cls.get("tree_root") for cls in doc["classes"].values())
@@ -203,7 +210,12 @@ def test_mappings_use_a_bound_prefix():
 
 def _page_names(source):
     """The name of each page gen-doc writes for an element of the source."""
-    names = set(source["classes"]) | set(source["enums"]) | set(source["slots"]) | set(source["types"])
+    names = (
+        set(source["classes"])
+        | set(source["enums"])
+        | set(source["slots"])
+        | set(source["types"])
+    )
     for cls in source["classes"].values():
         names |= set(cls.get("attributes") or {})
     return names
@@ -262,7 +274,10 @@ def _example(name):
 
 @pytest.mark.parametrize(
     ("class_name", "example"),
-    [("SbeMessageV1", "SbeMessageV1-no-members"), ("SbeMessageV2", "SbeMessageV2-no-members")],
+    [
+        ("SbeMessageV1", "SbeMessageV1-no-members"),
+        ("SbeMessageV2", "SbeMessageV2-no-members"),
+    ],
 )
 def test_a_message_concept_validates_against_the_copy(class_name, example):
     """A message template is a concept, and a key it does not hold is refused."""

@@ -45,7 +45,9 @@ def class_of(path):
 
 def fails_at(path):
     first = path.read_text(encoding="utf-8").splitlines()[0]
-    assert first.startswith("# Fails at: "), f"{path.name}: the first line names where it fails"
+    assert first.startswith("# Fails at: "), (
+        f"{path.name}: the first line names where it fails"
+    )
     return first.removeprefix("# Fails at: ").strip()
 
 
@@ -100,7 +102,9 @@ def test_counter_examples_fail_where_they_say(path):
     reached = set().union(*(places(e) for e in found))
     report = [f"{pointer(e)}: {e.message[:200]}" for e in found]
     assert where in reached, (sorted(reached), report)
-    on_the_way = {p for p in reached if where == p or where.startswith(p.rstrip("/") + "/")}
+    on_the_way = {
+        p for p in reached if where == p or where.startswith(p.rstrip("/") + "/")
+    }
     assert reached == on_the_way, (sorted(reached - on_the_way), report)
 
 
@@ -119,6 +123,8 @@ def test_every_concrete_class_has_an_example():
     """Each class a document can hold has a valid example."""
     view = SchemaView(str(SCHEMA))
     concrete = {
-        name for name, cls in view.all_classes().items() if not cls.abstract and not cls.mixin
+        name
+        for name, cls in view.all_classes().items()
+        if not cls.abstract and not cls.mixin
     }
     assert concrete == {class_of(path) for path in VALID}

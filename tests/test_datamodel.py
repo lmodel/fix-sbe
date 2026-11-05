@@ -51,7 +51,10 @@ def test_a_composites_members_keep_their_class_and_order():
     header = next(c for c in composites if c.symbolic_name == "messageHeader")
     members = [m.symbolic_name for m in header.composite_members]
     assert members[:4] == ["blockLength", "templateId", "schemaId", "version"]
-    assert all(isinstance(m, dataclasses_module.SbeSimpleTypeV1) for m in header.composite_members)
+    assert all(
+        isinstance(m, dataclasses_module.SbeSimpleTypeV1)
+        for m in header.composite_members
+    )
 
 
 def test_json_ld_projects_a_key_under_this_schemas_iri():
@@ -63,7 +66,9 @@ def test_json_ld_projects_a_key_under_this_schemas_iri():
         "sbe_id": 1,
         "block_length": 8,
     }
-    graph = rdflib.Graph().parse(data=json.dumps(document), format="json-ld", base=NAMESPACE)
+    graph = rdflib.Graph().parse(
+        data=json.dumps(document), format="json-ld", base=NAMESPACE
+    )
     predicates = {str(p) for _, p, _ in graph}
     assert f"{NAMESPACE}block_length" in predicates
     assert f"{NAMESPACE}symbolic_name" in predicates
