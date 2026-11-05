@@ -347,7 +347,7 @@ export interface SbeEncodingSetV2 {
     /** A package for this set in place of the schema's. */
     schema_package?: string,
     /** The base address that the XML Inclusion mechanism records on an element it brought in from another file. */
-    xml_base?: string,
+    sbe_xml_base?: string,
     /** The encodings of this set. */
     encodings: SbeElementV2[],
 }
@@ -362,7 +362,7 @@ export interface SbeMessageSetV2 {
     /** A package for this set in place of the schema's. */
     schema_package?: string,
     /** The base address that the XML Inclusion mechanism records on an element it brought in from another file. */
-    xml_base?: string,
+    sbe_xml_base?: string,
     /** The message templates of this set. */
     messages: SbeMessageV2[],
 }

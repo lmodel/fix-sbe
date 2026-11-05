@@ -18,7 +18,7 @@ public class SbeMessageSetV2  {
 
   private String description;
   private String schemaPackage;
-  private String xmlBase;
+  private String sbeXmlBase;
   private List<SbeMessageV2> messages;
 
 

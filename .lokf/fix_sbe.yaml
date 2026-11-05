@@ -430,7 +430,7 @@ classes:
     slots:
     - description
     - schema_package
-    - xml_base
+    - sbe_xml_base
     - encodings
     slot_usage:
       schema_package:
@@ -455,7 +455,7 @@ classes:
     slots:
     - description
     - schema_package
-    - xml_base
+    - sbe_xml_base
     - messages
     slot_usage:
       schema_package:
@@ -1076,9 +1076,12 @@ slots:
     annotations:
       xsd_type: xs:positiveInteger
       sbe_section: '3: Field byte alignment'
-  xml_base:
+  sbe_xml_base:
     description: The base address that the XML Inclusion mechanism records on an element it brought in
       from another file.
+    comments:
+    - The sbe_ prefix keeps this key apart from lmodel/fix-orchestra's xml_base, which has an IRI of its
+      own.
     aliases:
     - xml:base
     annotations:

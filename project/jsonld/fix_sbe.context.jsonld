@@ -114,6 +114,9 @@
          "@type": "xsd:integer",
          "@id": "sbe_id"
       },
+      "sbe_xml_base": {
+         "@id": "sbe_xml_base"
+      },
       "bit_position": {
          "@type": "xsd:integer",
          "@id": "bit_position"
@@ -158,9 +161,6 @@
       },
       "var_data_fields": {
          "@id": "var_data_fields"
-      },
-      "xml_base": {
-         "@id": "xml_base"
       },
       "SbeBlockV1Mixin": {
          "@id": "SbeBlockV1Mixin",

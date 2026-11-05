@@ -1,6 +1,6 @@
 description: Messages that several schemas share.
 schema_package: lmodel.example.common
-xml_base: messages-include.xml
+sbe_xml_base: messages-include.xml
 messages:
   - symbolic_name: Heartbeat
     sbe_id: 1

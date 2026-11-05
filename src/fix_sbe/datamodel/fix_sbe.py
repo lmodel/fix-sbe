@@ -874,7 +874,7 @@ class SbeEncodingSetV2(YAMLRoot):
     encodings: Union[Union[dict, "SbeElementV2"], list[Union[dict, "SbeElementV2"]]] = None
     description: Optional[str] = None
     schema_package: Optional[str] = None
-    xml_base: Optional[str] = None
+    sbe_xml_base: Optional[str] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.encodings):
@@ -887,8 +887,8 @@ class SbeEncodingSetV2(YAMLRoot):
         if self.schema_package is not None and not isinstance(self.schema_package, str):
             self.schema_package = str(self.schema_package)
 
-        if self.xml_base is not None and not isinstance(self.xml_base, str):
-            self.xml_base = str(self.xml_base)
+        if self.sbe_xml_base is not None and not isinstance(self.sbe_xml_base, str):
+            self.sbe_xml_base = str(self.sbe_xml_base)
 
         super().__post_init__(**kwargs)
 
@@ -908,7 +908,7 @@ class SbeMessageSetV2(YAMLRoot):
     messages: Union[Union[dict, "SbeMessageV2"], list[Union[dict, "SbeMessageV2"]]] = None
     description: Optional[str] = None
     schema_package: Optional[str] = None
-    xml_base: Optional[str] = None
+    sbe_xml_base: Optional[str] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.messages):
@@ -921,8 +921,8 @@ class SbeMessageSetV2(YAMLRoot):
         if self.schema_package is not None and not isinstance(self.schema_package, str):
             self.schema_package = str(self.schema_package)
 
-        if self.xml_base is not None and not isinstance(self.xml_base, str):
-            self.xml_base = str(self.xml_base)
+        if self.sbe_xml_base is not None and not isinstance(self.sbe_xml_base, str):
+            self.sbe_xml_base = str(self.sbe_xml_base)
 
         super().__post_init__(**kwargs)
 
@@ -1770,8 +1770,8 @@ slots.var_data_fields = Slot(uri=FIX_SBE.var_data_fields, name="var_data_fields"
 slots.alignment = Slot(uri=FIX_SBE.alignment, name="alignment", curie=FIX_SBE.curie('alignment'),
                    model_uri=FIX_SBE.alignment, domain=None, range=Optional[int])
 
-slots.xml_base = Slot(uri=FIX_SBE.xml_base, name="xml_base", curie=FIX_SBE.curie('xml_base'),
-                   model_uri=FIX_SBE.xml_base, domain=None, range=Optional[str])
+slots.sbe_xml_base = Slot(uri=FIX_SBE.sbe_xml_base, name="sbe_xml_base", curie=FIX_SBE.curie('sbe_xml_base'),
+                   model_uri=FIX_SBE.sbe_xml_base, domain=None, range=Optional[str])
 
 slots.sbeValidValue__valid_value = Slot(uri=FIX_SBE.valid_value, name="sbeValidValue__valid_value", curie=FIX_SBE.curie('valid_value'),
                    model_uri=FIX_SBE.sbeValidValue__valid_value, domain=None, range=Union[str, SbeToken],

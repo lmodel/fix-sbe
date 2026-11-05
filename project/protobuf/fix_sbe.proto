@@ -114,7 +114,7 @@ message SbeEncodingSetV2 {
   // A package for this set in place of the schema's.
   string schema_package = 2;
   // The base address that the XML Inclusion mechanism records on an element it brought in from another file.
-  string xml_base = 3;
+  string sbe_xml_base = 3;
   // The encodings of this set.
   repeated SbeElementV2 encodings = 4;
 }
@@ -395,7 +395,7 @@ message SbeMessageSetV2 {
   // A package for this set in place of the schema's.
   string schema_package = 2;
   // The base address that the XML Inclusion mechanism records on an element it brought in from another file.
-  string xml_base = 3;
+  string sbe_xml_base = 3;
   // The message templates of this set.
   repeated SbeMessageV2 messages = 4;
 }

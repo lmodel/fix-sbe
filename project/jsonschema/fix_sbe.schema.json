@@ -487,15 +487,15 @@
                     "minItems": 1,
                     "type": "array"
                 },
-                "schema_package": {
-                    "description": "A package for this set in place of the schema's.",
+                "sbe_xml_base": {
+                    "description": "The base address that the XML Inclusion mechanism records on an element it brought in from another file.",
                     "type": [
                         "string",
                         "null"
                     ]
                 },
-                "xml_base": {
-                    "description": "The base address that the XML Inclusion mechanism records on an element it brought in from another file.",
+                "schema_package": {
+                    "description": "A package for this set in place of the schema's.",
                     "type": [
                         "string",
                         "null"
@@ -1857,15 +1857,15 @@
                     "minItems": 1,
                     "type": "array"
                 },
-                "schema_package": {
-                    "description": "A package for this set in place of the schema's.",
+                "sbe_xml_base": {
+                    "description": "The base address that the XML Inclusion mechanism records on an element it brought in from another file.",
                     "type": [
                         "string",
                         "null"
                     ]
                 },
-                "xml_base": {
-                    "description": "The base address that the XML Inclusion mechanism records on an element it brought in from another file.",
+                "schema_package": {
+                    "description": "A package for this set in place of the schema's.",
                     "type": [
                         "string",
                         "null"

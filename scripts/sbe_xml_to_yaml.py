@@ -60,7 +60,7 @@ ATTRIBUTES = {
     "type": "encoding_name",
     "valueRef": "value_ref",
     "version": "schema_version",
-    "xml:base": "xml_base",
+    "xml:base": "sbe_xml_base",
 }
 NUMBERS = {
     "alignment",

@@ -18,7 +18,7 @@ public class SbeEncodingSetV2  {
 
   private String description;
   private String schemaPackage;
-  private String xmlBase;
+  private String sbeXmlBase;
   private List<SbeElementV2> encodings;
 
 

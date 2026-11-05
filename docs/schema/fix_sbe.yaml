@@ -1200,9 +1200,9 @@ slots:
     - SbeFieldV2
     range: integer
     minimum_value: 1
-  xml_base:
-    name: xml_base
-    definition_uri: https://w3id.org/lmodel/fix-sbe/xml_base
+  sbe_xml_base:
+    name: sbe_xml_base
+    definition_uri: https://w3id.org/lmodel/fix-sbe/sbe_xml_base
     annotations:
       xsd_type:
         tag: xsd_type
@@ -1212,10 +1212,13 @@ slots:
         value: '4: XInclude usage'
     description: The base address that the XML Inclusion mechanism records on an element
       it brought in from another file.
+    comments:
+    - The sbe_ prefix keeps this key apart from lmodel/fix-orchestra's xml_base, which
+      has an IRI of its own.
     from_schema: https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v2_0
     aliases:
     - xml:base
-    slot_uri: fix_sbe:xml_base
+    slot_uri: fix_sbe:sbe_xml_base
     owner: SbeMessageSetV2
     domain_of:
     - SbeEncodingSetV2
@@ -2700,7 +2703,7 @@ classes:
     slots:
     - description
     - SbeEncodingSetV2_schema_package
-    - xml_base
+    - sbe_xml_base
     - SbeEncodingSetV2_encodings
     slot_usage:
       schema_package:
@@ -2732,7 +2735,7 @@ classes:
     slots:
     - description
     - SbeMessageSetV2_schema_package
-    - xml_base
+    - sbe_xml_base
     - SbeMessageSetV2_messages
     slot_usage:
       schema_package:

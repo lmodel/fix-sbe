@@ -165,13 +165,13 @@
 --     * Slot: id
 --     * Slot: description Description: Free text about this element, for the people who read the schema.
 --     * Slot: schema_package Description: A package for this set in place of the schema's.
---     * Slot: xml_base Description: The base address that the XML Inclusion mechanism records on an element it brought in from another file.
+--     * Slot: sbe_xml_base Description: The base address that the XML Inclusion mechanism records on an element it brought in from another file.
 --     * Slot: SbeMessageSchemaV2_id Description: Autocreated FK slot
 -- # Class: SbeMessageSetV2 Description: Message templates held together, which may have their own package and may come from another file.
 --     * Slot: id
 --     * Slot: description Description: Free text about this element, for the people who read the schema.
 --     * Slot: schema_package Description: A package for this set in place of the schema's.
---     * Slot: xml_base Description: The base address that the XML Inclusion mechanism records on an element it brought in from another file.
+--     * Slot: sbe_xml_base Description: The base address that the XML Inclusion mechanism records on an element it brought in from another file.
 --     * Slot: SbeMessageSchemaV2_id Description: Autocreated FK slot
 -- # Abstract Class: SbeElementV2 Description: Anything that sets of encodings or composites hold, and the name and text they all have.
 --     * Slot: id
@@ -595,7 +595,7 @@ CREATE TABLE "SbeEncodingSetV2" (
 	id INTEGER NOT NULL,
 	description TEXT,
 	schema_package TEXT,
-	xml_base TEXT,
+	sbe_xml_base TEXT,
 	"SbeMessageSchemaV2_id" INTEGER,
 	PRIMARY KEY (id),
 	FOREIGN KEY("SbeMessageSchemaV2_id") REFERENCES "SbeMessageSchemaV2" (id)
@@ -606,7 +606,7 @@ CREATE TABLE "SbeMessageSetV2" (
 	id INTEGER NOT NULL,
 	description TEXT,
 	schema_package TEXT,
-	xml_base TEXT,
+	sbe_xml_base TEXT,
 	"SbeMessageSchemaV2_id" INTEGER,
 	PRIMARY KEY (id),
 	FOREIGN KEY("SbeMessageSchemaV2_id") REFERENCES "SbeMessageSchemaV2" (id)
