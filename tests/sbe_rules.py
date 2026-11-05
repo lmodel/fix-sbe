@@ -245,17 +245,19 @@ def _check_members(schema: _Schema, element: dict, place: str, errors: list) -> 
     names = [member["symbolic_name"] for member in members]
     for name in sorted({name for name in names if names.count(name) > 1}):
         errors.append((place, "duplicate-member-name", name))
-    position = 0
+    # The position is None once a member has no fixed size: the members after it are still
+    # checked, and only the offset arithmetic stops.
+    position: int | None = 0
     for m, member in enumerate(members):
         here = f"{place}/composite_members/{m}"
         _check_encoding(schema, member, here, errors)
+        if position is None:
+            continue
         offset = member.get("offset")
         if offset is not None and offset < position:
             errors.append((here, "offset-overlaps", f"{offset} < {position}"))
         size = schema.octets(member)
-        if size is None:
-            break
-        position = max(position, offset or 0) + size
+        position = None if size is None else max(position, offset or 0) + size
 
 
 def _check_encoding(schema: _Schema, element: dict, place: str, errors: list) -> None:

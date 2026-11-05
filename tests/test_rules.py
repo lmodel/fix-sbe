@@ -270,6 +270,18 @@ def _data_fixed_length(record):
     _member(_encoding(record, "varText"), "varData")["array_length"] = 4
 
 
+def _member_after_a_variable_one(record):
+    members = _encoding(record, "varText")["composite_members"]
+    members.append(
+        {
+            "encoding_kind": members[0]["encoding_kind"],
+            "symbolic_name": "tail",
+            "primitive_type": "uint8",
+            "null_value": "999",
+        }
+    )
+
+
 def _composite_of_one(record):
     composite = _encoding(record, "quotedPrice")
     composite["composite_members"] = composite["composite_members"][:1]
@@ -531,6 +543,11 @@ COMMON = [
         "data's composite is not variable",
         _data_fixed_length,
         [("messages/0/var_data_fields/0", "var-data-encoding")],
+    ),
+    (
+        "a member after one of no fixed size is still checked",
+        _member_after_a_variable_one,
+        [("ENC_varText/composite_members/2", "value-out-of-range")],
     ),
     (
         "a composite has one member",
