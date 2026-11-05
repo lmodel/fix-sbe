@@ -6,6 +6,8 @@ The `v0.0.0` tag is a baseline, not a release: it marks where versioning starts 
 
 ## [Unreleased]
 
+## [0.1.0] - 2026-11-05
+
 ### Added
 
 - **`upstream/`**, holding FIX's XSDs, examples and licences for SBE 1.0 and 2.0 RC3, and the conformance suite's schemas, pinned by git object hash, with a weekly watch.
