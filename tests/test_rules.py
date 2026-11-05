@@ -706,6 +706,34 @@ ONLY_V1 = [
 ]
 
 
+def _member_offset_inside_its_alignment(record):
+    _member(_encoding(record, "quotedPrice"), "source").update(alignment=8, offset=4)
+
+
+def _aligned_member_lengthens_the_block(record):
+    exponent = _member(_encoding(record, "price4"), "exponent")
+    exponent.pop("presence")
+    exponent.pop("element_value")
+    exponent["alignment"] = 8
+    _member(_encoding(record, "quotedPrice"), "source").pop("offset")
+    _message(record)["block_length"] = 24
+
+
+# Only the 2.0 XSD gives a composite's member an alignment.
+ONLY_V2 = [
+    (
+        "a member's offset sits inside its alignment padding",
+        _member_offset_inside_its_alignment,
+        [("ENC_quotedPrice/composite_members/1", "offset-overlaps")],
+    ),
+    (
+        "an aligned member makes its composite outgrow the block",
+        _aligned_member_lengthens_the_block,
+        [("messages/0", "block-too-short")],
+    ),
+]
+
+
 def _places(record):
     """What the short names in the tables stand for, in one schema."""
     found = {}
@@ -742,7 +770,8 @@ def test_the_valid_schema_breaks_no_rule(edition):
 
 @pytest.mark.parametrize(
     ("edition", "name", "change", "wanted"),
-    [("V1", *case) for case in COMMON + ONLY_V1] + [("V2", *case) for case in COMMON],
+    [("V1", *case) for case in COMMON + ONLY_V1]
+    + [("V2", *case) for case in COMMON + ONLY_V2],
     ids=lambda value: value if isinstance(value, str) else "",
 )
 def test_each_rule_catches_its_fault(edition, name, change, wanted):

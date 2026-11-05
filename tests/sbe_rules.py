@@ -133,7 +133,8 @@ class _Schema:
             size = self.octets(member, seen)
             if size is None:
                 return None
-            total = max(total, member.get("offset", total)) + size
+            start = _aligned(total, member.get("alignment"))
+            total = max(start, member.get("offset", start)) + size
         return total
 
     def is_variable(self, element: dict) -> bool:
@@ -164,6 +165,13 @@ def _scalar_error(text: str, primitive: str) -> str | None:
     else:
         low, high = -(2 ** (bits - 1)), 2 ** (bits - 1) - 1
     return None if low <= value <= high else f"is outside {low} to {high}"
+
+
+def _aligned(position: int, alignment: int | None) -> int:
+    """The position moved up to the next multiple of the alignment, where one is stated."""
+    if alignment:
+        return position + (alignment - position % alignment) % alignment
+    return position
 
 
 def _as_number(text: str, primitive: str) -> int | float:
@@ -292,7 +300,8 @@ def _check_set(schema: _Schema, element: dict, place: str, errors: list) -> None
 
 
 def _check_members(schema: _Schema, element: dict, place: str, errors: list) -> None:
-    """A composite has two or more members, none overlapping another (chapter 4)."""
+    """A composite has two or more members, none overlapping another, each placed by its offset
+    or its alignment (chapters 3 and 4)."""
     members = element["composite_members"]
     if len(members) < 2:
         errors.append((place, "composite-of-one", element["symbolic_name"]))
@@ -307,6 +316,7 @@ def _check_members(schema: _Schema, element: dict, place: str, errors: list) -> 
         _check_encoding(schema, member, here, errors)
         if position is None:
             continue
+        position = _aligned(position, member.get("alignment"))
         offset = member.get("offset")
         if offset is not None and offset < position:
             errors.append((here, "offset-overlaps", f"{offset} < {position}"))
@@ -427,8 +437,7 @@ def _check_block(
         alignment = field.get("alignment")
         if offset is not None and offset < position:
             errors.append((here, "offset-overlaps", f"{offset} < {position}"))
-        if alignment:
-            position += (alignment - position % alignment) % alignment
+        position = _aligned(position, alignment)
         start = max(position, offset or 0)
         length = block.get("block_length")
         if offset is not None and length is not None and offset > length:
