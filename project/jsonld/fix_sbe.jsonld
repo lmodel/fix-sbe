@@ -1,0 +1,4250 @@
+{
+  "name": "fix_sbe",
+  "annotations": [
+    {
+      "tag": "upstream_v1_tag",
+      "value": "v1.0-errata-Nov-2020"
+    },
+    {
+      "tag": "upstream_v1_commit",
+      "value": "6321e6b9bce5bc198f88f462054cbaf4f33d8f60"
+    },
+    {
+      "tag": "upstream_v2_commit",
+      "value": "418a8f6a8b93c65b308638dab2bc6a35dddcd864"
+    }
+  ],
+  "description": "A LinkML model of FIX Simple Binary Encoding, a standard from the FIX Trading Community for encoding messages in binary. It describes SBE message schemas: encodings, message templates, fields, groups and variable-length data. The two editions differ on the wire and in their XML, so each has a module of its own.",
+  "title": "FIX Simple Binary Encoding (SBE)",
+  "comments": [
+    "A document of SBE 1.0 starts at SbeMessageSchemaV1, the tree root, and one of SBE 2.0 RC3 at SbeMessageSchemaV2. upstream/ holds both XSDs unchanged, tests/test_coverage.py holds the modules to them, and scripts/check_upstream_release.py reports when either moves."
+  ],
+  "source": "https://github.com/FIXTradingCommunity/fix-simple-binary-encoding",
+  "see_also": [
+    "https://lmodel.github.io/fix-sbe",
+    "https://github.com/FIXTradingCommunity/fix-simple-binary-encoding",
+    "https://www.iana.org/assignments/media-types/application/sbe"
+  ],
+  "keywords": [
+    "FIX",
+    "SBE",
+    "binary encoding",
+    "message schema",
+    "wire format"
+  ],
+  "id": "https://w3id.org/lmodel/fix-sbe",
+  "version": "1.0 and 2.0-rc3",
+  "imports": [
+    "linkml:types",
+    "./fix_sbe_common",
+    "./fix_sbe_v1_0",
+    "./fix_sbe_v2_0"
+  ],
+  "license": "Apache-2.0",
+  "prefixes": [
+    {
+      "prefix_prefix": "fix_sbe",
+      "prefix_reference": "https://w3id.org/lmodel/fix-sbe/"
+    },
+    {
+      "prefix_prefix": "linkml",
+      "prefix_reference": "https://w3id.org/linkml/"
+    },
+    {
+      "prefix_prefix": "schema",
+      "prefix_reference": "http://schema.org/"
+    },
+    {
+      "prefix_prefix": "fix_orchestra",
+      "prefix_reference": "https://w3id.org/lmodel/fix-orchestra/"
+    }
+  ],
+  "default_prefix": "fix_sbe",
+  "default_range": "string",
+  "types": [
+    {
+      "name": "string",
+      "definition_uri": "https://w3id.org/linkml/String",
+      "description": "A character string",
+      "notes": [
+        "In RDF serializations, a slot with range of string is treated as a literal or type xsd:string. If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"string\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "exact_mappings": [
+        "schema:Text"
+      ],
+      "base": "str",
+      "uri": "http://www.w3.org/2001/XMLSchema#string",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "integer",
+      "definition_uri": "https://w3id.org/linkml/Integer",
+      "description": "An integer",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"integer\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "exact_mappings": [
+        "schema:Integer"
+      ],
+      "base": "int",
+      "uri": "http://www.w3.org/2001/XMLSchema#integer",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "boolean",
+      "definition_uri": "https://w3id.org/linkml/Boolean",
+      "description": "A binary (true or false) value",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"boolean\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "exact_mappings": [
+        "schema:Boolean"
+      ],
+      "base": "Bool",
+      "uri": "http://www.w3.org/2001/XMLSchema#boolean",
+      "repr": "bool",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "float",
+      "definition_uri": "https://w3id.org/linkml/Float",
+      "description": "A real number that conforms to the xsd:float specification",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"float\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "exact_mappings": [
+        "schema:Float"
+      ],
+      "base": "float",
+      "uri": "http://www.w3.org/2001/XMLSchema#float",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "double",
+      "definition_uri": "https://w3id.org/linkml/Double",
+      "description": "A real number that conforms to the xsd:double specification",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"double\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "close_mappings": [
+        "schema:Float"
+      ],
+      "base": "float",
+      "uri": "http://www.w3.org/2001/XMLSchema#double",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "decimal",
+      "definition_uri": "https://w3id.org/linkml/Decimal",
+      "description": "A real number with arbitrary precision that conforms to the xsd:decimal specification",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"decimal\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "broad_mappings": [
+        "schema:Number"
+      ],
+      "base": "Decimal",
+      "uri": "http://www.w3.org/2001/XMLSchema#decimal",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "time",
+      "definition_uri": "https://w3id.org/linkml/Time",
+      "description": "A time object represents a (local) time of day, independent of any particular day",
+      "notes": [
+        "URI is dateTime because OWL reasoners do not work with straight date or time",
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"time\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "exact_mappings": [
+        "schema:Time"
+      ],
+      "base": "XSDTime",
+      "uri": "http://www.w3.org/2001/XMLSchema#time",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "date",
+      "definition_uri": "https://w3id.org/linkml/Date",
+      "description": "a date (year, month and day) in an idealized calendar",
+      "notes": [
+        "URI is dateTime because OWL reasoners don't work with straight date or time",
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"date\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "exact_mappings": [
+        "schema:Date"
+      ],
+      "base": "XSDDate",
+      "uri": "http://www.w3.org/2001/XMLSchema#date",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "datetime",
+      "definition_uri": "https://w3id.org/linkml/Datetime",
+      "description": "The combination of a date and time",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"datetime\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "exact_mappings": [
+        "schema:DateTime"
+      ],
+      "base": "XSDDateTime",
+      "uri": "http://www.w3.org/2001/XMLSchema#dateTime",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "date_or_datetime",
+      "definition_uri": "https://w3id.org/linkml/DateOrDatetime",
+      "description": "Either a date or a datetime",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"date_or_datetime\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "str",
+      "uri": "https://w3id.org/linkml/DateOrDatetime",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "uriorcurie",
+      "definition_uri": "https://w3id.org/linkml/Uriorcurie",
+      "description": "a URI or a CURIE",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"uriorcurie\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "URIorCURIE",
+      "uri": "http://www.w3.org/2001/XMLSchema#anyURI",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "curie",
+      "definition_uri": "https://w3id.org/linkml/Curie",
+      "conforms_to": "https://www.w3.org/TR/curie/",
+      "description": "a compact URI",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"curie\"."
+      ],
+      "comments": [
+        "in RDF serializations this MUST be expanded to a URI",
+        "in non-RDF serializations MAY be serialized as the compact representation"
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "Curie",
+      "uri": "http://www.w3.org/2001/XMLSchema#string",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "uri",
+      "definition_uri": "https://w3id.org/linkml/Uri",
+      "conforms_to": "https://www.ietf.org/rfc/rfc3987.txt",
+      "description": "a complete URI",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"uri\"."
+      ],
+      "comments": [
+        "in RDF serializations a slot with range of uri is treated as a literal or type xsd:anyURI unless it is an identifier or a reference to an identifier, in which case it is translated directly to a node"
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "close_mappings": [
+        "schema:URL"
+      ],
+      "base": "URI",
+      "uri": "http://www.w3.org/2001/XMLSchema#anyURI",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "ncname",
+      "definition_uri": "https://w3id.org/linkml/Ncname",
+      "description": "Prefix part of CURIE",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"ncname\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "NCName",
+      "uri": "http://www.w3.org/2001/XMLSchema#string",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "objectidentifier",
+      "definition_uri": "https://w3id.org/linkml/Objectidentifier",
+      "description": "A URI or CURIE that represents an object in the model.",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"objectidentifier\"."
+      ],
+      "comments": [
+        "Used for inheritance and type checking"
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "ElementIdentifier",
+      "uri": "http://www.w3.org/ns/shex#iri",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "nodeidentifier",
+      "definition_uri": "https://w3id.org/linkml/Nodeidentifier",
+      "description": "A URI, CURIE or BNODE that represents a node in a model.",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"nodeidentifier\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "NodeIdentifier",
+      "uri": "http://www.w3.org/ns/shex#nonLiteral",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "jsonpointer",
+      "definition_uri": "https://w3id.org/linkml/Jsonpointer",
+      "conforms_to": "https://datatracker.ietf.org/doc/html/rfc6901",
+      "description": "A string encoding a JSON Pointer. The value of the string MUST conform to JSON Point syntax and SHOULD dereference to a valid object within the current instance document when encoded in tree form.",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"jsonpointer\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "str",
+      "uri": "http://www.w3.org/2001/XMLSchema#string",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "jsonpath",
+      "definition_uri": "https://w3id.org/linkml/Jsonpath",
+      "conforms_to": "https://www.ietf.org/archive/id/draft-goessner-dispatch-jsonpath-00.html",
+      "description": "A string encoding a JSON Path. The value of the string MUST conform to JSON Point syntax and SHOULD dereference to zero or more valid objects within the current instance document when encoded in tree form.",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"jsonpath\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "str",
+      "uri": "http://www.w3.org/2001/XMLSchema#string",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "sparqlpath",
+      "definition_uri": "https://w3id.org/linkml/Sparqlpath",
+      "conforms_to": "https://www.w3.org/TR/sparql11-query/#propertypaths",
+      "description": "A string encoding a SPARQL Property Path. The value of the string MUST conform to SPARQL syntax and SHOULD dereference to zero or more valid objects within the current instance document when encoded as RDF.",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"sparqlpath\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "str",
+      "uri": "http://www.w3.org/2001/XMLSchema#string",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "SbeSymbolicName",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/SbeSymbolicName",
+      "annotations": [
+        {
+          "tag": "xsd_type",
+          "value": "symbolicName_t",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "A name of one to 64 letters, digits and underscores that starts with a letter or underscore.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "typeof": "string",
+      "base": "str",
+      "uri": "http://www.w3.org/2001/XMLSchema#string",
+      "pattern": "^[A-Za-z_][0-9A-Za-z_]{0,63}$",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "SbeQualifiedName",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/SbeQualifiedName",
+      "annotations": [
+        {
+          "tag": "xsd_type",
+          "value": "qualifiedName_t",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "An enumeration's name and one of its valid values' names, joined by a dot.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "typeof": "string",
+      "base": "str",
+      "uri": "http://www.w3.org/2001/XMLSchema#string",
+      "pattern": "^[A-Za-z_][0-9A-Za-z_]*\\.[A-Za-z_][0-9A-Za-z_]*$",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "SbeToken",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/SbeToken",
+      "annotations": [
+        {
+          "tag": "xsd_type",
+          "value": "xs:token",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "Text with no line break, tab or doubled space, and no space at either end.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "typeof": "string",
+      "base": "str",
+      "uri": "http://www.w3.org/2001/XMLSchema#token",
+      "pattern": "^\\S+( \\S+)*$",
+      "@type": "TypeDefinition"
+    }
+  ],
+  "enums": [
+    {
+      "name": "SbePresence",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/SbePresence",
+      "annotations": [
+        {
+          "tag": "sbe_section",
+          "value": "4: Field attributes"
+        }
+      ],
+      "description": "Whether a value is on the wire, and whether it may be null.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "permissible_values": [
+        {
+          "text": "required",
+          "description": "A value is always sent, and it is never tested for null."
+        },
+        {
+          "text": "optional",
+          "description": "A value is sent, and a null marker says that none is set."
+        },
+        {
+          "text": "constant",
+          "description": "The schema states the value, so nothing is sent."
+        }
+      ]
+    },
+    {
+      "name": "SbeByteOrder",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/SbeByteOrder",
+      "annotations": [
+        {
+          "tag": "sbe_section",
+          "value": "4: messageSchema attributes"
+        }
+      ],
+      "description": "The order of the octets in every multi-octet number of a message.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "permissible_values": [
+        {
+          "text": "bigEndian",
+          "description": "The most significant octet comes first."
+        },
+        {
+          "text": "littleEndian",
+          "description": "The least significant octet comes first."
+        }
+      ]
+    },
+    {
+      "name": "SbePrimitiveType",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/SbePrimitiveType",
+      "annotations": [
+        {
+          "tag": "sbe_section",
+          "value": "2: Primitive type encodings"
+        }
+      ],
+      "description": "The wire types every encoding is finally built from.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "permissible_values": [
+        {
+          "text": "char",
+          "description": "One character of one octet."
+        },
+        {
+          "text": "int8",
+          "description": "A signed integer of one octet."
+        },
+        {
+          "text": "int16",
+          "description": "A signed integer of two octets."
+        },
+        {
+          "text": "int32",
+          "description": "A signed integer of four octets."
+        },
+        {
+          "text": "int64",
+          "description": "A signed integer of eight octets."
+        },
+        {
+          "text": "uint8",
+          "description": "An unsigned integer of one octet."
+        },
+        {
+          "text": "uint16",
+          "description": "An unsigned integer of two octets."
+        },
+        {
+          "text": "uint32",
+          "description": "An unsigned integer of four octets."
+        },
+        {
+          "text": "uint64",
+          "description": "An unsigned integer of eight octets."
+        },
+        {
+          "text": "float",
+          "description": "A four-octet number in binary floating point."
+        },
+        {
+          "text": "double",
+          "description": "An eight-octet number in binary floating point."
+        }
+      ]
+    },
+    {
+      "name": "SbeFixDatatype",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/SbeFixDatatype",
+      "annotations": [
+        {
+          "tag": "sbe_section",
+          "value": "2: FIX datatype summary"
+        }
+      ],
+      "description": "The FIX datatypes the specification's summary table lists as a field's or an encoding's semantic type.",
+      "comments": [
+        "semantic_type stays free text in the schema, because a message's holds a MsgType value and the specification suggests matching names without regard to case. tests/sbe_rules.py holds an encoding's and a field's to this list."
+      ],
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "permissible_values": [
+        {
+          "text": "int"
+        },
+        {
+          "text": "Length"
+        },
+        {
+          "text": "TagNum"
+        },
+        {
+          "text": "SeqNum"
+        },
+        {
+          "text": "NumInGroup"
+        },
+        {
+          "text": "DayOfMonth"
+        },
+        {
+          "text": "Qty"
+        },
+        {
+          "text": "float"
+        },
+        {
+          "text": "Price"
+        },
+        {
+          "text": "PriceOffset"
+        },
+        {
+          "text": "Amt"
+        },
+        {
+          "text": "Percentage"
+        },
+        {
+          "text": "char"
+        },
+        {
+          "text": "String"
+        },
+        {
+          "text": "EncodedText"
+        },
+        {
+          "text": "XMLData"
+        },
+        {
+          "text": "data"
+        },
+        {
+          "text": "Country"
+        },
+        {
+          "text": "Currency"
+        },
+        {
+          "text": "Exchange"
+        },
+        {
+          "text": "Language"
+        },
+        {
+          "text": "Boolean"
+        },
+        {
+          "text": "MultipleCharValue"
+        },
+        {
+          "text": "MultipleStringValue"
+        },
+        {
+          "text": "MonthYear"
+        },
+        {
+          "text": "UTCTimestamp"
+        },
+        {
+          "text": "UTCTimeOnly"
+        },
+        {
+          "text": "UTCDateOnly"
+        },
+        {
+          "text": "LocalMktDate"
+        },
+        {
+          "text": "TZTimeOnly"
+        },
+        {
+          "text": "TZTimestamp"
+        }
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "name": "symbolic_name",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/symbolic_name",
+      "description": "What the schema calls this element.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "name"
+      ],
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/symbolic_name",
+      "owner": "SbeFieldV2",
+      "domain_of": [
+        "SbeValidValue",
+        "SbeChoice",
+        "SbeMemberV1",
+        "SbeBlockV1",
+        "SbeFieldV1",
+        "SbeElementV2",
+        "SbeBlockV2",
+        "SbeFieldV2"
+      ],
+      "range": "SbeSymbolicName",
+      "required": true,
+      "pattern": "^[A-Za-z_][0-9A-Za-z_]{0,63}$",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "sbe_id",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/sbe_id",
+      "annotations": [
+        {
+          "tag": "xsd_type",
+          "value": "xs:unsignedShort",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "The number that identifies this element.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "id"
+      ],
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/sbe_id",
+      "owner": "SbeFieldV2",
+      "domain_of": [
+        "SbeMessageSchemaV1",
+        "SbeBlockV1",
+        "SbeFieldV1",
+        "SbeMessageSchemaV2",
+        "SbeBlockV2",
+        "SbeFieldV2"
+      ],
+      "range": "integer",
+      "minimum_value": 0,
+      "maximum_value": 65535,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "description",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/description",
+      "description": "Free text about this element, for the people who read the schema.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "description"
+      ],
+      "mappings": [
+        "http://schema.org/description"
+      ],
+      "slot_uri": "http://schema.org/description",
+      "owner": "SbeFieldV2",
+      "domain_of": [
+        "SbeValidValue",
+        "SbeChoice",
+        "SbeMessageSchemaV1",
+        "SbeEncodingV1",
+        "SbeBlockV1",
+        "SbeFieldV1",
+        "SbeMessageSchemaV2",
+        "SbeEncodingSetV2",
+        "SbeMessageSetV2",
+        "SbeElementV2",
+        "SbeBlockV2",
+        "SbeFieldV2"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "semantic_type",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/semantic_type",
+      "annotations": [
+        {
+          "tag": "xsd_type",
+          "value": "xs:token",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "What this element means at the FIX application layer.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "semanticType"
+      ],
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/semantic_type",
+      "owner": "SbeFieldV2",
+      "domain_of": [
+        "SbeEncodingV1",
+        "SbeBlockV1",
+        "SbeFieldV1",
+        "SbeBlockV2",
+        "SbeFieldV2"
+      ],
+      "range": "SbeToken",
+      "pattern": "^\\S+( \\S+)*$",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "since_version",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/since_version",
+      "annotations": [
+        {
+          "tag": "xsd_type",
+          "value": "xs:nonNegativeInteger",
+          "@type": "Annotation"
+        },
+        {
+          "tag": "sbe_section",
+          "value": "5: Since version",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "The schema version that added this element.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "sinceVersion"
+      ],
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/since_version",
+      "ifabsent": "int(0)",
+      "owner": "SbeVersionedMixin",
+      "domain_of": [
+        "SbeVersionedMixin"
+      ],
+      "range": "integer",
+      "minimum_value": 0,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "deprecated_since",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/deprecated_since",
+      "annotations": [
+        {
+          "tag": "xsd_type",
+          "value": "xs:nonNegativeInteger",
+          "@type": "Annotation"
+        },
+        {
+          "tag": "sbe_section",
+          "value": "5: Deprecated elements",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "The schema version that retired this element, which stays only for older applications.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "deprecated"
+      ],
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/deprecated_since",
+      "owner": "SbeVersionedMixin",
+      "domain_of": [
+        "SbeVersionedMixin"
+      ],
+      "range": "integer",
+      "minimum_value": 0,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "offset",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/offset",
+      "annotations": [
+        {
+          "tag": "xsd_type",
+          "value": "xs:unsignedInt",
+          "@type": "Annotation"
+        },
+        {
+          "tag": "sbe_section",
+          "value": "3: Field offset specified by message schema",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "The octet this element starts at, counted from zero at the start of its block or composite.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "offset"
+      ],
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/offset",
+      "owner": "SbeFieldV2",
+      "domain_of": [
+        "SbeMemberV1",
+        "SbeFieldV1",
+        "SbeMemberV2",
+        "SbeFieldV2"
+      ],
+      "range": "integer",
+      "minimum_value": 0,
+      "maximum_value": 4294967295,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "presence",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/presence",
+      "description": "Whether this element's value is required, optional or constant.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "presence"
+      ],
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/presence",
+      "ifabsent": "string(required)",
+      "owner": "SbeFieldV2",
+      "domain_of": [
+        "SbeSimpleTypeV1",
+        "SbeFieldV1",
+        "SbeMemberTypeV2",
+        "SbeFieldV2"
+      ],
+      "range": "SbePresence",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "value_ref",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/value_ref",
+      "description": "The valid value that gives a constant element its value.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "valueRef"
+      ],
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/value_ref",
+      "owner": "SbeFieldV2",
+      "domain_of": [
+        "SbeSimpleTypeV1",
+        "SbeFieldV1",
+        "SbeMemberTypeV2",
+        "SbeFieldV2"
+      ],
+      "range": "SbeQualifiedName",
+      "pattern": "^[A-Za-z_][0-9A-Za-z_]*\\.[A-Za-z_][0-9A-Za-z_]*$",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "element_value",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/element_value",
+      "annotations": [
+        {
+          "tag": "xsd_type",
+          "value": "xs:token",
+          "@type": "Annotation"
+        },
+        {
+          "tag": "sbe_section",
+          "value": "4: Constant value",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "The text of the XML element, which is the constant when presence is constant.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/element_value",
+      "owner": "SbeFieldV2",
+      "domain_of": [
+        "SbeSimpleTypeV1",
+        "SbeSimpleTypeV2",
+        "SbeMemberTypeV2",
+        "SbeFieldV2"
+      ],
+      "range": "SbeToken",
+      "pattern": "^\\S+( \\S+)*$",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "primitive_type",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/primitive_type",
+      "description": "The wire type under this encoding.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "primitiveType"
+      ],
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/primitive_type",
+      "owner": "SbeMemberTypeV2",
+      "domain_of": [
+        "SbeSimpleTypeV1",
+        "SbeSimpleTypeV2",
+        "SbeMemberTypeV2"
+      ],
+      "range": "SbePrimitiveType",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "array_length",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/array_length",
+      "annotations": [
+        {
+          "tag": "xsd_type",
+          "value": "xs:nonNegativeInteger",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "How many values of the primitive type the encoding holds, where zero means a variable number.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "length"
+      ],
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/array_length",
+      "ifabsent": "int(1)",
+      "owner": "SbeMemberTypeV2",
+      "domain_of": [
+        "SbeSimpleTypeV1",
+        "SbeSimpleTypeV2",
+        "SbeMemberTypeV2"
+      ],
+      "range": "integer",
+      "minimum_value": 0,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "character_encoding",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/character_encoding",
+      "description": "Which character set, or which Unicode scheme, character data follows.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "characterEncoding"
+      ],
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/character_encoding",
+      "owner": "SbeMemberTypeV2",
+      "domain_of": [
+        "SbeSimpleTypeV1",
+        "SbeSimpleTypeV2",
+        "SbeMemberTypeV2"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "null_value",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/null_value",
+      "description": "The value that stands for null in place of the primitive type's default, written as text.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "nullValue"
+      ],
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/null_value",
+      "owner": "SbeFieldV2",
+      "domain_of": [
+        "SbeSimpleTypeV1",
+        "SbeMemberTypeV2",
+        "SbeFieldV2"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "min_value",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/min_value",
+      "description": "The lowest value allowed, written as text.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "minValue"
+      ],
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/min_value",
+      "owner": "SbeFieldV2",
+      "domain_of": [
+        "SbeSimpleTypeV1",
+        "SbeMemberTypeV2",
+        "SbeFieldV2"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "max_value",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/max_value",
+      "description": "The highest value allowed, written as text.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "maxValue"
+      ],
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/max_value",
+      "owner": "SbeFieldV2",
+      "domain_of": [
+        "SbeSimpleTypeV1",
+        "SbeMemberTypeV2",
+        "SbeFieldV2"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "encoding_type",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/encoding_type",
+      "description": "The simple encoding or primitive type that an enumeration or set is sent as.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "encodingType"
+      ],
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/encoding_type",
+      "owner": "SbeSetV2",
+      "domain_of": [
+        "SbeEnumV1",
+        "SbeSetV1",
+        "SbeEnumV2",
+        "SbeSetV2"
+      ],
+      "range": "SbeSymbolicName",
+      "required": true,
+      "pattern": "^[A-Za-z_][0-9A-Za-z_]{0,63}$",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "encoding_name",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/encoding_name",
+      "description": "Which encoding this element uses, by name.",
+      "comments": [
+        "It holds a name and not a class reference, because a name is unique only within one schema document, where several documents may be listed side by side. tests/sbe_rules.py holds each to an encoding of its document."
+      ],
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "type"
+      ],
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/encoding_name",
+      "owner": "SbeFieldV2",
+      "domain_of": [
+        "SbeRefV1",
+        "SbeFieldV1",
+        "SbeRefV2",
+        "SbeFieldV2"
+      ],
+      "range": "SbeSymbolicName",
+      "required": true,
+      "pattern": "^[A-Za-z_][0-9A-Za-z_]{0,63}$",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "block_length",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/block_length",
+      "annotations": [
+        {
+          "tag": "xsd_type",
+          "value": "xs:nonNegativeInteger",
+          "@type": "Annotation"
+        },
+        {
+          "tag": "sbe_section",
+          "value": "3: Root block length",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "The octets set aside for a message's fixed-length fields, or for those of each group entry.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "blockLength"
+      ],
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/block_length",
+      "owner": "SbeBlockV2",
+      "domain_of": [
+        "SbeBlockV1",
+        "SbeBlockV2"
+      ],
+      "range": "integer",
+      "minimum_value": 0,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "dimension_type",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/dimension_type",
+      "annotations": [
+        {
+          "tag": "sbe_section",
+          "value": "3: Encoding of repeating group dimensions",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "The composite, by name, that sends a repeating group's entry count and entry size.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "dimensionType"
+      ],
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/dimension_type",
+      "ifabsent": "string(groupSizeEncoding)",
+      "owner": "SbeGroupV2",
+      "domain_of": [
+        "SbeGroupV1",
+        "SbeGroupV2"
+      ],
+      "range": "SbeSymbolicName",
+      "pattern": "^[A-Za-z_][0-9A-Za-z_]{0,63}$",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "schema_package",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/schema_package",
+      "description": "The name or category that a set of counterparties knows this schema or part of it by.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "package"
+      ],
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/schema_package",
+      "owner": "SbeMessageSetV2",
+      "domain_of": [
+        "SbeMessageSchemaV1",
+        "SbeMessageSchemaV2",
+        "SbeEncodingSetV2",
+        "SbeMessageSetV2"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "schema_version",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/schema_version",
+      "annotations": [
+        {
+          "tag": "xsd_type",
+          "value": "xs:nonNegativeInteger",
+          "@type": "Annotation"
+        },
+        {
+          "tag": "sbe_section",
+          "value": "4: Schema versioning",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "The version of this message schema, starting at zero.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "version"
+      ],
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/schema_version",
+      "owner": "SbeMessageSchemaV2",
+      "domain_of": [
+        "SbeMessageSchemaV1",
+        "SbeMessageSchemaV2"
+      ],
+      "range": "integer",
+      "required": true,
+      "minimum_value": 0,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "semantic_version",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/semantic_version",
+      "description": "The version of FIX whose meanings this schema uses.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "semanticVersion"
+      ],
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/semantic_version",
+      "owner": "SbeMessageSchemaV2",
+      "domain_of": [
+        "SbeMessageSchemaV1",
+        "SbeMessageSchemaV2"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "byte_order",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/byte_order",
+      "description": "How the octets of every number in this schema's messages are ordered.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "byteOrder"
+      ],
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/byte_order",
+      "ifabsent": "string(littleEndian)",
+      "owner": "SbeMessageSchemaV2",
+      "domain_of": [
+        "SbeMessageSchemaV1",
+        "SbeMessageSchemaV2"
+      ],
+      "range": "SbeByteOrder",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "header_type",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/header_type",
+      "annotations": [
+        {
+          "tag": "sbe_section",
+          "value": "3: Message header schema",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "The composite, by name, that sends each message's header in this schema.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "headerType"
+      ],
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/header_type",
+      "ifabsent": "string(messageHeader)",
+      "owner": "SbeMessageSchemaV2",
+      "domain_of": [
+        "SbeMessageSchemaV1",
+        "SbeMessageSchemaV2"
+      ],
+      "range": "SbeSymbolicName",
+      "pattern": "^[A-Za-z_][0-9A-Za-z_]{0,63}$",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "encoding_kind",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/encoding_kind",
+      "description": "The class of this encoding or composite member, which stands for its XML element.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/encoding_kind",
+      "designates_type": true,
+      "owner": "SbeElementV2",
+      "domain_of": [
+        "SbeMemberV1",
+        "SbeElementV2"
+      ],
+      "range": "string",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "encoding_sets",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/encoding_sets",
+      "description": "The sets of encodings this schema's messages use.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "types"
+      ],
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/encoding_sets",
+      "owner": "SbeMessageSchemaV2",
+      "domain_of": [
+        "SbeMessageSchemaV1",
+        "SbeMessageSchemaV2"
+      ],
+      "range": "string",
+      "required": true,
+      "multivalued": true,
+      "inlined_as_list": true,
+      "minimum_cardinality": 1,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "message_sets",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/message_sets",
+      "description": "The sets of message templates of this schema.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "messages"
+      ],
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/message_sets",
+      "owner": "SbeMessageSchemaV2",
+      "domain_of": [
+        "SbeMessageSchemaV2"
+      ],
+      "range": "string",
+      "required": true,
+      "multivalued": true,
+      "inlined_as_list": true,
+      "minimum_cardinality": 1,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "messages",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/messages",
+      "description": "The message templates of this set.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "message"
+      ],
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/messages",
+      "owner": "SbeMessageSetV2",
+      "domain_of": [
+        "SbeMessageSchemaV1",
+        "SbeMessageSetV2"
+      ],
+      "range": "string",
+      "required": true,
+      "multivalued": true,
+      "inlined_as_list": true,
+      "minimum_cardinality": 1,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "encodings",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/encodings",
+      "description": "The encodings of this set.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "type",
+        "composite",
+        "enum",
+        "set"
+      ],
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/encodings",
+      "owner": "SbeEncodingSetV2",
+      "domain_of": [
+        "SbeEncodingSetV1",
+        "SbeEncodingSetV2"
+      ],
+      "range": "string",
+      "required": true,
+      "multivalued": true,
+      "inlined_as_list": true,
+      "minimum_cardinality": 1,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "composite_members",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/composite_members",
+      "description": "The members of this composite, in the order they are sent.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "type",
+        "enum",
+        "set",
+        "composite",
+        "ref"
+      ],
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/composite_members",
+      "owner": "SbeCompositeV2",
+      "domain_of": [
+        "SbeCompositeV1",
+        "SbeCompositeV2"
+      ],
+      "range": "string",
+      "required": true,
+      "multivalued": true,
+      "inlined_as_list": true,
+      "minimum_cardinality": 1,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "valid_values",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/valid_values",
+      "description": "The values this enumeration allows.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "validValue"
+      ],
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/valid_values",
+      "owner": "SbeEnumV2",
+      "domain_of": [
+        "SbeEnumV1",
+        "SbeEnumV2"
+      ],
+      "range": "SbeValidValue",
+      "required": true,
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "minimum_cardinality": 1,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "choices",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/choices",
+      "description": "The alternatives of this set.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "choice"
+      ],
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/choices",
+      "owner": "SbeSetV2",
+      "domain_of": [
+        "SbeSetV1",
+        "SbeSetV2"
+      ],
+      "range": "SbeChoice",
+      "required": true,
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "minimum_cardinality": 1,
+      "maximum_cardinality": 64,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "block_fields",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/block_fields",
+      "description": "Fixed-length fields, listed in wire order.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "field"
+      ],
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/block_fields",
+      "owner": "SbeBlockV2",
+      "domain_of": [
+        "SbeBlockV1",
+        "SbeBlockV2"
+      ],
+      "range": "string",
+      "multivalued": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "repeating_groups",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/repeating_groups",
+      "description": "Repeating groups, listed in wire order.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "group"
+      ],
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/repeating_groups",
+      "owner": "SbeBlockV2",
+      "domain_of": [
+        "SbeBlockV1",
+        "SbeBlockV2"
+      ],
+      "range": "string",
+      "multivalued": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "var_data_fields",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/var_data_fields",
+      "description": "Variable-length fields, listed in wire order.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "data"
+      ],
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/var_data_fields",
+      "owner": "SbeBlockV2",
+      "domain_of": [
+        "SbeBlockV1",
+        "SbeBlockV2"
+      ],
+      "range": "string",
+      "multivalued": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "alignment",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/alignment",
+      "annotations": [
+        {
+          "tag": "xsd_type",
+          "value": "xs:positiveInteger",
+          "@type": "Annotation"
+        },
+        {
+          "tag": "sbe_section",
+          "value": "3: Field byte alignment",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "The multiple of octets the start of this element is placed on.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v2_0",
+      "aliases": [
+        "alignment"
+      ],
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/alignment",
+      "owner": "SbeFieldV2",
+      "domain_of": [
+        "SbeMemberV2",
+        "SbeBlockV2",
+        "SbeFieldV2"
+      ],
+      "range": "integer",
+      "minimum_value": 1,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "xml_base",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/xml_base",
+      "annotations": [
+        {
+          "tag": "sbe_section",
+          "value": "4: XInclude usage",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "The base address that the XML Inclusion mechanism records on an element it brought in from another file.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v2_0",
+      "aliases": [
+        "xml:base"
+      ],
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/xml_base",
+      "owner": "SbeMessageSetV2",
+      "domain_of": [
+        "SbeEncodingSetV2",
+        "SbeMessageSetV2"
+      ],
+      "range": "uri",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "sbeValidValue__valid_value",
+      "annotations": [
+        {
+          "tag": "xsd_type",
+          "value": "xs:token",
+          "@type": "Annotation"
+        },
+        {
+          "tag": "sbe_section",
+          "value": "4: Schema validation",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "The value as it is written in the schema, which must convert to the enumeration's encoding.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/valid_value",
+      "alias": "valid_value",
+      "owner": "SbeValidValue",
+      "domain_of": [
+        "SbeValidValue"
+      ],
+      "range": "SbeToken",
+      "required": true,
+      "pattern": "^\\S+( \\S+)*$",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "sbeChoice__bit_position",
+      "annotations": [
+        {
+          "tag": "xsd_type",
+          "value": "xs:nonNegativeInteger",
+          "@type": "Annotation"
+        },
+        {
+          "tag": "sbe_section",
+          "value": "4: choice element content",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "Which bit stands for this choice, counted from zero at the least significant.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/bit_position",
+      "alias": "bit_position",
+      "owner": "SbeChoice",
+      "domain_of": [
+        "SbeChoice"
+      ],
+      "range": "integer",
+      "required": true,
+      "minimum_value": 0,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "sbeFieldV1__time_epoch",
+      "annotations": [
+        {
+          "tag": "sbe_section",
+          "value": "2: Date and time encoding",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "Where the period a time value counts from begins.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v1_0",
+      "aliases": [
+        "epoch"
+      ],
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/time_epoch",
+      "ifabsent": "string(unix)",
+      "alias": "time_epoch",
+      "owner": "SbeFieldV1",
+      "domain_of": [
+        "SbeFieldV1"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "sbeFieldV1__time_unit",
+      "description": "The unit of a time value.",
+      "deprecated": "The XSD keeps this only for schemas written against release candidate 2 of SBE 1.0.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v1_0",
+      "aliases": [
+        "timeUnit"
+      ],
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/time_unit",
+      "ifabsent": "string(nanosecond)",
+      "alias": "time_unit",
+      "owner": "SbeFieldV1",
+      "domain_of": [
+        "SbeFieldV1"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "SbeMessageSchemaV1_sbe_id",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/sbe_id",
+      "annotations": {
+        "xsd_type": {
+          "tag": "xsd_type",
+          "value": "xs:unsignedShort",
+          "extensions": {},
+          "annotations": {}
+        }
+      },
+      "description": "The number that identifies this schema between counterparties.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "id"
+      ],
+      "is_a": "sbe_id",
+      "domain": "SbeMessageSchemaV1",
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/sbe_id",
+      "alias": "sbe_id",
+      "owner": "SbeMessageSchemaV1",
+      "domain_of": [
+        "SbeMessageSchemaV1"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "sbe_id",
+      "range": "integer",
+      "minimum_value": 0,
+      "maximum_value": 65535,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "SbeMessageSchemaV1_encoding_sets",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/encoding_sets",
+      "description": "The sets of encodings this schema's messages use.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "types"
+      ],
+      "is_a": "encoding_sets",
+      "domain": "SbeMessageSchemaV1",
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/encoding_sets",
+      "alias": "encoding_sets",
+      "owner": "SbeMessageSchemaV1",
+      "domain_of": [
+        "SbeMessageSchemaV1"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "encoding_sets",
+      "range": "SbeEncodingSetV1",
+      "required": true,
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "minimum_cardinality": 1,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "SbeMessageSchemaV1_messages",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/messages",
+      "description": "The message templates of this set.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "message"
+      ],
+      "is_a": "messages",
+      "domain": "SbeMessageSchemaV1",
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/messages",
+      "alias": "messages",
+      "owner": "SbeMessageSchemaV1",
+      "domain_of": [
+        "SbeMessageSchemaV1"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "messages",
+      "range": "SbeMessageV1",
+      "required": true,
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "minimum_cardinality": 1,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "SbeEncodingSetV1_encodings",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/encodings",
+      "description": "The encodings of this set.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "type",
+        "composite",
+        "enum",
+        "set"
+      ],
+      "is_a": "encodings",
+      "domain": "SbeEncodingSetV1",
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/encodings",
+      "alias": "encodings",
+      "owner": "SbeEncodingSetV1",
+      "domain_of": [
+        "SbeEncodingSetV1"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "encodings",
+      "range": "SbeEncodingV1",
+      "required": true,
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "minimum_cardinality": 1,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "SbeEncodingV1_semantic_type",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/semantic_type",
+      "annotations": {
+        "xsd_type": {
+          "tag": "xsd_type",
+          "value": "xs:token",
+          "extensions": {},
+          "annotations": {}
+        }
+      },
+      "description": "The FIX datatype this encoding carries.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "semanticType"
+      ],
+      "is_a": "semantic_type",
+      "domain": "SbeEncodingV1",
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/semantic_type",
+      "alias": "semantic_type",
+      "owner": "SbeEncodingV1",
+      "domain_of": [
+        "SbeEncodingV1"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "semantic_type",
+      "range": "SbeToken",
+      "pattern": "^\\S+( \\S+)*$",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "SbeCompositeV1_composite_members",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/composite_members",
+      "description": "The members of this composite, in the order they are sent.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "type",
+        "enum",
+        "set",
+        "composite",
+        "ref"
+      ],
+      "is_a": "composite_members",
+      "domain": "SbeCompositeV1",
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/composite_members",
+      "alias": "composite_members",
+      "owner": "SbeCompositeV1",
+      "domain_of": [
+        "SbeCompositeV1"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "composite_members",
+      "range": "SbeMemberV1",
+      "required": true,
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "minimum_cardinality": 1,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "SbeBlockV1_sbe_id",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/sbe_id",
+      "annotations": {
+        "xsd_type": {
+          "tag": "xsd_type",
+          "value": "xs:unsignedShort",
+          "extensions": {},
+          "annotations": {}
+        }
+      },
+      "description": "The number that identifies this element.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "id"
+      ],
+      "is_a": "sbe_id",
+      "domain": "SbeBlockV1",
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/sbe_id",
+      "alias": "sbe_id",
+      "owner": "SbeBlockV1",
+      "domain_of": [
+        "SbeBlockV1"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "sbe_id",
+      "range": "integer",
+      "required": true,
+      "minimum_value": 0,
+      "maximum_value": 65535,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "SbeBlockV1_block_fields",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/block_fields",
+      "description": "Fixed-length fields, listed in wire order.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "field"
+      ],
+      "is_a": "block_fields",
+      "domain": "SbeBlockV1",
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/block_fields",
+      "alias": "block_fields",
+      "owner": "SbeBlockV1",
+      "domain_of": [
+        "SbeBlockV1"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "block_fields",
+      "range": "SbeFieldV1",
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "SbeBlockV1_repeating_groups",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/repeating_groups",
+      "description": "Repeating groups, listed in wire order.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "group"
+      ],
+      "is_a": "repeating_groups",
+      "domain": "SbeBlockV1",
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/repeating_groups",
+      "alias": "repeating_groups",
+      "owner": "SbeBlockV1",
+      "domain_of": [
+        "SbeBlockV1"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "repeating_groups",
+      "range": "SbeGroupV1",
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "SbeBlockV1_var_data_fields",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/var_data_fields",
+      "description": "Variable-length fields, listed in wire order.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "data"
+      ],
+      "is_a": "var_data_fields",
+      "domain": "SbeBlockV1",
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/var_data_fields",
+      "alias": "var_data_fields",
+      "owner": "SbeBlockV1",
+      "domain_of": [
+        "SbeBlockV1"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "var_data_fields",
+      "range": "SbeFieldV1",
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "SbeMessageV1_sbe_id",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/sbe_id",
+      "annotations": {
+        "xsd_type": {
+          "tag": "xsd_type",
+          "value": "xs:unsignedShort",
+          "extensions": {},
+          "annotations": {}
+        }
+      },
+      "description": "The template's number, which no other template in the schema shares.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "id"
+      ],
+      "is_a": "SbeBlockV1_sbe_id",
+      "domain": "SbeMessageV1",
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/sbe_id",
+      "alias": "sbe_id",
+      "owner": "SbeMessageV1",
+      "domain_of": [
+        "SbeMessageV1"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "sbe_id",
+      "range": "integer",
+      "required": true,
+      "minimum_value": 0,
+      "maximum_value": 65535,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "SbeMessageV1_semantic_type",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/semantic_type",
+      "annotations": {
+        "xsd_type": {
+          "tag": "xsd_type",
+          "value": "xs:token",
+          "extensions": {},
+          "annotations": {}
+        }
+      },
+      "description": "The FIX MsgType(35) this template stands for, where several templates may share one.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "semanticType"
+      ],
+      "is_a": "semantic_type",
+      "domain": "SbeMessageV1",
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/semantic_type",
+      "alias": "semantic_type",
+      "owner": "SbeMessageV1",
+      "domain_of": [
+        "SbeMessageV1"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "semantic_type",
+      "range": "SbeToken",
+      "pattern": "^\\S+( \\S+)*$",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "SbeGroupV1_block_fields",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/block_fields",
+      "description": "Fixed-length fields, listed in wire order.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "field"
+      ],
+      "is_a": "SbeBlockV1_block_fields",
+      "domain": "SbeGroupV1",
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/block_fields",
+      "alias": "block_fields",
+      "owner": "SbeGroupV1",
+      "domain_of": [
+        "SbeGroupV1"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "block_fields",
+      "range": "SbeFieldV1",
+      "required": true,
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "minimum_cardinality": 1,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "SbeFieldV1_sbe_id",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/sbe_id",
+      "annotations": {
+        "xsd_type": {
+          "tag": "xsd_type",
+          "value": "xs:unsignedShort",
+          "extensions": {},
+          "annotations": {}
+        }
+      },
+      "description": "The field's FIX tag number.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "id"
+      ],
+      "is_a": "sbe_id",
+      "domain": "SbeFieldV1",
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/sbe_id",
+      "alias": "sbe_id",
+      "owner": "SbeFieldV1",
+      "domain_of": [
+        "SbeFieldV1"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "sbe_id",
+      "range": "integer",
+      "required": true,
+      "minimum_value": 0,
+      "maximum_value": 65535,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "SbeFieldV1_semantic_type",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/semantic_type",
+      "annotations": {
+        "xsd_type": {
+          "tag": "xsd_type",
+          "value": "xs:token",
+          "extensions": {},
+          "annotations": {}
+        }
+      },
+      "description": "The FIX datatype this field carries.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "semanticType"
+      ],
+      "is_a": "semantic_type",
+      "domain": "SbeFieldV1",
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/semantic_type",
+      "alias": "semantic_type",
+      "owner": "SbeFieldV1",
+      "domain_of": [
+        "SbeFieldV1"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "semantic_type",
+      "range": "SbeToken",
+      "pattern": "^\\S+( \\S+)*$",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "SbeMessageSchemaV2_sbe_id",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/sbe_id",
+      "annotations": {
+        "xsd_type": {
+          "tag": "xsd_type",
+          "value": "xs:unsignedShort",
+          "extensions": {},
+          "annotations": {}
+        }
+      },
+      "description": "The number that identifies this schema between counterparties.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "id"
+      ],
+      "is_a": "sbe_id",
+      "domain": "SbeMessageSchemaV2",
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/sbe_id",
+      "alias": "sbe_id",
+      "owner": "SbeMessageSchemaV2",
+      "domain_of": [
+        "SbeMessageSchemaV2"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "sbe_id",
+      "range": "integer",
+      "minimum_value": 0,
+      "maximum_value": 65535,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "SbeMessageSchemaV2_encoding_sets",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/encoding_sets",
+      "description": "The sets of encodings this schema's messages use.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "types"
+      ],
+      "is_a": "encoding_sets",
+      "domain": "SbeMessageSchemaV2",
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/encoding_sets",
+      "alias": "encoding_sets",
+      "owner": "SbeMessageSchemaV2",
+      "domain_of": [
+        "SbeMessageSchemaV2"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "encoding_sets",
+      "range": "SbeEncodingSetV2",
+      "required": true,
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "minimum_cardinality": 1,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "SbeMessageSchemaV2_message_sets",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/message_sets",
+      "description": "The sets of message templates of this schema.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "messages"
+      ],
+      "is_a": "message_sets",
+      "domain": "SbeMessageSchemaV2",
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/message_sets",
+      "alias": "message_sets",
+      "owner": "SbeMessageSchemaV2",
+      "domain_of": [
+        "SbeMessageSchemaV2"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "message_sets",
+      "range": "SbeMessageSetV2",
+      "required": true,
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "minimum_cardinality": 1,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "SbeEncodingSetV2_schema_package",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/schema_package",
+      "description": "A package for this set in place of the schema's.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "package"
+      ],
+      "is_a": "schema_package",
+      "domain": "SbeEncodingSetV2",
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/schema_package",
+      "alias": "schema_package",
+      "owner": "SbeEncodingSetV2",
+      "domain_of": [
+        "SbeEncodingSetV2"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "schema_package",
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "SbeEncodingSetV2_encodings",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/encodings",
+      "description": "The encodings of this set.",
+      "comments": [
+        "A composite, an enumeration and a set may appear here or inside a composite, and a simple type has a different shape in each place, so no single class fits this list."
+      ],
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "type",
+        "composite",
+        "enum",
+        "set"
+      ],
+      "is_a": "encodings",
+      "domain": "SbeEncodingSetV2",
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/encodings",
+      "alias": "encodings",
+      "owner": "SbeEncodingSetV2",
+      "domain_of": [
+        "SbeEncodingSetV2"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "encodings",
+      "range": "SbeElementV2",
+      "required": true,
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "minimum_cardinality": 1,
+      "any_of": [
+        {
+          "range": "SbeSimpleTypeV2",
+          "@type": "AnonymousSlotExpression"
+        },
+        {
+          "range": "SbeCompositeV2",
+          "@type": "AnonymousSlotExpression"
+        },
+        {
+          "range": "SbeEnumV2",
+          "@type": "AnonymousSlotExpression"
+        },
+        {
+          "range": "SbeSetV2",
+          "@type": "AnonymousSlotExpression"
+        }
+      ],
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "SbeMessageSetV2_schema_package",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/schema_package",
+      "description": "A package for this set in place of the schema's.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "package"
+      ],
+      "is_a": "schema_package",
+      "domain": "SbeMessageSetV2",
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/schema_package",
+      "alias": "schema_package",
+      "owner": "SbeMessageSetV2",
+      "domain_of": [
+        "SbeMessageSetV2"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "schema_package",
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "SbeMessageSetV2_messages",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/messages",
+      "description": "The message templates of this set.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "message"
+      ],
+      "is_a": "messages",
+      "domain": "SbeMessageSetV2",
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/messages",
+      "alias": "messages",
+      "owner": "SbeMessageSetV2",
+      "domain_of": [
+        "SbeMessageSetV2"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "messages",
+      "range": "SbeMessageV2",
+      "required": true,
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "minimum_cardinality": 1,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "SbeCompositeV2_composite_members",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/composite_members",
+      "description": "The members of this composite, in the order they are sent.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "type",
+        "enum",
+        "set",
+        "composite",
+        "ref"
+      ],
+      "is_a": "composite_members",
+      "domain": "SbeCompositeV2",
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/composite_members",
+      "alias": "composite_members",
+      "owner": "SbeCompositeV2",
+      "domain_of": [
+        "SbeCompositeV2"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "composite_members",
+      "range": "SbeMemberV2",
+      "required": true,
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "minimum_cardinality": 1,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "SbeBlockV2_sbe_id",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/sbe_id",
+      "annotations": {
+        "xsd_type": {
+          "tag": "xsd_type",
+          "value": "xs:unsignedShort",
+          "extensions": {},
+          "annotations": {}
+        }
+      },
+      "description": "The number that identifies this element.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "id"
+      ],
+      "is_a": "sbe_id",
+      "domain": "SbeBlockV2",
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/sbe_id",
+      "alias": "sbe_id",
+      "owner": "SbeBlockV2",
+      "domain_of": [
+        "SbeBlockV2"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "sbe_id",
+      "range": "integer",
+      "required": true,
+      "minimum_value": 0,
+      "maximum_value": 65535,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "SbeBlockV2_alignment",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/alignment",
+      "annotations": {
+        "xsd_type": {
+          "tag": "xsd_type",
+          "value": "xs:positiveInteger",
+          "extensions": {},
+          "annotations": {}
+        },
+        "sbe_section": {
+          "tag": "sbe_section",
+          "value": "3: Field byte alignment",
+          "extensions": {},
+          "annotations": {}
+        }
+      },
+      "description": "The multiple of octets where a message or each group entry begins.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v2_0",
+      "aliases": [
+        "alignment"
+      ],
+      "is_a": "alignment",
+      "domain": "SbeBlockV2",
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/alignment",
+      "alias": "alignment",
+      "owner": "SbeBlockV2",
+      "domain_of": [
+        "SbeBlockV2"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "alignment",
+      "range": "integer",
+      "minimum_value": 1,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "SbeBlockV2_block_fields",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/block_fields",
+      "description": "Fixed-length fields, listed in wire order.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "field"
+      ],
+      "is_a": "block_fields",
+      "domain": "SbeBlockV2",
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/block_fields",
+      "alias": "block_fields",
+      "owner": "SbeBlockV2",
+      "domain_of": [
+        "SbeBlockV2"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "block_fields",
+      "range": "SbeFieldV2",
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "SbeBlockV2_repeating_groups",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/repeating_groups",
+      "description": "Repeating groups, listed in wire order.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "group"
+      ],
+      "is_a": "repeating_groups",
+      "domain": "SbeBlockV2",
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/repeating_groups",
+      "alias": "repeating_groups",
+      "owner": "SbeBlockV2",
+      "domain_of": [
+        "SbeBlockV2"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "repeating_groups",
+      "range": "SbeGroupV2",
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "SbeBlockV2_var_data_fields",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/var_data_fields",
+      "description": "Variable-length fields, listed in wire order.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "data"
+      ],
+      "is_a": "var_data_fields",
+      "domain": "SbeBlockV2",
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/var_data_fields",
+      "alias": "var_data_fields",
+      "owner": "SbeBlockV2",
+      "domain_of": [
+        "SbeBlockV2"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "var_data_fields",
+      "range": "SbeFieldV2",
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "SbeMessageV2_sbe_id",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/sbe_id",
+      "annotations": {
+        "xsd_type": {
+          "tag": "xsd_type",
+          "value": "xs:unsignedShort",
+          "extensions": {},
+          "annotations": {}
+        }
+      },
+      "description": "The template's number, which no other template in the schema shares.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "id"
+      ],
+      "is_a": "SbeBlockV2_sbe_id",
+      "domain": "SbeMessageV2",
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/sbe_id",
+      "alias": "sbe_id",
+      "owner": "SbeMessageV2",
+      "domain_of": [
+        "SbeMessageV2"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "sbe_id",
+      "range": "integer",
+      "required": true,
+      "minimum_value": 0,
+      "maximum_value": 65535,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "SbeMessageV2_semantic_type",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/semantic_type",
+      "annotations": {
+        "xsd_type": {
+          "tag": "xsd_type",
+          "value": "xs:token",
+          "extensions": {},
+          "annotations": {}
+        }
+      },
+      "description": "The FIX MsgType(35) this template stands for, where several templates may share one.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "semanticType"
+      ],
+      "is_a": "semantic_type",
+      "domain": "SbeMessageV2",
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/semantic_type",
+      "alias": "semantic_type",
+      "owner": "SbeMessageV2",
+      "domain_of": [
+        "SbeMessageV2"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "semantic_type",
+      "range": "SbeToken",
+      "pattern": "^\\S+( \\S+)*$",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "SbeGroupV2_block_fields",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/block_fields",
+      "description": "Fixed-length fields, listed in wire order.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "field"
+      ],
+      "is_a": "SbeBlockV2_block_fields",
+      "domain": "SbeGroupV2",
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/block_fields",
+      "alias": "block_fields",
+      "owner": "SbeGroupV2",
+      "domain_of": [
+        "SbeGroupV2"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "block_fields",
+      "range": "SbeFieldV2",
+      "required": true,
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "minimum_cardinality": 1,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "SbeFieldV2_sbe_id",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/sbe_id",
+      "annotations": {
+        "xsd_type": {
+          "tag": "xsd_type",
+          "value": "xs:unsignedShort",
+          "extensions": {},
+          "annotations": {}
+        }
+      },
+      "description": "The field's FIX tag number.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "id"
+      ],
+      "is_a": "sbe_id",
+      "domain": "SbeFieldV2",
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/sbe_id",
+      "alias": "sbe_id",
+      "owner": "SbeFieldV2",
+      "domain_of": [
+        "SbeFieldV2"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "sbe_id",
+      "range": "integer",
+      "required": true,
+      "minimum_value": 0,
+      "maximum_value": 65535,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "SbeFieldV2_semantic_type",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/semantic_type",
+      "annotations": {
+        "xsd_type": {
+          "tag": "xsd_type",
+          "value": "xs:token",
+          "extensions": {},
+          "annotations": {}
+        }
+      },
+      "description": "The FIX datatype this field carries.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "aliases": [
+        "semanticType"
+      ],
+      "is_a": "semantic_type",
+      "domain": "SbeFieldV2",
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/semantic_type",
+      "alias": "semantic_type",
+      "owner": "SbeFieldV2",
+      "domain_of": [
+        "SbeFieldV2"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "semantic_type",
+      "range": "SbeToken",
+      "pattern": "^\\S+( \\S+)*$",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "SbeFieldV2_alignment",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/alignment",
+      "annotations": {
+        "xsd_type": {
+          "tag": "xsd_type",
+          "value": "xs:positiveInteger",
+          "extensions": {},
+          "annotations": {}
+        },
+        "sbe_section": {
+          "tag": "sbe_section",
+          "value": "3: Field byte alignment",
+          "extensions": {},
+          "annotations": {}
+        }
+      },
+      "description": "The multiple of octets the start of this field is placed on, in place of an offset.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v2_0",
+      "aliases": [
+        "alignment"
+      ],
+      "is_a": "alignment",
+      "domain": "SbeFieldV2",
+      "slot_uri": "https://w3id.org/lmodel/fix-sbe/alignment",
+      "alias": "alignment",
+      "owner": "SbeFieldV2",
+      "domain_of": [
+        "SbeFieldV2"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "alignment",
+      "range": "integer",
+      "minimum_value": 1,
+      "@type": "SlotDefinition"
+    }
+  ],
+  "classes": [
+    {
+      "name": "SbeVersionedMixin",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/SbeVersionedMixin",
+      "annotations": [
+        {
+          "tag": "xsd_attribute_group",
+          "value": "versionAttributes",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "The two attributes that record when an element entered a schema and when it should leave.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "mixin": true,
+      "slots": [
+        "since_version",
+        "deprecated_since"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/lmodel/fix-sbe/SbeVersionedMixin",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "SbeValidValue",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/SbeValidValue",
+      "annotations": [
+        {
+          "tag": "xsd_type",
+          "value": "validValue",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "One of the values an enumeration allows.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "close_mappings": [
+        "fix_orchestra:OrchestraCodeV10"
+      ],
+      "mixins": [
+        "SbeVersionedMixin"
+      ],
+      "slots": [
+        "symbolic_name",
+        "description",
+        "sbeValidValue__valid_value",
+        "since_version",
+        "deprecated_since"
+      ],
+      "slot_usage": {},
+      "attributes": [
+        {
+          "name": "valid_value",
+          "annotations": [
+            {
+              "tag": "xsd_type",
+              "value": "xs:token",
+              "@type": "Annotation"
+            },
+            {
+              "tag": "sbe_section",
+              "value": "4: Schema validation",
+              "@type": "Annotation"
+            }
+          ],
+          "description": "The value as it is written in the schema, which must convert to the enumeration's encoding.",
+          "range": "SbeToken",
+          "required": true,
+          "pattern": "^\\S+( \\S+)*$",
+          "@type": "SlotDefinition"
+        }
+      ],
+      "class_uri": "https://w3id.org/lmodel/fix-sbe/SbeValidValue",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "SbeChoice",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/SbeChoice",
+      "annotations": [
+        {
+          "tag": "xsd_type",
+          "value": "choice",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "One of the alternatives of a set, which is one bit of its encoding.",
+      "comments": [
+        "FIX's transposer does not carry a set to Orchestra, so the mapping is related. FIX's MultipleCharValue and MultipleStringValue fields hold such choices in a code set."
+      ],
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common",
+      "related_mappings": [
+        "fix_orchestra:OrchestraCodeV10"
+      ],
+      "mixins": [
+        "SbeVersionedMixin"
+      ],
+      "slots": [
+        "symbolic_name",
+        "description",
+        "sbeChoice__bit_position",
+        "since_version",
+        "deprecated_since"
+      ],
+      "slot_usage": {},
+      "attributes": [
+        {
+          "name": "bit_position",
+          "annotations": [
+            {
+              "tag": "xsd_type",
+              "value": "xs:nonNegativeInteger",
+              "@type": "Annotation"
+            },
+            {
+              "tag": "sbe_section",
+              "value": "4: choice element content",
+              "@type": "Annotation"
+            }
+          ],
+          "description": "Which bit stands for this choice, counted from zero at the least significant.",
+          "range": "integer",
+          "required": true,
+          "minimum_value": 0,
+          "@type": "SlotDefinition"
+        }
+      ],
+      "class_uri": "https://w3id.org/lmodel/fix-sbe/SbeChoice",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "SbeMessageSchemaV1",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV1",
+      "annotations": [
+        {
+          "tag": "xml_element",
+          "value": "messageSchema",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "One SBE 1.0 message schema, with its encodings and message templates.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v1_0",
+      "close_mappings": [
+        "fix_orchestra:OrchestraRepositoryV10"
+      ],
+      "slots": [
+        "schema_package",
+        "SbeMessageSchemaV1_sbe_id",
+        "schema_version",
+        "semantic_version",
+        "description",
+        "byte_order",
+        "header_type",
+        "SbeMessageSchemaV1_encoding_sets",
+        "SbeMessageSchemaV1_messages"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV1",
+      "tree_root": true,
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "SbeEncodingSetV1",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/SbeEncodingSetV1",
+      "annotations": [
+        {
+          "tag": "xml_element",
+          "value": "types",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "A set of encodings, listed in any order, whose names are unique across the whole schema.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v1_0",
+      "slots": [
+        "SbeEncodingSetV1_encodings"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/lmodel/fix-sbe/SbeEncodingSetV1",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "SbeMemberV1",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/SbeMemberV1",
+      "description": "Anything a composite may hold in the order it is sent.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v1_0",
+      "abstract": true,
+      "mixins": [
+        "SbeVersionedMixin"
+      ],
+      "slots": [
+        "encoding_kind",
+        "symbolic_name",
+        "offset",
+        "since_version",
+        "deprecated_since"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/lmodel/fix-sbe/SbeMemberV1",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "SbeRefV1",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/SbeRefV1",
+      "annotations": [
+        {
+          "tag": "xsd_type",
+          "value": "refType",
+          "@type": "Annotation"
+        },
+        {
+          "tag": "xml_element",
+          "value": "ref",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "A composite's member that reuses an encoding defined elsewhere in the schema.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v1_0",
+      "is_a": "SbeMemberV1",
+      "slots": [
+        "encoding_kind",
+        "symbolic_name",
+        "offset",
+        "since_version",
+        "deprecated_since",
+        "encoding_name"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/lmodel/fix-sbe/SbeRefV1",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "SbeEncodingV1",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/SbeEncodingV1",
+      "description": "An encoding of SBE 1.0, which says how a value is laid out on the wire.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v1_0",
+      "is_a": "SbeMemberV1",
+      "abstract": true,
+      "slots": [
+        "encoding_kind",
+        "symbolic_name",
+        "offset",
+        "since_version",
+        "deprecated_since",
+        "SbeEncodingV1_semantic_type",
+        "description"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/lmodel/fix-sbe/SbeEncodingV1",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "SbeSimpleTypeV1",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/SbeSimpleTypeV1",
+      "annotations": [
+        {
+          "tag": "xsd_type",
+          "value": "encodedDataType",
+          "@type": "Annotation"
+        },
+        {
+          "tag": "xml_element",
+          "value": "type",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "An encoding backed by one primitive value, or several in an array.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v1_0",
+      "close_mappings": [
+        "fix_orchestra:OrchestraDatatypeV10"
+      ],
+      "is_a": "SbeEncodingV1",
+      "slots": [
+        "encoding_kind",
+        "symbolic_name",
+        "offset",
+        "since_version",
+        "deprecated_since",
+        "SbeEncodingV1_semantic_type",
+        "description",
+        "element_value",
+        "primitive_type",
+        "array_length",
+        "character_encoding",
+        "null_value",
+        "min_value",
+        "max_value",
+        "presence",
+        "value_ref"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/lmodel/fix-sbe/SbeSimpleTypeV1",
+      "rules": [
+        {
+          "preconditions": {
+            "slot_conditions": [
+              {
+                "name": "value_ref",
+                "value_presence": "PRESENT",
+                "@type": "SlotDefinition"
+              }
+            ],
+            "@type": "AnonymousClassExpression"
+          },
+          "postconditions": {
+            "slot_conditions": [
+              {
+                "name": "presence",
+                "equals_string": "constant",
+                "@type": "SlotDefinition"
+              }
+            ],
+            "@type": "AnonymousClassExpression"
+          },
+          "annotations": [
+            {
+              "tag": "sbe_section",
+              "value": "4: Field attributes",
+              "@type": "Annotation"
+            }
+          ],
+          "description": "A value_ref is valid only on an element whose presence is constant.",
+          "title": "A reference to a value needs a constant",
+          "@type": "ClassRule"
+        },
+        {
+          "preconditions": {
+            "slot_conditions": [
+              {
+                "name": "presence",
+                "equals_string": "required",
+                "@type": "SlotDefinition"
+              }
+            ],
+            "@type": "AnonymousClassExpression"
+          },
+          "postconditions": {
+            "slot_conditions": [
+              {
+                "name": "null_value",
+                "value_presence": "ABSENT",
+                "@type": "SlotDefinition"
+              }
+            ],
+            "@type": "AnonymousClassExpression"
+          },
+          "annotations": [
+            {
+              "tag": "sbe_section",
+              "value": "4: Schema validation",
+              "@type": "Annotation"
+            }
+          ],
+          "description": "A null value cannot sit beside a presence of required.",
+          "title": "A required value has no null",
+          "@type": "ClassRule"
+        },
+        {
+          "preconditions": {
+            "slot_conditions": [
+              {
+                "name": "presence",
+                "equals_string": "constant",
+                "@type": "SlotDefinition"
+              }
+            ],
+            "@type": "AnonymousClassExpression"
+          },
+          "postconditions": {
+            "slot_conditions": [
+              {
+                "name": "null_value",
+                "value_presence": "ABSENT",
+                "@type": "SlotDefinition"
+              }
+            ],
+            "@type": "AnonymousClassExpression"
+          },
+          "annotations": [
+            {
+              "tag": "sbe_section",
+              "value": "2: Common field schema attributes",
+              "@type": "Annotation"
+            }
+          ],
+          "description": "A null value cannot sit beside a presence of constant.",
+          "title": "A constant has no null",
+          "@type": "ClassRule"
+        },
+        {
+          "preconditions": {
+            "slot_conditions": [
+              {
+                "name": "presence",
+                "equals_string": "constant",
+                "@type": "SlotDefinition"
+              }
+            ],
+            "@type": "AnonymousClassExpression"
+          },
+          "postconditions": {
+            "slot_conditions": [
+              {
+                "name": "min_value",
+                "value_presence": "ABSENT",
+                "@type": "SlotDefinition"
+              }
+            ],
+            "@type": "AnonymousClassExpression"
+          },
+          "annotations": [
+            {
+              "tag": "sbe_section",
+              "value": "2: Common field schema attributes",
+              "@type": "Annotation"
+            }
+          ],
+          "description": "A lowest value cannot sit beside a presence of constant.",
+          "title": "A constant has no lowest value",
+          "@type": "ClassRule"
+        },
+        {
+          "preconditions": {
+            "slot_conditions": [
+              {
+                "name": "presence",
+                "equals_string": "constant",
+                "@type": "SlotDefinition"
+              }
+            ],
+            "@type": "AnonymousClassExpression"
+          },
+          "postconditions": {
+            "slot_conditions": [
+              {
+                "name": "max_value",
+                "value_presence": "ABSENT",
+                "@type": "SlotDefinition"
+              }
+            ],
+            "@type": "AnonymousClassExpression"
+          },
+          "annotations": [
+            {
+              "tag": "sbe_section",
+              "value": "2: Common field schema attributes",
+              "@type": "Annotation"
+            }
+          ],
+          "description": "A highest value cannot sit beside a presence of constant.",
+          "title": "A constant has no highest value",
+          "@type": "ClassRule"
+        }
+      ],
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "SbeCompositeV1",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/SbeCompositeV1",
+      "annotations": [
+        {
+          "tag": "xsd_type",
+          "value": "compositeDataType",
+          "@type": "Annotation"
+        },
+        {
+          "tag": "xml_element",
+          "value": "composite",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "An encoding built from members sent one after another, such as a decimal's mantissa and exponent.",
+      "comments": [
+        "The members keep one list because their order is the order on the wire. Separate lists per kind of member could not say that an enum comes between two types."
+      ],
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v1_0",
+      "close_mappings": [
+        "fix_orchestra:OrchestraComponentV10"
+      ],
+      "is_a": "SbeEncodingV1",
+      "slots": [
+        "encoding_kind",
+        "symbolic_name",
+        "offset",
+        "since_version",
+        "deprecated_since",
+        "SbeEncodingV1_semantic_type",
+        "description",
+        "SbeCompositeV1_composite_members"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/lmodel/fix-sbe/SbeCompositeV1",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "SbeEnumV1",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/SbeEnumV1",
+      "annotations": [
+        {
+          "tag": "xsd_type",
+          "value": "enumType",
+          "@type": "Annotation"
+        },
+        {
+          "tag": "xml_element",
+          "value": "enum",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "An encoding whose value is one of a listed set of valid values.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v1_0",
+      "close_mappings": [
+        "fix_orchestra:OrchestraCodeSetV10"
+      ],
+      "is_a": "SbeEncodingV1",
+      "slots": [
+        "encoding_kind",
+        "symbolic_name",
+        "offset",
+        "since_version",
+        "deprecated_since",
+        "SbeEncodingV1_semantic_type",
+        "description",
+        "encoding_type",
+        "valid_values"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/lmodel/fix-sbe/SbeEnumV1",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "SbeSetV1",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/SbeSetV1",
+      "annotations": [
+        {
+          "tag": "xsd_type",
+          "value": "setType",
+          "@type": "Annotation"
+        },
+        {
+          "tag": "xml_element",
+          "value": "set",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "An encoding whose value is any combination of up to 64 choices, sent as a bitset.",
+      "comments": [
+        "FIX's transposer does not carry a set to Orchestra, so the mapping is related. FIX's MultipleCharValue and MultipleStringValue fields hold such choices in a code set."
+      ],
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v1_0",
+      "related_mappings": [
+        "fix_orchestra:OrchestraCodeSetV10"
+      ],
+      "is_a": "SbeEncodingV1",
+      "slots": [
+        "encoding_kind",
+        "symbolic_name",
+        "offset",
+        "since_version",
+        "deprecated_since",
+        "SbeEncodingV1_semantic_type",
+        "description",
+        "encoding_type",
+        "choices"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/lmodel/fix-sbe/SbeSetV1",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "SbeBlockV1",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/SbeBlockV1",
+      "description": "The body shared by a message and a group entry, which holds its fixed-length fields first, then groups, then variable-length data.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v1_0",
+      "abstract": true,
+      "mixins": [
+        "SbeVersionedMixin"
+      ],
+      "slots": [
+        "symbolic_name",
+        "SbeBlockV1_sbe_id",
+        "block_length",
+        "semantic_type",
+        "description",
+        "SbeBlockV1_block_fields",
+        "SbeBlockV1_repeating_groups",
+        "SbeBlockV1_var_data_fields",
+        "since_version",
+        "deprecated_since"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/lmodel/fix-sbe/SbeBlockV1",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "SbeMessageV1",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/SbeMessageV1",
+      "annotations": [
+        {
+          "tag": "xsd_type",
+          "value": "blockType",
+          "@type": "Annotation"
+        },
+        {
+          "tag": "xml_element",
+          "value": "message",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "A message template, whose number and block length are sent in each message's header.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v1_0",
+      "close_mappings": [
+        "fix_orchestra:OrchestraMessageV10"
+      ],
+      "is_a": "SbeBlockV1",
+      "slots": [
+        "symbolic_name",
+        "block_length",
+        "description",
+        "SbeBlockV1_block_fields",
+        "SbeBlockV1_repeating_groups",
+        "SbeBlockV1_var_data_fields",
+        "since_version",
+        "deprecated_since",
+        "SbeMessageV1_sbe_id",
+        "SbeMessageV1_semantic_type"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/lmodel/fix-sbe/SbeMessageV1",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "SbeGroupV1",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/SbeGroupV1",
+      "annotations": [
+        {
+          "tag": "xsd_type",
+          "value": "groupType",
+          "@type": "Annotation"
+        },
+        {
+          "tag": "xml_element",
+          "value": "group",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "A repeating group, whose entries each hold the same fields, and which cannot be without a field.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v1_0",
+      "close_mappings": [
+        "fix_orchestra:OrchestraGroupV10"
+      ],
+      "is_a": "SbeBlockV1",
+      "slots": [
+        "symbolic_name",
+        "SbeBlockV1_sbe_id",
+        "block_length",
+        "semantic_type",
+        "description",
+        "SbeBlockV1_repeating_groups",
+        "SbeBlockV1_var_data_fields",
+        "since_version",
+        "deprecated_since",
+        "dimension_type",
+        "SbeGroupV1_block_fields"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/lmodel/fix-sbe/SbeGroupV1",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "SbeFieldV1",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/SbeFieldV1",
+      "annotations": [
+        {
+          "tag": "xsd_type",
+          "value": "fieldType",
+          "@type": "Annotation"
+        },
+        {
+          "tag": "xml_element",
+          "value": "field",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "A message's or group entry's field, which uses an encoding at a place in its block.",
+      "comments": [
+        "The old mapping called this an exact match of an Orchestra field, but the two differ. This one sits at a place in one block, and FIX's transposer carries one with a composite encoding to a component reference, not a field."
+      ],
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v1_0",
+      "close_mappings": [
+        "fix_orchestra:OrchestraFieldV10"
+      ],
+      "mixins": [
+        "SbeVersionedMixin"
+      ],
+      "slots": [
+        "symbolic_name",
+        "SbeFieldV1_sbe_id",
+        "encoding_name",
+        "offset",
+        "presence",
+        "value_ref",
+        "SbeFieldV1_semantic_type",
+        "description",
+        "sbeFieldV1__time_epoch",
+        "sbeFieldV1__time_unit",
+        "since_version",
+        "deprecated_since"
+      ],
+      "slot_usage": {},
+      "attributes": [
+        {
+          "name": "time_epoch",
+          "annotations": [
+            {
+              "tag": "sbe_section",
+              "value": "2: Date and time encoding",
+              "@type": "Annotation"
+            }
+          ],
+          "description": "Where the period a time value counts from begins.",
+          "aliases": [
+            "epoch"
+          ],
+          "ifabsent": "string(unix)",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "time_unit",
+          "description": "The unit of a time value.",
+          "deprecated": "The XSD keeps this only for schemas written against release candidate 2 of SBE 1.0.",
+          "aliases": [
+            "timeUnit"
+          ],
+          "ifabsent": "string(nanosecond)",
+          "@type": "SlotDefinition"
+        }
+      ],
+      "class_uri": "https://w3id.org/lmodel/fix-sbe/SbeFieldV1",
+      "rules": [
+        {
+          "preconditions": {
+            "slot_conditions": [
+              {
+                "name": "value_ref",
+                "value_presence": "PRESENT",
+                "@type": "SlotDefinition"
+              }
+            ],
+            "@type": "AnonymousClassExpression"
+          },
+          "postconditions": {
+            "slot_conditions": [
+              {
+                "name": "presence",
+                "equals_string": "constant",
+                "@type": "SlotDefinition"
+              }
+            ],
+            "@type": "AnonymousClassExpression"
+          },
+          "annotations": [
+            {
+              "tag": "sbe_section",
+              "value": "4: Field attributes",
+              "@type": "Annotation"
+            }
+          ],
+          "description": "A value_ref is valid only on an element whose presence is constant.",
+          "title": "A reference to a value needs a constant",
+          "@type": "ClassRule"
+        }
+      ],
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "SbeMessageSchemaV2",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV2",
+      "annotations": [
+        {
+          "tag": "xml_element",
+          "value": "messageSchema",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "One SBE 2.0 message schema, with its encodings and message templates.",
+      "comments": [
+        "It is not marked as a tree root because a merged schema can have only one, and the final standard's class takes that place. Name this class when validating a document."
+      ],
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v2_0",
+      "close_mappings": [
+        "fix_orchestra:OrchestraRepositoryV10"
+      ],
+      "slots": [
+        "schema_package",
+        "SbeMessageSchemaV2_sbe_id",
+        "schema_version",
+        "semantic_version",
+        "description",
+        "byte_order",
+        "header_type",
+        "SbeMessageSchemaV2_encoding_sets",
+        "SbeMessageSchemaV2_message_sets"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV2",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "SbeEncodingSetV2",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/SbeEncodingSetV2",
+      "annotations": [
+        {
+          "tag": "xml_element",
+          "value": "types",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "A set of encodings, in any order, that may have its own package and may come from another file.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v2_0",
+      "slots": [
+        "description",
+        "SbeEncodingSetV2_schema_package",
+        "xml_base",
+        "SbeEncodingSetV2_encodings"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/lmodel/fix-sbe/SbeEncodingSetV2",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "SbeMessageSetV2",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/SbeMessageSetV2",
+      "annotations": [
+        {
+          "tag": "xml_element",
+          "value": "messages",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "Message templates held together, which may have their own package and may come from another file.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v2_0",
+      "slots": [
+        "description",
+        "SbeMessageSetV2_schema_package",
+        "xml_base",
+        "SbeMessageSetV2_messages"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/lmodel/fix-sbe/SbeMessageSetV2",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "SbeElementV2",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/SbeElementV2",
+      "description": "Anything that sets of encodings or composites hold, and the name and text they all have.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v2_0",
+      "abstract": true,
+      "slots": [
+        "encoding_kind",
+        "symbolic_name",
+        "description"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/lmodel/fix-sbe/SbeElementV2",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "SbeMemberV2",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/SbeMemberV2",
+      "description": "Anything a composite may hold in the order it is sent.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v2_0",
+      "is_a": "SbeElementV2",
+      "abstract": true,
+      "slots": [
+        "encoding_kind",
+        "symbolic_name",
+        "description",
+        "offset",
+        "alignment"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/lmodel/fix-sbe/SbeMemberV2",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "SbeSimpleTypeV2",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/SbeSimpleTypeV2",
+      "annotations": [
+        {
+          "tag": "xsd_type",
+          "value": "simpleDataType",
+          "@type": "Annotation"
+        },
+        {
+          "tag": "xml_element",
+          "value": "type",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "A simple encoding that stands alone in a set, backed by one primitive value, or several in an array.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v2_0",
+      "close_mappings": [
+        "fix_orchestra:OrchestraDatatypeV10"
+      ],
+      "is_a": "SbeElementV2",
+      "mixins": [
+        "SbeVersionedMixin"
+      ],
+      "slots": [
+        "encoding_kind",
+        "symbolic_name",
+        "description",
+        "element_value",
+        "primitive_type",
+        "array_length",
+        "character_encoding",
+        "since_version",
+        "deprecated_since"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/lmodel/fix-sbe/SbeSimpleTypeV2",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "SbeMemberTypeV2",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/SbeMemberTypeV2",
+      "annotations": [
+        {
+          "tag": "xsd_type",
+          "value": "memberDataType",
+          "@type": "Annotation"
+        },
+        {
+          "tag": "xml_element",
+          "value": "type",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "A simple encoding inside a composite, which may say it is optional or constant.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v2_0",
+      "close_mappings": [
+        "fix_orchestra:OrchestraDatatypeV10"
+      ],
+      "is_a": "SbeMemberV2",
+      "slots": [
+        "encoding_kind",
+        "symbolic_name",
+        "description",
+        "offset",
+        "alignment",
+        "element_value",
+        "primitive_type",
+        "array_length",
+        "character_encoding",
+        "presence",
+        "null_value",
+        "min_value",
+        "max_value",
+        "value_ref"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/lmodel/fix-sbe/SbeMemberTypeV2",
+      "rules": [
+        {
+          "preconditions": {
+            "slot_conditions": [
+              {
+                "name": "value_ref",
+                "value_presence": "PRESENT",
+                "@type": "SlotDefinition"
+              }
+            ],
+            "@type": "AnonymousClassExpression"
+          },
+          "postconditions": {
+            "slot_conditions": [
+              {
+                "name": "presence",
+                "equals_string": "constant",
+                "@type": "SlotDefinition"
+              }
+            ],
+            "@type": "AnonymousClassExpression"
+          },
+          "annotations": [
+            {
+              "tag": "sbe_section",
+              "value": "4: Field attributes",
+              "@type": "Annotation"
+            }
+          ],
+          "description": "A value_ref is valid only on an element whose presence is constant.",
+          "title": "A reference to a value needs a constant",
+          "@type": "ClassRule"
+        },
+        {
+          "preconditions": {
+            "slot_conditions": [
+              {
+                "name": "presence",
+                "equals_string": "required",
+                "@type": "SlotDefinition"
+              }
+            ],
+            "@type": "AnonymousClassExpression"
+          },
+          "postconditions": {
+            "slot_conditions": [
+              {
+                "name": "null_value",
+                "value_presence": "ABSENT",
+                "@type": "SlotDefinition"
+              }
+            ],
+            "@type": "AnonymousClassExpression"
+          },
+          "annotations": [
+            {
+              "tag": "sbe_section",
+              "value": "4: Schema validation",
+              "@type": "Annotation"
+            }
+          ],
+          "description": "A null value cannot sit beside a presence of required.",
+          "title": "A required value has no null",
+          "@type": "ClassRule"
+        },
+        {
+          "preconditions": {
+            "slot_conditions": [
+              {
+                "name": "presence",
+                "equals_string": "constant",
+                "@type": "SlotDefinition"
+              }
+            ],
+            "@type": "AnonymousClassExpression"
+          },
+          "postconditions": {
+            "slot_conditions": [
+              {
+                "name": "null_value",
+                "value_presence": "ABSENT",
+                "@type": "SlotDefinition"
+              }
+            ],
+            "@type": "AnonymousClassExpression"
+          },
+          "annotations": [
+            {
+              "tag": "sbe_section",
+              "value": "2: Common field schema attributes",
+              "@type": "Annotation"
+            }
+          ],
+          "description": "A null value cannot sit beside a presence of constant.",
+          "title": "A constant has no null",
+          "@type": "ClassRule"
+        },
+        {
+          "preconditions": {
+            "slot_conditions": [
+              {
+                "name": "presence",
+                "equals_string": "constant",
+                "@type": "SlotDefinition"
+              }
+            ],
+            "@type": "AnonymousClassExpression"
+          },
+          "postconditions": {
+            "slot_conditions": [
+              {
+                "name": "min_value",
+                "value_presence": "ABSENT",
+                "@type": "SlotDefinition"
+              }
+            ],
+            "@type": "AnonymousClassExpression"
+          },
+          "annotations": [
+            {
+              "tag": "sbe_section",
+              "value": "2: Common field schema attributes",
+              "@type": "Annotation"
+            }
+          ],
+          "description": "A lowest value cannot sit beside a presence of constant.",
+          "title": "A constant has no lowest value",
+          "@type": "ClassRule"
+        },
+        {
+          "preconditions": {
+            "slot_conditions": [
+              {
+                "name": "presence",
+                "equals_string": "constant",
+                "@type": "SlotDefinition"
+              }
+            ],
+            "@type": "AnonymousClassExpression"
+          },
+          "postconditions": {
+            "slot_conditions": [
+              {
+                "name": "max_value",
+                "value_presence": "ABSENT",
+                "@type": "SlotDefinition"
+              }
+            ],
+            "@type": "AnonymousClassExpression"
+          },
+          "annotations": [
+            {
+              "tag": "sbe_section",
+              "value": "2: Common field schema attributes",
+              "@type": "Annotation"
+            }
+          ],
+          "description": "A highest value cannot sit beside a presence of constant.",
+          "title": "A constant has no highest value",
+          "@type": "ClassRule"
+        }
+      ],
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "SbeRefV2",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/SbeRefV2",
+      "annotations": [
+        {
+          "tag": "xsd_type",
+          "value": "refType",
+          "@type": "Annotation"
+        },
+        {
+          "tag": "xml_element",
+          "value": "ref",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "A composite's member that reuses an encoding defined elsewhere in the schema.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v2_0",
+      "is_a": "SbeMemberV2",
+      "slots": [
+        "encoding_kind",
+        "symbolic_name",
+        "description",
+        "offset",
+        "alignment",
+        "encoding_name"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/lmodel/fix-sbe/SbeRefV2",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "SbeCompositeV2",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/SbeCompositeV2",
+      "annotations": [
+        {
+          "tag": "xsd_type",
+          "value": "compositeDataType",
+          "@type": "Annotation"
+        },
+        {
+          "tag": "xml_element",
+          "value": "composite",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "An encoding built from members sent one after another, such as a decimal's mantissa and exponent.",
+      "comments": [
+        "The members keep one list because their order is the order on the wire. Separate lists per kind of member could not say that an enum comes between two types."
+      ],
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v2_0",
+      "close_mappings": [
+        "fix_orchestra:OrchestraComponentV10"
+      ],
+      "is_a": "SbeMemberV2",
+      "mixins": [
+        "SbeVersionedMixin"
+      ],
+      "slots": [
+        "encoding_kind",
+        "symbolic_name",
+        "description",
+        "offset",
+        "alignment",
+        "SbeCompositeV2_composite_members",
+        "since_version",
+        "deprecated_since"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/lmodel/fix-sbe/SbeCompositeV2",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "SbeEnumV2",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/SbeEnumV2",
+      "annotations": [
+        {
+          "tag": "xsd_type",
+          "value": "enumType",
+          "@type": "Annotation"
+        },
+        {
+          "tag": "xml_element",
+          "value": "enum",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "An encoding whose value is one of a listed set of valid values.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v2_0",
+      "close_mappings": [
+        "fix_orchestra:OrchestraCodeSetV10"
+      ],
+      "is_a": "SbeMemberV2",
+      "mixins": [
+        "SbeVersionedMixin"
+      ],
+      "slots": [
+        "encoding_kind",
+        "symbolic_name",
+        "description",
+        "offset",
+        "alignment",
+        "encoding_type",
+        "valid_values",
+        "since_version",
+        "deprecated_since"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/lmodel/fix-sbe/SbeEnumV2",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "SbeSetV2",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/SbeSetV2",
+      "annotations": [
+        {
+          "tag": "xsd_type",
+          "value": "setType",
+          "@type": "Annotation"
+        },
+        {
+          "tag": "xml_element",
+          "value": "set",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "An encoding whose value is any combination of up to 64 choices, sent as a bitset.",
+      "comments": [
+        "FIX's transposer does not carry a set to Orchestra, so the mapping is related. FIX's MultipleCharValue and MultipleStringValue fields hold such choices in a code set."
+      ],
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v2_0",
+      "related_mappings": [
+        "fix_orchestra:OrchestraCodeSetV10"
+      ],
+      "is_a": "SbeMemberV2",
+      "mixins": [
+        "SbeVersionedMixin"
+      ],
+      "slots": [
+        "encoding_kind",
+        "symbolic_name",
+        "description",
+        "offset",
+        "alignment",
+        "encoding_type",
+        "choices",
+        "since_version",
+        "deprecated_since"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/lmodel/fix-sbe/SbeSetV2",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "SbeBlockV2",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/SbeBlockV2",
+      "description": "The body shared by a message and a group entry, which holds its fixed-length fields first, then groups, then variable-length data.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v2_0",
+      "abstract": true,
+      "mixins": [
+        "SbeVersionedMixin"
+      ],
+      "slots": [
+        "symbolic_name",
+        "SbeBlockV2_sbe_id",
+        "block_length",
+        "SbeBlockV2_alignment",
+        "semantic_type",
+        "description",
+        "SbeBlockV2_block_fields",
+        "SbeBlockV2_repeating_groups",
+        "SbeBlockV2_var_data_fields",
+        "since_version",
+        "deprecated_since"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/lmodel/fix-sbe/SbeBlockV2",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "SbeMessageV2",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/SbeMessageV2",
+      "annotations": [
+        {
+          "tag": "xsd_type",
+          "value": "blockType",
+          "@type": "Annotation"
+        },
+        {
+          "tag": "xml_element",
+          "value": "message",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "A message template, whose number and block length are sent in each message's header.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v2_0",
+      "close_mappings": [
+        "fix_orchestra:OrchestraMessageV10"
+      ],
+      "is_a": "SbeBlockV2",
+      "slots": [
+        "symbolic_name",
+        "block_length",
+        "SbeBlockV2_alignment",
+        "description",
+        "SbeBlockV2_block_fields",
+        "SbeBlockV2_repeating_groups",
+        "SbeBlockV2_var_data_fields",
+        "since_version",
+        "deprecated_since",
+        "SbeMessageV2_sbe_id",
+        "SbeMessageV2_semantic_type"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/lmodel/fix-sbe/SbeMessageV2",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "SbeGroupV2",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/SbeGroupV2",
+      "annotations": [
+        {
+          "tag": "xsd_type",
+          "value": "groupType",
+          "@type": "Annotation"
+        },
+        {
+          "tag": "xml_element",
+          "value": "group",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "A repeating group, whose entries each hold the same fields, and which cannot be without a field.",
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v2_0",
+      "close_mappings": [
+        "fix_orchestra:OrchestraGroupV10"
+      ],
+      "is_a": "SbeBlockV2",
+      "slots": [
+        "symbolic_name",
+        "SbeBlockV2_sbe_id",
+        "block_length",
+        "SbeBlockV2_alignment",
+        "semantic_type",
+        "description",
+        "SbeBlockV2_repeating_groups",
+        "SbeBlockV2_var_data_fields",
+        "since_version",
+        "deprecated_since",
+        "dimension_type",
+        "SbeGroupV2_block_fields"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/lmodel/fix-sbe/SbeGroupV2",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "SbeFieldV2",
+      "definition_uri": "https://w3id.org/lmodel/fix-sbe/SbeFieldV2",
+      "annotations": [
+        {
+          "tag": "xsd_type",
+          "value": "fieldType",
+          "@type": "Annotation"
+        },
+        {
+          "tag": "xml_element",
+          "value": "field",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "A message's or group entry's field, which uses an encoding at a place in its block and may state a constant.",
+      "comments": [
+        "The old mapping called this an exact match of an Orchestra field, but the two differ. This one sits at a place in one block, and FIX's transposer carries one with a composite encoding to a component reference, not a field."
+      ],
+      "from_schema": "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v2_0",
+      "close_mappings": [
+        "fix_orchestra:OrchestraFieldV10"
+      ],
+      "mixins": [
+        "SbeVersionedMixin"
+      ],
+      "slots": [
+        "symbolic_name",
+        "SbeFieldV2_sbe_id",
+        "encoding_name",
+        "element_value",
+        "offset",
+        "SbeFieldV2_alignment",
+        "presence",
+        "null_value",
+        "min_value",
+        "max_value",
+        "value_ref",
+        "SbeFieldV2_semantic_type",
+        "description",
+        "since_version",
+        "deprecated_since"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/lmodel/fix-sbe/SbeFieldV2",
+      "rules": [
+        {
+          "preconditions": {
+            "slot_conditions": [
+              {
+                "name": "value_ref",
+                "value_presence": "PRESENT",
+                "@type": "SlotDefinition"
+              }
+            ],
+            "@type": "AnonymousClassExpression"
+          },
+          "postconditions": {
+            "slot_conditions": [
+              {
+                "name": "presence",
+                "equals_string": "constant",
+                "@type": "SlotDefinition"
+              }
+            ],
+            "@type": "AnonymousClassExpression"
+          },
+          "annotations": [
+            {
+              "tag": "sbe_section",
+              "value": "4: Field attributes",
+              "@type": "Annotation"
+            }
+          ],
+          "description": "A value_ref is valid only on an element whose presence is constant.",
+          "title": "A reference to a value needs a constant",
+          "@type": "ClassRule"
+        },
+        {
+          "preconditions": {
+            "slot_conditions": [
+              {
+                "name": "presence",
+                "equals_string": "required",
+                "@type": "SlotDefinition"
+              }
+            ],
+            "@type": "AnonymousClassExpression"
+          },
+          "postconditions": {
+            "slot_conditions": [
+              {
+                "name": "null_value",
+                "value_presence": "ABSENT",
+                "@type": "SlotDefinition"
+              }
+            ],
+            "@type": "AnonymousClassExpression"
+          },
+          "annotations": [
+            {
+              "tag": "sbe_section",
+              "value": "4: Schema validation",
+              "@type": "Annotation"
+            }
+          ],
+          "description": "A null value cannot sit beside a presence of required.",
+          "title": "A required value has no null",
+          "@type": "ClassRule"
+        },
+        {
+          "preconditions": {
+            "slot_conditions": [
+              {
+                "name": "presence",
+                "equals_string": "constant",
+                "@type": "SlotDefinition"
+              }
+            ],
+            "@type": "AnonymousClassExpression"
+          },
+          "postconditions": {
+            "slot_conditions": [
+              {
+                "name": "null_value",
+                "value_presence": "ABSENT",
+                "@type": "SlotDefinition"
+              }
+            ],
+            "@type": "AnonymousClassExpression"
+          },
+          "annotations": [
+            {
+              "tag": "sbe_section",
+              "value": "2: Common field schema attributes",
+              "@type": "Annotation"
+            }
+          ],
+          "description": "A null value cannot sit beside a presence of constant.",
+          "title": "A constant has no null",
+          "@type": "ClassRule"
+        },
+        {
+          "preconditions": {
+            "slot_conditions": [
+              {
+                "name": "presence",
+                "equals_string": "constant",
+                "@type": "SlotDefinition"
+              }
+            ],
+            "@type": "AnonymousClassExpression"
+          },
+          "postconditions": {
+            "slot_conditions": [
+              {
+                "name": "min_value",
+                "value_presence": "ABSENT",
+                "@type": "SlotDefinition"
+              }
+            ],
+            "@type": "AnonymousClassExpression"
+          },
+          "annotations": [
+            {
+              "tag": "sbe_section",
+              "value": "2: Common field schema attributes",
+              "@type": "Annotation"
+            }
+          ],
+          "description": "A lowest value cannot sit beside a presence of constant.",
+          "title": "A constant has no lowest value",
+          "@type": "ClassRule"
+        },
+        {
+          "preconditions": {
+            "slot_conditions": [
+              {
+                "name": "presence",
+                "equals_string": "constant",
+                "@type": "SlotDefinition"
+              }
+            ],
+            "@type": "AnonymousClassExpression"
+          },
+          "postconditions": {
+            "slot_conditions": [
+              {
+                "name": "max_value",
+                "value_presence": "ABSENT",
+                "@type": "SlotDefinition"
+              }
+            ],
+            "@type": "AnonymousClassExpression"
+          },
+          "annotations": [
+            {
+              "tag": "sbe_section",
+              "value": "2: Common field schema attributes",
+              "@type": "Annotation"
+            }
+          ],
+          "description": "A highest value cannot sit beside a presence of constant.",
+          "title": "A constant has no highest value",
+          "@type": "ClassRule"
+        },
+        {
+          "preconditions": {
+            "slot_conditions": [
+              {
+                "name": "alignment",
+                "value_presence": "PRESENT",
+                "@type": "SlotDefinition"
+              }
+            ],
+            "@type": "AnonymousClassExpression"
+          },
+          "postconditions": {
+            "slot_conditions": [
+              {
+                "name": "offset",
+                "value_presence": "ABSENT",
+                "@type": "SlotDefinition"
+              }
+            ],
+            "@type": "AnonymousClassExpression"
+          },
+          "annotations": [
+            {
+              "tag": "sbe_section",
+              "value": "3: Field byte alignment",
+              "@type": "Annotation"
+            }
+          ],
+          "description": "A field places itself by an offset or by an alignment, never both.",
+          "title": "An offset or an alignment, not both",
+          "@type": "ClassRule"
+        }
+      ],
+      "@type": "ClassDefinition"
+    }
+  ],
+  "metamodel_version": "1.12.0",
+  "source_file": "fix_sbe.yaml",
+  "source_file_date": "2026-11-05T17:42:34",
+  "source_file_size": 1594,
+  "@type": "SchemaDefinition",
+  "@context": [
+    "project/jsonld/fix_sbe.context.jsonld",
+    "https://w3id.org/linkml/types.context.jsonld",
+    "./fix_sbe_common.context.jsonld",
+    "./fix_sbe_v1_0.context.jsonld",
+    "./fix_sbe_v2_0.context.jsonld",
+    {
+      "@base": "https://w3id.org/lmodel/fix-sbe/"
+    }
+  ]
+}

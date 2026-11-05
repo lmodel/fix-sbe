@@ -1,0 +1,2876 @@
+{
+    "$defs": {
+        "SbeBlockV1": {
+            "additionalProperties": false,
+            "description": "The body shared by a message and a group entry, which holds its fixed-length fields first, then groups, then variable-length data.",
+            "properties": {
+                "block_fields": {
+                    "description": "Fixed-length fields, listed in wire order.",
+                    "items": {
+                        "$ref": "#/$defs/SbeFieldV1"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "block_length": {
+                    "description": "The octets set aside for a message's fixed-length fields, or for those of each group entry.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "deprecated_since": {
+                    "description": "The schema version that retired this element, which stays only for older applications.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Free text about this element, for the people who read the schema.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "repeating_groups": {
+                    "description": "Repeating groups, listed in wire order.",
+                    "items": {
+                        "$ref": "#/$defs/SbeGroupV1"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "sbe_id": {
+                    "description": "The number that identifies this element.",
+                    "maximum": 65535,
+                    "minimum": 0,
+                    "type": "integer"
+                },
+                "semantic_type": {
+                    "description": "What this element means at the FIX application layer.",
+                    "pattern": "^\\S+( \\S+)*$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "since_version": {
+                    "description": "The schema version that added this element.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "symbolic_name": {
+                    "description": "What the schema calls this element.",
+                    "pattern": "^[A-Za-z_][0-9A-Za-z_]{0,63}$",
+                    "type": "string"
+                },
+                "var_data_fields": {
+                    "description": "Variable-length fields, listed in wire order.",
+                    "items": {
+                        "$ref": "#/$defs/SbeFieldV1"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "symbolic_name",
+                "sbe_id"
+            ],
+            "title": "SbeBlockV1",
+            "type": "object"
+        },
+        "SbeBlockV2": {
+            "additionalProperties": false,
+            "description": "The body shared by a message and a group entry, which holds its fixed-length fields first, then groups, then variable-length data.",
+            "properties": {
+                "alignment": {
+                    "description": "The multiple of octets where a message or each group entry begins.",
+                    "minimum": 1,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "block_fields": {
+                    "description": "Fixed-length fields, listed in wire order.",
+                    "items": {
+                        "$ref": "#/$defs/SbeFieldV2"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "block_length": {
+                    "description": "The octets set aside for a message's fixed-length fields, or for those of each group entry.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "deprecated_since": {
+                    "description": "The schema version that retired this element, which stays only for older applications.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Free text about this element, for the people who read the schema.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "repeating_groups": {
+                    "description": "Repeating groups, listed in wire order.",
+                    "items": {
+                        "$ref": "#/$defs/SbeGroupV2"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "sbe_id": {
+                    "description": "The number that identifies this element.",
+                    "maximum": 65535,
+                    "minimum": 0,
+                    "type": "integer"
+                },
+                "semantic_type": {
+                    "description": "What this element means at the FIX application layer.",
+                    "pattern": "^\\S+( \\S+)*$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "since_version": {
+                    "description": "The schema version that added this element.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "symbolic_name": {
+                    "description": "What the schema calls this element.",
+                    "pattern": "^[A-Za-z_][0-9A-Za-z_]{0,63}$",
+                    "type": "string"
+                },
+                "var_data_fields": {
+                    "description": "Variable-length fields, listed in wire order.",
+                    "items": {
+                        "$ref": "#/$defs/SbeFieldV2"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "symbolic_name",
+                "sbe_id"
+            ],
+            "title": "SbeBlockV2",
+            "type": "object"
+        },
+        "SbeByteOrder": {
+            "description": "The order of the octets in every multi-octet number of a message.",
+            "enum": [
+                "bigEndian",
+                "littleEndian"
+            ],
+            "title": "SbeByteOrder",
+            "type": "string"
+        },
+        "SbeChoice": {
+            "additionalProperties": false,
+            "description": "One of the alternatives of a set, which is one bit of its encoding.",
+            "properties": {
+                "bit_position": {
+                    "description": "Which bit stands for this choice, counted from zero at the least significant.",
+                    "minimum": 0,
+                    "type": "integer"
+                },
+                "deprecated_since": {
+                    "description": "The schema version that retired this element, which stays only for older applications.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Free text about this element, for the people who read the schema.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "since_version": {
+                    "description": "The schema version that added this element.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "symbolic_name": {
+                    "description": "What the schema calls this element.",
+                    "pattern": "^[A-Za-z_][0-9A-Za-z_]{0,63}$",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "symbolic_name",
+                "bit_position"
+            ],
+            "title": "SbeChoice",
+            "type": "object"
+        },
+        "SbeCompositeV1": {
+            "additionalProperties": false,
+            "description": "An encoding built from members sent one after another, such as a decimal's mantissa and exponent.",
+            "properties": {
+                "composite_members": {
+                    "description": "The members of this composite, in the order they are sent.",
+                    "items": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/$defs/SbeRefV1"
+                            },
+                            {
+                                "$ref": "#/$defs/SbeSimpleTypeV1"
+                            },
+                            {
+                                "$ref": "#/$defs/SbeCompositeV1"
+                            },
+                            {
+                                "$ref": "#/$defs/SbeEnumV1"
+                            },
+                            {
+                                "$ref": "#/$defs/SbeSetV1"
+                            }
+                        ]
+                    },
+                    "minItems": 1,
+                    "type": "array"
+                },
+                "deprecated_since": {
+                    "description": "The schema version that retired this element, which stays only for older applications.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Free text about this element, for the people who read the schema.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "encoding_kind": {
+                    "description": "The class of this encoding or composite member, which stands for its XML element.",
+                    "enum": [
+                        "SbeCompositeV1"
+                    ],
+                    "type": "string"
+                },
+                "offset": {
+                    "description": "The octet this element starts at, counted from zero at the start of its block or composite.",
+                    "maximum": 4294967295,
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "semantic_type": {
+                    "description": "The FIX datatype this encoding carries.",
+                    "pattern": "^\\S+( \\S+)*$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "since_version": {
+                    "description": "The schema version that added this element.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "symbolic_name": {
+                    "description": "What the schema calls this element.",
+                    "pattern": "^[A-Za-z_][0-9A-Za-z_]{0,63}$",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "composite_members",
+                "encoding_kind",
+                "symbolic_name"
+            ],
+            "title": "SbeCompositeV1",
+            "type": "object"
+        },
+        "SbeCompositeV2": {
+            "additionalProperties": false,
+            "description": "An encoding built from members sent one after another, such as a decimal's mantissa and exponent.",
+            "properties": {
+                "alignment": {
+                    "description": "The multiple of octets the start of this element is placed on.",
+                    "minimum": 1,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "composite_members": {
+                    "description": "The members of this composite, in the order they are sent.",
+                    "items": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/$defs/SbeMemberTypeV2"
+                            },
+                            {
+                                "$ref": "#/$defs/SbeRefV2"
+                            },
+                            {
+                                "$ref": "#/$defs/SbeCompositeV2"
+                            },
+                            {
+                                "$ref": "#/$defs/SbeEnumV2"
+                            },
+                            {
+                                "$ref": "#/$defs/SbeSetV2"
+                            }
+                        ]
+                    },
+                    "minItems": 1,
+                    "type": "array"
+                },
+                "deprecated_since": {
+                    "description": "The schema version that retired this element, which stays only for older applications.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Free text about this element, for the people who read the schema.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "encoding_kind": {
+                    "description": "The class of this encoding or composite member, which stands for its XML element.",
+                    "enum": [
+                        "SbeCompositeV2"
+                    ],
+                    "type": "string"
+                },
+                "offset": {
+                    "description": "The octet this element starts at, counted from zero at the start of its block or composite.",
+                    "maximum": 4294967295,
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "since_version": {
+                    "description": "The schema version that added this element.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "symbolic_name": {
+                    "description": "What the schema calls this element.",
+                    "pattern": "^[A-Za-z_][0-9A-Za-z_]{0,63}$",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "composite_members",
+                "encoding_kind",
+                "symbolic_name"
+            ],
+            "title": "SbeCompositeV2",
+            "type": "object"
+        },
+        "SbeElementV2": {
+            "additionalProperties": false,
+            "description": "Anything that sets of encodings or composites hold, and the name and text they all have.",
+            "properties": {
+                "description": {
+                    "description": "Free text about this element, for the people who read the schema.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "encoding_kind": {
+                    "description": "The class of this encoding or composite member, which stands for its XML element.",
+                    "enum": [
+                        "SbeElementV2"
+                    ],
+                    "type": "string"
+                },
+                "symbolic_name": {
+                    "description": "What the schema calls this element.",
+                    "pattern": "^[A-Za-z_][0-9A-Za-z_]{0,63}$",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "encoding_kind",
+                "symbolic_name"
+            ],
+            "title": "SbeElementV2",
+            "type": "object"
+        },
+        "SbeEncodingSetV1": {
+            "additionalProperties": false,
+            "description": "A set of encodings, listed in any order, whose names are unique across the whole schema.",
+            "properties": {
+                "encodings": {
+                    "description": "The encodings of this set.",
+                    "items": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/$defs/SbeSimpleTypeV1"
+                            },
+                            {
+                                "$ref": "#/$defs/SbeCompositeV1"
+                            },
+                            {
+                                "$ref": "#/$defs/SbeEnumV1"
+                            },
+                            {
+                                "$ref": "#/$defs/SbeSetV1"
+                            }
+                        ]
+                    },
+                    "minItems": 1,
+                    "type": "array"
+                }
+            },
+            "required": [
+                "encodings"
+            ],
+            "title": "SbeEncodingSetV1",
+            "type": "object"
+        },
+        "SbeEncodingSetV2": {
+            "additionalProperties": false,
+            "description": "A set of encodings, in any order, that may have its own package and may come from another file.",
+            "properties": {
+                "description": {
+                    "description": "Free text about this element, for the people who read the schema.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "encodings": {
+                    "description": "The encodings of this set.",
+                    "items": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/$defs/SbeSimpleTypeV2"
+                            },
+                            {
+                                "$ref": "#/$defs/SbeCompositeV2"
+                            },
+                            {
+                                "$ref": "#/$defs/SbeEnumV2"
+                            },
+                            {
+                                "$ref": "#/$defs/SbeSetV2"
+                            }
+                        ]
+                    },
+                    "minItems": 1,
+                    "type": "array"
+                },
+                "schema_package": {
+                    "description": "A package for this set in place of the schema's.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "xml_base": {
+                    "description": "The base address that the XML Inclusion mechanism records on an element it brought in from another file.",
+                    "format": "uri",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "encodings"
+            ],
+            "title": "SbeEncodingSetV2",
+            "type": "object"
+        },
+        "SbeEncodingV1": {
+            "additionalProperties": false,
+            "description": "An encoding of SBE 1.0, which says how a value is laid out on the wire.",
+            "properties": {
+                "deprecated_since": {
+                    "description": "The schema version that retired this element, which stays only for older applications.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Free text about this element, for the people who read the schema.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "encoding_kind": {
+                    "description": "The class of this encoding or composite member, which stands for its XML element.",
+                    "enum": [
+                        "SbeEncodingV1"
+                    ],
+                    "type": "string"
+                },
+                "offset": {
+                    "description": "The octet this element starts at, counted from zero at the start of its block or composite.",
+                    "maximum": 4294967295,
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "semantic_type": {
+                    "description": "The FIX datatype this encoding carries.",
+                    "pattern": "^\\S+( \\S+)*$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "since_version": {
+                    "description": "The schema version that added this element.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "symbolic_name": {
+                    "description": "What the schema calls this element.",
+                    "pattern": "^[A-Za-z_][0-9A-Za-z_]{0,63}$",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "encoding_kind",
+                "symbolic_name"
+            ],
+            "title": "SbeEncodingV1",
+            "type": "object"
+        },
+        "SbeEnumV1": {
+            "additionalProperties": false,
+            "description": "An encoding whose value is one of a listed set of valid values.",
+            "properties": {
+                "deprecated_since": {
+                    "description": "The schema version that retired this element, which stays only for older applications.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Free text about this element, for the people who read the schema.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "encoding_kind": {
+                    "description": "The class of this encoding or composite member, which stands for its XML element.",
+                    "enum": [
+                        "SbeEnumV1"
+                    ],
+                    "type": "string"
+                },
+                "encoding_type": {
+                    "description": "The simple encoding or primitive type that an enumeration or set is sent as.",
+                    "pattern": "^[A-Za-z_][0-9A-Za-z_]{0,63}$",
+                    "type": "string"
+                },
+                "offset": {
+                    "description": "The octet this element starts at, counted from zero at the start of its block or composite.",
+                    "maximum": 4294967295,
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "semantic_type": {
+                    "description": "The FIX datatype this encoding carries.",
+                    "pattern": "^\\S+( \\S+)*$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "since_version": {
+                    "description": "The schema version that added this element.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "symbolic_name": {
+                    "description": "What the schema calls this element.",
+                    "pattern": "^[A-Za-z_][0-9A-Za-z_]{0,63}$",
+                    "type": "string"
+                },
+                "valid_values": {
+                    "description": "The values this enumeration allows.",
+                    "items": {
+                        "$ref": "#/$defs/SbeValidValue"
+                    },
+                    "minItems": 1,
+                    "type": "array"
+                }
+            },
+            "required": [
+                "encoding_type",
+                "valid_values",
+                "encoding_kind",
+                "symbolic_name"
+            ],
+            "title": "SbeEnumV1",
+            "type": "object"
+        },
+        "SbeEnumV2": {
+            "additionalProperties": false,
+            "description": "An encoding whose value is one of a listed set of valid values.",
+            "properties": {
+                "alignment": {
+                    "description": "The multiple of octets the start of this element is placed on.",
+                    "minimum": 1,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "deprecated_since": {
+                    "description": "The schema version that retired this element, which stays only for older applications.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Free text about this element, for the people who read the schema.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "encoding_kind": {
+                    "description": "The class of this encoding or composite member, which stands for its XML element.",
+                    "enum": [
+                        "SbeEnumV2"
+                    ],
+                    "type": "string"
+                },
+                "encoding_type": {
+                    "description": "The simple encoding or primitive type that an enumeration or set is sent as.",
+                    "pattern": "^[A-Za-z_][0-9A-Za-z_]{0,63}$",
+                    "type": "string"
+                },
+                "offset": {
+                    "description": "The octet this element starts at, counted from zero at the start of its block or composite.",
+                    "maximum": 4294967295,
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "since_version": {
+                    "description": "The schema version that added this element.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "symbolic_name": {
+                    "description": "What the schema calls this element.",
+                    "pattern": "^[A-Za-z_][0-9A-Za-z_]{0,63}$",
+                    "type": "string"
+                },
+                "valid_values": {
+                    "description": "The values this enumeration allows.",
+                    "items": {
+                        "$ref": "#/$defs/SbeValidValue"
+                    },
+                    "minItems": 1,
+                    "type": "array"
+                }
+            },
+            "required": [
+                "encoding_type",
+                "valid_values",
+                "encoding_kind",
+                "symbolic_name"
+            ],
+            "title": "SbeEnumV2",
+            "type": "object"
+        },
+        "SbeFieldV1": {
+            "additionalProperties": false,
+            "description": "A message's or group entry's field, which uses an encoding at a place in its block.",
+            "if": {
+                "properties": {
+                    "value_ref": {}
+                },
+                "required": [
+                    "value_ref"
+                ]
+            },
+            "properties": {
+                "deprecated_since": {
+                    "description": "The schema version that retired this element, which stays only for older applications.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Free text about this element, for the people who read the schema.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "encoding_name": {
+                    "description": "Which encoding this element uses, by name.",
+                    "pattern": "^[A-Za-z_][0-9A-Za-z_]{0,63}$",
+                    "type": "string"
+                },
+                "offset": {
+                    "description": "The octet this element starts at, counted from zero at the start of its block or composite.",
+                    "maximum": 4294967295,
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "presence": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/SbePresence"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Whether this element's value is required, optional or constant."
+                },
+                "sbe_id": {
+                    "description": "The field's FIX tag number.",
+                    "maximum": 65535,
+                    "minimum": 0,
+                    "type": "integer"
+                },
+                "semantic_type": {
+                    "description": "The FIX datatype this field carries.",
+                    "pattern": "^\\S+( \\S+)*$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "since_version": {
+                    "description": "The schema version that added this element.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "symbolic_name": {
+                    "description": "What the schema calls this element.",
+                    "pattern": "^[A-Za-z_][0-9A-Za-z_]{0,63}$",
+                    "type": "string"
+                },
+                "time_epoch": {
+                    "description": "Where the period a time value counts from begins.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "time_unit": {
+                    "description": "The unit of a time value.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "value_ref": {
+                    "description": "The valid value that gives a constant element its value.",
+                    "pattern": "^[A-Za-z_][0-9A-Za-z_]*\\.[A-Za-z_][0-9A-Za-z_]*$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "symbolic_name",
+                "sbe_id",
+                "encoding_name"
+            ],
+            "then": {
+                "properties": {
+                    "presence": {
+                        "const": "constant"
+                    }
+                },
+                "required": [
+                    "presence"
+                ]
+            },
+            "title": "SbeFieldV1",
+            "type": "object"
+        },
+        "SbeFieldV2": {
+            "additionalProperties": false,
+            "allOf": [
+                {
+                    "if": {
+                        "properties": {
+                            "value_ref": {}
+                        },
+                        "required": [
+                            "value_ref"
+                        ]
+                    },
+                    "then": {
+                        "properties": {
+                            "presence": {
+                                "const": "constant"
+                            }
+                        },
+                        "required": [
+                            "presence"
+                        ]
+                    }
+                },
+                {
+                    "if": {
+                        "properties": {
+                            "presence": {
+                                "const": "required"
+                            }
+                        },
+                        "required": [
+                            "presence"
+                        ]
+                    },
+                    "then": {
+                        "not": {
+                            "required": [
+                                "null_value"
+                            ]
+                        },
+                        "properties": {
+                            "null_value": {}
+                        }
+                    }
+                },
+                {
+                    "if": {
+                        "properties": {
+                            "presence": {
+                                "const": "constant"
+                            }
+                        },
+                        "required": [
+                            "presence"
+                        ]
+                    },
+                    "then": {
+                        "not": {
+                            "required": [
+                                "null_value"
+                            ]
+                        },
+                        "properties": {
+                            "null_value": {}
+                        }
+                    }
+                },
+                {
+                    "if": {
+                        "properties": {
+                            "presence": {
+                                "const": "constant"
+                            }
+                        },
+                        "required": [
+                            "presence"
+                        ]
+                    },
+                    "then": {
+                        "not": {
+                            "required": [
+                                "min_value"
+                            ]
+                        },
+                        "properties": {
+                            "min_value": {}
+                        }
+                    }
+                },
+                {
+                    "if": {
+                        "properties": {
+                            "presence": {
+                                "const": "constant"
+                            }
+                        },
+                        "required": [
+                            "presence"
+                        ]
+                    },
+                    "then": {
+                        "not": {
+                            "required": [
+                                "max_value"
+                            ]
+                        },
+                        "properties": {
+                            "max_value": {}
+                        }
+                    }
+                },
+                {
+                    "if": {
+                        "properties": {
+                            "alignment": {}
+                        },
+                        "required": [
+                            "alignment"
+                        ]
+                    },
+                    "then": {
+                        "not": {
+                            "required": [
+                                "offset"
+                            ]
+                        },
+                        "properties": {
+                            "offset": {}
+                        }
+                    }
+                }
+            ],
+            "description": "A message's or group entry's field, which uses an encoding at a place in its block and may state a constant.",
+            "properties": {
+                "alignment": {
+                    "description": "The multiple of octets the start of this field is placed on, in place of an offset.",
+                    "minimum": 1,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "deprecated_since": {
+                    "description": "The schema version that retired this element, which stays only for older applications.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Free text about this element, for the people who read the schema.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "element_value": {
+                    "description": "The text of the XML element, which is the constant when presence is constant.",
+                    "pattern": "^\\S+( \\S+)*$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "encoding_name": {
+                    "description": "Which encoding this element uses, by name.",
+                    "pattern": "^[A-Za-z_][0-9A-Za-z_]{0,63}$",
+                    "type": "string"
+                },
+                "max_value": {
+                    "description": "The highest value allowed, written as text.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "min_value": {
+                    "description": "The lowest value allowed, written as text.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "null_value": {
+                    "description": "The value that stands for null in place of the primitive type's default, written as text.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "offset": {
+                    "description": "The octet this element starts at, counted from zero at the start of its block or composite.",
+                    "maximum": 4294967295,
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "presence": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/SbePresence"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Whether this element's value is required, optional or constant."
+                },
+                "sbe_id": {
+                    "description": "The field's FIX tag number.",
+                    "maximum": 65535,
+                    "minimum": 0,
+                    "type": "integer"
+                },
+                "semantic_type": {
+                    "description": "The FIX datatype this field carries.",
+                    "pattern": "^\\S+( \\S+)*$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "since_version": {
+                    "description": "The schema version that added this element.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "symbolic_name": {
+                    "description": "What the schema calls this element.",
+                    "pattern": "^[A-Za-z_][0-9A-Za-z_]{0,63}$",
+                    "type": "string"
+                },
+                "value_ref": {
+                    "description": "The valid value that gives a constant element its value.",
+                    "pattern": "^[A-Za-z_][0-9A-Za-z_]*\\.[A-Za-z_][0-9A-Za-z_]*$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "symbolic_name",
+                "sbe_id",
+                "encoding_name"
+            ],
+            "title": "SbeFieldV2",
+            "type": "object"
+        },
+        "SbeFixDatatype": {
+            "description": "The FIX datatypes the specification's summary table lists as a field's or an encoding's semantic type.",
+            "enum": [
+                "int",
+                "Length",
+                "TagNum",
+                "SeqNum",
+                "NumInGroup",
+                "DayOfMonth",
+                "Qty",
+                "float",
+                "Price",
+                "PriceOffset",
+                "Amt",
+                "Percentage",
+                "char",
+                "String",
+                "EncodedText",
+                "XMLData",
+                "data",
+                "Country",
+                "Currency",
+                "Exchange",
+                "Language",
+                "Boolean",
+                "MultipleCharValue",
+                "MultipleStringValue",
+                "MonthYear",
+                "UTCTimestamp",
+                "UTCTimeOnly",
+                "UTCDateOnly",
+                "LocalMktDate",
+                "TZTimeOnly",
+                "TZTimestamp"
+            ],
+            "title": "SbeFixDatatype",
+            "type": "string"
+        },
+        "SbeGroupV1": {
+            "additionalProperties": false,
+            "description": "A repeating group, whose entries each hold the same fields, and which cannot be without a field.",
+            "properties": {
+                "block_fields": {
+                    "description": "Fixed-length fields, listed in wire order.",
+                    "items": {
+                        "$ref": "#/$defs/SbeFieldV1"
+                    },
+                    "minItems": 1,
+                    "type": "array"
+                },
+                "block_length": {
+                    "description": "The octets set aside for a message's fixed-length fields, or for those of each group entry.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "deprecated_since": {
+                    "description": "The schema version that retired this element, which stays only for older applications.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Free text about this element, for the people who read the schema.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "dimension_type": {
+                    "description": "The composite, by name, that sends a repeating group's entry count and entry size.",
+                    "pattern": "^[A-Za-z_][0-9A-Za-z_]{0,63}$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "repeating_groups": {
+                    "description": "Repeating groups, listed in wire order.",
+                    "items": {
+                        "$ref": "#/$defs/SbeGroupV1"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "sbe_id": {
+                    "description": "The number that identifies this element.",
+                    "maximum": 65535,
+                    "minimum": 0,
+                    "type": "integer"
+                },
+                "semantic_type": {
+                    "description": "What this element means at the FIX application layer.",
+                    "pattern": "^\\S+( \\S+)*$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "since_version": {
+                    "description": "The schema version that added this element.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "symbolic_name": {
+                    "description": "What the schema calls this element.",
+                    "pattern": "^[A-Za-z_][0-9A-Za-z_]{0,63}$",
+                    "type": "string"
+                },
+                "var_data_fields": {
+                    "description": "Variable-length fields, listed in wire order.",
+                    "items": {
+                        "$ref": "#/$defs/SbeFieldV1"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "symbolic_name",
+                "sbe_id",
+                "block_fields"
+            ],
+            "title": "SbeGroupV1",
+            "type": "object"
+        },
+        "SbeGroupV2": {
+            "additionalProperties": false,
+            "description": "A repeating group, whose entries each hold the same fields, and which cannot be without a field.",
+            "properties": {
+                "alignment": {
+                    "description": "The multiple of octets where a message or each group entry begins.",
+                    "minimum": 1,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "block_fields": {
+                    "description": "Fixed-length fields, listed in wire order.",
+                    "items": {
+                        "$ref": "#/$defs/SbeFieldV2"
+                    },
+                    "minItems": 1,
+                    "type": "array"
+                },
+                "block_length": {
+                    "description": "The octets set aside for a message's fixed-length fields, or for those of each group entry.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "deprecated_since": {
+                    "description": "The schema version that retired this element, which stays only for older applications.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Free text about this element, for the people who read the schema.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "dimension_type": {
+                    "description": "The composite, by name, that sends a repeating group's entry count and entry size.",
+                    "pattern": "^[A-Za-z_][0-9A-Za-z_]{0,63}$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "repeating_groups": {
+                    "description": "Repeating groups, listed in wire order.",
+                    "items": {
+                        "$ref": "#/$defs/SbeGroupV2"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "sbe_id": {
+                    "description": "The number that identifies this element.",
+                    "maximum": 65535,
+                    "minimum": 0,
+                    "type": "integer"
+                },
+                "semantic_type": {
+                    "description": "What this element means at the FIX application layer.",
+                    "pattern": "^\\S+( \\S+)*$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "since_version": {
+                    "description": "The schema version that added this element.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "symbolic_name": {
+                    "description": "What the schema calls this element.",
+                    "pattern": "^[A-Za-z_][0-9A-Za-z_]{0,63}$",
+                    "type": "string"
+                },
+                "var_data_fields": {
+                    "description": "Variable-length fields, listed in wire order.",
+                    "items": {
+                        "$ref": "#/$defs/SbeFieldV2"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "symbolic_name",
+                "sbe_id",
+                "block_fields"
+            ],
+            "title": "SbeGroupV2",
+            "type": "object"
+        },
+        "SbeMemberTypeV2": {
+            "additionalProperties": false,
+            "allOf": [
+                {
+                    "if": {
+                        "properties": {
+                            "value_ref": {}
+                        },
+                        "required": [
+                            "value_ref"
+                        ]
+                    },
+                    "then": {
+                        "properties": {
+                            "presence": {
+                                "const": "constant"
+                            }
+                        },
+                        "required": [
+                            "presence"
+                        ]
+                    }
+                },
+                {
+                    "if": {
+                        "properties": {
+                            "presence": {
+                                "const": "required"
+                            }
+                        },
+                        "required": [
+                            "presence"
+                        ]
+                    },
+                    "then": {
+                        "not": {
+                            "required": [
+                                "null_value"
+                            ]
+                        },
+                        "properties": {
+                            "null_value": {}
+                        }
+                    }
+                },
+                {
+                    "if": {
+                        "properties": {
+                            "presence": {
+                                "const": "constant"
+                            }
+                        },
+                        "required": [
+                            "presence"
+                        ]
+                    },
+                    "then": {
+                        "not": {
+                            "required": [
+                                "null_value"
+                            ]
+                        },
+                        "properties": {
+                            "null_value": {}
+                        }
+                    }
+                },
+                {
+                    "if": {
+                        "properties": {
+                            "presence": {
+                                "const": "constant"
+                            }
+                        },
+                        "required": [
+                            "presence"
+                        ]
+                    },
+                    "then": {
+                        "not": {
+                            "required": [
+                                "min_value"
+                            ]
+                        },
+                        "properties": {
+                            "min_value": {}
+                        }
+                    }
+                },
+                {
+                    "if": {
+                        "properties": {
+                            "presence": {
+                                "const": "constant"
+                            }
+                        },
+                        "required": [
+                            "presence"
+                        ]
+                    },
+                    "then": {
+                        "not": {
+                            "required": [
+                                "max_value"
+                            ]
+                        },
+                        "properties": {
+                            "max_value": {}
+                        }
+                    }
+                }
+            ],
+            "description": "A simple encoding inside a composite, which may say it is optional or constant.",
+            "properties": {
+                "alignment": {
+                    "description": "The multiple of octets the start of this element is placed on.",
+                    "minimum": 1,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "array_length": {
+                    "description": "How many values of the primitive type the encoding holds, where zero means a variable number.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "character_encoding": {
+                    "description": "Which character set, or which Unicode scheme, character data follows.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Free text about this element, for the people who read the schema.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "element_value": {
+                    "description": "The text of the XML element, which is the constant when presence is constant.",
+                    "pattern": "^\\S+( \\S+)*$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "encoding_kind": {
+                    "description": "The class of this encoding or composite member, which stands for its XML element.",
+                    "enum": [
+                        "SbeMemberTypeV2"
+                    ],
+                    "type": "string"
+                },
+                "max_value": {
+                    "description": "The highest value allowed, written as text.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "min_value": {
+                    "description": "The lowest value allowed, written as text.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "null_value": {
+                    "description": "The value that stands for null in place of the primitive type's default, written as text.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "offset": {
+                    "description": "The octet this element starts at, counted from zero at the start of its block or composite.",
+                    "maximum": 4294967295,
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "presence": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/SbePresence"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Whether this element's value is required, optional or constant."
+                },
+                "primitive_type": {
+                    "$ref": "#/$defs/SbePrimitiveType",
+                    "description": "The wire type under this encoding."
+                },
+                "symbolic_name": {
+                    "description": "What the schema calls this element.",
+                    "pattern": "^[A-Za-z_][0-9A-Za-z_]{0,63}$",
+                    "type": "string"
+                },
+                "value_ref": {
+                    "description": "The valid value that gives a constant element its value.",
+                    "pattern": "^[A-Za-z_][0-9A-Za-z_]*\\.[A-Za-z_][0-9A-Za-z_]*$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "primitive_type",
+                "encoding_kind",
+                "symbolic_name"
+            ],
+            "title": "SbeMemberTypeV2",
+            "type": "object"
+        },
+        "SbeMemberV1": {
+            "additionalProperties": false,
+            "description": "Anything a composite may hold in the order it is sent.",
+            "properties": {
+                "deprecated_since": {
+                    "description": "The schema version that retired this element, which stays only for older applications.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "encoding_kind": {
+                    "description": "The class of this encoding or composite member, which stands for its XML element.",
+                    "enum": [
+                        "SbeMemberV1"
+                    ],
+                    "type": "string"
+                },
+                "offset": {
+                    "description": "The octet this element starts at, counted from zero at the start of its block or composite.",
+                    "maximum": 4294967295,
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "since_version": {
+                    "description": "The schema version that added this element.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "symbolic_name": {
+                    "description": "What the schema calls this element.",
+                    "pattern": "^[A-Za-z_][0-9A-Za-z_]{0,63}$",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "encoding_kind",
+                "symbolic_name"
+            ],
+            "title": "SbeMemberV1",
+            "type": "object"
+        },
+        "SbeMemberV2": {
+            "additionalProperties": false,
+            "description": "Anything a composite may hold in the order it is sent.",
+            "properties": {
+                "alignment": {
+                    "description": "The multiple of octets the start of this element is placed on.",
+                    "minimum": 1,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Free text about this element, for the people who read the schema.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "encoding_kind": {
+                    "description": "The class of this encoding or composite member, which stands for its XML element.",
+                    "enum": [
+                        "SbeMemberV2"
+                    ],
+                    "type": "string"
+                },
+                "offset": {
+                    "description": "The octet this element starts at, counted from zero at the start of its block or composite.",
+                    "maximum": 4294967295,
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "symbolic_name": {
+                    "description": "What the schema calls this element.",
+                    "pattern": "^[A-Za-z_][0-9A-Za-z_]{0,63}$",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "encoding_kind",
+                "symbolic_name"
+            ],
+            "title": "SbeMemberV2",
+            "type": "object"
+        },
+        "SbeMessageSchemaV1": {
+            "additionalProperties": false,
+            "description": "One SBE 1.0 message schema, with its encodings and message templates.",
+            "properties": {
+                "byte_order": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/SbeByteOrder"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "How the octets of every number in this schema's messages are ordered."
+                },
+                "description": {
+                    "description": "Free text about this element, for the people who read the schema.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "encoding_sets": {
+                    "description": "The sets of encodings this schema's messages use.",
+                    "items": {
+                        "$ref": "#/$defs/SbeEncodingSetV1"
+                    },
+                    "minItems": 1,
+                    "type": "array"
+                },
+                "header_type": {
+                    "description": "The composite, by name, that sends each message's header in this schema.",
+                    "pattern": "^[A-Za-z_][0-9A-Za-z_]{0,63}$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "messages": {
+                    "description": "The message templates of this set.",
+                    "items": {
+                        "$ref": "#/$defs/SbeMessageV1"
+                    },
+                    "minItems": 1,
+                    "type": "array"
+                },
+                "sbe_id": {
+                    "description": "The number that identifies this schema between counterparties.",
+                    "maximum": 65535,
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "schema_package": {
+                    "description": "The name or category that a set of counterparties knows this schema or part of it by.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "schema_version": {
+                    "description": "The version of this message schema, starting at zero.",
+                    "minimum": 0,
+                    "type": "integer"
+                },
+                "semantic_version": {
+                    "description": "The version of FIX whose meanings this schema uses.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "schema_version",
+                "encoding_sets",
+                "messages"
+            ],
+            "title": "SbeMessageSchemaV1",
+            "type": "object"
+        },
+        "SbeMessageSchemaV2": {
+            "additionalProperties": false,
+            "description": "One SBE 2.0 message schema, with its encodings and message templates.",
+            "properties": {
+                "byte_order": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/SbeByteOrder"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "How the octets of every number in this schema's messages are ordered."
+                },
+                "description": {
+                    "description": "Free text about this element, for the people who read the schema.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "encoding_sets": {
+                    "description": "The sets of encodings this schema's messages use.",
+                    "items": {
+                        "$ref": "#/$defs/SbeEncodingSetV2"
+                    },
+                    "minItems": 1,
+                    "type": "array"
+                },
+                "header_type": {
+                    "description": "The composite, by name, that sends each message's header in this schema.",
+                    "pattern": "^[A-Za-z_][0-9A-Za-z_]{0,63}$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "message_sets": {
+                    "description": "The sets of message templates of this schema.",
+                    "items": {
+                        "$ref": "#/$defs/SbeMessageSetV2"
+                    },
+                    "minItems": 1,
+                    "type": "array"
+                },
+                "sbe_id": {
+                    "description": "The number that identifies this schema between counterparties.",
+                    "maximum": 65535,
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "schema_package": {
+                    "description": "The name or category that a set of counterparties knows this schema or part of it by.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "schema_version": {
+                    "description": "The version of this message schema, starting at zero.",
+                    "minimum": 0,
+                    "type": "integer"
+                },
+                "semantic_version": {
+                    "description": "The version of FIX whose meanings this schema uses.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "schema_version",
+                "encoding_sets",
+                "message_sets"
+            ],
+            "title": "SbeMessageSchemaV2",
+            "type": "object"
+        },
+        "SbeMessageSetV2": {
+            "additionalProperties": false,
+            "description": "Message templates held together, which may have their own package and may come from another file.",
+            "properties": {
+                "description": {
+                    "description": "Free text about this element, for the people who read the schema.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "messages": {
+                    "description": "The message templates of this set.",
+                    "items": {
+                        "$ref": "#/$defs/SbeMessageV2"
+                    },
+                    "minItems": 1,
+                    "type": "array"
+                },
+                "schema_package": {
+                    "description": "A package for this set in place of the schema's.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "xml_base": {
+                    "description": "The base address that the XML Inclusion mechanism records on an element it brought in from another file.",
+                    "format": "uri",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "messages"
+            ],
+            "title": "SbeMessageSetV2",
+            "type": "object"
+        },
+        "SbeMessageV1": {
+            "additionalProperties": false,
+            "description": "A message template, whose number and block length are sent in each message's header.",
+            "properties": {
+                "block_fields": {
+                    "description": "Fixed-length fields, listed in wire order.",
+                    "items": {
+                        "$ref": "#/$defs/SbeFieldV1"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "block_length": {
+                    "description": "The octets set aside for a message's fixed-length fields, or for those of each group entry.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "deprecated_since": {
+                    "description": "The schema version that retired this element, which stays only for older applications.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Free text about this element, for the people who read the schema.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "repeating_groups": {
+                    "description": "Repeating groups, listed in wire order.",
+                    "items": {
+                        "$ref": "#/$defs/SbeGroupV1"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "sbe_id": {
+                    "description": "The template's number, which no other template in the schema shares.",
+                    "maximum": 65535,
+                    "minimum": 0,
+                    "type": "integer"
+                },
+                "semantic_type": {
+                    "description": "The FIX MsgType(35) this template stands for, where several templates may share one.",
+                    "pattern": "^\\S+( \\S+)*$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "since_version": {
+                    "description": "The schema version that added this element.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "symbolic_name": {
+                    "description": "What the schema calls this element.",
+                    "pattern": "^[A-Za-z_][0-9A-Za-z_]{0,63}$",
+                    "type": "string"
+                },
+                "var_data_fields": {
+                    "description": "Variable-length fields, listed in wire order.",
+                    "items": {
+                        "$ref": "#/$defs/SbeFieldV1"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "symbolic_name",
+                "sbe_id"
+            ],
+            "title": "SbeMessageV1",
+            "type": "object"
+        },
+        "SbeMessageV2": {
+            "additionalProperties": false,
+            "description": "A message template, whose number and block length are sent in each message's header.",
+            "properties": {
+                "alignment": {
+                    "description": "The multiple of octets where a message or each group entry begins.",
+                    "minimum": 1,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "block_fields": {
+                    "description": "Fixed-length fields, listed in wire order.",
+                    "items": {
+                        "$ref": "#/$defs/SbeFieldV2"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "block_length": {
+                    "description": "The octets set aside for a message's fixed-length fields, or for those of each group entry.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "deprecated_since": {
+                    "description": "The schema version that retired this element, which stays only for older applications.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Free text about this element, for the people who read the schema.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "repeating_groups": {
+                    "description": "Repeating groups, listed in wire order.",
+                    "items": {
+                        "$ref": "#/$defs/SbeGroupV2"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "sbe_id": {
+                    "description": "The template's number, which no other template in the schema shares.",
+                    "maximum": 65535,
+                    "minimum": 0,
+                    "type": "integer"
+                },
+                "semantic_type": {
+                    "description": "The FIX MsgType(35) this template stands for, where several templates may share one.",
+                    "pattern": "^\\S+( \\S+)*$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "since_version": {
+                    "description": "The schema version that added this element.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "symbolic_name": {
+                    "description": "What the schema calls this element.",
+                    "pattern": "^[A-Za-z_][0-9A-Za-z_]{0,63}$",
+                    "type": "string"
+                },
+                "var_data_fields": {
+                    "description": "Variable-length fields, listed in wire order.",
+                    "items": {
+                        "$ref": "#/$defs/SbeFieldV2"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "symbolic_name",
+                "sbe_id"
+            ],
+            "title": "SbeMessageV2",
+            "type": "object"
+        },
+        "SbePresence": {
+            "description": "Whether a value is on the wire, and whether it may be null.",
+            "enum": [
+                "required",
+                "optional",
+                "constant"
+            ],
+            "title": "SbePresence",
+            "type": "string"
+        },
+        "SbePrimitiveType": {
+            "description": "The wire types every encoding is finally built from.",
+            "enum": [
+                "char",
+                "int8",
+                "int16",
+                "int32",
+                "int64",
+                "uint8",
+                "uint16",
+                "uint32",
+                "uint64",
+                "float",
+                "double"
+            ],
+            "title": "SbePrimitiveType",
+            "type": "string"
+        },
+        "SbeRefV1": {
+            "additionalProperties": false,
+            "description": "A composite's member that reuses an encoding defined elsewhere in the schema.",
+            "properties": {
+                "deprecated_since": {
+                    "description": "The schema version that retired this element, which stays only for older applications.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "encoding_kind": {
+                    "description": "The class of this encoding or composite member, which stands for its XML element.",
+                    "enum": [
+                        "SbeRefV1"
+                    ],
+                    "type": "string"
+                },
+                "encoding_name": {
+                    "description": "Which encoding this element uses, by name.",
+                    "pattern": "^[A-Za-z_][0-9A-Za-z_]{0,63}$",
+                    "type": "string"
+                },
+                "offset": {
+                    "description": "The octet this element starts at, counted from zero at the start of its block or composite.",
+                    "maximum": 4294967295,
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "since_version": {
+                    "description": "The schema version that added this element.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "symbolic_name": {
+                    "description": "What the schema calls this element.",
+                    "pattern": "^[A-Za-z_][0-9A-Za-z_]{0,63}$",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "encoding_name",
+                "encoding_kind",
+                "symbolic_name"
+            ],
+            "title": "SbeRefV1",
+            "type": "object"
+        },
+        "SbeRefV2": {
+            "additionalProperties": false,
+            "description": "A composite's member that reuses an encoding defined elsewhere in the schema.",
+            "properties": {
+                "alignment": {
+                    "description": "The multiple of octets the start of this element is placed on.",
+                    "minimum": 1,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Free text about this element, for the people who read the schema.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "encoding_kind": {
+                    "description": "The class of this encoding or composite member, which stands for its XML element.",
+                    "enum": [
+                        "SbeRefV2"
+                    ],
+                    "type": "string"
+                },
+                "encoding_name": {
+                    "description": "Which encoding this element uses, by name.",
+                    "pattern": "^[A-Za-z_][0-9A-Za-z_]{0,63}$",
+                    "type": "string"
+                },
+                "offset": {
+                    "description": "The octet this element starts at, counted from zero at the start of its block or composite.",
+                    "maximum": 4294967295,
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "symbolic_name": {
+                    "description": "What the schema calls this element.",
+                    "pattern": "^[A-Za-z_][0-9A-Za-z_]{0,63}$",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "encoding_name",
+                "encoding_kind",
+                "symbolic_name"
+            ],
+            "title": "SbeRefV2",
+            "type": "object"
+        },
+        "SbeSetV1": {
+            "additionalProperties": false,
+            "description": "An encoding whose value is any combination of up to 64 choices, sent as a bitset.",
+            "properties": {
+                "choices": {
+                    "description": "The alternatives of this set.",
+                    "items": {
+                        "$ref": "#/$defs/SbeChoice"
+                    },
+                    "maxItems": 64,
+                    "minItems": 1,
+                    "type": "array"
+                },
+                "deprecated_since": {
+                    "description": "The schema version that retired this element, which stays only for older applications.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Free text about this element, for the people who read the schema.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "encoding_kind": {
+                    "description": "The class of this encoding or composite member, which stands for its XML element.",
+                    "enum": [
+                        "SbeSetV1"
+                    ],
+                    "type": "string"
+                },
+                "encoding_type": {
+                    "description": "The simple encoding or primitive type that an enumeration or set is sent as.",
+                    "pattern": "^[A-Za-z_][0-9A-Za-z_]{0,63}$",
+                    "type": "string"
+                },
+                "offset": {
+                    "description": "The octet this element starts at, counted from zero at the start of its block or composite.",
+                    "maximum": 4294967295,
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "semantic_type": {
+                    "description": "The FIX datatype this encoding carries.",
+                    "pattern": "^\\S+( \\S+)*$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "since_version": {
+                    "description": "The schema version that added this element.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "symbolic_name": {
+                    "description": "What the schema calls this element.",
+                    "pattern": "^[A-Za-z_][0-9A-Za-z_]{0,63}$",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "encoding_type",
+                "choices",
+                "encoding_kind",
+                "symbolic_name"
+            ],
+            "title": "SbeSetV1",
+            "type": "object"
+        },
+        "SbeSetV2": {
+            "additionalProperties": false,
+            "description": "An encoding whose value is any combination of up to 64 choices, sent as a bitset.",
+            "properties": {
+                "alignment": {
+                    "description": "The multiple of octets the start of this element is placed on.",
+                    "minimum": 1,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "choices": {
+                    "description": "The alternatives of this set.",
+                    "items": {
+                        "$ref": "#/$defs/SbeChoice"
+                    },
+                    "maxItems": 64,
+                    "minItems": 1,
+                    "type": "array"
+                },
+                "deprecated_since": {
+                    "description": "The schema version that retired this element, which stays only for older applications.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Free text about this element, for the people who read the schema.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "encoding_kind": {
+                    "description": "The class of this encoding or composite member, which stands for its XML element.",
+                    "enum": [
+                        "SbeSetV2"
+                    ],
+                    "type": "string"
+                },
+                "encoding_type": {
+                    "description": "The simple encoding or primitive type that an enumeration or set is sent as.",
+                    "pattern": "^[A-Za-z_][0-9A-Za-z_]{0,63}$",
+                    "type": "string"
+                },
+                "offset": {
+                    "description": "The octet this element starts at, counted from zero at the start of its block or composite.",
+                    "maximum": 4294967295,
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "since_version": {
+                    "description": "The schema version that added this element.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "symbolic_name": {
+                    "description": "What the schema calls this element.",
+                    "pattern": "^[A-Za-z_][0-9A-Za-z_]{0,63}$",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "encoding_type",
+                "choices",
+                "encoding_kind",
+                "symbolic_name"
+            ],
+            "title": "SbeSetV2",
+            "type": "object"
+        },
+        "SbeSimpleTypeV1": {
+            "additionalProperties": false,
+            "allOf": [
+                {
+                    "if": {
+                        "properties": {
+                            "value_ref": {}
+                        },
+                        "required": [
+                            "value_ref"
+                        ]
+                    },
+                    "then": {
+                        "properties": {
+                            "presence": {
+                                "const": "constant"
+                            }
+                        },
+                        "required": [
+                            "presence"
+                        ]
+                    }
+                },
+                {
+                    "if": {
+                        "properties": {
+                            "presence": {
+                                "const": "required"
+                            }
+                        },
+                        "required": [
+                            "presence"
+                        ]
+                    },
+                    "then": {
+                        "not": {
+                            "required": [
+                                "null_value"
+                            ]
+                        },
+                        "properties": {
+                            "null_value": {}
+                        }
+                    }
+                },
+                {
+                    "if": {
+                        "properties": {
+                            "presence": {
+                                "const": "constant"
+                            }
+                        },
+                        "required": [
+                            "presence"
+                        ]
+                    },
+                    "then": {
+                        "not": {
+                            "required": [
+                                "null_value"
+                            ]
+                        },
+                        "properties": {
+                            "null_value": {}
+                        }
+                    }
+                },
+                {
+                    "if": {
+                        "properties": {
+                            "presence": {
+                                "const": "constant"
+                            }
+                        },
+                        "required": [
+                            "presence"
+                        ]
+                    },
+                    "then": {
+                        "not": {
+                            "required": [
+                                "min_value"
+                            ]
+                        },
+                        "properties": {
+                            "min_value": {}
+                        }
+                    }
+                },
+                {
+                    "if": {
+                        "properties": {
+                            "presence": {
+                                "const": "constant"
+                            }
+                        },
+                        "required": [
+                            "presence"
+                        ]
+                    },
+                    "then": {
+                        "not": {
+                            "required": [
+                                "max_value"
+                            ]
+                        },
+                        "properties": {
+                            "max_value": {}
+                        }
+                    }
+                }
+            ],
+            "description": "An encoding backed by one primitive value, or several in an array.",
+            "properties": {
+                "array_length": {
+                    "description": "How many values of the primitive type the encoding holds, where zero means a variable number.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "character_encoding": {
+                    "description": "Which character set, or which Unicode scheme, character data follows.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "deprecated_since": {
+                    "description": "The schema version that retired this element, which stays only for older applications.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Free text about this element, for the people who read the schema.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "element_value": {
+                    "description": "The text of the XML element, which is the constant when presence is constant.",
+                    "pattern": "^\\S+( \\S+)*$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "encoding_kind": {
+                    "description": "The class of this encoding or composite member, which stands for its XML element.",
+                    "enum": [
+                        "SbeSimpleTypeV1"
+                    ],
+                    "type": "string"
+                },
+                "max_value": {
+                    "description": "The highest value allowed, written as text.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "min_value": {
+                    "description": "The lowest value allowed, written as text.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "null_value": {
+                    "description": "The value that stands for null in place of the primitive type's default, written as text.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "offset": {
+                    "description": "The octet this element starts at, counted from zero at the start of its block or composite.",
+                    "maximum": 4294967295,
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "presence": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/SbePresence"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Whether this element's value is required, optional or constant."
+                },
+                "primitive_type": {
+                    "$ref": "#/$defs/SbePrimitiveType",
+                    "description": "The wire type under this encoding."
+                },
+                "semantic_type": {
+                    "description": "The FIX datatype this encoding carries.",
+                    "pattern": "^\\S+( \\S+)*$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "since_version": {
+                    "description": "The schema version that added this element.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "symbolic_name": {
+                    "description": "What the schema calls this element.",
+                    "pattern": "^[A-Za-z_][0-9A-Za-z_]{0,63}$",
+                    "type": "string"
+                },
+                "value_ref": {
+                    "description": "The valid value that gives a constant element its value.",
+                    "pattern": "^[A-Za-z_][0-9A-Za-z_]*\\.[A-Za-z_][0-9A-Za-z_]*$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "primitive_type",
+                "encoding_kind",
+                "symbolic_name"
+            ],
+            "title": "SbeSimpleTypeV1",
+            "type": "object"
+        },
+        "SbeSimpleTypeV2": {
+            "additionalProperties": false,
+            "description": "A simple encoding that stands alone in a set, backed by one primitive value, or several in an array.",
+            "properties": {
+                "array_length": {
+                    "description": "How many values of the primitive type the encoding holds, where zero means a variable number.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "character_encoding": {
+                    "description": "Which character set, or which Unicode scheme, character data follows.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "deprecated_since": {
+                    "description": "The schema version that retired this element, which stays only for older applications.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Free text about this element, for the people who read the schema.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "element_value": {
+                    "description": "The text of the XML element, which is the constant when presence is constant.",
+                    "pattern": "^\\S+( \\S+)*$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "encoding_kind": {
+                    "description": "The class of this encoding or composite member, which stands for its XML element.",
+                    "enum": [
+                        "SbeSimpleTypeV2"
+                    ],
+                    "type": "string"
+                },
+                "primitive_type": {
+                    "$ref": "#/$defs/SbePrimitiveType",
+                    "description": "The wire type under this encoding."
+                },
+                "since_version": {
+                    "description": "The schema version that added this element.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "symbolic_name": {
+                    "description": "What the schema calls this element.",
+                    "pattern": "^[A-Za-z_][0-9A-Za-z_]{0,63}$",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "primitive_type",
+                "encoding_kind",
+                "symbolic_name"
+            ],
+            "title": "SbeSimpleTypeV2",
+            "type": "object"
+        },
+        "SbeValidValue": {
+            "additionalProperties": false,
+            "description": "One of the values an enumeration allows.",
+            "properties": {
+                "deprecated_since": {
+                    "description": "The schema version that retired this element, which stays only for older applications.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Free text about this element, for the people who read the schema.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "since_version": {
+                    "description": "The schema version that added this element.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "symbolic_name": {
+                    "description": "What the schema calls this element.",
+                    "pattern": "^[A-Za-z_][0-9A-Za-z_]{0,63}$",
+                    "type": "string"
+                },
+                "valid_value": {
+                    "description": "The value as it is written in the schema, which must convert to the enumeration's encoding.",
+                    "pattern": "^\\S+( \\S+)*$",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "symbolic_name",
+                "valid_value"
+            ],
+            "title": "SbeValidValue",
+            "type": "object"
+        },
+        "SbeVersionedMixin": {
+            "additionalProperties": false,
+            "description": "The two attributes that record when an element entered a schema and when it should leave.",
+            "properties": {
+                "deprecated_since": {
+                    "description": "The schema version that retired this element, which stays only for older applications.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "since_version": {
+                    "description": "The schema version that added this element.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                }
+            },
+            "title": "SbeVersionedMixin",
+            "type": "object"
+        }
+    },
+    "$id": "https://w3id.org/lmodel/fix-sbe",
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": false,
+    "description": "One SBE 1.0 message schema, with its encodings and message templates.",
+    "metamodel_version": "1.12.0",
+    "properties": {
+        "byte_order": {
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/SbeByteOrder"
+                },
+                {
+                    "type": "null"
+                }
+            ],
+            "description": "How the octets of every number in this schema's messages are ordered."
+        },
+        "description": {
+            "description": "Free text about this element, for the people who read the schema.",
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "encoding_sets": {
+            "description": "The sets of encodings this schema's messages use.",
+            "items": {
+                "$ref": "#/$defs/SbeEncodingSetV1"
+            },
+            "minItems": 1,
+            "type": "array"
+        },
+        "header_type": {
+            "description": "The composite, by name, that sends each message's header in this schema.",
+            "pattern": "^[A-Za-z_][0-9A-Za-z_]{0,63}$",
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "messages": {
+            "description": "The message templates of this set.",
+            "items": {
+                "$ref": "#/$defs/SbeMessageV1"
+            },
+            "minItems": 1,
+            "type": "array"
+        },
+        "sbe_id": {
+            "description": "The number that identifies this schema between counterparties.",
+            "maximum": 65535,
+            "minimum": 0,
+            "type": [
+                "integer",
+                "null"
+            ]
+        },
+        "schema_package": {
+            "description": "The name or category that a set of counterparties knows this schema or part of it by.",
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "schema_version": {
+            "description": "The version of this message schema, starting at zero.",
+            "minimum": 0,
+            "type": "integer"
+        },
+        "semantic_version": {
+            "description": "The version of FIX whose meanings this schema uses.",
+            "type": [
+                "string",
+                "null"
+            ]
+        }
+    },
+    "required": [
+        "schema_version",
+        "encoding_sets",
+        "messages"
+    ],
+    "title": "fix_sbe",
+    "type": "object",
+    "version": "1.0 and 2.0-rc3"
+}

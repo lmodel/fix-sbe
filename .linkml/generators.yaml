@@ -37,6 +37,10 @@ generator_args:
     mergeimports: true
   jsonschema:
     mergeimports: true
+    # An encoding set's encodings and a composite's members range over an abstract class.
+    # Without this the generated JSON Schema checks each one against that closed base, so no
+    # real schema document validates; with it, against each concrete class under the base.
+    include_range_class_descendants: true
   jsonldcontext:
     mergeimports: true
   # gen-pydantic is not yet supported by gen-project.

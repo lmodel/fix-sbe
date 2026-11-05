@@ -1,0 +1,473 @@
+---
+id: https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common
+name: fix_sbe_common
+title: FIX SBE shared names, value lists and value classes
+description: >-
+  What SBE 1.0 and SBE 2.0 RC3 define alike: the two kinds of name, the three value lists, the
+  attributes most elements share, and what an enumeration lists and a set offers.
+version: "1.0 and 2.0-rc3"
+source: https://github.com/FIXTradingCommunity/fix-simple-binary-encoding
+license: Apache-2.0
+see_also:
+  - https://lmodel.github.io/fix-sbe
+notes:
+  - >-
+    An element's name in the XSD is the alias of its slot, and tests/test_coverage.py reads
+    those aliases. An sbe_section annotation names the specification's chapter and heading.
+    The Markdown numbers only its chapters.
+prefixes:
+  fix_sbe: https://w3id.org/lmodel/fix-sbe/
+  linkml: https://w3id.org/linkml/
+  schema: http://schema.org/
+  fix_orchestra: https://w3id.org/lmodel/fix-orchestra/
+default_prefix: fix_sbe
+default_range: string
+
+imports:
+  - linkml:types
+
+types:
+
+  SbeSymbolicName:
+    typeof: string
+    base: str
+    uri: xsd:string
+    description: A name of one to 64 letters, digits and underscores that starts with a letter or underscore.
+    pattern: '^[A-Za-z_][0-9A-Za-z_]{0,63}$'
+    annotations:
+      xsd_type: symbolicName_t
+
+  SbeQualifiedName:
+    typeof: string
+    base: str
+    uri: xsd:string
+    description: An enumeration's name and one of its valid values' names, joined by a dot.
+    pattern: '^[A-Za-z_][0-9A-Za-z_]*\.[A-Za-z_][0-9A-Za-z_]*$'
+    annotations:
+      xsd_type: qualifiedName_t
+
+  SbeToken:
+    typeof: string
+    base: str
+    uri: xsd:token
+    description: Text with no line break, tab or doubled space, and no space at either end.
+    pattern: '^\S+( \S+)*$'
+    annotations:
+      xsd_type: xs:token
+
+enums:
+
+  SbePresence:
+    description: Whether a value is on the wire, and whether it may be null.
+    permissible_values:
+      required:
+        description: A value is always sent, and it is never tested for null.
+      optional:
+        description: A value is sent, and a null marker says that none is set.
+      constant:
+        description: The schema states the value, so nothing is sent.
+    annotations:
+      sbe_section: "4: Field attributes"
+
+  SbeByteOrder:
+    description: The order of the octets in every multi-octet number of a message.
+    permissible_values:
+      bigEndian:
+        description: The most significant octet comes first.
+      littleEndian:
+        description: The least significant octet comes first.
+    annotations:
+      sbe_section: "4: messageSchema attributes"
+
+  SbePrimitiveType:
+    description: The wire types every encoding is finally built from.
+    permissible_values:
+      char:
+        description: One character of one octet.
+      int8:
+        description: A signed integer of one octet.
+      int16:
+        description: A signed integer of two octets.
+      int32:
+        description: A signed integer of four octets.
+      int64:
+        description: A signed integer of eight octets.
+      uint8:
+        description: An unsigned integer of one octet.
+      uint16:
+        description: An unsigned integer of two octets.
+      uint32:
+        description: An unsigned integer of four octets.
+      uint64:
+        description: An unsigned integer of eight octets.
+      float:
+        description: A four-octet number in binary floating point.
+      double:
+        description: An eight-octet number in binary floating point.
+    annotations:
+      sbe_section: "2: Primitive type encodings"
+
+  SbeFixDatatype:
+    description: >-
+      The FIX datatypes the specification's summary table lists as a field's or an encoding's
+      semantic type.
+    comments:
+      - >-
+        semantic_type stays free text in the schema, because a message's holds a MsgType value
+        and the specification suggests matching names without regard to case. tests/sbe_rules.py
+        holds an encoding's and a field's to this list.
+    permissible_values:
+      int:
+      Length:
+      TagNum:
+      SeqNum:
+      NumInGroup:
+      DayOfMonth:
+      Qty:
+      float:
+      Price:
+      PriceOffset:
+      Amt:
+      Percentage:
+      char:
+      String:
+      EncodedText:
+      XMLData:
+      data:
+      Country:
+      Currency:
+      Exchange:
+      Language:
+      Boolean:
+      MultipleCharValue:
+      MultipleStringValue:
+      MonthYear:
+      UTCTimestamp:
+      UTCTimeOnly:
+      UTCDateOnly:
+      LocalMktDate:
+      TZTimeOnly:
+      TZTimestamp:
+    annotations:
+      sbe_section: "2: FIX datatype summary"
+
+slots:
+
+  symbolic_name:
+    description: What the schema calls this element.
+    range: SbeSymbolicName
+    pattern: '^[A-Za-z_][0-9A-Za-z_]{0,63}$'
+    required: true
+    aliases: [name]
+
+  sbe_id:
+    description: The number that identifies this element.
+    range: integer
+    minimum_value: 0
+    maximum_value: 65535
+    aliases: [id]
+    annotations:
+      xsd_type: xs:unsignedShort
+
+  description:
+    description: Free text about this element, for the people who read the schema.
+    slot_uri: schema:description
+    aliases: [description]
+
+  semantic_type:
+    description: What this element means at the FIX application layer.
+    range: SbeToken
+    pattern: '^\S+( \S+)*$'
+    aliases: [semanticType]
+    annotations:
+      xsd_type: xs:token
+
+  since_version:
+    description: The schema version that added this element.
+    range: integer
+    minimum_value: 0
+    ifabsent: int(0)
+    aliases: [sinceVersion]
+    annotations:
+      xsd_type: xs:nonNegativeInteger
+      sbe_section: "5: Since version"
+
+  deprecated_since:
+    description: The schema version that retired this element, which stays only for older applications.
+    range: integer
+    minimum_value: 0
+    aliases: [deprecated]
+    annotations:
+      xsd_type: xs:nonNegativeInteger
+      sbe_section: "5: Deprecated elements"
+
+  offset:
+    description: The octet this element starts at, counted from zero at the start of its block or composite.
+    range: integer
+    minimum_value: 0
+    maximum_value: 4294967295
+    aliases: [offset]
+    annotations:
+      xsd_type: xs:unsignedInt
+      sbe_section: "3: Field offset specified by message schema"
+
+  presence:
+    description: Whether this element's value is required, optional or constant.
+    range: SbePresence
+    ifabsent: string(required)
+    aliases: [presence]
+
+  value_ref:
+    description: The valid value that gives a constant element its value.
+    range: SbeQualifiedName
+    pattern: '^[A-Za-z_][0-9A-Za-z_]*\.[A-Za-z_][0-9A-Za-z_]*$'
+    aliases: [valueRef]
+
+  element_value:
+    description: The text of the XML element, which is the constant when presence is constant.
+    range: SbeToken
+    pattern: '^\S+( \S+)*$'
+    annotations:
+      xsd_type: xs:token
+      sbe_section: "4: Constant value"
+
+  primitive_type:
+    description: The wire type under this encoding.
+    range: SbePrimitiveType
+    required: true
+    aliases: [primitiveType]
+
+  array_length:
+    description: How many values of the primitive type the encoding holds, where zero means a variable number.
+    range: integer
+    minimum_value: 0
+    ifabsent: int(1)
+    aliases: [length]
+    annotations:
+      xsd_type: xs:nonNegativeInteger
+
+  character_encoding:
+    description: Which character set, or which Unicode scheme, character data follows.
+    aliases: [characterEncoding]
+
+  null_value:
+    description: The value that stands for null in place of the primitive type's default, written as text.
+    aliases: [nullValue]
+
+  min_value:
+    description: The lowest value allowed, written as text.
+    aliases: [minValue]
+
+  max_value:
+    description: The highest value allowed, written as text.
+    aliases: [maxValue]
+
+  encoding_type:
+    description: The simple encoding or primitive type that an enumeration or set is sent as.
+    range: SbeSymbolicName
+    pattern: '^[A-Za-z_][0-9A-Za-z_]{0,63}$'
+    required: true
+    aliases: [encodingType]
+
+  encoding_name:
+    description: Which encoding this element uses, by name.
+    comments:
+      - >-
+        It holds a name and not a class reference, because a name is unique only within one
+        schema document, where several documents may be listed side by side.
+        tests/sbe_rules.py holds each to an encoding of its document.
+    range: SbeSymbolicName
+    pattern: '^[A-Za-z_][0-9A-Za-z_]{0,63}$'
+    required: true
+    aliases: [type]
+
+  block_length:
+    description: The octets set aside for a message's fixed-length fields, or for those of each group entry.
+    range: integer
+    minimum_value: 0
+    aliases: [blockLength]
+    annotations:
+      xsd_type: xs:nonNegativeInteger
+      sbe_section: "3: Root block length"
+
+  dimension_type:
+    description: The composite, by name, that sends a repeating group's entry count and entry size.
+    range: SbeSymbolicName
+    pattern: '^[A-Za-z_][0-9A-Za-z_]{0,63}$'
+    ifabsent: string(groupSizeEncoding)
+    aliases: [dimensionType]
+    annotations:
+      sbe_section: "3: Encoding of repeating group dimensions"
+
+  schema_package:
+    description: The name or category that a set of counterparties knows this schema or part of it by.
+    aliases: [package]
+
+  schema_version:
+    description: The version of this message schema, starting at zero.
+    range: integer
+    minimum_value: 0
+    required: true
+    aliases: [version]
+    annotations:
+      xsd_type: xs:nonNegativeInteger
+      sbe_section: "4: Schema versioning"
+
+  semantic_version:
+    description: The version of FIX whose meanings this schema uses.
+    aliases: [semanticVersion]
+
+  byte_order:
+    description: How the octets of every number in this schema's messages are ordered.
+    range: SbeByteOrder
+    ifabsent: string(littleEndian)
+    aliases: [byteOrder]
+
+  header_type:
+    description: The composite, by name, that sends each message's header in this schema.
+    range: SbeSymbolicName
+    pattern: '^[A-Za-z_][0-9A-Za-z_]{0,63}$'
+    ifabsent: string(messageHeader)
+    aliases: [headerType]
+    annotations:
+      sbe_section: "3: Message header schema"
+
+  encoding_kind:
+    description: The class of this encoding or composite member, which stands for its XML element.
+    designates_type: true
+    range: string
+    required: true
+
+  encoding_sets:
+    description: The sets of encodings this schema's messages use.
+    multivalued: true
+    inlined_as_list: true
+    required: true
+    minimum_cardinality: 1
+    aliases: [types]
+
+  message_sets:
+    description: The sets of message templates of this schema.
+    multivalued: true
+    inlined_as_list: true
+    required: true
+    minimum_cardinality: 1
+    aliases: [messages]
+
+  messages:
+    description: The message templates of this set.
+    multivalued: true
+    inlined_as_list: true
+    required: true
+    minimum_cardinality: 1
+    aliases: [message]
+
+  encodings:
+    description: The encodings of this set.
+    multivalued: true
+    inlined_as_list: true
+    required: true
+    minimum_cardinality: 1
+    aliases: [type, composite, enum, set]
+
+  composite_members:
+    description: The members of this composite, in the order they are sent.
+    multivalued: true
+    inlined_as_list: true
+    required: true
+    minimum_cardinality: 1
+    aliases: [type, enum, set, composite, ref]
+
+  valid_values:
+    description: The values this enumeration allows.
+    range: SbeValidValue
+    multivalued: true
+    inlined_as_list: true
+    required: true
+    minimum_cardinality: 1
+    aliases: [validValue]
+
+  choices:
+    description: The alternatives of this set.
+    range: SbeChoice
+    multivalued: true
+    inlined_as_list: true
+    required: true
+    minimum_cardinality: 1
+    maximum_cardinality: 64
+    aliases: [choice]
+
+  block_fields:
+    description: Fixed-length fields, listed in wire order.
+    multivalued: true
+    inlined_as_list: true
+    aliases: [field]
+
+  repeating_groups:
+    description: Repeating groups, listed in wire order.
+    multivalued: true
+    inlined_as_list: true
+    aliases: [group]
+
+  var_data_fields:
+    description: Variable-length fields, listed in wire order.
+    multivalued: true
+    inlined_as_list: true
+    aliases: [data]
+
+classes:
+
+  SbeVersionedMixin:
+    mixin: true
+    description: The two attributes that record when an element entered a schema and when it should leave.
+    slots:
+      - since_version
+      - deprecated_since
+    annotations:
+      xsd_attribute_group: versionAttributes
+
+  SbeValidValue:
+    mixins:
+      - SbeVersionedMixin
+    description: One of the values an enumeration allows.
+    close_mappings:
+      - fix_orchestra:OrchestraCodeV10
+    slots:
+      - symbolic_name
+      - description
+    attributes:
+      valid_value:
+        description: The value as it is written in the schema, which must convert to the enumeration's encoding.
+        range: SbeToken
+        pattern: '^\S+( \S+)*$'
+        required: true
+        annotations:
+          xsd_type: xs:token
+          sbe_section: "4: Schema validation"
+    annotations:
+      xsd_type: validValue
+
+  SbeChoice:
+    mixins:
+      - SbeVersionedMixin
+    description: One of the alternatives of a set, which is one bit of its encoding.
+    comments:
+      - >-
+        FIX's transposer does not carry a set to Orchestra, so the mapping is related. FIX's
+        MultipleCharValue and MultipleStringValue fields hold such choices in a code set.
+    related_mappings:
+      - fix_orchestra:OrchestraCodeV10
+    slots:
+      - symbolic_name
+      - description
+    attributes:
+      bit_position:
+        description: Which bit stands for this choice, counted from zero at the least significant.
+        range: integer
+        minimum_value: 0
+        required: true
+        annotations:
+          xsd_type: xs:nonNegativeInteger
+          sbe_section: "4: choice element content"
+    annotations:
+      xsd_type: choice

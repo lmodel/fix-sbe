@@ -1,0 +1,458 @@
+---
+id: https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v2_0
+name: fix_sbe_v2_0
+title: FIX SBE 2.0 Release Candidate 3
+description: >-
+  The message schema of SBE 2.0 Release Candidate 3, a draft whose XML namespace is tentative.
+  It adds byte alignment and a constant written on a field,
+  moves presence and value ranges from a stand-alone encoding to the field or composite member
+  that uses it, and lets a schema's encodings and messages come from other files.
+version: 2.0-rc3
+source: https://github.com/FIXTradingCommunity/fix-simple-binary-encoding/tree/418a8f6a8b93c65b308638dab2bc6a35dddcd864/v2-0-RC3
+license: Apache-2.0
+see_also:
+  - https://lmodel.github.io/fix-sbe
+annotations:
+  xsd_namespace: http://fixprotocol.io/2017/sbe
+  xsd_version: 2.0RC3
+notes:
+  - >-
+    The mappings follow FIX's own transposer between SBE and Orchestra, in its class
+    SBE2Orchestra20_10, which carries SBE 2.0 to Orchestra 1.0.
+prefixes:
+  fix_sbe: https://w3id.org/lmodel/fix-sbe/
+  linkml: https://w3id.org/linkml/
+  schema: http://schema.org/
+  fix_orchestra: https://w3id.org/lmodel/fix-orchestra/
+default_prefix: fix_sbe
+default_range: string
+
+imports:
+  - linkml:types
+  - ./fix_sbe_common
+
+slots:
+
+  alignment:
+    description: The multiple of octets the start of this element is placed on.
+    range: integer
+    minimum_value: 1
+    aliases: [alignment]
+    annotations:
+      xsd_type: xs:positiveInteger
+      sbe_section: "3: Field byte alignment"
+
+  xml_base:
+    description: The base address that the XML Inclusion mechanism records on an element it brought in from another file.
+    range: uri
+    aliases: ["xml:base"]
+    annotations:
+      sbe_section: "4: XInclude usage"
+
+classes:
+
+  SbeMessageSchemaV2:
+    description: One SBE 2.0 message schema, with its encodings and message templates.
+    comments:
+      - >-
+        It is not marked as a tree root because a merged schema can have only one, and the final
+        standard's class takes that place. Name this class when validating a document.
+    close_mappings:
+      - fix_orchestra:OrchestraRepositoryV10
+    slots:
+      - schema_package
+      - sbe_id
+      - schema_version
+      - semantic_version
+      - description
+      - byte_order
+      - header_type
+      - encoding_sets
+      - message_sets
+    slot_usage:
+      sbe_id:
+        description: The number that identifies this schema between counterparties.
+      encoding_sets:
+        range: SbeEncodingSetV2
+      message_sets:
+        range: SbeMessageSetV2
+    annotations:
+      xml_element: messageSchema
+
+  SbeEncodingSetV2:
+    description: A set of encodings, in any order, that may have its own package and may come from another file.
+    slots:
+      - description
+      - schema_package
+      - xml_base
+      - encodings
+    slot_usage:
+      schema_package:
+        description: A package for this set in place of the schema's.
+      encodings:
+        comments:
+          - >-
+            A composite, an enumeration and a set may appear here or inside a composite, and a
+            simple type has a different shape in each place, so no single class fits this list.
+        range: SbeElementV2
+        any_of:
+          - range: SbeSimpleTypeV2
+          - range: SbeCompositeV2
+          - range: SbeEnumV2
+          - range: SbeSetV2
+    annotations:
+      xml_element: types
+
+  SbeMessageSetV2:
+    description: Message templates held together, which may have their own package and may come from another file.
+    slots:
+      - description
+      - schema_package
+      - xml_base
+      - messages
+    slot_usage:
+      schema_package:
+        description: A package for this set in place of the schema's.
+      messages:
+        range: SbeMessageV2
+    annotations:
+      xml_element: messages
+
+  SbeElementV2:
+    abstract: true
+    description: Anything that sets of encodings or composites hold, and the name and text they all have.
+    slots:
+      - encoding_kind
+      - symbolic_name
+      - description
+
+  SbeMemberV2:
+    is_a: SbeElementV2
+    abstract: true
+    description: Anything a composite may hold in the order it is sent.
+    slots:
+      - offset
+      - alignment
+
+  SbeSimpleTypeV2:
+    is_a: SbeElementV2
+    mixins:
+      - SbeVersionedMixin
+    description: A simple encoding that stands alone in a set, backed by one primitive value, or several in an array.
+    close_mappings:
+      - fix_orchestra:OrchestraDatatypeV10
+    slots:
+      - element_value
+      - primitive_type
+      - array_length
+      - character_encoding
+    annotations:
+      xsd_type: simpleDataType
+      xml_element: type
+
+  SbeMemberTypeV2:
+    is_a: SbeMemberV2
+    description: A simple encoding inside a composite, which may say it is optional or constant.
+    close_mappings:
+      - fix_orchestra:OrchestraDatatypeV10
+    slots:
+      - element_value
+      - primitive_type
+      - array_length
+      - character_encoding
+      - presence
+      - null_value
+      - min_value
+      - max_value
+      - value_ref
+    rules:
+      - title: A reference to a value needs a constant
+        description: A value_ref is valid only on an element whose presence is constant.
+        preconditions:
+          slot_conditions:
+            value_ref:
+              value_presence: PRESENT
+        postconditions:
+          slot_conditions:
+            presence:
+              equals_string: constant
+        annotations:
+          sbe_section: "4: Field attributes"
+      - title: A required value has no null
+        description: A null value cannot sit beside a presence of required.
+        preconditions:
+          slot_conditions:
+            presence:
+              equals_string: required
+        postconditions:
+          slot_conditions:
+            null_value:
+              value_presence: ABSENT
+        annotations:
+          sbe_section: "4: Schema validation"
+      - title: A constant has no null
+        description: A null value cannot sit beside a presence of constant.
+        preconditions:
+          slot_conditions:
+            presence:
+              equals_string: constant
+        postconditions:
+          slot_conditions:
+            null_value:
+              value_presence: ABSENT
+        annotations:
+          sbe_section: "2: Common field schema attributes"
+      - title: A constant has no lowest value
+        description: A lowest value cannot sit beside a presence of constant.
+        preconditions:
+          slot_conditions:
+            presence:
+              equals_string: constant
+        postconditions:
+          slot_conditions:
+            min_value:
+              value_presence: ABSENT
+        annotations:
+          sbe_section: "2: Common field schema attributes"
+      - title: A constant has no highest value
+        description: A highest value cannot sit beside a presence of constant.
+        preconditions:
+          slot_conditions:
+            presence:
+              equals_string: constant
+        postconditions:
+          slot_conditions:
+            max_value:
+              value_presence: ABSENT
+        annotations:
+          sbe_section: "2: Common field schema attributes"
+    annotations:
+      xsd_type: memberDataType
+      xml_element: type
+
+  SbeRefV2:
+    is_a: SbeMemberV2
+    description: A composite's member that reuses an encoding defined elsewhere in the schema.
+    slots:
+      - encoding_name
+    annotations:
+      xsd_type: refType
+      xml_element: ref
+
+  SbeCompositeV2:
+    is_a: SbeMemberV2
+    mixins:
+      - SbeVersionedMixin
+    description: An encoding built from members sent one after another, such as a decimal's mantissa and exponent.
+    comments:
+      - >-
+        The members keep one list because their order is the order on the wire. Separate lists
+        per kind of member could not say that an enum comes between two types.
+    close_mappings:
+      - fix_orchestra:OrchestraComponentV10
+    slots:
+      - composite_members
+    slot_usage:
+      composite_members:
+        range: SbeMemberV2
+    annotations:
+      xsd_type: compositeDataType
+      xml_element: composite
+
+  SbeEnumV2:
+    is_a: SbeMemberV2
+    mixins:
+      - SbeVersionedMixin
+    description: An encoding whose value is one of a listed set of valid values.
+    close_mappings:
+      - fix_orchestra:OrchestraCodeSetV10
+    slots:
+      - encoding_type
+      - valid_values
+    annotations:
+      xsd_type: enumType
+      xml_element: enum
+
+  SbeSetV2:
+    is_a: SbeMemberV2
+    mixins:
+      - SbeVersionedMixin
+    description: An encoding whose value is any combination of up to 64 choices, sent as a bitset.
+    comments:
+      - >-
+        FIX's transposer does not carry a set to Orchestra, so the mapping is related. FIX's
+        MultipleCharValue and MultipleStringValue fields hold such choices in a code set.
+    related_mappings:
+      - fix_orchestra:OrchestraCodeSetV10
+    slots:
+      - encoding_type
+      - choices
+    annotations:
+      xsd_type: setType
+      xml_element: set
+
+  SbeBlockV2:
+    abstract: true
+    mixins:
+      - SbeVersionedMixin
+    description: The body shared by a message and a group entry, which holds its fixed-length fields first, then groups, then variable-length data.
+    slots:
+      - symbolic_name
+      - sbe_id
+      - block_length
+      - alignment
+      - semantic_type
+      - description
+      - block_fields
+      - repeating_groups
+      - var_data_fields
+    slot_usage:
+      sbe_id:
+        required: true
+      alignment:
+        description: The multiple of octets where a message or each group entry begins.
+      block_fields:
+        range: SbeFieldV2
+      repeating_groups:
+        range: SbeGroupV2
+      var_data_fields:
+        range: SbeFieldV2
+
+  SbeMessageV2:
+    is_a: SbeBlockV2
+    description: A message template, whose number and block length are sent in each message's header.
+    close_mappings:
+      - fix_orchestra:OrchestraMessageV10
+    slot_usage:
+      sbe_id:
+        description: The template's number, which no other template in the schema shares.
+      semantic_type:
+        description: The FIX MsgType(35) this template stands for, where several templates may share one.
+    annotations:
+      xsd_type: blockType
+      xml_element: message
+
+  SbeGroupV2:
+    is_a: SbeBlockV2
+    description: A repeating group, whose entries each hold the same fields, and which cannot be without a field.
+    close_mappings:
+      - fix_orchestra:OrchestraGroupV10
+    slots:
+      - dimension_type
+    slot_usage:
+      block_fields:
+        required: true
+        minimum_cardinality: 1
+    annotations:
+      xsd_type: groupType
+      xml_element: group
+
+  SbeFieldV2:
+    mixins:
+      - SbeVersionedMixin
+    description: A message's or group entry's field, which uses an encoding at a place in its block and may state a constant.
+    comments:
+      - >-
+        The old mapping called this an exact match of an Orchestra field, but the two differ.
+        This one sits at a place in one block, and FIX's transposer carries one with a composite
+        encoding to a component reference, not a field.
+    close_mappings:
+      - fix_orchestra:OrchestraFieldV10
+    slots:
+      - symbolic_name
+      - sbe_id
+      - encoding_name
+      - element_value
+      - offset
+      - alignment
+      - presence
+      - null_value
+      - min_value
+      - max_value
+      - value_ref
+      - semantic_type
+      - description
+    slot_usage:
+      sbe_id:
+        required: true
+        description: The field's FIX tag number.
+      semantic_type:
+        description: The FIX datatype this field carries.
+      alignment:
+        description: The multiple of octets the start of this field is placed on, in place of an offset.
+    rules:
+      - title: A reference to a value needs a constant
+        description: A value_ref is valid only on an element whose presence is constant.
+        preconditions:
+          slot_conditions:
+            value_ref:
+              value_presence: PRESENT
+        postconditions:
+          slot_conditions:
+            presence:
+              equals_string: constant
+        annotations:
+          sbe_section: "4: Field attributes"
+      - title: A required value has no null
+        description: A null value cannot sit beside a presence of required.
+        preconditions:
+          slot_conditions:
+            presence:
+              equals_string: required
+        postconditions:
+          slot_conditions:
+            null_value:
+              value_presence: ABSENT
+        annotations:
+          sbe_section: "4: Schema validation"
+      - title: A constant has no null
+        description: A null value cannot sit beside a presence of constant.
+        preconditions:
+          slot_conditions:
+            presence:
+              equals_string: constant
+        postconditions:
+          slot_conditions:
+            null_value:
+              value_presence: ABSENT
+        annotations:
+          sbe_section: "2: Common field schema attributes"
+      - title: A constant has no lowest value
+        description: A lowest value cannot sit beside a presence of constant.
+        preconditions:
+          slot_conditions:
+            presence:
+              equals_string: constant
+        postconditions:
+          slot_conditions:
+            min_value:
+              value_presence: ABSENT
+        annotations:
+          sbe_section: "2: Common field schema attributes"
+      - title: A constant has no highest value
+        description: A highest value cannot sit beside a presence of constant.
+        preconditions:
+          slot_conditions:
+            presence:
+              equals_string: constant
+        postconditions:
+          slot_conditions:
+            max_value:
+              value_presence: ABSENT
+        annotations:
+          sbe_section: "2: Common field schema attributes"
+      - title: An offset or an alignment, not both
+        description: A field places itself by an offset or by an alignment, never both.
+        preconditions:
+          slot_conditions:
+            alignment:
+              value_presence: PRESENT
+        postconditions:
+          slot_conditions:
+            offset:
+              value_presence: ABSENT
+        annotations:
+          sbe_section: "3: Field byte alignment"
+    annotations:
+      xsd_type: fieldType
+      xml_element: field

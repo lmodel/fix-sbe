@@ -1,0 +1,487 @@
+# metamodel_version: 1.12.0
+# version: 1.0 and 2.0-rc3
+BASE <https://w3id.org/lmodel/fix-sbe/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX linkml: <https://w3id.org/linkml/>
+PREFIX schema1: <http://schema.org/>
+
+
+linkml:String xsd:string
+
+linkml:Integer xsd:integer
+
+linkml:Boolean xsd:boolean
+
+linkml:Float xsd:float
+
+linkml:Double xsd:double
+
+linkml:Decimal xsd:decimal
+
+linkml:Time xsd:time
+
+linkml:Date xsd:date
+
+linkml:Datetime xsd:dateTime
+
+linkml:DateOrDatetime linkml:DateOrDatetime
+
+linkml:Uriorcurie IRI
+
+linkml:Curie xsd:string
+
+linkml:Uri IRI
+
+linkml:Ncname xsd:string
+
+linkml:Objectidentifier IRI
+
+linkml:Nodeidentifier NONLITERAL
+
+linkml:Jsonpointer xsd:string
+
+linkml:Jsonpath xsd:string
+
+linkml:Sparqlpath xsd:string
+
+<SbeSymbolicName> xsd:string
+
+<SbeQualifiedName> xsd:string
+
+<SbeToken> xsd:token
+
+<SbeBlockV1>  (
+    @<SbeGroupV1> OR @<SbeMessageV1>
+)
+
+<SbeBlockV1_struct> {
+    (  $<SbeBlockV1_tes> (  &<SbeVersionedMixin_tes> ;
+          rdf:type [ <SbeVersionedMixin> ] ? ;
+          <symbolic_name> @<SbeSymbolicName> ;
+          <sbe_id> @linkml:Integer ;
+          <block_length> @linkml:Integer ? ;
+          <semantic_type> @<SbeToken> ? ;
+          schema1:description @linkml:String ? ;
+          <block_fields> @<SbeFieldV1> * ;
+          <repeating_groups> @<SbeGroupV1> * ;
+          <var_data_fields> @<SbeFieldV1> * ;
+          <since_version> @linkml:Integer ? ;
+          <deprecated_since> @linkml:Integer ?
+       ) ;
+       rdf:type [ <SbeBlockV1> ] ?
+    )
+}
+
+<SbeBlockV2>  (
+    @<SbeGroupV2> OR @<SbeMessageV2>
+)
+
+<SbeBlockV2_struct> {
+    (  $<SbeBlockV2_tes> (  &<SbeVersionedMixin_tes> ;
+          rdf:type [ <SbeVersionedMixin> ] ? ;
+          <symbolic_name> @<SbeSymbolicName> ;
+          <sbe_id> @linkml:Integer ;
+          <block_length> @linkml:Integer ? ;
+          <alignment> @linkml:Integer ? ;
+          <semantic_type> @<SbeToken> ? ;
+          schema1:description @linkml:String ? ;
+          <block_fields> @<SbeFieldV2> * ;
+          <repeating_groups> @<SbeGroupV2> * ;
+          <var_data_fields> @<SbeFieldV2> * ;
+          <since_version> @linkml:Integer ? ;
+          <deprecated_since> @linkml:Integer ?
+       ) ;
+       rdf:type [ <SbeBlockV2> ] ?
+    )
+}
+
+<SbeChoice> CLOSED {
+    (  $<SbeChoice_tes> (  &<SbeVersionedMixin_tes> ;
+          rdf:type [ <SbeVersionedMixin> ] ? ;
+          <symbolic_name> @<SbeSymbolicName> ;
+          schema1:description @linkml:String ? ;
+          <bit_position> @linkml:Integer ;
+          <since_version> @linkml:Integer ? ;
+          <deprecated_since> @linkml:Integer ?
+       ) ;
+       rdf:type [ <SbeChoice> ] ?
+    )
+}
+
+<SbeCompositeV1> CLOSED {
+    (  $<SbeCompositeV1_tes> (  &<SbeEncodingV1_tes> ;
+          rdf:type [ <SbeEncodingV1> ] ? ;
+          <composite_members> @<SbeMemberV1> +
+       ) ;
+       rdf:type [ <SbeCompositeV1> ] ?
+    )
+}
+
+<SbeCompositeV2> CLOSED {
+    (  $<SbeCompositeV2_tes> (  &<SbeMemberV2_tes> ;
+          rdf:type [ <SbeMemberV2> ] ? ;
+          &<SbeVersionedMixin_tes> ;
+          rdf:type [ <SbeVersionedMixin> ] ? ;
+          <composite_members> @<SbeMemberV2> + ;
+          <since_version> @linkml:Integer ? ;
+          <deprecated_since> @linkml:Integer ?
+       ) ;
+       rdf:type [ <SbeCompositeV2> ] ?
+    )
+}
+
+<SbeElementV2>  (
+    @<SbeMemberV2> OR @<SbeSimpleTypeV2>
+)
+
+<SbeElementV2_struct> {
+    (  $<SbeElementV2_tes> (  <encoding_kind> @linkml:String ;
+          <symbolic_name> @<SbeSymbolicName> ;
+          schema1:description @linkml:String ?
+       ) ;
+       rdf:type [ <SbeElementV2> ] ?
+    )
+}
+
+<SbeEncodingSetV1> CLOSED {
+    (  $<SbeEncodingSetV1_tes> <encodings> @<SbeEncodingV1> + ;
+       rdf:type [ <SbeEncodingSetV1> ] ?
+    )
+}
+
+<SbeEncodingSetV2> CLOSED {
+    (  $<SbeEncodingSetV2_tes> (  schema1:description @linkml:String ? ;
+          <schema_package> @linkml:String ? ;
+          <xml_base> @linkml:Uri ? ;
+          <encodings> @<SbeElementV2> +
+       ) ;
+       rdf:type [ <SbeEncodingSetV2> ] ?
+    )
+}
+
+<SbeEncodingV1>  (
+    @<SbeCompositeV1> OR @<SbeEnumV1> OR @<SbeSetV1> OR @<SbeSimpleTypeV1>
+)
+
+<SbeEncodingV1_struct> {
+    (  $<SbeEncodingV1_tes> (  &<SbeMemberV1_tes> ;
+          rdf:type [ <SbeMemberV1> ] ? ;
+          <semantic_type> @<SbeToken> ? ;
+          schema1:description @linkml:String ?
+       ) ;
+       rdf:type [ <SbeEncodingV1> ] ?
+    )
+}
+
+<SbeEnumV1> CLOSED {
+    (  $<SbeEnumV1_tes> (  &<SbeEncodingV1_tes> ;
+          rdf:type [ <SbeEncodingV1> ] ? ;
+          <encoding_type> @<SbeSymbolicName> ;
+          <valid_values> @<SbeValidValue> +
+       ) ;
+       rdf:type [ <SbeEnumV1> ] ?
+    )
+}
+
+<SbeEnumV2> CLOSED {
+    (  $<SbeEnumV2_tes> (  &<SbeMemberV2_tes> ;
+          rdf:type [ <SbeMemberV2> ] ? ;
+          &<SbeVersionedMixin_tes> ;
+          rdf:type [ <SbeVersionedMixin> ] ? ;
+          <encoding_type> @<SbeSymbolicName> ;
+          <valid_values> @<SbeValidValue> + ;
+          <since_version> @linkml:Integer ? ;
+          <deprecated_since> @linkml:Integer ?
+       ) ;
+       rdf:type [ <SbeEnumV2> ] ?
+    )
+}
+
+<SbeFieldV1> CLOSED {
+    (  $<SbeFieldV1_tes> (  &<SbeVersionedMixin_tes> ;
+          rdf:type [ <SbeVersionedMixin> ] ? ;
+          <symbolic_name> @<SbeSymbolicName> ;
+          <sbe_id> @linkml:Integer ;
+          <encoding_name> @<SbeSymbolicName> ;
+          <offset> @linkml:Integer ? ;
+          <presence> [ <https://w3id.org/lmodel/fix-sbe/SbePresence#required>
+             <https://w3id.org/lmodel/fix-sbe/SbePresence#optional> <https://w3id.org/lmodel/fix-sbe/SbePresence#constant> ] ? ;
+          <value_ref> @<SbeQualifiedName> ? ;
+          <semantic_type> @<SbeToken> ? ;
+          schema1:description @linkml:String ? ;
+          <time_epoch> @linkml:String ? ;
+          <time_unit> @linkml:String ? ;
+          <since_version> @linkml:Integer ? ;
+          <deprecated_since> @linkml:Integer ?
+       ) ;
+       rdf:type [ <SbeFieldV1> ] ?
+    )
+}
+
+<SbeFieldV2> CLOSED {
+    (  $<SbeFieldV2_tes> (  &<SbeVersionedMixin_tes> ;
+          rdf:type [ <SbeVersionedMixin> ] ? ;
+          <symbolic_name> @<SbeSymbolicName> ;
+          <sbe_id> @linkml:Integer ;
+          <encoding_name> @<SbeSymbolicName> ;
+          <element_value> @<SbeToken> ? ;
+          <offset> @linkml:Integer ? ;
+          <alignment> @linkml:Integer ? ;
+          <presence> [ <https://w3id.org/lmodel/fix-sbe/SbePresence#required>
+             <https://w3id.org/lmodel/fix-sbe/SbePresence#optional> <https://w3id.org/lmodel/fix-sbe/SbePresence#constant> ] ? ;
+          <null_value> @linkml:String ? ;
+          <min_value> @linkml:String ? ;
+          <max_value> @linkml:String ? ;
+          <value_ref> @<SbeQualifiedName> ? ;
+          <semantic_type> @<SbeToken> ? ;
+          schema1:description @linkml:String ? ;
+          <since_version> @linkml:Integer ? ;
+          <deprecated_since> @linkml:Integer ?
+       ) ;
+       rdf:type [ <SbeFieldV2> ] ?
+    )
+}
+
+<SbeGroupV1> CLOSED {
+    (  $<SbeGroupV1_tes> (  &<SbeBlockV1_tes> ;
+          rdf:type [ <SbeBlockV1> ] ? ;
+          <dimension_type> @<SbeSymbolicName> ? ;
+          <block_fields> @<SbeFieldV1> +
+       ) ;
+       rdf:type [ <SbeGroupV1> ] ?
+    )
+}
+
+<SbeGroupV2> CLOSED {
+    (  $<SbeGroupV2_tes> (  &<SbeBlockV2_tes> ;
+          rdf:type [ <SbeBlockV2> ] ? ;
+          <dimension_type> @<SbeSymbolicName> ? ;
+          <block_fields> @<SbeFieldV2> +
+       ) ;
+       rdf:type [ <SbeGroupV2> ] ?
+    )
+}
+
+<SbeMemberTypeV2> CLOSED {
+    (  $<SbeMemberTypeV2_tes> (  &<SbeMemberV2_tes> ;
+          rdf:type [ <SbeMemberV2> ] ? ;
+          <element_value> @<SbeToken> ? ;
+          <primitive_type> [ <https://w3id.org/lmodel/fix-sbe/SbePrimitiveType#char>
+             <https://w3id.org/lmodel/fix-sbe/SbePrimitiveType#int8> <https://w3id.org/lmodel/fix-sbe/SbePrimitiveType#int16>
+             <https://w3id.org/lmodel/fix-sbe/SbePrimitiveType#int32> <https://w3id.org/lmodel/fix-sbe/SbePrimitiveType#int64>
+             <https://w3id.org/lmodel/fix-sbe/SbePrimitiveType#uint8> <https://w3id.org/lmodel/fix-sbe/SbePrimitiveType#uint16>
+             <https://w3id.org/lmodel/fix-sbe/SbePrimitiveType#uint32> <https://w3id.org/lmodel/fix-sbe/SbePrimitiveType#uint64>
+             <https://w3id.org/lmodel/fix-sbe/SbePrimitiveType#float> <https://w3id.org/lmodel/fix-sbe/SbePrimitiveType#double> ] ;
+          <array_length> @linkml:Integer ? ;
+          <character_encoding> @linkml:String ? ;
+          <presence> [ <https://w3id.org/lmodel/fix-sbe/SbePresence#required>
+             <https://w3id.org/lmodel/fix-sbe/SbePresence#optional> <https://w3id.org/lmodel/fix-sbe/SbePresence#constant> ] ? ;
+          <null_value> @linkml:String ? ;
+          <min_value> @linkml:String ? ;
+          <max_value> @linkml:String ? ;
+          <value_ref> @<SbeQualifiedName> ?
+       ) ;
+       rdf:type [ <SbeMemberTypeV2> ] ?
+    )
+}
+
+<SbeMemberV1>  (
+    @<SbeEncodingV1> OR @<SbeRefV1>
+)
+
+<SbeMemberV1_struct> {
+    (  $<SbeMemberV1_tes> (  &<SbeVersionedMixin_tes> ;
+          rdf:type [ <SbeVersionedMixin> ] ? ;
+          <encoding_kind> @linkml:String ;
+          <symbolic_name> @<SbeSymbolicName> ;
+          <offset> @linkml:Integer ? ;
+          <since_version> @linkml:Integer ? ;
+          <deprecated_since> @linkml:Integer ?
+       ) ;
+       rdf:type [ <SbeMemberV1> ] ?
+    )
+}
+
+<SbeMemberV2>  (
+    @<SbeCompositeV2> OR @<SbeEnumV2> OR @<SbeMemberTypeV2> OR @<SbeRefV2> OR @<SbeSetV2>
+)
+
+<SbeMemberV2_struct> {
+    (  $<SbeMemberV2_tes> (  &<SbeElementV2_tes> ;
+          rdf:type [ <SbeElementV2> ] ? ;
+          <offset> @linkml:Integer ? ;
+          <alignment> @linkml:Integer ?
+       ) ;
+       rdf:type [ <SbeMemberV2> ] ?
+    )
+}
+
+<SbeMessageSchemaV1> CLOSED {
+    (  $<SbeMessageSchemaV1_tes> (  <schema_package> @linkml:String ? ;
+          <sbe_id> @linkml:Integer ? ;
+          <schema_version> @linkml:Integer ;
+          <semantic_version> @linkml:String ? ;
+          schema1:description @linkml:String ? ;
+          <byte_order> [ <https://w3id.org/lmodel/fix-sbe/SbeByteOrder#bigEndian>
+             <https://w3id.org/lmodel/fix-sbe/SbeByteOrder#littleEndian> ] ? ;
+          <header_type> @<SbeSymbolicName> ? ;
+          <encoding_sets> @<SbeEncodingSetV1> + ;
+          <messages> @<SbeMessageV1> +
+       ) ;
+       rdf:type [ <SbeMessageSchemaV1> ] ?
+    )
+}
+
+<SbeMessageSchemaV2> CLOSED {
+    (  $<SbeMessageSchemaV2_tes> (  <schema_package> @linkml:String ? ;
+          <sbe_id> @linkml:Integer ? ;
+          <schema_version> @linkml:Integer ;
+          <semantic_version> @linkml:String ? ;
+          schema1:description @linkml:String ? ;
+          <byte_order> [ <https://w3id.org/lmodel/fix-sbe/SbeByteOrder#bigEndian>
+             <https://w3id.org/lmodel/fix-sbe/SbeByteOrder#littleEndian> ] ? ;
+          <header_type> @<SbeSymbolicName> ? ;
+          <encoding_sets> @<SbeEncodingSetV2> + ;
+          <message_sets> @<SbeMessageSetV2> +
+       ) ;
+       rdf:type [ <SbeMessageSchemaV2> ] ?
+    )
+}
+
+<SbeMessageSetV2> CLOSED {
+    (  $<SbeMessageSetV2_tes> (  schema1:description @linkml:String ? ;
+          <schema_package> @linkml:String ? ;
+          <xml_base> @linkml:Uri ? ;
+          <messages> @<SbeMessageV2> +
+       ) ;
+       rdf:type [ <SbeMessageSetV2> ] ?
+    )
+}
+
+<SbeMessageV1> CLOSED {
+    (  $<SbeMessageV1_tes> (  &<SbeBlockV1_tes> ;
+          rdf:type [ <SbeBlockV1> ] ? ;
+          <sbe_id> @linkml:Integer ;
+          <semantic_type> @<SbeToken> ?
+       ) ;
+       rdf:type [ <SbeMessageV1> ] ?
+    )
+}
+
+<SbeMessageV2> CLOSED {
+    (  $<SbeMessageV2_tes> (  &<SbeBlockV2_tes> ;
+          rdf:type [ <SbeBlockV2> ] ? ;
+          <sbe_id> @linkml:Integer ;
+          <semantic_type> @<SbeToken> ?
+       ) ;
+       rdf:type [ <SbeMessageV2> ] ?
+    )
+}
+
+<SbeRefV1> CLOSED {
+    (  $<SbeRefV1_tes> (  &<SbeMemberV1_tes> ;
+          rdf:type [ <SbeMemberV1> ] ? ;
+          <encoding_name> @<SbeSymbolicName>
+       ) ;
+       rdf:type [ <SbeRefV1> ] ?
+    )
+}
+
+<SbeRefV2> CLOSED {
+    (  $<SbeRefV2_tes> (  &<SbeMemberV2_tes> ;
+          rdf:type [ <SbeMemberV2> ] ? ;
+          <encoding_name> @<SbeSymbolicName>
+       ) ;
+       rdf:type [ <SbeRefV2> ] ?
+    )
+}
+
+<SbeSetV1> CLOSED {
+    (  $<SbeSetV1_tes> (  &<SbeEncodingV1_tes> ;
+          rdf:type [ <SbeEncodingV1> ] ? ;
+          <encoding_type> @<SbeSymbolicName> ;
+          <choices> @<SbeChoice> +
+       ) ;
+       rdf:type [ <SbeSetV1> ] ?
+    )
+}
+
+<SbeSetV2> CLOSED {
+    (  $<SbeSetV2_tes> (  &<SbeMemberV2_tes> ;
+          rdf:type [ <SbeMemberV2> ] ? ;
+          &<SbeVersionedMixin_tes> ;
+          rdf:type [ <SbeVersionedMixin> ] ? ;
+          <encoding_type> @<SbeSymbolicName> ;
+          <choices> @<SbeChoice> + ;
+          <since_version> @linkml:Integer ? ;
+          <deprecated_since> @linkml:Integer ?
+       ) ;
+       rdf:type [ <SbeSetV2> ] ?
+    )
+}
+
+<SbeSimpleTypeV1> CLOSED {
+    (  $<SbeSimpleTypeV1_tes> (  &<SbeEncodingV1_tes> ;
+          rdf:type [ <SbeEncodingV1> ] ? ;
+          <element_value> @<SbeToken> ? ;
+          <primitive_type> [ <https://w3id.org/lmodel/fix-sbe/SbePrimitiveType#char>
+             <https://w3id.org/lmodel/fix-sbe/SbePrimitiveType#int8> <https://w3id.org/lmodel/fix-sbe/SbePrimitiveType#int16>
+             <https://w3id.org/lmodel/fix-sbe/SbePrimitiveType#int32> <https://w3id.org/lmodel/fix-sbe/SbePrimitiveType#int64>
+             <https://w3id.org/lmodel/fix-sbe/SbePrimitiveType#uint8> <https://w3id.org/lmodel/fix-sbe/SbePrimitiveType#uint16>
+             <https://w3id.org/lmodel/fix-sbe/SbePrimitiveType#uint32> <https://w3id.org/lmodel/fix-sbe/SbePrimitiveType#uint64>
+             <https://w3id.org/lmodel/fix-sbe/SbePrimitiveType#float> <https://w3id.org/lmodel/fix-sbe/SbePrimitiveType#double> ] ;
+          <array_length> @linkml:Integer ? ;
+          <character_encoding> @linkml:String ? ;
+          <null_value> @linkml:String ? ;
+          <min_value> @linkml:String ? ;
+          <max_value> @linkml:String ? ;
+          <presence> [ <https://w3id.org/lmodel/fix-sbe/SbePresence#required>
+             <https://w3id.org/lmodel/fix-sbe/SbePresence#optional> <https://w3id.org/lmodel/fix-sbe/SbePresence#constant> ] ? ;
+          <value_ref> @<SbeQualifiedName> ?
+       ) ;
+       rdf:type [ <SbeSimpleTypeV1> ] ?
+    )
+}
+
+<SbeSimpleTypeV2> CLOSED {
+    (  $<SbeSimpleTypeV2_tes> (  &<SbeElementV2_tes> ;
+          rdf:type [ <SbeElementV2> ] ? ;
+          &<SbeVersionedMixin_tes> ;
+          rdf:type [ <SbeVersionedMixin> ] ? ;
+          <element_value> @<SbeToken> ? ;
+          <primitive_type> [ <https://w3id.org/lmodel/fix-sbe/SbePrimitiveType#char>
+             <https://w3id.org/lmodel/fix-sbe/SbePrimitiveType#int8> <https://w3id.org/lmodel/fix-sbe/SbePrimitiveType#int16>
+             <https://w3id.org/lmodel/fix-sbe/SbePrimitiveType#int32> <https://w3id.org/lmodel/fix-sbe/SbePrimitiveType#int64>
+             <https://w3id.org/lmodel/fix-sbe/SbePrimitiveType#uint8> <https://w3id.org/lmodel/fix-sbe/SbePrimitiveType#uint16>
+             <https://w3id.org/lmodel/fix-sbe/SbePrimitiveType#uint32> <https://w3id.org/lmodel/fix-sbe/SbePrimitiveType#uint64>
+             <https://w3id.org/lmodel/fix-sbe/SbePrimitiveType#float> <https://w3id.org/lmodel/fix-sbe/SbePrimitiveType#double> ] ;
+          <array_length> @linkml:Integer ? ;
+          <character_encoding> @linkml:String ? ;
+          <since_version> @linkml:Integer ? ;
+          <deprecated_since> @linkml:Integer ?
+       ) ;
+       rdf:type [ <SbeSimpleTypeV2> ] ?
+    )
+}
+
+<SbeValidValue> CLOSED {
+    (  $<SbeValidValue_tes> (  &<SbeVersionedMixin_tes> ;
+          rdf:type [ <SbeVersionedMixin> ] ? ;
+          <symbolic_name> @<SbeSymbolicName> ;
+          schema1:description @linkml:String ? ;
+          <valid_value> @<SbeToken> ;
+          <since_version> @linkml:Integer ? ;
+          <deprecated_since> @linkml:Integer ?
+       ) ;
+       rdf:type [ <SbeValidValue> ] ?
+    )
+}
+
+<SbeVersionedMixin> {
+    (  $<SbeVersionedMixin_tes> (  <since_version> @linkml:Integer ? ;
+          <deprecated_since> @linkml:Integer ?
+       ) ;
+       rdf:type [ <SbeVersionedMixin> ] ?
+    )
+}

@@ -1,0 +1,442 @@
+# metamodel_version: 1.12.0
+# version: 1.0 and 2.0-rc3
+enum SbeByteOrder
+  {
+    bigEndian
+    littleEndian
+  }
+
+enum SbeFixDatatype
+  {
+    int
+    Length
+    TagNum
+    SeqNum
+    NumInGroup
+    DayOfMonth
+    Qty
+    float
+    Price
+    PriceOffset
+    Amt
+    Percentage
+    char
+    String
+    EncodedText
+    XMLData
+    data
+    Country
+    Currency
+    Exchange
+    Language
+    Boolean
+    MultipleCharValue
+    MultipleStringValue
+    MonthYear
+    UTCTimestamp
+    UTCTimeOnly
+    UTCDateOnly
+    LocalMktDate
+    TZTimeOnly
+    TZTimestamp
+  }
+
+enum SbePresence
+  {
+    required
+    optional
+    constant
+  }
+
+enum SbePrimitiveType
+  {
+    char
+    int8
+    int16
+    int32
+    int64
+    uint8
+    uint16
+    uint32
+    uint64
+    float
+    double
+  }
+
+type SbeBlockV1 implements SbeVersionedMixin
+  {
+    symbolicName: SbeSymbolicName!
+    sbeId: Int!
+    blockLength: Int
+    semanticType: SbeToken
+    description: String
+    blockFields: [SbeFieldV1]
+    repeatingGroups: [SbeGroupV1]
+    varDataFields: [SbeFieldV1]
+    sinceVersion: Int
+    deprecatedSince: Int
+  }
+
+type SbeBlockV2 implements SbeVersionedMixin
+  {
+    symbolicName: SbeSymbolicName!
+    sbeId: Int!
+    blockLength: Int
+    alignment: Int
+    semanticType: SbeToken
+    description: String
+    blockFields: [SbeFieldV2]
+    repeatingGroups: [SbeGroupV2]
+    varDataFields: [SbeFieldV2]
+    sinceVersion: Int
+    deprecatedSince: Int
+  }
+
+type SbeChoice implements SbeVersionedMixin
+  {
+    symbolicName: SbeSymbolicName!
+    description: String
+    bitPosition: Int!
+    sinceVersion: Int
+    deprecatedSince: Int
+  }
+
+type SbeCompositeV1
+  {
+    encodingKind: String!
+    symbolicName: SbeSymbolicName!
+    offset: Int
+    sinceVersion: Int
+    deprecatedSince: Int
+    semanticType: SbeToken
+    description: String
+    compositeMembers: [SbeMemberV1]!
+  }
+
+type SbeCompositeV2 implements SbeVersionedMixin
+  {
+    encodingKind: String!
+    symbolicName: SbeSymbolicName!
+    description: String
+    offset: Int
+    alignment: Int
+    compositeMembers: [SbeMemberV2]!
+    sinceVersion: Int
+    deprecatedSince: Int
+  }
+
+interface SbeElementV2
+  {
+    encodingKind: String!
+    symbolicName: SbeSymbolicName!
+    description: String
+  }
+
+type SbeEncodingSetV1
+  {
+    encodings: [SbeEncodingV1]!
+  }
+
+type SbeEncodingSetV2
+  {
+    description: String
+    schemaPackage: String
+    xmlBase: String
+    encodings: [SbeElementV2]!
+  }
+
+interface SbeEncodingV1
+  {
+    encodingKind: String!
+    symbolicName: SbeSymbolicName!
+    offset: Int
+    sinceVersion: Int
+    deprecatedSince: Int
+    semanticType: SbeToken
+    description: String
+  }
+
+type SbeEnumV1
+  {
+    encodingKind: String!
+    symbolicName: SbeSymbolicName!
+    offset: Int
+    sinceVersion: Int
+    deprecatedSince: Int
+    semanticType: SbeToken
+    description: String
+    encodingType: SbeSymbolicName!
+    validValues: [SbeValidValue]!
+  }
+
+type SbeEnumV2 implements SbeVersionedMixin
+  {
+    encodingKind: String!
+    symbolicName: SbeSymbolicName!
+    description: String
+    offset: Int
+    alignment: Int
+    encodingType: SbeSymbolicName!
+    validValues: [SbeValidValue]!
+    sinceVersion: Int
+    deprecatedSince: Int
+  }
+
+type SbeFieldV1 implements SbeVersionedMixin
+  {
+    symbolicName: SbeSymbolicName!
+    sbeId: Int!
+    encodingName: SbeSymbolicName!
+    offset: Int
+    presence: SbePresence
+    valueRef: SbeQualifiedName
+    semanticType: SbeToken
+    description: String
+    timeEpoch: String
+    timeUnit: String
+    sinceVersion: Int
+    deprecatedSince: Int
+  }
+
+type SbeFieldV2 implements SbeVersionedMixin
+  {
+    symbolicName: SbeSymbolicName!
+    sbeId: Int!
+    encodingName: SbeSymbolicName!
+    elementValue: SbeToken
+    offset: Int
+    alignment: Int
+    presence: SbePresence
+    nullValue: String
+    minValue: String
+    maxValue: String
+    valueRef: SbeQualifiedName
+    semanticType: SbeToken
+    description: String
+    sinceVersion: Int
+    deprecatedSince: Int
+  }
+
+type SbeGroupV1
+  {
+    symbolicName: SbeSymbolicName!
+    sbeId: Int!
+    blockLength: Int
+    semanticType: SbeToken
+    description: String
+    repeatingGroups: [SbeGroupV1]
+    varDataFields: [SbeFieldV1]
+    sinceVersion: Int
+    deprecatedSince: Int
+    dimensionType: SbeSymbolicName
+    blockFields: [SbeFieldV1]!
+  }
+
+type SbeGroupV2
+  {
+    symbolicName: SbeSymbolicName!
+    sbeId: Int!
+    blockLength: Int
+    alignment: Int
+    semanticType: SbeToken
+    description: String
+    repeatingGroups: [SbeGroupV2]
+    varDataFields: [SbeFieldV2]
+    sinceVersion: Int
+    deprecatedSince: Int
+    dimensionType: SbeSymbolicName
+    blockFields: [SbeFieldV2]!
+  }
+
+type SbeMemberTypeV2
+  {
+    encodingKind: String!
+    symbolicName: SbeSymbolicName!
+    description: String
+    offset: Int
+    alignment: Int
+    elementValue: SbeToken
+    primitiveType: SbePrimitiveType!
+    arrayLength: Int
+    characterEncoding: String
+    presence: SbePresence
+    nullValue: String
+    minValue: String
+    maxValue: String
+    valueRef: SbeQualifiedName
+  }
+
+type SbeMemberV1 implements SbeVersionedMixin
+  {
+    encodingKind: String!
+    symbolicName: SbeSymbolicName!
+    offset: Int
+    sinceVersion: Int
+    deprecatedSince: Int
+  }
+
+interface SbeMemberV2
+  {
+    encodingKind: String!
+    symbolicName: SbeSymbolicName!
+    description: String
+    offset: Int
+    alignment: Int
+  }
+
+type SbeMessageSchemaV1
+  {
+    schemaPackage: String
+    sbeId: Int
+    schemaVersion: Int!
+    semanticVersion: String
+    description: String
+    byteOrder: SbeByteOrder
+    headerType: SbeSymbolicName
+    encodingSets: [SbeEncodingSetV1]!
+    messages: [SbeMessageV1]!
+  }
+
+type SbeMessageSchemaV2
+  {
+    schemaPackage: String
+    sbeId: Int
+    schemaVersion: Int!
+    semanticVersion: String
+    description: String
+    byteOrder: SbeByteOrder
+    headerType: SbeSymbolicName
+    encodingSets: [SbeEncodingSetV2]!
+    messageSets: [SbeMessageSetV2]!
+  }
+
+type SbeMessageSetV2
+  {
+    description: String
+    schemaPackage: String
+    xmlBase: String
+    messages: [SbeMessageV2]!
+  }
+
+type SbeMessageV1
+  {
+    symbolicName: SbeSymbolicName!
+    blockLength: Int
+    description: String
+    blockFields: [SbeFieldV1]
+    repeatingGroups: [SbeGroupV1]
+    varDataFields: [SbeFieldV1]
+    sinceVersion: Int
+    deprecatedSince: Int
+    sbeId: Int!
+    semanticType: SbeToken
+  }
+
+type SbeMessageV2
+  {
+    symbolicName: SbeSymbolicName!
+    blockLength: Int
+    alignment: Int
+    description: String
+    blockFields: [SbeFieldV2]
+    repeatingGroups: [SbeGroupV2]
+    varDataFields: [SbeFieldV2]
+    sinceVersion: Int
+    deprecatedSince: Int
+    sbeId: Int!
+    semanticType: SbeToken
+  }
+
+type SbeRefV1
+  {
+    encodingKind: String!
+    symbolicName: SbeSymbolicName!
+    offset: Int
+    sinceVersion: Int
+    deprecatedSince: Int
+    encodingName: SbeSymbolicName!
+  }
+
+type SbeRefV2
+  {
+    encodingKind: String!
+    symbolicName: SbeSymbolicName!
+    description: String
+    offset: Int
+    alignment: Int
+    encodingName: SbeSymbolicName!
+  }
+
+type SbeSetV1
+  {
+    encodingKind: String!
+    symbolicName: SbeSymbolicName!
+    offset: Int
+    sinceVersion: Int
+    deprecatedSince: Int
+    semanticType: SbeToken
+    description: String
+    encodingType: SbeSymbolicName!
+    choices: [SbeChoice]!
+  }
+
+type SbeSetV2 implements SbeVersionedMixin
+  {
+    encodingKind: String!
+    symbolicName: SbeSymbolicName!
+    description: String
+    offset: Int
+    alignment: Int
+    encodingType: SbeSymbolicName!
+    choices: [SbeChoice]!
+    sinceVersion: Int
+    deprecatedSince: Int
+  }
+
+type SbeSimpleTypeV1
+  {
+    encodingKind: String!
+    symbolicName: SbeSymbolicName!
+    offset: Int
+    sinceVersion: Int
+    deprecatedSince: Int
+    semanticType: SbeToken
+    description: String
+    elementValue: SbeToken
+    primitiveType: SbePrimitiveType!
+    arrayLength: Int
+    characterEncoding: String
+    nullValue: String
+    minValue: String
+    maxValue: String
+    presence: SbePresence
+    valueRef: SbeQualifiedName
+  }
+
+type SbeSimpleTypeV2 implements SbeVersionedMixin
+  {
+    encodingKind: String!
+    symbolicName: SbeSymbolicName!
+    description: String
+    elementValue: SbeToken
+    primitiveType: SbePrimitiveType!
+    arrayLength: Int
+    characterEncoding: String
+    sinceVersion: Int
+    deprecatedSince: Int
+  }
+
+type SbeValidValue implements SbeVersionedMixin
+  {
+    symbolicName: SbeSymbolicName!
+    description: String
+    validValue: SbeToken!
+    sinceVersion: Int
+    deprecatedSince: Int
+  }
+
+interface SbeVersionedMixin
+  {
+    sinceVersion: Int
+    deprecatedSince: Int
+  }

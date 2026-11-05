@@ -1,0 +1,338 @@
+{
+   "@context": {
+      "xsd": "http://www.w3.org/2001/XMLSchema#",
+      "fix_orchestra": "https://w3id.org/lmodel/fix-orchestra/",
+      "fix_sbe": "https://w3id.org/lmodel/fix-sbe/",
+      "linkml": "https://w3id.org/linkml/",
+      "schema": "http://schema.org/",
+      "skos": "http://www.w3.org/2004/02/skos/core#",
+      "@vocab": "https://w3id.org/lmodel/fix-sbe/",
+      "alignment": {
+         "@type": "xsd:integer",
+         "@id": "alignment"
+      },
+      "array_length": {
+         "@type": "xsd:integer",
+         "@id": "array_length"
+      },
+      "block_fields": {
+         "@id": "block_fields"
+      },
+      "block_length": {
+         "@type": "xsd:integer",
+         "@id": "block_length"
+      },
+      "byte_order": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "byte_order"
+      },
+      "character_encoding": {
+         "@id": "character_encoding"
+      },
+      "choices": {
+         "@type": "@id",
+         "@id": "choices"
+      },
+      "composite_members": {
+         "@id": "composite_members"
+      },
+      "deprecated_since": {
+         "@type": "xsd:integer",
+         "@id": "deprecated_since"
+      },
+      "description": {
+         "@id": "schema:description"
+      },
+      "dimension_type": {
+         "@id": "dimension_type"
+      },
+      "element_value": {
+         "@type": "xsd:token",
+         "@id": "element_value"
+      },
+      "encoding_kind": {
+         "@id": "encoding_kind"
+      },
+      "encoding_name": {
+         "@id": "encoding_name"
+      },
+      "encoding_sets": {
+         "@id": "encoding_sets"
+      },
+      "encoding_type": {
+         "@id": "encoding_type"
+      },
+      "encodings": {
+         "@id": "encodings"
+      },
+      "header_type": {
+         "@id": "header_type"
+      },
+      "max_value": {
+         "@id": "max_value"
+      },
+      "message_sets": {
+         "@id": "message_sets"
+      },
+      "messages": {
+         "@id": "messages"
+      },
+      "min_value": {
+         "@id": "min_value"
+      },
+      "null_value": {
+         "@id": "null_value"
+      },
+      "offset": {
+         "@type": "xsd:integer",
+         "@id": "offset"
+      },
+      "presence": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "presence"
+      },
+      "primitive_type": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "primitive_type"
+      },
+      "repeating_groups": {
+         "@id": "repeating_groups"
+      },
+      "sbe_id": {
+         "@type": "xsd:integer",
+         "@id": "sbe_id"
+      },
+      "bit_position": {
+         "@type": "xsd:integer",
+         "@id": "bit_position"
+      },
+      "time_epoch": {
+         "@id": "time_epoch"
+      },
+      "time_unit": {
+         "@id": "time_unit"
+      },
+      "valid_value": {
+         "@type": "xsd:token",
+         "@id": "valid_value"
+      },
+      "schema_package": {
+         "@id": "schema_package"
+      },
+      "schema_version": {
+         "@type": "xsd:integer",
+         "@id": "schema_version"
+      },
+      "semantic_type": {
+         "@type": "xsd:token",
+         "@id": "semantic_type"
+      },
+      "semantic_version": {
+         "@id": "semantic_version"
+      },
+      "since_version": {
+         "@type": "xsd:integer",
+         "@id": "since_version"
+      },
+      "symbolic_name": {
+         "@id": "symbolic_name"
+      },
+      "valid_values": {
+         "@type": "@id",
+         "@id": "valid_values"
+      },
+      "value_ref": {
+         "@id": "value_ref"
+      },
+      "var_data_fields": {
+         "@id": "var_data_fields"
+      },
+      "xml_base": {
+         "@type": "xsd:anyURI",
+         "@id": "xml_base"
+      },
+      "SbeBlockV1": {
+         "@id": "SbeBlockV1",
+         "@context": {
+            "block_fields": {
+               "@id": "block_fields",
+               "@type": "@id"
+            },
+            "repeating_groups": {
+               "@id": "repeating_groups",
+               "@type": "@id"
+            },
+            "var_data_fields": {
+               "@id": "var_data_fields",
+               "@type": "@id"
+            }
+         }
+      },
+      "SbeBlockV2": {
+         "@id": "SbeBlockV2",
+         "@context": {
+            "block_fields": {
+               "@id": "block_fields",
+               "@type": "@id"
+            },
+            "repeating_groups": {
+               "@id": "repeating_groups",
+               "@type": "@id"
+            },
+            "var_data_fields": {
+               "@id": "var_data_fields",
+               "@type": "@id"
+            }
+         }
+      },
+      "SbeChoice": {
+         "@id": "SbeChoice"
+      },
+      "SbeCompositeV1": {
+         "@id": "SbeCompositeV1",
+         "@context": {
+            "composite_members": {
+               "@id": "composite_members",
+               "@type": "@id"
+            }
+         }
+      },
+      "SbeCompositeV2": {
+         "@id": "SbeCompositeV2",
+         "@context": {
+            "composite_members": {
+               "@id": "composite_members",
+               "@type": "@id"
+            }
+         }
+      },
+      "SbeElementV2": {
+         "@id": "SbeElementV2"
+      },
+      "SbeEncodingSetV1": {
+         "@id": "SbeEncodingSetV1",
+         "@context": {
+            "encodings": {
+               "@id": "encodings",
+               "@type": "@id"
+            }
+         }
+      },
+      "SbeEncodingSetV2": {
+         "@id": "SbeEncodingSetV2",
+         "@context": {
+            "encodings": {
+               "@id": "encodings",
+               "@type": "@id"
+            }
+         }
+      },
+      "SbeEncodingV1": {
+         "@id": "SbeEncodingV1"
+      },
+      "SbeEnumV1": {
+         "@id": "SbeEnumV1"
+      },
+      "SbeEnumV2": {
+         "@id": "SbeEnumV2"
+      },
+      "SbeFieldV1": {
+         "@id": "SbeFieldV1"
+      },
+      "SbeFieldV2": {
+         "@id": "SbeFieldV2"
+      },
+      "SbeGroupV1": {
+         "@id": "SbeGroupV1"
+      },
+      "SbeGroupV2": {
+         "@id": "SbeGroupV2"
+      },
+      "SbeMemberTypeV2": {
+         "@id": "SbeMemberTypeV2"
+      },
+      "SbeMemberV1": {
+         "@id": "SbeMemberV1"
+      },
+      "SbeMemberV2": {
+         "@id": "SbeMemberV2"
+      },
+      "SbeMessageSchemaV1": {
+         "@id": "SbeMessageSchemaV1",
+         "@context": {
+            "encoding_sets": {
+               "@id": "encoding_sets",
+               "@type": "@id"
+            },
+            "messages": {
+               "@id": "messages",
+               "@type": "@id"
+            }
+         }
+      },
+      "SbeMessageSchemaV2": {
+         "@id": "SbeMessageSchemaV2",
+         "@context": {
+            "encoding_sets": {
+               "@id": "encoding_sets",
+               "@type": "@id"
+            },
+            "message_sets": {
+               "@id": "message_sets",
+               "@type": "@id"
+            }
+         }
+      },
+      "SbeMessageSetV2": {
+         "@id": "SbeMessageSetV2",
+         "@context": {
+            "messages": {
+               "@id": "messages",
+               "@type": "@id"
+            }
+         }
+      },
+      "SbeMessageV1": {
+         "@id": "SbeMessageV1"
+      },
+      "SbeMessageV2": {
+         "@id": "SbeMessageV2"
+      },
+      "SbeRefV1": {
+         "@id": "SbeRefV1"
+      },
+      "SbeRefV2": {
+         "@id": "SbeRefV2"
+      },
+      "SbeSetV1": {
+         "@id": "SbeSetV1"
+      },
+      "SbeSetV2": {
+         "@id": "SbeSetV2"
+      },
+      "SbeSimpleTypeV1": {
+         "@id": "SbeSimpleTypeV1"
+      },
+      "SbeSimpleTypeV2": {
+         "@id": "SbeSimpleTypeV2"
+      },
+      "SbeValidValue": {
+         "@id": "SbeValidValue"
+      },
+      "SbeVersionedMixin": {
+         "@id": "SbeVersionedMixin"
+      }
+   }
+}

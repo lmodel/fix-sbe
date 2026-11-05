@@ -1,0 +1,330 @@
+---
+id: https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v1_0
+name: fix_sbe_v1_0
+title: FIX SBE 1.0 Technical Standard
+description: >-
+  The message schema of SBE 1.0, the final standard with its November 2020 errata.
+version: "1.0"
+source: https://github.com/FIXTradingCommunity/fix-simple-binary-encoding/tree/v1.0-errata-Nov-2020/v1-0-STANDARD
+license: Apache-2.0
+see_also:
+  - https://lmodel.github.io/fix-sbe
+annotations:
+  xsd_namespace: http://fixprotocol.io/2016/sbe
+  xsd_version: 1.0 Standard
+notes:
+  - >-
+    The mappings follow FIX's own transposer between SBE and Orchestra, in its class
+    SBE2Orchestra10_10.
+prefixes:
+  fix_sbe: https://w3id.org/lmodel/fix-sbe/
+  linkml: https://w3id.org/linkml/
+  schema: http://schema.org/
+  fix_orchestra: https://w3id.org/lmodel/fix-orchestra/
+default_prefix: fix_sbe
+default_range: string
+
+imports:
+  - linkml:types
+  - ./fix_sbe_common
+
+classes:
+
+  SbeMessageSchemaV1:
+    tree_root: true
+    description: One SBE 1.0 message schema, with its encodings and message templates.
+    close_mappings:
+      - fix_orchestra:OrchestraRepositoryV10
+    slots:
+      - schema_package
+      - sbe_id
+      - schema_version
+      - semantic_version
+      - description
+      - byte_order
+      - header_type
+      - encoding_sets
+      - messages
+    slot_usage:
+      sbe_id:
+        description: The number that identifies this schema between counterparties.
+      encoding_sets:
+        range: SbeEncodingSetV1
+      messages:
+        range: SbeMessageV1
+    annotations:
+      xml_element: messageSchema
+
+  SbeEncodingSetV1:
+    description: A set of encodings, listed in any order, whose names are unique across the whole schema.
+    slots:
+      - encodings
+    slot_usage:
+      encodings:
+        range: SbeEncodingV1
+    annotations:
+      xml_element: types
+
+  SbeMemberV1:
+    abstract: true
+    mixins:
+      - SbeVersionedMixin
+    description: Anything a composite may hold in the order it is sent.
+    slots:
+      - encoding_kind
+      - symbolic_name
+      - offset
+
+  SbeRefV1:
+    is_a: SbeMemberV1
+    description: A composite's member that reuses an encoding defined elsewhere in the schema.
+    slots:
+      - encoding_name
+    annotations:
+      xsd_type: refType
+      xml_element: ref
+
+  SbeEncodingV1:
+    is_a: SbeMemberV1
+    abstract: true
+    description: An encoding of SBE 1.0, which says how a value is laid out on the wire.
+    slots:
+      - semantic_type
+      - description
+    slot_usage:
+      semantic_type:
+        description: The FIX datatype this encoding carries.
+
+  SbeSimpleTypeV1:
+    is_a: SbeEncodingV1
+    description: An encoding backed by one primitive value, or several in an array.
+    close_mappings:
+      - fix_orchestra:OrchestraDatatypeV10
+    slots:
+      - element_value
+      - primitive_type
+      - array_length
+      - character_encoding
+      - null_value
+      - min_value
+      - max_value
+      - presence
+      - value_ref
+    rules:
+      - title: A reference to a value needs a constant
+        description: A value_ref is valid only on an element whose presence is constant.
+        preconditions:
+          slot_conditions:
+            value_ref:
+              value_presence: PRESENT
+        postconditions:
+          slot_conditions:
+            presence:
+              equals_string: constant
+        annotations:
+          sbe_section: "4: Field attributes"
+      - title: A required value has no null
+        description: A null value cannot sit beside a presence of required.
+        preconditions:
+          slot_conditions:
+            presence:
+              equals_string: required
+        postconditions:
+          slot_conditions:
+            null_value:
+              value_presence: ABSENT
+        annotations:
+          sbe_section: "4: Schema validation"
+      - title: A constant has no null
+        description: A null value cannot sit beside a presence of constant.
+        preconditions:
+          slot_conditions:
+            presence:
+              equals_string: constant
+        postconditions:
+          slot_conditions:
+            null_value:
+              value_presence: ABSENT
+        annotations:
+          sbe_section: "2: Common field schema attributes"
+      - title: A constant has no lowest value
+        description: A lowest value cannot sit beside a presence of constant.
+        preconditions:
+          slot_conditions:
+            presence:
+              equals_string: constant
+        postconditions:
+          slot_conditions:
+            min_value:
+              value_presence: ABSENT
+        annotations:
+          sbe_section: "2: Common field schema attributes"
+      - title: A constant has no highest value
+        description: A highest value cannot sit beside a presence of constant.
+        preconditions:
+          slot_conditions:
+            presence:
+              equals_string: constant
+        postconditions:
+          slot_conditions:
+            max_value:
+              value_presence: ABSENT
+        annotations:
+          sbe_section: "2: Common field schema attributes"
+    annotations:
+      xsd_type: encodedDataType
+      xml_element: type
+
+  SbeCompositeV1:
+    is_a: SbeEncodingV1
+    description: An encoding built from members sent one after another, such as a decimal's mantissa and exponent.
+    comments:
+      - >-
+        The members keep one list because their order is the order on the wire. Separate lists
+        per kind of member could not say that an enum comes between two types.
+    close_mappings:
+      - fix_orchestra:OrchestraComponentV10
+    slots:
+      - composite_members
+    slot_usage:
+      composite_members:
+        range: SbeMemberV1
+    annotations:
+      xsd_type: compositeDataType
+      xml_element: composite
+
+  SbeEnumV1:
+    is_a: SbeEncodingV1
+    description: An encoding whose value is one of a listed set of valid values.
+    close_mappings:
+      - fix_orchestra:OrchestraCodeSetV10
+    slots:
+      - encoding_type
+      - valid_values
+    annotations:
+      xsd_type: enumType
+      xml_element: enum
+
+  SbeSetV1:
+    is_a: SbeEncodingV1
+    description: An encoding whose value is any combination of up to 64 choices, sent as a bitset.
+    comments:
+      - >-
+        FIX's transposer does not carry a set to Orchestra, so the mapping is related. FIX's
+        MultipleCharValue and MultipleStringValue fields hold such choices in a code set.
+    related_mappings:
+      - fix_orchestra:OrchestraCodeSetV10
+    slots:
+      - encoding_type
+      - choices
+    annotations:
+      xsd_type: setType
+      xml_element: set
+
+  SbeBlockV1:
+    abstract: true
+    mixins:
+      - SbeVersionedMixin
+    description: The body shared by a message and a group entry, which holds its fixed-length fields first, then groups, then variable-length data.
+    slots:
+      - symbolic_name
+      - sbe_id
+      - block_length
+      - semantic_type
+      - description
+      - block_fields
+      - repeating_groups
+      - var_data_fields
+    slot_usage:
+      sbe_id:
+        required: true
+      block_fields:
+        range: SbeFieldV1
+      repeating_groups:
+        range: SbeGroupV1
+      var_data_fields:
+        range: SbeFieldV1
+
+  SbeMessageV1:
+    is_a: SbeBlockV1
+    description: A message template, whose number and block length are sent in each message's header.
+    close_mappings:
+      - fix_orchestra:OrchestraMessageV10
+    slot_usage:
+      sbe_id:
+        description: The template's number, which no other template in the schema shares.
+      semantic_type:
+        description: The FIX MsgType(35) this template stands for, where several templates may share one.
+    annotations:
+      xsd_type: blockType
+      xml_element: message
+
+  SbeGroupV1:
+    is_a: SbeBlockV1
+    description: A repeating group, whose entries each hold the same fields, and which cannot be without a field.
+    close_mappings:
+      - fix_orchestra:OrchestraGroupV10
+    slots:
+      - dimension_type
+    slot_usage:
+      block_fields:
+        required: true
+        minimum_cardinality: 1
+    annotations:
+      xsd_type: groupType
+      xml_element: group
+
+  SbeFieldV1:
+    mixins:
+      - SbeVersionedMixin
+    description: A message's or group entry's field, which uses an encoding at a place in its block.
+    comments:
+      - >-
+        The old mapping called this an exact match of an Orchestra field, but the two differ.
+        This one sits at a place in one block, and FIX's transposer carries one with a composite
+        encoding to a component reference, not a field.
+    close_mappings:
+      - fix_orchestra:OrchestraFieldV10
+    slots:
+      - symbolic_name
+      - sbe_id
+      - encoding_name
+      - offset
+      - presence
+      - value_ref
+      - semantic_type
+      - description
+    slot_usage:
+      sbe_id:
+        required: true
+        description: The field's FIX tag number.
+      semantic_type:
+        description: The FIX datatype this field carries.
+    attributes:
+      time_epoch:
+        description: Where the period a time value counts from begins.
+        ifabsent: string(unix)
+        aliases: [epoch]
+        annotations:
+          sbe_section: "2: Date and time encoding"
+      time_unit:
+        description: The unit of a time value.
+        deprecated: The XSD keeps this only for schemas written against release candidate 2 of SBE 1.0.
+        ifabsent: string(nanosecond)
+        aliases: [timeUnit]
+    rules:
+      - title: A reference to a value needs a constant
+        description: A value_ref is valid only on an element whose presence is constant.
+        preconditions:
+          slot_conditions:
+            value_ref:
+              value_presence: PRESENT
+        postconditions:
+          slot_conditions:
+            presence:
+              equals_string: constant
+        annotations:
+          sbe_section: "4: Field attributes"
+    annotations:
+      xsd_type: fieldType
+      xml_element: field
