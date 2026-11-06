@@ -3,8 +3,8 @@ type: Dataset
 id: https://w3id.org/lmodel/fix-sbe/knowledge/datasets/adapt-copy
 genre: reference
 title: The adapt copy
-description: "`.lokf/fix_sbe.yaml`, which `just lokf-adapt` writes from the schema so that it can sit beside LOKF's: the file this bundle validates against, and the file a release attaches as `schema-<tag>-fix-sbe.yaml`."
-resource: .lokf/fix_sbe.yaml
+description: "`.lokf/schema/fix_sbe.yaml`, which `just lokf-adapt` writes from the schema so that it can sit beside LOKF's: the file this bundle validates against, and the file a release attaches as `schema-<tag>-fix-sbe.yaml`."
+resource: .lokf/schema/fix_sbe.yaml
 derivedFrom:
   - https://w3id.org/lmodel/fix-sbe/knowledge/datasets/fix-sbe-linkml-schema
 about:
@@ -20,7 +20,7 @@ sources:
     title: lokf_adapt_roots
 generated:
   by: process:ktl-librarian
-  at: "2026-11-05T17:57:59Z"
+  at: "2026-11-06T21:20:40Z"
 status: draft
 ---
 

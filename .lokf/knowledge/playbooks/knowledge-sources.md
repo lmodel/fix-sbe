@@ -53,7 +53,7 @@ exclusions:
     reason: The pointer that sends agents to this bundle.
   - resource: knowledge_bundle
     reason: The sidecar's link to the bundle.
-  - resource: .lokf/lokf.yaml
+  - resource: .lokf/schema/lokf.yaml
     reason: LOKF's schema, pinned by the sidecar.
   - resource: .lokf/scripts
     reason: The sidecar's scripts, which the weekly sync replaces.
@@ -78,7 +78,7 @@ sources:
   - resource: src/fix_sbe/schema
   - resource: src/fix_sbe/datamodel
   - resource: project.justfile
-  - resource: .lokf/fix_sbe.yaml
+  - resource: .lokf/schema/fix_sbe.yaml
   - resource: .lokf/justfile
   - resource: .lokf/pyproject.toml
   - resource: NOTICE
@@ -104,7 +104,7 @@ sources:
   - resource: pyproject.toml
 generated:
   by: process:ktl-librarian
-  at: "2026-11-05T17:57:59Z"
+  at: "2026-11-06T21:20:40Z"
 status: draft
 ---
 

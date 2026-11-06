@@ -2,7 +2,7 @@
 type: GlossaryTerm
 id: https://w3id.org/lmodel/fix-sbe/knowledge/glossary/adapt-copy
 title: Adapt copy
-description: "An adapt copy: the form of a schema `lokf adapt` writes so that it can sit beside LOKF's, in which concept classes descend from `Concept`. Here it is `.lokf/fix_sbe.yaml`."
+description: "An adapt copy: the form of a schema `lokf adapt` writes so that it can sit beside LOKF's, in which concept classes descend from `Concept`. Here it is `.lokf/schema/fix_sbe.yaml`."
 relatedTo:
   - https://w3id.org/lmodel/fix-sbe/knowledge/datasets/adapt-copy
 sources:
@@ -11,7 +11,7 @@ sources:
     title: Knowledge Trust Ladder (KTL)
 generated:
   by: process:ktl-librarian
-  at: "2026-11-05T17:57:59Z"
+  at: "2026-11-06T21:20:40Z"
 status: draft
 ---
 

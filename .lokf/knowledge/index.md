@@ -39,7 +39,7 @@ A [LOKF](https://lokf.nolan-nichols.com) knowledge base for fix-sbe. Every Markd
 * [The shared module](datasets/common-module.md) - `fix_sbe_common`: what SBE 1.0 and SBE 2.0 RC3 define alike, such as the name types, the presence, byte order and primitive value lists, the slots both editions use, and the valid value and the choice.
 * [The SBE 1.0 module](datasets/version-1-module.md) - `fix_sbe_v1_0`: the message schema of SBE 1.0, the final standard with its November 2020 errata, with classes such as `SbeMessageSchemaV1`, `SbeMessageV1`, `SbeFieldV1` and `SbeCompositeV1`.
 * [The SBE 2.0 RC3 module](datasets/version-2-module.md) - `fix_sbe_v2_0`: the message schema of SBE 2.0 Release Candidate 3, a draft whose XML namespace is tentative, with classes such as `SbeMessageSchemaV2`, `SbeMessageSetV2`, `SbeMemberTypeV2` and `SbeFieldV2`.
-* [The adapt copy](datasets/adapt-copy.md) - `.lokf/fix_sbe.yaml`, which `just lokf-adapt` writes from the schema so that it can sit beside LOKF's: the file this bundle validates against, and the file a release attaches as `schema-<tag>-fix-sbe.yaml`.
+* [The adapt copy](datasets/adapt-copy.md) - `.lokf/schema/fix_sbe.yaml`, which `just lokf-adapt` writes from the schema so that it can sit beside LOKF's: the file this bundle validates against, and the file a release attaches as `schema-<tag>-fix-sbe.yaml`.
 * [The neighbours' copies](datasets/neighbour-copies.md) - `tests/neighbours/`: the adapt copies other lmodel repositories release, each the release's schema asset, which tests use to hold this copy's names apart from theirs.
 * [The generated artefacts](datasets/generated-artefacts.md) - What the generators write from the schema: `project/`, `src/fix_sbe/datamodel/` and `docs/schema/fix_sbe.yaml`. They are committed and never edited.
 * [The example data](datasets/example-data.md) - `tests/data/`: a valid example per class and a counter-example per constraint, named `ClassName-suffix.yaml`, each counter-example naming where it fails on its first line.
@@ -58,7 +58,7 @@ A [LOKF](https://lokf.nolan-nichols.com) knowledge base for fix-sbe. Every Markd
 
 # Glossary
 
-* [Adapt copy](glossary/adapt-copy.md) - An adapt copy: the form of a schema `lokf adapt` writes so that it can sit beside LOKF's, in which concept classes descend from `Concept`. Here it is `.lokf/fix_sbe.yaml`.
+* [Adapt copy](glossary/adapt-copy.md) - An adapt copy: the form of a schema `lokf adapt` writes so that it can sit beside LOKF's, in which concept classes descend from `Concept`. Here it is `.lokf/schema/fix_sbe.yaml`.
 * [Message schema](glossary/message-schema.md) - Message schema: the XML document SBE defines, which lists the encodings and message templates two counterparties share. `SbeMessageSchemaV1` and `SbeMessageSchemaV2` describe one.
 * [Message template](glossary/message-template.md) - A message template: one kind of message in a schema, with a number that each message's header sends. `SbeMessageV1` and `SbeMessageV2` describe one.
 * [Encoding](glossary/encoding.md) - An encoding: how a value is laid out on the wire. SBE has a simple type, a composite, an enumeration and a set, and a field names one by `encoding_name`.
