@@ -11,8 +11,8 @@ sbe-to-yaml FILE:
 
 # ============ Knowledge bundle: the adapted domain schema ============
 
-# `.lokf/fix_sbe.yaml` is the copy `lokf adapt` writes from the schema so that it can sit
-# beside `.lokf/lokf.yaml` (`lokf adapt --help` lists the moves). The roots are the two kinds
+# `.lokf/schema/fix_sbe.yaml` is the copy `lokf adapt` writes from the schema so that it can sit
+# beside `.lokf/schema/lokf.yaml` (`lokf adapt --help` lists the moves). The roots are the two kinds
 # of element a person documents: a whole message schema and a message template, in each
 # edition. A concept names one of them as its `type`. Everything else stays a value inside
 # them. The recipes run the `lokf` the sidecar's floor pins (0.9.0 or later); LOKF_CMD runs
@@ -20,12 +20,12 @@ sbe-to-yaml FILE:
 lokf_cmd := env_var_or_default("LOKF_CMD", "uv run --project .lokf lokf")
 lokf_adapt_roots := "--root SbeMessageSchemaV1 --root SbeMessageSchemaV2 --root SbeMessageV1 --root SbeMessageV2"
 
-# Rewrite .lokf/fix_sbe.yaml from the schema (run after every schema change)
+# Rewrite .lokf/schema/fix_sbe.yaml from the schema (run after every schema change)
 [group('knowledge bundle')]
 lokf-adapt:
-  {{lokf_cmd}} adapt {{source_schema_path}} {{lokf_adapt_roots}} --lokf .lokf/lokf.yaml -o .lokf/fix_sbe.yaml
+  {{lokf_cmd}} adapt {{source_schema_path}} {{lokf_adapt_roots}} --lokf .lokf/schema/lokf.yaml -o .lokf/schema/fix_sbe.yaml
 
-# Fail when .lokf/fix_sbe.yaml is stale against the schema or .lokf/lokf.yaml
+# Fail when .lokf/schema/fix_sbe.yaml is stale against the schema or .lokf/schema/lokf.yaml
 [group('knowledge bundle')]
 lokf-adapt-check:
-  {{lokf_cmd}} adapt {{source_schema_path}} {{lokf_adapt_roots}} --lokf .lokf/lokf.yaml -o .lokf/fix_sbe.yaml --check
+  {{lokf_cmd}} adapt {{source_schema_path}} {{lokf_adapt_roots}} --lokf .lokf/schema/lokf.yaml -o .lokf/schema/fix_sbe.yaml --check

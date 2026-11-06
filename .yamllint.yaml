@@ -10,8 +10,8 @@ ignore:
   - docs/schema/*.yaml
   # LOKF's schema and the adapt copies, which `lokf adapt` writes with its own
   # list indentation; just lokf-adapt-check holds them to the source.
-  - .lokf/lokf.yaml
-  - .lokf/fix_sbe.yaml
+  - .lokf/schema/lokf.yaml
+  - .lokf/schema/fix_sbe.yaml
   - tests/neighbours/*.yaml
 
 rules:
