@@ -39,7 +39,7 @@ npx skills add noelmcloughlin/knowledge-trust-ladder --skill ktl-curator --yes  
 
 ## Before opening a pull request
 
-- **Edit the schema, then regenerate.** Run `just gen-project`, `just gen-doc` and `just lokf-adapt`, and commit the output. `project/`, `src/fix_sbe/datamodel/`, `docs/schema/` and `.lokf/fix_sbe.yaml` are generated.
+- **Edit the schema, then regenerate.** Run `just gen-project`, `just gen-doc` and `just lokf-adapt`, and commit the output. `project/`, `src/fix_sbe/datamodel/`, `docs/schema/` and `.lokf/schema/fix_sbe.yaml` are generated.
 - **An element follows its XSD.** `tests/test_coverage.py` compares each class with its XSD type, and `tests/test_documents.py` checks FIX's documents with lxml, the JSON Schema and a separate walk of the XML.
 - **A rule says where it comes from.** Each rule names the specification's chapter and heading. What JSON Schema can hold goes in the schema, the rest in `tests/sbe_rules.py`, with a counter-example.
 - **FIX's words stay FIX's.** Write every title, description and comment from what the element does. `tests/test_own_words.py` finds a run of four words shared with the XSDs. The same check against the specification's text is a person's to run, because that text stays out of this repository.
