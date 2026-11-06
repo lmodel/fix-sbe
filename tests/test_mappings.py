@@ -5,7 +5,6 @@ warning. Each target's class must exist in the copy of lmodel/fix-orchestra in t
 which is that repository's released asset, or its branch's until it releases.
 """
 
-import pytest
 import yaml
 
 from tests.paths import ROOT, SCHEMA_DIR
@@ -84,10 +83,6 @@ def test_no_mapping_says_exact():
 
 
 def test_every_target_exists_in_the_neighbour():
-    if not NEIGHBOUR.exists():
-        pytest.skip(
-            "tests/neighbours/fix-orchestra.yaml waits for lmodel/fix-orchestra's asset"
-        )
     classes = yaml.safe_load(NEIGHBOUR.read_text(encoding="utf-8"))["classes"]
     missing = {
         target for *_, target in _stated() if target.partition(":")[2] not in classes
