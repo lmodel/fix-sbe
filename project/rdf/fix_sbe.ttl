@@ -1,0 +1,2288 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix linkml: <https://w3id.org/linkml/> .
+@prefix pav: <http://purl.org/pav/> .
+@prefix schema1: <http://schema.org/> .
+<https://w3id.org/lmodel/fix-sbe/Amt> linkml:description "A decimal number that is a quantity multiplied by a price." .
+<https://w3id.org/lmodel/fix-sbe/Boolean> linkml:description "A character that is Y or N." .
+<https://w3id.org/lmodel/fix-sbe/Country> linkml:description "A two-letter country code of ISO 3166-1." .
+<https://w3id.org/lmodel/fix-sbe/Currency> linkml:description "A three-letter currency code of ISO 4217." .
+<https://w3id.org/lmodel/fix-sbe/DayOfMonth> linkml:description "A whole number from 1 to 31." .
+<https://w3id.org/lmodel/fix-sbe/EncodedText> linkml:description "Text in the character set a field beside it names, rather than ASCII." .
+<https://w3id.org/lmodel/fix-sbe/Exchange> linkml:description "A market identifier code of ISO 10383." .
+<https://w3id.org/lmodel/fix-sbe/Language> linkml:description "A language code of ISO 639-1." .
+<https://w3id.org/lmodel/fix-sbe/Length> linkml:description "A whole number that counts the octets of another field." .
+<https://w3id.org/lmodel/fix-sbe/LocalMktDate> linkml:description "A calendar date in the market's local time." .
+<https://w3id.org/lmodel/fix-sbe/LocalMktTime> linkml:description "A time of day in the market's local time." .
+<https://w3id.org/lmodel/fix-sbe/MonthYear> linkml:description "A year and month, with an optional day or week." .
+<https://w3id.org/lmodel/fix-sbe/MultipleCharValue> linkml:description "One or more single characters, separated by spaces, each chosen from a list." .
+<https://w3id.org/lmodel/fix-sbe/MultipleStringValue> linkml:description "One or more words, separated by spaces, each chosen from a list." .
+<https://w3id.org/lmodel/fix-sbe/NumInGroup> linkml:description "A whole number that counts the entries of a repeating group." .
+<https://w3id.org/lmodel/fix-sbe/Pattern> linkml:description "Text that another field's value must match." .
+<https://w3id.org/lmodel/fix-sbe/Percentage> linkml:description "A decimal number that is a proportion, where 0.1 is ten percent." .
+<https://w3id.org/lmodel/fix-sbe/Price> linkml:description "A decimal number that is a price." .
+<https://w3id.org/lmodel/fix-sbe/PriceOffset> linkml:description "A decimal number that is a difference from a price." .
+<https://w3id.org/lmodel/fix-sbe/Qty> linkml:description "A decimal number that is an amount of something traded." .
+<https://w3id.org/lmodel/fix-sbe/Reserved1000Plus> linkml:description "A whole number of 1000 or more, kept for values a counterparty defines." .
+<https://w3id.org/lmodel/fix-sbe/Reserved100Plus> linkml:description "A whole number of 100 or more, kept for values a counterparty defines." .
+<https://w3id.org/lmodel/fix-sbe/Reserved4000Plus> linkml:description "A whole number of 4000 or more, kept for values a counterparty defines." .
+<https://w3id.org/lmodel/fix-sbe/SbeBlockV1Mixin> a linkml:ClassDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v1_0"^^xsd:anyURI ;
+	linkml:class_uri "https://w3id.org/lmodel/fix-sbe/SbeBlockV1Mixin"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/SbeBlockV1Mixin"^^xsd:anyURI ;
+	linkml:description "The body shared by a message and a group entry, which holds its fixed-length fields first, then groups, then variable-length data." ;
+	linkml:mixin true ;
+	linkml:slot_usage _:c14n78 ;
+	linkml:slots <https://w3id.org/lmodel/fix-sbe/SbeBlockV1Mixin_block_fields> , <https://w3id.org/lmodel/fix-sbe/SbeBlockV1Mixin_repeating_groups> , <https://w3id.org/lmodel/fix-sbe/SbeBlockV1Mixin_sbe_id> , <https://w3id.org/lmodel/fix-sbe/SbeBlockV1Mixin_var_data_fields> , <https://w3id.org/lmodel/fix-sbe/block_length> , <https://w3id.org/lmodel/fix-sbe/description> , <https://w3id.org/lmodel/fix-sbe/semantic_type> , <https://w3id.org/lmodel/fix-sbe/symbolic_name> .
+<https://w3id.org/lmodel/fix-sbe/SbeBlockV1Mixin_block_fields> a linkml:SlotDefinition ;
+	skos:altLabel "field" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	skos:prefLabel "block_fields" ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/block_fields"^^xsd:anyURI ;
+	linkml:description "Fixed-length fields, listed in wire order." ;
+	linkml:domain <https://w3id.org/lmodel/fix-sbe/SbeBlockV1Mixin> ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeBlockV1Mixin> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:is_a <https://w3id.org/lmodel/fix-sbe/block_fields> ;
+	linkml:is_usage_slot true ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeBlockV1Mixin> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/SbeFieldV1> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/block_fields"^^xsd:anyURI ;
+	linkml:usage_slot_name "block_fields" .
+<https://w3id.org/lmodel/fix-sbe/SbeBlockV1Mixin_repeating_groups> a linkml:SlotDefinition ;
+	skos:altLabel "group" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	skos:prefLabel "repeating_groups" ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/repeating_groups"^^xsd:anyURI ;
+	linkml:description "Repeating groups, listed in wire order." ;
+	linkml:domain <https://w3id.org/lmodel/fix-sbe/SbeBlockV1Mixin> ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeBlockV1Mixin> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:is_a <https://w3id.org/lmodel/fix-sbe/repeating_groups> ;
+	linkml:is_usage_slot true ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeBlockV1Mixin> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/SbeGroupV1> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/repeating_groups"^^xsd:anyURI ;
+	linkml:usage_slot_name "repeating_groups" .
+<https://w3id.org/lmodel/fix-sbe/SbeBlockV1Mixin_sbe_id> a linkml:SlotDefinition ;
+	skos:altLabel "id" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	skos:prefLabel "sbe_id" ;
+	linkml:annotations _:c14n51 ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/sbe_id"^^xsd:anyURI ;
+	linkml:description "The number that identifies this element." ;
+	linkml:domain <https://w3id.org/lmodel/fix-sbe/SbeBlockV1Mixin> ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeBlockV1Mixin> ;
+	linkml:is_a <https://w3id.org/lmodel/fix-sbe/sbe_id> ;
+	linkml:is_usage_slot true ;
+	linkml:maximum_value "65535"^^linkml:\@id ;
+	linkml:minimum_value "0"^^linkml:\@id ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeBlockV1Mixin> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/integer> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/sbe_id"^^xsd:anyURI ;
+	linkml:usage_slot_name "sbe_id" .
+<https://w3id.org/lmodel/fix-sbe/SbeBlockV1Mixin_var_data_fields> a linkml:SlotDefinition ;
+	skos:altLabel "data" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	skos:prefLabel "var_data_fields" ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/var_data_fields"^^xsd:anyURI ;
+	linkml:description "Variable-length fields, listed in wire order." ;
+	linkml:domain <https://w3id.org/lmodel/fix-sbe/SbeBlockV1Mixin> ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeBlockV1Mixin> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:is_a <https://w3id.org/lmodel/fix-sbe/var_data_fields> ;
+	linkml:is_usage_slot true ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeBlockV1Mixin> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/SbeFieldV1> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/var_data_fields"^^xsd:anyURI ;
+	linkml:usage_slot_name "var_data_fields" .
+<https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin> a linkml:ClassDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v2_0"^^xsd:anyURI ;
+	linkml:class_uri "https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin"^^xsd:anyURI ;
+	linkml:description "The body shared by a message and a group entry, which holds its fixed-length fields first, then groups, then variable-length data." ;
+	linkml:mixin true ;
+	linkml:slot_usage _:c14n136 ;
+	linkml:slots <https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin_alignment> , <https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin_block_fields> , <https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin_repeating_groups> , <https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin_sbe_id> , <https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin_var_data_fields> , <https://w3id.org/lmodel/fix-sbe/block_length> , <https://w3id.org/lmodel/fix-sbe/description> , <https://w3id.org/lmodel/fix-sbe/semantic_type> , <https://w3id.org/lmodel/fix-sbe/symbolic_name> .
+<https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin_alignment> a linkml:SlotDefinition ;
+	skos:altLabel "alignment" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v2_0"^^xsd:anyURI ;
+	skos:prefLabel "alignment" ;
+	linkml:annotations _:c14n120 ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/alignment"^^xsd:anyURI ;
+	linkml:description "The multiple of octets where a message or each group entry begins." ;
+	linkml:domain <https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin> ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin> ;
+	linkml:is_a <https://w3id.org/lmodel/fix-sbe/alignment> ;
+	linkml:is_usage_slot true ;
+	linkml:minimum_value "1"^^linkml:\@id ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/integer> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/alignment"^^xsd:anyURI ;
+	linkml:usage_slot_name "alignment" .
+<https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin_block_fields> a linkml:SlotDefinition ;
+	skos:altLabel "field" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	skos:prefLabel "block_fields" ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/block_fields"^^xsd:anyURI ;
+	linkml:description "Fixed-length fields, listed in wire order." ;
+	linkml:domain <https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin> ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:is_a <https://w3id.org/lmodel/fix-sbe/block_fields> ;
+	linkml:is_usage_slot true ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/SbeFieldV2> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/block_fields"^^xsd:anyURI ;
+	linkml:usage_slot_name "block_fields" .
+<https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin_repeating_groups> a linkml:SlotDefinition ;
+	skos:altLabel "group" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	skos:prefLabel "repeating_groups" ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/repeating_groups"^^xsd:anyURI ;
+	linkml:description "Repeating groups, listed in wire order." ;
+	linkml:domain <https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin> ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:is_a <https://w3id.org/lmodel/fix-sbe/repeating_groups> ;
+	linkml:is_usage_slot true ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/SbeGroupV2> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/repeating_groups"^^xsd:anyURI ;
+	linkml:usage_slot_name "repeating_groups" .
+<https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin_sbe_id> a linkml:SlotDefinition ;
+	skos:altLabel "id" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	skos:prefLabel "sbe_id" ;
+	linkml:annotations _:c14n22 ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/sbe_id"^^xsd:anyURI ;
+	linkml:description "The number that identifies this element." ;
+	linkml:domain <https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin> ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin> ;
+	linkml:is_a <https://w3id.org/lmodel/fix-sbe/sbe_id> ;
+	linkml:is_usage_slot true ;
+	linkml:maximum_value "65535"^^linkml:\@id ;
+	linkml:minimum_value "0"^^linkml:\@id ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/integer> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/sbe_id"^^xsd:anyURI ;
+	linkml:usage_slot_name "sbe_id" .
+<https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin_var_data_fields> a linkml:SlotDefinition ;
+	skos:altLabel "data" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	skos:prefLabel "var_data_fields" ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/var_data_fields"^^xsd:anyURI ;
+	linkml:description "Variable-length fields, listed in wire order." ;
+	linkml:domain <https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin> ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:is_a <https://w3id.org/lmodel/fix-sbe/var_data_fields> ;
+	linkml:is_usage_slot true ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/SbeFieldV2> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/var_data_fields"^^xsd:anyURI ;
+	linkml:usage_slot_name "var_data_fields" .
+<https://w3id.org/lmodel/fix-sbe/SbeByteOrder> skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	linkml:annotations _:c14n133 ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/SbeByteOrder"^^xsd:anyURI ;
+	linkml:description "The order of the octets in every multi-octet number of a message." ;
+	linkml:permissible_values <https://w3id.org/lmodel/fix-sbe/bigEndian> , <https://w3id.org/lmodel/fix-sbe/littleEndian> .
+<https://w3id.org/lmodel/fix-sbe/SbeChoice> a linkml:ClassDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	skos:note "FIX's transposer does not carry a set to Orchestra, so the mapping is related. FIX's MultipleCharValue and MultipleStringValue fields hold such choices in a code set." ;
+	skos:relatedMatch "fix_orchestra:OrchestraCodeV10"^^xsd:anyURI ;
+	linkml:annotations _:c14n150 ;
+	linkml:attributes <https://w3id.org/lmodel/fix-sbe/bit_position> ;
+	linkml:class_uri "https://w3id.org/lmodel/fix-sbe/SbeChoice"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/SbeChoice"^^xsd:anyURI ;
+	linkml:description "One of the alternatives of a set, which is one bit of its encoding." ;
+	linkml:mixins <https://w3id.org/lmodel/fix-sbe/SbeVersionedMixin> ;
+	linkml:slot_usage _:c14n135 ;
+	linkml:slots <https://w3id.org/lmodel/fix-sbe/deprecated_since> , <https://w3id.org/lmodel/fix-sbe/description> , <https://w3id.org/lmodel/fix-sbe/sbeChoice__bit_position> , <https://w3id.org/lmodel/fix-sbe/since_version> , <https://w3id.org/lmodel/fix-sbe/symbolic_name> .
+<https://w3id.org/lmodel/fix-sbe/SbeCompositeV1> a linkml:ClassDefinition ;
+	skos:closeMatch "fix_orchestra:OrchestraComponentV10"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v1_0"^^xsd:anyURI ;
+	skos:note "The members keep one list because their order is the order on the wire. Separate lists per kind of member could not say that an enum comes between two types." ;
+	linkml:annotations _:c14n104 , _:c14n148 ;
+	linkml:class_uri "https://w3id.org/lmodel/fix-sbe/SbeCompositeV1"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/SbeCompositeV1"^^xsd:anyURI ;
+	linkml:description "An encoding built from members sent one after another, such as a decimal's mantissa and exponent." ;
+	linkml:is_a <https://w3id.org/lmodel/fix-sbe/SbeEncodingV1> ;
+	linkml:slot_usage _:c14n65 ;
+	linkml:slots <https://w3id.org/lmodel/fix-sbe/SbeCompositeV1_composite_members> , <https://w3id.org/lmodel/fix-sbe/SbeEncodingV1_semantic_type> , <https://w3id.org/lmodel/fix-sbe/deprecated_since> , <https://w3id.org/lmodel/fix-sbe/description> , <https://w3id.org/lmodel/fix-sbe/encoding_kind> , <https://w3id.org/lmodel/fix-sbe/offset> , <https://w3id.org/lmodel/fix-sbe/since_version> , <https://w3id.org/lmodel/fix-sbe/symbolic_name> .
+<https://w3id.org/lmodel/fix-sbe/SbeCompositeV1_composite_members> a linkml:SlotDefinition ;
+	skos:altLabel "composite" , "enum" , "ref" , "set" , "type" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	skos:prefLabel "composite_members" ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/composite_members"^^xsd:anyURI ;
+	linkml:description "The members of this composite, in the order they are sent." ;
+	linkml:domain <https://w3id.org/lmodel/fix-sbe/SbeCompositeV1> ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeCompositeV1> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:is_a <https://w3id.org/lmodel/fix-sbe/composite_members> ;
+	linkml:is_usage_slot true ;
+	linkml:minimum_cardinality 1 ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeCompositeV1> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/SbeMemberV1> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/composite_members"^^xsd:anyURI ;
+	linkml:usage_slot_name "composite_members" .
+<https://w3id.org/lmodel/fix-sbe/SbeCompositeV2> a linkml:ClassDefinition ;
+	skos:closeMatch "fix_orchestra:OrchestraComponentV10"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v2_0"^^xsd:anyURI ;
+	skos:note "The members keep one list because their order is the order on the wire. Separate lists per kind of member could not say that an enum comes between two types." ;
+	linkml:annotations _:c14n4 , _:c14n97 ;
+	linkml:class_uri "https://w3id.org/lmodel/fix-sbe/SbeCompositeV2"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/SbeCompositeV2"^^xsd:anyURI ;
+	linkml:description "An encoding built from members sent one after another, such as a decimal's mantissa and exponent." ;
+	linkml:is_a <https://w3id.org/lmodel/fix-sbe/SbeMemberV2> ;
+	linkml:mixins <https://w3id.org/lmodel/fix-sbe/SbeVersionedMixin> ;
+	linkml:slot_usage _:c14n0 ;
+	linkml:slots <https://w3id.org/lmodel/fix-sbe/SbeCompositeV2_composite_members> , <https://w3id.org/lmodel/fix-sbe/alignment> , <https://w3id.org/lmodel/fix-sbe/deprecated_since> , <https://w3id.org/lmodel/fix-sbe/description> , <https://w3id.org/lmodel/fix-sbe/encoding_kind> , <https://w3id.org/lmodel/fix-sbe/offset> , <https://w3id.org/lmodel/fix-sbe/since_version> , <https://w3id.org/lmodel/fix-sbe/symbolic_name> .
+<https://w3id.org/lmodel/fix-sbe/SbeCompositeV2_composite_members> a linkml:SlotDefinition ;
+	skos:altLabel "composite" , "enum" , "ref" , "set" , "type" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	skos:prefLabel "composite_members" ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/composite_members"^^xsd:anyURI ;
+	linkml:description "The members of this composite, in the order they are sent." ;
+	linkml:domain <https://w3id.org/lmodel/fix-sbe/SbeCompositeV2> ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeCompositeV2> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:is_a <https://w3id.org/lmodel/fix-sbe/composite_members> ;
+	linkml:is_usage_slot true ;
+	linkml:minimum_cardinality 1 ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeCompositeV2> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/SbeMemberV2> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/composite_members"^^xsd:anyURI ;
+	linkml:usage_slot_name "composite_members" .
+<https://w3id.org/lmodel/fix-sbe/SbeElementV2> a linkml:ClassDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v2_0"^^xsd:anyURI ;
+	linkml:abstract true ;
+	linkml:class_uri "https://w3id.org/lmodel/fix-sbe/SbeElementV2"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/SbeElementV2"^^xsd:anyURI ;
+	linkml:description "Anything that sets of encodings or composites hold, and the name and text they all have." ;
+	linkml:slot_usage _:c14n119 ;
+	linkml:slots <https://w3id.org/lmodel/fix-sbe/description> , <https://w3id.org/lmodel/fix-sbe/encoding_kind> , <https://w3id.org/lmodel/fix-sbe/symbolic_name> .
+<https://w3id.org/lmodel/fix-sbe/SbeEncodingSetV1> a linkml:ClassDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v1_0"^^xsd:anyURI ;
+	linkml:annotations _:c14n147 ;
+	linkml:class_uri "https://w3id.org/lmodel/fix-sbe/SbeEncodingSetV1"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/SbeEncodingSetV1"^^xsd:anyURI ;
+	linkml:description "A set of encodings, listed in any order, whose names are unique across the whole schema." ;
+	linkml:slot_usage _:c14n68 ;
+	linkml:slots <https://w3id.org/lmodel/fix-sbe/SbeEncodingSetV1_encodings> .
+<https://w3id.org/lmodel/fix-sbe/SbeEncodingSetV1_encodings> a linkml:SlotDefinition ;
+	skos:altLabel "composite" , "enum" , "set" , "type" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	skos:prefLabel "encodings" ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/encodings"^^xsd:anyURI ;
+	linkml:description "The encodings of this set." ;
+	linkml:domain <https://w3id.org/lmodel/fix-sbe/SbeEncodingSetV1> ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeEncodingSetV1> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:is_a <https://w3id.org/lmodel/fix-sbe/encodings> ;
+	linkml:is_usage_slot true ;
+	linkml:minimum_cardinality 1 ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeEncodingSetV1> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/SbeEncodingV1> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/encodings"^^xsd:anyURI ;
+	linkml:usage_slot_name "encodings" .
+<https://w3id.org/lmodel/fix-sbe/SbeEncodingSetV2> a linkml:ClassDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v2_0"^^xsd:anyURI ;
+	linkml:annotations _:c14n91 ;
+	linkml:class_uri "https://w3id.org/lmodel/fix-sbe/SbeEncodingSetV2"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/SbeEncodingSetV2"^^xsd:anyURI ;
+	linkml:description "A set of encodings, in any order, that may have its own package and may come from another file." ;
+	linkml:slot_usage _:c14n52 ;
+	linkml:slots <https://w3id.org/lmodel/fix-sbe/SbeEncodingSetV2_encodings> , <https://w3id.org/lmodel/fix-sbe/SbeEncodingSetV2_schema_package> , <https://w3id.org/lmodel/fix-sbe/description> , <https://w3id.org/lmodel/fix-sbe/sbe_xml_base> .
+<https://w3id.org/lmodel/fix-sbe/SbeEncodingSetV2_encodings> a linkml:SlotDefinition ;
+	skos:altLabel "composite" , "enum" , "set" , "type" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	skos:note "A composite, an enumeration and a set may appear here or inside a composite, and a simple type has a different shape in each place, so no single class fits this list." ;
+	skos:prefLabel "encodings" ;
+	linkml:any_of _:c14n129 , _:c14n60 , _:c14n62 , _:c14n75 ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/encodings"^^xsd:anyURI ;
+	linkml:description "The encodings of this set." ;
+	linkml:domain <https://w3id.org/lmodel/fix-sbe/SbeEncodingSetV2> ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeEncodingSetV2> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:is_a <https://w3id.org/lmodel/fix-sbe/encodings> ;
+	linkml:is_usage_slot true ;
+	linkml:minimum_cardinality 1 ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeEncodingSetV2> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/SbeElementV2> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/encodings"^^xsd:anyURI ;
+	linkml:usage_slot_name "encodings" .
+<https://w3id.org/lmodel/fix-sbe/SbeEncodingSetV2_schema_package> a linkml:SlotDefinition ;
+	skos:altLabel "package" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	skos:prefLabel "schema_package" ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/schema_package"^^xsd:anyURI ;
+	linkml:description "A package for this set in place of the schema's." ;
+	linkml:domain <https://w3id.org/lmodel/fix-sbe/SbeEncodingSetV2> ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeEncodingSetV2> ;
+	linkml:is_a <https://w3id.org/lmodel/fix-sbe/schema_package> ;
+	linkml:is_usage_slot true ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeEncodingSetV2> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/schema_package"^^xsd:anyURI ;
+	linkml:usage_slot_name "schema_package" .
+<https://w3id.org/lmodel/fix-sbe/SbeEncodingV1> a linkml:ClassDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v1_0"^^xsd:anyURI ;
+	linkml:abstract true ;
+	linkml:class_uri "https://w3id.org/lmodel/fix-sbe/SbeEncodingV1"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/SbeEncodingV1"^^xsd:anyURI ;
+	linkml:description "An encoding of SBE 1.0, which says how a value is laid out on the wire." ;
+	linkml:is_a <https://w3id.org/lmodel/fix-sbe/SbeMemberV1> ;
+	linkml:slot_usage _:c14n144 ;
+	linkml:slots <https://w3id.org/lmodel/fix-sbe/SbeEncodingV1_semantic_type> , <https://w3id.org/lmodel/fix-sbe/deprecated_since> , <https://w3id.org/lmodel/fix-sbe/description> , <https://w3id.org/lmodel/fix-sbe/encoding_kind> , <https://w3id.org/lmodel/fix-sbe/offset> , <https://w3id.org/lmodel/fix-sbe/since_version> , <https://w3id.org/lmodel/fix-sbe/symbolic_name> .
+<https://w3id.org/lmodel/fix-sbe/SbeEncodingV1_semantic_type> a linkml:SlotDefinition ;
+	skos:altLabel "semanticType" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	skos:prefLabel "semantic_type" ;
+	linkml:annotations _:c14n87 ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/semantic_type"^^xsd:anyURI ;
+	linkml:description "The FIX datatype this encoding carries." ;
+	linkml:domain <https://w3id.org/lmodel/fix-sbe/SbeEncodingV1> ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeEncodingV1> ;
+	linkml:is_a <https://w3id.org/lmodel/fix-sbe/semantic_type> ;
+	linkml:is_usage_slot true ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeEncodingV1> ;
+	linkml:pattern "^\\S+( \\S+)*$" ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/SbeToken> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/semantic_type"^^xsd:anyURI ;
+	linkml:usage_slot_name "semantic_type" .
+<https://w3id.org/lmodel/fix-sbe/SbeEnumV1> a linkml:ClassDefinition ;
+	skos:closeMatch "fix_orchestra:OrchestraCodeSetV10"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v1_0"^^xsd:anyURI ;
+	linkml:annotations _:c14n130 , _:c14n39 ;
+	linkml:class_uri "https://w3id.org/lmodel/fix-sbe/SbeEnumV1"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/SbeEnumV1"^^xsd:anyURI ;
+	linkml:description "An encoding whose value is one of a listed set of valid values." ;
+	linkml:is_a <https://w3id.org/lmodel/fix-sbe/SbeEncodingV1> ;
+	linkml:slot_usage _:c14n108 ;
+	linkml:slots <https://w3id.org/lmodel/fix-sbe/SbeEncodingV1_semantic_type> , <https://w3id.org/lmodel/fix-sbe/deprecated_since> , <https://w3id.org/lmodel/fix-sbe/description> , <https://w3id.org/lmodel/fix-sbe/encoding_kind> , <https://w3id.org/lmodel/fix-sbe/encoding_type> , <https://w3id.org/lmodel/fix-sbe/offset> , <https://w3id.org/lmodel/fix-sbe/since_version> , <https://w3id.org/lmodel/fix-sbe/symbolic_name> , <https://w3id.org/lmodel/fix-sbe/valid_values> .
+<https://w3id.org/lmodel/fix-sbe/SbeEnumV2> a linkml:ClassDefinition ;
+	skos:closeMatch "fix_orchestra:OrchestraCodeSetV10"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v2_0"^^xsd:anyURI ;
+	linkml:annotations _:c14n111 , _:c14n15 ;
+	linkml:class_uri "https://w3id.org/lmodel/fix-sbe/SbeEnumV2"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/SbeEnumV2"^^xsd:anyURI ;
+	linkml:description "An encoding whose value is one of a listed set of valid values." ;
+	linkml:is_a <https://w3id.org/lmodel/fix-sbe/SbeMemberV2> ;
+	linkml:mixins <https://w3id.org/lmodel/fix-sbe/SbeVersionedMixin> ;
+	linkml:slot_usage _:c14n101 ;
+	linkml:slots <https://w3id.org/lmodel/fix-sbe/alignment> , <https://w3id.org/lmodel/fix-sbe/deprecated_since> , <https://w3id.org/lmodel/fix-sbe/description> , <https://w3id.org/lmodel/fix-sbe/encoding_kind> , <https://w3id.org/lmodel/fix-sbe/encoding_type> , <https://w3id.org/lmodel/fix-sbe/offset> , <https://w3id.org/lmodel/fix-sbe/since_version> , <https://w3id.org/lmodel/fix-sbe/symbolic_name> , <https://w3id.org/lmodel/fix-sbe/valid_values> .
+<https://w3id.org/lmodel/fix-sbe/SbeFieldV1> a linkml:ClassDefinition ;
+	skos:closeMatch "fix_orchestra:OrchestraFieldV10"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v1_0"^^xsd:anyURI ;
+	skos:note "The mapping to an Orchestra field is close, not exact. This field has a place in one block, and FIX's transposer carries one with a composite encoding to a component reference, not a field." ;
+	sh:rule _:c14n63 ;
+	linkml:annotations _:c14n53 , _:c14n61 ;
+	linkml:attributes <https://w3id.org/lmodel/fix-sbe/time_epoch> , <https://w3id.org/lmodel/fix-sbe/time_unit> ;
+	linkml:class_uri "https://w3id.org/lmodel/fix-sbe/SbeFieldV1"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/SbeFieldV1"^^xsd:anyURI ;
+	linkml:description "A message's or group entry's field, which uses an encoding at a place in its block." ;
+	linkml:mixins <https://w3id.org/lmodel/fix-sbe/SbeVersionedMixin> ;
+	linkml:slot_usage _:c14n89 ;
+	linkml:slots <https://w3id.org/lmodel/fix-sbe/SbeFieldV1_sbe_id> , <https://w3id.org/lmodel/fix-sbe/SbeFieldV1_semantic_type> , <https://w3id.org/lmodel/fix-sbe/deprecated_since> , <https://w3id.org/lmodel/fix-sbe/description> , <https://w3id.org/lmodel/fix-sbe/encoding_name> , <https://w3id.org/lmodel/fix-sbe/offset> , <https://w3id.org/lmodel/fix-sbe/presence> , <https://w3id.org/lmodel/fix-sbe/sbeFieldV1__time_epoch> , <https://w3id.org/lmodel/fix-sbe/sbeFieldV1__time_unit> , <https://w3id.org/lmodel/fix-sbe/since_version> , <https://w3id.org/lmodel/fix-sbe/symbolic_name> , <https://w3id.org/lmodel/fix-sbe/value_ref> .
+<https://w3id.org/lmodel/fix-sbe/SbeFieldV1_sbe_id> a linkml:SlotDefinition ;
+	skos:altLabel "id" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	skos:prefLabel "sbe_id" ;
+	linkml:annotations _:c14n110 ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/sbe_id"^^xsd:anyURI ;
+	linkml:description "The field's FIX tag number." ;
+	linkml:domain <https://w3id.org/lmodel/fix-sbe/SbeFieldV1> ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeFieldV1> ;
+	linkml:is_a <https://w3id.org/lmodel/fix-sbe/sbe_id> ;
+	linkml:is_usage_slot true ;
+	linkml:maximum_value "65535"^^linkml:\@id ;
+	linkml:minimum_value "0"^^linkml:\@id ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeFieldV1> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/integer> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/sbe_id"^^xsd:anyURI ;
+	linkml:usage_slot_name "sbe_id" .
+<https://w3id.org/lmodel/fix-sbe/SbeFieldV1_semantic_type> a linkml:SlotDefinition ;
+	skos:altLabel "semanticType" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	skos:prefLabel "semantic_type" ;
+	linkml:annotations _:c14n145 ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/semantic_type"^^xsd:anyURI ;
+	linkml:description "The FIX datatype this field carries." ;
+	linkml:domain <https://w3id.org/lmodel/fix-sbe/SbeFieldV1> ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeFieldV1> ;
+	linkml:is_a <https://w3id.org/lmodel/fix-sbe/semantic_type> ;
+	linkml:is_usage_slot true ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeFieldV1> ;
+	linkml:pattern "^\\S+( \\S+)*$" ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/SbeToken> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/semantic_type"^^xsd:anyURI ;
+	linkml:usage_slot_name "semantic_type" .
+<https://w3id.org/lmodel/fix-sbe/SbeFieldV2> a linkml:ClassDefinition ;
+	skos:closeMatch "fix_orchestra:OrchestraFieldV10"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v2_0"^^xsd:anyURI ;
+	skos:note "The mapping to an Orchestra field is close, not exact. This field has a place in one block, and FIX's transposer carries one with a composite encoding to a component reference, not a field." ;
+	sh:rule _:c14n100 , _:c14n112 , _:c14n134 , _:c14n20 , _:c14n84 , _:c14n92 ;
+	linkml:annotations _:c14n113 , _:c14n21 ;
+	linkml:class_uri "https://w3id.org/lmodel/fix-sbe/SbeFieldV2"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/SbeFieldV2"^^xsd:anyURI ;
+	linkml:description "A message's or group entry's field, which uses an encoding at a place in its block and may state a constant." ;
+	linkml:mixins <https://w3id.org/lmodel/fix-sbe/SbeVersionedMixin> ;
+	linkml:slot_usage _:c14n46 ;
+	linkml:slots <https://w3id.org/lmodel/fix-sbe/SbeFieldV2_alignment> , <https://w3id.org/lmodel/fix-sbe/SbeFieldV2_sbe_id> , <https://w3id.org/lmodel/fix-sbe/SbeFieldV2_semantic_type> , <https://w3id.org/lmodel/fix-sbe/deprecated_since> , <https://w3id.org/lmodel/fix-sbe/description> , <https://w3id.org/lmodel/fix-sbe/element_value> , <https://w3id.org/lmodel/fix-sbe/encoding_name> , <https://w3id.org/lmodel/fix-sbe/max_value> , <https://w3id.org/lmodel/fix-sbe/min_value> , <https://w3id.org/lmodel/fix-sbe/null_value> , <https://w3id.org/lmodel/fix-sbe/offset> , <https://w3id.org/lmodel/fix-sbe/presence> , <https://w3id.org/lmodel/fix-sbe/since_version> , <https://w3id.org/lmodel/fix-sbe/symbolic_name> , <https://w3id.org/lmodel/fix-sbe/value_ref> .
+<https://w3id.org/lmodel/fix-sbe/SbeFieldV2_alignment> a linkml:SlotDefinition ;
+	skos:altLabel "alignment" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v2_0"^^xsd:anyURI ;
+	skos:prefLabel "alignment" ;
+	linkml:annotations _:c14n57 ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/alignment"^^xsd:anyURI ;
+	linkml:description "The multiple of octets the start of this field is placed on, in place of an offset." ;
+	linkml:domain <https://w3id.org/lmodel/fix-sbe/SbeFieldV2> ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeFieldV2> ;
+	linkml:is_a <https://w3id.org/lmodel/fix-sbe/alignment> ;
+	linkml:is_usage_slot true ;
+	linkml:minimum_value "1"^^linkml:\@id ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeFieldV2> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/integer> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/alignment"^^xsd:anyURI ;
+	linkml:usage_slot_name "alignment" .
+<https://w3id.org/lmodel/fix-sbe/SbeFieldV2_sbe_id> a linkml:SlotDefinition ;
+	skos:altLabel "id" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	skos:prefLabel "sbe_id" ;
+	linkml:annotations _:c14n49 ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/sbe_id"^^xsd:anyURI ;
+	linkml:description "The field's FIX tag number." ;
+	linkml:domain <https://w3id.org/lmodel/fix-sbe/SbeFieldV2> ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeFieldV2> ;
+	linkml:is_a <https://w3id.org/lmodel/fix-sbe/sbe_id> ;
+	linkml:is_usage_slot true ;
+	linkml:maximum_value "65535"^^linkml:\@id ;
+	linkml:minimum_value "0"^^linkml:\@id ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeFieldV2> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/integer> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/sbe_id"^^xsd:anyURI ;
+	linkml:usage_slot_name "sbe_id" .
+<https://w3id.org/lmodel/fix-sbe/SbeFieldV2_semantic_type> a linkml:SlotDefinition ;
+	skos:altLabel "semanticType" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	skos:prefLabel "semantic_type" ;
+	linkml:annotations _:c14n93 ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/semantic_type"^^xsd:anyURI ;
+	linkml:description "The FIX datatype this field carries." ;
+	linkml:domain <https://w3id.org/lmodel/fix-sbe/SbeFieldV2> ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeFieldV2> ;
+	linkml:is_a <https://w3id.org/lmodel/fix-sbe/semantic_type> ;
+	linkml:is_usage_slot true ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeFieldV2> ;
+	linkml:pattern "^\\S+( \\S+)*$" ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/SbeToken> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/semantic_type"^^xsd:anyURI ;
+	linkml:usage_slot_name "semantic_type" .
+<https://w3id.org/lmodel/fix-sbe/SbeFixDatatype> skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	skos:note "The list is the datatypes of FIX Latest in FIXTradingCommunity/orchestrations (Apache-2.0), file \"FIX Standard/OrchestraFIXLatest.xml\" at commit cd24169a2abd8daba7c360987c7a46ca11873a12, in that file's order, with EncodedText last." , "semantic_type stays free text in the schema, because a message's holds a MsgType value and the specification suggests matching names ignoring case. tests/sbe_rules.py checks an encoding's and a field's against this list." ;
+	linkml:annotations _:c14n128 ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/SbeFixDatatype"^^xsd:anyURI ;
+	linkml:description "The FIX datatypes a field's or an encoding's semantic type may name: those of FIX Latest, and EncodedText, which the specification's summary table adds." ;
+	linkml:permissible_values <https://w3id.org/lmodel/fix-sbe/Amt> , <https://w3id.org/lmodel/fix-sbe/Boolean> , <https://w3id.org/lmodel/fix-sbe/Country> , <https://w3id.org/lmodel/fix-sbe/Currency> , <https://w3id.org/lmodel/fix-sbe/DayOfMonth> , <https://w3id.org/lmodel/fix-sbe/EncodedText> , <https://w3id.org/lmodel/fix-sbe/Exchange> , <https://w3id.org/lmodel/fix-sbe/Language> , <https://w3id.org/lmodel/fix-sbe/Length> , <https://w3id.org/lmodel/fix-sbe/LocalMktDate> , <https://w3id.org/lmodel/fix-sbe/LocalMktTime> , <https://w3id.org/lmodel/fix-sbe/MonthYear> , <https://w3id.org/lmodel/fix-sbe/MultipleCharValue> , <https://w3id.org/lmodel/fix-sbe/MultipleStringValue> , <https://w3id.org/lmodel/fix-sbe/NumInGroup> , <https://w3id.org/lmodel/fix-sbe/Pattern> , <https://w3id.org/lmodel/fix-sbe/Percentage> , <https://w3id.org/lmodel/fix-sbe/Price> , <https://w3id.org/lmodel/fix-sbe/PriceOffset> , <https://w3id.org/lmodel/fix-sbe/Qty> , <https://w3id.org/lmodel/fix-sbe/Reserved1000Plus> , <https://w3id.org/lmodel/fix-sbe/Reserved100Plus> , <https://w3id.org/lmodel/fix-sbe/Reserved4000Plus> , <https://w3id.org/lmodel/fix-sbe/SeqNum> , <https://w3id.org/lmodel/fix-sbe/String> , <https://w3id.org/lmodel/fix-sbe/TZTimeOnly> , <https://w3id.org/lmodel/fix-sbe/TZTimestamp> , <https://w3id.org/lmodel/fix-sbe/TagNum> , <https://w3id.org/lmodel/fix-sbe/Tenor> , <https://w3id.org/lmodel/fix-sbe/UTCDateOnly> , <https://w3id.org/lmodel/fix-sbe/UTCTimeOnly> , <https://w3id.org/lmodel/fix-sbe/UTCTimestamp> , <https://w3id.org/lmodel/fix-sbe/XID> , <https://w3id.org/lmodel/fix-sbe/XIDREF> , <https://w3id.org/lmodel/fix-sbe/XMLData> , <https://w3id.org/lmodel/fix-sbe/char> , <https://w3id.org/lmodel/fix-sbe/data> , <https://w3id.org/lmodel/fix-sbe/float> , <https://w3id.org/lmodel/fix-sbe/int> .
+<https://w3id.org/lmodel/fix-sbe/SbeGroupV1> a linkml:ClassDefinition ;
+	skos:closeMatch "fix_orchestra:OrchestraGroupV10"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v1_0"^^xsd:anyURI ;
+	linkml:annotations _:c14n140 , _:c14n33 ;
+	linkml:class_uri "https://w3id.org/lmodel/fix-sbe/SbeGroupV1"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/SbeGroupV1"^^xsd:anyURI ;
+	linkml:description "A repeating group, whose entries each hold the same fields, and which must have at least one field." ;
+	linkml:mixins <https://w3id.org/lmodel/fix-sbe/SbeBlockV1Mixin> , <https://w3id.org/lmodel/fix-sbe/SbeVersionedMixin> ;
+	linkml:slot_usage _:c14n151 ;
+	linkml:slots <https://w3id.org/lmodel/fix-sbe/SbeBlockV1Mixin_repeating_groups> , <https://w3id.org/lmodel/fix-sbe/SbeBlockV1Mixin_sbe_id> , <https://w3id.org/lmodel/fix-sbe/SbeBlockV1Mixin_var_data_fields> , <https://w3id.org/lmodel/fix-sbe/SbeGroupV1_block_fields> , <https://w3id.org/lmodel/fix-sbe/block_length> , <https://w3id.org/lmodel/fix-sbe/deprecated_since> , <https://w3id.org/lmodel/fix-sbe/description> , <https://w3id.org/lmodel/fix-sbe/dimension_type> , <https://w3id.org/lmodel/fix-sbe/semantic_type> , <https://w3id.org/lmodel/fix-sbe/since_version> , <https://w3id.org/lmodel/fix-sbe/symbolic_name> .
+<https://w3id.org/lmodel/fix-sbe/SbeGroupV1_block_fields> a linkml:SlotDefinition ;
+	skos:altLabel "field" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	skos:prefLabel "block_fields" ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/block_fields"^^xsd:anyURI ;
+	linkml:description "Fixed-length fields, listed in wire order." ;
+	linkml:domain <https://w3id.org/lmodel/fix-sbe/SbeGroupV1> ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeGroupV1> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:is_a <https://w3id.org/lmodel/fix-sbe/SbeBlockV1Mixin_block_fields> ;
+	linkml:is_usage_slot true ;
+	linkml:minimum_cardinality 1 ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeGroupV1> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/SbeFieldV1> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/block_fields"^^xsd:anyURI ;
+	linkml:usage_slot_name "block_fields" .
+<https://w3id.org/lmodel/fix-sbe/SbeGroupV2> a linkml:ClassDefinition ;
+	skos:closeMatch "fix_orchestra:OrchestraGroupV10"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v2_0"^^xsd:anyURI ;
+	linkml:annotations _:c14n37 , _:c14n79 ;
+	linkml:class_uri "https://w3id.org/lmodel/fix-sbe/SbeGroupV2"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/SbeGroupV2"^^xsd:anyURI ;
+	linkml:description "A repeating group, whose entries each hold the same fields, and which must have at least one field." ;
+	linkml:mixins <https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin> , <https://w3id.org/lmodel/fix-sbe/SbeVersionedMixin> ;
+	linkml:slot_usage _:c14n8 ;
+	linkml:slots <https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin_alignment> , <https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin_repeating_groups> , <https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin_sbe_id> , <https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin_var_data_fields> , <https://w3id.org/lmodel/fix-sbe/SbeGroupV2_block_fields> , <https://w3id.org/lmodel/fix-sbe/block_length> , <https://w3id.org/lmodel/fix-sbe/deprecated_since> , <https://w3id.org/lmodel/fix-sbe/description> , <https://w3id.org/lmodel/fix-sbe/dimension_type> , <https://w3id.org/lmodel/fix-sbe/semantic_type> , <https://w3id.org/lmodel/fix-sbe/since_version> , <https://w3id.org/lmodel/fix-sbe/symbolic_name> .
+<https://w3id.org/lmodel/fix-sbe/SbeGroupV2_block_fields> a linkml:SlotDefinition ;
+	skos:altLabel "field" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	skos:prefLabel "block_fields" ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/block_fields"^^xsd:anyURI ;
+	linkml:description "Fixed-length fields, listed in wire order." ;
+	linkml:domain <https://w3id.org/lmodel/fix-sbe/SbeGroupV2> ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeGroupV2> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:is_a <https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin_block_fields> ;
+	linkml:is_usage_slot true ;
+	linkml:minimum_cardinality 1 ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeGroupV2> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/SbeFieldV2> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/block_fields"^^xsd:anyURI ;
+	linkml:usage_slot_name "block_fields" .
+<https://w3id.org/lmodel/fix-sbe/SbeMemberTypeV2> a linkml:ClassDefinition ;
+	skos:closeMatch "fix_orchestra:OrchestraFieldV10"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v2_0"^^xsd:anyURI ;
+	skos:note "FIX's transposer carries every composite member to an Orchestra field, referenced from the component, and only a stand-alone simple type to a datatype." ;
+	sh:rule _:c14n105 , _:c14n59 , _:c14n70 , _:c14n71 , _:c14n9 ;
+	linkml:annotations _:c14n126 , _:c14n24 ;
+	linkml:class_uri "https://w3id.org/lmodel/fix-sbe/SbeMemberTypeV2"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/SbeMemberTypeV2"^^xsd:anyURI ;
+	linkml:description "A simple encoding inside a composite, which may say it is optional or constant." ;
+	linkml:is_a <https://w3id.org/lmodel/fix-sbe/SbeMemberV2> ;
+	linkml:slot_usage _:c14n116 ;
+	linkml:slots <https://w3id.org/lmodel/fix-sbe/alignment> , <https://w3id.org/lmodel/fix-sbe/array_length> , <https://w3id.org/lmodel/fix-sbe/character_encoding> , <https://w3id.org/lmodel/fix-sbe/description> , <https://w3id.org/lmodel/fix-sbe/element_value> , <https://w3id.org/lmodel/fix-sbe/encoding_kind> , <https://w3id.org/lmodel/fix-sbe/max_value> , <https://w3id.org/lmodel/fix-sbe/min_value> , <https://w3id.org/lmodel/fix-sbe/null_value> , <https://w3id.org/lmodel/fix-sbe/offset> , <https://w3id.org/lmodel/fix-sbe/presence> , <https://w3id.org/lmodel/fix-sbe/primitive_type> , <https://w3id.org/lmodel/fix-sbe/symbolic_name> , <https://w3id.org/lmodel/fix-sbe/value_ref> .
+<https://w3id.org/lmodel/fix-sbe/SbeMemberV1> a linkml:ClassDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v1_0"^^xsd:anyURI ;
+	linkml:abstract true ;
+	linkml:class_uri "https://w3id.org/lmodel/fix-sbe/SbeMemberV1"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/SbeMemberV1"^^xsd:anyURI ;
+	linkml:description "Anything a composite may hold in the order it is sent." ;
+	linkml:mixins <https://w3id.org/lmodel/fix-sbe/SbeVersionedMixin> ;
+	linkml:slot_usage _:c14n48 ;
+	linkml:slots <https://w3id.org/lmodel/fix-sbe/deprecated_since> , <https://w3id.org/lmodel/fix-sbe/encoding_kind> , <https://w3id.org/lmodel/fix-sbe/offset> , <https://w3id.org/lmodel/fix-sbe/since_version> , <https://w3id.org/lmodel/fix-sbe/symbolic_name> .
+<https://w3id.org/lmodel/fix-sbe/SbeMemberV2> a linkml:ClassDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v2_0"^^xsd:anyURI ;
+	linkml:abstract true ;
+	linkml:class_uri "https://w3id.org/lmodel/fix-sbe/SbeMemberV2"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/SbeMemberV2"^^xsd:anyURI ;
+	linkml:description "Anything a composite may hold in the order it is sent." ;
+	linkml:is_a <https://w3id.org/lmodel/fix-sbe/SbeElementV2> ;
+	linkml:slot_usage _:c14n69 ;
+	linkml:slots <https://w3id.org/lmodel/fix-sbe/alignment> , <https://w3id.org/lmodel/fix-sbe/description> , <https://w3id.org/lmodel/fix-sbe/encoding_kind> , <https://w3id.org/lmodel/fix-sbe/offset> , <https://w3id.org/lmodel/fix-sbe/symbolic_name> .
+<https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV1> a linkml:ClassDefinition ;
+	skos:closeMatch "fix_orchestra:OrchestraRepositoryV10"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v1_0"^^xsd:anyURI ;
+	linkml:annotations _:c14n107 ;
+	linkml:class_uri "https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV1"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV1"^^xsd:anyURI ;
+	linkml:description "One SBE 1.0 message schema, with its encodings and message templates." ;
+	linkml:slot_usage _:c14n29 ;
+	linkml:slots <https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV1_encoding_sets> , <https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV1_messages> , <https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV1_sbe_id> , <https://w3id.org/lmodel/fix-sbe/byte_order> , <https://w3id.org/lmodel/fix-sbe/description> , <https://w3id.org/lmodel/fix-sbe/header_type> , <https://w3id.org/lmodel/fix-sbe/schema_package> , <https://w3id.org/lmodel/fix-sbe/schema_version> , <https://w3id.org/lmodel/fix-sbe/semantic_version> ;
+	linkml:tree_root true .
+<https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV1_encoding_sets> a linkml:SlotDefinition ;
+	skos:altLabel "types" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	skos:prefLabel "encoding_sets" ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/encoding_sets"^^xsd:anyURI ;
+	linkml:description "The sets of encodings this schema's messages use." ;
+	linkml:domain <https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV1> ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV1> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:is_a <https://w3id.org/lmodel/fix-sbe/encoding_sets> ;
+	linkml:is_usage_slot true ;
+	linkml:minimum_cardinality 1 ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV1> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/SbeEncodingSetV1> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/encoding_sets"^^xsd:anyURI ;
+	linkml:usage_slot_name "encoding_sets" .
+<https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV1_messages> a linkml:SlotDefinition ;
+	skos:altLabel "message" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	skos:prefLabel "messages" ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/messages"^^xsd:anyURI ;
+	linkml:description "The message templates of this set." ;
+	linkml:domain <https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV1> ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV1> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:is_a <https://w3id.org/lmodel/fix-sbe/messages> ;
+	linkml:is_usage_slot true ;
+	linkml:minimum_cardinality 1 ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV1> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/SbeMessageV1> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/messages"^^xsd:anyURI ;
+	linkml:usage_slot_name "messages" .
+<https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV1_sbe_id> a linkml:SlotDefinition ;
+	skos:altLabel "id" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	skos:prefLabel "sbe_id" ;
+	linkml:annotations _:c14n152 ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/sbe_id"^^xsd:anyURI ;
+	linkml:description "The number that identifies this schema between counterparties." ;
+	linkml:domain <https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV1> ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV1> ;
+	linkml:is_a <https://w3id.org/lmodel/fix-sbe/sbe_id> ;
+	linkml:is_usage_slot true ;
+	linkml:maximum_value "65535"^^linkml:\@id ;
+	linkml:minimum_value "0"^^linkml:\@id ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV1> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/integer> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/sbe_id"^^xsd:anyURI ;
+	linkml:usage_slot_name "sbe_id" .
+<https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV2> a linkml:ClassDefinition ;
+	skos:closeMatch "fix_orchestra:OrchestraRepositoryV10"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v2_0"^^xsd:anyURI ;
+	skos:note "It is not marked as a tree root because a merged schema can have only one, and the final standard's class takes that place. Name this class when validating a document." ;
+	linkml:annotations _:c14n124 ;
+	linkml:class_uri "https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV2"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV2"^^xsd:anyURI ;
+	linkml:description "One SBE 2.0 message schema, with its encodings and message templates." ;
+	linkml:slot_usage _:c14n32 ;
+	linkml:slots <https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV2_encoding_sets> , <https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV2_message_sets> , <https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV2_sbe_id> , <https://w3id.org/lmodel/fix-sbe/byte_order> , <https://w3id.org/lmodel/fix-sbe/description> , <https://w3id.org/lmodel/fix-sbe/header_type> , <https://w3id.org/lmodel/fix-sbe/schema_package> , <https://w3id.org/lmodel/fix-sbe/schema_version> , <https://w3id.org/lmodel/fix-sbe/semantic_version> .
+<https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV2_encoding_sets> a linkml:SlotDefinition ;
+	skos:altLabel "types" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	skos:prefLabel "encoding_sets" ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/encoding_sets"^^xsd:anyURI ;
+	linkml:description "The sets of encodings this schema's messages use." ;
+	linkml:domain <https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV2> ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV2> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:is_a <https://w3id.org/lmodel/fix-sbe/encoding_sets> ;
+	linkml:is_usage_slot true ;
+	linkml:minimum_cardinality 1 ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV2> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/SbeEncodingSetV2> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/encoding_sets"^^xsd:anyURI ;
+	linkml:usage_slot_name "encoding_sets" .
+<https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV2_message_sets> a linkml:SlotDefinition ;
+	skos:altLabel "messages" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	skos:prefLabel "message_sets" ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/message_sets"^^xsd:anyURI ;
+	linkml:description "The sets of message templates of this schema." ;
+	linkml:domain <https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV2> ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV2> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:is_a <https://w3id.org/lmodel/fix-sbe/message_sets> ;
+	linkml:is_usage_slot true ;
+	linkml:minimum_cardinality 1 ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV2> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/SbeMessageSetV2> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/message_sets"^^xsd:anyURI ;
+	linkml:usage_slot_name "message_sets" .
+<https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV2_sbe_id> a linkml:SlotDefinition ;
+	skos:altLabel "id" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	skos:prefLabel "sbe_id" ;
+	linkml:annotations _:c14n137 ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/sbe_id"^^xsd:anyURI ;
+	linkml:description "The number that identifies this schema between counterparties." ;
+	linkml:domain <https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV2> ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV2> ;
+	linkml:is_a <https://w3id.org/lmodel/fix-sbe/sbe_id> ;
+	linkml:is_usage_slot true ;
+	linkml:maximum_value "65535"^^linkml:\@id ;
+	linkml:minimum_value "0"^^linkml:\@id ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV2> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/integer> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/sbe_id"^^xsd:anyURI ;
+	linkml:usage_slot_name "sbe_id" .
+<https://w3id.org/lmodel/fix-sbe/SbeMessageSetV2> a linkml:ClassDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v2_0"^^xsd:anyURI ;
+	linkml:annotations _:c14n27 ;
+	linkml:class_uri "https://w3id.org/lmodel/fix-sbe/SbeMessageSetV2"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/SbeMessageSetV2"^^xsd:anyURI ;
+	linkml:description "Message templates held together, which may have their own package and may come from another file." ;
+	linkml:slot_usage _:c14n35 ;
+	linkml:slots <https://w3id.org/lmodel/fix-sbe/SbeMessageSetV2_messages> , <https://w3id.org/lmodel/fix-sbe/SbeMessageSetV2_schema_package> , <https://w3id.org/lmodel/fix-sbe/description> , <https://w3id.org/lmodel/fix-sbe/sbe_xml_base> .
+<https://w3id.org/lmodel/fix-sbe/SbeMessageSetV2_messages> a linkml:SlotDefinition ;
+	skos:altLabel "message" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	skos:prefLabel "messages" ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/messages"^^xsd:anyURI ;
+	linkml:description "The message templates of this set." ;
+	linkml:domain <https://w3id.org/lmodel/fix-sbe/SbeMessageSetV2> ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeMessageSetV2> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:is_a <https://w3id.org/lmodel/fix-sbe/messages> ;
+	linkml:is_usage_slot true ;
+	linkml:minimum_cardinality 1 ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeMessageSetV2> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/SbeMessageV2> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/messages"^^xsd:anyURI ;
+	linkml:usage_slot_name "messages" .
+<https://w3id.org/lmodel/fix-sbe/SbeMessageSetV2_schema_package> a linkml:SlotDefinition ;
+	skos:altLabel "package" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	skos:prefLabel "schema_package" ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/schema_package"^^xsd:anyURI ;
+	linkml:description "A package for this set in place of the schema's." ;
+	linkml:domain <https://w3id.org/lmodel/fix-sbe/SbeMessageSetV2> ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeMessageSetV2> ;
+	linkml:is_a <https://w3id.org/lmodel/fix-sbe/schema_package> ;
+	linkml:is_usage_slot true ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeMessageSetV2> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/schema_package"^^xsd:anyURI ;
+	linkml:usage_slot_name "schema_package" .
+<https://w3id.org/lmodel/fix-sbe/SbeMessageV1> a linkml:ClassDefinition ;
+	skos:closeMatch "fix_orchestra:OrchestraMessageV10"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v1_0"^^xsd:anyURI ;
+	linkml:annotations _:c14n132 , _:c14n96 ;
+	linkml:class_uri "https://w3id.org/lmodel/fix-sbe/SbeMessageV1"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/SbeMessageV1"^^xsd:anyURI ;
+	linkml:description "A message template, whose number and block length are sent in each message's header." ;
+	linkml:mixins <https://w3id.org/lmodel/fix-sbe/SbeBlockV1Mixin> , <https://w3id.org/lmodel/fix-sbe/SbeVersionedMixin> ;
+	linkml:slot_usage _:c14n44 ;
+	linkml:slots <https://w3id.org/lmodel/fix-sbe/SbeBlockV1Mixin_block_fields> , <https://w3id.org/lmodel/fix-sbe/SbeBlockV1Mixin_repeating_groups> , <https://w3id.org/lmodel/fix-sbe/SbeBlockV1Mixin_var_data_fields> , <https://w3id.org/lmodel/fix-sbe/SbeMessageV1_sbe_id> , <https://w3id.org/lmodel/fix-sbe/SbeMessageV1_semantic_type> , <https://w3id.org/lmodel/fix-sbe/block_length> , <https://w3id.org/lmodel/fix-sbe/deprecated_since> , <https://w3id.org/lmodel/fix-sbe/description> , <https://w3id.org/lmodel/fix-sbe/since_version> , <https://w3id.org/lmodel/fix-sbe/symbolic_name> .
+<https://w3id.org/lmodel/fix-sbe/SbeMessageV1_sbe_id> a linkml:SlotDefinition ;
+	skos:altLabel "id" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	skos:prefLabel "sbe_id" ;
+	linkml:annotations _:c14n143 ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/sbe_id"^^xsd:anyURI ;
+	linkml:description "The template's number, which no other template in the schema shares." ;
+	linkml:domain <https://w3id.org/lmodel/fix-sbe/SbeMessageV1> ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeMessageV1> ;
+	linkml:is_a <https://w3id.org/lmodel/fix-sbe/SbeBlockV1Mixin_sbe_id> ;
+	linkml:is_usage_slot true ;
+	linkml:maximum_value "65535"^^linkml:\@id ;
+	linkml:minimum_value "0"^^linkml:\@id ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeMessageV1> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/integer> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/sbe_id"^^xsd:anyURI ;
+	linkml:usage_slot_name "sbe_id" .
+<https://w3id.org/lmodel/fix-sbe/SbeMessageV1_semantic_type> a linkml:SlotDefinition ;
+	skos:altLabel "semanticType" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	skos:prefLabel "semantic_type" ;
+	linkml:annotations _:c14n138 ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/semantic_type"^^xsd:anyURI ;
+	linkml:description "The FIX MsgType(35) this template stands for, where several templates may share one." ;
+	linkml:domain <https://w3id.org/lmodel/fix-sbe/SbeMessageV1> ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeMessageV1> ;
+	linkml:is_a <https://w3id.org/lmodel/fix-sbe/semantic_type> ;
+	linkml:is_usage_slot true ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeMessageV1> ;
+	linkml:pattern "^\\S+( \\S+)*$" ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/SbeToken> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/semantic_type"^^xsd:anyURI ;
+	linkml:usage_slot_name "semantic_type" .
+<https://w3id.org/lmodel/fix-sbe/SbeMessageV2> a linkml:ClassDefinition ;
+	skos:closeMatch "fix_orchestra:OrchestraMessageV10"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v2_0"^^xsd:anyURI ;
+	linkml:annotations _:c14n109 , _:c14n56 ;
+	linkml:class_uri "https://w3id.org/lmodel/fix-sbe/SbeMessageV2"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/SbeMessageV2"^^xsd:anyURI ;
+	linkml:description "A message template, whose number and block length are sent in each message's header." ;
+	linkml:mixins <https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin> , <https://w3id.org/lmodel/fix-sbe/SbeVersionedMixin> ;
+	linkml:slot_usage _:c14n40 ;
+	linkml:slots <https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin_alignment> , <https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin_block_fields> , <https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin_repeating_groups> , <https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin_var_data_fields> , <https://w3id.org/lmodel/fix-sbe/SbeMessageV2_sbe_id> , <https://w3id.org/lmodel/fix-sbe/SbeMessageV2_semantic_type> , <https://w3id.org/lmodel/fix-sbe/block_length> , <https://w3id.org/lmodel/fix-sbe/deprecated_since> , <https://w3id.org/lmodel/fix-sbe/description> , <https://w3id.org/lmodel/fix-sbe/since_version> , <https://w3id.org/lmodel/fix-sbe/symbolic_name> .
+<https://w3id.org/lmodel/fix-sbe/SbeMessageV2_sbe_id> a linkml:SlotDefinition ;
+	skos:altLabel "id" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	skos:prefLabel "sbe_id" ;
+	linkml:annotations _:c14n34 ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/sbe_id"^^xsd:anyURI ;
+	linkml:description "The template's number, which no other template in the schema shares." ;
+	linkml:domain <https://w3id.org/lmodel/fix-sbe/SbeMessageV2> ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeMessageV2> ;
+	linkml:is_a <https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin_sbe_id> ;
+	linkml:is_usage_slot true ;
+	linkml:maximum_value "65535"^^linkml:\@id ;
+	linkml:minimum_value "0"^^linkml:\@id ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeMessageV2> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/integer> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/sbe_id"^^xsd:anyURI ;
+	linkml:usage_slot_name "sbe_id" .
+<https://w3id.org/lmodel/fix-sbe/SbeMessageV2_semantic_type> a linkml:SlotDefinition ;
+	skos:altLabel "semanticType" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	skos:prefLabel "semantic_type" ;
+	linkml:annotations _:c14n146 ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/semantic_type"^^xsd:anyURI ;
+	linkml:description "The FIX MsgType(35) this template stands for, where several templates may share one." ;
+	linkml:domain <https://w3id.org/lmodel/fix-sbe/SbeMessageV2> ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeMessageV2> ;
+	linkml:is_a <https://w3id.org/lmodel/fix-sbe/semantic_type> ;
+	linkml:is_usage_slot true ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeMessageV2> ;
+	linkml:pattern "^\\S+( \\S+)*$" ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/SbeToken> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/semantic_type"^^xsd:anyURI ;
+	linkml:usage_slot_name "semantic_type" .
+<https://w3id.org/lmodel/fix-sbe/SbePresence> skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	linkml:annotations _:c14n103 ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/SbePresence"^^xsd:anyURI ;
+	linkml:description "Whether a value is on the wire, and whether it may be null." ;
+	linkml:permissible_values <https://w3id.org/lmodel/fix-sbe/constant> , <https://w3id.org/lmodel/fix-sbe/optional> , <https://w3id.org/lmodel/fix-sbe/required> .
+<https://w3id.org/lmodel/fix-sbe/SbePrimitiveType> skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	linkml:annotations _:c14n153 ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/SbePrimitiveType"^^xsd:anyURI ;
+	linkml:description "The wire types every encoding is finally built from." ;
+	linkml:permissible_values <https://w3id.org/lmodel/fix-sbe/char> , <https://w3id.org/lmodel/fix-sbe/double> , <https://w3id.org/lmodel/fix-sbe/float> , <https://w3id.org/lmodel/fix-sbe/int16> , <https://w3id.org/lmodel/fix-sbe/int32> , <https://w3id.org/lmodel/fix-sbe/int64> , <https://w3id.org/lmodel/fix-sbe/int8> , <https://w3id.org/lmodel/fix-sbe/uint16> , <https://w3id.org/lmodel/fix-sbe/uint32> , <https://w3id.org/lmodel/fix-sbe/uint64> , <https://w3id.org/lmodel/fix-sbe/uint8> .
+<https://w3id.org/lmodel/fix-sbe/SbeQualifiedName> a linkml:TypeDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	linkml:annotations _:c14n36 ;
+	linkml:base "str" ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/SbeQualifiedName"^^xsd:anyURI ;
+	linkml:description "An enumeration's name and one of its valid values' names, joined by a dot." ;
+	linkml:pattern "^[A-Za-z_][0-9A-Za-z_]*\\.[A-Za-z_][0-9A-Za-z_]*$" ;
+	linkml:typeof <https://w3id.org/lmodel/fix-sbe/string> ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#string"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-sbe/SbeRefV1> a linkml:ClassDefinition ;
+	skos:closeMatch "fix_orchestra:OrchestraFieldV10"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v1_0"^^xsd:anyURI ;
+	skos:note "FIX's transposer carries a ref to an Orchestra field whose type is the encoding it names." ;
+	linkml:annotations _:c14n14 , _:c14n94 ;
+	linkml:class_uri "https://w3id.org/lmodel/fix-sbe/SbeRefV1"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/SbeRefV1"^^xsd:anyURI ;
+	linkml:description "A composite's member that reuses an encoding defined elsewhere in the schema." ;
+	linkml:is_a <https://w3id.org/lmodel/fix-sbe/SbeMemberV1> ;
+	linkml:slot_usage _:c14n115 ;
+	linkml:slots <https://w3id.org/lmodel/fix-sbe/deprecated_since> , <https://w3id.org/lmodel/fix-sbe/encoding_kind> , <https://w3id.org/lmodel/fix-sbe/encoding_name> , <https://w3id.org/lmodel/fix-sbe/offset> , <https://w3id.org/lmodel/fix-sbe/since_version> , <https://w3id.org/lmodel/fix-sbe/symbolic_name> .
+<https://w3id.org/lmodel/fix-sbe/SbeRefV2> a linkml:ClassDefinition ;
+	skos:closeMatch "fix_orchestra:OrchestraFieldV10"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v2_0"^^xsd:anyURI ;
+	skos:note "FIX's transposer carries a ref to an Orchestra field whose type is the encoding it names." ;
+	linkml:annotations _:c14n142 , _:c14n19 ;
+	linkml:class_uri "https://w3id.org/lmodel/fix-sbe/SbeRefV2"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/SbeRefV2"^^xsd:anyURI ;
+	linkml:description "A composite's member that reuses an encoding defined elsewhere in the schema." ;
+	linkml:is_a <https://w3id.org/lmodel/fix-sbe/SbeMemberV2> ;
+	linkml:slot_usage _:c14n26 ;
+	linkml:slots <https://w3id.org/lmodel/fix-sbe/alignment> , <https://w3id.org/lmodel/fix-sbe/description> , <https://w3id.org/lmodel/fix-sbe/encoding_kind> , <https://w3id.org/lmodel/fix-sbe/encoding_name> , <https://w3id.org/lmodel/fix-sbe/offset> , <https://w3id.org/lmodel/fix-sbe/symbolic_name> .
+<https://w3id.org/lmodel/fix-sbe/SbeSetV1> a linkml:ClassDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v1_0"^^xsd:anyURI ;
+	skos:note "FIX's transposer does not carry a set to Orchestra, so the mapping is related. FIX's MultipleCharValue and MultipleStringValue fields hold such choices in a code set." ;
+	skos:relatedMatch "fix_orchestra:OrchestraCodeSetV10"^^xsd:anyURI ;
+	linkml:annotations _:c14n31 , _:c14n82 ;
+	linkml:class_uri "https://w3id.org/lmodel/fix-sbe/SbeSetV1"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/SbeSetV1"^^xsd:anyURI ;
+	linkml:description "An encoding whose value is any combination of up to 64 choices, sent as a bitset." ;
+	linkml:is_a <https://w3id.org/lmodel/fix-sbe/SbeEncodingV1> ;
+	linkml:slot_usage _:c14n154 ;
+	linkml:slots <https://w3id.org/lmodel/fix-sbe/SbeEncodingV1_semantic_type> , <https://w3id.org/lmodel/fix-sbe/choices> , <https://w3id.org/lmodel/fix-sbe/deprecated_since> , <https://w3id.org/lmodel/fix-sbe/description> , <https://w3id.org/lmodel/fix-sbe/encoding_kind> , <https://w3id.org/lmodel/fix-sbe/encoding_type> , <https://w3id.org/lmodel/fix-sbe/offset> , <https://w3id.org/lmodel/fix-sbe/since_version> , <https://w3id.org/lmodel/fix-sbe/symbolic_name> .
+<https://w3id.org/lmodel/fix-sbe/SbeSetV2> a linkml:ClassDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v2_0"^^xsd:anyURI ;
+	skos:note "FIX's transposer does not carry a set to Orchestra, so the mapping is related. FIX's MultipleCharValue and MultipleStringValue fields hold such choices in a code set." ;
+	skos:relatedMatch "fix_orchestra:OrchestraCodeSetV10"^^xsd:anyURI ;
+	linkml:annotations _:c14n11 , _:c14n74 ;
+	linkml:class_uri "https://w3id.org/lmodel/fix-sbe/SbeSetV2"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/SbeSetV2"^^xsd:anyURI ;
+	linkml:description "An encoding whose value is any combination of up to 64 choices, sent as a bitset." ;
+	linkml:is_a <https://w3id.org/lmodel/fix-sbe/SbeMemberV2> ;
+	linkml:mixins <https://w3id.org/lmodel/fix-sbe/SbeVersionedMixin> ;
+	linkml:slot_usage _:c14n106 ;
+	linkml:slots <https://w3id.org/lmodel/fix-sbe/alignment> , <https://w3id.org/lmodel/fix-sbe/choices> , <https://w3id.org/lmodel/fix-sbe/deprecated_since> , <https://w3id.org/lmodel/fix-sbe/description> , <https://w3id.org/lmodel/fix-sbe/encoding_kind> , <https://w3id.org/lmodel/fix-sbe/encoding_type> , <https://w3id.org/lmodel/fix-sbe/offset> , <https://w3id.org/lmodel/fix-sbe/since_version> , <https://w3id.org/lmodel/fix-sbe/symbolic_name> .
+<https://w3id.org/lmodel/fix-sbe/SbeSimpleTypeV1> a linkml:ClassDefinition ;
+	skos:closeMatch "fix_orchestra:OrchestraDatatypeV10"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v1_0"^^xsd:anyURI ;
+	skos:note "FIX's transposer carries a stand-alone simple type to an Orchestra datatype, and one that is a composite's member to a field referenced from the component." ;
+	sh:rule _:c14n125 , _:c14n131 , _:c14n156 , _:c14n18 , _:c14n88 ;
+	linkml:annotations _:c14n141 , _:c14n72 ;
+	linkml:class_uri "https://w3id.org/lmodel/fix-sbe/SbeSimpleTypeV1"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/SbeSimpleTypeV1"^^xsd:anyURI ;
+	linkml:description "An encoding backed by one primitive value, or several in an array." ;
+	linkml:is_a <https://w3id.org/lmodel/fix-sbe/SbeEncodingV1> ;
+	linkml:slot_usage _:c14n64 ;
+	linkml:slots <https://w3id.org/lmodel/fix-sbe/SbeEncodingV1_semantic_type> , <https://w3id.org/lmodel/fix-sbe/array_length> , <https://w3id.org/lmodel/fix-sbe/character_encoding> , <https://w3id.org/lmodel/fix-sbe/deprecated_since> , <https://w3id.org/lmodel/fix-sbe/description> , <https://w3id.org/lmodel/fix-sbe/element_value> , <https://w3id.org/lmodel/fix-sbe/encoding_kind> , <https://w3id.org/lmodel/fix-sbe/max_value> , <https://w3id.org/lmodel/fix-sbe/min_value> , <https://w3id.org/lmodel/fix-sbe/null_value> , <https://w3id.org/lmodel/fix-sbe/offset> , <https://w3id.org/lmodel/fix-sbe/presence> , <https://w3id.org/lmodel/fix-sbe/primitive_type> , <https://w3id.org/lmodel/fix-sbe/since_version> , <https://w3id.org/lmodel/fix-sbe/symbolic_name> , <https://w3id.org/lmodel/fix-sbe/value_ref> .
+<https://w3id.org/lmodel/fix-sbe/SbeSimpleTypeV2> a linkml:ClassDefinition ;
+	skos:closeMatch "fix_orchestra:OrchestraDatatypeV10"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v2_0"^^xsd:anyURI ;
+	linkml:annotations _:c14n127 , _:c14n73 ;
+	linkml:class_uri "https://w3id.org/lmodel/fix-sbe/SbeSimpleTypeV2"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/SbeSimpleTypeV2"^^xsd:anyURI ;
+	linkml:description "A simple encoding that stands alone in a set, backed by one primitive value, or several in an array." ;
+	linkml:is_a <https://w3id.org/lmodel/fix-sbe/SbeElementV2> ;
+	linkml:mixins <https://w3id.org/lmodel/fix-sbe/SbeVersionedMixin> ;
+	linkml:slot_usage _:c14n16 ;
+	linkml:slots <https://w3id.org/lmodel/fix-sbe/array_length> , <https://w3id.org/lmodel/fix-sbe/character_encoding> , <https://w3id.org/lmodel/fix-sbe/deprecated_since> , <https://w3id.org/lmodel/fix-sbe/description> , <https://w3id.org/lmodel/fix-sbe/element_value> , <https://w3id.org/lmodel/fix-sbe/encoding_kind> , <https://w3id.org/lmodel/fix-sbe/primitive_type> , <https://w3id.org/lmodel/fix-sbe/since_version> , <https://w3id.org/lmodel/fix-sbe/symbolic_name> .
+<https://w3id.org/lmodel/fix-sbe/SbeSymbolicName> a linkml:TypeDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	linkml:annotations _:c14n41 ;
+	linkml:base "str" ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/SbeSymbolicName"^^xsd:anyURI ;
+	linkml:description "A name of one to 64 letters, digits and underscores that starts with a letter or underscore." ;
+	linkml:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" ;
+	linkml:typeof <https://w3id.org/lmodel/fix-sbe/string> ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#string"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-sbe/SbeToken> a linkml:TypeDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	linkml:annotations _:c14n7 ;
+	linkml:base "str" ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/SbeToken"^^xsd:anyURI ;
+	linkml:description "Text with no line break, tab or doubled space, and no space at either end." ;
+	linkml:pattern "^\\S+( \\S+)*$" ;
+	linkml:typeof <https://w3id.org/lmodel/fix-sbe/string> ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#token"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-sbe/SbeValidValue> a linkml:ClassDefinition ;
+	skos:closeMatch "fix_orchestra:OrchestraCodeV10"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	linkml:annotations _:c14n102 ;
+	linkml:attributes <https://w3id.org/lmodel/fix-sbe/valid_value> ;
+	linkml:class_uri "https://w3id.org/lmodel/fix-sbe/SbeValidValue"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/SbeValidValue"^^xsd:anyURI ;
+	linkml:description "One of the values an enumeration allows." ;
+	linkml:mixins <https://w3id.org/lmodel/fix-sbe/SbeVersionedMixin> ;
+	linkml:slot_usage _:c14n76 ;
+	linkml:slots <https://w3id.org/lmodel/fix-sbe/deprecated_since> , <https://w3id.org/lmodel/fix-sbe/description> , <https://w3id.org/lmodel/fix-sbe/sbeValidValue__valid_value> , <https://w3id.org/lmodel/fix-sbe/since_version> , <https://w3id.org/lmodel/fix-sbe/symbolic_name> .
+<https://w3id.org/lmodel/fix-sbe/SbeVersionedMixin> a linkml:ClassDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	linkml:annotations _:c14n81 ;
+	linkml:class_uri "https://w3id.org/lmodel/fix-sbe/SbeVersionedMixin"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/SbeVersionedMixin"^^xsd:anyURI ;
+	linkml:description "The two attributes that record when an element entered a schema and when it should leave." ;
+	linkml:mixin true ;
+	linkml:slot_usage _:c14n77 ;
+	linkml:slots <https://w3id.org/lmodel/fix-sbe/deprecated_since> , <https://w3id.org/lmodel/fix-sbe/since_version> .
+<https://w3id.org/lmodel/fix-sbe/SeqNum> linkml:description "A whole number that orders messages in a session." .
+<https://w3id.org/lmodel/fix-sbe/String> linkml:description "Text of any length." .
+<https://w3id.org/lmodel/fix-sbe/TZTimeOnly> linkml:description "A time of day with its offset from UTC." .
+<https://w3id.org/lmodel/fix-sbe/TZTimestamp> linkml:description "A date and time with their offset from UTC." .
+<https://w3id.org/lmodel/fix-sbe/TagNum> linkml:description "A whole number that is a field's tag." .
+<https://w3id.org/lmodel/fix-sbe/Tenor> linkml:description "A period expressed as a count of days, weeks, months or years." .
+<https://w3id.org/lmodel/fix-sbe/UTCDateOnly> linkml:description "A calendar date in UTC." .
+<https://w3id.org/lmodel/fix-sbe/UTCTimeOnly> linkml:description "A time of day in UTC." .
+<https://w3id.org/lmodel/fix-sbe/UTCTimestamp> linkml:description "A date and time in UTC." .
+<https://w3id.org/lmodel/fix-sbe/XID> linkml:description "An identifier that is unique within a message." .
+<https://w3id.org/lmodel/fix-sbe/XIDREF> linkml:description "A reference to an XID in the same message." .
+<https://w3id.org/lmodel/fix-sbe/XMLData> linkml:description "An XML document carried as text." .
+<https://w3id.org/lmodel/fix-sbe/alignment> a linkml:SlotDefinition ;
+	skos:altLabel "alignment" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v2_0"^^xsd:anyURI ;
+	linkml:annotations _:c14n55 , _:c14n85 ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/alignment"^^xsd:anyURI ;
+	linkml:description "The multiple of octets the start of this element is placed on." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin> , <https://w3id.org/lmodel/fix-sbe/SbeFieldV2> , <https://w3id.org/lmodel/fix-sbe/SbeMemberV2> ;
+	linkml:minimum_value "1"^^linkml:\@id ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeFieldV2> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/integer> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/alignment"^^xsd:anyURI ;
+	linkml:value_presence "PRESENT" .
+<https://w3id.org/lmodel/fix-sbe/array_length> a linkml:SlotDefinition ;
+	skos:altLabel "length" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	linkml:annotations _:c14n83 ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/array_length"^^xsd:anyURI ;
+	linkml:description "How many values of the primitive type the encoding holds, where zero means a variable number." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeMemberTypeV2> , <https://w3id.org/lmodel/fix-sbe/SbeSimpleTypeV1> , <https://w3id.org/lmodel/fix-sbe/SbeSimpleTypeV2> ;
+	linkml:ifabsent "int(1)" ;
+	linkml:minimum_value "0"^^linkml:\@id ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeMemberTypeV2> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/integer> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/array_length"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-sbe/bigEndian> linkml:description "The most significant octet comes first." .
+<https://w3id.org/lmodel/fix-sbe/bit_position> a linkml:SlotDefinition ;
+	linkml:annotations _:c14n12 , _:c14n98 ;
+	linkml:description "Which bit stands for this choice, counted from zero at the least significant." ;
+	linkml:minimum_value "0"^^linkml:\@id ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/integer> ;
+	linkml:required true .
+<https://w3id.org/lmodel/fix-sbe/block_fields> a linkml:SlotDefinition ;
+	skos:altLabel "field" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/block_fields"^^xsd:anyURI ;
+	linkml:description "Fixed-length fields, listed in wire order." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeBlockV1Mixin> , <https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin> ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/block_fields"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-sbe/block_length> a linkml:SlotDefinition ;
+	skos:altLabel "blockLength" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	linkml:annotations _:c14n155 , _:c14n54 ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/block_length"^^xsd:anyURI ;
+	linkml:description "The octets set aside for a message's fixed-length fields, or for those of each group entry." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeBlockV1Mixin> , <https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin> ;
+	linkml:minimum_value "0"^^linkml:\@id ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/integer> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/block_length"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-sbe/boolean> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"boolean\"." ;
+	skos:exactMatch "schema:Boolean"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "Bool" ;
+	linkml:definition_uri "https://w3id.org/linkml/Boolean"^^xsd:anyURI ;
+	linkml:description "A binary (true or false) value" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "bool" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#boolean"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-sbe/byte_order> a linkml:SlotDefinition ;
+	skos:altLabel "byteOrder" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/byte_order"^^xsd:anyURI ;
+	linkml:description "How the octets of every number in this schema's messages are ordered." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV1> , <https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV2> ;
+	linkml:ifabsent "string(littleEndian)" ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV2> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/SbeByteOrder> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/byte_order"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-sbe/char> linkml:description "One character of one octet." , "One character." .
+<https://w3id.org/lmodel/fix-sbe/character_encoding> a linkml:SlotDefinition ;
+	skos:altLabel "characterEncoding" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/character_encoding"^^xsd:anyURI ;
+	linkml:description "Which character set, or which Unicode scheme, character data follows." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeMemberTypeV2> , <https://w3id.org/lmodel/fix-sbe/SbeSimpleTypeV1> , <https://w3id.org/lmodel/fix-sbe/SbeSimpleTypeV2> ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeMemberTypeV2> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/character_encoding"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-sbe/choices> a linkml:SlotDefinition ;
+	skos:altLabel "choice" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/choices"^^xsd:anyURI ;
+	linkml:description "The alternatives of this set." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeSetV1> , <https://w3id.org/lmodel/fix-sbe/SbeSetV2> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:maximum_cardinality 64 ;
+	linkml:minimum_cardinality 1 ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeSetV2> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/SbeChoice> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/choices"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-sbe/composite_members> a linkml:SlotDefinition ;
+	skos:altLabel "composite" , "enum" , "ref" , "set" , "type" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/composite_members"^^xsd:anyURI ;
+	linkml:description "The members of this composite, in the order they are sent." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeCompositeV1> , <https://w3id.org/lmodel/fix-sbe/SbeCompositeV2> ;
+	linkml:inlined_as_list true ;
+	linkml:minimum_cardinality 1 ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeCompositeV2> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/string> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/composite_members"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-sbe/constant> linkml:description "The schema states the value, so nothing is sent." .
+<https://w3id.org/lmodel/fix-sbe/curie> dcterms:conformsTo "https://www.w3.org/TR/curie/" ;
+	a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"curie\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	skos:note "in RDF serializations this MUST be expanded to a URI" , "in non-RDF serializations MAY be serialized as the compact representation" ;
+	linkml:base "Curie" ;
+	linkml:definition_uri "https://w3id.org/linkml/Curie"^^xsd:anyURI ;
+	linkml:description "a compact URI" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#string"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-sbe/data> linkml:description "Raw octets, whose count a Length field before them gives." .
+<https://w3id.org/lmodel/fix-sbe/date> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"date\"." , "URI is dateTime because OWL reasoners don't work with straight date or time" ;
+	skos:exactMatch "schema:Date"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "XSDDate" ;
+	linkml:definition_uri "https://w3id.org/linkml/Date"^^xsd:anyURI ;
+	linkml:description "a date (year, month and day) in an idealized calendar" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#date"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-sbe/date_or_datetime> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"date_or_datetime\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "str" ;
+	linkml:definition_uri "https://w3id.org/linkml/DateOrDatetime"^^xsd:anyURI ;
+	linkml:description "Either a date or a datetime" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "https://w3id.org/linkml/DateOrDatetime"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-sbe/datetime> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"datetime\"." ;
+	skos:exactMatch "schema:DateTime"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "XSDDateTime" ;
+	linkml:definition_uri "https://w3id.org/linkml/Datetime"^^xsd:anyURI ;
+	linkml:description "The combination of a date and time" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#dateTime"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-sbe/decimal> a linkml:TypeDefinition ;
+	skos:broadMatch "schema:Number"^^xsd:anyURI ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"decimal\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "Decimal" ;
+	linkml:definition_uri "https://w3id.org/linkml/Decimal"^^xsd:anyURI ;
+	linkml:description "A real number with arbitrary precision that conforms to the xsd:decimal specification" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#decimal"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-sbe/deprecated_since> a linkml:SlotDefinition ;
+	skos:altLabel "deprecated" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	linkml:annotations _:c14n139 , _:c14n80 ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/deprecated_since"^^xsd:anyURI ;
+	linkml:description "The schema version that retired this element, which stays only for older applications." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeVersionedMixin> ;
+	linkml:minimum_value "0"^^linkml:\@id ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeVersionedMixin> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/integer> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/deprecated_since"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-sbe/description> a linkml:SlotDefinition ;
+	skos:altLabel "description" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	skos:mappingRelation "http://schema.org/description"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/description"^^xsd:anyURI ;
+	linkml:description "Free text about this element, for the people who read the schema." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeBlockV1Mixin> , <https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin> , <https://w3id.org/lmodel/fix-sbe/SbeChoice> , <https://w3id.org/lmodel/fix-sbe/SbeElementV2> , <https://w3id.org/lmodel/fix-sbe/SbeEncodingSetV2> , <https://w3id.org/lmodel/fix-sbe/SbeEncodingV1> , <https://w3id.org/lmodel/fix-sbe/SbeFieldV1> , <https://w3id.org/lmodel/fix-sbe/SbeFieldV2> , <https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV1> , <https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV2> , <https://w3id.org/lmodel/fix-sbe/SbeMessageSetV2> , <https://w3id.org/lmodel/fix-sbe/SbeValidValue> ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeFieldV2> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/string> ;
+	linkml:slot_uri "http://schema.org/description"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-sbe/dimension_type> a linkml:SlotDefinition ;
+	skos:altLabel "dimensionType" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	linkml:annotations _:c14n42 ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/dimension_type"^^xsd:anyURI ;
+	linkml:description "The composite, by name, that sends a repeating group's entry count and entry size." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeGroupV1> , <https://w3id.org/lmodel/fix-sbe/SbeGroupV2> ;
+	linkml:ifabsent "string(groupSizeEncoding)" ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeGroupV2> ;
+	linkml:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/SbeSymbolicName> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/dimension_type"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-sbe/double> a linkml:TypeDefinition ;
+	skos:closeMatch "schema:Float"^^xsd:anyURI ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"double\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "float" ;
+	linkml:definition_uri "https://w3id.org/linkml/Double"^^xsd:anyURI ;
+	linkml:description "A real number that conforms to the xsd:double specification" , "An eight-octet number in binary floating point." ;
+	linkml:imported_from "linkml:types" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#double"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-sbe/element_value> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	linkml:annotations _:c14n149 , _:c14n28 ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/element_value"^^xsd:anyURI ;
+	linkml:description "The text of the XML element, which is the constant when presence is constant." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeFieldV2> , <https://w3id.org/lmodel/fix-sbe/SbeMemberTypeV2> , <https://w3id.org/lmodel/fix-sbe/SbeSimpleTypeV1> , <https://w3id.org/lmodel/fix-sbe/SbeSimpleTypeV2> ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeFieldV2> ;
+	linkml:pattern "^\\S+( \\S+)*$" ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/SbeToken> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/element_value"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-sbe/encoding_kind> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/encoding_kind"^^xsd:anyURI ;
+	linkml:description "The class of this encoding or composite member, which stands for its XML element." ;
+	linkml:designates_type true ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeElementV2> , <https://w3id.org/lmodel/fix-sbe/SbeMemberV1> ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeElementV2> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/string> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/encoding_kind"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-sbe/encoding_name> a linkml:SlotDefinition ;
+	skos:altLabel "type" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	skos:note "It holds a name and not a class reference, because a name is unique only within one schema document, where several documents may be listed side by side. tests/sbe_rules.py checks that each names an encoding of its document." ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/encoding_name"^^xsd:anyURI ;
+	linkml:description "Which encoding this element uses, by name." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeFieldV1> , <https://w3id.org/lmodel/fix-sbe/SbeFieldV2> , <https://w3id.org/lmodel/fix-sbe/SbeRefV1> , <https://w3id.org/lmodel/fix-sbe/SbeRefV2> ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeFieldV2> ;
+	linkml:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/SbeSymbolicName> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/encoding_name"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-sbe/encoding_sets> a linkml:SlotDefinition ;
+	skos:altLabel "types" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/encoding_sets"^^xsd:anyURI ;
+	linkml:description "The sets of encodings this schema's messages use." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV1> , <https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV2> ;
+	linkml:inlined_as_list true ;
+	linkml:minimum_cardinality 1 ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV2> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/string> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/encoding_sets"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-sbe/encoding_type> a linkml:SlotDefinition ;
+	skos:altLabel "encodingType" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/encoding_type"^^xsd:anyURI ;
+	linkml:description "The simple encoding or primitive type that an enumeration or set is sent as." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeEnumV1> , <https://w3id.org/lmodel/fix-sbe/SbeEnumV2> , <https://w3id.org/lmodel/fix-sbe/SbeSetV1> , <https://w3id.org/lmodel/fix-sbe/SbeSetV2> ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeSetV2> ;
+	linkml:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/SbeSymbolicName> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/encoding_type"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-sbe/encodings> a linkml:SlotDefinition ;
+	skos:altLabel "composite" , "enum" , "set" , "type" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/encodings"^^xsd:anyURI ;
+	linkml:description "The encodings of this set." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeEncodingSetV1> , <https://w3id.org/lmodel/fix-sbe/SbeEncodingSetV2> ;
+	linkml:inlined_as_list true ;
+	linkml:minimum_cardinality 1 ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeEncodingSetV2> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/string> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/encodings"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-sbe/fix_sbe> dcterms:license "Apache-2.0" ;
+	dcterms:source "https://github.com/FIXTradingCommunity/fix-simple-binary-encoding"^^xsd:anyURI ;
+	dcterms:title "FIX Simple Binary Encoding (SBE)" ;
+	pav:version "1.0 and 2.0-rc3" ;
+	schema1:keywords "FIX" , "SBE" , "binary encoding" , "message schema" , "wire format" ;
+	a linkml:SchemaDefinition ;
+	rdfs:seeAlso "https://github.com/FIXTradingCommunity/fix-simple-binary-encoding"^^xsd:anyURI , "https://lmodel.github.io/fix-sbe"^^xsd:anyURI , "https://www.iana.org/assignments/media-types/application/sbe"^^xsd:anyURI ;
+	skos:note "A document of SBE 1.0 starts at SbeMessageSchemaV1, the tree root, and one of SBE 2.0 RC3 at SbeMessageSchemaV2. upstream/ holds both XSDs unchanged, tests/test_coverage.py compares the modules with them, and scripts/check_upstream_release.py reports when either changes." ;
+	sh:declare _:c14n114 , _:c14n118 , _:c14n50 , _:c14n66 ;
+	linkml:annotations _:c14n43 , _:c14n47 , _:c14n99 ;
+	linkml:classes <https://w3id.org/lmodel/fix-sbe/SbeBlockV1Mixin> , <https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin> , <https://w3id.org/lmodel/fix-sbe/SbeChoice> , <https://w3id.org/lmodel/fix-sbe/SbeCompositeV1> , <https://w3id.org/lmodel/fix-sbe/SbeCompositeV2> , <https://w3id.org/lmodel/fix-sbe/SbeElementV2> , <https://w3id.org/lmodel/fix-sbe/SbeEncodingSetV1> , <https://w3id.org/lmodel/fix-sbe/SbeEncodingSetV2> , <https://w3id.org/lmodel/fix-sbe/SbeEncodingV1> , <https://w3id.org/lmodel/fix-sbe/SbeEnumV1> , <https://w3id.org/lmodel/fix-sbe/SbeEnumV2> , <https://w3id.org/lmodel/fix-sbe/SbeFieldV1> , <https://w3id.org/lmodel/fix-sbe/SbeFieldV2> , <https://w3id.org/lmodel/fix-sbe/SbeGroupV1> , <https://w3id.org/lmodel/fix-sbe/SbeGroupV2> , <https://w3id.org/lmodel/fix-sbe/SbeMemberTypeV2> , <https://w3id.org/lmodel/fix-sbe/SbeMemberV1> , <https://w3id.org/lmodel/fix-sbe/SbeMemberV2> , <https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV1> , <https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV2> , <https://w3id.org/lmodel/fix-sbe/SbeMessageSetV2> , <https://w3id.org/lmodel/fix-sbe/SbeMessageV1> , <https://w3id.org/lmodel/fix-sbe/SbeMessageV2> , <https://w3id.org/lmodel/fix-sbe/SbeRefV1> , <https://w3id.org/lmodel/fix-sbe/SbeRefV2> , <https://w3id.org/lmodel/fix-sbe/SbeSetV1> , <https://w3id.org/lmodel/fix-sbe/SbeSetV2> , <https://w3id.org/lmodel/fix-sbe/SbeSimpleTypeV1> , <https://w3id.org/lmodel/fix-sbe/SbeSimpleTypeV2> , <https://w3id.org/lmodel/fix-sbe/SbeValidValue> , <https://w3id.org/lmodel/fix-sbe/SbeVersionedMixin> ;
+	linkml:default_prefix "fix_sbe" ;
+	linkml:default_range <https://w3id.org/lmodel/fix-sbe/string> ;
+	linkml:description "A LinkML model of FIX Simple Binary Encoding, a standard from the FIX Trading Community for encoding messages in binary. It describes SBE message schemas: encodings, message templates, fields, groups and variable-length data. The two editions differ on the wire and in their XML, so each has a module of its own." ;
+	linkml:enums <https://w3id.org/lmodel/fix-sbe/SbeByteOrder> , <https://w3id.org/lmodel/fix-sbe/SbeFixDatatype> , <https://w3id.org/lmodel/fix-sbe/SbePresence> , <https://w3id.org/lmodel/fix-sbe/SbePrimitiveType> ;
+	linkml:id "https://w3id.org/lmodel/fix-sbe"^^xsd:anyURI ;
+	linkml:imports "./fix_sbe_common"^^xsd:anyURI , "./fix_sbe_v1_0"^^xsd:anyURI , "./fix_sbe_v2_0"^^xsd:anyURI , "linkml:types"^^xsd:anyURI ;
+	linkml:metamodel_version "1.12.0" ;
+	linkml:slots <https://w3id.org/lmodel/fix-sbe/SbeBlockV1Mixin_block_fields> , <https://w3id.org/lmodel/fix-sbe/SbeBlockV1Mixin_repeating_groups> , <https://w3id.org/lmodel/fix-sbe/SbeBlockV1Mixin_sbe_id> , <https://w3id.org/lmodel/fix-sbe/SbeBlockV1Mixin_var_data_fields> , <https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin_alignment> , <https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin_block_fields> , <https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin_repeating_groups> , <https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin_sbe_id> , <https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin_var_data_fields> , <https://w3id.org/lmodel/fix-sbe/SbeCompositeV1_composite_members> , <https://w3id.org/lmodel/fix-sbe/SbeCompositeV2_composite_members> , <https://w3id.org/lmodel/fix-sbe/SbeEncodingSetV1_encodings> , <https://w3id.org/lmodel/fix-sbe/SbeEncodingSetV2_encodings> , <https://w3id.org/lmodel/fix-sbe/SbeEncodingSetV2_schema_package> , <https://w3id.org/lmodel/fix-sbe/SbeEncodingV1_semantic_type> , <https://w3id.org/lmodel/fix-sbe/SbeFieldV1_sbe_id> , <https://w3id.org/lmodel/fix-sbe/SbeFieldV1_semantic_type> , <https://w3id.org/lmodel/fix-sbe/SbeFieldV2_alignment> , <https://w3id.org/lmodel/fix-sbe/SbeFieldV2_sbe_id> , <https://w3id.org/lmodel/fix-sbe/SbeFieldV2_semantic_type> , <https://w3id.org/lmodel/fix-sbe/SbeGroupV1_block_fields> , <https://w3id.org/lmodel/fix-sbe/SbeGroupV2_block_fields> , <https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV1_encoding_sets> , <https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV1_messages> , <https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV1_sbe_id> , <https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV2_encoding_sets> , <https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV2_message_sets> , <https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV2_sbe_id> , <https://w3id.org/lmodel/fix-sbe/SbeMessageSetV2_messages> , <https://w3id.org/lmodel/fix-sbe/SbeMessageSetV2_schema_package> , <https://w3id.org/lmodel/fix-sbe/SbeMessageV1_sbe_id> , <https://w3id.org/lmodel/fix-sbe/SbeMessageV1_semantic_type> , <https://w3id.org/lmodel/fix-sbe/SbeMessageV2_sbe_id> , <https://w3id.org/lmodel/fix-sbe/SbeMessageV2_semantic_type> , <https://w3id.org/lmodel/fix-sbe/alignment> , <https://w3id.org/lmodel/fix-sbe/array_length> , <https://w3id.org/lmodel/fix-sbe/block_fields> , <https://w3id.org/lmodel/fix-sbe/block_length> , <https://w3id.org/lmodel/fix-sbe/byte_order> , <https://w3id.org/lmodel/fix-sbe/character_encoding> , <https://w3id.org/lmodel/fix-sbe/choices> , <https://w3id.org/lmodel/fix-sbe/composite_members> , <https://w3id.org/lmodel/fix-sbe/deprecated_since> , <https://w3id.org/lmodel/fix-sbe/description> , <https://w3id.org/lmodel/fix-sbe/dimension_type> , <https://w3id.org/lmodel/fix-sbe/element_value> , <https://w3id.org/lmodel/fix-sbe/encoding_kind> , <https://w3id.org/lmodel/fix-sbe/encoding_name> , <https://w3id.org/lmodel/fix-sbe/encoding_sets> , <https://w3id.org/lmodel/fix-sbe/encoding_type> , <https://w3id.org/lmodel/fix-sbe/encodings> , <https://w3id.org/lmodel/fix-sbe/header_type> , <https://w3id.org/lmodel/fix-sbe/max_value> , <https://w3id.org/lmodel/fix-sbe/message_sets> , <https://w3id.org/lmodel/fix-sbe/messages> , <https://w3id.org/lmodel/fix-sbe/min_value> , <https://w3id.org/lmodel/fix-sbe/null_value> , <https://w3id.org/lmodel/fix-sbe/offset> , <https://w3id.org/lmodel/fix-sbe/presence> , <https://w3id.org/lmodel/fix-sbe/primitive_type> , <https://w3id.org/lmodel/fix-sbe/repeating_groups> , <https://w3id.org/lmodel/fix-sbe/sbeChoice__bit_position> , <https://w3id.org/lmodel/fix-sbe/sbeFieldV1__time_epoch> , <https://w3id.org/lmodel/fix-sbe/sbeFieldV1__time_unit> , <https://w3id.org/lmodel/fix-sbe/sbeValidValue__valid_value> , <https://w3id.org/lmodel/fix-sbe/sbe_id> , <https://w3id.org/lmodel/fix-sbe/sbe_xml_base> , <https://w3id.org/lmodel/fix-sbe/schema_package> , <https://w3id.org/lmodel/fix-sbe/schema_version> , <https://w3id.org/lmodel/fix-sbe/semantic_type> , <https://w3id.org/lmodel/fix-sbe/semantic_version> , <https://w3id.org/lmodel/fix-sbe/since_version> , <https://w3id.org/lmodel/fix-sbe/symbolic_name> , <https://w3id.org/lmodel/fix-sbe/valid_values> , <https://w3id.org/lmodel/fix-sbe/value_ref> , <https://w3id.org/lmodel/fix-sbe/var_data_fields> ;
+	linkml:source_file "fix_sbe.yaml" ;
+	linkml:source_file_date "2026-11-06T07:41:52"^^xsd:dateTime ;
+	linkml:source_file_size 1601 ;
+	linkml:types <https://w3id.org/lmodel/fix-sbe/SbeQualifiedName> , <https://w3id.org/lmodel/fix-sbe/SbeSymbolicName> , <https://w3id.org/lmodel/fix-sbe/SbeToken> , <https://w3id.org/lmodel/fix-sbe/boolean> , <https://w3id.org/lmodel/fix-sbe/curie> , <https://w3id.org/lmodel/fix-sbe/date> , <https://w3id.org/lmodel/fix-sbe/date_or_datetime> , <https://w3id.org/lmodel/fix-sbe/datetime> , <https://w3id.org/lmodel/fix-sbe/decimal> , <https://w3id.org/lmodel/fix-sbe/double> , <https://w3id.org/lmodel/fix-sbe/float> , <https://w3id.org/lmodel/fix-sbe/integer> , <https://w3id.org/lmodel/fix-sbe/jsonpath> , <https://w3id.org/lmodel/fix-sbe/jsonpointer> , <https://w3id.org/lmodel/fix-sbe/ncname> , <https://w3id.org/lmodel/fix-sbe/nodeidentifier> , <https://w3id.org/lmodel/fix-sbe/objectidentifier> , <https://w3id.org/lmodel/fix-sbe/sparqlpath> , <https://w3id.org/lmodel/fix-sbe/string> , <https://w3id.org/lmodel/fix-sbe/time> , <https://w3id.org/lmodel/fix-sbe/uri> , <https://w3id.org/lmodel/fix-sbe/uriorcurie> .
+<https://w3id.org/lmodel/fix-sbe/float> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"float\"." ;
+	skos:exactMatch "schema:Float"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "float" ;
+	linkml:definition_uri "https://w3id.org/linkml/Float"^^xsd:anyURI ;
+	linkml:description "A decimal number." , "A four-octet number in binary floating point." , "A real number that conforms to the xsd:float specification" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#float"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-sbe/header_type> a linkml:SlotDefinition ;
+	skos:altLabel "headerType" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	linkml:annotations _:c14n123 ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/header_type"^^xsd:anyURI ;
+	linkml:description "The composite, by name, that sends each message's header in this schema." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV1> , <https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV2> ;
+	linkml:ifabsent "string(messageHeader)" ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV2> ;
+	linkml:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/SbeSymbolicName> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/header_type"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-sbe/int16> linkml:description "A signed integer of two octets." .
+<https://w3id.org/lmodel/fix-sbe/int32> linkml:description "A signed integer of four octets." .
+<https://w3id.org/lmodel/fix-sbe/int64> linkml:description "A signed integer of eight octets." .
+<https://w3id.org/lmodel/fix-sbe/int8> linkml:description "A signed integer of one octet." .
+<https://w3id.org/lmodel/fix-sbe/int> linkml:description "A whole number." .
+<https://w3id.org/lmodel/fix-sbe/integer> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"integer\"." ;
+	skos:exactMatch "schema:Integer"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "int" ;
+	linkml:definition_uri "https://w3id.org/linkml/Integer"^^xsd:anyURI ;
+	linkml:description "An integer" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#integer"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-sbe/jsonpath> dcterms:conformsTo "https://www.ietf.org/archive/id/draft-goessner-dispatch-jsonpath-00.html" ;
+	a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"jsonpath\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "str" ;
+	linkml:definition_uri "https://w3id.org/linkml/Jsonpath"^^xsd:anyURI ;
+	linkml:description "A string encoding a JSON Path. The value of the string MUST conform to JSON Point syntax and SHOULD dereference to zero or more valid objects within the current instance document when encoded in tree form." ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#string"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-sbe/jsonpointer> dcterms:conformsTo "https://datatracker.ietf.org/doc/html/rfc6901" ;
+	a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"jsonpointer\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "str" ;
+	linkml:definition_uri "https://w3id.org/linkml/Jsonpointer"^^xsd:anyURI ;
+	linkml:description "A string encoding a JSON Pointer. The value of the string MUST conform to JSON Point syntax and SHOULD dereference to a valid object within the current instance document when encoded in tree form." ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#string"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-sbe/littleEndian> linkml:description "The least significant octet comes first." .
+<https://w3id.org/lmodel/fix-sbe/max_value> a linkml:SlotDefinition ;
+	skos:altLabel "maxValue" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/max_value"^^xsd:anyURI ;
+	linkml:description "The highest value allowed, written as text." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeFieldV2> , <https://w3id.org/lmodel/fix-sbe/SbeMemberTypeV2> , <https://w3id.org/lmodel/fix-sbe/SbeSimpleTypeV1> ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeFieldV2> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/max_value"^^xsd:anyURI ;
+	linkml:value_presence "ABSENT" .
+<https://w3id.org/lmodel/fix-sbe/message_sets> a linkml:SlotDefinition ;
+	skos:altLabel "messages" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/message_sets"^^xsd:anyURI ;
+	linkml:description "The sets of message templates of this schema." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV2> ;
+	linkml:inlined_as_list true ;
+	linkml:minimum_cardinality 1 ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV2> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/string> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/message_sets"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-sbe/messages> a linkml:SlotDefinition ;
+	skos:altLabel "message" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/messages"^^xsd:anyURI ;
+	linkml:description "The message templates of this set." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV1> , <https://w3id.org/lmodel/fix-sbe/SbeMessageSetV2> ;
+	linkml:inlined_as_list true ;
+	linkml:minimum_cardinality 1 ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeMessageSetV2> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/string> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/messages"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-sbe/min_value> a linkml:SlotDefinition ;
+	skos:altLabel "minValue" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/min_value"^^xsd:anyURI ;
+	linkml:description "The lowest value allowed, written as text." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeFieldV2> , <https://w3id.org/lmodel/fix-sbe/SbeMemberTypeV2> , <https://w3id.org/lmodel/fix-sbe/SbeSimpleTypeV1> ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeFieldV2> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/min_value"^^xsd:anyURI ;
+	linkml:value_presence "ABSENT" .
+<https://w3id.org/lmodel/fix-sbe/ncname> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"ncname\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "NCName" ;
+	linkml:definition_uri "https://w3id.org/linkml/Ncname"^^xsd:anyURI ;
+	linkml:description "Prefix part of CURIE" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#string"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-sbe/nodeidentifier> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"nodeidentifier\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "NodeIdentifier" ;
+	linkml:definition_uri "https://w3id.org/linkml/Nodeidentifier"^^xsd:anyURI ;
+	linkml:description "A URI, CURIE or BNODE that represents a node in a model." ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/ns/shex#nonLiteral"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-sbe/null_value> a linkml:SlotDefinition ;
+	skos:altLabel "nullValue" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/null_value"^^xsd:anyURI ;
+	linkml:description "The value that stands for null in place of the primitive type's default, written as text." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeFieldV2> , <https://w3id.org/lmodel/fix-sbe/SbeMemberTypeV2> , <https://w3id.org/lmodel/fix-sbe/SbeSimpleTypeV1> ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeFieldV2> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/null_value"^^xsd:anyURI ;
+	linkml:value_presence "ABSENT" .
+<https://w3id.org/lmodel/fix-sbe/objectidentifier> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"objectidentifier\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	skos:note "Used for inheritance and type checking" ;
+	linkml:base "ElementIdentifier" ;
+	linkml:definition_uri "https://w3id.org/linkml/Objectidentifier"^^xsd:anyURI ;
+	linkml:description "A URI or CURIE that represents an object in the model." ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/ns/shex#iri"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-sbe/offset> a linkml:SlotDefinition ;
+	skos:altLabel "offset" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	linkml:annotations _:c14n38 , _:c14n6 ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/offset"^^xsd:anyURI ;
+	linkml:description "The octet this element starts at, counted from zero at the start of its block or composite." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeFieldV1> , <https://w3id.org/lmodel/fix-sbe/SbeFieldV2> , <https://w3id.org/lmodel/fix-sbe/SbeMemberV1> , <https://w3id.org/lmodel/fix-sbe/SbeMemberV2> ;
+	linkml:maximum_value "4294967295"^^linkml:\@id ;
+	linkml:minimum_value "0"^^linkml:\@id ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeFieldV2> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/integer> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/offset"^^xsd:anyURI ;
+	linkml:value_presence "ABSENT" .
+<https://w3id.org/lmodel/fix-sbe/optional> linkml:description "A value is sent, and a null marker says that none is set." .
+<https://w3id.org/lmodel/fix-sbe/presence> a linkml:SlotDefinition ;
+	skos:altLabel "presence" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/presence"^^xsd:anyURI ;
+	linkml:description "Whether this element's value is required, optional or constant." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeFieldV1> , <https://w3id.org/lmodel/fix-sbe/SbeFieldV2> , <https://w3id.org/lmodel/fix-sbe/SbeMemberTypeV2> , <https://w3id.org/lmodel/fix-sbe/SbeSimpleTypeV1> ;
+	linkml:equals_string "constant" , "required" ;
+	linkml:ifabsent "string(required)" ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeFieldV2> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/SbePresence> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/presence"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-sbe/primitive_type> a linkml:SlotDefinition ;
+	skos:altLabel "primitiveType" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/primitive_type"^^xsd:anyURI ;
+	linkml:description "The wire type under this encoding." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeMemberTypeV2> , <https://w3id.org/lmodel/fix-sbe/SbeSimpleTypeV1> , <https://w3id.org/lmodel/fix-sbe/SbeSimpleTypeV2> ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeMemberTypeV2> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/SbePrimitiveType> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/primitive_type"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-sbe/repeating_groups> a linkml:SlotDefinition ;
+	skos:altLabel "group" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/repeating_groups"^^xsd:anyURI ;
+	linkml:description "Repeating groups, listed in wire order." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeBlockV1Mixin> , <https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin> ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/repeating_groups"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-sbe/required> linkml:description "A value is always sent, and it is never tested for null." .
+<https://w3id.org/lmodel/fix-sbe/sbeChoice__bit_position> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	skos:prefLabel "bit_position" ;
+	linkml:annotations _:c14n117 , _:c14n5 ;
+	linkml:description "Which bit stands for this choice, counted from zero at the least significant." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeChoice> ;
+	linkml:minimum_value "0"^^linkml:\@id ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeChoice> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/integer> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/bit_position"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-sbe/sbeFieldV1__time_epoch> a linkml:SlotDefinition ;
+	skos:altLabel "epoch" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v1_0"^^xsd:anyURI ;
+	skos:prefLabel "time_epoch" ;
+	linkml:annotations _:c14n10 ;
+	linkml:description "Where the period a time value counts from begins." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeFieldV1> ;
+	linkml:ifabsent "string(unix)" ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeFieldV1> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/time_epoch"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-sbe/sbeFieldV1__time_unit> a linkml:SlotDefinition ;
+	skos:altLabel "timeUnit" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v1_0"^^xsd:anyURI ;
+	skos:prefLabel "time_unit" ;
+	linkml:deprecated "The XSD keeps this only for schemas written against release candidate 2 of SBE 1.0." ;
+	linkml:description "The unit of a time value." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeFieldV1> ;
+	linkml:ifabsent "string(nanosecond)" ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeFieldV1> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/time_unit"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-sbe/sbeValidValue__valid_value> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	skos:prefLabel "valid_value" ;
+	linkml:annotations _:c14n1 , _:c14n25 ;
+	linkml:description "The value as it is written in the schema, which must convert to the enumeration's encoding." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeValidValue> ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeValidValue> ;
+	linkml:pattern "^\\S+( \\S+)*$" ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/SbeToken> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/valid_value"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-sbe/sbe_id> a linkml:SlotDefinition ;
+	skos:altLabel "id" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	linkml:annotations _:c14n67 ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/sbe_id"^^xsd:anyURI ;
+	linkml:description "The number that identifies this element." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeBlockV1Mixin> , <https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin> , <https://w3id.org/lmodel/fix-sbe/SbeFieldV1> , <https://w3id.org/lmodel/fix-sbe/SbeFieldV2> , <https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV1> , <https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV2> ;
+	linkml:maximum_value "65535"^^linkml:\@id ;
+	linkml:minimum_value "0"^^linkml:\@id ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeFieldV2> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/integer> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/sbe_id"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-sbe/sbe_xml_base> a linkml:SlotDefinition ;
+	skos:altLabel "xml:base" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_v2_0"^^xsd:anyURI ;
+	skos:note "The sbe_ prefix keeps this key apart from lmodel/fix-orchestra's xml_base, which has an IRI of its own." ;
+	linkml:annotations _:c14n23 , _:c14n90 ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/sbe_xml_base"^^xsd:anyURI ;
+	linkml:description "The base address that the XML Inclusion mechanism records on an element it brought in from another file." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeEncodingSetV2> , <https://w3id.org/lmodel/fix-sbe/SbeMessageSetV2> ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeMessageSetV2> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/sbe_xml_base"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-sbe/schema_package> a linkml:SlotDefinition ;
+	skos:altLabel "package" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/schema_package"^^xsd:anyURI ;
+	linkml:description "The name or category that a set of counterparties knows this schema or part of it by." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeEncodingSetV2> , <https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV1> , <https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV2> , <https://w3id.org/lmodel/fix-sbe/SbeMessageSetV2> ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeMessageSetV2> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/schema_package"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-sbe/schema_version> a linkml:SlotDefinition ;
+	skos:altLabel "version" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	linkml:annotations _:c14n121 , _:c14n2 ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/schema_version"^^xsd:anyURI ;
+	linkml:description "The version of this message schema, starting at zero." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV1> , <https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV2> ;
+	linkml:minimum_value "0"^^linkml:\@id ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV2> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/integer> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/schema_version"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-sbe/semantic_type> a linkml:SlotDefinition ;
+	skos:altLabel "semanticType" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	linkml:annotations _:c14n17 ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/semantic_type"^^xsd:anyURI ;
+	linkml:description "What this element means at the FIX application layer." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeBlockV1Mixin> , <https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin> , <https://w3id.org/lmodel/fix-sbe/SbeEncodingV1> , <https://w3id.org/lmodel/fix-sbe/SbeFieldV1> , <https://w3id.org/lmodel/fix-sbe/SbeFieldV2> ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeFieldV2> ;
+	linkml:pattern "^\\S+( \\S+)*$" ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/SbeToken> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/semantic_type"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-sbe/semantic_version> a linkml:SlotDefinition ;
+	skos:altLabel "semanticVersion" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/semantic_version"^^xsd:anyURI ;
+	linkml:description "The version of FIX whose meanings this schema uses." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV1> , <https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV2> ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeMessageSchemaV2> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/semantic_version"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-sbe/since_version> a linkml:SlotDefinition ;
+	skos:altLabel "sinceVersion" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	linkml:annotations _:c14n30 , _:c14n45 ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/since_version"^^xsd:anyURI ;
+	linkml:description "The schema version that added this element." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeVersionedMixin> ;
+	linkml:ifabsent "int(0)" ;
+	linkml:minimum_value "0"^^linkml:\@id ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeVersionedMixin> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/integer> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/since_version"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-sbe/sparqlpath> dcterms:conformsTo "https://www.w3.org/TR/sparql11-query/#propertypaths" ;
+	a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"sparqlpath\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "str" ;
+	linkml:definition_uri "https://w3id.org/linkml/Sparqlpath"^^xsd:anyURI ;
+	linkml:description "A string encoding a SPARQL Property Path. The value of the string MUST conform to SPARQL syntax and SHOULD dereference to zero or more valid objects within the current instance document when encoded as RDF." ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#string"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-sbe/string> a linkml:TypeDefinition ;
+	skos:editorialNote "In RDF serializations, a slot with range of string is treated as a literal or type xsd:string. If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"string\"." ;
+	skos:exactMatch "schema:Text"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "str" ;
+	linkml:definition_uri "https://w3id.org/linkml/String"^^xsd:anyURI ;
+	linkml:description "A character string" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#string"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-sbe/symbolic_name> a linkml:SlotDefinition ;
+	skos:altLabel "name" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/symbolic_name"^^xsd:anyURI ;
+	linkml:description "What the schema calls this element." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeBlockV1Mixin> , <https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin> , <https://w3id.org/lmodel/fix-sbe/SbeChoice> , <https://w3id.org/lmodel/fix-sbe/SbeElementV2> , <https://w3id.org/lmodel/fix-sbe/SbeFieldV1> , <https://w3id.org/lmodel/fix-sbe/SbeFieldV2> , <https://w3id.org/lmodel/fix-sbe/SbeMemberV1> , <https://w3id.org/lmodel/fix-sbe/SbeValidValue> ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeFieldV2> ;
+	linkml:pattern "^[A-Za-z_][0-9A-Za-z_]{0,63}$" ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/SbeSymbolicName> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/symbolic_name"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-sbe/time> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"time\"." , "URI is dateTime because OWL reasoners do not work with straight date or time" ;
+	skos:exactMatch "schema:Time"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "XSDTime" ;
+	linkml:definition_uri "https://w3id.org/linkml/Time"^^xsd:anyURI ;
+	linkml:description "A time object represents a (local) time of day, independent of any particular day" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#time"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-sbe/time_epoch> a linkml:SlotDefinition ;
+	skos:altLabel "epoch" ;
+	linkml:annotations _:c14n86 ;
+	linkml:description "Where the period a time value counts from begins." ;
+	linkml:ifabsent "string(unix)" .
+<https://w3id.org/lmodel/fix-sbe/time_unit> a linkml:SlotDefinition ;
+	skos:altLabel "timeUnit" ;
+	linkml:deprecated "The XSD keeps this only for schemas written against release candidate 2 of SBE 1.0." ;
+	linkml:description "The unit of a time value." ;
+	linkml:ifabsent "string(nanosecond)" .
+<https://w3id.org/lmodel/fix-sbe/uint16> linkml:description "An unsigned integer of two octets." .
+<https://w3id.org/lmodel/fix-sbe/uint32> linkml:description "An unsigned integer of four octets." .
+<https://w3id.org/lmodel/fix-sbe/uint64> linkml:description "An unsigned integer of eight octets." .
+<https://w3id.org/lmodel/fix-sbe/uint8> linkml:description "An unsigned integer of one octet." .
+<https://w3id.org/lmodel/fix-sbe/uri> dcterms:conformsTo "https://www.ietf.org/rfc/rfc3987.txt" ;
+	a linkml:TypeDefinition ;
+	skos:closeMatch "schema:URL"^^xsd:anyURI ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"uri\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	skos:note "in RDF serializations a slot with range of uri is treated as a literal or type xsd:anyURI unless it is an identifier or a reference to an identifier, in which case it is translated directly to a node" ;
+	linkml:base "URI" ;
+	linkml:definition_uri "https://w3id.org/linkml/Uri"^^xsd:anyURI ;
+	linkml:description "a complete URI" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#anyURI"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-sbe/uriorcurie> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"uriorcurie\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "URIorCURIE" ;
+	linkml:definition_uri "https://w3id.org/linkml/Uriorcurie"^^xsd:anyURI ;
+	linkml:description "a URI or a CURIE" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#anyURI"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-sbe/valid_value> a linkml:SlotDefinition ;
+	linkml:annotations _:c14n13 , _:c14n95 ;
+	linkml:description "The value as it is written in the schema, which must convert to the enumeration's encoding." ;
+	linkml:pattern "^\\S+( \\S+)*$" ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/SbeToken> ;
+	linkml:required true .
+<https://w3id.org/lmodel/fix-sbe/valid_values> a linkml:SlotDefinition ;
+	skos:altLabel "validValue" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/valid_values"^^xsd:anyURI ;
+	linkml:description "The values this enumeration allows." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeEnumV1> , <https://w3id.org/lmodel/fix-sbe/SbeEnumV2> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:minimum_cardinality 1 ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeEnumV2> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/SbeValidValue> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/valid_values"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-sbe/value_ref> a linkml:SlotDefinition ;
+	skos:altLabel "valueRef" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/value_ref"^^xsd:anyURI ;
+	linkml:description "The valid value that gives a constant element its value." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeFieldV1> , <https://w3id.org/lmodel/fix-sbe/SbeFieldV2> , <https://w3id.org/lmodel/fix-sbe/SbeMemberTypeV2> , <https://w3id.org/lmodel/fix-sbe/SbeSimpleTypeV1> ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeFieldV2> ;
+	linkml:pattern "^[A-Za-z_][0-9A-Za-z_]*\\.[A-Za-z_][0-9A-Za-z_]*$" ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/SbeQualifiedName> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/value_ref"^^xsd:anyURI ;
+	linkml:value_presence "PRESENT" .
+<https://w3id.org/lmodel/fix-sbe/var_data_fields> a linkml:SlotDefinition ;
+	skos:altLabel "data" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-sbe/schema/fix_sbe_common"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-sbe/var_data_fields"^^xsd:anyURI ;
+	linkml:description "Variable-length fields, listed in wire order." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-sbe/SbeBlockV1Mixin> , <https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin> ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/fix-sbe/SbeBlockV2Mixin> ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-sbe/var_data_fields"^^xsd:anyURI .
+_:c14n1 a linkml:Annotation ;
+	skos:example "xs:token" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n10 a linkml:Annotation ;
+	skos:example "2: Date and time encoding" ;
+	linkml:tag "sbe_section"^^xsd:anyURI .
+_:c14n100 dcterms:title "A reference to a value needs a constant" ;
+	a linkml:ClassRule ;
+	sh:condition _:c14n214 ;
+	linkml:annotations _:c14n254 ;
+	linkml:description "A value_ref is valid only on an element whose presence is constant." ;
+	linkml:postconditions _:c14n232 .
+_:c14n102 a linkml:Annotation ;
+	skos:example "validValue" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n103 skos:example "4: Field attributes" ;
+	linkml:tag "sbe_section"^^xsd:anyURI .
+_:c14n104 a linkml:Annotation ;
+	skos:example "composite" ;
+	linkml:tag "xml_element"^^xsd:anyURI .
+_:c14n105 dcterms:title "A required value has no null" ;
+	a linkml:ClassRule ;
+	sh:condition _:c14n226 ;
+	linkml:annotations _:c14n217 ;
+	linkml:description "A null value cannot sit beside a presence of required." ;
+	linkml:postconditions _:c14n242 .
+_:c14n107 a linkml:Annotation ;
+	skos:example "messageSchema" ;
+	linkml:tag "xml_element"^^xsd:anyURI .
+_:c14n109 a linkml:Annotation ;
+	skos:example "blockType" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n11 a linkml:Annotation ;
+	skos:example "set" ;
+	linkml:tag "xml_element"^^xsd:anyURI .
+_:c14n110 linkml:xsd_type _:c14n188 .
+_:c14n111 a linkml:Annotation ;
+	skos:example "enumType" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n112 dcterms:title "An offset or an alignment, not both" ;
+	a linkml:ClassRule ;
+	sh:condition _:c14n58 ;
+	linkml:annotations _:c14n122 ;
+	linkml:description "A field places itself by an offset or by an alignment, never both." ;
+	linkml:postconditions _:c14n3 .
+_:c14n113 a linkml:Annotation ;
+	skos:example "field" ;
+	linkml:tag "xml_element"^^xsd:anyURI .
+_:c14n114 sh:namespace "https://w3id.org/lmodel/fix-orchestra/"^^xsd:anyURI ;
+	sh:prefix "fix_orchestra" .
+_:c14n117 a linkml:Annotation ;
+	skos:example "4: choice element content" ;
+	linkml:tag "sbe_section"^^xsd:anyURI .
+_:c14n118 sh:namespace "https://w3id.org/linkml/"^^xsd:anyURI ;
+	sh:prefix "linkml" .
+_:c14n12 a linkml:Annotation ;
+	skos:example "4: choice element content" ;
+	linkml:tag "sbe_section"^^xsd:anyURI .
+_:c14n120 linkml:sbe_section _:c14n185 ;
+	linkml:xsd_type _:c14n164 .
+_:c14n121 a linkml:Annotation ;
+	skos:example "xs:nonNegativeInteger" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n122 a linkml:Annotation ;
+	skos:example "3: Field byte alignment" ;
+	linkml:tag "sbe_section"^^xsd:anyURI .
+_:c14n123 a linkml:Annotation ;
+	skos:example "3: Message header schema" ;
+	linkml:tag "sbe_section"^^xsd:anyURI .
+_:c14n124 a linkml:Annotation ;
+	skos:example "messageSchema" ;
+	linkml:tag "xml_element"^^xsd:anyURI .
+_:c14n125 dcterms:title "A reference to a value needs a constant" ;
+	a linkml:ClassRule ;
+	sh:condition _:c14n211 ;
+	linkml:annotations _:c14n255 ;
+	linkml:description "A value_ref is valid only on an element whose presence is constant." ;
+	linkml:postconditions _:c14n230 .
+_:c14n126 a linkml:Annotation ;
+	skos:example "type" ;
+	linkml:tag "xml_element"^^xsd:anyURI .
+_:c14n127 a linkml:Annotation ;
+	skos:example "simpleDataType" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n128 skos:example "2: FIX datatype summary" ;
+	linkml:tag "sbe_section"^^xsd:anyURI .
+_:c14n129 a linkml:AnonymousSlotExpression ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/SbeEnumV2> .
+_:c14n13 a linkml:Annotation ;
+	skos:example "xs:token" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n130 a linkml:Annotation ;
+	skos:example "enum" ;
+	linkml:tag "xml_element"^^xsd:anyURI .
+_:c14n131 dcterms:title "A required value has no null" ;
+	a linkml:ClassRule ;
+	sh:condition _:c14n222 ;
+	linkml:annotations _:c14n215 ;
+	linkml:description "A null value cannot sit beside a presence of required." ;
+	linkml:postconditions _:c14n238 .
+_:c14n132 a linkml:Annotation ;
+	skos:example "message" ;
+	linkml:tag "xml_element"^^xsd:anyURI .
+_:c14n133 skos:example "4: messageSchema attributes" ;
+	linkml:tag "sbe_section"^^xsd:anyURI .
+_:c14n134 dcterms:title "A constant has no null" ;
+	a linkml:ClassRule ;
+	sh:condition _:c14n219 ;
+	linkml:annotations _:c14n243 ;
+	linkml:description "A null value cannot sit beside a presence of constant." ;
+	linkml:postconditions _:c14n241 .
+_:c14n137 linkml:xsd_type _:c14n173 .
+_:c14n138 linkml:xsd_type _:c14n179 .
+_:c14n139 a linkml:Annotation ;
+	skos:example "5: Deprecated elements" ;
+	linkml:tag "sbe_section"^^xsd:anyURI .
+_:c14n14 a linkml:Annotation ;
+	skos:example "ref" ;
+	linkml:tag "xml_element"^^xsd:anyURI .
+_:c14n140 a linkml:Annotation ;
+	skos:example "groupType" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n141 a linkml:Annotation ;
+	skos:example "encodedDataType" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n142 a linkml:Annotation ;
+	skos:example "ref" ;
+	linkml:tag "xml_element"^^xsd:anyURI .
+_:c14n143 linkml:xsd_type _:c14n182 .
+_:c14n145 linkml:xsd_type _:c14n170 .
+_:c14n146 linkml:xsd_type _:c14n161 .
+_:c14n147 a linkml:Annotation ;
+	skos:example "types" ;
+	linkml:tag "xml_element"^^xsd:anyURI .
+_:c14n148 a linkml:Annotation ;
+	skos:example "compositeDataType" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n149 a linkml:Annotation ;
+	skos:example "xs:token" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n15 a linkml:Annotation ;
+	skos:example "enum" ;
+	linkml:tag "xml_element"^^xsd:anyURI .
+_:c14n150 a linkml:Annotation ;
+	skos:example "choice" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n152 linkml:xsd_type _:c14n197 .
+_:c14n153 skos:example "2: Primitive type encodings" ;
+	linkml:tag "sbe_section"^^xsd:anyURI .
+_:c14n155 a linkml:Annotation ;
+	skos:example "3: Root block length" ;
+	linkml:tag "sbe_section"^^xsd:anyURI .
+_:c14n156 dcterms:title "A constant has no null" ;
+	a linkml:ClassRule ;
+	sh:condition _:c14n224 ;
+	linkml:annotations _:c14n249 ;
+	linkml:description "A null value cannot sit beside a presence of constant." ;
+	linkml:postconditions _:c14n237 .
+_:c14n158 skos:example "xs:unsignedShort" ;
+	linkml:annotations _:c14n157 ;
+	linkml:extensions _:c14n159 ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n161 skos:example "xs:token" ;
+	linkml:annotations _:c14n160 ;
+	linkml:extensions _:c14n162 ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n164 skos:example "xs:positiveInteger" ;
+	linkml:annotations _:c14n163 ;
+	linkml:extensions _:c14n165 ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n167 skos:example "xs:positiveInteger" ;
+	linkml:annotations _:c14n166 ;
+	linkml:extensions _:c14n168 ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n17 a linkml:Annotation ;
+	skos:example "xs:token" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n170 skos:example "xs:token" ;
+	linkml:annotations _:c14n169 ;
+	linkml:extensions _:c14n171 ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n173 skos:example "xs:unsignedShort" ;
+	linkml:annotations _:c14n172 ;
+	linkml:extensions _:c14n174 ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n176 skos:example "xs:token" ;
+	linkml:annotations _:c14n175 ;
+	linkml:extensions _:c14n177 ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n179 skos:example "xs:token" ;
+	linkml:annotations _:c14n178 ;
+	linkml:extensions _:c14n180 ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n18 dcterms:title "A constant has no highest value" ;
+	a linkml:ClassRule ;
+	sh:condition _:c14n220 ;
+	linkml:annotations _:c14n245 ;
+	linkml:description "A highest value cannot sit beside a presence of constant." ;
+	linkml:postconditions _:c14n235 .
+_:c14n182 skos:example "xs:unsignedShort" ;
+	linkml:annotations _:c14n181 ;
+	linkml:extensions _:c14n183 ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n185 skos:example "3: Field byte alignment" ;
+	linkml:annotations _:c14n184 ;
+	linkml:extensions _:c14n186 ;
+	linkml:tag "sbe_section"^^xsd:anyURI .
+_:c14n188 skos:example "xs:unsignedShort" ;
+	linkml:annotations _:c14n187 ;
+	linkml:extensions _:c14n189 ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n19 a linkml:Annotation ;
+	skos:example "refType" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n191 skos:example "xs:unsignedShort" ;
+	linkml:annotations _:c14n190 ;
+	linkml:extensions _:c14n192 ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n194 skos:example "xs:token" ;
+	linkml:annotations _:c14n193 ;
+	linkml:extensions _:c14n195 ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n197 skos:example "xs:unsignedShort" ;
+	linkml:annotations _:c14n196 ;
+	linkml:extensions _:c14n198 ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n2 a linkml:Annotation ;
+	skos:example "4: Schema versioning" ;
+	linkml:tag "sbe_section"^^xsd:anyURI .
+_:c14n20 dcterms:title "A required value has no null" ;
+	a linkml:ClassRule ;
+	sh:condition _:c14n218 ;
+	linkml:annotations _:c14n216 ;
+	linkml:description "A null value cannot sit beside a presence of required." ;
+	linkml:postconditions _:c14n239 .
+_:c14n200 skos:example "3: Field byte alignment" ;
+	linkml:annotations _:c14n199 ;
+	linkml:extensions _:c14n201 ;
+	linkml:tag "sbe_section"^^xsd:anyURI .
+_:c14n203 skos:example "xs:unsignedShort" ;
+	linkml:annotations _:c14n202 ;
+	linkml:extensions _:c14n204 ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n206 skos:example "xs:unsignedShort" ;
+	linkml:annotations _:c14n205 ;
+	linkml:extensions _:c14n207 ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n208 a linkml:AnonymousClassExpression ;
+	linkml:slot_conditions <https://w3id.org/lmodel/fix-sbe/min_value> .
+_:c14n209 a linkml:AnonymousClassExpression ;
+	linkml:slot_conditions <https://w3id.org/lmodel/fix-sbe/min_value> .
+_:c14n21 a linkml:Annotation ;
+	skos:example "fieldType" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n210 a linkml:AnonymousClassExpression ;
+	linkml:slot_conditions <https://w3id.org/lmodel/fix-sbe/min_value> .
+_:c14n211 a linkml:AnonymousClassExpression ;
+	linkml:slot_conditions <https://w3id.org/lmodel/fix-sbe/value_ref> .
+_:c14n212 a linkml:AnonymousClassExpression ;
+	linkml:slot_conditions <https://w3id.org/lmodel/fix-sbe/value_ref> .
+_:c14n213 a linkml:AnonymousClassExpression ;
+	linkml:slot_conditions <https://w3id.org/lmodel/fix-sbe/value_ref> .
+_:c14n214 a linkml:AnonymousClassExpression ;
+	linkml:slot_conditions <https://w3id.org/lmodel/fix-sbe/value_ref> .
+_:c14n215 a linkml:Annotation ;
+	skos:example "4: Schema validation" ;
+	linkml:tag "sbe_section"^^xsd:anyURI .
+_:c14n216 a linkml:Annotation ;
+	skos:example "4: Schema validation" ;
+	linkml:tag "sbe_section"^^xsd:anyURI .
+_:c14n217 a linkml:Annotation ;
+	skos:example "4: Schema validation" ;
+	linkml:tag "sbe_section"^^xsd:anyURI .
+_:c14n218 a linkml:AnonymousClassExpression ;
+	linkml:slot_conditions <https://w3id.org/lmodel/fix-sbe/presence> .
+_:c14n219 a linkml:AnonymousClassExpression ;
+	linkml:slot_conditions <https://w3id.org/lmodel/fix-sbe/presence> .
+_:c14n22 linkml:xsd_type _:c14n206 .
+_:c14n220 a linkml:AnonymousClassExpression ;
+	linkml:slot_conditions <https://w3id.org/lmodel/fix-sbe/presence> .
+_:c14n221 a linkml:AnonymousClassExpression ;
+	linkml:slot_conditions <https://w3id.org/lmodel/fix-sbe/presence> .
+_:c14n222 a linkml:AnonymousClassExpression ;
+	linkml:slot_conditions <https://w3id.org/lmodel/fix-sbe/presence> .
+_:c14n223 a linkml:AnonymousClassExpression ;
+	linkml:slot_conditions <https://w3id.org/lmodel/fix-sbe/presence> .
+_:c14n224 a linkml:AnonymousClassExpression ;
+	linkml:slot_conditions <https://w3id.org/lmodel/fix-sbe/presence> .
+_:c14n225 a linkml:AnonymousClassExpression ;
+	linkml:slot_conditions <https://w3id.org/lmodel/fix-sbe/presence> .
+_:c14n226 a linkml:AnonymousClassExpression ;
+	linkml:slot_conditions <https://w3id.org/lmodel/fix-sbe/presence> .
+_:c14n227 a linkml:AnonymousClassExpression ;
+	linkml:slot_conditions <https://w3id.org/lmodel/fix-sbe/presence> .
+_:c14n228 a linkml:AnonymousClassExpression ;
+	linkml:slot_conditions <https://w3id.org/lmodel/fix-sbe/presence> .
+_:c14n229 a linkml:AnonymousClassExpression ;
+	linkml:slot_conditions <https://w3id.org/lmodel/fix-sbe/presence> .
+_:c14n23 a linkml:Annotation ;
+	skos:example "4: XInclude usage" ;
+	linkml:tag "sbe_section"^^xsd:anyURI .
+_:c14n230 a linkml:AnonymousClassExpression ;
+	linkml:slot_conditions <https://w3id.org/lmodel/fix-sbe/presence> .
+_:c14n231 a linkml:AnonymousClassExpression ;
+	linkml:slot_conditions <https://w3id.org/lmodel/fix-sbe/presence> .
+_:c14n232 a linkml:AnonymousClassExpression ;
+	linkml:slot_conditions <https://w3id.org/lmodel/fix-sbe/presence> .
+_:c14n233 a linkml:AnonymousClassExpression ;
+	linkml:slot_conditions <https://w3id.org/lmodel/fix-sbe/presence> .
+_:c14n234 a linkml:AnonymousClassExpression ;
+	linkml:slot_conditions <https://w3id.org/lmodel/fix-sbe/max_value> .
+_:c14n235 a linkml:AnonymousClassExpression ;
+	linkml:slot_conditions <https://w3id.org/lmodel/fix-sbe/max_value> .
+_:c14n236 a linkml:AnonymousClassExpression ;
+	linkml:slot_conditions <https://w3id.org/lmodel/fix-sbe/max_value> .
+_:c14n237 a linkml:AnonymousClassExpression ;
+	linkml:slot_conditions <https://w3id.org/lmodel/fix-sbe/null_value> .
+_:c14n238 a linkml:AnonymousClassExpression ;
+	linkml:slot_conditions <https://w3id.org/lmodel/fix-sbe/null_value> .
+_:c14n239 a linkml:AnonymousClassExpression ;
+	linkml:slot_conditions <https://w3id.org/lmodel/fix-sbe/null_value> .
+_:c14n24 a linkml:Annotation ;
+	skos:example "memberDataType" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n240 a linkml:AnonymousClassExpression ;
+	linkml:slot_conditions <https://w3id.org/lmodel/fix-sbe/null_value> .
+_:c14n241 a linkml:AnonymousClassExpression ;
+	linkml:slot_conditions <https://w3id.org/lmodel/fix-sbe/null_value> .
+_:c14n242 a linkml:AnonymousClassExpression ;
+	linkml:slot_conditions <https://w3id.org/lmodel/fix-sbe/null_value> .
+_:c14n243 a linkml:Annotation ;
+	skos:example "2: Common field schema attributes" ;
+	linkml:tag "sbe_section"^^xsd:anyURI .
+_:c14n244 a linkml:Annotation ;
+	skos:example "2: Common field schema attributes" ;
+	linkml:tag "sbe_section"^^xsd:anyURI .
+_:c14n245 a linkml:Annotation ;
+	skos:example "2: Common field schema attributes" ;
+	linkml:tag "sbe_section"^^xsd:anyURI .
+_:c14n246 a linkml:Annotation ;
+	skos:example "2: Common field schema attributes" ;
+	linkml:tag "sbe_section"^^xsd:anyURI .
+_:c14n247 a linkml:Annotation ;
+	skos:example "2: Common field schema attributes" ;
+	linkml:tag "sbe_section"^^xsd:anyURI .
+_:c14n248 a linkml:Annotation ;
+	skos:example "2: Common field schema attributes" ;
+	linkml:tag "sbe_section"^^xsd:anyURI .
+_:c14n249 a linkml:Annotation ;
+	skos:example "2: Common field schema attributes" ;
+	linkml:tag "sbe_section"^^xsd:anyURI .
+_:c14n25 a linkml:Annotation ;
+	skos:example "4: Schema validation" ;
+	linkml:tag "sbe_section"^^xsd:anyURI .
+_:c14n250 a linkml:Annotation ;
+	skos:example "2: Common field schema attributes" ;
+	linkml:tag "sbe_section"^^xsd:anyURI .
+_:c14n251 a linkml:Annotation ;
+	skos:example "2: Common field schema attributes" ;
+	linkml:tag "sbe_section"^^xsd:anyURI .
+_:c14n252 a linkml:Annotation ;
+	skos:example "4: Field attributes" ;
+	linkml:tag "sbe_section"^^xsd:anyURI .
+_:c14n253 a linkml:Annotation ;
+	skos:example "4: Field attributes" ;
+	linkml:tag "sbe_section"^^xsd:anyURI .
+_:c14n254 a linkml:Annotation ;
+	skos:example "4: Field attributes" ;
+	linkml:tag "sbe_section"^^xsd:anyURI .
+_:c14n255 a linkml:Annotation ;
+	skos:example "4: Field attributes" ;
+	linkml:tag "sbe_section"^^xsd:anyURI .
+_:c14n27 a linkml:Annotation ;
+	skos:example "messages" ;
+	linkml:tag "xml_element"^^xsd:anyURI .
+_:c14n28 a linkml:Annotation ;
+	skos:example "4: Constant value" ;
+	linkml:tag "sbe_section"^^xsd:anyURI .
+_:c14n3 a linkml:AnonymousClassExpression ;
+	linkml:slot_conditions <https://w3id.org/lmodel/fix-sbe/offset> .
+_:c14n30 a linkml:Annotation ;
+	skos:example "5: Since version" ;
+	linkml:tag "sbe_section"^^xsd:anyURI .
+_:c14n31 a linkml:Annotation ;
+	skos:example "set" ;
+	linkml:tag "xml_element"^^xsd:anyURI .
+_:c14n33 a linkml:Annotation ;
+	skos:example "group" ;
+	linkml:tag "xml_element"^^xsd:anyURI .
+_:c14n34 linkml:xsd_type _:c14n158 .
+_:c14n36 a linkml:Annotation ;
+	skos:example "qualifiedName_t" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n37 a linkml:Annotation ;
+	skos:example "group" ;
+	linkml:tag "xml_element"^^xsd:anyURI .
+_:c14n38 a linkml:Annotation ;
+	skos:example "xs:unsignedInt" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n39 a linkml:Annotation ;
+	skos:example "enumType" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n4 a linkml:Annotation ;
+	skos:example "compositeDataType" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n41 a linkml:Annotation ;
+	skos:example "symbolicName_t" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n42 a linkml:Annotation ;
+	skos:example "3: Encoding of repeating group dimensions" ;
+	linkml:tag "sbe_section"^^xsd:anyURI .
+_:c14n43 skos:example "v1.0-errata-Nov-2020" ;
+	linkml:tag "upstream_v1_tag"^^xsd:anyURI .
+_:c14n45 a linkml:Annotation ;
+	skos:example "xs:nonNegativeInteger" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n47 skos:example "418a8f6a8b93c65b308638dab2bc6a35dddcd864" ;
+	linkml:tag "upstream_v2_commit"^^xsd:anyURI .
+_:c14n49 linkml:xsd_type _:c14n203 .
+_:c14n5 a linkml:Annotation ;
+	skos:example "xs:nonNegativeInteger" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n50 sh:namespace "https://w3id.org/lmodel/fix-sbe/"^^xsd:anyURI ;
+	sh:prefix "fix_sbe" .
+_:c14n51 linkml:xsd_type _:c14n191 .
+_:c14n53 a linkml:Annotation ;
+	skos:example "fieldType" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n54 a linkml:Annotation ;
+	skos:example "xs:nonNegativeInteger" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n55 a linkml:Annotation ;
+	skos:example "xs:positiveInteger" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n56 a linkml:Annotation ;
+	skos:example "message" ;
+	linkml:tag "xml_element"^^xsd:anyURI .
+_:c14n57 linkml:sbe_section _:c14n200 ;
+	linkml:xsd_type _:c14n167 .
+_:c14n58 a linkml:AnonymousClassExpression ;
+	linkml:slot_conditions <https://w3id.org/lmodel/fix-sbe/alignment> .
+_:c14n59 dcterms:title "A constant has no highest value" ;
+	a linkml:ClassRule ;
+	sh:condition _:c14n228 ;
+	linkml:annotations _:c14n247 ;
+	linkml:description "A highest value cannot sit beside a presence of constant." ;
+	linkml:postconditions _:c14n236 .
+_:c14n6 a linkml:Annotation ;
+	skos:example "3: Field offset specified by message schema" ;
+	linkml:tag "sbe_section"^^xsd:anyURI .
+_:c14n60 a linkml:AnonymousSlotExpression ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/SbeSimpleTypeV2> .
+_:c14n61 a linkml:Annotation ;
+	skos:example "field" ;
+	linkml:tag "xml_element"^^xsd:anyURI .
+_:c14n62 a linkml:AnonymousSlotExpression ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/SbeCompositeV2> .
+_:c14n63 dcterms:title "A reference to a value needs a constant" ;
+	a linkml:ClassRule ;
+	sh:condition _:c14n213 ;
+	linkml:annotations _:c14n253 ;
+	linkml:description "A value_ref is valid only on an element whose presence is constant." ;
+	linkml:postconditions _:c14n231 .
+_:c14n66 sh:namespace "http://schema.org/"^^xsd:anyURI ;
+	sh:prefix "schema" .
+_:c14n67 a linkml:Annotation ;
+	skos:example "xs:unsignedShort" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n7 a linkml:Annotation ;
+	skos:example "xs:token" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n70 dcterms:title "A constant has no null" ;
+	a linkml:ClassRule ;
+	sh:condition _:c14n229 ;
+	linkml:annotations _:c14n246 ;
+	linkml:description "A null value cannot sit beside a presence of constant." ;
+	linkml:postconditions _:c14n240 .
+_:c14n71 dcterms:title "A reference to a value needs a constant" ;
+	a linkml:ClassRule ;
+	sh:condition _:c14n212 ;
+	linkml:annotations _:c14n252 ;
+	linkml:description "A value_ref is valid only on an element whose presence is constant." ;
+	linkml:postconditions _:c14n233 .
+_:c14n72 a linkml:Annotation ;
+	skos:example "type" ;
+	linkml:tag "xml_element"^^xsd:anyURI .
+_:c14n73 a linkml:Annotation ;
+	skos:example "type" ;
+	linkml:tag "xml_element"^^xsd:anyURI .
+_:c14n74 a linkml:Annotation ;
+	skos:example "setType" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n75 a linkml:AnonymousSlotExpression ;
+	linkml:range <https://w3id.org/lmodel/fix-sbe/SbeSetV2> .
+_:c14n79 a linkml:Annotation ;
+	skos:example "groupType" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n80 a linkml:Annotation ;
+	skos:example "xs:nonNegativeInteger" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n81 a linkml:Annotation ;
+	skos:example "versionAttributes" ;
+	linkml:tag "xsd_attribute_group"^^xsd:anyURI .
+_:c14n82 a linkml:Annotation ;
+	skos:example "setType" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n83 a linkml:Annotation ;
+	skos:example "xs:nonNegativeInteger" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n84 dcterms:title "A constant has no highest value" ;
+	a linkml:ClassRule ;
+	sh:condition _:c14n221 ;
+	linkml:annotations _:c14n250 ;
+	linkml:description "A highest value cannot sit beside a presence of constant." ;
+	linkml:postconditions _:c14n234 .
+_:c14n85 a linkml:Annotation ;
+	skos:example "3: Field byte alignment" ;
+	linkml:tag "sbe_section"^^xsd:anyURI .
+_:c14n86 a linkml:Annotation ;
+	skos:example "2: Date and time encoding" ;
+	linkml:tag "sbe_section"^^xsd:anyURI .
+_:c14n87 linkml:xsd_type _:c14n194 .
+_:c14n88 dcterms:title "A constant has no lowest value" ;
+	a linkml:ClassRule ;
+	sh:condition _:c14n225 ;
+	linkml:annotations _:c14n244 ;
+	linkml:description "A lowest value cannot sit beside a presence of constant." ;
+	linkml:postconditions _:c14n208 .
+_:c14n9 dcterms:title "A constant has no lowest value" ;
+	a linkml:ClassRule ;
+	sh:condition _:c14n223 ;
+	linkml:annotations _:c14n248 ;
+	linkml:description "A lowest value cannot sit beside a presence of constant." ;
+	linkml:postconditions _:c14n210 .
+_:c14n90 a linkml:Annotation ;
+	skos:example "xs:anyURI" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n91 a linkml:Annotation ;
+	skos:example "types" ;
+	linkml:tag "xml_element"^^xsd:anyURI .
+_:c14n92 dcterms:title "A constant has no lowest value" ;
+	a linkml:ClassRule ;
+	sh:condition _:c14n227 ;
+	linkml:annotations _:c14n251 ;
+	linkml:description "A lowest value cannot sit beside a presence of constant." ;
+	linkml:postconditions _:c14n209 .
+_:c14n93 linkml:xsd_type _:c14n176 .
+_:c14n94 a linkml:Annotation ;
+	skos:example "refType" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n95 a linkml:Annotation ;
+	skos:example "4: Schema validation" ;
+	linkml:tag "sbe_section"^^xsd:anyURI .
+_:c14n96 a linkml:Annotation ;
+	skos:example "blockType" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n97 a linkml:Annotation ;
+	skos:example "composite" ;
+	linkml:tag "xml_element"^^xsd:anyURI .
+_:c14n98 a linkml:Annotation ;
+	skos:example "xs:nonNegativeInteger" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n99 skos:example "6321e6b9bce5bc198f88f462054cbaf4f33d8f60" ;
+	linkml:tag "upstream_v1_commit"^^xsd:anyURI .
+
