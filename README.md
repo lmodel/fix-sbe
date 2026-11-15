@@ -2,6 +2,11 @@
 
 # fix-sbe
 
+[![Build and test](https://github.com/lmodel/fix-sbe/actions/workflows/main.yaml/badge.svg)](https://github.com/lmodel/fix-sbe/actions/workflows/main.yaml)
+[![Licence](https://img.shields.io/github/license/lmodel/fix-sbe?label=licence)](LICENSE)
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/lmodel/fix-sbe/badge)](https://scorecard.dev/viewer/?uri=github.com/lmodel/fix-sbe)
+[![KTL scorecard](https://img.shields.io/endpoint?url=https://lmodel.github.io/fix-sbe/badge.json)](https://lmodel.github.io/fix-sbe/health/)
+
 FIX Simple Binary Encoding (SBE) 1.0 and 2.0 RC3 (LinkML)
 
 > **Only want to ask?** Install `ktl-docent` into any agent you use, by a route from [the install page](https://w3id.org/ktl/docs/install/), and ask it about this project. It answers from the bundle and says how far each answer has been checked.
@@ -31,7 +36,7 @@ The schema describes a message schema of [FIX Simple Binary Encoding](https://gi
 * [src/fix_sbe/datamodel/](src/fix_sbe/datamodel): the generated Python datamodel
 * [tests/](tests/): Python tests, with example data in [data/](tests/data) and the neighbours' adapt copies in [neighbours/](tests/neighbours)
 * [upstream/](upstream/): FIX's XSDs, examples and licences, and the conformance suite's schemas, unchanged
-* [website/](website/): the Astro Starlight site built from the README, `docs/`, the schema's pages and the knowledge bundle
+* [website/](website/): the Hugo site built from the README, `docs/`, the schema's pages and the knowledge bundle
 
 ## Developer Tools
 
