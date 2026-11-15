@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # /// script
-# requires-python = ">=3.10"
+# requires-python = ">=3.11"
 # dependencies = ["pyyaml>=6"]
 # ///
 """Turn an SBE document in XML into the YAML record the LinkML schema describes.
