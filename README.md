@@ -31,7 +31,7 @@ The schema describes a message schema of [FIX Simple Binary Encoding](https://gi
 * [src/fix_sbe/datamodel/](src/fix_sbe/datamodel): the generated Python datamodel
 * [tests/](tests/): Python tests, with example data in [data/](tests/data) and the neighbours' adapt copies in [neighbours/](tests/neighbours)
 * [upstream/](upstream/): FIX's XSDs, examples and licences, and the conformance suite's schemas, unchanged
-* [website/](website/): the Astro Starlight site built from the README, `docs/`, the schema's pages and the knowledge bundle
+* [website/](website/): the Hugo site built from the README, `docs/`, the schema's pages and the knowledge bundle
 
 ## Developer Tools
 
