@@ -12,11 +12,11 @@ sources:
     resource: SECURITY.md
     title: What executes here
   - resource: .releaserc.json
-  - resource: .github/release
+  - resource: .release
   - resource: .github/scripts/changelog-release.mjs
 generated:
   by: process:ktl-librarian
-  at: "2026-11-05T17:57:59Z"
+  at: "2026-11-15T20:57:24Z"
 status: draft
 ---
 
