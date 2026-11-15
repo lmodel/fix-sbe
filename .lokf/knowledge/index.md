@@ -30,7 +30,7 @@ A [LOKF](https://lokf.nolan-nichols.com) knowledge base for fix-sbe. Every Markd
 
 # Services
 
-* [Documentation site](services/documentation-site.md) - The knowledge website in `website/`, an Astro Starlight site that the Knowledge website workflow publishes to GitHub Pages at `https://lmodel.github.io/fix-sbe`, built from the README, `docs/`, the schema's pages and this bundle.
+* [Documentation site](services/documentation-site.md) - The knowledge website in `website/`, a Hugo site that the Knowledge website workflow publishes to GitHub Pages at `https://lmodel.github.io/fix-sbe`, built from the README, `docs/`, the schema's pages and this bundle.
 * [The converter](services/converter.md) - `scripts/sbe_xml_to_yaml.py`: turns an SBE document in XML into the YAML record the model describes, and stops on anything the schema has no place for. `just sbe-to-yaml` runs it.
 
 # Datasets
